@@ -2,9 +2,23 @@ const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
 
-const uploadForm = document.getElementById('uploadForm');
-const uploadButton = document.getElementById('uploadButton');
-const statusBox = document.getElementById('status');
+const uploadForm =
+  document.getElementById('uploadForm');
+
+const uploadButton =
+  document.getElementById('uploadButton');
+
+const statusBox =
+  document.getElementById('status');
+
+const sheetSelect =
+  document.getElementById('sheetName');
+
+const idSelect =
+  document.getElementById('idValue');
+
+const dataInfo =
+  document.getElementById('dataInfo');
 
 
 /* =====================================================
@@ -13,10 +27,225 @@ const statusBox = document.getElementById('status');
 
 function showStatus(message, type) {
 
-  statusBox.className = 'status ' + type;
-  statusBox.innerHTML = message;
+  statusBox.className =
+    'status ' + type;
+
+  statusBox.innerHTML =
+    message;
 
 }
+
+
+/* =====================================================
+   LOAD DATA DARI GOOGLE SHEETS
+===================================================== */
+
+async function loadData(sheetName) {
+
+  idSelect.innerHTML = `
+    <option value="">
+      Memuat data...
+    </option>
+  `;
+
+  idSelect.disabled = true;
+
+  dataInfo.textContent =
+    'Mengambil data dari Google Sheets...';
+
+
+  let action;
+
+  if (sheetName === 'INFORMASI_PUBLIK') {
+
+    action = 'informasi';
+
+  } else if (sheetName === 'DIP') {
+
+    action = 'dip';
+
+  } else {
+
+    idSelect.innerHTML = `
+      <option value="">
+        -- Pilih Dokumen --
+      </option>
+    `;
+
+    dataInfo.textContent =
+      'Jenis data belum tersedia.';
+
+    return;
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        '?action=' +
+        encodeURIComponent(action)
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Data gagal dimuat.'
+      );
+
+    }
+
+
+    const data =
+      result.data;
+
+
+    if (
+      !Array.isArray(data) ||
+      data.length === 0
+    ) {
+
+      idSelect.innerHTML = `
+        <option value="">
+          Tidak ada data
+        </option>
+      `;
+
+      dataInfo.textContent =
+        'Belum ada data pada Google Sheets.';
+
+      return;
+    }
+
+
+    /* -------------------------------------------------
+       ISI DROPDOWN
+    ------------------------------------------------- */
+
+    idSelect.innerHTML = `
+      <option value="">
+        -- Pilih Dokumen --
+      </option>
+    `;
+
+
+    data.forEach(function(row) {
+
+      const id =
+        row.id || '';
+
+      const judul =
+        row.judul || 'Tanpa Judul';
+
+
+      if (!id) {
+        return;
+      }
+
+
+      const option =
+        document.createElement('option');
+
+
+      option.value = id;
+
+      option.textContent =
+        id + ' — ' + judul;
+
+
+      idSelect.appendChild(option);
+
+    });
+
+
+    idSelect.disabled = false;
+
+
+    dataInfo.textContent =
+      data.length +
+      ' data tersedia dari Google Sheets.';
+
+
+  } catch (error) {
+
+    console.error(
+      'LOAD DATA ERROR:',
+      error
+    );
+
+
+    idSelect.innerHTML = `
+      <option value="">
+        Gagal memuat data
+      </option>
+    `;
+
+
+    dataInfo.textContent =
+      error.message;
+
+
+    showStatus(
+      'Data Google Sheets gagal dimuat: ' +
+      escapeHTML(error.message),
+      'error'
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   PERUBAHAN JENIS DATA
+===================================================== */
+
+sheetSelect.addEventListener(
+  'change',
+  function() {
+
+    const sheetName =
+      this.value;
+
+
+    if (!sheetName) {
+
+      idSelect.innerHTML = `
+        <option value="">
+          -- Pilih Dokumen --
+        </option>
+      `;
+
+      idSelect.disabled = true;
+
+      dataInfo.textContent =
+        'Pilih jenis data terlebih dahulu.';
+
+      return;
+    }
+
+
+    loadData(sheetName);
+
+  }
+);
 
 
 /* =====================================================
@@ -27,25 +256,35 @@ function fileToBase64(file) {
 
   return new Promise(function(resolve, reject) {
 
-    const reader = new FileReader();
+    const reader =
+      new FileReader();
 
-    reader.onload = function() {
 
-      const result = reader.result;
+    reader.onload =
+      function() {
 
-      const base64 = result.split(',')[1];
+        const result =
+          reader.result;
 
-      resolve(base64);
+        const base64 =
+          result.split(',')[1];
 
-    };
+        resolve(base64);
 
-    reader.onerror = function() {
+      };
 
-      reject(
-        new Error('File gagal dibaca.')
-      );
 
-    };
+    reader.onerror =
+      function() {
+
+        reject(
+          new Error(
+            'File gagal dibaca.'
+          )
+        );
+
+      };
+
 
     reader.readAsDataURL(file);
 
@@ -55,7 +294,7 @@ function fileToBase64(file) {
 
 
 /* =====================================================
-   UPLOAD FORM
+   UPLOAD
 ===================================================== */
 
 uploadForm.addEventListener(
@@ -64,14 +303,19 @@ uploadForm.addEventListener(
 
     event.preventDefault();
 
+
     const sheetName =
-      document.getElementById('sheetName').value;
+      sheetSelect.value;
+
 
     const idValue =
-      document.getElementById('idValue').value.trim();
+      idSelect.value;
+
 
     const file =
-      document.getElementById('file').files[0];
+      document.getElementById(
+        'file'
+      ).files[0];
 
 
     /* -------------------------------------------------
@@ -92,7 +336,7 @@ uploadForm.addEventListener(
     if (!idValue) {
 
       showStatus(
-        'ID data wajib diisi.',
+        'Silakan pilih dokumen.',
         'error'
       );
 
@@ -113,7 +357,9 @@ uploadForm.addEventListener(
 
     if (
       file.type !== 'application/pdf' &&
-      !file.name.toLowerCase().endsWith('.pdf')
+      !file.name
+        .toLowerCase()
+        .endsWith('.pdf')
     ) {
 
       showStatus(
@@ -127,14 +373,15 @@ uploadForm.addEventListener(
 
     try {
 
-      uploadButton.disabled = true;
+      uploadButton.disabled =
+        true;
 
       uploadButton.textContent =
         'Mengupload...';
 
 
       showStatus(
-        'Sedang mengupload dokumen. Mohon tunggu...',
+        'Sedang mengupload dokumen...',
         'loading'
       );
 
@@ -148,89 +395,101 @@ uploadForm.addEventListener(
 
 
       /* -------------------------------------------------
-         TENTUKAN ID COLUMN
+         ID COLUMN
       ------------------------------------------------- */
 
-      const idColumnName = 'id';
+      const idColumnName =
+        'id';
 
 
       /* -------------------------------------------------
-         TENTUKAN FOLDER
+         FOLDER
       ------------------------------------------------- */
 
       let folderName;
 
-      if (sheetName === 'INFORMASI_PUBLIK') {
+
+      if (
+        sheetName ===
+        'INFORMASI_PUBLIK'
+      ) {
 
         folderName =
           '02_INFORMASI_PUBLIK';
 
-      } else if (sheetName === 'DIP') {
+      }
+
+
+      else if (
+        sheetName === 'DIP'
+      ) {
 
         folderName =
           '03_DIP';
 
-      } else {
+      }
+
+
+      else {
 
         throw new Error(
-          'Jenis data belum memiliki folder upload.'
+          'Folder upload belum tersedia.'
         );
 
       }
 
 
       /* -------------------------------------------------
-         REQUEST DATA
+         REQUEST
       ------------------------------------------------- */
 
       const requestData = {
 
-        action: 'upload',
+        action:
+          'upload',
 
-        sheetName: sheetName,
+        sheetName:
+          sheetName,
 
-        idColumnName: idColumnName,
+        idColumnName:
+          idColumnName,
 
-        idValue: idValue,
+        idValue:
+          idValue,
 
-        fileData: fileData,
+        fileData:
+          fileData,
 
-        fileName: file.name,
+        fileName:
+          file.name,
 
-        folderName: folderName
+        folderName:
+          folderName
 
       };
-
-
-      console.log(
-        'Mengirim upload ke Apps Script...'
-      );
 
 
       /* -------------------------------------------------
          POST
       ------------------------------------------------- */
 
-      const response = await fetch(
-        API_URL,
-        {
-          method: 'POST',
+      const response =
+        await fetch(
+          API_URL,
+          {
+            method: 'POST',
 
-          headers: {
-            'Content-Type':
-              'text/plain;charset=utf-8'
-          },
+            headers: {
+              'Content-Type':
+                'text/plain;charset=utf-8'
+            },
 
-          body:
-            JSON.stringify(requestData)
-        }
-      );
-
-
-      console.log(
-        'HTTP status:',
-        response.status
-      );
+            body:
+              JSON.stringify(
+                requestData
+              )
+          }
+        );
 
 
       if (!response.ok) {
@@ -247,16 +506,6 @@ uploadForm.addEventListener(
         await response.json();
 
 
-      console.log(
-        'Response Apps Script:',
-        result
-      );
-
-
-      /* -------------------------------------------------
-         HASIL
-      ------------------------------------------------- */
-
       if (!result.success) {
 
         throw new Error(
@@ -267,18 +516,28 @@ uploadForm.addEventListener(
       }
 
 
+      /* -------------------------------------------------
+         SUKSES
+      ------------------------------------------------- */
+
       showStatus(
         `
         <strong>Upload berhasil.</strong><br><br>
 
         File:
-        ${escapeHTML(result.fileName)}<br>
+        ${escapeHTML(
+          result.fileName
+        )}<br>
 
         Folder:
-        ${escapeHTML(result.folder)}<br><br>
+        ${escapeHTML(
+          result.folder
+        )}<br><br>
 
         <a
-          href="${escapeAttribute(result.fileUrl)}"
+          href="${escapeAttribute(
+            result.fileUrl
+          )}"
           target="_blank"
           rel="noopener"
         >
@@ -292,7 +551,19 @@ uploadForm.addEventListener(
       uploadForm.reset();
 
 
-    } catch (error) {
+      idSelect.innerHTML = `
+        <option value="">
+          -- Pilih Dokumen --
+        </option>
+      `;
+
+      idSelect.disabled = true;
+
+      dataInfo.textContent =
+        'Pilih jenis data terlebih dahulu.';
+
+
+  } catch (error) {
 
       console.error(
         'UPLOAD ERROR:',
@@ -303,7 +574,9 @@ uploadForm.addEventListener(
       showStatus(
         `
         <strong>Upload gagal.</strong><br>
-        ${escapeHTML(error.message)}
+        ${escapeHTML(
+          error.message
+        )}
         `,
         'error'
       );
@@ -311,7 +584,8 @@ uploadForm.addEventListener(
 
     } finally {
 
-      uploadButton.disabled = false;
+      uploadButton.disabled =
+        false;
 
       uploadButton.textContent =
         'Upload Dokumen';
@@ -329,11 +603,26 @@ uploadForm.addEventListener(
 function escapeHTML(value) {
 
   return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+    .replace(
+      /</g,
+      '&lt;'
+    )
+    .replace(
+      />/g,
+      '&gt;'
+    )
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+    .replace(
+      /'/g,
+      '&#039;'
+    );
 
 }
 
@@ -341,7 +630,13 @@ function escapeHTML(value) {
 function escapeAttribute(value) {
 
   return String(value)
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+    .replace(
+      /'/g,
+      '&#039;'
+    );
 
 }
