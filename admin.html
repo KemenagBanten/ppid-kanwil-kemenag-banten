@@ -208,12 +208,15 @@
             ID Data
           </label>
 
-          <input
-            type="text"
-            id="idValue"
-            placeholder="Contoh: INF001"
-            required
-          >
+         <select id="idValue" required>
+  <option value="">
+    -- Pilih Dokumen --
+  </option>
+</select>
+
+<div class="file-info" id="dataInfo">
+  Pilih jenis data terlebih dahulu.
+</div>
 
           <div class="file-info">
             Masukkan ID yang sesuai dengan ID pada Google Sheets.
