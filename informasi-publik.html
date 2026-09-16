@@ -2,238 +2,1793 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Informasi Publik - PPID Kanwil Kemenag Banten</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Informasi Publik PPID Kanwil Kementerian Agama Provinsi Banten"
+  >
+
+  <title>
+    Informasi Publik | PPID Kanwil Kemenag Banten
+  </title>
 
   <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7f6;
-      color: #26332d;
+
+    html {
+      scroll-behavior: smooth;
     }
+
+
+    body {
+      font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      background:
+        #f5f7f6;
+
+      color:
+        #26352e;
+
+      line-height:
+        1.6;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+
+    /* =====================================================
+       TOP BAR
+    ===================================================== */
+
+    .topbar {
+
+      background:
+        #0f5132;
+
+      color:
+        rgba(255,255,255,.9);
+
+      font-size:
+        13px;
+    }
+
+
+    .topbar-inner {
+
+      max-width:
+        1200px;
+
+      margin:
+        auto;
+
+      padding:
+        8px 24px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        15px;
+    }
+
+
+    .topbar-left,
+    .topbar-right {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header {
-      background: #176b45;
-      color: white;
-      padding: 30px 20px;
+
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        1000;
+
+      background:
+        rgba(255,255,255,.96);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid #e6ebe8;
+
+      box-shadow:
+        0 4px 20px rgba(0,0,0,.04);
     }
+
 
     .header-inner {
-      max-width: 1100px;
-      margin: auto;
+
+      max-width:
+        1200px;
+
+      margin:
+        auto;
+
+      padding:
+        14px 24px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        30px;
     }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: 30px;
+
+    /* =====================================================
+       BRAND
+    ===================================================== */
+
+    .brand {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      min-width:
+        260px;
     }
 
-    .subtitle {
-      margin: 0;
-      opacity: 0.9;
+
+    .brand-logo {
+
+      width:
+        48px;
+
+      height:
+        48px;
+
+      border-radius:
+        12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0f5132,
+          #198754
+        );
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      color:
+        white;
+
+      font-weight:
+        800;
+
+      font-size:
+        16px;
+
+      box-shadow:
+        0 6px 16px rgba(15,81,50,.2);
     }
+
+
+    .brand-text strong {
+
+      display:
+        block;
+
+      color:
+        #0f5132;
+
+      font-size:
+        15px;
+
+      line-height:
+        1.3;
+    }
+
+
+    .brand-text span {
+
+      display:
+        block;
+
+      color:
+        #66736c;
+
+      font-size:
+        12px;
+
+      margin-top:
+        2px;
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    nav {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        5px;
+    }
+
+
+    nav a {
+
+      padding:
+        9px 12px;
+
+      border-radius:
+        8px;
+
+      color:
+        #52615a;
+
+      font-size:
+        14px;
+
+      font-weight:
+        500;
+
+      transition:
+        .2s ease;
+    }
+
+
+    nav a:hover {
+
+      color:
+        #0f5132;
+
+      background:
+        #edf5f1;
+    }
+
+
+    nav a.active {
+
+      color:
+        #0f5132;
+
+      background:
+        #e7f2ec;
+
+      font-weight:
+        700;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0f5132 0%,
+          #146c43 55%,
+          #198754 100%
+        );
+
+      color:
+        white;
+    }
+
+
+    .hero::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        380px;
+
+      height:
+        380px;
+
+      border-radius:
+        50%;
+
+      background:
+        rgba(255,255,255,.06);
+
+      right:
+        -120px;
+
+      top:
+        -170px;
+    }
+
+
+    .hero::after {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      width:
+        250px;
+
+      height:
+        250px;
+
+      border-radius:
+        50%;
+
+      background:
+        rgba(255,255,255,.04);
+
+      left:
+        -100px;
+
+      bottom:
+        -160px;
+    }
+
+
+    .hero-inner {
+
+      position:
+        relative;
+
+      z-index:
+        2;
+
+      max-width:
+        1200px;
+
+      margin:
+        auto;
+
+      padding:
+        62px 24px 68px;
+    }
+
+
+    .breadcrumb {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        8px;
+
+      font-size:
+        13px;
+
+      color:
+        rgba(255,255,255,.72);
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .breadcrumb a:hover {
+
+      color:
+        white;
+    }
+
+
+    .hero h1 {
+
+      font-size:
+        clamp(32px, 5vw, 48px);
+
+      line-height:
+        1.1;
+
+      letter-spacing:
+        -.8px;
+
+      margin-bottom:
+        14px;
+    }
+
+
+    .hero-description {
+
+      max-width:
+        680px;
+
+      font-size:
+        16px;
+
+      color:
+        rgba(255,255,255,.82);
+
+      line-height:
+        1.7;
+    }
+
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
 
     main {
-      max-width: 1100px;
-      margin: 35px auto;
-      padding: 0 20px;
+
+      max-width:
+        1200px;
+
+      margin:
+        auto;
+
+      padding:
+        42px 24px 70px;
     }
 
-    .page-title {
-      margin-bottom: 25px;
+
+    /* =====================================================
+       SEARCH + FILTER
+    ===================================================== */
+
+    .toolbar {
+
+      background:
+        white;
+
+      border:
+        1px solid #e3e9e5;
+
+      border-radius:
+        16px;
+
+      padding:
+        18px;
+
+      box-shadow:
+        0 8px 30px rgba(24,51,39,.05);
+
+      margin-bottom:
+        30px;
     }
 
-    .page-title h2 {
-      margin: 0 0 8px;
+
+    .search-wrapper {
+
+      position:
+        relative;
     }
 
-    .page-title p {
-      margin: 0;
-      color: #68736d;
+
+    .search-icon {
+
+      position:
+        absolute;
+
+      left:
+        16px;
+
+      top:
+        50%;
+
+      transform:
+        translateY(-50%);
+
+      color:
+        #7a8781;
+
+      font-size:
+        18px;
+
+      pointer-events:
+        none;
     }
 
-    .search-box {
-      margin-bottom: 25px;
+
+    #searchInput {
+
+      width:
+        100%;
+
+      border:
+        1px solid #dce4df;
+
+      background:
+        #fafcfb;
+
+      border-radius:
+        11px;
+
+      padding:
+        14px 16px 14px 45px;
+
+      outline:
+        none;
+
+      font-size:
+        15px;
+
+      color:
+        #26352e;
+
+      transition:
+        .2s ease;
     }
 
-    .search-box input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #d5ddd8;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
+
+    #searchInput:focus {
+
+      background:
+        white;
+
+      border-color:
+        #198754;
+
+      box-shadow:
+        0 0 0 4px rgba(25,135,84,.08);
     }
 
-    .search-box input:focus {
-      border-color: #176b45;
+
+    .filters {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        8px;
+
+      margin-top:
+        14px;
     }
+
+
+    .filter-btn {
+
+      border:
+        1px solid #dce5df;
+
+      background:
+        white;
+
+      color:
+        #52615a;
+
+      border-radius:
+        30px;
+
+      padding:
+        8px 15px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        13px;
+
+      transition:
+        .2s ease;
+    }
+
+
+    .filter-btn:hover {
+
+      border-color:
+        #198754;
+
+      color:
+        #0f5132;
+    }
+
+
+    .filter-btn.active {
+
+      background:
+        #0f5132;
+
+      color:
+        white;
+
+      border-color:
+        #0f5132;
+    }
+
+
+    /* =====================================================
+       RESULT INFO
+    ===================================================== */
+
+    .result-header {
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      margin-bottom:
+        18px;
+    }
+
+
+    .result-header h2 {
+
+      font-size:
+        22px;
+
+      color:
+        #26352e;
+    }
+
+
+    #resultCount {
+
+      font-size:
+        13px;
+
+      color:
+        #738079;
+
+      white-space:
+        nowrap;
+    }
+
+
+    /* =====================================================
+       LOADING
+    ===================================================== */
 
     #loading {
-      padding: 30px;
-      text-align: center;
-      color: #68736d;
+
+      background:
+        white;
+
+      border:
+        1px solid #e3e9e5;
+
+      border-radius:
+        15px;
+
+      padding:
+        45px 20px;
+
+      text-align:
+        center;
+
+      color:
+        #68766f;
+
+      box-shadow:
+        0 5px 20px rgba(0,0,0,.03);
     }
+
+
+    .spinner {
+
+      width:
+        30px;
+
+      height:
+        30px;
+
+      border:
+        3px solid #dce8e1;
+
+      border-top-color:
+        #198754;
+
+      border-radius:
+        50%;
+
+      animation:
+        spin .8s linear infinite;
+
+      margin:
+        0 auto 14px;
+    }
+
+
+    @keyframes spin {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
 
     #error {
-      display: none;
-      padding: 15px;
-      border-radius: 10px;
-      background: #ffe8e8;
-      color: #a32626;
-      margin-bottom: 20px;
+
+      display:
+        none;
+
+      background:
+        #fff3f3;
+
+      border:
+        1px solid #f0cccc;
+
+      color:
+        #9b3030;
+
+      border-radius:
+        12px;
+
+      padding:
+        15px 18px;
+
+      margin-bottom:
+        20px;
+
+      font-size:
+        14px;
     }
+
+
+    /* =====================================================
+       DATA GRID
+    ===================================================== */
 
     .data-list {
-      display: grid;
-      gap: 16px;
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap:
+        18px;
     }
+
+
+    /* =====================================================
+       CARD
+    ===================================================== */
 
     .card {
-      background: white;
-      border: 1px solid #e1e7e3;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+
+      position:
+        relative;
+
+      background:
+        white;
+
+      border:
+        1px solid #e2e9e5;
+
+      border-radius:
+        16px;
+
+      padding:
+        23px;
+
+      box-shadow:
+        0 7px 25px rgba(26,54,41,.045);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
     }
+
+
+    .card:hover {
+
+      transform:
+        translateY(-3px);
+
+      border-color:
+        #cbdcd2;
+
+      box-shadow:
+        0 12px 32px rgba(26,54,41,.09);
+    }
+
+
+    .card-top {
+
+      display:
+        flex;
+
+      align-items:
+        flex-start;
+
+      justify-content:
+        space-between;
+
+      gap:
+        15px;
+
+      margin-bottom:
+        15px;
+    }
+
+
+    .document-icon {
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      flex-shrink:
+        0;
+
+      border-radius:
+        11px;
+
+      background:
+        #edf6f1;
+
+      color:
+        #0f5132;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        20px;
+
+      font-weight:
+        700;
+    }
+
+
+    .document-id {
+
+      font-size:
+        12px;
+
+      color:
+        #7b8781;
+
+      margin-bottom:
+        4px;
+    }
+
 
     .card h3 {
-      margin: 0 0 10px;
-      font-size: 19px;
+
+      font-size:
+        18px;
+
+      line-height:
+        1.4;
+
+      color:
+        #203128;
+
+      margin:
+        0;
     }
+
 
     .summary {
-      color: #68736d;
-      line-height: 1.6;
-      margin-bottom: 15px;
+
+      color:
+        #68756f;
+
+      font-size:
+        14px;
+
+      line-height:
+        1.65;
+
+      margin-bottom:
+        17px;
+
+      min-height:
+        46px;
     }
+
+
+    /* =====================================================
+       META
+    ===================================================== */
 
     .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        20px;
     }
+
 
     .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 20px;
-      background: #eef5f1;
-      color: #176b45;
-      font-size: 13px;
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      padding:
+        5px 9px;
+
+      border-radius:
+        7px;
+
+      background:
+        #f1f5f3;
+
+      color:
+        #53615a;
+
+      font-size:
+        12px;
+
+      border:
+        1px solid #e4ebe7;
     }
 
-    .button {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 8px;
-      background: #176b45;
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
+
+    .badge.primary {
+
+      background:
+        #e9f5ef;
+
+      color:
+        #0f5132;
+
+      border-color:
+        #d4e9dd;
     }
 
-    .button:hover {
-      opacity: 0.9;
+
+    .badge.published {
+
+      background:
+        #eaf7ef;
+
+      color:
+        #187443;
+
+      border-color:
+        #d2ebdc;
     }
+
+
+    /* =====================================================
+       CARD FOOTER
+    ===================================================== */
+
+    .card-footer {
+
+      margin-top:
+        auto;
+
+      padding-top:
+        15px;
+
+      border-top:
+        1px solid #edf0ee;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        12px;
+    }
+
+
+    .date {
+
+      font-size:
+        12px;
+
+      color:
+        #7b8781;
+    }
+
+
+    .document-button {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        7px;
+
+      background:
+        #0f5132;
+
+      color:
+        white;
+
+      padding:
+        9px 13px;
+
+      border-radius:
+        8px;
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+      transition:
+        .2s ease;
+
+      white-space:
+        nowrap;
+    }
+
+
+    .document-button:hover {
+
+      background:
+        #146c43;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .document-button.disabled {
+
+      background:
+        #eef1ef;
+
+      color:
+        #7b8580;
+
+      cursor:
+        default;
+    }
+
+
+    /* =====================================================
+       EMPTY
+    ===================================================== */
 
     .no-data {
-      text-align: center;
-      padding: 40px;
-      color: #68736d;
-      background: white;
-      border-radius: 14px;
+
+      grid-column:
+        1 / -1;
+
+      background:
+        white;
+
+      border:
+        1px solid #e3e9e5;
+
+      border-radius:
+        16px;
+
+      padding:
+        55px 20px;
+
+      text-align:
+        center;
+
+      color:
+        #718078;
     }
 
-    footer {
-      margin-top: 60px;
-      padding: 25px;
-      text-align: center;
-      color: #68736d;
-      font-size: 13px;
+
+    .no-data-icon {
+
+      font-size:
+        35px;
+
+      margin-bottom:
+        10px;
     }
+
+
+    .no-data strong {
+
+      display:
+        block;
+
+      color:
+        #435149;
+
+      margin-bottom:
+        5px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    footer {
+
+      background:
+        #102e20;
+
+      color:
+        rgba(255,255,255,.7);
+
+      margin-top:
+        30px;
+    }
+
+
+    .footer-inner {
+
+      max-width:
+        1200px;
+
+      margin:
+        auto;
+
+      padding:
+        35px 24px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        30px;
+    }
+
+
+    .footer-title {
+
+      color:
+        white;
+
+      font-weight:
+        700;
+
+      margin-bottom:
+        7px;
+    }
+
+
+    .footer-text {
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+
+      max-width:
+        500px;
+    }
+
+
+    .footer-copy {
+
+      border-top:
+        1px solid rgba(255,255,255,.1);
+
+      text-align:
+        center;
+
+      padding:
+        15px 20px;
+
+      font-size:
+        12px;
+
+      color:
+        rgba(255,255,255,.55);
+    }
+
+
+    /* =====================================================
+       RESPONSIVE TABLET
+    ===================================================== */
+
+    @media (max-width: 900px) {
+
+      nav a:nth-child(n+4) {
+        display: none;
+      }
+
+      .data-list {
+        grid-template-columns:
+          1fr;
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE MOBILE
+    ===================================================== */
+
+    @media (max-width: 680px) {
+
+      .topbar-inner {
+        justify-content:
+          center;
+
+        padding:
+          7px 15px;
+      }
+
+
+      .topbar-right {
+        display:
+          none;
+      }
+
+
+      .header-inner {
+        padding:
+          12px 16px;
+      }
+
+
+      .brand {
+        min-width:
+          auto;
+      }
+
+
+      .brand-logo {
+        width:
+          42px;
+
+        height:
+          42px;
+
+        font-size:
+          14px;
+      }
+
+
+      .brand-text strong {
+        font-size:
+          13px;
+      }
+
+
+      .brand-text span {
+        font-size:
+          10px;
+      }
+
+
+      nav {
+        display:
+          none;
+      }
+
+
+      .hero-inner {
+        padding:
+          42px 18px 48px;
+      }
+
+
+      .hero h1 {
+        font-size:
+          32px;
+      }
+
+
+      .hero-description {
+        font-size:
+          14px;
+      }
+
+
+      main {
+        padding:
+          28px 16px 50px;
+      }
+
+
+      .toolbar {
+        padding:
+          14px;
+      }
+
+
+      .result-header {
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+        gap:
+          3px;
+      }
+
+
+      .card {
+        padding:
+          19px;
+      }
+
+
+      .card-footer {
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+      }
+
+
+      .document-button {
+        width:
+          100%;
+      }
+
+
+      .footer-inner {
+        flex-direction:
+          column;
+
+        padding:
+          30px 18px;
+      }
+
+    }
+
+
   </style>
 </head>
 
+
 <body>
 
-<header>
-  <div class="header-inner">
-    <h1>PPID Kanwil Kemenag Banten</h1>
-    <p class="subtitle">Informasi Publik</p>
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<div class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="topbar-left">
+      <span>PPID</span>
+      <span>•</span>
+      <span>Kementerian Agama</span>
+    </div>
+
+    <div class="topbar-right">
+      <span>Kanwil Kemenag Provinsi Banten</span>
+    </div>
+
   </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <div class="header-inner">
+
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-logo">
+        KEMENAG
+      </div>
+
+      <div class="brand-text">
+
+        <strong>
+          PPID Kanwil Kemenag Banten
+        </strong>
+
+        <span>
+          Pejabat Pengelola Informasi dan Dokumentasi
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <nav>
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a
+        href="informasi-publik.html"
+        class="active"
+      >
+        Informasi Publik
+      </a>
+
+      <a href="dip.html">
+        DIP
+      </a>
+
+      <a href="dik.html">
+        DIK
+      </a>
+
+    </nav>
+
+  </div>
+
 </header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="breadcrumb">
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <span>›</span>
+
+      <span>
+        Informasi Publik
+      </span>
+
+    </div>
+
+
+    <h1>
+      Informasi Publik
+    </h1>
+
+
+    <p class="hero-description">
+
+      Akses informasi publik Kanwil Kementerian Agama
+      Provinsi Banten secara mudah, transparan, dan
+      terintegrasi.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main>
 
-  <div class="page-title">
-    <h2>Informasi Publik</h2>
-    <p>Daftar informasi publik yang tersedia untuk masyarakat.</p>
+
+  <!-- TOOLBAR -->
+
+  <section class="toolbar">
+
+    <div class="search-wrapper">
+
+      <span class="search-icon">
+        🔎
+      </span>
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari judul, kategori, jenis informasi, atau kata kunci..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <div
+      class="filters"
+      id="filters"
+    >
+
+      <button
+        type="button"
+        class="filter-btn active"
+        data-filter="all"
+      >
+        Semua
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="Berkala"
+      >
+        Berkala
+      </button>
+
+      <button
+        type="button"
+        class="filter-btn"
+        data-filter="Setiap Saat"
+      >
+        Setiap Saat
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESULT HEADER -->
+
+  <div class="result-header">
+
+    <h2>
+      Daftar Informasi
+    </h2>
+
+    <span id="resultCount">
+      Memuat data...
+    </span>
+
   </div>
 
-  <div class="search-box">
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Cari informasi publik..."
-    >
-  </div>
+
+  <!-- ERROR -->
 
   <div id="error"></div>
 
+
+  <!-- LOADING -->
+
   <div id="loading">
-    Memuat informasi publik...
+
+    <div class="spinner"></div>
+
+    <div>
+      Memuat informasi publik...
+    </div>
+
   </div>
+
+
+  <!-- DATA -->
 
   <div
     id="dataList"
     class="data-list"
   ></div>
 
+
 </main>
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
-  PPID Kanwil Kementerian Agama Provinsi Banten
+
+  <div class="footer-inner">
+
+    <div>
+
+      <div class="footer-title">
+        PPID Kanwil Kementerian Agama Provinsi Banten
+      </div>
+
+      <div class="footer-text">
+
+        Portal layanan informasi publik untuk mendukung
+        keterbukaan informasi dan pelayanan publik
+        di lingkungan Kanwil Kementerian Agama
+        Provinsi Banten.
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-copy">
+
+    © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
+
+  </div>
+
 </footer>
 
 
 <script>
 
+/* =====================================================
+   API
+===================================================== */
+
 const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
+
+/* =====================================================
+   STATE
+===================================================== */
+
 let allData = [];
+
+let activeFilter = 'all';
 
 
 /* =====================================================
-   LOAD INFORMASI PUBLIK
+   ELEMENT
+===================================================== */
+
+const dataList =
+  document.getElementById('dataList');
+
+const loading =
+  document.getElementById('loading');
+
+const errorBox =
+  document.getElementById('error');
+
+const resultCount =
+  document.getElementById('resultCount');
+
+const searchInput =
+  document.getElementById('searchInput');
+
+
+/* =====================================================
+   LOAD DATA
 ===================================================== */
 
 async function loadInformasiPublik() {
 
-  const loading =
-    document.getElementById('loading');
-
-  const dataList =
-    document.getElementById('dataList');
-
-  const errorBox =
-    document.getElementById('error');
-
   try {
+
+    loading.style.display =
+      'block';
+
+    errorBox.style.display =
+      'none';
 
     const response =
       await fetch(
         API_URL +
         '?action=informasi'
       );
+
 
     if (!response.ok) {
 
@@ -244,8 +1799,10 @@ async function loadInformasiPublik() {
 
     }
 
+
     const result =
       await response.json();
+
 
     if (!result.success) {
 
@@ -256,15 +1813,19 @@ async function loadInformasiPublik() {
 
     }
 
+
     allData =
       Array.isArray(result.data)
         ? result.data
         : [];
 
+
     loading.style.display =
       'none';
 
-    renderData(allData);
+
+    applyFilter();
+
 
   } catch (error) {
 
@@ -273,15 +1834,22 @@ async function loadInformasiPublik() {
       error
     );
 
+
     loading.style.display =
       'none';
+
 
     errorBox.style.display =
       'block';
 
+
     errorBox.textContent =
       'Gagal memuat informasi publik: ' +
       error.message;
+
+
+    resultCount.textContent =
+      'Data tidak tersedia';
 
   }
 
@@ -289,181 +1857,418 @@ async function loadInformasiPublik() {
 
 
 /* =====================================================
-   RENDER DATA
+   FILTER
 ===================================================== */
 
-function renderData(data) {
+document
+  .querySelectorAll('.filter-btn')
+  .forEach(function(button) {
 
-  const dataList =
-    document.getElementById('dataList');
+    button.addEventListener(
+      'click',
+      function() {
 
-  if (!data.length) {
+        document
+          .querySelectorAll('.filter-btn')
+          .forEach(function(btn) {
 
-    dataList.innerHTML = `
-      <div class="no-data">
-        Belum ada informasi publik yang tersedia.
-      </div>
-    `;
+            btn.classList.remove(
+              'active'
+            );
 
-    return;
-  }
+          });
 
-  dataList.innerHTML = '';
 
-  data.forEach(function(row) {
+        this.classList.add(
+          'active'
+        );
 
-    const card =
-      document.createElement('div');
 
-    card.className =
-      'card';
+        activeFilter =
+          this.dataset.filter;
 
-    const judul =
-      row.judul || 'Tanpa Judul';
 
-    const ringkasan =
-      row.ringkasan || '';
+        applyFilter();
 
-    const jenis =
-      row.jenis || '';
-
-    const kategori =
-      row.kategori || '';
-
-    const tahun =
-      row.tahun || '';
-
-    const url =
-      row.url_dokumen || '';
-
-    card.innerHTML = `
-
-      <h3>
-        ${escapeHTML(judul)}
-      </h3>
-
-      <div class="summary">
-        ${escapeHTML(ringkasan)}
-      </div>
-
-      <div class="meta">
-
-        ${
-          jenis
-            ? `<span class="badge">
-                 ${escapeHTML(jenis)}
-               </span>`
-            : ''
-        }
-
-        ${
-          kategori
-            ? `<span class="badge">
-                 ${escapeHTML(kategori)}
-               </span>`
-            : ''
-        }
-
-        ${
-          tahun
-            ? `<span class="badge">
-                 Tahun ${escapeHTML(tahun)}
-               </span>`
-            : ''
-        }
-
-      </div>
-
-      ${
-        url
-          ? `
-            <a
-              class="button"
-              href="${escapeAttribute(url)}"
-              target="_blank"
-              rel="noopener"
-            >
-              Lihat Dokumen
-            </a>
-          `
-          : `
-            <span class="badge">
-              Dokumen belum tersedia
-            </span>
-          `
       }
-
-    `;
-
-    dataList.appendChild(card);
+    );
 
   });
-
-}
 
 
 /* =====================================================
    SEARCH
 ===================================================== */
 
-document
-  .getElementById('searchInput')
-  .addEventListener(
-    'input',
-    function() {
+searchInput.addEventListener(
+  'input',
+  function() {
 
-      const keyword =
-        this.value
-          .toLowerCase()
-          .trim();
+    applyFilter();
 
-      if (!keyword) {
+  }
+);
 
-        renderData(allData);
 
-        return;
+/* =====================================================
+   APPLY FILTER
+===================================================== */
+
+function applyFilter() {
+
+  const keyword =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    allData.filter(
+      function(row) {
+
+        const jenis =
+          String(
+            row.jenis || ''
+          );
+
+
+        const searchText = [
+
+          row.id,
+          row.judul,
+          row.jenis,
+          row.kategori,
+          row.ringkasan,
+          row.unit,
+          row.tahun,
+          row.status
+
+        ]
+        .join(' ')
+        .toLowerCase();
+
+
+        const matchesSearch =
+          !keyword ||
+          searchText.includes(
+            keyword
+          );
+
+
+        const matchesFilter =
+          activeFilter === 'all' ||
+          jenis.toLowerCase() ===
+          activeFilter.toLowerCase();
+
+
+        return (
+          matchesSearch &&
+          matchesFilter
+        );
 
       }
+    );
 
-      const filtered =
-        allData.filter(function(row) {
 
-          const text = [
+  renderData(filtered);
 
-            row.id,
-            row.judul,
-            row.jenis,
-            row.kategori,
-            row.ringkasan,
-            row.unit,
-            row.tahun
+}
 
-          ]
-          .join(' ')
-          .toLowerCase();
 
-          return text.includes(keyword);
+/* =====================================================
+   RENDER
+===================================================== */
 
-        });
+function renderData(data) {
 
-      renderData(filtered);
+  dataList.innerHTML = '';
+
+
+  resultCount.textContent =
+    data.length +
+    ' informasi tersedia';
+
+
+  if (!data.length) {
+
+    dataList.innerHTML = `
+
+      <div class="no-data">
+
+        <div class="no-data-icon">
+          🔎
+        </div>
+
+        <strong>
+          Informasi tidak ditemukan
+        </strong>
+
+        <span>
+          Coba gunakan kata kunci pencarian
+          yang berbeda.
+        </span>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  data.forEach(
+    function(row) {
+
+      const card =
+        document.createElement(
+          'article'
+        );
+
+
+      card.className =
+        'card';
+
+
+      const id =
+        row.id || '';
+
+
+      const judul =
+        row.judul ||
+        'Tanpa Judul';
+
+
+      const ringkasan =
+        row.ringkasan ||
+        'Informasi publik Kanwil Kementerian Agama Provinsi Banten.';
+
+
+      const jenis =
+        row.jenis || '';
+
+
+      const kategori =
+        row.kategori || '';
+
+
+      const tahun =
+        row.tahun || '';
+
+
+      const status =
+        row.status || '';
+
+
+      const tanggal =
+        formatTanggal(
+          row.tanggal_update
+        );
+
+
+      const url =
+        row.url_dokumen || '';
+
+
+      card.innerHTML = `
+
+        <div class="card-top">
+
+          <div>
+
+            <div class="document-id">
+              ${escapeHTML(id)}
+            </div>
+
+            <h3>
+              ${escapeHTML(judul)}
+            </h3>
+
+          </div>
+
+          <div class="document-icon">
+            PDF
+          </div>
+
+        </div>
+
+
+        <div class="summary">
+
+          ${escapeHTML(ringkasan)}
+
+        </div>
+
+
+        <div class="meta">
+
+          ${
+            jenis
+              ? `
+                <span class="badge primary">
+                  ${escapeHTML(jenis)}
+                </span>
+              `
+              : ''
+          }
+
+
+          ${
+            kategori
+              ? `
+                <span class="badge">
+                  ${escapeHTML(kategori)}
+                </span>
+              `
+              : ''
+          }
+
+
+          ${
+            tahun
+              ? `
+                <span class="badge">
+                  ${escapeHTML(tahun)}
+                </span>
+              `
+              : ''
+          }
+
+
+          ${
+            status
+              ? `
+                <span class="badge published">
+                  ${escapeHTML(status)}
+                </span>
+              `
+              : ''
+          }
+
+        </div>
+
+
+        <div class="card-footer">
+
+          <span class="date">
+
+            ${
+              tanggal
+                ? 'Diperbarui ' +
+                  escapeHTML(tanggal)
+                : ''
+            }
+
+          </span>
+
+
+          ${
+            url
+              ? `
+                <a
+                  href="${escapeAttribute(url)}"
+                  class="document-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat Dokumen →
+                </a>
+              `
+              : `
+                <span
+                  class="document-button disabled"
+                >
+                  Dokumen belum tersedia
+                </span>
+              `
+          }
+
+        </div>
+
+      `;
+
+
+      dataList.appendChild(
+        card
+      );
 
     }
   );
 
+}
+
 
 /* =====================================================
-   SECURITY HELPER
+   FORMAT TANGGAL
+===================================================== */
+
+function formatTanggal(value) {
+
+  if (!value) {
+    return '';
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  if (isNaN(date.getTime())) {
+
+    return String(value);
+
+  }
+
+
+  return date.toLocaleDateString(
+    'id-ID',
+    {
+      day:
+        '2-digit',
+
+      month:
+        'short',
+
+      year:
+        'numeric'
+    }
+  );
+
+}
+
+
+/* =====================================================
+   SECURITY
 ===================================================== */
 
 function escapeHTML(value) {
 
   return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+
+    .replace(
+      /</g,
+      '&lt;'
+    )
+
+    .replace(
+      />/g,
+      '&gt;'
+    )
+
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+
+    .replace(
+      /'/g,
+      '&#039;'
+    );
 
 }
 
@@ -471,8 +2276,16 @@ function escapeHTML(value) {
 function escapeAttribute(value) {
 
   return String(value)
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+
+    .replace(
+      /'/g,
+      '&#039;'
+    );
 
 }
 
