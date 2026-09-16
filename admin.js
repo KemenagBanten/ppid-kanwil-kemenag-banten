@@ -2,14 +2,9 @@ const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
 
-const uploadForm =
-  document.getElementById('uploadForm');
-
-const uploadButton =
-  document.getElementById('uploadButton');
-
-const statusBox =
-  document.getElementById('status');
+const uploadForm = document.getElementById('uploadForm');
+const uploadButton = document.getElementById('uploadButton');
+const statusBox = document.getElementById('status');
 
 
 /* =====================================================
@@ -18,11 +13,8 @@ const statusBox =
 
 function showStatus(message, type) {
 
-  statusBox.className =
-    'status ' + type;
-
-  statusBox.innerHTML =
-    message;
+  statusBox.className = 'status ' + type;
+  statusBox.innerHTML = message;
 
 }
 
@@ -39,11 +31,9 @@ function fileToBase64(file) {
 
     reader.onload = function() {
 
-      const result =
-        reader.result;
+      const result = reader.result;
 
-      const base64 =
-        result.split(',')[1];
+      const base64 = result.split(',')[1];
 
       resolve(base64);
 
@@ -65,7 +55,7 @@ function fileToBase64(file) {
 
 
 /* =====================================================
-   UPLOAD
+   UPLOAD FORM
 ===================================================== */
 
 uploadForm.addEventListener(
@@ -75,19 +65,13 @@ uploadForm.addEventListener(
     event.preventDefault();
 
     const sheetName =
-      document.getElementById(
-        'sheetName'
-      ).value;
+      document.getElementById('sheetName').value;
 
     const idValue =
-      document.getElementById(
-        'idValue'
-      ).value.trim();
+      document.getElementById('idValue').value.trim();
 
     const file =
-      document.getElementById(
-        'file'
-      ).files[0];
+      document.getElementById('file').files[0];
 
 
     /* -------------------------------------------------
@@ -164,98 +148,95 @@ uploadForm.addEventListener(
 
 
       /* -------------------------------------------------
-         TENTUKAN KOLOM ID
+         TENTUKAN ID COLUMN
       ------------------------------------------------- */
 
-      let idColumnName =
-        'id';
-
-      if (sheetName === 'INFORMASI_PUBLIK') {
-
-        idColumnName =
-          'id';
-
-      }
-
-      if (sheetName === 'DIP') {
-
-        idColumnName =
-          'id';
-
-      }
+      const idColumnName = 'id';
 
 
       /* -------------------------------------------------
-         FOLDER DRIVE
+         TENTUKAN FOLDER
       ------------------------------------------------- */
 
-      let folderName =
-        '02_INFORMASI_PUBLIK';
+      let folderName;
 
-      if (sheetName === 'DIP') {
+      if (sheetName === 'INFORMASI_PUBLIK') {
+
+        folderName =
+          '02_INFORMASI_PUBLIK';
+
+      } else if (sheetName === 'DIP') {
 
         folderName =
           '03_DIP';
 
+      } else {
+
+        throw new Error(
+          'Jenis data belum memiliki folder upload.'
+        );
+
       }
 
 
       /* -------------------------------------------------
-         REQUEST
+         REQUEST DATA
       ------------------------------------------------- */
 
       const requestData = {
 
         action: 'upload',
 
-        sheetName:
-          sheetName,
+        sheetName: sheetName,
 
-        idColumnName:
-          idColumnName,
+        idColumnName: idColumnName,
 
-        idValue:
-          idValue,
+        idValue: idValue,
 
-        fileData:
-          fileData,
+        fileData: fileData,
 
-        fileName:
-          file.name,
+        fileName: file.name,
 
-        folderName:
-          folderName
+        folderName: folderName
 
       };
 
 
+      console.log(
+        'Mengirim upload ke Apps Script...'
+      );
+
+
       /* -------------------------------------------------
-         POST KE APPS SCRIPT
+         POST
       ------------------------------------------------- */
 
-      const response =
-        await fetch(
-          API_URL,
-          {
-            method: 'POST',
+      const response = await fetch(
+        API_URL,
+        {
+          method: 'POST',
 
-            headers: {
-              'Content-Type':
-                'text/plain;charset=utf-8'
-            },
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
 
-            body:
-              JSON.stringify(
-                requestData
-              )
-          }
-        );
+          body:
+            JSON.stringify(requestData)
+        }
+      );
+
+
+      console.log(
+        'HTTP status:',
+        response.status
+      );
 
 
       if (!response.ok) {
 
         throw new Error(
-          'HTTP Error ' +
+          'Server mengembalikan HTTP ' +
           response.status
         );
 
@@ -264,6 +245,12 @@ uploadForm.addEventListener(
 
       const result =
         await response.json();
+
+
+      console.log(
+        'Response Apps Script:',
+        result
+      );
 
 
       /* -------------------------------------------------
@@ -282,12 +269,18 @@ uploadForm.addEventListener(
 
       showStatus(
         `
-        <strong>Upload berhasil.</strong><br>
-        File: ${result.fileName}<br>
-        Folder: ${result.folder}<br>
+        <strong>Upload berhasil.</strong><br><br>
+
+        File:
+        ${escapeHTML(result.fileName)}<br>
+
+        Folder:
+        ${escapeHTML(result.folder)}<br><br>
+
         <a
-          href="${result.fileUrl}"
+          href="${escapeAttribute(result.fileUrl)}"
           target="_blank"
+          rel="noopener"
         >
           Buka Dokumen
         </a>
@@ -301,12 +294,16 @@ uploadForm.addEventListener(
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        'UPLOAD ERROR:',
+        error
+      );
+
 
       showStatus(
         `
         <strong>Upload gagal.</strong><br>
-        ${error.message}
+        ${escapeHTML(error.message)}
         `,
         'error'
       );
@@ -314,8 +311,7 @@ uploadForm.addEventListener(
 
     } finally {
 
-      uploadButton.disabled =
-        false;
+      uploadButton.disabled = false;
 
       uploadButton.textContent =
         'Upload Dokumen';
@@ -324,3 +320,28 @@ uploadForm.addEventListener(
 
   }
 );
+
+
+/* =====================================================
+   SECURITY HELPER
+===================================================== */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+function escapeAttribute(value) {
+
+  return String(value)
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
