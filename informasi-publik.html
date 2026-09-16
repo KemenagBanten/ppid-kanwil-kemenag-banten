@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Informasi Publik - PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7f6;
+      color: #26332d;
+    }
+
+    header {
+      background: #176b45;
+      color: white;
+      padding: 30px 20px;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .subtitle {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      margin-bottom: 25px;
+    }
+
+    .page-title h2 {
+      margin: 0 0 8px;
+    }
+
+    .page-title p {
+      margin: 0;
+      color: #68736d;
+    }
+
+    .search-box {
+      margin-bottom: 25px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #d5ddd8;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: #176b45;
+    }
+
+    #loading {
+      padding: 30px;
+      text-align: center;
+      color: #68736d;
+    }
+
+    #error {
+      display: none;
+      padding: 15px;
+      border-radius: 10px;
+      background: #ffe8e8;
+      color: #a32626;
+      margin-bottom: 20px;
+    }
+
+    .data-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e1e7e3;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 19px;
+    }
+
+    .summary {
+      color: #68736d;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #eef5f1;
+      color: #176b45;
+      font-size: 13px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: #176b45;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .button:hover {
+      opacity: 0.9;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 40px;
+      color: #68736d;
+      background: white;
+      border-radius: 14px;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 25px;
+      text-align: center;
+      color: #68736d;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>PPID Kanwil Kemenag Banten</h1>
+    <p class="subtitle">Informasi Publik</p>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-title">
+    <h2>Informasi Publik</h2>
+    <p>Daftar informasi publik yang tersedia untuk masyarakat.</p>
+  </div>
+
+  <div class="search-box">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Cari informasi publik..."
+    >
+  </div>
+
+  <div id="error"></div>
+
+  <div id="loading">
+    Memuat informasi publik...
+  </div>
+
+  <div
+    id="dataList"
+    class="data-list"
+  ></div>
+
+</main>
+
+<footer>
+  PPID Kanwil Kementerian Agama Provinsi Banten
+</footer>
+
+
+<script>
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+let allData = [];
+
+
+/* =====================================================
+   LOAD INFORMASI PUBLIK
+===================================================== */
+
+async function loadInformasiPublik() {
+
+  const loading =
+    document.getElementById('loading');
+
+  const dataList =
+    document.getElementById('dataList');
+
+  const errorBox =
+    document.getElementById('error');
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        '?action=informasi'
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
+
+    }
+
+    const result =
+      await response.json();
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Data gagal dimuat.'
+      );
+
+    }
+
+    allData =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
+
+    loading.style.display =
+      'none';
+
+    renderData(allData);
+
+  } catch (error) {
+
+    console.error(
+      'LOAD INFORMASI ERROR:',
+      error
+    );
+
+    loading.style.display =
+      'none';
+
+    errorBox.style.display =
+      'block';
+
+    errorBox.textContent =
+      'Gagal memuat informasi publik: ' +
+      error.message;
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER DATA
+===================================================== */
+
+function renderData(data) {
+
+  const dataList =
+    document.getElementById('dataList');
+
+  if (!data.length) {
+
+    dataList.innerHTML = `
+      <div class="no-data">
+        Belum ada informasi publik yang tersedia.
+      </div>
+    `;
+
+    return;
+  }
+
+  dataList.innerHTML = '';
+
+  data.forEach(function(row) {
+
+    const card =
+      document.createElement('div');
+
+    card.className =
+      'card';
+
+    const judul =
+      row.judul || 'Tanpa Judul';
+
+    const ringkasan =
+      row.ringkasan || '';
+
+    const jenis =
+      row.jenis || '';
+
+    const kategori =
+      row.kategori || '';
+
+    const tahun =
+      row.tahun || '';
+
+    const url =
+      row.url_dokumen || '';
+
+    card.innerHTML = `
+
+      <h3>
+        ${escapeHTML(judul)}
+      </h3>
+
+      <div class="summary">
+        ${escapeHTML(ringkasan)}
+      </div>
+
+      <div class="meta">
+
+        ${
+          jenis
+            ? `<span class="badge">
+                 ${escapeHTML(jenis)}
+               </span>`
+            : ''
+        }
+
+        ${
+          kategori
+            ? `<span class="badge">
+                 ${escapeHTML(kategori)}
+               </span>`
+            : ''
+        }
+
+        ${
+          tahun
+            ? `<span class="badge">
+                 Tahun ${escapeHTML(tahun)}
+               </span>`
+            : ''
+        }
+
+      </div>
+
+      ${
+        url
+          ? `
+            <a
+              class="button"
+              href="${escapeAttribute(url)}"
+              target="_blank"
+              rel="noopener"
+            >
+              Lihat Dokumen
+            </a>
+          `
+          : `
+            <span class="badge">
+              Dokumen belum tersedia
+            </span>
+          `
+      }
+
+    `;
+
+    dataList.appendChild(card);
+
+  });
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+document
+  .getElementById('searchInput')
+  .addEventListener(
+    'input',
+    function() {
+
+      const keyword =
+        this.value
+          .toLowerCase()
+          .trim();
+
+      if (!keyword) {
+
+        renderData(allData);
+
+        return;
+
+      }
+
+      const filtered =
+        allData.filter(function(row) {
+
+          const text = [
+
+            row.id,
+            row.judul,
+            row.jenis,
+            row.kategori,
+            row.ringkasan,
+            row.unit,
+            row.tahun
+
+          ]
+          .join(' ')
+          .toLowerCase();
+
+          return text.includes(keyword);
+
+        });
+
+      renderData(filtered);
+
+    }
+  );
+
+
+/* =====================================================
+   SECURITY HELPER
+===================================================== */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+function escapeAttribute(value) {
+
+  return String(value)
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadInformasiPublik();
+
+</script>
+
+</body>
+</html>
