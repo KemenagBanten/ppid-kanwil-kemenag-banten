@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    PPID Kanwil Kementerian Agama Provinsi Banten
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="container header-inner">
+
+      <div class="brand">
+
+        <div class="logo-box">
+          KEMENAG
+        </div>
+
+        <div class="brand-text">
+
+          <strong>
+            PPID
+          </strong>
+
+          <span>
+            Kanwil Kementerian Agama
+            Provinsi Banten
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <nav class="navigation">
+
+        <a href="#beranda">
+          Beranda
+        </a>
+
+        <a href="#profil">
+          Profil
+        </a>
+
+        <a href="#informasi">
+          Informasi Publik
+        </a>
+
+        <a href="#dip">
+          DIP
+        </a>
+
+        <a href="#berita">
+          Berita
+        </a>
+
+        <a href="#kontak">
+          Kontak
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section
+      id="beranda"
+      class="hero"
+    >
+
+      <div class="container hero-content">
+
+        <div class="hero-text">
+
+          <span class="eyebrow">
+            PEJABAT PENGELOLA INFORMASI
+            DAN DOKUMENTASI
+          </span>
+
+          <h1>
+            PPID Kanwil Kementerian Agama
+            Provinsi Banten
+          </h1>
+
+          <p>
+            Akses informasi publik secara mudah,
+            transparan, dan terintegrasi.
+          </p>
+
+          <div class="search-box">
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Cari informasi publik..."
+            >
+
+            <button
+              onclick="searchInformation()"
+            >
+              Cari
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATISTIK -->
+
+    <section class="stats">
+
+      <div class="container stats-grid">
+
+        <div class="stat-card">
+
+          <span>
+            Informasi Publik
+          </span>
+
+          <strong id="totalInformasi">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Daftar Informasi Publik
+          </span>
+
+          <strong id="totalDIP">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Berita
+          </span>
+
+          <strong id="totalBerita">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span>
+            Database
+          </span>
+
+          <strong id="totalSheet">
+            -
+          </strong>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- INFORMASI PUBLIK -->
+
+    <section
+      id="informasi"
+      class="section"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-label">
+              INFORMASI PUBLIK
+            </span>
+
+            <h2>
+              Informasi Terbaru
+            </h2>
+
+          </div>
+
+          <a href="#informasi">
+            Lihat semua →
+          </a>
+
+        </div>
+
+
+        <div
+          id="informasiList"
+          class="card-grid"
+        >
+
+          <div class="loading">
+            Memuat informasi...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIP -->
+
+    <section
+      id="dip"
+      class="section section-alt"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-label">
+              DAFTAR INFORMASI PUBLIK
+            </span>
+
+            <h2>
+              DIP
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="dipList"
+          class="table-wrapper"
+        >
+
+          <div class="loading">
+            Memuat DIP...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- BERITA -->
+
+    <section
+      id="berita"
+      class="section"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-label">
+              INFORMASI TERKINI
+            </span>
+
+            <h2>
+              Berita & Kegiatan
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="beritaList"
+          class="card-grid"
+        >
+
+          <div class="loading">
+            Memuat berita...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- KONTAK -->
+
+    <section
+      id="kontak"
+      class="contact-section"
+    >
+
+      <div class="container">
+
+        <div class="contact-card">
+
+          <div>
+
+            <span class="section-label">
+              PPID KANWIL KEMENAG BANTEN
+            </span>
+
+            <h2>
+              Layanan Informasi Publik
+            </h2>
+
+            <p>
+              Silakan gunakan layanan PPID untuk
+              memperoleh informasi publik yang
+              tersedia.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        © 2026 PPID Kanwil Kementerian Agama
+        Provinsi Banten
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
