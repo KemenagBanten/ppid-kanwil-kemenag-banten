@@ -1,475 +1,538 @@
 const API_URL =
-  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+  "https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec";
 
 
-/* =====================================================
-   API HELPER
-===================================================== */
+// =====================================================
+// HELPER
+// =====================================================
 
 async function fetchAPI(action) {
+  const url = `${API_URL}?action=${encodeURIComponent(action)}`;
 
-  const response =
-    await fetch(
-      `${API_URL}?action=${action}`
-    );
+  console.log("Mengambil data:", url);
+
+  const response = await fetch(url);
 
   if (!response.ok) {
-
-    throw new Error(
-      `HTTP Error ${response.status}`
-    );
-
+    throw new Error(`HTTP Error ${response.status}`);
   }
 
-  const result =
-    await response.json();
+  const result = await response.json();
+
+  console.log(`Response ${action}:`, result);
 
   if (!result.success) {
-
-    throw new Error(
-      result.message ||
-      'API mengembalikan error'
-    );
-
+    throw new Error(result.message || `API ${action} gagal`);
   }
 
   return result.data;
-
 }
 
 
-/* =====================================================
-   INFORMASI PUBLIK
-===================================================== */
+// =====================================================
+// INFORMASI PUBLIK
+// =====================================================
 
 async function loadInformasi() {
-
-  const container =
-    document.getElementById(
-      'informasiList'
-    );
+  const container = document.getElementById("informasiList");
+  const counter = document.getElementById("totalInformasi");
 
   try {
+    const data = await fetchAPI("informasi");
 
-    const data =
-      await fetchAPI('informasi');
+    console.log("Data Informasi Publik:", data);
 
-
-    document.getElementById(
-      'totalInformasi'
-    ).textContent = data.length;
-
-
-    if (!data.length) {
-
-      container.innerHTML =
-        '<div class="loading">Belum ada informasi.</div>';
-
-      return;
-
+    if (counter) {
+      counter.textContent = data.length;
     }
 
+    if (!container) return;
 
-    container.innerHTML =
-      data.map(function(item) {
+    if (!Array.isArray(data) || data.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          Belum ada informasi publik.
+        </div>
+      `;
+      return;
+    }
 
-        return `
+    container.innerHTML = data.map(item => `
+      <div class="information-card">
 
-          <article class="info-card">
+        <div class="card-badge">
+          ${escapeHTML(item.jenis || "Informasi")}
+        </div>
 
-            <span class="badge">
-              ${item.jenis || 'Informasi'}
-            </span>
+        <h3>${escapeHTML(item.judul || "-")}</h3>
 
-            <h3>
-              ${item.judul || '-'}
-            </h3>
+        <p>
+          ${escapeHTML(item.ringkasan || "-")}
+        </p>
 
-            <p>
-              ${item.ringkasan || '-'}
-            </p>
+        <div class="card-meta">
+          <span>${escapeHTML(item.kategori || "-")}</span>
+          <span>${escapeHTML(item.tahun || "-")}</span>
+        </div>
 
-            <div class="card-meta">
-              ${item.kategori || '-'}
-              •
-              ${item.tahun || '-'}
-            </div>
+        ${
+          item.url_dokumen
+            ? `
+              <a
+                href="${escapeAttribute(item.url_dokumen)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-document"
+              >
+                Lihat Dokumen
+              </a>
+            `
+            : `
+              <span class="document-unavailable">
+                Dokumen belum tersedia
+              </span>
+            `
+        }
 
-            ${
-              item.url_dokumen
-                ? `
-                  <a
-                    class="document-button"
-                    href="${item.url_dokumen}"
-                    target="_blank"
-                    rel="noopener"
-                  >
-                    Lihat Dokumen →
-                  </a>
-                `
-                : ''
-            }
-
-          </article>
-
-        `;
-
-      }).join('');
-
+      </div>
+    `).join("");
 
   } catch (error) {
 
-    console.error(
-      'Gagal memuat informasi:',
-      error
-    );
+    console.error("loadInformasi error:", error);
 
-    container.innerHTML = `
-      <div class="loading">
-        Gagal memuat informasi.
-      </div>
-    `;
-
+    if (container) {
+      container.innerHTML = `
+        <div class="error-state">
+          Gagal memuat Informasi Publik.
+        </div>
+      `;
+    }
   }
-
 }
 
 
-/* =====================================================
-   DIP
-===================================================== */
+// =====================================================
+// DIP
+// =====================================================
 
 async function loadDIP() {
-
-  const container =
-    document.getElementById(
-      'dipList'
-    );
+  const container = document.getElementById("dipList");
+  const counter = document.getElementById("totalDIP");
 
   try {
+    const data = await fetchAPI("dip");
 
-    const data =
-      await fetchAPI('dip');
+    console.log("Data DIP:", data);
 
-
-    document.getElementById(
-      'totalDIP'
-    ).textContent = data.length;
-
-
-    if (!data.length) {
-
-      container.innerHTML =
-        '<div class="loading">Belum ada data DIP.</div>';
-
-      return;
-
+    if (counter) {
+      counter.textContent = data.length;
     }
 
+    if (!container) return;
 
-    container.innerHTML = `
+    if (!Array.isArray(data) || data.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          Belum ada Daftar Informasi Publik.
+        </div>
+      `;
+      return;
+    }
 
-      <table class="data-table">
+    container.innerHTML = data.map(item => `
+      <div class="dip-card">
 
-        <thead>
+        <div class="dip-number">
+          ${escapeHTML(item.nomor || "-")}
+        </div>
 
-          <tr>
+        <div class="dip-content">
 
-            <th>No</th>
+          <div class="card-badge">
+            ${escapeHTML(item.jenis_informasi || "Informasi")}
+          </div>
 
-            <th>Nama Informasi</th>
+          <h3>
+            ${escapeHTML(item.nama_informasi || "-")}
+          </h3>
 
-            <th>Jenis</th>
+          <p>
+            ${escapeHTML(item.ringkasan || "-")}
+          </p>
 
-            <th>Kategori</th>
+          <div class="card-meta">
+            <span>${escapeHTML(item.kategori || "-")}</span>
+            <span>${escapeHTML(item.tahun || "-")}</span>
+          </div>
 
-            <th>Tahun</th>
+          ${
+            item.url_dokumen
+              ? `
+                <a
+                  href="${escapeAttribute(item.url_dokumen)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-document"
+                >
+                  Lihat Dokumen
+                </a>
+              `
+              : `
+                <span class="document-unavailable">
+                  Dokumen belum tersedia
+                </span>
+              `
+          }
 
-            <th>Status</th>
+        </div>
 
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${data.map(function(item) {
-
-            return `
-
-              <tr>
-
-                <td>
-                  ${item.nomor || '-'}
-                </td>
-
-                <td>
-                  ${item.nama_informasi || '-'}
-                </td>
-
-                <td>
-                  ${item.jenis_informasi || '-'}
-                </td>
-
-                <td>
-                  ${item.kategori || '-'}
-                </td>
-
-                <td>
-                  ${item.tahun || '-'}
-                </td>
-
-                <td>
-                  ${item.status || '-'}
-                </td>
-
-              </tr>
-
-            `;
-
-          }).join('')}
-
-        </tbody>
-
-      </table>
-
-    `;
-
+      </div>
+    `).join("");
 
   } catch (error) {
 
-    console.error(
-      'Gagal memuat DIP:',
-      error
-    );
+    console.error("loadDIP error:", error);
 
-    container.innerHTML = `
-      <div class="loading">
-        Gagal memuat DIP.
-      </div>
-    `;
-
+    if (container) {
+      container.innerHTML = `
+        <div class="error-state">
+          Gagal memuat DIP.
+        </div>
+      `;
+    }
   }
-
 }
 
 
-/* =====================================================
-   BERITA
-===================================================== */
+// =====================================================
+// BERITA
+// =====================================================
 
 async function loadBerita() {
-
-  const container =
-    document.getElementById(
-      'beritaList'
-    );
+  const container = document.getElementById("beritaList");
+  const counter = document.getElementById("totalBerita");
 
   try {
+    const data = await fetchAPI("berita");
 
-    const data =
-      await fetchAPI('berita');
+    console.log("Data Berita:", data);
 
+    /*
+     * Saat ini sheet BERITA masih berisi
+     * baris kategori kosong.
+     *
+     * Kita hanya menampilkan data yang
+     * benar-benar mempunyai judul.
+     */
 
-    document.getElementById(
-      'totalBerita'
-    ).textContent = data.filter(
-      item => item.judul
-    ).length;
+    const beritaValid = Array.isArray(data)
+      ? data.filter(item =>
+          item &&
+          item.judul &&
+          String(item.judul).trim() !== ""
+        )
+      : [];
 
+    if (counter) {
+      counter.textContent = beritaValid.length;
+    }
 
-    const berita =
-      data.filter(
-        item => item.judul
-      );
+    if (!container) return;
 
-
-    if (!berita.length) {
-
+    if (beritaValid.length === 0) {
       container.innerHTML = `
-        <div class="loading">
+        <div class="empty-state">
           Belum ada berita yang dipublikasikan.
         </div>
       `;
-
       return;
-
     }
 
+    container.innerHTML = beritaValid.map(item => `
 
-    container.innerHTML =
-      berita.map(function(item) {
+      <article class="news-card">
 
-        return `
+        ${
+          item.gambar_url
+            ? `
+              <img
+                src="${escapeAttribute(item.gambar_url)}"
+                alt="${escapeAttribute(item.judul || "Berita")}"
+                class="news-image"
+              >
+            `
+            : `
+              <div class="news-placeholder">
+                PPID Kemenag Banten
+              </div>
+            `
+        }
 
-          <article class="info-card">
+        <div class="news-content">
 
-            <span class="badge">
-              ${item.kategori || 'Berita'}
-            </span>
+          ${
+            item.kategori
+              ? `
+                <div class="card-badge">
+                  ${escapeHTML(item.kategori)}
+                </div>
+              `
+              : ""
+          }
 
-            <h3>
-              ${item.judul || '-'}
-            </h3>
+          <h3>
+            ${escapeHTML(item.judul)}
+          </h3>
 
-            <p>
-              ${item.isi || '-'}
-            </p>
+          ${
+            item.tanggal
+              ? `
+                <div class="news-date">
+                  ${formatDate(item.tanggal)}
+                </div>
+              `
+              : ""
+          }
 
-            <div class="card-meta">
-              ${item.tanggal || ''}
-            </div>
+          ${
+            item.isi
+              ? `
+                <p>
+                  ${escapeHTML(item.isi)}
+                </p>
+              `
+              : ""
+          }
 
-          </article>
+        </div>
 
-        `;
+      </article>
 
-      }).join('');
-
+    `).join("");
 
   } catch (error) {
 
-    console.error(
-      'Gagal memuat berita:',
-      error
-    );
+    console.error("loadBerita error:", error);
 
-    container.innerHTML = `
-      <div class="loading">
-        Gagal memuat berita.
-      </div>
-    `;
-
+    if (container) {
+      container.innerHTML = `
+        <div class="error-state">
+          Gagal memuat berita.
+        </div>
+      `;
+    }
   }
-
 }
 
 
-/* =====================================================
-   DASHBOARD
-===================================================== */
+// =====================================================
+// DASHBOARD / STATISTIK
+// =====================================================
 
 async function loadDashboard() {
 
   try {
 
-    const data =
-      await fetchAPI('dashboard');
+    const data = await fetchAPI("dashboard");
 
+    console.log("Dashboard:", data);
 
-    document.getElementById(
-      'totalSheet'
-    ).textContent =
-      data.jumlahSheet || 0;
+    const database = document.getElementById("databaseName");
+    const jumlahSheet = document.getElementById("jumlahSheet");
 
+    if (database) {
+      database.textContent =
+        data.namaDatabase || "-";
+    }
+
+    if (jumlahSheet) {
+      jumlahSheet.textContent =
+        data.jumlahSheet ?? "-";
+    }
 
   } catch (error) {
 
-    console.error(
-      'Gagal memuat dashboard:',
-      error
-    );
+    console.error("loadDashboard error:", error);
 
   }
-
 }
 
 
-/* =====================================================
-   SEARCH
-===================================================== */
+// =====================================================
+// PENCARIAN
+// =====================================================
 
-function searchInformation() {
+async function searchInformation() {
 
-  const input =
-    document.getElementById(
-      'searchInput'
-    );
+  const input = document.getElementById("searchInput");
+
+  if (!input) return;
 
   const keyword =
-    input.value
-      .trim()
-      .toLowerCase();
-
+    input.value.trim().toLowerCase();
 
   if (!keyword) {
-
-    document
-      .getElementById('informasi')
-      .scrollIntoView({
-        behavior: 'smooth'
-      });
-
+    loadInformasi();
     return;
-
   }
 
+  try {
 
-  const cards =
-    document.querySelectorAll(
-      '#informasiList .info-card'
-    );
+    const data = await fetchAPI("informasi");
 
+    const hasil = data.filter(item => {
 
-  cards.forEach(function(card) {
+      const text = `
+        ${item.judul || ""}
+        ${item.ringkasan || ""}
+        ${item.kategori || ""}
+        ${item.jenis || ""}
+      `.toLowerCase();
 
-    const text =
-      card.textContent
-        .toLowerCase();
+      return text.includes(keyword);
 
-    card.style.display =
-      text.includes(keyword)
-        ? ''
-        : 'none';
-
-  });
-
-
-  document
-    .getElementById('informasi')
-    .scrollIntoView({
-      behavior: 'smooth'
     });
+
+    const container =
+      document.getElementById("informasiList");
+
+    if (!container) return;
+
+    if (hasil.length === 0) {
+
+      container.innerHTML = `
+        <div class="empty-state">
+          Tidak ditemukan informasi dengan kata
+          "<strong>${escapeHTML(keyword)}</strong>".
+        </div>
+      `;
+
+      return;
+    }
+
+    container.innerHTML = hasil.map(item => `
+
+      <div class="information-card">
+
+        <div class="card-badge">
+          ${escapeHTML(item.jenis || "Informasi")}
+        </div>
+
+        <h3>
+          ${escapeHTML(item.judul || "-")}
+        </h3>
+
+        <p>
+          ${escapeHTML(item.ringkasan || "-")}
+        </p>
+
+        <div class="card-meta">
+          <span>${escapeHTML(item.kategori || "-")}</span>
+          <span>${escapeHTML(item.tahun || "-")}</span>
+        </div>
+
+        ${
+          item.url_dokumen
+            ? `
+              <a
+                href="${escapeAttribute(item.url_dokumen)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-document"
+              >
+                Lihat Dokumen
+              </a>
+            `
+            : `
+              <span class="document-unavailable">
+                Dokumen belum tersedia
+              </span>
+            `
+        }
+
+      </div>
+
+    `).join("");
+
+  } catch (error) {
+
+    console.error("searchInformation error:", error);
+
+  }
+}
+
+
+// =====================================================
+// UTILITY
+// =====================================================
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+function escapeAttribute(value) {
+
+  return escapeHTML(value);
 
 }
 
 
-/* =====================================================
-   LOAD WEBSITE
-===================================================== */
+function formatDate(value) {
+
+  if (!value) return "-";
+
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) {
+    return escapeHTML(value);
+  }
+
+  return date.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+
+}
+
+
+// =====================================================
+// INITIALIZE WEBSITE
+// =====================================================
 
 async function initWebsite() {
 
-  console.log(
-    'Memulai website PPID...'
-  );
+  console.log("=================================");
+  console.log("PPID KANWIL KEMENAG BANTEN");
+  console.log("Memulai website...");
+  console.log("API:", API_URL);
+  console.log("=================================");
 
-  console.log(
-    'API URL:',
-    API_URL
-  );
-
-
-  await Promise.all([
-    loadDashboard(),
+  await Promise.allSettled([
     loadInformasi(),
     loadDIP(),
-    loadBerita()
+    loadBerita(),
+    loadDashboard()
   ]);
 
-
-  console.log(
-    'Website PPID selesai dimuat.'
-  );
+  console.log("Semua proses loading selesai.");
 
 }
 
 
-/* =====================================================
-   START
-===================================================== */
+// =====================================================
+// JALANKAN SAAT HALAMAN SELESAI
+// =====================================================
 
 document.addEventListener(
-  'DOMContentLoaded',
+  "DOMContentLoaded",
   initWebsite
 );
