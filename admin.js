@@ -115,7 +115,9 @@ async function loadData(sheetName) {
 
     const data =
       result.data;
-
+    
+    console.log('HASIL API:', result);
+    console.log('DATA DARI GOOGLE SHEETS:', data);
 
     if (
       !Array.isArray(data) ||
