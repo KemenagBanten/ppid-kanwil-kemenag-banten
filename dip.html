@@ -59,14 +59,15 @@
       font-size: 15px;
     }
 
-    /* Search */
+    /* ================================
+       SEARCH
+    ================================= */
 
     .dip-search-section {
       padding: 28px 0 10px;
     }
 
     .dip-search {
-      position: relative;
       display: flex;
       gap: 10px;
       max-width: 720px;
@@ -112,7 +113,9 @@
       transform: translateY(-1px);
     }
 
-    /* Table */
+    /* ================================
+       TABLE
+    ================================= */
 
     .dip-section {
       padding: 25px 0 70px;
@@ -139,7 +142,7 @@
 
     .dip-table {
       width: 100%;
-      min-width: 820px;
+      min-width: 900px;
       border-collapse: collapse;
     }
 
@@ -229,7 +232,9 @@
       font-style: italic;
     }
 
-    /* State */
+    /* ================================
+       STATE
+    ================================= */
 
     .dip-state {
       padding: 45px 20px;
@@ -242,7 +247,9 @@
       color: #9a3f3f;
     }
 
-    /* Footer */
+    /* ================================
+       FOOTER
+    ================================= */
 
     .footer {
       padding: 28px 0;
@@ -256,7 +263,9 @@
       font-size: 12px;
     }
 
-    /* Mobile */
+    /* ================================
+       MOBILE
+    ================================= */
 
     @media (max-width: 760px) {
 
@@ -305,9 +314,7 @@
 
 <body>
 
-  <!-- ================================
-       HEADER
-  ================================= -->
+  <!-- HEADER -->
 
   <header class="header">
 
@@ -346,9 +353,7 @@
   </header>
 
 
-  <!-- ================================
-       HERO
-  ================================= -->
+  <!-- HERO -->
 
   <section class="page-hero">
 
@@ -373,9 +378,7 @@
   </section>
 
 
-  <!-- ================================
-       SEARCH
-  ================================= -->
+  <!-- SEARCH -->
 
   <section class="dip-search-section">
 
@@ -404,9 +407,7 @@
   </section>
 
 
-  <!-- ================================
-       DIP TABLE
-  ================================= -->
+  <!-- DIP TABLE -->
 
   <main class="dip-section">
 
@@ -424,7 +425,7 @@
                 <th>Nama Informasi</th>
                 <th>Jenis</th>
                 <th>Kategori</th>
-                <th>Uraian</th>
+                <th>Ringkasan</th>
                 <th>Unit</th>
                 <th>Dokumen</th>
               </tr>
@@ -453,261 +454,9 @@
   </main>
 
 
-  <!-- ================================
-       FOOTER
-  ================================= -->
+  <!-- FOOTER -->
 
   <footer class="footer">
 
     <div class="container">
-
-      <p>
-        © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
-      </p>
-
-    </div>
-
-  </footer>
-
-
-  <!-- ================================
-       SCRIPT
-  ================================= -->
-
-  <script>
-
-    /*
-     * API yang sama dengan aplikasi utama.
-     * Tidak mengubah Code.gs.
-     */
-
-    const DIP_API_URL =
-      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
-
-    let dipData = [];
-
-
-    /* =================================
-       LOAD DIP
-    ================================= */
-
-    async function loadDIP() {
-
-      const tbody =
-        document.getElementById('dipTableBody');
-
-      try {
-
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7">
-              <div class="dip-state">
-                Memuat Daftar Informasi Publik...
-              </div>
-            </td>
-          </tr>
-        `;
-
-
-        const response = await fetch(
-          DIP_API_URL + '?action=dip'
-        );
-
-
-        if (!response.ok) {
-          throw new Error(
-            'HTTP Error ' + response.status
-          );
-        }
-
-
-        const result =
-          await response.json();
-
-
-        if (!result.success) {
-          throw new Error(
-            result.message ||
-            'API DIP mengembalikan error.'
-          );
-        }
-
-
-        dipData =
-          result.data || [];
-
-
-        renderDIP(dipData);
-
-
-      } catch (error) {
-
-        console.error(
-          'Gagal memuat DIP:',
-          error
-        );
-
-
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7">
-              <div class="dip-state dip-error">
-                Gagal memuat data DIP.
-                <br>
-                <small>
-                  ${escapeHTML(error.message)}
-                </small>
-              </div>
-            </td>
-          </tr>
-        `;
-
-      }
-
-    }
-
-
-    /* =================================
-       RENDER DIP
-    ================================= */
-
-    function renderDIP(data) {
-
-      const tbody =
-        document.getElementById('dipTableBody');
-
-
-      if (!data || data.length === 0) {
-
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7">
-              <div class="dip-state">
-                Belum ada data DIP.
-              </div>
-            </td>
-          </tr>
-        `;
-
-        return;
-      }
-
-
-      tbody.innerHTML =
-        data.map((row, index) => {
-
-          const nomor =
-            row.nomor ||
-            row.no ||
-            (index + 1);
-
-
-          const nama =
-            row.nama_informasi ||
-            row.nama ||
-            row.judul ||
-            '-';
-
-
-          const jenis =
-            row.jenis ||
-            '-';
-
-
-          const kategori =
-            row.kategori ||
-            '-';
-
-
-          const uraian =
-            row.uraian ||
-            row.deskripsi ||
-            '-';
-
-
-          const unit =
-            row.unit ||
-            row.unit_pengelola ||
-            '-';
-
-
-          const url =
-            row.url_dokumen ||
-            row.url ||
-            '';
-
-
-          const documentHTML =
-            url
-              ? `
-                <a
-                  href="${escapeAttribute(url)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Lihat PDF
-                </a>
-              `
-              : `
-                <span class="no-document">
-                  Belum tersedia
-                </span>
-              `;
-
-
-          return `
-            <tr>
-
-              <td class="dip-number">
-                ${escapeHTML(nomor)}
-              </td>
-
-              <td class="dip-title">
-                ${escapeHTML(nama)}
-              </td>
-
-              <td class="dip-type">
-                <span class="dip-badge">
-                  ${escapeHTML(jenis)}
-                </span>
-              </td>
-
-              <td class="dip-category">
-                ${escapeHTML(kategori)}
-              </td>
-
-              <td>
-                ${escapeHTML(uraian)}
-              </td>
-
-              <td>
-                ${escapeHTML(unit)}
-              </td>
-
-              <td class="dip-document">
-                ${documentHTML}
-              </td>
-
-            </tr>
-          `;
-
-        }).join('');
-
-    }
-
-
-    /* =================================
-       SEARCH
-    ================================= */
-
-    function filterDIP() {
-
-      const input =
-        document.getElementById('dipSearch');
-
-
-      const keyword =
-        input.value
-          .trim(
 ```
