@@ -154,7 +154,255 @@
 
 </header>
 
+/* =====================================================
+   HEADER PPID
+===================================================== */
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: #176b45;
+  color: #ffffff;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.15);
+}
+
+
+.header-inner {
+  width: min(1180px, 92%);
+  min-height: 72px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.header-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  text-decoration: none;
+  color: #ffffff;
+
+  min-width: 0;
+}
+
+
+.header-logo {
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.header-logo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+
+.header-text {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  text-align: left;
+
+  line-height: 1.2;
+}
+
+
+.header-text h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.15px;
+}
+
+
+.header-text p {
+  margin: 4px 0 0;
+
+  color:
+    rgba(255,255,255,.88);
+
+  font-size: 10px;
+
+  letter-spacing: 0.35px;
+}
+
+
+/* =========================
+   NAVIGASI
+========================= */
+
+.header nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  flex-shrink: 0;
+}
+
+
+.header nav a {
+  color:
+    rgba(255,255,255,.88);
+
+  text-decoration: none;
+
+  padding: 8px 11px;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  transition:
+    all .2s ease;
+}
+
+
+.header nav a:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255,255,255,.10);
+}
+
+
+.header nav a.active {
+  color: #ffffff;
+
+  background:
+    rgba(255,255,255,.16);
+}
+
+
+/* =====================================================
+   RESPONSIVE HEADER
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .header-inner {
+    gap: 15px;
+  }
+
+  .header-text h1 {
+    font-size: 13px;
+  }
+
+  .header-text p {
+    font-size: 9px;
+  }
+
+  .header nav a {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 680px) {
+
+  .header-inner {
+    min-height: auto;
+
+    padding:
+      10px 0;
+
+    flex-wrap: wrap;
+  }
+
+
+  .header-brand {
+    width: 100%;
+  }
+
+
+  .header-logo {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+  }
+
+
+  .header-text h1 {
+    font-size: 12px;
+  }
+
+
+  .header-text p {
+    font-size: 8px;
+
+    margin-top: 3px;
+  }
+
+
+  .header nav {
+    width: 100%;
+
+    justify-content: flex-start;
+
+    overflow-x: auto;
+
+    padding-bottom: 2px;
+  }
+
+
+  .header nav a {
+    white-space: nowrap;
+
+    font-size: 11px;
+
+    padding:
+      6px 8px;
+  }
+
+}
     /* =====================================================
        HERO
     ===================================================== */
@@ -1166,191 +1414,7 @@
       }
 
 
-      /* =========================
-   HEADER PPID
-   ========================= */
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #176b45;
-  color: #ffffff;
-  border-bottom: 1px solid rgba(255,255,255,.15);
-}
-
-.header-inner {
-  width: min(1180px, 92%);
-  min-height: 82px;
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  text-decoration: none;
-  color: #ffffff;
-
-  min-width: 0;
-}
-
-.header-logo {
-  width: 58px;
-  height: 58px;
-  flex: 0 0 58px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.header-text {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-
-  text-align: left;
-  line-height: 1.25;
-}
-
-.header-text h1 {
-  margin: 0;
-
-  color: #ffffff;
-
-  font-size: 17px;
-  font-weight: 700;
-
-  letter-spacing: 0.2px;
-}
-
-.header-text p {
-  margin: 5px 0 0;
-
-  color: rgba(255,255,255,.88);
-
-  font-size: 11px;
-  letter-spacing: 0.4px;
-}
-
-/* NAVIGASI */
-
-.header nav {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  flex-shrink: 0;
-}
-
-.header nav a {
-  color: rgba(255,255,255,.88);
-  text-decoration: none;
-
-  padding: 9px 12px;
-
-  border-radius: 8px;
-
-  font-size: 14px;
-  font-weight: 500;
-
-  transition: all .2s ease;
-}
-
-.header nav a:hover {
-  color: #ffffff;
-  background: rgba(255,255,255,.10);
-}
-
-.header nav a.active {
-  color: #ffffff;
-  background: rgba(255,255,255,.16);
-}
-
-/* =========================
-   RESPONSIVE HEADER
-   ========================= */
-
-@media (max-width: 900px) {
-
-  .header-inner {
-    gap: 15px;
-  }
-
-  .header-text h1 {
-    font-size: 14px;
-  }
-
-  .header-text p {
-    font-size: 10px;
-  }
-
-  .header nav a {
-    padding: 8px 8px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 680px) {
-
-  .header-inner {
-    min-height: auto;
-    padding: 12px 0;
-
-    flex-wrap: wrap;
-  }
-
-  .header-brand {
-    width: 100%;
-  }
-
-  .header-logo {
-    width: 48px;
-    height: 48px;
-    flex-basis: 48px;
-  }
-
-  .header-text h1 {
-    font-size: 13px;
-  }
-
-  .header-text p {
-    font-size: 9px;
-    margin-top: 3px;
-  }
-
-  .header nav {
-    width: 100%;
-    justify-content: flex-start;
-    overflow-x: auto;
-
-    padding-bottom: 2px;
-  }
-
-  .header nav a {
-    white-space: nowrap;
-    font-size: 12px;
-  }
-}
-  </style>
+   </style>
 </head>
 
 
