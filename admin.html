@@ -19,54 +19,54 @@
     }
 
     .header {
-  background: #176b45;
-  color: white;
-  padding: 18px 30px;
-}
+      background: #176b45;
+      color: white;
+      padding: 18px 30px;
+    }
 
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-.header-logo {
-  width: 58px;
-  height: 58px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .header-logo {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.header-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
 
-.header-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-}
+    .header-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
 
-.header-text h1 {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
+    .header-text h1 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
 
-.header-text p {
-  margin: 5px 0 0;
-  font-size: 11px;
-  opacity: 0.9;
-  letter-spacing: 0.4px;
-}
+    .header-text p {
+      margin: 5px 0 0;
+      font-size: 11px;
+      opacity: 0.9;
+      letter-spacing: 0.4px;
+    }
 
     .container {
       max-width: 850px;
@@ -89,6 +89,7 @@
     .description {
       color: #6b7280;
       margin-bottom: 25px;
+      line-height: 1.6;
     }
 
     .form-group {
@@ -102,7 +103,6 @@
     }
 
     select,
-    input[type="text"],
     input[type="file"] {
       width: 100%;
       padding: 12px;
@@ -122,6 +122,7 @@
       margin-top: 8px;
       font-size: 13px;
       color: #6b7280;
+      line-height: 1.5;
     }
 
     button {
@@ -195,73 +196,84 @@
 
     @media (max-width: 600px) {
 
-  .header {
-    padding: 14px 18px;
-  }
+      .header {
+        padding: 14px 18px;
+      }
 
-  .header-inner {
-    gap: 10px;
-  }
+      .header-inner {
+        gap: 10px;
+      }
 
-  .header-logo {
-    width: 45px;
-    height: 45px;
-  }
+      .header-logo {
+        width: 45px;
+        height: 45px;
+      }
 
-  .header-text h1 {
-    font-size: 11px;
-    line-height: 1.3;
-  }
+      .header-text h1 {
+        font-size: 11px;
+        line-height: 1.3;
+      }
 
-  .header-text p {
-    font-size: 8px;
-    line-height: 1.3;
-    margin-top: 3px;
-  }
+      .header-text p {
+        font-size: 8px;
+        line-height: 1.3;
+        margin-top: 3px;
+      }
 
-}
+      .card {
+        padding: 22px 18px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
   <header class="header">
-  <div class="header-inner">
+    <div class="header-inner">
 
-    <div class="header-logo">
-      <img
-        src="assets/logo-kemenag.png"
-        alt="Logo Kementerian Agama Republik Indonesia"
-      >
+      <div class="header-logo">
+        <img
+          src="assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama Republik Indonesia"
+        >
+      </div>
+
+      <div class="header-text">
+        <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
+        <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
+      </div>
+
     </div>
+  </header>
 
-    <div class="header-text">
-      <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
-      <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
-    </div>
-
-  </div>
-</header>
 
   <main class="container">
 
     <div class="card">
 
-      <h2>Upload Dokumen</h2>
+      <h2 id="formTitle">
+        Upload Dokumen
+      </h2>
 
-      <div class="description">
+      <div class="description" id="formDescription">
         Upload dokumen PDF ke Google Drive dan simpan URL dokumen
         secara otomatis ke database Google Sheets.
       </div>
 
+
       <form id="uploadForm">
 
+        <!-- JENIS DATA -->
+
         <div class="form-group">
+
           <label for="sheetName">
             Jenis Data
           </label>
 
           <select id="sheetName" required>
+
             <option value="">
               -- Pilih Jenis Data --
             </option>
@@ -273,9 +285,17 @@
             <option value="DIP">
               Daftar Informasi Publik (DIP)
             </option>
+
+            <option value="BERITA">
+              Berita
+            </option>
+
           </select>
+
         </div>
 
+
+        <!-- ID DATA -->
 
         <div class="form-group">
 
@@ -283,26 +303,29 @@
             ID Data
           </label>
 
-         <select id="idValue" required>
-  <option value="">
-    -- Pilih Dokumen --
-  </option>
-</select>
+          <select id="idValue" required>
 
-<div class="file-info" id="dataInfo">
-  Pilih jenis data terlebih dahulu.
-</div>
+            <option value="">
+              -- Pilih Data --
+            </option>
 
-          <div class="file-info">
-            Masukkan ID yang sesuai dengan ID pada Google Sheets.
+          </select>
+
+          <div
+            class="file-info"
+            id="dataInfo"
+          >
+            Pilih jenis data terlebih dahulu.
           </div>
 
         </div>
 
 
+        <!-- FILE -->
+
         <div class="form-group">
 
-          <label for="file">
+          <label for="file" id="fileLabel">
             Dokumen PDF
           </label>
 
@@ -313,12 +336,17 @@
             required
           >
 
-          <div class="file-info">
+          <div
+            class="file-info"
+            id="fileInfo"
+          >
             Hanya file PDF.
           </div>
 
         </div>
 
+
+        <!-- BUTTON -->
 
         <button
           type="submit"
@@ -331,18 +359,22 @@
 
 
       <div
-        id="status"
+        id="statusBox"
         class="status"
       ></div>
 
 
       <div class="warning">
+
         <strong>Catatan:</strong>
+
         Halaman ini sementara digunakan untuk pengujian.
         Sebelum digunakan secara resmi, kita akan menambahkan
         mekanisme akses admin agar halaman upload tidak terbuka
         untuk umum.
+
       </div>
+
 
       <a
         href="index.html"
@@ -356,7 +388,7 @@
   </main>
 
 
-  <script src="admin.js?v=2"></script>
+  <script src="admin.js?v=3"></script>
 
 </body>
 </html>
