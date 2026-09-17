@@ -1072,66 +1072,33 @@ function showState(
 
 function getDirectImageUrl(url) {
 
-  if (!url) {
-    return '';
-  }
+  if (!url) return '';
 
-  const value =
-    String(url).trim();
+  const text = String(url).trim();
 
-  if (!value) {
-    return '';
-  }
-
-  const match =
-    value.match(
-      /drive\.google\.com\/file\/d\/([^/]+)/
-    );
+  const match = text.match(
+    /\/file\/d\/([a-zA-Z0-9_-]+)/
+  );
 
   if (match && match[1]) {
 
-    return (
-      'https://drive.google.com/uc?export=view&id=' +
-      encodeURIComponent(match[1])
-    );
+    const fileId = match[1];
+
+    return 'https://drive.google.com/thumbnail?id='
+      + fileId
+      + '&sz=w1600';
 
   }
 
-  try {
-
-    const parsed =
-      new URL(value);
-
-    const id =
-      parsed.searchParams.get('id');
-
-    if (
-      parsed.hostname.includes('drive.google.com') &&
-      id
-    ) {
-
-      return (
-        'https://drive.google.com/uc?export=view&id=' +
-        encodeURIComponent(id)
-      );
-
-    }
-
+  if (
+    text.includes('drive.google.com/thumbnail') ||
+    text.includes('drive.googleusercontent.com')
+  ) {
+    return text;
   }
 
-  catch (error) {
-
-    console.warn(
-      'URL gambar tidak valid:',
-      value
-    );
-
-  }
-
-  return value;
-
+  return text;
 }
-
 
 /* =========================
    IMAGE FALLBACK
