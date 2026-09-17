@@ -1,6 +1,7 @@
 const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const uploadForm =
@@ -21,37 +22,114 @@ document.addEventListener('DOMContentLoaded', function () {
   const dataInfo =
     document.getElementById('dataInfo');
 
+  const fileInput =
+    document.getElementById('file');
+
+  const fileLabel =
+    document.getElementById('fileLabel');
+
+  const fileInfo =
+    document.getElementById('fileInfo');
+
+  const formTitle =
+    document.getElementById('formTitle');
+
+  const formDescription =
+    document.getElementById('formDescription');
+
+
   // =========================================
   // ESCAPE HTML
   // =========================================
 
   function escapeHTML(value) {
+
     return String(value ?? '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
+
   }
 
+
   // =========================================
-  // TAMPILKAN STATUS
+  // STATUS
   // =========================================
 
   function showStatus(message, type) {
 
     if (!statusBox) return;
 
-    statusBox.innerHTML =
-      '<div class="status ' +
-      escapeHTML(type || '') +
-      '">' +
-      escapeHTML(message) +
-      '</div>';
+    statusBox.className =
+      'status ' +
+      (type || '');
+
+    statusBox.textContent =
+      message;
+
   }
 
+
   // =========================================
-  // LOAD DATA UNTUK DROPDOWN
+  // MODE FORM
+  // =========================================
+
+  function updateFormMode() {
+
+    const sheetName =
+      sheetSelect.value;
+
+
+    if (sheetName === 'BERITA') {
+
+      formTitle.textContent =
+        'Upload Gambar Berita';
+
+      formDescription.textContent =
+        'Upload gambar berita ke Google Drive dan simpan URL gambar secara otomatis ke database Google Sheets.';
+
+      fileLabel.textContent =
+        'Gambar Berita';
+
+      fileInput.accept =
+        '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp';
+
+      fileInfo.textContent =
+        'Format yang diperbolehkan: JPG, JPEG, PNG, WEBP.';
+
+      uploadButton.textContent =
+        'Upload Gambar';
+
+    }
+    else {
+
+      formTitle.textContent =
+        'Upload Dokumen';
+
+      formDescription.textContent =
+        'Upload dokumen PDF ke Google Drive dan simpan URL dokumen secara otomatis ke database Google Sheets.';
+
+      fileLabel.textContent =
+        'Dokumen PDF';
+
+      fileInput.accept =
+        '.pdf,application/pdf';
+
+      fileInfo.textContent =
+        'Hanya file PDF.';
+
+      uploadButton.textContent =
+        'Upload Dokumen';
+
+    }
+
+  }
+
+
+  // =========================================
+  // LOAD DATA
   // =========================================
 
   async function loadData(sheetName) {
@@ -62,34 +140,63 @@ document.addEventListener('DOMContentLoaded', function () {
     dataInfo.textContent =
       'Mengambil data dari database...';
 
+
     if (!sheetName) {
 
       idSelect.innerHTML =
-        '<option value="">-- Pilih Dokumen --</option>';
+        '<option value="">-- Pilih Data --</option>';
 
       dataInfo.textContent =
         'Pilih jenis data terlebih dahulu.';
 
       return;
+
     }
+
 
     try {
 
       let action = '';
 
-      if (sheetName === 'INFORMASI_PUBLIK') {
-        action = 'informasi';
+
+      if (
+        sheetName ===
+        'INFORMASI_PUBLIK'
+      ) {
+
+        action =
+          'informasi';
+
       }
 
-      else if (sheetName === 'DIP') {
-        action = 'dip';
+      else if (
+        sheetName ===
+        'DIP'
+      ) {
+
+        action =
+          'dip';
+
+      }
+
+      else if (
+        sheetName ===
+        'BERITA'
+      ) {
+
+        action =
+          'berita';
+
       }
 
       else {
+
         throw new Error(
           'Jenis data belum didukung.'
         );
+
       }
+
 
       const response =
         await fetch(
@@ -98,30 +205,40 @@ document.addEventListener('DOMContentLoaded', function () {
           encodeURIComponent(action)
         );
 
+
       if (!response.ok) {
+
         throw new Error(
           'HTTP Error ' +
           response.status
         );
+
       }
+
 
       const result =
         await response.json();
 
+
       if (!result.success) {
+
         throw new Error(
           result.message ||
           'API mengembalikan success=false.'
         );
+
       }
+
 
       const data =
         Array.isArray(result.data)
           ? result.data
           : [];
 
+
       idSelect.innerHTML =
-        '<option value="">-- Pilih Dokumen --</option>';
+        '<option value="">-- Pilih Data --</option>';
+
 
       if (data.length === 0) {
 
@@ -129,22 +246,40 @@ document.addEventListener('DOMContentLoaded', function () {
           'Belum ada data pada database.';
 
         return;
+
       }
+
+
+      let validCount = 0;
+
 
       data.forEach(function (row) {
 
         const id =
           row.id || '';
 
+
+        if (!id) return;
+
+
         let judul = '';
 
-        if (sheetName === 'DIP') {
+
+        if (
+          sheetName ===
+          'DIP'
+        ) {
 
           judul =
             row.nama_informasi ||
             'Tanpa Nama Informasi';
 
-        } else {
+        }
+
+        else if (
+          sheetName ===
+          'BERITA'
+        ) {
 
           judul =
             row.judul ||
@@ -152,27 +287,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-        if (!id) return;
+        else {
+
+          judul =
+            row.judul ||
+            'Tanpa Judul';
+
+        }
+
 
         const option =
           document.createElement('option');
 
-        option.value = id;
+
+        option.value =
+          id;
+
 
         option.textContent =
           id +
           ' — ' +
           judul;
 
-        idSelect.appendChild(option);
+
+        idSelect.appendChild(
+          option
+        );
+
+
+        validCount++;
+
       });
 
+
       dataInfo.textContent =
-        data.length +
+        validCount +
         ' data tersedia.';
 
-    }
 
+    }
     catch (error) {
 
       console.error(
@@ -180,19 +333,25 @@ document.addEventListener('DOMContentLoaded', function () {
         error
       );
 
+
       idSelect.innerHTML =
         '<option value="">Gagal memuat data</option>';
 
+
       dataInfo.textContent =
         error.message;
+
 
       showStatus(
         'Gagal mengambil data: ' +
         error.message,
         'error'
       );
+
     }
+
   }
+
 
   // =========================================
   // PILIH JENIS DATA
@@ -202,6 +361,10 @@ document.addEventListener('DOMContentLoaded', function () {
     'change',
     function () {
 
+      updateFormMode();
+
+      fileInput.value = '';
+
       loadData(
         sheetSelect.value
       );
@@ -209,8 +372,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   );
 
+
   // =========================================
-  // SAAT PILIH ID
+  // PILIH ID
   // =========================================
 
   idSelect.addEventListener(
@@ -220,19 +384,23 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!idSelect.value) {
 
         dataInfo.textContent =
-          'Pilih dokumen yang akan di-upload.';
+          'Pilih data yang akan diproses.';
 
         return;
+
       }
+
 
       dataInfo.textContent =
         'ID yang dipilih: ' +
         idSelect.value;
+
     }
   );
 
+
   // =========================================
-  // KONVERSI FILE KE BASE64
+  // FILE → BASE64
   // =========================================
 
   function fileToBase64(file) {
@@ -243,11 +411,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader =
           new FileReader();
 
+
         reader.onload =
           function () {
 
             const result =
               reader.result;
+
 
             if (!result) {
 
@@ -258,14 +428,36 @@ document.addEventListener('DOMContentLoaded', function () {
               );
 
               return;
+
             }
 
-            const base64 =
-              String(result)
-                .split(',')[1];
 
-            resolve(base64);
+            const parts =
+              String(result)
+                .split(',');
+
+
+            if (
+              parts.length < 2
+            ) {
+
+              reject(
+                new Error(
+                  'Format file tidak dapat diproses.'
+                )
+              );
+
+              return;
+
+            }
+
+
+            resolve(
+              parts[1]
+            );
+
           };
+
 
         reader.onerror =
           function () {
@@ -275,12 +467,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Gagal membaca file.'
               )
             );
+
           };
 
+
         reader.readAsDataURL(file);
+
       }
     );
+
   }
+
 
   // =========================================
   // UPLOAD
@@ -292,22 +489,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
       event.preventDefault();
 
+
       try {
 
         const sheetName =
           sheetSelect.value;
 
+
         const idValue =
           idSelect.value;
 
-        const fileInput =
-          document.getElementById('file');
 
         const file =
           fileInput.files[0];
 
+
         // -------------------------------------
-        // VALIDASI
+        // VALIDASI DASAR
         // -------------------------------------
 
         if (!sheetName) {
@@ -315,27 +513,220 @@ document.addEventListener('DOMContentLoaded', function () {
           throw new Error(
             'Silakan pilih Jenis Data.'
           );
+
         }
+
 
         if (!idValue) {
 
           throw new Error(
             'Silakan pilih ID Data.'
           );
+
         }
+
 
         if (!file) {
 
           throw new Error(
-            'Silakan pilih file PDF.'
+            sheetName === 'BERITA'
+              ? 'Silakan pilih gambar berita.'
+              : 'Silakan pilih file PDF.'
           );
+
         }
+
 
         const fileName =
           file.name;
 
+
+        // -------------------------------------
+        // MODE BERITA
+        // -------------------------------------
+
         if (
-          file.type !== 'application/pdf' &&
+          sheetName ===
+          'BERITA'
+        ) {
+
+          const allowedTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/webp'
+          ];
+
+
+          const extension =
+            fileName
+              .toLowerCase()
+              .split('.')
+              .pop();
+
+
+          const allowedExtensions = [
+            'jpg',
+            'jpeg',
+            'png',
+            'webp'
+          ];
+
+
+          if (
+            !allowedTypes.includes(file.type) &&
+            !allowedExtensions.includes(extension)
+          ) {
+
+            throw new Error(
+              'Gambar harus berformat JPG, JPEG, PNG, atau WEBP.'
+            );
+
+          }
+
+
+          uploadButton.disabled =
+            true;
+
+
+          uploadButton.textContent =
+            'Mengupload...';
+
+
+          showStatus(
+            'Sedang mengupload gambar ' +
+            fileName +
+            '...',
+            'loading'
+          );
+
+
+          const fileData =
+            await fileToBase64(file);
+
+
+          const requestBody = {
+
+            action:
+              'uploadBeritaImage',
+
+            idValue:
+              idValue,
+
+            fileData:
+              fileData,
+
+            fileName:
+              fileName,
+
+            folderName:
+              '12_BERITA'
+
+          };
+
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+                method:
+                  'POST',
+
+                headers: {
+                  'Content-Type':
+                    'text/plain;charset=utf-8'
+                },
+
+                body:
+                  JSON.stringify(
+                    requestBody
+                  )
+
+              }
+            );
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              'HTTP Error ' +
+              response.status
+            );
+
+          }
+
+
+          const result =
+            await response.json();
+
+
+          console.log(
+            'Upload gambar result:',
+            result
+          );
+
+
+          if (!result.success) {
+
+            throw new Error(
+              result.message ||
+              'Upload gambar gagal.'
+            );
+
+          }
+
+
+          showStatus(
+            'Upload gambar berhasil.',
+            'success'
+          );
+
+
+          dataInfo.innerHTML =
+            '<strong>Upload gambar berhasil</strong><br>' +
+            'ID Berita: ' +
+            escapeHTML(
+              result.id ||
+              idValue
+            ) +
+            '<br>' +
+            'File: ' +
+            escapeHTML(
+              result.fileName ||
+              fileName
+            ) +
+            '<br>' +
+            'Folder: ' +
+            escapeHTML(
+              result.folder ||
+              '12_BERITA'
+            ) +
+            '<br>' +
+            '<a href="' +
+            escapeHTML(
+              result.fileUrl ||
+              '#'
+            ) +
+            '" target="_blank" rel="noopener">' +
+            'Lihat Gambar di Google Drive →' +
+            '</a>';
+
+
+          fileInput.value =
+            '';
+
+
+          return;
+
+        }
+
+
+        // -------------------------------------
+        // MODE PDF
+        // -------------------------------------
+
+        if (
+          file.type !==
+          'application/pdf' &&
           !fileName
             .toLowerCase()
             .endsWith('.pdf')
@@ -344,13 +735,13 @@ document.addEventListener('DOMContentLoaded', function () {
           throw new Error(
             'File harus berformat PDF.'
           );
+
         }
 
-        // -------------------------------------
-        // TENTUKAN FOLDER DRIVE
-        // -------------------------------------
 
-        let folderName = '';
+        let folderName =
+          '';
+
 
         if (
           sheetName ===
@@ -363,7 +754,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         else if (
-          sheetName === 'DIP'
+          sheetName ===
+          'DIP'
         ) {
 
           folderName =
@@ -376,16 +768,17 @@ document.addEventListener('DOMContentLoaded', function () {
           throw new Error(
             'Folder upload belum tersedia.'
           );
+
         }
 
-        // -------------------------------------
-        // UI UPLOAD
-        // -------------------------------------
 
-        uploadButton.disabled = true;
+        uploadButton.disabled =
+          true;
+
 
         uploadButton.textContent =
           'Mengupload...';
+
 
         showStatus(
           'Sedang mengupload ' +
@@ -394,20 +787,15 @@ document.addEventListener('DOMContentLoaded', function () {
           'loading'
         );
 
-        // -------------------------------------
-        // FILE → BASE64
-        // -------------------------------------
 
         const fileData =
           await fileToBase64(file);
 
-        // -------------------------------------
-        // REQUEST
-        // -------------------------------------
 
         const requestBody = {
 
-          action: 'upload',
+          action:
+            'upload',
 
           sheetName:
             sheetName,
@@ -423,17 +811,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
           folderName:
             folderName
+
         };
 
-        // -------------------------------------
-        // KIRIM KE APPS SCRIPT
-        // -------------------------------------
 
         const response =
           await fetch(
             API_URL,
             {
-              method: 'POST',
+              method:
+                'POST',
 
               headers: {
                 'Content-Type':
@@ -444,8 +831,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 JSON.stringify(
                   requestBody
                 )
+
             }
           );
+
 
         if (!response.ok) {
 
@@ -453,15 +842,19 @@ document.addEventListener('DOMContentLoaded', function () {
             'HTTP Error ' +
             response.status
           );
+
         }
+
 
         const result =
           await response.json();
 
+
         console.log(
-          'Upload result:',
+          'Upload PDF result:',
           result
         );
+
 
         if (!result.success) {
 
@@ -469,62 +862,59 @@ document.addEventListener('DOMContentLoaded', function () {
             result.message ||
             'Upload gagal.'
           );
+
         }
 
-        // -------------------------------------
-        // BERHASIL
-        // -------------------------------------
 
         showStatus(
-          'Upload berhasil. ' +
-          'Dokumen ' +
+          'Upload berhasil. Dokumen ' +
           (result.id || '') +
           ' telah ditambahkan ke DOKUMEN.',
           'success'
         );
 
-        // -------------------------------------
-        // INFORMASI HASIL
-        // -------------------------------------
 
         dataInfo.innerHTML =
           '<strong>Upload berhasil</strong><br>' +
           'ID Dokumen: ' +
           escapeHTML(
-            result.id || '-'
+            result.id ||
+            '-'
           ) +
           '<br>' +
           'Informasi ID: ' +
           escapeHTML(
-            result.informasiId || idValue
+            result.informasiId ||
+            idValue
           ) +
           '<br>' +
           'File: ' +
           escapeHTML(
-            result.fileName || fileName
+            result.fileName ||
+            fileName
           ) +
           '<br>' +
           'Folder: ' +
           escapeHTML(
-            result.folder || folderName
+            result.folder ||
+            folderName
           ) +
           '<br>' +
           '<a href="' +
           escapeHTML(
-            result.fileUrl || '#'
+            result.fileUrl ||
+            '#'
           ) +
           '" target="_blank" rel="noopener">' +
           'Lihat File di Google Drive →' +
           '</a>';
 
-        // -------------------------------------
-        // RESET FILE
-        // -------------------------------------
 
-        fileInput.value = '';
+        fileInput.value =
+          '';
+
 
       }
-
       catch (error) {
 
         console.error(
@@ -532,23 +922,32 @@ document.addEventListener('DOMContentLoaded', function () {
           error
         );
 
+
         showStatus(
           'Upload gagal: ' +
           error.message,
           'error'
         );
-      }
 
+      }
       finally {
 
         uploadButton.disabled =
           false;
 
-        uploadButton.textContent =
-          'Upload Dokumen';
+
+        updateFormMode();
+
       }
 
     }
   );
+
+
+  // =========================================
+  // INITIAL
+  // =========================================
+
+  updateFormMode();
 
 });
