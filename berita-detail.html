@@ -778,7 +778,67 @@
 
     }
 
+function getDirectImageUrl(url) {
 
+  if (!url) {
+    return '';
+  }
+
+  const value = String(url).trim();
+
+  if (!value) {
+    return '';
+  }
+
+  // Google Drive: /file/d/FILE_ID/view
+  const match =
+    value.match(
+      /drive\.google\.com\/file\/d\/([^/]+)/
+    );
+
+  if (match && match[1]) {
+
+    return (
+      'https://drive.google.com/uc?export=view&id=' +
+      encodeURIComponent(match[1])
+    );
+
+  }
+
+  // Google Drive: ?id=FILE_ID
+  try {
+
+    const parsed =
+      new URL(value);
+
+    const id =
+      parsed.searchParams.get('id');
+
+    if (
+      parsed.hostname.includes('drive.google.com') &&
+      id
+    ) {
+
+      return (
+        'https://drive.google.com/uc?export=view&id=' +
+        encodeURIComponent(id)
+      );
+
+    }
+
+  }
+  catch (error) {
+
+    console.warn(
+      'URL gambar tidak valid:',
+      value
+    );
+
+  }
+
+  return value;
+
+}
     async function loadBeritaDetail() {
 
       const container =
@@ -891,8 +951,7 @@
 
 
         const gambar =
-          berita.gambar_url ||
-          '';
+  getDirectImageUrl(berita.gambar_url);
 
 
         const kategori =
@@ -921,20 +980,36 @@
 
         if (gambar.trim()) {
 
-          imageHTML =
+  imageHTML =
 
-            '<div class="article-image">' +
+    '<div class="article-image">' +
 
-            '<img src="' +
-            escapeAttribute(gambar) +
-            '" alt="' +
-            escapeAttribute(judul) +
-            '" loading="lazy" ' +
-            'onerror="this.parentElement.classList.add(\'placeholder\');this.style.display=\'none\';">' +
+    '<img src="' +
+    escapeAttribute(gambar) +
+    '" alt="' +
+    escapeAttribute(judul) +
+    '" loading="lazy" ' +
+    'onerror="showArticleImageFallback(this);">' +
 
-            '</div>';
+    '</div>';
 
-        }
+}
+
+          function showArticleImageFallback(img) {
+
+  const parent =
+    img.parentElement;
+
+  if (!parent) {
+    return;
+  }
+
+  parent.classList.add('placeholder');
+
+  parent.innerHTML =
+    '📰';
+
+}
         else {
 
           imageHTML =
