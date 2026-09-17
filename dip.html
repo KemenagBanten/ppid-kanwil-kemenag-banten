@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -459,4 +458,340 @@
   <footer class="footer">
 
     <div class="container">
-```
+
+      <p>
+        © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- SCRIPT -->
+
+  <script>
+
+    const DIP_API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let dipData = [];
+
+
+    /* ================================
+       LOAD DATA DIP
+    ================================= */
+
+    async function loadDIP() {
+
+      const tbody =
+        document.getElementById('dipTableBody');
+
+      try {
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state">
+                Memuat Daftar Informasi Publik...
+              </div>
+            </td>
+          </tr>
+        `;
+
+
+        const response = await fetch(
+          DIP_API_URL + '?action=dip'
+        );
+
+
+        if (!response.ok) {
+          throw new Error(
+            'HTTP Error ' + response.status
+          );
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Respons API DIP:',
+          result
+        );
+
+
+        if (result.success !== true) {
+          throw new Error(
+            result.message ||
+            'API DIP mengembalikan success=false.'
+          );
+        }
+
+
+        dipData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        renderDIP(dipData);
+
+
+      } catch (error) {
+
+        console.error(
+          'Gagal memuat DIP:',
+          error
+        );
+
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state dip-error">
+
+                Gagal memuat data DIP.
+
+                <br>
+
+                <small>
+                  ${escapeHTML(error.message)}
+                </small>
+
+              </div>
+            </td>
+          </tr>
+        `;
+
+      }
+
+    }
+
+
+    /* ================================
+       RENDER DATA
+    ================================= */
+
+    function renderDIP(data) {
+
+      const tbody =
+        document.getElementById('dipTableBody');
+
+
+      if (!Array.isArray(data) || data.length === 0) {
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state">
+                Belum ada data DIP.
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return;
+      }
+
+
+      tbody.innerHTML =
+        data.map((row, index) => {
+
+          /*
+           * Nama kolom disesuaikan
+           * dengan respons API sebenarnya.
+           */
+
+          const nomor =
+            row.nomor ??
+            (index + 1);
+
+
+          const nama =
+            row.nama_informasi ||
+            '-';
+
+
+          const jenis =
+            row.jenis_informasi ||
+            '-';
+
+
+          const kategori =
+            row.kategori ||
+            '-';
+
+
+          const ringkasan =
+            row.ringkasan ||
+            '-';
+
+
+          const unit =
+            row.pejabat_unit ||
+            '-';
+
+
+          const url =
+            row.url_dokumen ||
+            '';
+
+
+          const documentHTML =
+            url
+              ? `
+                <a
+                  href="${escapeAttribute(url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat PDF
+                </a>
+              `
+              : `
+                <span class="no-document">
+                  Belum tersedia
+                </span>
+              `;
+
+
+          return `
+            <tr>
+
+              <td class="dip-number">
+                ${escapeHTML(nomor)}
+              </td>
+
+              <td class="dip-title">
+                ${escapeHTML(nama)}
+              </td>
+
+              <td class="dip-type">
+
+                <span class="dip-badge">
+                  ${escapeHTML(jenis)}
+                </span>
+
+              </td>
+
+              <td class="dip-category">
+                ${escapeHTML(kategori)}
+              </td>
+
+              <td>
+                ${escapeHTML(ringkasan)}
+              </td>
+
+              <td>
+                ${escapeHTML(unit)}
+              </td>
+
+              <td class="dip-document">
+                ${documentHTML}
+              </td>
+
+            </tr>
+          `;
+
+        }).join('');
+
+    }
+
+
+    /* ================================
+       SEARCH
+    ================================= */
+
+    function filterDIP() {
+
+      const input =
+        document.getElementById('dipSearch');
+
+
+      const keyword =
+        input.value
+          .trim()
+          .toLowerCase();
+
+
+      if (!keyword) {
+
+        renderDIP(dipData);
+
+        return;
+
+      }
+
+
+      const filtered =
+        dipData.filter(row => {
+
+          return Object
+            .values(row)
+            .join(' ')
+            .toLowerCase()
+            .includes(keyword);
+
+        });
+
+
+      renderDIP(filtered);
+
+    }
+
+
+    /* ================================
+       REAL-TIME SEARCH
+    ================================= */
+
+    document
+      .getElementById('dipSearch')
+      .addEventListener(
+        'input',
+        filterDIP
+      );
+
+
+    /* ================================
+       SECURITY
+    ================================= */
+
+    function escapeHTML(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+    }
+
+
+    /* ================================
+       START
+    ================================= */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      loadDIP
+    );
+
+  </script>
+
+</body>
+</html>
