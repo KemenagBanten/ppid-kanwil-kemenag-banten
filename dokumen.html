@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dokumen - PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+      background: #f5f7f6;
+      color: #26352e;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      color: #17352a;
+      border-bottom: 1px solid #e5ebe7;
+      box-shadow: 0 2px 12px rgba(25, 60, 45, 0.06);
+    }
+
+    .header-inner {
+      width: min(1180px, 92%);
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+      color: #17352a;
+      text-decoration: none;
+    }
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-text {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      line-height: 1.2;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      color: #17352a !important;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.15px;
+    }
+
+    .header-text p {
+      margin: 4px 0 0;
+      color: #66756e !important;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.35px;
+    }
+
+    .header nav {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .header nav a {
+      color: #40544b !important;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all .2s ease;
+    }
+
+    .header nav a:hover {
+      color: #0f5132 !important;
+      background: #edf6f1;
+    }
+
+    .header nav a.active {
+      color: #0f5132 !important;
+      background: #e8f3ed;
+      font-weight: 700;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      background:
+        linear-gradient(
+          135deg,
+          #123d2d 0%,
+          #176044 55%,
+          #0f5132 100%
+        );
+      color: #ffffff;
+      padding: 55px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(205, 176, 130, 0.10);
+      top: -140px;
+      right: -80px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      bottom: -120px;
+      left: -70px;
+    }
+
+    .hero-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #e5d1aa;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      font-weight: 750;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0;
+      color: rgba(255,255,255,.84);
+      font-size: 14px;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .content {
+      padding: 35px 0 70px;
+    }
+
+    /* =========================
+       TOOLBAR
+    ========================= */
+
+    .toolbar {
+      background: #ffffff;
+      border: 1px solid #e5ebe7;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 18px rgba(25, 60, 45, 0.05);
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 190px 150px;
+      gap: 12px;
+    }
+
+    .search-box input,
+    .filter-select {
+      width: 100%;
+      border: 1px solid #dce5df;
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      color: #26352e;
+      outline: none;
+      background: #fbfcfb;
+      transition: .2s ease;
+    }
+
+    .search-box input:focus,
+    .filter-select:focus {
+      border-color: #6b9b84;
+      box-shadow: 0 0 0 3px rgba(23, 96, 68, 0.08);
+      background: #ffffff;
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .table-card {
+      background: #ffffff;
+      border: 1px solid #e5ebe7;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 22px rgba(25, 60, 45, 0.06);
+    }
+
+    .table-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid #e9efeb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .table-header h3 {
+      margin: 0;
+      color: #17352a;
+      font-size: 18px;
+    }
+
+    .table-header span {
+      color: #75837d;
+      font-size: 12px;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+
+    th {
+      background: #f1f6f3;
+      color: #29463a;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      padding: 14px 15px;
+      border-bottom: 1px solid #dfe8e2;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 16px 15px;
+      border-bottom: 1px solid #edf1ee;
+      vertical-align: top;
+      font-size: 13px;
+      color: #405149;
+    }
+
+    tbody tr:hover {
+      background: #fafcfb;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .number {
+      width: 55px;
+      text-align: center;
+      font-weight: 700;
+      color: #17352a;
+    }
+
+    .document-name {
+      min-width: 270px;
+      color: #17352a;
+      font-weight: 700;
+    }
+
+    .type {
+      min-width: 150px;
+    }
+
+    .year {
+      width: 80px;
+      white-space: nowrap;
+    }
+
+    .date {
+      min-width: 130px;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .document-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: #e8f3ed;
+      color: #0f5132;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+
+    .document-link:hover {
+      background: #d9ebe2;
+      transform: translateY(-1px);
+    }
+
+    .document-unavailable {
+      color: #8a918d;
+      font-size: 12px;
+      font-style: italic;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-published {
+      color: #176044;
+      background: #e8f4ed;
+    }
+
+    .status-draft {
+      color: #86651f;
+      background: #faf2dc;
+    }
+
+    .status-other {
+      color: #5c6862;
+      background: #eef1ef;
+    }
+
+    /* =========================
+       STATE
+    ========================= */
+
+    .state {
+      padding: 50px 25px;
+      text-align: center;
+      color: #718078;
+      font-size: 14px;
+    }
+
+    .state strong {
+      display: block;
+      color: #34463e;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    /* =========================
+       INFO
+    ========================= */
+
+    .info-box {
+      margin-top: 22px;
+      padding: 18px 20px;
+      border-left: 4px solid #cdb082;
+      background: #fffdf8;
+      border-radius: 10px;
+      color: #5d5a50;
+      font-size: 13px;
+    }
+
+    .info-box strong {
+      color: #4c4639;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #17352a;
+      color: rgba(255,255,255,.75);
+      padding: 28px 20px;
+    }
+
+    .footer-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      .header-inner {
+        min-height: auto;
+        padding: 13px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .header nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .header nav a {
+        white-space: nowrap;
+      }
+
+      .hero {
+        padding: 42px 20px 48px;
+      }
+
+      .hero h2 {
+        font-size: 30px;
+      }
+
+      .content {
+        padding-top: 25px;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .table-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .toolbar {
+        padding: 14px;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      .footer-inner {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+
+        <div class="header-logo">
+          <img
+            src="assets/logo-kemenag.png"
+            alt="Logo Kementerian Agama"
+          >
+        </div>
+
+        <div class="header-text">
+          <h1>
+            PPID Kanwil Kementerian Agama Provinsi Banten
+          </h1>
+
+          <p>
+            Pejabat Pengelola Informasi dan Dokumentasi
+          </p>
+        </div>
+
+      </a>
+
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="informasi-publik.html">Informasi Publik</a>
+        <a href="dip.html">DIP</a>
+        <a href="dik.html">DIK</a>
+        <a href="dokumen.html" class="active">Dokumen</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="hero-inner">
+
+      <div class="hero-label">
+        DOKUMENTASI PUBLIK
+      </div>
+
+      <h2>
+        Dokumen PPID
+      </h2>
+
+      <p>
+        Pusat dokumentasi informasi dan dokumen publik
+        yang dikelola oleh PPID Kanwil Kementerian Agama
+        Provinsi Banten.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+
+  <main class="content">
+
+    <div class="container">
+
+      <!-- FILTER -->
+
+      <div class="toolbar">
+
+        <div class="filters">
+
+          <div class="search-box">
+
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Cari nama dokumen atau jenis dokumen..."
+              autocomplete="off"
+            >
+
+          </div>
+
+          <select
+            id="typeFilter"
+            class="filter-select"
+          >
+
+            <option value="">
+              Semua Jenis Dokumen
+            </option>
+
+          </select>
+
+
+          <select
+            id="yearFilter"
+            class="filter-select"
+          >
+
+            <option value="">
+              Semua Tahun
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- TABLE -->
+
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <h3>
+            Daftar Dokumen
+          </h3>
+
+          <span id="recordCount">
+            Memuat data...
+          </span>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th class="number">
+                  No.
+                </th>
+
+                <th>
+                  Nama Dokumen
+                </th>
+
+                <th>
+                  Jenis Dokumen
+                </th>
+
+                <th>
+                  Tahun
+                </th>
+
+                <th>
+                  Tanggal Upload
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Dokumen
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="documentTableBody">
+
+              <tr>
+
+                <td colspan="7">
+
+                  <div class="state">
+                    Memuat dokumen...
+                  </div>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+      <!-- INFO -->
+
+      <div class="info-box">
+
+        <strong>Catatan:</strong>
+        Dokumen yang tersedia pada halaman ini merupakan
+        dokumen yang telah dipublikasikan dan dikelola
+        melalui PPID Kanwil Kementerian Agama Provinsi Banten.
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        PPID Kanwil Kementerian Agama Provinsi Banten
+      </div>
+
+      <div class="footer-copy">
+        © 2026 Kementerian Agama Provinsi Banten
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    const tableBody =
+      document.getElementById(
+        'documentTableBody'
+      );
+
+    const searchInput =
+      document.getElementById(
+        'searchInput'
+      );
+
+    const typeFilter =
+      document.getElementById(
+        'typeFilter'
+      );
+
+    const yearFilter =
+      document.getElementById(
+        'yearFilter'
+      );
+
+    const recordCount =
+      document.getElementById(
+        'recordCount'
+      );
+
+
+    let allData = [];
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHTML(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    /* =========================
+       FORMAT DATE
+    ========================= */
+
+    function formatDate(value) {
+
+      if (!value) {
+        return '-';
+      }
+
+      const date =
+        new Date(value);
+
+      if (
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return escapeHTML(value);
+
+      }
+
+      return date.toLocaleDateString(
+        'id-ID',
+        {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric'
+        }
+      );
+
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    function getStatusClass(status) {
+
+      const value =
+        String(status || '')
+          .toLowerCase()
+          .trim();
+
+      if (
+        value === 'published' ||
+        value === 'publish' ||
+        value === 'diterbitkan'
+      ) {
+
+        return 'status-published';
+
+      }
+
+      if (
+        value === 'draft' ||
+        value === 'draf'
+      ) {
+
+        return 'status-draft';
+
+      }
+
+      return 'status-other';
+
+    }
+
+
+    /* =========================
+       FILTER OPTIONS
+    ========================= */
+
+    function populateFilters() {
+
+      const types =
+        [...new Set(
+          allData
+            .map(row =>
+              row.jenis_dokumen
+            )
+            .filter(Boolean)
+        )]
+        .sort();
+
+
+      const years =
+        [...new Set(
+          allData
+            .map(row =>
+              row.tahun
+            )
+            .filter(Boolean)
+        )]
+        .sort(
+          (a, b) =>
+            Number(b) - Number(a)
+        );
+
+
+      typeFilter.innerHTML =
+        '<option value="">Semua Jenis Dokumen</option>';
+
+
+      types.forEach(function(type) {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+        option.value = type;
+        option.textContent = type;
+
+        typeFilter.appendChild(
+          option
+        );
+
+      });
+
+
+      yearFilter.innerHTML =
+        '<option value="">Semua Tahun</option>';
+
+
+      years.forEach(function(year) {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+        option.value = year;
+        option.textContent = year;
+
+        yearFilter.appendChild(
+          option
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       RENDER TABLE
+    ========================= */
+
+    function renderTable(data) {
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        tableBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="7">
+
+              <div class="state">
+
+                <strong>
+                  Belum ada dokumen.
+                </strong>
+
+                Dokumen yang sesuai
+                dengan pencarian belum tersedia.
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+        recordCount.textContent =
+          '0 dokumen';
+
+        return;
+
+      }
+
+
+      recordCount.textContent =
+        data.length +
+        (data.length === 1
+          ? ' dokumen'
+          : ' dokumen');
+
+
+      tableBody.innerHTML =
+        data.map(
+          function(row, index) {
+
+            const nomor =
+              index + 1;
+
+            const namaDokumen =
+              row.nama_dokumen ||
+              'Tanpa Nama Dokumen';
+
+            const jenisDokumen =
+              row.jenis_dokumen ||
+              '-';
+
+            const tahun =
+              row.tahun ||
+              '-';
+
+            const tanggalUpload =
+              formatDate(
+                row.tanggal_upload
+              );
+
+            const status =
+              row.status ||
+              '-';
+
+            const url =
+              row.url_dokumen ||
+              '';
+
+
+            let documentCell;
+
+
+            if (url) {
+
+              documentCell = `
+
+                <a
+                  class="document-link"
+                  href="${escapeHTML(url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat Dokumen →
+                </a>
+
+              `;
+
+            } else {
+
+              documentCell = `
+
+                <span class="document-unavailable">
+                  Belum tersedia
+                </span>
+
+              `;
+
+            }
+
+
+            return `
+
+              <tr>
+
+                <td class="number">
+                  ${escapeHTML(nomor)}
+                </td>
+
+                <td class="document-name">
+                  ${escapeHTML(namaDokumen)}
+                </td>
+
+                <td class="type">
+                  ${escapeHTML(jenisDokumen)}
+                </td>
+
+                <td class="year">
+                  ${escapeHTML(tahun)}
+                </td>
+
+                <td class="date">
+                  ${tanggalUpload}
+                </td>
+
+                <td>
+
+                  <span
+                    class="status ${getStatusClass(status)}"
+                  >
+                    ${escapeHTML(status)}
+                  </span>
+
+                </td>
+
+                <td>
+                  ${documentCell}
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        ).join('');
+
+    }
+
+
+    /* =========================
+       APPLY FILTER
+    ========================= */
+
+    function applyFilters() {
+
+      const keyword =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+      const selectedType =
+        typeFilter.value;
+
+      const selectedYear =
+        yearFilter.value;
+
+
+      const filtered =
+        allData.filter(
+          function(row) {
+
+            const text = [
+
+              row.informasi_id,
+
+              row.nama_dokumen,
+
+              row.jenis_dokumen,
+
+              row.tahun,
+
+              row.status
+
+            ]
+              .filter(Boolean)
+              .join(' ')
+              .toLowerCase();
+
+
+            const matchesSearch =
+              !keyword ||
+              text.includes(keyword);
+
+
+            const matchesType =
+              !selectedType ||
+              String(
+                row.jenis_dokumen || ''
+              ) === selectedType;
+
+
+            const matchesYear =
+              !selectedYear ||
+              String(
+                row.tahun || ''
+              ) === selectedYear;
+
+
+            return (
+              matchesSearch &&
+              matchesType &&
+              matchesYear
+            );
+
+          }
+        );
+
+
+      renderTable(filtered);
+
+    }
+
+
+    /* =========================
+       LOAD DOKUMEN
+    ========================= */
+
+    async function loadDokumen() {
+
+      try {
+
+        tableBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="7">
+
+              <div class="state">
+                Memuat dokumen...
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+
+        const response =
+          await fetch(
+            API_URL +
+            '?action=dokumen'
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Response DOKUMEN:',
+          result
+        );
+
+
+        if (
+          result.success !== true
+        ) {
+
+          throw new Error(
+            result.message ||
+            'API DOKUMEN mengembalikan success=false'
+          );
+
+        }
+
+
+        if (
+          !Array.isArray(
+            result.data
+          )
+        ) {
+
+          throw new Error(
+            'Format data DOKUMEN tidak valid.'
+          );
+
+        }
+
+
+        allData =
+          result.data;
+
+
+        populateFilters();
+
+        renderTable(
+          allData
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          'Error load DOKUMEN:',
+          error
+        );
+
+
+        tableBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="7">
+
+              <div class="state">
+
+                <strong>
+                  Dokumen gagal dimuat.
+                </strong>
+
+                ${escapeHTML(
+                  error.message
+                )}
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+
+        recordCount.textContent =
+          'Gagal memuat';
+
+      }
+
+    }
+
+
+    /* =========================
+       EVENTS
+    ========================= */
+
+    searchInput.addEventListener(
+      'input',
+      applyFilters
+    );
+
+
+    typeFilter.addEventListener(
+      'change',
+      applyFilters
+    );
+
+
+    yearFilter.addEventListener(
+      'change',
+      applyFilters
+    );
+
+
+    /* =========================
+       START
+    ========================= */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      loadDokumen
+    );
+
+  </script>
+
+</body>
+</html>
