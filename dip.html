@@ -1,0 +1,713 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DIP - PPID Kanwil Kementerian Agama Provinsi Banten</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ================================
+       DIP PAGE
+    ================================= */
+
+    .page-hero {
+      padding: 65px 0 55px;
+      background:
+        radial-gradient(
+          circle at 90% 15%,
+          rgba(205, 176, 130, 0.18),
+          transparent 28%
+        ),
+        linear-gradient(
+          135deg,
+          #e8f2ed 0%,
+          #f7faf8 55%,
+          #e5f0ea 100%
+        );
+      border-bottom: 1px solid #dce7e1;
+    }
+
+    .page-hero-content {
+      max-width: 900px;
+    }
+
+    .page-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #0f5132;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    .page-hero h2 {
+      margin: 0;
+      color: #17352a;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      font-weight: 750;
+    }
+
+    .page-hero p {
+      max-width: 720px;
+      margin: 16px 0 0;
+      color: #66756e;
+      font-size: 15px;
+    }
+
+    /* Search */
+
+    .dip-search-section {
+      padding: 28px 0 10px;
+    }
+
+    .dip-search {
+      position: relative;
+      display: flex;
+      gap: 10px;
+      max-width: 720px;
+    }
+
+    .dip-search input {
+      flex: 1;
+      min-width: 0;
+      height: 48px;
+      padding: 0 17px;
+      border: 1px solid #d9e4de;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #26352e;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      box-shadow: 0 3px 12px rgba(25, 60, 45, 0.04);
+    }
+
+    .dip-search input:focus {
+      border-color: #0f5132;
+      box-shadow:
+        0 0 0 3px rgba(15, 81, 50, 0.08);
+    }
+
+    .dip-search button {
+      height: 48px;
+      padding: 0 22px;
+      border: none;
+      border-radius: 10px;
+      background: #0f5132;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .dip-search button:hover {
+      background: #173f31;
+      transform: translateY(-1px);
+    }
+
+    /* Table */
+
+    .dip-section {
+      padding: 25px 0 70px;
+    }
+
+    .dip-table-card {
+      overflow: hidden;
+      background:
+        linear-gradient(
+          145deg,
+          #ffffff 0%,
+          #f8faf9 100%
+        );
+      border: 1px solid #e1e9e4;
+      border-radius: 14px;
+      box-shadow:
+        0 5px 20px rgba(25, 60, 45, 0.05);
+    }
+
+    .dip-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .dip-table {
+      width: 100%;
+      min-width: 820px;
+      border-collapse: collapse;
+    }
+
+    .dip-table th {
+      padding: 15px 16px;
+      background: #17352a;
+      color: #ffffff;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      white-space: nowrap;
+    }
+
+    .dip-table td {
+      padding: 15px 16px;
+      border-bottom: 1px solid #e7ede9;
+      color: #40544b;
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    .dip-table tbody tr {
+      transition: background .15s ease;
+    }
+
+    .dip-table tbody tr:hover {
+      background: #f1f7f3;
+    }
+
+    .dip-number {
+      width: 55px;
+      color: #0f5132 !important;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .dip-title {
+      color: #17352a !important;
+      font-weight: 700;
+    }
+
+    .dip-type {
+      white-space: nowrap;
+    }
+
+    .dip-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #edf6f1;
+      color: #0f5132;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .dip-category {
+      color: #66756e;
+    }
+
+    .dip-document {
+      white-space: nowrap;
+    }
+
+    .dip-document a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 11px;
+      border-radius: 8px;
+      background: #f1eadf;
+      color: #725d3d;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .dip-document a:hover {
+      background: #e7dccb;
+    }
+
+    .no-document {
+      color: #9aa8a1;
+      font-size: 11px;
+      font-style: italic;
+    }
+
+    /* State */
+
+    .dip-state {
+      padding: 45px 20px;
+      text-align: center;
+      color: #66756e;
+      font-size: 14px;
+    }
+
+    .dip-error {
+      color: #9a3f3f;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding: 28px 0;
+      background: #17352a;
+      color: #cbd8d2;
+      text-align: center;
+    }
+
+    .footer p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 760px) {
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .header-text h1 {
+        font-size: 11px;
+      }
+
+      .header-text p {
+        font-size: 8px;
+      }
+
+      .header nav {
+        display: none;
+      }
+
+      .page-hero {
+        padding: 45px 0 40px;
+      }
+
+      .page-hero h2 {
+        font-size: 30px;
+      }
+
+      .page-hero p {
+        font-size: 14px;
+      }
+
+      .dip-search {
+        flex-direction: column;
+      }
+
+      .dip-search button {
+        width: 100%;
+      }
+
+      .dip-section {
+        padding-bottom: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================
+       HEADER
+  ================================= -->
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+
+        <div class="header-logo">
+          <img
+            src="assets/logo-kemenag.png"
+            alt="Logo Kementerian Agama Republik Indonesia"
+          >
+        </div>
+
+        <div class="header-text">
+          <h1>
+            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+          </h1>
+
+          <p>
+            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+          </p>
+        </div>
+
+      </a>
+
+      <nav>
+        <a href="index.html">Beranda</a>
+        <a href="informasi-publik.html">Informasi Publik</a>
+        <a href="dip.html" class="active">DIP</a>
+        <a href="dik.html">DIK</a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- ================================
+       HERO
+  ================================= -->
+
+  <section class="page-hero">
+
+    <div class="container page-hero-content">
+
+      <span class="page-label">
+        DAFTAR INFORMASI PUBLIK
+      </span>
+
+      <h2>
+        Daftar Informasi Publik
+      </h2>
+
+      <p>
+        Daftar informasi publik yang dikelola oleh
+        Pejabat Pengelola Informasi dan Dokumentasi
+        Kanwil Kementerian Agama Provinsi Banten.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       SEARCH
+  ================================= -->
+
+  <section class="dip-search-section">
+
+    <div class="container">
+
+      <div class="dip-search">
+
+        <input
+          type="text"
+          id="dipSearch"
+          placeholder="Cari informasi dalam DIP..."
+          autocomplete="off"
+        >
+
+        <button
+          type="button"
+          onclick="filterDIP()"
+        >
+          Cari
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================================
+       DIP TABLE
+  ================================= -->
+
+  <main class="dip-section">
+
+    <div class="container">
+
+      <div class="dip-table-card">
+
+        <div class="dip-table-wrapper">
+
+          <table class="dip-table">
+
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Nama Informasi</th>
+                <th>Jenis</th>
+                <th>Kategori</th>
+                <th>Uraian</th>
+                <th>Unit</th>
+                <th>Dokumen</th>
+              </tr>
+            </thead>
+
+            <tbody id="dipTableBody">
+
+              <tr>
+                <td colspan="7">
+                  <div class="dip-state">
+                    Memuat Daftar Informasi Publik...
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- ================================
+       FOOTER
+  ================================= -->
+
+  <footer class="footer">
+
+    <div class="container">
+
+      <p>
+        © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================================
+       SCRIPT
+  ================================= -->
+
+  <script>
+
+    /*
+     * API yang sama dengan aplikasi utama.
+     * Tidak mengubah Code.gs.
+     */
+
+    const DIP_API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let dipData = [];
+
+
+    /* =================================
+       LOAD DIP
+    ================================= */
+
+    async function loadDIP() {
+
+      const tbody =
+        document.getElementById('dipTableBody');
+
+      try {
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state">
+                Memuat Daftar Informasi Publik...
+              </div>
+            </td>
+          </tr>
+        `;
+
+
+        const response = await fetch(
+          DIP_API_URL + '?action=dip'
+        );
+
+
+        if (!response.ok) {
+          throw new Error(
+            'HTTP Error ' + response.status
+          );
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+          throw new Error(
+            result.message ||
+            'API DIP mengembalikan error.'
+          );
+        }
+
+
+        dipData =
+          result.data || [];
+
+
+        renderDIP(dipData);
+
+
+      } catch (error) {
+
+        console.error(
+          'Gagal memuat DIP:',
+          error
+        );
+
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state dip-error">
+                Gagal memuat data DIP.
+                <br>
+                <small>
+                  ${escapeHTML(error.message)}
+                </small>
+              </div>
+            </td>
+          </tr>
+        `;
+
+      }
+
+    }
+
+
+    /* =================================
+       RENDER DIP
+    ================================= */
+
+    function renderDIP(data) {
+
+      const tbody =
+        document.getElementById('dipTableBody');
+
+
+      if (!data || data.length === 0) {
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="dip-state">
+                Belum ada data DIP.
+              </div>
+            </td>
+          </tr>
+        `;
+
+        return;
+      }
+
+
+      tbody.innerHTML =
+        data.map((row, index) => {
+
+          const nomor =
+            row.nomor ||
+            row.no ||
+            (index + 1);
+
+
+          const nama =
+            row.nama_informasi ||
+            row.nama ||
+            row.judul ||
+            '-';
+
+
+          const jenis =
+            row.jenis ||
+            '-';
+
+
+          const kategori =
+            row.kategori ||
+            '-';
+
+
+          const uraian =
+            row.uraian ||
+            row.deskripsi ||
+            '-';
+
+
+          const unit =
+            row.unit ||
+            row.unit_pengelola ||
+            '-';
+
+
+          const url =
+            row.url_dokumen ||
+            row.url ||
+            '';
+
+
+          const documentHTML =
+            url
+              ? `
+                <a
+                  href="${escapeAttribute(url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat PDF
+                </a>
+              `
+              : `
+                <span class="no-document">
+                  Belum tersedia
+                </span>
+              `;
+
+
+          return `
+            <tr>
+
+              <td class="dip-number">
+                ${escapeHTML(nomor)}
+              </td>
+
+              <td class="dip-title">
+                ${escapeHTML(nama)}
+              </td>
+
+              <td class="dip-type">
+                <span class="dip-badge">
+                  ${escapeHTML(jenis)}
+                </span>
+              </td>
+
+              <td class="dip-category">
+                ${escapeHTML(kategori)}
+              </td>
+
+              <td>
+                ${escapeHTML(uraian)}
+              </td>
+
+              <td>
+                ${escapeHTML(unit)}
+              </td>
+
+              <td class="dip-document">
+                ${documentHTML}
+              </td>
+
+            </tr>
+          `;
+
+        }).join('');
+
+    }
+
+
+    /* =================================
+       SEARCH
+    ================================= */
+
+    function filterDIP() {
+
+      const input =
+        document.getElementById('dipSearch');
+
+
+      const keyword =
+        input.value
+          .trim(
+```
