@@ -2,7 +2,6 @@
 <html lang="id">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -14,11 +13,28 @@
     PPID Kanwil Kementerian Agama Provinsi Banten
   </title>
 
+  <!-- Font -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS -->
   <link
     rel="stylesheet"
     href="style.css"
   >
-
 </head>
 
 
@@ -29,217 +45,71 @@
        HEADER
   ====================================================== -->
 
- <!-- =====================================================
-     HEADER
-====================================================== -->
+  <header class="header">
 
-<header
-  style="
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #e5ebe7;
-    box-shadow: 0 2px 12px rgba(25,60,45,0.06);
-  "
->
-
-  <div
-    style="
-      width: min(1180px, 92%);
-      min-height: 76px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    "
-  >
+    <div class="header-inner">
 
 
-    <!-- LOGO + IDENTITAS -->
-
-    <a
-      href="index.html"
-      style="
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 13px;
-        min-width: 0;
-        text-decoration: none;
-        color: #17352a;
-      "
-    >
-
-      <!-- LOGO -->
-
-      <div
-        style="
-          width: 44px;
-          height: 44px;
-          min-width: 44px;
-          flex: 0 0 44px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-
-        <img
-          src="assets/logo-kemenag.png"
-          alt="Logo Kementerian Agama Republik Indonesia"
-          style="
-            width: 44px;
-            height: 44px;
-            object-fit: contain;
-            display: block;
-          "
-        >
-
-      </div>
-
-
-      <!-- TULISAN -->
-
-      <div
-        style="
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
-          text-align: left;
-          line-height: 1.2;
-        "
-      >
-
-        <div
-          style="
-            margin: 0;
-            color: #17352a;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: 0.15px;
-          "
-        >
-          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-        </div>
-
-
-        <div
-          style="
-            margin-top: 4px;
-            color: #66756e;
-            font-size: 10px;
-            font-weight: 500;
-            line-height: 1.2;
-            letter-spacing: 0.35px;
-          "
-        >
-          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
-        </div>
-
-      </div>
-
-    </a>
-
-
-    <!-- NAVIGASI -->
-
-    <nav
-      style="
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        flex-shrink: 0;
-      "
-    >
+      <!-- LOGO + IDENTITAS -->
 
       <a
         href="index.html"
-        style="
-          position: relative;
-          display: flex;
-          align-items: center;
-          height: 42px;
-          padding: 0 12px;
-          color: #0f5132;
-          background: transparent;
-          text-decoration: none;
-          font-size: 13px;
-          font-weight: 700;
-          white-space: nowrap;
-          border-bottom: 2px solid #0f5132;
-        "
+        class="header-brand"
       >
-        Beranda
+
+        <div class="header-logo">
+
+          <img
+            src="assets/logo-kemenag.png"
+            alt="Logo Kementerian Agama Republik Indonesia"
+          >
+
+        </div>
+
+
+        <div class="header-text">
+
+          <h1>
+            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+          </h1>
+
+          <p>
+            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+          </p>
+
+        </div>
+
       </a>
 
 
-      <a
-        href="informasi-publik.html"
-        style="
-          display: flex;
-          align-items: center;
-          height: 42px;
-          padding: 0 12px;
-          color: #40544b;
-          background: transparent;
-          text-decoration: none;
-         font-size: 13px;
-          font-weight: 600;
-          white-space: nowrap;
-        "
-      >
-        Informasi Publik
-      </a>
+      <!-- NAVIGASI -->
 
+      <nav class="main-nav">
 
-      <a
-        href="dip.html"
-        style="
-          display: flex;
-          align-items: center;
-          height: 42px;
-          padding: 0 12px;
-          color: #40544b;
-          background: transparent;
-          text-decoration: none;
-          font-size: 13px;
-          font-weight: 600;
-          white-space: nowrap;
-        "
-      >
-        DIP
-      </a>
+        <a
+          href="index.html"
+          class="active"
+        >
+          Beranda
+        </a>
 
+        <a href="informasi-publik.html">
+          Informasi Publik
+        </a>
 
-      <a
-        href="dik.html"
-        style="
-          display: flex;
-          align-items: center;
-          height: 42px;
-          padding: 0 12px;
-          color: #40544b;
-          background: transparent;
-          text-decoration: none;
-          font-size: 13px;
-          font-weight: 600;
-          white-space: nowrap;
-        "
-      >
-        DIK
-      </a>
+        <a href="dip.html">
+          DIP
+        </a>
 
-    </nav>
+        <a href="dik.html">
+          DIK
+        </a>
 
-  </div>
+      </nav>
 
-</header>
+    </div>
+
+  </header>
 
 
 
@@ -250,9 +120,9 @@
   <main>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          HERO
-    ================================================== -->
+    ====================================================== -->
 
     <section
       id="beranda"
@@ -261,31 +131,24 @@
 
       <div class="container hero-content">
 
-
         <div class="hero-text">
 
 
           <span class="eyebrow">
-
             PEJABAT PENGELOLA INFORMASI
             DAN DOKUMENTASI
-
           </span>
 
 
           <h1>
-
             PPID Kanwil Kementerian Agama
             Provinsi Banten
-
           </h1>
 
 
           <p>
-
             Akses informasi publik secara mudah,
             transparan, dan terintegrasi.
-
           </p>
 
 
@@ -297,9 +160,11 @@
               type="text"
               id="searchInput"
               placeholder="Cari informasi publik..."
+              aria-label="Cari informasi publik"
             >
 
             <button
+              type="button"
               onclick="searchInformation()"
             >
               Cari
@@ -310,23 +175,20 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          STATISTIK
-    ================================================== -->
+    ====================================================== -->
 
     <section class="stats">
 
       <div class="container stats-grid">
 
-
-        <!-- STAT 1 -->
 
         <div class="stat-card">
 
@@ -341,8 +203,6 @@
         </div>
 
 
-        <!-- STAT 2 -->
-
         <div class="stat-card">
 
           <span>
@@ -355,8 +215,6 @@
 
         </div>
 
-
-        <!-- STAT 3 -->
 
         <div class="stat-card">
 
@@ -371,8 +229,6 @@
         </div>
 
 
-        <!-- STAT 4 -->
-
         <div class="stat-card">
 
           <span>
@@ -385,16 +241,15 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          INFORMASI PUBLIK
-    ================================================== -->
+    ====================================================== -->
 
     <section
       id="informasi"
@@ -405,7 +260,6 @@
 
 
         <div class="section-heading">
-
 
           <div>
 
@@ -424,9 +278,7 @@
             Lihat semua →
           </a>
 
-
         </div>
-
 
 
         <div
@@ -440,16 +292,15 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          DIP
-    ================================================== -->
+    ====================================================== -->
 
     <section
       id="dip"
@@ -460,7 +311,6 @@
 
 
         <div class="section-heading">
-
 
           <div>
 
@@ -479,9 +329,7 @@
             Lihat DIP →
           </a>
 
-
         </div>
-
 
 
         <div
@@ -495,16 +343,15 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          BERITA
-    ================================================== -->
+    ====================================================== -->
 
     <section
       id="berita"
@@ -515,7 +362,6 @@
 
 
         <div class="section-heading">
-
 
           <div>
 
@@ -534,9 +380,7 @@
             Lihat berita →
           </a>
 
-
         </div>
-
 
 
         <div
@@ -550,16 +394,15 @@
 
         </div>
 
-
       </div>
 
     </section>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          KONTAK
-    ================================================== -->
+    ====================================================== -->
 
     <section
       id="kontak"
@@ -568,9 +411,7 @@
 
       <div class="container">
 
-
         <div class="contact-card">
-
 
           <div>
 
@@ -578,26 +419,19 @@
               PPID KANWIL KEMENAG BANTEN
             </span>
 
-
             <h2>
               Layanan Informasi Publik
             </h2>
 
-
             <p>
-
               Silakan gunakan layanan PPID untuk
               memperoleh informasi publik yang
               tersedia.
-
             </p>
-
 
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -617,10 +451,8 @@
     <div class="container">
 
       <p>
-
         © 2026 PPID Kanwil Kementerian Agama
         Provinsi Banten
-
       </p>
 
     </div>
