@@ -1,28 +1,20 @@
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="description"
+content="Berita PPID Kanwil Kementerian Agama Provinsi Banten"
 
-  <meta
-    name="description"
-    content="Berita PPID Kanwil Kementerian Agama Provinsi Banten"
-  >
+>
 
-  <title>
-    Berita | PPID Kanwil Kemenag Banten
-  </title>
+  <title>Berita | PPID Kanwil Kemenag Banten</title>
 
   <style>
-
-    /* =====================================================
-       RESET
-    ===================================================== */
 
     * {
       margin: 0;
@@ -41,7 +33,6 @@
         Arial,
         Helvetica,
         sans-serif;
-
       background: #f5f7f6;
       color: #26352e;
       line-height: 1.6;
@@ -57,61 +48,42 @@
       font-family: inherit;
     }
 
-
-    /* =====================================================
+    /* =========================
        HEADER
-    ===================================================== */
+    ========================= */
 
     .header {
       position: sticky;
       top: 0;
       z-index: 1000;
-
       background: #ffffff;
       color: #17352a;
-
-      border-bottom:
-        1px solid #e5ebe7;
-
-      box-shadow:
-        0 2px 12px rgba(25, 60, 45, 0.06);
+      border-bottom: 1px solid #e5ebe7;
+      box-shadow: 0 2px 12px rgba(25, 60, 45, 0.06);
     }
 
     .header-inner {
       width: min(1180px, 92%);
       min-height: 76px;
-
       margin: 0 auto;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 25px;
     }
-
-
-    /* =====================================================
-       LOGO
-    ===================================================== */
 
     .header-brand {
       display: flex;
       align-items: center;
-
       gap: 13px;
       min-width: 0;
-
       color: #17352a;
-      text-decoration: none;
     }
 
     .header-logo {
       width: 44px;
       height: 44px;
-
       flex: 0 0 44px;
-
       display: flex;
       align-items: center;
       justify-content: center;
@@ -120,75 +92,49 @@
     .header-logo img {
       width: 100%;
       height: 100%;
-
       object-fit: contain;
       display: block;
     }
 
-
-    /* =====================================================
-       IDENTITAS HEADER
-    ===================================================== */
-
     .header-text {
       min-width: 0;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-
       text-align: left;
       line-height: 1.2;
     }
 
     .header-text h1 {
       margin: 0;
-
       color: #17352a !important;
-
       font-size: 15px;
       font-weight: 700;
-
       letter-spacing: 0.15px;
     }
 
     .header-text p {
       margin: 4px 0 0;
-
       color: #66756e !important;
-
       font-size: 10px;
       font-weight: 500;
-
       letter-spacing: 0.35px;
     }
-
-
-    /* =====================================================
-       NAVIGASI
-    ===================================================== */
 
     .header nav {
       display: flex;
       align-items: center;
-
       gap: 5px;
       flex-shrink: 0;
     }
 
     .header nav a {
       color: #40544b !important;
-
-      text-decoration: none;
-
       padding: 8px 12px;
-
       border-radius: 8px;
-
       font-size: 13px;
       font-weight: 600;
-
       transition: all .2s ease;
     }
 
@@ -200,19 +146,16 @@
     .header nav a.active {
       color: #0f5132 !important;
       background: #e8f3ed;
-
       font-weight: 700;
     }
 
-
-    /* =====================================================
+    /* =========================
        HERO
-    ===================================================== */
+    ========================= */
 
     .hero {
       position: relative;
       overflow: hidden;
-
       background:
         linear-gradient(
           135deg,
@@ -220,40 +163,27 @@
           #146c43 55%,
           #198754 100%
         );
-
       color: #ffffff;
     }
 
     .hero::before {
       content: "";
-
       position: absolute;
-
       width: 380px;
       height: 380px;
-
       border-radius: 50%;
-
-      background:
-        rgba(255,255,255,.06);
-
+      background: rgba(255,255,255,.06);
       right: -120px;
       top: -170px;
     }
 
     .hero::after {
       content: "";
-
       position: absolute;
-
       width: 250px;
       height: 250px;
-
       border-radius: 50%;
-
-      background:
-        rgba(255,255,255,.04);
-
+      background: rgba(255,255,255,.04);
       left: -100px;
       bottom: -160px;
     }
@@ -261,32 +191,22 @@
     .hero-inner {
       position: relative;
       z-index: 2;
-
       max-width: 1200px;
-
       margin: auto;
-
-      padding:
-        62px 24px 68px;
+      padding: 62px 24px 68px;
     }
 
     .breadcrumb {
       display: flex;
       align-items: center;
-
       gap: 8px;
-
       font-size: 13px;
-
-      color:
-        rgba(255,255,255,.75);
-
+      color: rgba(255,255,255,.75);
       margin-bottom: 20px;
     }
 
     .breadcrumb a {
-      color:
-        rgba(255,255,255,.75);
+      color: rgba(255,255,255,.75);
     }
 
     .breadcrumb a:hover {
@@ -294,61 +214,36 @@
     }
 
     .hero h1 {
-      font-size:
-        clamp(32px, 5vw, 48px);
-
+      font-size: clamp(32px, 5vw, 48px);
       line-height: 1.1;
-
       letter-spacing: -.8px;
-
       margin-bottom: 14px;
-
       color: #ffffff;
     }
 
     .hero-description {
       max-width: 680px;
-
       font-size: 16px;
-
-      color:
-        rgba(255,255,255,.84);
-
+      color: rgba(255,255,255,.84);
       line-height: 1.7;
     }
 
-
-    /* =====================================================
+    /* =========================
        MAIN
-    ===================================================== */
+    ========================= */
 
     main {
       max-width: 1200px;
-
       margin: auto;
-
-      padding:
-        42px 24px 70px;
+      padding: 42px 24px 70px;
     }
-
-
-    /* =====================================================
-       TOOLBAR
-    ===================================================== */
 
     .toolbar {
       background: #ffffff;
-
-      border:
-        1px solid #e3e9e5;
-
+      border: 1px solid #e3e9e5;
       border-radius: 16px;
-
       padding: 18px;
-
-      box-shadow:
-        0 8px 30px rgba(24,51,39,.05);
-
+      box-shadow: 0 8px 30px rgba(24,51,39,.05);
       margin-bottom: 30px;
     }
 
@@ -358,63 +253,37 @@
 
     .search-icon {
       position: absolute;
-
       left: 16px;
       top: 50%;
-
-      transform:
-        translateY(-50%);
-
+      transform: translateY(-50%);
       color: #7a8781;
-
       font-size: 18px;
-
       pointer-events: none;
     }
 
     #searchInput {
       width: 100%;
-
-      border:
-        1px solid #dce4df;
-
+      border: 1px solid #dce4df;
       background: #fafcfb;
-
       border-radius: 11px;
-
-      padding:
-        14px 16px 14px 45px;
-
+      padding: 14px 16px 14px 45px;
       outline: none;
-
       font-size: 15px;
-
       color: #26352e;
-
       transition: .2s ease;
     }
 
     #searchInput:focus {
       background: #ffffff;
-
       border-color: #198754;
-
-      box-shadow:
-        0 0 0 4px rgba(25,135,84,.08);
+      box-shadow: 0 0 0 4px rgba(25,135,84,.08);
     }
-
-
-    /* =====================================================
-       RESULT HEADER
-    ===================================================== */
 
     .result-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 15px;
-
       margin-bottom: 18px;
     }
 
@@ -429,158 +298,91 @@
       white-space: nowrap;
     }
 
-
-    /* =====================================================
+    /* =========================
        LOADING
-    ===================================================== */
+    ========================= */
 
     #loading {
       background: #ffffff;
-
-      border:
-        1px solid #e3e9e5;
-
+      border: 1px solid #e3e9e5;
       border-radius: 15px;
-
       padding: 45px 20px;
-
       text-align: center;
-
       color: #68766f;
-
-      box-shadow:
-        0 5px 20px rgba(0,0,0,.03);
+      box-shadow: 0 5px 20px rgba(0,0,0,.03);
     }
 
     .spinner {
       width: 30px;
       height: 30px;
-
-      border:
-        3px solid #dce8e1;
-
+      border: 3px solid #dce8e1;
       border-top-color: #198754;
-
       border-radius: 50%;
-
-      animation:
-        spin .8s linear infinite;
-
-      margin:
-        0 auto 14px;
+      animation: spin .8s linear infinite;
+      margin: 0 auto 14px;
     }
 
     @keyframes spin {
       to {
-        transform:
-          rotate(360deg);
+        transform: rotate(360deg);
       }
     }
 
-
-    /* =====================================================
-       ERROR
-    ===================================================== */
-
     #error {
       display: none;
-
       background: #fff3f3;
-
-      border:
-        1px solid #f0cccc;
-
+      border: 1px solid #f0cccc;
       color: #9b3030;
-
       border-radius: 12px;
-
       padding: 15px 18px;
-
       margin-bottom: 20px;
-
       font-size: 14px;
     }
 
-
-    /* =====================================================
-       BERITA GRID
-    ===================================================== */
+    /* =========================
+       NEWS
+    ========================= */
 
     .news-list {
       display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 20px;
     }
 
-
-    /* =====================================================
-       NEWS CARD
-    ===================================================== */
-
     .news-card {
       background: #ffffff;
-
-      border:
-        1px solid #e2e9e5;
-
+      border: 1px solid #e2e9e5;
       border-radius: 16px;
-
       overflow: hidden;
-
-      box-shadow:
-        0 7px 25px rgba(26,54,41,.045);
-
+      box-shadow: 0 7px 25px rgba(26,54,41,.045);
       transition:
         transform .2s ease,
         box-shadow .2s ease,
         border-color .2s ease;
-
       display: flex;
       flex-direction: column;
     }
 
     .news-card:hover {
-      transform:
-        translateY(-3px);
-
+      transform: translateY(-3px);
       border-color: #cbdcd2;
-
-      box-shadow:
-        0 12px 32px rgba(26,54,41,.09);
+      box-shadow: 0 12px 32px rgba(26,54,41,.09);
     }
-
-
-    /* =====================================================
-       GAMBAR BERITA
-    ===================================================== */
 
     .news-image {
       width: 100%;
       height: 220px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #edf6f1,
-          #dcece3
-        );
-
+      background: linear-gradient(135deg, #edf6f1, #dcece3);
       display: flex;
       align-items: center;
       justify-content: center;
-
       overflow: hidden;
     }
 
     .news-image img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
       display: block;
     }
 
@@ -589,28 +391,18 @@
       opacity: .55;
     }
 
-
-    /* =====================================================
-       NEWS CONTENT
-    ===================================================== */
-
     .news-content {
       padding: 22px;
-
       display: flex;
       flex-direction: column;
-
       flex: 1;
     }
 
     .news-meta {
       display: flex;
       flex-wrap: wrap;
-
       align-items: center;
-
       gap: 8px;
-
       margin-bottom: 11px;
     }
 
@@ -622,194 +414,117 @@
     .news-status {
       display: inline-flex;
       align-items: center;
-
-      padding:
-        4px 9px;
-
+      padding: 4px 9px;
       border-radius: 7px;
-
       background: #eaf7ef;
-
       color: #187443;
-
-      border:
-        1px solid #d2ebdc;
-
+      border: 1px solid #d2ebdc;
       font-size: 11px;
       font-weight: 600;
     }
 
     .news-card h3 {
       font-size: 20px;
-
       line-height: 1.4;
-
       color: #203128;
-
       margin-bottom: 10px;
     }
 
     .news-summary {
       color: #68756f;
-
       font-size: 14px;
-
       line-height: 1.7;
-
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
-
       overflow: hidden;
-
       margin-bottom: 20px;
     }
 
-
-    /* =====================================================
-       BUTTON
-    ===================================================== */
-
     .news-footer {
       margin-top: auto;
-
       padding-top: 15px;
-
-      border-top:
-        1px solid #edf0ee;
+      border-top: 1px solid #edf0ee;
     }
 
     .read-button {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
-
       gap: 7px;
-
       background: #0f5132;
-
       color: #ffffff;
-
-      padding:
-        9px 14px;
-
+      padding: 9px 14px;
       border-radius: 8px;
-
       font-size: 13px;
-
       font-weight: 600;
-
       transition: .2s ease;
     }
 
     .read-button:hover {
       background: #146c43;
-
-      transform:
-        translateY(-1px);
+      transform: translateY(-1px);
     }
-
-
-    /* =====================================================
-       NO DATA
-    ===================================================== */
 
     .no-data {
       grid-column: 1 / -1;
-
       background: #ffffff;
-
-      border:
-        1px solid #e3e9e5;
-
+      border: 1px solid #e3e9e5;
       border-radius: 16px;
-
       padding: 55px 20px;
-
       text-align: center;
-
       color: #718078;
     }
 
     .no-data-icon {
       font-size: 35px;
-
       margin-bottom: 10px;
     }
 
     .no-data strong {
       display: block;
-
       color: #435149;
-
       margin-bottom: 5px;
     }
 
-
-    /* =====================================================
+    /* =========================
        FOOTER
-    ===================================================== */
+    ========================= */
 
     footer {
       background: #102e20;
-
-      color:
-        rgba(255,255,255,.7);
-
+      color: rgba(255,255,255,.7);
       margin-top: 30px;
     }
 
     .footer-inner {
       max-width: 1200px;
-
       margin: auto;
-
-      padding:
-        35px 24px;
-
+      padding: 35px 24px;
       display: flex;
-
       justify-content: space-between;
-
       gap: 30px;
     }
 
     .footer-title {
       color: #ffffff;
-
       font-weight: 700;
-
       margin-bottom: 7px;
     }
 
     .footer-text {
       font-size: 13px;
-
       line-height: 1.6;
-
       max-width: 500px;
     }
 
     .footer-copy {
-      border-top:
-        1px solid rgba(255,255,255,.1);
-
+      border-top: 1px solid rgba(255,255,255,.1);
       text-align: center;
-
-      padding:
-        15px 20px;
-
+      padding: 15px 20px;
       font-size: 12px;
-
-      color:
-        rgba(255,255,255,.55);
+      color: rgba(255,255,255,.55);
     }
-
-
-    /* =====================================================
-       TABLET
-    ===================================================== */
 
     @media (max-width: 900px) {
 
@@ -836,19 +551,11 @@
 
     }
 
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
     @media (max-width: 680px) {
 
       .header-inner {
         min-height: auto;
-
-        padding:
-          10px 0;
-
+        padding: 10px 0;
         flex-wrap: wrap;
       }
 
@@ -873,38 +580,28 @@
 
       .header nav {
         width: 100%;
-
         justify-content: flex-start;
-
         overflow-x: auto;
-
         padding-bottom: 2px;
       }
 
       .header nav a {
         white-space: nowrap;
-
         font-size: 11px;
-
-        padding:
-          6px 8px;
+        padding: 6px 8px;
       }
 
       .hero-inner {
-        padding:
-          45px 20px 50px;
+        padding: 45px 20px 50px;
       }
 
       main {
-        padding:
-          30px 18px 55px;
+        padding: 30px 18px 55px;
       }
 
       .result-header {
         align-items: flex-start;
-
         flex-direction: column;
-
         gap: 4px;
       }
 
@@ -917,8 +614,7 @@
       }
 
       .footer-inner {
-        padding:
-          30px 20px;
+        padding: 30px 20px;
       }
 
     }
@@ -927,252 +623,187 @@
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header class="header">
 
   <div class="header-inner">
 
-    <a
-      href="index.html"
-      class="header-brand"
+```
+<a href="index.html" class="header-brand">
+
+  <div class="header-logo">
+    <img
+      src="assets/logo-kemenag.png"
+      alt="Logo Kementerian Agama Republik Indonesia"
     >
+  </div>
 
-      <div class="header-logo">
+  <div class="header-text">
 
-        <img
-          src="assets/logo-kemenag.png"
-          alt="Logo Kementerian Agama Republik Indonesia"
-        >
+    <h1>
+      KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+    </h1>
 
-      </div>
+    <p>
+      PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+    </p>
 
+  </div>
 
-      <div class="header-text">
+</a>
 
-        <h1>
-          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-        </h1>
+<nav>
 
-        <p>
-          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
-        </p>
+  <a href="index.html">
+    Beranda
+  </a>
 
-      </div>
+  <a href="informasi-publik.html">
+    Informasi Publik
+  </a>
 
-    </a>
+  <a href="dip.html">
+    DIP
+  </a>
 
+  <a href="dik.html">
+    DIK
+  </a>
 
-    <nav>
+  <a href="berita.html" class="active">
+    Berita
+  </a>
 
-      <a href="index.html">
-        Beranda
-      </a>
-
-      <a href="informasi-publik.html">
-        Informasi Publik
-      </a>
-
-      <a href="dip.html">
-        DIP
-      </a>
-
-      <a href="dik.html">
-        DIK
-      </a>
-
-      <a
-        href="berita.html"
-        class="active"
-      >
-        Berita
-      </a>
-
-    </nav>
+</nav>
+```
 
   </div>
 
 </header>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
   <div class="hero-inner">
 
-    <div class="breadcrumb">
+```
+<div class="breadcrumb">
 
-      <a href="index.html">
-        Beranda
-      </a>
+  <a href="index.html">
+    Beranda
+  </a>
 
-      <span>
-        ›
-      </span>
+  <span>›</span>
 
-      <span>
-        Berita
-      </span>
+  <span>Berita</span>
 
-    </div>
+</div>
 
+<h1>Berita</h1>
 
-    <h1>
-      Berita
-    </h1>
-
-
-    <p class="hero-description">
-
-      Informasi dan berita terbaru PPID
-      Kanwil Kementerian Agama Provinsi Banten.
-
-    </p>
+<p class="hero-description">
+  Informasi dan berita terbaru PPID
+  Kanwil Kementerian Agama Provinsi Banten.
+</p>
+```
 
   </div>
 
 </section>
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
 <main>
-
-
-  <!-- SEARCH -->
 
   <section class="toolbar">
 
-    <div class="search-wrapper">
+```
+<div class="search-wrapper">
 
-      <span class="search-icon">
-        🔎
-      </span>
+  <span class="search-icon">
+    🔎
+  </span>
 
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari berita berdasarkan judul atau isi..."
-        autocomplete="off"
-      >
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Cari berita berdasarkan judul atau isi..."
+    autocomplete="off"
+  >
 
-    </div>
+</div>
+```
 
   </section>
 
-
-  <!-- RESULT -->
-
   <div class="result-header">
 
-    <h2>
-      Berita Terbaru
-    </h2>
+```
+<h2>
+  Berita Terbaru
+</h2>
 
-    <span id="resultCount">
-      Memuat data...
-    </span>
+<span id="resultCount">
+  Memuat data...
+</span>
+```
 
   </div>
-
-
-  <!-- ERROR -->
 
   <div id="error"></div>
 
-
-  <!-- LOADING -->
-
   <div id="loading">
 
-    <div class="spinner"></div>
+```
+<div class="spinner"></div>
 
-    <div>
-      Memuat berita...
-    </div>
+<div>
+  Memuat berita...
+</div>
+```
 
   </div>
-
-
-  <!-- DATA -->
 
   <div
     id="newsList"
     class="news-list"
   ></div>
 
-
 </main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
   <div class="footer-inner">
 
-    <div>
+```
+<div>
 
-      <div class="footer-title">
-        PPID Kanwil Kementerian Agama Provinsi Banten
-      </div>
+  <div class="footer-title">
+    PPID Kanwil Kementerian Agama Provinsi Banten
+  </div>
 
-      <div class="footer-text">
+  <div class="footer-text">
+    Portal layanan informasi publik untuk mendukung
+    keterbukaan informasi dan pelayanan publik
+    di lingkungan Kanwil Kementerian Agama
+    Provinsi Banten.
+  </div>
 
-        Portal layanan informasi publik untuk mendukung
-        keterbukaan informasi dan pelayanan publik
-        di lingkungan Kanwil Kementerian Agama
-        Provinsi Banten.
-
-      </div>
-
-    </div>
+</div>
+```
 
   </div>
 
-
   <div class="footer-copy">
-
     © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
-
   </div>
 
 </footer>
 
-
 <script>
-
-/* =====================================================
-   API
-===================================================== */
 
 const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
-
-/* =====================================================
-   STATE
-===================================================== */
-
 let allNews = [];
-
-
-/* =====================================================
-   ELEMENT
-===================================================== */
 
 const newsList =
   document.getElementById('newsList');
@@ -1190,9 +821,9 @@ const searchInput =
   document.getElementById('searchInput');
 
 
-/* =====================================================
+/* =========================
    LOAD BERITA
-===================================================== */
+========================= */
 
 async function loadBerita() {
 
@@ -1203,8 +834,7 @@ async function loadBerita() {
 
     const response =
       await fetch(
-        API_URL +
-        '?action=berita'
+        API_URL + '?action=berita'
       );
 
     if (!response.ok) {
@@ -1232,7 +862,6 @@ async function loadBerita() {
       Array.isArray(result.data)
         ? result.data
         : [];
-
 
     loading.style.display = 'none';
 
@@ -1263,23 +892,21 @@ async function loadBerita() {
 }
 
 
-/* =====================================================
+/* =========================
    SEARCH
-===================================================== */
+========================= */
 
 searchInput.addEventListener(
   'input',
   function() {
-
     applySearch();
-
   }
 );
 
 
-/* =====================================================
+/* =========================
    APPLY SEARCH
-===================================================== */
+========================= */
 
 function applySearch() {
 
@@ -1287,7 +914,6 @@ function applySearch() {
     searchInput.value
       .toLowerCase()
       .trim();
-
 
   const filtered =
     allNews.filter(
@@ -1305,7 +931,6 @@ function applySearch() {
         .join(' ')
         .toLowerCase();
 
-
         return (
           !keyword ||
           searchText.includes(keyword)
@@ -1314,28 +939,28 @@ function applySearch() {
       }
     );
 
-
   renderNews(filtered);
 
 }
 
 
-/* =====================================================
-   RENDER BERITA
-===================================================== */
+/* =========================
+   IMAGE URL
+========================= */
+
 function getDirectImageUrl(url) {
 
   if (!url) {
     return '';
   }
 
-  const value = String(url).trim();
+  const value =
+    String(url).trim();
 
   if (!value) {
     return '';
   }
 
-  // Google Drive: /file/d/FILE_ID/view
   const match =
     value.match(
       /drive\.google\.com\/file\/d\/([^/]+)/
@@ -1350,7 +975,6 @@ function getDirectImageUrl(url) {
 
   }
 
-  // Google Drive: ?id=FILE_ID
   try {
 
     const parsed =
@@ -1372,6 +996,7 @@ function getDirectImageUrl(url) {
     }
 
   }
+
   catch (error) {
 
     console.warn(
@@ -1381,13 +1006,38 @@ function getDirectImageUrl(url) {
 
   }
 
-  // Jika bukan URL Google Drive,
-  // gunakan URL asli.
-
   return value;
 
 }
-  
+
+
+/* =========================
+   IMAGE FALLBACK
+========================= */
+
+function showNewsImageFallback(img) {
+
+  if (!img) {
+    return;
+  }
+
+  const parent =
+    img.parentElement;
+
+  if (!parent) {
+    return;
+  }
+
+  parent.innerHTML =
+    '<div class="news-image-placeholder">📰</div>';
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
 function renderNews(data) {
 
   newsList.innerHTML = '';
@@ -1395,7 +1045,6 @@ function renderNews(data) {
   resultCount.textContent =
     data.length +
     ' berita tersedia';
-
 
   if (!data.length) {
 
@@ -1424,82 +1073,55 @@ function renderNews(data) {
 
   }
 
-
   data.forEach(
     function(row) {
 
       const card =
-        document.createElement(
-          'article'
-        );
+        document.createElement('article');
 
       card.className =
         'news-card';
 
-
       const id =
         row.id || '';
-
 
       const judul =
         row.judul ||
         'Tanpa Judul';
 
-
       const isi =
         row.isi ||
         'Belum ada isi berita.';
 
-
       const tanggal =
-        formatTanggal(
-          row.tanggal
-        );
-
+        formatTanggal(row.tanggal);
 
       const gambarUrl =
-  getDirectImageUrl(row.gambar_url);
-
+        getDirectImageUrl(
+          row.gambar_url
+        );
 
       const status =
         row.status ||
         '';
 
-
       let imageHTML = '';
 
+      if (gambarUrl) {
 
-     if (gambarUrl) {
+        imageHTML = `
 
-  imageHTML = `
+          <img
+            src="${escapeAttribute(gambarUrl)}"
+            alt="${escapeAttribute(judul)}"
+            loading="lazy"
+            onerror="showNewsImageFallback(this)"
+          >
 
-    <img
-      src="${escapeAttribute(gambarUrl)}"
-      alt="${escapeAttribute(judul)}"
-      loading="lazy"
-      onerror="showNewsImageFallback(this)"
-    >
+        `;
 
-  `;
+      }
 
-}
-
-       function showNewsImageFallback(img) {
-
-  const parent =
-    img.parentElement;
-
-  if (!parent) {
-    return;
-  }
-
-  parent.innerHTML = `
-    <div class="news-image-placeholder">
-      📰
-    </div>
-  `;
-
-}
       else {
 
         imageHTML = `
@@ -1512,11 +1134,9 @@ function renderNews(data) {
 
       }
 
-
       const detailUrl =
         'berita-detail.html?id=' +
         encodeURIComponent(id);
-
 
       card.innerHTML = `
 
@@ -1525,7 +1145,6 @@ function renderNews(data) {
           ${imageHTML}
 
         </div>
-
 
         <div class="news-content">
 
@@ -1541,7 +1160,6 @@ function renderNews(data) {
                 : ''
             }
 
-
             ${
               status
                 ? `
@@ -1554,18 +1172,13 @@ function renderNews(data) {
 
           </div>
 
-
           <h3>
             ${escapeHTML(judul)}
           </h3>
 
-
           <div class="news-summary">
-
             ${escapeHTML(isi)}
-
           </div>
-
 
           <div class="news-footer">
 
@@ -1582,7 +1195,6 @@ function renderNews(data) {
 
       `;
 
-
       newsList.appendChild(card);
 
     }
@@ -1591,9 +1203,9 @@ function renderNews(data) {
 }
 
 
-/* =====================================================
+/* =========================
    FORMAT TANGGAL
-===================================================== */
+========================= */
 
 function formatTanggal(value) {
 
@@ -1601,15 +1213,12 @@ function formatTanggal(value) {
     return '';
   }
 
-
   const date =
     new Date(value);
-
 
   if (isNaN(date.getTime())) {
     return String(value);
   }
-
 
   return date.toLocaleDateString(
     'id-ID',
@@ -1623,38 +1232,19 @@ function formatTanggal(value) {
 }
 
 
-/* =====================================================
+/* =========================
    SECURITY
-===================================================== */
+========================= */
 
 function escapeHTML(value) {
 
   return String(value ?? '')
 
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-
-    .replace(
-      /</g,
-      '&lt;'
-    )
-
-    .replace(
-      />/g,
-      '&gt;'
-    )
-
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-
-    .replace(
-      /'/g,
-      '&#039;'
-    );
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 
 }
 
@@ -1663,28 +1253,22 @@ function escapeAttribute(value) {
 
   return String(value ?? '')
 
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-
-    .replace(
-      /'/g,
-      '&#039;'
-    );
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 
 }
 
 
-/* =====================================================
+/* =========================
    START
-===================================================== */
+========================= */
 
 loadBerita();
 
 </script>
 
-
 </body>
-
 </html>
