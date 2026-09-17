@@ -148,33 +148,49 @@ async function loadData(sheetName) {
     `;
 
 
-    data.forEach(function(row) {
+    ```javascript
+data.forEach(function(row) {
 
-      const id =
-        row.id || '';
+  const id =
+    row.id || '';
 
-      const judul =
-        row.judul || 'Tanpa Judul';
+  let judul = '';
 
+  if (sheetName === 'DIP') {
 
-      if (!id) {
-        return;
-      }
+    judul =
+      row.nama_informasi ||
+      'Tanpa Nama Informasi';
 
+  } else {
 
-      const option =
-        document.createElement('option');
+    judul =
+      row.judul ||
+      'Tanpa Judul';
 
-
-      option.value = id;
-
-      option.textContent =
-        id + ' — ' + judul;
+  }
 
 
-      idSelect.appendChild(option);
+  if (!id) {
+    return;
+  }
 
-    });
+
+  const option =
+    document.createElement('option');
+
+
+  option.value = id;
+
+  option.textContent =
+    id + ' — ' + judul;
+
+
+  idSelect.appendChild(option);
+
+});
+```
+
 
 
     idSelect.disabled = false;
