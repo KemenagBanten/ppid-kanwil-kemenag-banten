@@ -29,72 +29,223 @@
        HEADER
   ====================================================== -->
 
-  <header class="header">
+ <!-- =====================================================
+     HEADER
+====================================================== -->
 
-    <div class="header-inner">
+<header
+  style="
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5ebe7;
+    box-shadow: 0 2px 12px rgba(25,60,45,0.06);
+  "
+>
+
+  <div
+    style="
+      width: min(1180px, 92%);
+      min-height: 76px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    "
+  >
 
 
-      <!-- BRAND -->
+    <!-- LOGO + IDENTITAS -->
+
+    <a
+      href="index.html"
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 13px;
+        min-width: 0;
+        text-decoration: none;
+        color: #17352a;
+      "
+    >
+
+      <!-- LOGO -->
+
+      <div
+        style="
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          flex: 0 0 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+
+        <img
+          src="assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama Republik Indonesia"
+          style="
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            display: block;
+          "
+        >
+
+      </div>
+
+
+      <!-- TULISAN -->
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          text-align: left;
+          line-height: 1.2;
+        "
+      >
+
+        <div
+          style="
+            margin: 0;
+            color: #17352a;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.15px;
+          "
+        >
+          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+        </div>
+
+
+        <div
+          style="
+            margin-top: 4px;
+            color: #66756e;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: 0.35px;
+          "
+        >
+          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <!-- NAVIGASI -->
+
+    <nav
+      style="
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-shrink: 0;
+      "
+    >
 
       <a
         href="index.html"
-        class="header-brand"
+        style="
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 42px;
+          padding: 0 12px;
+          color: #0f5132;
+          background: transparent;
+          text-decoration: none;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          white-space: nowrap;
+          border-bottom: 2px solid #0f5132;
+        "
       >
-
-        <div class="header-logo">
-
-          <img
-            src="assets/logo-kemenag.png"
-            alt="Logo Kementerian Agama Republik Indonesia"
-          >
-
-        </div>
-
-
-        <div class="header-text">
-
-          <h1>
-            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-          </h1>
-
-          <p>
-            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
-          </p>
-
-        </div>
-
+        Beranda
       </a>
 
 
-      <!-- NAVIGATION -->
-
-      <nav class="main-nav">
-
-        <a
-          href="index.html"
-          class="active"
-        >
-          Beranda
-        </a>
-
-        <a href="informasi-publik.html">
-          Informasi Publik
-        </a>
-
-        <a href="dip.html">
-          DIP
-        </a>
-
-        <a href="dik.html">
-          DIK
-        </a>
-
-      </nav>
+      <a
+        href="informasi-publik.html"
+        style="
+          display: flex;
+          align-items: center;
+          height: 42px;
+          padding: 0 12px;
+          color: #40544b;
+          background: transparent;
+          text-decoration: none;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          white-space: nowrap;
+        "
+      >
+        Informasi Publik
+      </a>
 
 
-    </div>
+      <a
+        href="dip.html"
+        style="
+          display: flex;
+          align-items: center;
+          height: 42px;
+          padding: 0 12px;
+          color: #40544b;
+          background: transparent;
+          text-decoration: none;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          white-space: nowrap;
+        "
+      >
+        DIP
+      </a>
 
-  </header>
+
+      <a
+        href="dik.html"
+        style="
+          display: flex;
+          align-items: center;
+          height: 42px;
+          padding: 0 12px;
+          color: #40544b;
+          background: transparent;
+          text-decoration: none;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          white-space: nowrap;
+        "
+      >
+        DIK
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
 
 
 
