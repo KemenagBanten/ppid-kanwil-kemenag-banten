@@ -1166,122 +1166,190 @@
       }
 
 
-      .header-inner {
-        padding:
-          12px 16px;
-      }
+      /* =========================
+   HEADER PPID
+   ========================= */
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #176b45;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+}
 
-      .brand {
-        min-width:
-          auto;
-      }
+.header-inner {
+  width: min(1180px, 92%);
+  min-height: 82px;
+  margin: 0 auto;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      .brand-logo {
-        width:
-          42px;
+  gap: 30px;
+}
 
-        height:
-          42px;
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 
-        font-size:
-          14px;
-      }
+  text-decoration: none;
+  color: #ffffff;
 
+  min-width: 0;
+}
 
-      .brand-text strong {
-        font-size:
-          13px;
-      }
+.header-logo {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-      .brand-text span {
-        font-size:
-          10px;
-      }
+.header-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
+.header-text {
+  min-width: 0;
 
-      nav {
-        display:
-          none;
-      }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 
+  text-align: left;
+  line-height: 1.25;
+}
 
-      .hero-inner {
-        padding:
-          42px 18px 48px;
-      }
+.header-text h1 {
+  margin: 0;
 
+  color: #ffffff;
 
-      .hero h1 {
-        font-size:
-          32px;
-      }
+  font-size: 17px;
+  font-weight: 700;
 
+  letter-spacing: 0.2px;
+}
 
-      .hero-description {
-        font-size:
-          14px;
-      }
+.header-text p {
+  margin: 5px 0 0;
 
+  color: rgba(255,255,255,.88);
 
-      main {
-        padding:
-          28px 16px 50px;
-      }
+  font-size: 11px;
+  letter-spacing: 0.4px;
+}
 
+/* NAVIGASI */
 
-      .toolbar {
-        padding:
-          14px;
-      }
+.header nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 
+  flex-shrink: 0;
+}
 
-      .result-header {
-        align-items:
-          flex-start;
+.header nav a {
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
 
-        flex-direction:
-          column;
+  padding: 9px 12px;
 
-        gap:
-          3px;
-      }
+  border-radius: 8px;
 
+  font-size: 14px;
+  font-weight: 500;
 
-      .card {
-        padding:
-          19px;
-      }
+  transition: all .2s ease;
+}
 
+.header nav a:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,.10);
+}
 
-      .card-footer {
-        align-items:
-          flex-start;
+.header nav a.active {
+  color: #ffffff;
+  background: rgba(255,255,255,.16);
+}
 
-        flex-direction:
-          column;
-      }
+/* =========================
+   RESPONSIVE HEADER
+   ========================= */
 
+@media (max-width: 900px) {
 
-      .document-button {
-        width:
-          100%;
-      }
+  .header-inner {
+    gap: 15px;
+  }
 
+  .header-text h1 {
+    font-size: 14px;
+  }
 
-      .footer-inner {
-        flex-direction:
-          column;
+  .header-text p {
+    font-size: 10px;
+  }
 
-        padding:
-          30px 18px;
-      }
+  .header nav a {
+    padding: 8px 8px;
+    font-size: 13px;
+  }
+}
 
-    }
+@media (max-width: 680px) {
 
+  .header-inner {
+    min-height: auto;
+    padding: 12px 0;
 
+    flex-wrap: wrap;
+  }
+
+  .header-brand {
+    width: 100%;
+  }
+
+  .header-logo {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .header-text h1 {
+    font-size: 13px;
+  }
+
+  .header-text p {
+    font-size: 9px;
+    margin-top: 3px;
+  }
+
+  .header nav {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+
+    padding-bottom: 2px;
+  }
+
+  .header nav a {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}
   </style>
 </head>
 
@@ -1293,86 +1361,40 @@
      TOP BAR
 ===================================================== -->
 
-<div class="topbar">
-
-  <div class="topbar-inner">
-
-    <div class="topbar-left">
-      <span>PPID</span>
-      <span>•</span>
-      <span>Kementerian Agama</span>
-    </div>
-
-    <div class="topbar-right">
-      <span>Kanwil Kemenag Provinsi Banten</span>
-    </div>
-
-  </div>
-
-</div>
 
 
 <!-- =====================================================
      HEADER
 ===================================================== -->
 
-<header>
-
+<header class="header">
   <div class="header-inner">
 
-    <a
-      href="index.html"
-      class="brand"
-    >
+    <a href="index.html" class="header-brand">
 
-      <div class="brand-logo">
-  <img
-    src="assets/logo-kemenag.png"
-    alt="Logo Kementerian Agama Republik Indonesia"
-  >
-</div>
+      <div class="header-logo">
+        <img
+          src="assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama Republik Indonesia"
+        >
+      </div>
 
-      <div class="brand-text">
-
-        <strong>
-  KANWIL KEMENTERIAN AGAMA
-</strong>
-
-<span>
-  PROVINSI BANTEN · PPID
-</span>
+      <div class="header-text">
+        <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
+        <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
       </div>
 
     </a>
 
-
     <nav>
-
-      <a href="index.html">
-        Beranda
-      </a>
-
-      <a
-        href="informasi-publik.html"
-        class="active"
-      >
-        Informasi Publik
-      </a>
-
-      <a href="dip.html">
-        DIP
-      </a>
-
-      <a href="dik.html">
-        DIK
-      </a>
-
+      <a href="index.html">Beranda</a>
+      <a href="informasi-publik.html" class="active">Informasi Publik</a>
+      <a href="dip.html">DIP</a>
+      <a href="dik.html">DIK</a>
     </nav>
 
   </div>
-
 </header>
-
 
 <!-- =====================================================
      HERO
