@@ -1798,77 +1798,145 @@ async function loadInformasiPublik() {
 
   try {
 
-    loading.style.display =
-      'block';
+    loading.style.display = 'block';
+    errorBox.style.display = 'none';
 
-    errorBox.style.display =
-      'none';
+    // Ambil Informasi Publik dan Dokumen secara bersamaan
+    const [informasiResponse, dokumenResponse] =
+      await Promise.all([
 
+        fetch(
+          API_URL +
+          '?action=informasi'
+        ),
 
-    const response =
-      await fetch(
-        API_URL +
-        '?action=informasi'
-      );
+        fetch(
+          API_URL +
+          '?action=dokumen'
+        )
 
+      ]);
 
-    if (!response.ok) {
+    if (!informasiResponse.ok) {
 
       throw new Error(
-        'HTTP Error ' +
-        response.status
+        'Gagal mengambil data Informasi Publik. HTTP ' +
+        informasiResponse.status
       );
 
     }
 
-
-    const result =
-      await response.json();
-
-
-    if (!result.success) {
+    if (!dokumenResponse.ok) {
 
       throw new Error(
-        result.message ||
-        'Data gagal dimuat.'
+        'Gagal mengambil data Dokumen. HTTP ' +
+        dokumenResponse.status
       );
 
     }
 
+    const informasiResult =
+      await informasiResponse.json();
 
-    allData =
-      Array.isArray(result.data)
-        ? result.data
+    const dokumenResult =
+      await dokumenResponse.json();
+
+    if (!informasiResult.success) {
+
+      throw new Error(
+        informasiResult.message ||
+        'Data Informasi Publik gagal dimuat.'
+      );
+
+    }
+
+    if (!dokumenResult.success) {
+
+      throw new Error(
+        dokumenResult.message ||
+        'Data Dokumen gagal dimuat.'
+      );
+
+    }
+
+    const informasiData =
+      Array.isArray(informasiResult.data)
+        ? informasiResult.data
         : [];
 
+    const dokumenData =
+      Array.isArray(dokumenResult.data)
+        ? dokumenResult.data
+        : [];
 
-    loading.style.display =
-      'none';
+    // =========================================
+    // HUBUNGKAN DOKUMEN DENGAN INFORMASI
+    // =========================================
 
+    const dokumenMap = {};
+
+    dokumenData.forEach(function (dokumen) {
+
+      const informasiId =
+        String(
+          dokumen.informasi_id || ''
+        ).trim();
+
+      if (!informasiId) return;
+
+      if (!dokumenMap[informasiId]) {
+
+        dokumenMap[informasiId] = [];
+
+      }
+
+      dokumenMap[informasiId].push(dokumen);
+
+    });
+
+    // =========================================
+    // GABUNGKAN DATA
+    // =========================================
+
+    allData =
+      informasiData.map(function (row) {
+
+        const id =
+          String(
+            row.id || ''
+          ).trim();
+
+        return {
+
+          ...row,
+
+          dokumen:
+            dokumenMap[id] || []
+
+        };
+
+      });
+
+    loading.style.display = 'none';
 
     applyFilter();
 
+  }
 
-  } catch (error) {
+  catch (error) {
 
     console.error(
       'LOAD INFORMASI ERROR:',
       error
     );
 
+    loading.style.display = 'none';
 
-    loading.style.display =
-      'none';
-
-
-    errorBox.style.display =
-      'block';
-
+    errorBox.style.display = 'block';
 
     errorBox.textContent =
       'Gagal memuat informasi publik: ' +
       error.message;
-
 
     resultCount.textContent =
       'Data tidak tersedia';
@@ -1900,15 +1968,12 @@ document
 
           });
 
-
         this.classList.add(
           'active'
         );
 
-
         activeFilter =
           this.dataset.filter;
-
 
         applyFilter();
 
@@ -1943,25 +2008,27 @@ function applyFilter() {
       .toLowerCase()
       .trim();
 
-
   const filtered =
     allData.filter(
       function(row) {
 
         const jenis =
           String(
-            row.jenis || ''
+            row.jenis ||
+            row.jenis_informasi ||
+            ''
           );
-
 
         const searchText = [
 
           row.id,
           row.judul,
           row.jenis,
+          row.jenis_informasi,
           row.kategori,
           row.ringkasan,
           row.unit,
+          row.pejabat_unit,
           row.tahun,
           row.status
 
@@ -1969,19 +2036,16 @@ function applyFilter() {
         .join(' ')
         .toLowerCase();
 
-
         const matchesSearch =
           !keyword ||
           searchText.includes(
             keyword
           );
 
-
         const matchesFilter =
           activeFilter === 'all' ||
           jenis.toLowerCase() ===
           activeFilter.toLowerCase();
-
 
         return (
           matchesSearch &&
@@ -1990,7 +2054,6 @@ function applyFilter() {
 
       }
     );
-
 
   renderData(filtered);
 
@@ -2003,14 +2066,11 @@ function applyFilter() {
 
 function renderData(data) {
 
-  dataList.innerHTML =
-    '';
-
+  dataList.innerHTML = '';
 
   resultCount.textContent =
     data.length +
     ' informasi tersedia';
-
 
   if (!data.length) {
 
@@ -2039,7 +2099,6 @@ function renderData(data) {
 
   }
 
-
   data.forEach(
     function(row) {
 
@@ -2048,50 +2107,129 @@ function renderData(data) {
           'article'
         );
 
-
       card.className =
         'card';
 
-
       const id =
         row.id || '';
-
 
       const judul =
         row.judul ||
         'Tanpa Judul';
 
-
       const ringkasan =
         row.ringkasan ||
         'Informasi publik Kanwil Kementerian Agama Provinsi Banten.';
 
-
       const jenis =
-        row.jenis || '';
-
+        row.jenis ||
+        row.jenis_informasi ||
+        '';
 
       const kategori =
-        row.kategori || '';
-
+        row.kategori ||
+        '';
 
       const tahun =
-        row.tahun || '';
-
+        row.tahun ||
+        '';
 
       const status =
-        row.status || '';
-
+        row.status ||
+        '';
 
       const tanggal =
         formatTanggal(
           row.tanggal_update
         );
 
+      // =========================================
+      // DOKUMEN DARI SHEET DOKUMEN
+      // =========================================
 
-      const url =
-        row.url_dokumen || '';
+      const dokumen =
+        Array.isArray(row.dokumen)
+          ? row.dokumen
+          : [];
 
+      let documentButtons = '';
+
+      if (dokumen.length > 0) {
+
+        documentButtons =
+          dokumen
+            .map(function(doc, index) {
+
+              const url =
+                doc.url_dokumen || '';
+
+              const namaDokumen =
+                doc.nama_dokumen ||
+                'Lihat Dokumen';
+
+              if (!url) return '';
+
+              return `
+
+                <a
+                  href="${escapeAttribute(url)}"
+                  class="document-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ${escapeHTML(
+                    namaDokumen
+                  )}
+                  →
+                </a>
+
+              `;
+
+            })
+            .join('');
+
+      }
+
+      // =========================================
+      // FALLBACK
+      // =========================================
+
+      // Jika belum ada record di DOKUMEN,
+      // tetap gunakan url_dokumen lama
+      // bila tersedia.
+
+      if (!documentButtons && row.url_dokumen) {
+
+        documentButtons = `
+
+          <a
+            href="${escapeAttribute(
+              row.url_dokumen
+            )}"
+            class="document-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Lihat Dokumen →
+          </a>
+
+        `;
+
+      }
+
+      if (!documentButtons) {
+
+        documentButtons = `
+
+          <span
+            class="document-button disabled"
+          >
+            Dokumen belum tersedia
+          </span>
+
+        `;
+
+      }
 
       card.innerHTML = `
 
@@ -2108,7 +2246,6 @@ function renderData(data) {
             </h3>
 
           </div>
-
 
           <div class="document-icon">
             PDF
@@ -2186,31 +2323,22 @@ function renderData(data) {
           </span>
 
 
-          ${
-            url
-              ? `
-                <a
-                  href="${escapeAttribute(url)}"
-                  class="document-button"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Lihat Dokumen →
-                </a>
-              `
-              : `
-                <span
-                  class="document-button disabled"
-                >
-                  Dokumen belum tersedia
-                </span>
-              `
-          }
+          <div
+            style="
+              display:flex;
+              flex-wrap:wrap;
+              gap:8px;
+              justify-content:flex-end;
+            "
+          >
+
+            ${documentButtons}
+
+          </div>
 
         </div>
 
       `;
-
 
       dataList.appendChild(
         card
@@ -2220,7 +2348,6 @@ function renderData(data) {
   );
 
 }
-
 
 /* =====================================================
    FORMAT TANGGAL
