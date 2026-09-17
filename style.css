@@ -36,91 +36,162 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    HEADER PPID
-   ========================= */
+===================================================== */
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 
-  width: 100%;
+  position:
+    sticky;
 
-  background: #176b45;
-  color: #ffffff;
+  top:
+    0;
 
-  border-bottom: 1px solid rgba(255,255,255,.15);
+  z-index:
+    1000;
+
+  width:
+    100%;
+
+  background:
+    #176b45;
+
+  color:
+    #ffffff;
+
+  border-bottom:
+    1px solid rgba(255,255,255,.15);
 }
+
 
 .header-inner {
-  width: min(1180px, 92%);
-  min-height: 82px;
 
-  margin: 0 auto;
+  width:
+    min(1180px, 92%);
 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  min-height:
+    82px;
 
-  gap: 15px;
+  margin:
+    0 auto;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    flex-start;
+
+  gap:
+    15px;
 }
+
 
 .header-logo {
-  width: 58px;
-  height: 58px;
 
-  flex: 0 0 58px;
+  width:
+    58px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height:
+    58px;
+
+  flex:
+    0 0 58px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
 }
+
 
 .header-logo img {
-  width: 100%;
-  height: 100%;
 
-  object-fit: contain;
-  display: block;
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    contain;
+
+  display:
+    block;
 }
+
 
 .header-text {
-  flex: 0 1 auto;
-  min-width: 0;
 
-  display: flex;
-  flex-direction: column;
+  flex:
+    0 1 auto;
 
-  align-items: flex-start;
-  justify-content: center;
+  min-width:
+    0;
 
-  text-align: left;
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    center;
+
+  text-align:
+    left;
 }
+
 
 .header-text h1 {
-  margin: 0;
 
-  color: #ffffff;
+  margin:
+    0;
 
-  font-size: 17px;
-  font-weight: 700;
+  color:
+    #ffffff;
 
-  line-height: 1.25;
-  letter-spacing: 0.2px;
+  font-size:
+    17px;
+
+  font-weight:
+    700;
+
+  line-height:
+    1.25;
+
+  letter-spacing:
+    0.2px;
 }
+
 
 .header-text p {
-  margin: 5px 0 0;
 
-  color: rgba(255,255,255,.88);
+  margin:
+    5px 0 0;
 
-  font-size: 11px;
-  line-height: 1.25;
+  color:
+    rgba(255,255,255,.88);
 
-  letter-spacing: 0.4px;
+  font-size:
+    11px;
+
+  line-height:
+    1.25;
+
+  letter-spacing:
+    0.4px;
 }
-
 /* HERO */
 
 .hero {
