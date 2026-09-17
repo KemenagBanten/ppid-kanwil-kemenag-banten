@@ -1323,7 +1323,71 @@ function applySearch() {
 /* =====================================================
    RENDER BERITA
 ===================================================== */
+function getDirectImageUrl(url) {
 
+  if (!url) {
+    return '';
+  }
+
+  const value = String(url).trim();
+
+  if (!value) {
+    return '';
+  }
+
+  // Google Drive: /file/d/FILE_ID/view
+  const match =
+    value.match(
+      /drive\.google\.com\/file\/d\/([^/]+)/
+    );
+
+  if (match && match[1]) {
+
+    return (
+      'https://drive.google.com/uc?export=view&id=' +
+      encodeURIComponent(match[1])
+    );
+
+  }
+
+  // Google Drive: ?id=FILE_ID
+  try {
+
+    const parsed =
+      new URL(value);
+
+    const id =
+      parsed.searchParams.get('id');
+
+    if (
+      parsed.hostname.includes('drive.google.com') &&
+      id
+    ) {
+
+      return (
+        'https://drive.google.com/uc?export=view&id=' +
+        encodeURIComponent(id)
+      );
+
+    }
+
+  }
+  catch (error) {
+
+    console.warn(
+      'URL gambar tidak valid:',
+      value
+    );
+
+  }
+
+  // Jika bukan URL Google Drive,
+  // gunakan URL asli.
+
+  return value;
+
+}
+  
 function renderNews(data) {
 
   newsList.innerHTML = '';
@@ -1394,8 +1458,7 @@ function renderNews(data) {
 
 
       const gambarUrl =
-        row.gambar_url ||
-        '';
+  getDirectImageUrl(row.gambar_url);
 
 
       const status =
@@ -1406,21 +1469,37 @@ function renderNews(data) {
       let imageHTML = '';
 
 
-      if (gambarUrl) {
+     if (gambarUrl) {
 
-        imageHTML = `
+  imageHTML = `
 
-          <img
-            src="${escapeAttribute(gambarUrl)}"
-            alt="${escapeAttribute(judul)}"
-            loading="lazy"
-            onerror="this.parentElement.innerHTML='<div class=&quot;news-image-placeholder&quot;>📰</div>'"
-          >
+    <img
+      src="${escapeAttribute(gambarUrl)}"
+      alt="${escapeAttribute(judul)}"
+      loading="lazy"
+      onerror="showNewsImageFallback(this)"
+    >
 
-        `;
+  `;
 
-      }
+}
 
+       function showNewsImageFallback(img) {
+
+  const parent =
+    img.parentElement;
+
+  if (!parent) {
+    return;
+  }
+
+  parent.innerHTML = `
+    <div class="news-image-placeholder">
+      📰
+    </div>
+  `;
+
+}
       else {
 
         imageHTML = `
