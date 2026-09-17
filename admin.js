@@ -148,8 +148,7 @@ async function loadData(sheetName) {
     `;
 
 
-    ```javascript
-data.forEach(function(row) {
+   data.forEach(function(row) {
 
   const id =
     row.id || '';
@@ -189,9 +188,6 @@ data.forEach(function(row) {
   idSelect.appendChild(option);
 
 });
-```
-
-
 
     idSelect.disabled = false;
 
