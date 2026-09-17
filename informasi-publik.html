@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -16,6 +18,7 @@
   <title>
     Informasi Publik | PPID Kanwil Kemenag Banten
   </title>
+
 
   <style>
 
@@ -66,49 +69,61 @@
 
 
     /* =====================================================
-       TOP BAR
+       HEADER PPID
     ===================================================== */
 
-    .topbar {
+    .header {
+
+      position:
+        sticky;
+
+      top:
+        0;
+
+      z-index:
+        1000;
 
       background:
-        #0f5132;
+        #176b45;
 
       color:
-        rgba(255,255,255,.9);
+        #ffffff;
 
-      font-size:
-        13px;
+      border-bottom:
+        1px solid rgba(255,255,255,.15);
     }
 
 
-    .topbar-inner {
+    .header-inner {
 
-      max-width:
-        1200px;
+      width:
+        min(1180px, 92%);
+
+      min-height:
+        72px;
 
       margin:
-        auto;
-
-      padding:
-        8px 24px;
+        0 auto;
 
       display:
         flex;
+
+      align-items:
+        center;
 
       justify-content:
         space-between;
 
-      align-items:
-        center;
-
       gap:
-        15px;
+        25px;
     }
 
 
-    .topbar-left,
-    .topbar-right {
+    /* =====================================================
+       HEADER BRAND
+    ===================================================== */
+
+    .header-brand {
 
       display:
         flex;
@@ -117,292 +132,182 @@
         center;
 
       gap:
-        8px;
+        12px;
+
+      min-width:
+        0;
+
+      color:
+        #ffffff;
+
+      text-decoration:
+        none;
     }
 
 
-    <!-- =====================================================
-     HEADER
-===================================================== -->
+    .header-logo {
 
-<header class="header">
+      width:
+        42px;
 
-  <div class="header-inner">
+      height:
+        42px;
 
-    <div class="header-logo">
+      flex:
+        0 0 42px;
 
-      <img
-        src="assets/logo-kemenag.png"
-        alt="Logo Kementerian Agama Republik Indonesia"
-      >
+      display:
+        flex;
 
-    </div>
+      align-items:
+        center;
 
-    <div class="header-text">
+      justify-content:
+        center;
+    }
 
-      <h1>
-        KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-      </h1>
 
-      <p>
-        PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
-      </p>
+    .header-logo img {
 
-    </div>
+      width:
+        100%;
 
-  </div>
+      height:
+        100%;
 
-</header>
+      object-fit:
+        contain;
 
-/* =====================================================
-   HEADER PPID
-===================================================== */
+      display:
+        block;
+    }
 
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 
-  background: #176b45;
-  color: #ffffff;
+    .header-text {
 
-  border-bottom:
-    1px solid rgba(255,255,255,.15);
-}
+      min-width:
+        0;
 
+      display:
+        flex;
 
-.header-inner {
-  width: min(1180px, 92%);
-  min-height: 72px;
+      flex-direction:
+        column;
 
-  margin: 0 auto;
+      justify-content:
+        center;
 
-  display: flex;
-  align-items: center;
+      align-items:
+        flex-start;
 
-  justify-content: space-between;
+      text-align:
+        left;
 
-  gap: 25px;
-}
+      line-height:
+        1.2;
+    }
 
 
-/* =========================
-   BRAND
-========================= */
+    .header-text h1 {
 
-.header-brand {
-  display: flex;
-  align-items: center;
+      margin:
+        0;
 
-  gap: 12px;
+      color:
+        #ffffff !important;
 
-  text-decoration: none;
-  color: #ffffff;
+      font-size:
+        15px;
 
-  min-width: 0;
-}
+      font-weight:
+        700;
 
+      letter-spacing:
+        0.15px;
+    }
 
-.header-logo {
-  width: 42px;
-  height: 42px;
 
-  flex: 0 0 42px;
+    .header-text p {
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      margin:
+        4px 0 0;
 
+      color:
+        #f1f5f3 !important;
 
-.header-logo img {
-  width: 100%;
-  height: 100%;
+      font-size:
+        10px;
 
-  object-fit: contain;
+      letter-spacing:
+        0.35px;
+    }
 
-  display: block;
-}
 
+    /* =====================================================
+       NAVIGASI
+    ===================================================== */
 
-.header-text {
-  min-width: 0;
+    .header nav {
 
-  display: flex;
-  flex-direction: column;
+      display:
+        flex;
 
-  justify-content: center;
-  align-items: flex-start;
+      align-items:
+        center;
 
-  text-align: left;
+      gap:
+        5px;
 
-  line-height: 1.2;
-}
+      flex-shrink:
+        0;
+    }
 
 
-.header-text h1 {
-  margin: 0;
+    .header nav a {
 
-  color: #ffffff;
+      color:
+        #f1f5f3 !important;
 
-  font-size: 15px;
+      text-decoration:
+        none;
 
-  font-weight: 700;
+      padding:
+        8px 11px;
 
-  letter-spacing: 0.15px;
-}
+      border-radius:
+        7px;
 
+      font-size:
+        13px;
 
-.header-text p {
-  margin: 4px 0 0;
+      font-weight:
+        500;
 
-  color:
-    rgba(255,255,255,.88);
+      transition:
+        all .2s ease;
+    }
 
-  font-size: 10px;
 
-  letter-spacing: 0.35px;
-}
+    .header nav a:hover {
 
+      color:
+        #ffffff !important;
 
-/* =========================
-   NAVIGASI
-========================= */
+      background:
+        rgba(255,255,255,.10);
+    }
 
-.header nav {
-  display: flex;
 
-  align-items: center;
+    .header nav a.active {
 
-  gap: 5px;
+      color:
+        #ffffff !important;
 
-  flex-shrink: 0;
-}
+      background:
+        rgba(255,255,255,.16);
+    }
 
 
-.header nav a {
-  color:
-    rgba(255,255,255,.88);
-
-  text-decoration: none;
-
-  padding: 8px 11px;
-
-  border-radius: 7px;
-
-  font-size: 13px;
-
-  font-weight: 500;
-
-  transition:
-    all .2s ease;
-}
-
-
-.header nav a:hover {
-  color: #ffffff;
-
-  background:
-    rgba(255,255,255,.10);
-}
-
-
-.header nav a.active {
-  color: #ffffff;
-
-  background:
-    rgba(255,255,255,.16);
-}
-
-
-/* =====================================================
-   RESPONSIVE HEADER
-===================================================== */
-
-@media (max-width: 900px) {
-
-  .header-inner {
-    gap: 15px;
-  }
-
-  .header-text h1 {
-    font-size: 13px;
-  }
-
-  .header-text p {
-    font-size: 9px;
-  }
-
-  .header nav a {
-    padding: 7px 8px;
-    font-size: 12px;
-  }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 680px) {
-
-  .header-inner {
-    min-height: auto;
-
-    padding:
-      10px 0;
-
-    flex-wrap: wrap;
-  }
-
-
-  .header-brand {
-    width: 100%;
-  }
-
-
-  .header-logo {
-    width: 38px;
-    height: 38px;
-
-    flex-basis: 38px;
-  }
-
-
-  .header-text h1 {
-    font-size: 12px;
-  }
-
-
-  .header-text p {
-    font-size: 8px;
-
-    margin-top: 3px;
-  }
-
-
-  .header nav {
-    width: 100%;
-
-    justify-content: flex-start;
-
-    overflow-x: auto;
-
-    padding-bottom: 2px;
-  }
-
-
-  .header nav a {
-    white-space: nowrap;
-
-    font-size: 11px;
-
-    padding:
-      6px 8px;
-  }
-
-}
     /* =====================================================
        HERO
     ===================================================== */
@@ -1381,13 +1286,36 @@
 
     @media (max-width: 900px) {
 
-      nav a:nth-child(n+4) {
-        display: none;
+      .header-inner {
+        gap: 15px;
       }
+
+
+      .header-text h1 {
+        font-size: 13px;
+      }
+
+
+      .header-text p {
+        font-size: 9px;
+      }
+
+
+      .header nav a {
+        padding: 7px 8px;
+        font-size: 12px;
+      }
+
 
       .data-list {
         grid-template-columns:
           1fr;
+      }
+
+
+      .header nav a:nth-child(n+4) {
+        display:
+          none;
       }
 
     }
@@ -1399,22 +1327,146 @@
 
     @media (max-width: 680px) {
 
-      .topbar-inner {
-        justify-content:
-          center;
+      .header-inner {
+
+        min-height:
+          auto;
 
         padding:
-          7px 15px;
+          10px 0;
+
+        flex-wrap:
+          wrap;
       }
 
 
-      .topbar-right {
-        display:
-          none;
+      .header-brand {
+
+        width:
+          100%;
       }
 
 
-   </style>
+      .header-logo {
+
+        width:
+          38px;
+
+        height:
+          38px;
+
+        flex-basis:
+          38px;
+      }
+
+
+      .header-text h1 {
+
+        font-size:
+          12px;
+      }
+
+
+      .header-text p {
+
+        font-size:
+          8px;
+
+        margin-top:
+          3px;
+      }
+
+
+      .header nav {
+
+        width:
+          100%;
+
+        justify-content:
+          flex-start;
+
+        overflow-x:
+          auto;
+
+        padding-bottom:
+          2px;
+      }
+
+
+      .header nav a {
+
+        white-space:
+          nowrap;
+
+        font-size:
+          11px;
+
+        padding:
+          6px 8px;
+      }
+
+
+      .hero-inner {
+
+        padding:
+          45px 20px 50px;
+      }
+
+
+      main {
+
+        padding:
+          30px 18px 55px;
+      }
+
+
+      .result-header {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+        gap:
+          4px;
+      }
+
+
+      .card {
+
+        padding:
+          20px;
+      }
+
+
+      .card-footer {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+      }
+
+
+      .document-button {
+
+        width:
+          100%;
+      }
+
+
+      .footer-inner {
+
+        padding:
+          30px 20px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
@@ -1422,43 +1474,70 @@
 
 
 <!-- =====================================================
-     TOP BAR
-===================================================== -->
-
-
-
-<!-- =====================================================
      HEADER
 ===================================================== -->
 
 <header class="header">
+
   <div class="header-inner">
 
-    <a href="index.html" class="header-brand">
+    <a
+      href="index.html"
+      class="header-brand"
+    >
 
       <div class="header-logo">
+
         <img
           src="assets/logo-kemenag.png"
           alt="Logo Kementerian Agama Republik Indonesia"
         >
+
       </div>
 
+
       <div class="header-text">
-        <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
-        <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
+
+        <h1>
+          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+        </h1>
+
+        <p>
+          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+        </p>
+
       </div>
 
     </a>
 
+
     <nav>
-      <a href="index.html">Beranda</a>
-      <a href="informasi-publik.html" class="active">Informasi Publik</a>
-      <a href="dip.html">DIP</a>
-      <a href="dik.html">DIK</a>
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a
+        href="informasi-publik.html"
+        class="active"
+      >
+        Informasi Publik
+      </a>
+
+      <a href="dip.html">
+        DIP
+      </a>
+
+      <a href="dik.html">
+        DIK
+      </a>
+
     </nav>
 
   </div>
+
 </header>
+
 
 <!-- =====================================================
      HERO
@@ -1474,7 +1553,9 @@
         Beranda
       </a>
 
-      <span>›</span>
+      <span>
+        ›
+      </span>
 
       <span>
         Informasi Publik
@@ -1518,6 +1599,7 @@
         🔎
       </span>
 
+
       <input
         type="text"
         id="searchInput"
@@ -1541,6 +1623,7 @@
         Semua
       </button>
 
+
       <button
         type="button"
         class="filter-btn"
@@ -1548,6 +1631,7 @@
       >
         Berkala
       </button>
+
 
       <button
         type="button"
@@ -1562,13 +1646,16 @@
   </section>
 
 
-  <!-- RESULT HEADER -->
+  <!-- ===================================================
+       RESULT HEADER
+  =================================================== -->
 
   <div class="result-header">
 
     <h2>
       Daftar Informasi
     </h2>
+
 
     <span id="resultCount">
       Memuat data...
@@ -1577,12 +1664,16 @@
   </div>
 
 
-  <!-- ERROR -->
+  <!-- ===================================================
+       ERROR
+  =================================================== -->
 
   <div id="error"></div>
 
 
-  <!-- LOADING -->
+  <!-- ===================================================
+       LOADING
+  =================================================== -->
 
   <div id="loading">
 
@@ -1595,7 +1686,9 @@
   </div>
 
 
-  <!-- DATA -->
+  <!-- ===================================================
+       DATA
+  =================================================== -->
 
   <div
     id="dataList"
@@ -1619,6 +1712,7 @@
       <div class="footer-title">
         PPID Kanwil Kementerian Agama Provinsi Banten
       </div>
+
 
       <div class="footer-text">
 
@@ -1695,6 +1789,7 @@ async function loadInformasiPublik() {
 
     errorBox.style.display =
       'none';
+
 
     const response =
       await fetch(
@@ -1894,7 +1989,8 @@ function applyFilter() {
 
 function renderData(data) {
 
-  dataList.innerHTML = '';
+  dataList.innerHTML =
+    '';
 
 
   resultCount.textContent =
@@ -1998,6 +2094,7 @@ function renderData(data) {
             </h3>
 
           </div>
+
 
           <div class="document-icon">
             PDF
@@ -2118,7 +2215,9 @@ function renderData(data) {
 function formatTanggal(value) {
 
   if (!value) {
+
     return '';
+
   }
 
 
@@ -2211,5 +2310,7 @@ loadInformasiPublik();
 
 </script>
 
+
 </body>
+
 </html>
