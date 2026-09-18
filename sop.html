@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SOP - PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7f5;
+      color: #243024;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e9e5;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 250px;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 16px;
+      color: #176b3a;
+      font-weight: 700;
+    }
+
+    .brand-text p {
+      margin: 3px 0 0;
+      font-size: 12px;
+      color: #777;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      background: #eef6f0;
+      color: #176b3a;
+    }
+
+    nav a.active {
+      background: #176b3a;
+      color: #ffffff;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #176b3a, #2d8a52);
+      color: white;
+      padding: 52px 24px;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 720px;
+      line-height: 1.6;
+      opacity: 0.92;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+    }
+
+    .toolbar {
+      background: #ffffff;
+      border: 1px solid #e4e9e4;
+      border-radius: 14px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 180px 180px;
+      gap: 12px;
+      margin-bottom: 24px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d9dfd9;
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #2d8a52;
+    }
+
+    .status {
+      margin-bottom: 18px;
+      font-size: 14px;
+      color: #6b736b;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e3e8e3;
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .nomor {
+      font-size: 13px;
+      color: #176b3a;
+      font-weight: 700;
+    }
+
+    .badge {
+      background: #eef6f0;
+      color: #176b3a;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 19px;
+      line-height: 1.4;
+      color: #263326;
+    }
+
+    .meta {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: #687168;
+    }
+
+    .meta strong {
+      color: #414941;
+    }
+
+    .description {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #6b736b;
+      margin-bottom: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #176b3a;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .button:hover {
+      background: #11562e;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      background: white;
+      border: 1px dashed #ccd4cc;
+      border-radius: 14px;
+      padding: 45px 20px;
+      text-align: center;
+      color: #747b74;
+    }
+
+    .loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: #6d756d;
+    }
+
+    footer {
+      background: #173d27;
+      color: rgba(255,255,255,0.85);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        justify-content: flex-start;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 26px;
+      }
+
+      .container {
+        padding: 24px 16px 45px;
+      }
+
+      .header-inner {
+        padding: 12px 16px;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 8px 9px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+```
+<div class="brand">
+  <img src="assets/logo-kemenag.png" alt="Logo Kementerian Agama">
+
+  <div class="brand-text">
+    <h1>PPID Kanwil Kemenag Banten</h1>
+    <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
+  </div>
+</div>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="informasi-publik.html">Informasi Publik</a>
+  <a href="dip.html">DIP</a>
+  <a href="dik.html">DIK</a>
+  <a href="berita.html">Berita</a>
+  <a href="pengumuman.html">Pengumuman</a>
+</nav>
+```
+
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h2>Standar Operasional Prosedur</h2>
+    <p>
+      Informasi mengenai Standar Operasional Prosedur (SOP)
+      layanan dan pelaksanaan kegiatan di lingkungan
+      Kanwil Kementerian Agama Provinsi Banten.
+    </p>
+  </div>
+</section>
+
+<main class="container">
+
+  <div class="toolbar">
+
+```
+<input
+  type="text"
+  id="searchInput"
+  placeholder="Cari judul atau nomor SOP..."
+>
+
+<select id="tahunFilter">
+  <option value="">Semua Tahun</option>
+</select>
+
+<select id="unitFilter">
+  <option value="">Semua Unit</option>
+</select>
+```
+
+  </div>
+
+  <div id="status" class="status">
+    Memuat data SOP...
+  </div>
+
+  <div id="sopList" class="grid">
+    <div class="loading">
+      Memuat data...
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  © PPID Kanwil Kementerian Agama Provinsi Banten
+</footer>
+
+<script>
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+  let sopData = [];
+
+  async function loadSOP() {
+
+    const list = document.getElementById('sopList');
+    const status = document.getElementById('status');
+
+    try {
+
+      status.textContent = 'Memuat data SOP...';
+
+      const response = await fetch(
+        API_URL + '?action=sop'
+      );
+
+      if (!response.ok) {
+        throw new Error(
+          'HTTP Error ' + response.status
+        );
+      }
+
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error(
+          result.message ||
+          'API SOP mengembalikan success=false'
+        );
+      }
+
+      sopData = Array.isArray(result.data)
+        ? result.data
+        : [];
+
+      setupFilters();
+      renderSOP();
+
+    } catch (error) {
+
+      console.error('Error load SOP:', error);
+
+      status.textContent = 'Gagal memuat data SOP.';
+
+      list.innerHTML = `
+        <div class="empty">
+          <strong>Data SOP tidak dapat dimuat.</strong>
+          <br><br>
+          ${escapeHTML(error.message)}
+        </div>
+      `;
+    }
+  }
+
+
+  function setupFilters() {
+
+    const tahunFilter =
+      document.getElementById('tahunFilter');
+
+    const unitFilter =
+      document.getElementById('unitFilter');
+
+    const years = [
+      ...new Set(
+        sopData
+          .map(item => item.tahun)
+          .filter(Boolean)
+      )
+    ].sort((a, b) => Number(b) - Number(a));
+
+    const units = [
+      ...new Set(
+        sopData
+          .map(item => item.unit)
+          .filter(Boolean)
+      )
+    ].sort();
+
+    tahunFilter.innerHTML =
+      '<option value="">Semua Tahun</option>' +
+      years.map(year =>
+        `<option value="${escapeHTML(year)}">${escapeHTML(year)}</option>`
+      ).join('');
+
+    unitFilter.innerHTML =
+      '<option value="">Semua Unit</option>' +
+      units.map(unit =>
+        `<option value="${escapeHTML(unit)}">${escapeHTML(unit)}</option>`
+      ).join('');
+  }
+
+
+  function renderSOP() {
+
+    const list =
+      document.getElementById('sopList');
+
+    const status =
+      document.getElementById('status');
+
+    const search =
+      document.getElementById('searchInput')
+        .value
+        .toLowerCase()
+        .trim();
+
+    const tahun =
+      document.getElementById('tahunFilter').value;
+
+    const unit =
+      document.getElementById('unitFilter').value;
+
+    const filtered = sopData.filter(item => {
+
+      const text = [
+        item.id,
+        item.nomor,
+        item.judul,
+        item.unit,
+        item.tahun,
+        item.keterangan
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      const matchSearch =
+        !search || text.includes(search);
+
+      const matchTahun =
+        !tahun ||
+        String(item.tahun) === String(tahun);
+
+      const matchUnit =
+        !unit ||
+        String(item.unit) === String(unit);
+
+      return (
+        matchSearch &&
+        matchTahun &&
+        matchUnit
+      );
+    });
+
+
+    status.textContent =
+      filtered.length +
+      ' SOP ditemukan';
+
+
+    if (!filtered.length) {
+
+      list.innerHTML = `
+        <div class="empty">
+          Tidak ada SOP yang sesuai dengan pencarian.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    list.innerHTML =
+      filtered.map(item => {
+
+        const documentUrl =
+          item.url_dokumen
+            ? String(item.url_dokumen).trim()
+            : '';
+
+        const statusText =
+          item.status || 'Published';
+
+        const tanggal =
+          formatTanggal(item.tanggal_update);
+
+        return `
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="nomor">
+                ${escapeHTML(item.nomor || item.id || '-')}
+              </div>
+
+              <div class="badge">
+                ${escapeHTML(statusText)}
+              </div>
+
+            </div>
+
+            <h3>
+              ${escapeHTML(item.judul || 'Tanpa Judul')}
+            </h3>
+
+            <div class="meta">
+
+              <div>
+                <strong>Unit:</strong>
+                ${escapeHTML(item.unit || '-')}
+              </div>
+
+              <div>
+                <strong>Tahun:</strong>
+                ${escapeHTML(item.tahun || '-')}
+              </div>
+
+              <div>
+                <strong>Diperbarui:</strong>
+                ${escapeHTML(tanggal)}
+              </div>
+
+              <div>
+                <strong>Format:</strong>
+                ${escapeHTML(item.format || '-')}
+              </div>
+
+            </div>
+
+            ${
+              item.keterangan
+                ? `
+                  <div class="description">
+                    ${escapeHTML(item.keterangan)}
+                  </div>
+                `
+                : ''
+            }
+
+            ${
+              documentUrl
+                ? `
+                  <a
+                    class="button"
+                    href="${escapeAttribute(documentUrl)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Lihat / Unduh Dokumen
+                  </a>
+                `
+                : `
+                  <span
+                    style="
+                      font-size:13px;
+                      color:#8a918a;
+                    "
+                  >
+                    Dokumen belum tersedia
+                  </span>
+                `
+            }
+
+          </article>
+        `;
+
+      }).join('');
+  }
+
+
+  function formatTanggal(value) {
+
+    if (!value) return '-';
+
+    const date = new Date(value);
+
+    if (isNaN(date.getTime())) {
+      return String(value);
+    }
+
+    return date.toLocaleDateString(
+      'id-ID',
+      {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      }
+    );
+  }
+
+
+  function escapeHTML(value) {
+
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+
+  function escapeAttribute(value) {
+
+    return escapeHTML(value);
+  }
+
+
+  document
+    .getElementById('searchInput')
+    .addEventListener(
+      'input',
+      renderSOP
+    );
+
+
+  document
+    .getElementById('tahunFilter')
+    .addEventListener(
+      'change',
+      renderSOP
+    );
+
+
+  document
+    .getElementById('unitFilter')
+    .addEventListener(
+      'change',
+      renderSOP
+    );
+
+
+  loadSOP();
+
+</script>
+
+</body>
+</html>
