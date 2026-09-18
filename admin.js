@@ -114,6 +114,675 @@ async function loadContentList() {
       `;
 
       tbody.appendChild(tr);
+
+      // =========================================
+// EDIT KONTEN
+// =========================================
+
+const editSheetName =
+  document.getElementById('editSheetName');
+
+const editIdValue =
+  document.getElementById('editIdValue');
+
+const editDataInfo =
+  document.getElementById('editDataInfo');
+
+const editTitle =
+  document.getElementById('editTitle');
+
+const editDate =
+  document.getElementById('editDate');
+
+const editCategory =
+  document.getElementById('editCategory');
+
+const editCategoryGroup =
+  document.getElementById('editCategoryGroup');
+
+const editBody =
+  document.getElementById('editBody');
+
+const editStatus =
+  document.getElementById('editStatus');
+
+const editContentForm =
+  document.getElementById('editContentForm');
+
+const updateContentButton =
+  document.getElementById('updateContentButton');
+
+const editStatusBox =
+  document.getElementById('editStatusBox');
+
+
+function showEditStatus(message, type) {
+
+  if (!editStatusBox) return;
+
+  editStatusBox.className =
+    'status ' + (type || '');
+
+  editStatusBox.textContent =
+    message;
+
+}
+
+
+function clearEditForm() {
+
+  if (editTitle) editTitle.value = '';
+  if (editDate) editDate.value = '';
+  if (editCategory) editCategory.value = '';
+  if (editBody) editBody.value = '';
+
+  if (editStatus) {
+    editStatus.value = 'Published';
+  }
+
+}
+
+
+async function loadEditData() {
+
+  if (!editSheetName || !editIdValue) {
+    return;
+  }
+
+  const sheetName =
+    editSheetName.value;
+
+  editIdValue.innerHTML =
+    '<option value="">Memuat data...</option>';
+
+  clearEditForm();
+
+  if (!sheetName) {
+
+    editIdValue.innerHTML =
+      '<option value="">-- Pilih Konten --</option>';
+
+    editDataInfo.textContent =
+      'Pilih jenis konten terlebih dahulu.';
+
+    return;
+  }
+
+
+  let action = '';
+
+  if (sheetName === 'BERITA') {
+    action = 'berita';
+  }
+
+  else if (sheetName === 'PENGUMUMAN') {
+    action = 'pengumuman';
+  }
+
+  else {
+    throw new Error(
+      'Jenis konten tidak dikenali.'
+    );
+  }
+
+
+  if (editCategoryGroup) {
+
+    editCategoryGroup.style.display =
+      sheetName === 'BERITA'
+        ? 'block'
+        : 'none';
+
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        '?action=' +
+        encodeURIComponent(action)
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'API mengembalikan success=false.'
+      );
+
+    }
+
+
+    const data =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
+
+
+    editIdValue.innerHTML =
+      '<option value="">-- Pilih Konten --</option>';
+
+
+    data.forEach(function(row) {
+
+      const id =
+        row.id || '';
+
+      if (!id) return;
+
+
+      const option =
+        document.createElement('option');
+
+      option.value =
+        id;
+
+      option.textContent =
+        id +
+        ' — ' +
+        (row.judul || 'Tanpa Judul');
+
+      editIdValue.appendChild(
+        option
+      );
+
+    });
+
+
+    editDataInfo.textContent =
+      data.length +
+      ' konten tersedia.';
+
+  }
+
+  catch (error) {
+
+    console.error(
+      'loadEditData:',
+      error
+    );
+
+    editIdValue.innerHTML =
+      '<option value="">Gagal memuat data</option>';
+
+    editDataInfo.textContent =
+      error.message;
+
+  }
+
+}
+
+
+async function loadEditContent(idValue) {
+
+  if (!idValue) {
+
+    clearEditForm();
+
+    return;
+
+  }
+
+
+  const sheetName =
+    editSheetName.value;
+
+
+  let action = '';
+
+  if (sheetName === 'BERITA') {
+    action = 'berita';
+  }
+
+  else if (sheetName === 'PENGUMUMAN') {
+    action = 'pengumuman';
+  }
+
+  else {
+    return;
+  }
+
+
+  try {
+
+    editDataInfo.textContent =
+      'Mengambil data konten...';
+
+
+    const response =
+      await fetch(
+        API_URL +
+        '?action=' +
+        encodeURIComponent(action)
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Data gagal diambil.'
+      );
+
+    }
+
+
+    const data =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
+
+
+    const row =
+      data.find(function(item) {
+
+        return String(item.id) ===
+          String(idValue);
+
+      });
+
+
+    if (!row) {
+
+      throw new Error(
+        'Data dengan ID ' +
+        idValue +
+        ' tidak ditemukan.'
+      );
+
+    }
+
+
+    editTitle.value =
+      row.judul || '';
+
+
+    editDate.value =
+      formatDateForInput(
+        row.tanggal
+      );
+
+
+    editCategory.value =
+      row.kategori || '';
+
+
+    editBody.value =
+      row.isi || '';
+
+
+    editStatus.value =
+      row.status || 'Published';
+
+
+    editDataInfo.textContent =
+      'Data ' +
+      idValue +
+      ' siap diedit.';
+
+  }
+
+  catch (error) {
+
+    console.error(
+      'loadEditContent:',
+      error
+    );
+
+    showEditStatus(
+      'Gagal mengambil data: ' +
+      error.message,
+      'error'
+    );
+
+  }
+
+}
+
+
+function formatDateForInput(value) {
+
+  if (!value) return '';
+
+  const date =
+    new Date(value);
+
+  if (isNaN(date.getTime())) {
+
+    const text =
+      String(value);
+
+    if (
+      /^\d{4}-\d{2}-\d{2}$/.test(text)
+    ) {
+      return text;
+    }
+
+    return '';
+
+  }
+
+
+  const year =
+    date.getFullYear();
+
+  const month =
+    String(
+      date.getMonth() + 1
+    ).padStart(2, '0');
+
+  const day =
+    String(
+      date.getDate()
+    ).padStart(2, '0');
+
+
+  return (
+    year +
+    '-' +
+    month +
+    '-' +
+    day
+  );
+
+}
+
+
+if (editSheetName) {
+
+  editSheetName.addEventListener(
+    'change',
+    function () {
+
+      loadEditData();
+
+    }
+  );
+
+}
+
+
+if (editIdValue) {
+
+  editIdValue.addEventListener(
+    'change',
+    function () {
+
+      loadEditContent(
+        editIdValue.value
+      );
+
+    }
+  );
+
+}
+
+
+if (editContentForm) {
+
+  editContentForm.addEventListener(
+    'submit',
+    async function(event) {
+
+      event.preventDefault();
+
+
+      try {
+
+        const sheetName =
+          editSheetName.value;
+
+        const idValue =
+          editIdValue.value;
+
+        const judul =
+          editTitle.value.trim();
+
+        const tanggal =
+          editDate.value;
+
+        const isi =
+          editBody.value.trim();
+
+        const kategori =
+          editCategory.value.trim();
+
+        const status =
+          editStatus.value;
+
+
+        if (!sheetName) {
+
+          throw new Error(
+            'Silakan pilih jenis konten.'
+          );
+
+        }
+
+
+        if (!idValue) {
+
+          throw new Error(
+            'Silakan pilih konten.'
+          );
+
+        }
+
+
+        if (!judul) {
+
+          throw new Error(
+            'Judul wajib diisi.'
+          );
+
+        }
+
+
+        if (!tanggal) {
+
+          throw new Error(
+            'Tanggal wajib diisi.'
+          );
+
+        }
+
+
+        if (!isi) {
+
+          throw new Error(
+            'Isi konten wajib diisi.'
+          );
+
+        }
+
+
+        updateContentButton.disabled =
+          true;
+
+        updateContentButton.textContent =
+          'Menyimpan...';
+
+
+        showEditStatus(
+          'Sedang menyimpan perubahan...',
+          'loading'
+        );
+
+
+        const requestBody = {
+
+          action:
+            'editKonten',
+
+          sheetName:
+            sheetName,
+
+          idValue:
+            idValue,
+
+          judul:
+            judul,
+
+          tanggal:
+            tanggal,
+
+          isi:
+            isi,
+
+          kategori:
+            kategori,
+
+          status:
+            status
+
+        };
+
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'text/plain;charset=utf-8'
+              },
+
+              body:
+                JSON.stringify(
+                  requestBody
+                )
+
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Edit konten result:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Perubahan gagal disimpan.'
+          );
+
+        }
+
+
+        showEditStatus(
+          result.message ||
+          'Konten berhasil diperbarui.',
+          'success'
+        );
+
+
+        // Refresh dropdown upload
+        if (
+          typeof loadData === 'function' &&
+          sheetSelect.value === sheetName
+        ) {
+
+          await loadData(
+            sheetName
+          );
+
+        }
+
+
+        // Refresh daftar konten
+        if (
+          typeof loadContentList === 'function'
+        ) {
+
+          await loadContentList();
+
+        }
+
+
+        // Pertahankan ID yang diedit
+        editIdValue.value =
+          idValue;
+
+      }
+
+      catch (error) {
+
+        console.error(
+          'Edit konten error:',
+          error
+        );
+
+        showEditStatus(
+          'Gagal menyimpan: ' +
+          error.message,
+          'error'
+        );
+
+      }
+
+      finally {
+
+        updateContentButton.disabled =
+          false;
+
+        updateContentButton.textContent =
+          'Simpan Perubahan';
+
+      }
+
+    }
+  );
+
+}
     });
 
   } catch (error) {
