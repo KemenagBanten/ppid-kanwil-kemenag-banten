@@ -1579,6 +1579,10 @@ console.log(
           action = 'pengumuman';
           break;
 
+
+            case 'SOP':
+    action = 'sop';
+    break;
         default:
 
           idSelect.innerHTML =
