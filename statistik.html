@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Statistik | PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    :root {
+      --green: #0b6b3a;
+      --green-dark: #07512c;
+      --gold: #cdb082;
+      --light: #f6f8f7;
+      --text: #26352d;
+      --muted: #6b776f;
+      --white: #ffffff;
+      --border: #e4e9e6;
+      --danger: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green)
+      );
+      color: white;
+      padding: 18px 6%;
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-text p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 16px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--green);
+      border-bottom-color: var(--gold);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1200px;
+      margin: 35px auto 20px;
+      padding: 0 6%;
+    }
+
+    .hero-box {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(11,107,58,.97),
+          rgba(7,81,44,.97)
+        );
+      color: white;
+      border-radius: 20px;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border: 1px solid rgba(205,176,130,.35);
+      border-radius: 50%;
+      right: -90px;
+      top: -100px;
+    }
+
+    .hero-box h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .hero-box p {
+      margin: 0;
+      max-width: 720px;
+      line-height: 1.7;
+      opacity: .9;
+      font-size: 15px;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 6% 60px;
+    }
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    .filter-bar {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 25px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-bar label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    .filter-bar select {
+      min-width: 150px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    .filter-bar select:focus {
+      border-color: var(--green);
+    }
+
+    /* =========================
+       KPI
+    ========================= */
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 25px;
+    }
+
+    .kpi-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .kpi-card::after {
+      content: "";
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: rgba(205,176,130,.12);
+      right: -18px;
+      top: -18px;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .kpi-value {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    /* =========================
+       CHART CARD
+    ========================= */
+
+    .chart-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .section-title {
+      margin: 0 0 5px;
+      color: var(--green-dark);
+      font-size: 19px;
+    }
+
+    .section-description {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .chart-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    canvas {
+      width: 100%;
+      max-height: 380px;
+    }
+
+    /* =========================
+       TABLE
+    ========================= */
+
+    .table-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    th {
+      background: #f0f5f2;
+      color: var(--green-dark);
+      font-size: 13px;
+      text-align: left;
+      padding: 13px 12px;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 13px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    tbody tr:hover {
+      background: #fafcfb;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      text-align: center;
+      padding: 45px 20px;
+      color: var(--muted);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--green-dark);
+      color: white;
+      padding: 25px 6%;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    @media (max-width: 560px) {
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-box {
+        padding: 25px 20px;
+      }
+
+      .hero-box h2 {
+        font-size: 25px;
+      }
+
+      .chart-card,
+      .table-card {
+        padding: 18px;
+      }
+
+      .header-text h1 {
+        font-size: 17px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <img
+        src="assets/logo-kemenag.png"
+        alt="Logo Kementerian Agama"
+        class="logo"
+      >
+
+      <div class="header-text">
+
+        <h1>
+          PPID Kanwil Kementerian Agama Provinsi Banten
+        </h1>
+
+        <p>
+          Portal Informasi Publik
+        </p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <div class="nav-inner">
+
+      <a href="index.html">
+        Beranda
+      </a>
+
+      <a href="informasi-publik.html">
+        Informasi Publik
+      </a>
+
+      <a href="dip.html">
+        DIP
+      </a>
+
+      <a href="dik.html">
+        DIK
+      </a>
+
+      <a href="berita.html">
+        Berita
+      </a>
+
+      <a href="pengumuman.html">
+        Pengumuman
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-box">
+
+      <h2>
+        Statistik Layanan Informasi Publik
+      </h2>
+
+      <p>
+        Statistik pelayanan informasi publik PPID Kanwil
+        Kementerian Agama Provinsi Banten berdasarkan data
+        yang tercatat dalam sistem.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <main>
+
+    <!-- FILTER TAHUN -->
+
+    <div class="filter-bar">
+
+      <label for="yearFilter">
+        Tahun:
+      </label>
+
+      <select id="yearFilter">
+        <option value="all">
+          Semua Tahun
+        </option>
+      </select>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div
+      id="status"
+      class="status"
+    >
+      Memuat statistik...
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div id="statisticsContent" style="display:none;">
+
+      <!-- KPI -->
+
+      <section class="kpi-grid">
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Total Permohonan
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalPermohonan"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Selesai
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalSelesai"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Diproses
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalDiproses"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Ditolak
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalDitolak"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Keberatan
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalKeberatan"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+          <div class="kpi-label">
+            Sengketa
+          </div>
+
+          <div
+            class="kpi-value"
+            id="totalSengketa"
+          >
+            0
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CHART -->
+
+      <section class="chart-card">
+
+        <h3 class="section-title">
+          Perkembangan Permohonan
+        </h3>
+
+        <p class="section-description">
+          Jumlah permohonan informasi publik setiap bulan.
+        </p>
+
+        <div class="chart-wrapper">
+
+          <canvas id="requestChart"></canvas>
+
+        </div>
+
+      </section>
+
+
+      <!-- TABLE -->
+
+      <section class="table-card">
+
+        <h3 class="section-title">
+          Detail Statistik Bulanan
+        </h3>
+
+        <p class="section-description">
+          Rekapitulasi statistik pelayanan informasi publik.
+        </p>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Tahun
+                </th>
+
+                <th>
+                  Bulan
+                </th>
+
+                <th>
+                  Total Permohonan
+                </th>
+
+                <th>
+                  Selesai
+                </th>
+
+                <th>
+                  Diproses
+                </th>
+
+                <th>
+                  Ditolak
+                </th>
+
+                <th>
+                  Keberatan
+                </th>
+
+                <th>
+                  Sengketa
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="statisticsTable">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    PPID Kanwil Kementerian Agama Provinsi Banten
+
+    <br>
+
+    <span>
+      Portal Informasi Publik
+    </span>
+
+  </footer>
+
+
+  <!-- CHART.JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <script>
+
+    /*
+      ==========================================
+      API
+      ==========================================
+    */
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let statisticsData = [];
+
+    let requestChart = null;
+
+
+    /*
+      ==========================================
+      ESCAPE HTML
+      ==========================================
+    */
+
+    function escapeHTML(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    /*
+      ==========================================
+      NUMBER
+      ==========================================
+    */
+
+    function numberValue(value) {
+
+      const number =
+        Number(value);
+
+      return Number.isFinite(number)
+        ? number
+        : 0;
+
+    }
+
+
+    /*
+      ==========================================
+      FORMAT NUMBER
+      ==========================================
+    */
+
+    function formatNumber(value) {
+
+      return numberValue(value)
+        .toLocaleString('id-ID');
+
+    }
+
+
+    /*
+      ==========================================
+      MONTH ORDER
+      ==========================================
+    */
+
+    const monthOrder = {
+
+      januari: 1,
+      februari: 2,
+      maret: 3,
+      april: 4,
+      mei: 5,
+      juni: 6,
+      juli: 7,
+      agustus: 8,
+      september: 9,
+      oktober: 10,
+      november: 11,
+      desember: 12
+
+    };
+
+
+    function monthNumber(month) {
+
+      const key =
+        String(month || '')
+          .trim()
+          .toLowerCase();
+
+      return monthOrder[key] || 99;
+
+    }
+
+
+    /*
+      ==========================================
+      LOAD STATISTICS
+      ==========================================
+    */
+
+    async function loadStatistics() {
+
+      const status =
+        document.getElementById('status');
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + '?action=statistik'
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP ' + response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Response statistik:',
+          result
+        );
+
+
+        if (
+          !result ||
+          result.success !== true
+        ) {
+
+          throw new Error(
+            result?.message ||
+            'API mengembalikan success=false'
+          );
+
+        }
+
+
+        statisticsData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        statisticsData.sort(
+          function(a, b) {
+
+            const yearA =
+              numberValue(a.tahun);
+
+            const yearB =
+              numberValue(b.tahun);
+
+            if (yearA !== yearB) {
+
+              return yearA - yearB;
+
+            }
+
+            return (
+              monthNumber(a.bulan) -
+              monthNumber(b.bulan)
+            );
+
+          }
+        );
+
+
+        buildYearFilter();
+
+        renderStatistics();
+
+
+      } catch (error) {
+
+        console.error(
+          'Error statistik:',
+          error
+        );
+
+
+        status.className =
+          'status error';
+
+        status.textContent =
+          'Gagal memuat statistik: ' +
+          error.message;
+
+      }
+
+    }
+
+
+    /*
+      ==========================================
+      YEAR FILTER
+      ==========================================
+    */
+
+    function buildYearFilter() {
+
+      const select =
+        document.getElementById(
+          'yearFilter'
+        );
+
+
+      const years =
+        [
+          ...new Set(
+            statisticsData.map(
+              function(item) {
+
+                return numberValue(
+                  item.tahun
+                );
+
+              }
+            )
+          )
+        ]
+        .filter(
+          function(year) {
+
+            return year > 0;
+
+          }
+        )
+        .sort(
+          function(a, b) {
+
+            return b - a;
+
+          }
+        );
+
+
+      select.innerHTML = `
+        <option value="all">
+          Semua Tahun
+        </option>
+      `;
+
+
+      years.forEach(
+        function(year) {
+
+          const option =
+            document.createElement(
+              'option'
+            );
+
+          option.value =
+            String(year);
+
+          option.textContent =
+            String(year);
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+      ==========================================
+      FILTER DATA
+      ==========================================
+    */
+
+    function getFilteredData() {
+
+      const selectedYear =
+        document.getElementById(
+          'yearFilter'
+        ).value;
+
+
+      if (
+        selectedYear === 'all'
+      ) {
+
+        return statisticsData;
+
+      }
+
+
+      return statisticsData.filter(
+        function(item) {
+
+          return String(
+            numberValue(item.tahun)
+          ) === selectedYear;
+
+        }
+      );
+
+    }
+
+
+    /*
+      ==========================================
+      RENDER
+      ==========================================
+    */
+
+    function renderStatistics() {
+
+      const status =
+        document.getElementById('status');
+
+      const content =
+        document.getElementById(
+          'statisticsContent'
+        );
+
+
+      const data =
+        getFilteredData();
+
+
+      if (!data.length) {
+
+        status.style.display =
+          'block';
+
+        status.className =
+          'status';
+
+        status.textContent =
+          'Tidak ada data statistik.';
+
+        content.style.display =
+          'none';
+
+        return;
+
+      }
+
+
+      status.style.display =
+        'none';
+
+      content.style.display =
+        'block';
+
+
+      renderKPI(data);
+
+      renderChart(data);
+
+      renderTable(data);
+
+    }
+
+
+    /*
+      ==========================================
+      KPI
+      ==========================================
+    */
+
+    function renderKPI(data) {
+
+      const total =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.total_permohonan
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const selesai =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.selesai
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const diproses =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.diproses
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const ditolak =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.ditolak
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const keberatan =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.keberatan
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const sengketa =
+        data.reduce(
+          function(sum, item) {
+
+            return (
+              sum +
+              numberValue(
+                item.sengketa
+              )
+            );
+
+          },
+          0
+        );
+
+
+      document.getElementById(
+        'totalPermohonan'
+      ).textContent =
+        formatNumber(total);
+
+
+      document.getElementById(
+        'totalSelesai'
+      ).textContent =
+        formatNumber(selesai);
+
+
+      document.getElementById(
+        'totalDiproses'
+      ).textContent =
+        formatNumber(diproses);
+
+
+      document.getElementById(
+        'totalDitolak'
+      ).textContent =
+        formatNumber(ditolak);
+
+
+      document.getElementById(
+        'totalKeberatan'
+      ).textContent =
+        formatNumber(keberatan);
+
+
+      document.getElementById(
+        'totalSengketa'
+      ).textContent =
+        formatNumber(sengketa);
+
+    }
+
+
+    /*
+      ==========================================
+      CHART
+      ==========================================
+    */
+
+    function renderChart(data) {
+
+      const canvas =
+        document.getElementById(
+          'requestChart'
+        );
+
+
+      const labels =
+        data.map(
+          function(item) {
+
+            return String(
+              item.bulan || ''
+            );
+
+          }
+        );
+
+
+      const values =
+        data.map(
+          function(item) {
+
+            return numberValue(
+              item.total_permohonan
+            );
+
+          }
+        );
+
+
+      if (requestChart) {
+
+        requestChart.destroy();
+
+      }
+
+
+      requestChart =
+        new Chart(
+          canvas,
+          {
+
+            type: 'line',
+
+            data: {
+
+              labels: labels,
+
+              datasets: [
+
+                {
+
+                  label:
+                    'Total Permohonan',
+
+                  data: values,
+
+                  borderWidth: 3,
+
+                  tension: 0.35,
+
+                  fill: false,
+
+                  pointRadius: 4,
+
+                  pointHoverRadius: 6
+
+                }
+
+              ]
+
+            },
+
+            options: {
+
+              responsive: true,
+
+              maintainAspectRatio: false,
+
+              plugins: {
+
+                legend: {
+
+                  display: true
+
+                }
+
+              },
+
+              scales: {
+
+                y: {
+
+                  beginAtZero: true,
+
+                  ticks: {
+
+                    precision: 0
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+        );
+
+
+      canvas.parentElement.style.height =
+        '360px';
+
+    }
+
+
+    /*
+      ==========================================
+      TABLE
+      ==========================================
+    */
+
+    function renderTable(data) {
+
+      const tbody =
+        document.getElementById(
+          'statisticsTable'
+        );
+
+
+      tbody.innerHTML =
+        data.map(
+          function(item) {
+
+            return `
+
+              <tr>
+
+                <td>
+                  ${escapeHTML(
+                    item.tahun
+                  )}
+                </td>
+
+                <td>
+                  ${escapeHTML(
+                    item.bulan
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.total_permohonan
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.selesai
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.diproses
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.ditolak
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.keberatan
+                  )}
+                </td>
+
+                <td>
+                  ${formatNumber(
+                    item.sengketa
+                  )}
+                </td>
+
+              </tr>
+
+            `;
+
+          }
+        )
+        .join('');
+
+    }
+
+
+    /*
+      ==========================================
+      FILTER EVENT
+      ==========================================
+    */
+
+    document
+      .getElementById(
+        'yearFilter'
+      )
+      .addEventListener(
+        'change',
+        renderStatistics
+      );
+
+
+    /*
+      ==========================================
+      START
+      ==========================================
+    */
+
+    loadStatistics();
+
+  </script>
+
+</body>
+</html>
+
