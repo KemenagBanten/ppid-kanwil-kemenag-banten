@@ -253,6 +253,218 @@ console.log(
   'DEBUG SOP keterangan:',
   keterangan
 );
+
+        // =========================================================
+// TAMBAH REGULASI - SUBMIT
+// =========================================================
+
+if (regulasiForm) {
+
+  regulasiForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      try {
+
+        const judul =
+          regulasiJudul.value.trim();
+
+        const jenis =
+          regulasiJenis.value;
+
+        const nomor =
+          regulasiNomor.value.trim();
+
+        const tahun =
+          regulasiTahun.value;
+
+        const tentang =
+          regulasiTentang.value.trim();
+
+        const status =
+          regulasiStatus.value;
+
+
+        // ===============================================
+        // VALIDASI
+        // ===============================================
+
+        if (!judul) {
+          throw new Error(
+            'Judul regulasi wajib diisi.'
+          );
+        }
+
+        if (!jenis) {
+          throw new Error(
+            'Jenis regulasi wajib dipilih.'
+          );
+        }
+
+        if (!nomor) {
+          throw new Error(
+            'Nomor regulasi wajib diisi.'
+          );
+        }
+
+        if (!tahun) {
+          throw new Error(
+            'Tahun regulasi wajib diisi.'
+          );
+        }
+
+
+        // ===============================================
+        // TAMPILKAN STATUS
+        // ===============================================
+
+        saveRegulasiButton.disabled = true;
+
+        regulasiStatusBox.style.display = 'block';
+        regulasiStatusBox.className =
+          'status loading';
+
+        regulasiStatusBox.textContent =
+          'Menyimpan regulasi...';
+
+
+        // ===============================================
+        // PAYLOAD
+        // ===============================================
+
+        const payload = {
+
+          action: 'tambahRegulasi',
+
+          judul: judul,
+
+          jenis: jenis,
+
+          nomor: nomor,
+
+          tahun: tahun,
+
+          tentang: tentang,
+
+          status: status
+
+        };
+
+
+        // ===============================================
+        // KIRIM KE APPS SCRIPT
+        // ===============================================
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+              body: JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL TAMBAH REGULASI:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Regulasi gagal ditambahkan.'
+          );
+
+        }
+
+
+        // ===============================================
+        // AMBIL ID
+        // ===============================================
+
+        const newId =
+          result.id ||
+          result.data?.id ||
+          result.ID ||
+          result.data?.ID ||
+          '';
+
+
+        // ===============================================
+        // SUKSES
+        // ===============================================
+
+        regulasiStatusBox.style.display =
+          'block';
+
+        regulasiStatusBox.className =
+          'status success';
+
+        regulasiStatusBox.textContent =
+          'Regulasi berhasil ditambahkan.' +
+          (
+            newId
+              ? ' ID: ' + newId
+              : ''
+          );
+
+
+        // ===============================================
+        // RESET FORM
+        // ===============================================
+
+        regulasiForm.reset();
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR TAMBAH REGULASI:',
+          error
+        );
+
+
+        regulasiStatusBox.style.display =
+          'block';
+
+        regulasiStatusBox.className =
+          'status error';
+
+        regulasiStatusBox.textContent =
+          error.message ||
+          'Terjadi kesalahan saat menambahkan regulasi.';
+
+
+      } finally {
+
+        saveRegulasiButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
         // =====================================================
         // VALIDASI
         // =====================================================
