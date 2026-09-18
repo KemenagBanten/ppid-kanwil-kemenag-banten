@@ -1832,9 +1832,13 @@ if (regulasiForm) {
           break;
 
 
-            case 'SOP':
-    action = 'sop';
-    break;
+           case 'SOP':
+  action = 'sop';
+  break;
+
+case 'REGULASI':
+  action = 'regulasi';
+  break;
         default:
 
           idSelect.innerHTML =
@@ -2372,6 +2376,9 @@ if (sheetName === 'BERITA') {
 
 } else if (sheetName === 'SOP') {
   action = 'uploadSOPDocument';
+
+} else if (sheetName === 'REGULASI') {
+  action = 'uploadRegulasiDocument';
 
 } else {
   action = 'upload';
