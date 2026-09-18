@@ -1343,7 +1343,114 @@
 
   </form>
 </div>
+<div class="card">
+  <h2>Tambah Regulasi</h2>
+  <p class="description">
+    Tambahkan data regulasi ke database PPID.
+  </p>
 
+  <form id="regulasiForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="regulasiJudul">Judul Regulasi</label>
+        <input
+          type="text"
+          id="regulasiJudul"
+          placeholder="Judul regulasi"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="regulasiJenis">Jenis Regulasi</label>
+        <select id="regulasiJenis" required>
+          <option value="">Pilih jenis</option>
+          <option value="Undang-Undang">Undang-Undang</option>
+          <option value="Peraturan Pemerintah">
+            Peraturan Pemerintah
+          </option>
+          <option value="Peraturan Menteri">
+            Peraturan Menteri
+          </option>
+          <option value="Keputusan Menteri">
+            Keputusan Menteri
+          </option>
+          <option value="Peraturan Daerah">
+            Peraturan Daerah
+          </option>
+          <option value="Peraturan Gubernur">
+            Peraturan Gubernur
+          </option>
+          <option value="Peraturan Lainnya">
+            Peraturan Lainnya
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="regulasiNomor">Nomor</label>
+        <input
+          type="text"
+          id="regulasiNomor"
+          placeholder="Contoh: Nomor 1 Tahun 2026"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="regulasiTahun">Tahun</label>
+        <input
+          type="number"
+          id="regulasiTahun"
+          placeholder="2026"
+          min="1900"
+          max="2100"
+          required
+        >
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="regulasiTentang">Tentang</label>
+      <textarea
+        id="regulasiTentang"
+        rows="4"
+        placeholder="Uraian singkat tentang regulasi"
+      ></textarea>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="regulasiStatus">Status</label>
+        <select id="regulasiStatus">
+          <option value="Published">Published</option>
+          <option value="Draft">Draft</option>
+          <option value="Arsip">Arsip</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="saveRegulasiButton"
+    >
+      Simpan Regulasi
+    </button>
+
+    <div
+      id="regulasiStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+</div>
       <!-- =================================================
            CARD 2 — EDIT KONTEN
       ================================================== -->
