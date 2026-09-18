@@ -79,117 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'
- });
-
-}
-    button.disabled = true;
-    button.textContent = 'Menyimpan...';
-
-    statusBox.style.display = 'block';
-    statusBox.className = 'status';
-    statusBox.textContent = 'Menyimpan SOP...';
-
-
-    try {
-
-      const response = await fetch(API_URL, {
-
-        method: 'POST',
-
-        headers: {
-          'Content-Type':
-            'text/plain;charset=utf-8'
-        },
-
-        body: JSON.stringify({
-
-          action: 'tambahSOP',
-
-          nomor: nomor,
-          judul: judul,
-          unit: unit,
-          tahun: tahun,
-          tanggal_update: tanggal_update,
-          status: status,
-          format: format,
-          keterangan: keterangan
-
-        })
-
-      });
-
-
-      const result =
-        await response.json();
-
-      console.log(
-        'HASIL TAMBAH SOP:',
-        result
-      );
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'SOP gagal ditambahkan.'
-        );
-
-      }
-
-
-      const newId =
-        result.id ||
-        result.data?.id ||
-        result.ID ||
-        result.data?.ID ||
-        '';
-
-
-      statusBox.style.display = 'block';
-      statusBox.className =
-        'status success';
-
-      statusBox.textContent =
-        'SOP berhasil ditambahkan. ID: ' +
-        (newId || 'berhasil dibuat');
-
-
-      sopForm.reset();
-
-
-    } catch (error) {
-
-      console.error(
-        'ERROR TAMBAH SOP:',
-        error
-      );
-
-      statusBox.style.display = 'block';
-      statusBox.className =
-        'status error';
-
-      statusBox.textContent =
-        error.message ||
-        'Terjadi kesalahan saat menambahkan SOP.';
-
-
-    } finally {
-
-      button.disabled = false;
-      button.textContent = 'Simpan SOP';
-
-    }
-
-  });
-
-}
-      
-    });
-
-  }
-
-
+ 
+    
   function formatDateForInput(value) {
 
     if (!value) return '';
@@ -245,6 +136,238 @@ document.addEventListener('DOMContentLoaded', function () {
   const categoryGroup =
     document.getElementById('categoryGroup');
 
+      // =========================================================
+  // TAMBAH SOP - ELEMENT
+  // =========================================================
+
+  const sopForm =
+    document.getElementById('sopForm');
+
+  const sopNomor =
+    document.getElementById('sopNomor');
+
+  const sopJudul =
+    document.getElementById('sopJudul');
+
+  const sopUnit =
+    document.getElementById('sopUnit');
+
+  const sopTahun =
+    document.getElementById('sopTahun');
+
+  const sopTanggalUpdate =
+    document.getElementById('sopTanggalUpdate');
+
+  const sopFormat =
+    document.getElementById('sopFormat');
+
+  const sopStatus =
+    document.getElementById('sopStatus');
+
+  const sopKeterangan =
+    document.getElementById('sopKeterangan');
+
+  const saveSopButton =
+    document.getElementById('saveSopButton');
+
+  const sopStatusBox =
+    document.getElementById('sopStatusBox');
+
+
+  // =========================================================
+  // TAMBAH SOP - SUBMIT
+  // =========================================================
+
+  if (sopForm) {
+
+    sopForm.addEventListener(
+      'submit',
+      async function (event) {
+
+        event.preventDefault();
+
+        try {
+
+          const nomor =
+            sopNomor.value.trim();
+
+          const judul =
+            sopJudul.value.trim();
+
+          const unit =
+            sopUnit.value.trim();
+
+          const tahun =
+            sopTahun.value;
+
+          const tanggal_update =
+            sopTanggalUpdate.value;
+
+          const format =
+            sopFormat.value;
+
+          const status =
+            sopStatus.value;
+
+          const keterangan =
+            sopKeterangan.value.trim();
+
+
+          if (!nomor) {
+            throw new Error(
+              'Nomor SOP wajib diisi.'
+            );
+          }
+
+          if (!judul) {
+            throw new Error(
+              'Judul SOP wajib diisi.'
+            );
+          }
+
+          if (!unit) {
+            throw new Error(
+              'Unit wajib diisi.'
+            );
+          }
+
+          if (!tahun) {
+            throw new Error(
+              'Tahun wajib diisi.'
+            );
+          }
+
+
+          saveSopButton.disabled = true;
+
+          sopStatusBox.style.display = 'block';
+          sopStatusBox.className = 'status loading';
+          sopStatusBox.textContent =
+            'Menyimpan SOP...';
+
+
+          const payload = {
+
+            action: 'tambahSOP',
+
+            nomor: nomor,
+
+            judul: judul,
+
+            unit: unit,
+
+            tahun: tahun,
+
+            tanggal_update:
+              tanggal_update,
+
+            status: status,
+
+            format: format,
+
+            keterangan: keterangan
+
+          };
+
+
+          const response =
+            await fetch(API_URL, {
+
+              method: 'POST',
+
+              body: JSON.stringify(
+                payload
+              )
+
+            });
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              'HTTP Error ' +
+              response.status
+            );
+
+          }
+
+
+          const result =
+            await response.json();
+
+
+          console.log(
+            'HASIL TAMBAH SOP:',
+            result
+          );
+
+
+          if (!result.success) {
+
+            throw new Error(
+              result.message ||
+              'SOP gagal ditambahkan.'
+            );
+
+          }
+
+
+          const newId =
+            result.id ||
+            result.data?.id ||
+            result.ID ||
+            result.data?.ID ||
+            '';
+
+
+          sopStatusBox.style.display =
+            'block';
+
+          sopStatusBox.className =
+            'status success';
+
+          sopStatusBox.textContent =
+            'SOP berhasil ditambahkan.' +
+            (
+              newId
+                ? ' ID: ' + newId
+                : ''
+            );
+
+
+          sopForm.reset();
+
+
+        } catch (error) {
+
+          console.error(
+            'ERROR TAMBAH SOP:',
+            error
+          );
+
+
+          sopStatusBox.style.display =
+            'block';
+
+          sopStatusBox.className =
+            'status error';
+
+          sopStatusBox.textContent =
+            error.message ||
+            'Terjadi kesalahan saat menambahkan SOP.';
+
+
+        } finally {
+
+          saveSopButton.disabled =
+            false;
+
+        }
+
+      }
+    );
+
+  }
 
   // =========================================================
   // EDIT KONTEN - ELEMENT
