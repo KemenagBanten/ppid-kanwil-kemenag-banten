@@ -1234,7 +1234,115 @@
 
       </section>
 
+<!-- =========================
+     TAMBAH SOP
+========================= -->
+<div class="card">
+  <h2>Tambah SOP</h2>
 
+  <p class="description">
+    Tambahkan data Standar Operasional Prosedur ke database PPID.
+  </p>
+
+  <form id="sopForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="sopNomor">Nomor SOP</label>
+        <input
+          type="text"
+          id="sopNomor"
+          placeholder="Contoh: SOP-PPID-001"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="sopJudul">Judul SOP</label>
+        <input
+          type="text"
+          id="sopJudul"
+          placeholder="Judul Standar Operasional Prosedur"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="sopUnit">Unit</label>
+        <input
+          type="text"
+          id="sopUnit"
+          placeholder="Contoh: PPID Kanwil"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="sopTahun">Tahun</label>
+        <input
+          type="number"
+          id="sopTahun"
+          placeholder="2026"
+          min="2000"
+          max="2100"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="sopTanggalUpdate">Tanggal Update</label>
+        <input
+          type="date"
+          id="sopTanggalUpdate"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="sopFormat">Format</label>
+        <select id="sopFormat">
+          <option value="PDF">PDF</option>
+          <option value="DOCX">DOCX</option>
+          <option value="XLSX">XLSX</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sopStatus">Status</label>
+        <select id="sopStatus">
+          <option value="Published">Published</option>
+          <option value="Draft">Draft</option>
+          <option value="Arsip">Arsip</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="sopKeterangan">Keterangan</label>
+      <textarea
+        id="sopKeterangan"
+        rows="4"
+        placeholder="Keterangan tambahan tentang SOP"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="saveSopButton"
+    >
+      Simpan SOP
+    </button>
+
+    <div
+      id="sopStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+</div>
 
       <!-- =================================================
            CARD 2 — EDIT KONTEN
