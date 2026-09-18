@@ -175,6 +175,36 @@ function formatDateForInput(value) {
   const sopStatusBox =
     document.getElementById('sopStatusBox');
 
+  // =========================================================
+// TAMBAH REGULASI - ELEMENT
+// =========================================================
+
+const regulasiForm =
+  document.getElementById('regulasiForm');
+
+const regulasiJudul =
+  document.getElementById('regulasiJudul');
+
+const regulasiJenis =
+  document.getElementById('regulasiJenis');
+
+const regulasiNomor =
+  document.getElementById('regulasiNomor');
+
+const regulasiTahun =
+  document.getElementById('regulasiTahun');
+
+const regulasiTentang =
+  document.getElementById('regulasiTentang');
+
+const regulasiStatus =
+  document.getElementById('regulasiStatus');
+
+const saveRegulasiButton =
+  document.getElementById('saveRegulasiButton');
+
+const regulasiStatusBox =
+  document.getElementById('regulasiStatusBox');
 
 // =========================================================
 // TAMBAH SOP - SUBMIT
