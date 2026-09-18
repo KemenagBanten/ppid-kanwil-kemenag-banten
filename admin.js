@@ -254,38 +254,6 @@ console.log(
   keterangan
 );
 
-        // =========================================================
-// TAMBAH REGULASI - SUBMIT
-// =========================================================
-
-if (regulasiForm) {
-
-  regulasiForm.addEventListener(
-    'submit',
-    async function (event) {
-
-      event.preventDefault();
-
-      try {
-
-        const judul =
-          regulasiJudul.value.trim();
-
-        const jenis =
-          regulasiJenis.value;
-
-        const nomor =
-          regulasiNomor.value.trim();
-
-        const tahun =
-          regulasiTahun.value;
-
-        const tentang =
-          regulasiTentang.value.trim();
-
-        const status =
-          regulasiStatus.value;
-
 
         // ===============================================
         // VALIDASI
@@ -655,6 +623,40 @@ if (regulasiForm) {
   );
 
 }
+
+        // =========================================================
+// TAMBAH REGULASI - SUBMIT
+// =========================================================
+
+if (regulasiForm) {
+
+  regulasiForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      try {
+
+        const judul =
+          regulasiJudul.value.trim();
+
+        const jenis =
+          regulasiJenis.value;
+
+        const nomor =
+          regulasiNomor.value.trim();
+
+        const tahun =
+          regulasiTahun.value;
+
+        const tentang =
+          regulasiTentang.value.trim();
+
+        const status =
+          regulasiStatus.value;
+
+
   // =========================================================
   // EDIT KONTEN - ELEMENT
   // =========================================================
