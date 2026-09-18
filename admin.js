@@ -19,6 +19,133 @@ const formTitle = document.getElementById('formTitle');
 const formDescription =
 document.getElementById('formDescription');
 
+async function loadContentList() {
+  const tbody = document.getElementById('contentListBody');
+
+  if (!tbody) return;
+
+  const sheetName = document.getElementById('sheetName')?.value;
+
+  if (!sheetName) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-row">
+          Pilih jenis data terlebih dahulu.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  let action = '';
+
+  if (sheetName === 'BERITA') {
+    action = 'berita';
+  } else if (sheetName === 'PENGUMUMAN') {
+    action = 'pengumuman';
+  } else {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-row">
+          Daftar konten saat ini tersedia untuk Berita dan Pengumuman.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = `
+    <tr>
+      <td colspan="5" class="empty-row">
+        Memuat data...
+      </td>
+    </tr>
+  `;
+
+  try {
+    const response = await fetch(
+      API_URL + '?action=' + encodeURIComponent(action)
+    );
+
+    if (!response.ok) {
+      throw new Error('HTTP Error ' + response.status);
+    }
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(
+        result.message || 'API mengembalikan success=false.'
+      );
+    }
+
+    const data = Array.isArray(result.data)
+      ? result.data
+      : [];
+
+    if (data.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" class="empty-row">
+            Belum ada data.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = '';
+
+    data.forEach(function(row) {
+      const tr = document.createElement('tr');
+
+      const id = row.id || '-';
+      const judul = row.judul || '-';
+      const tanggal = row.tanggal || '-';
+      const kategori = row.kategori || '-';
+      const status = row.status || '-';
+
+      tr.innerHTML = `
+        <td><strong>${escapeHtml(id)}</strong></td>
+        <td>${escapeHtml(judul)}</td>
+        <td>${escapeHtml(formatContentDate(tanggal))}</td>
+        <td>${escapeHtml(kategori)}</td>
+        <td>${escapeHtml(status)}</td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+
+  } catch (error) {
+    console.error('loadContentList:', error);
+
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty-row">
+          Gagal memuat data: ${escapeHtml(error.message)}
+        </td>
+      </tr>
+    `;
+  }
+}
+
+
+function formatContentDate(value) {
+  if (!value) return '-';
+
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) {
+    return String(value);
+  }
+
+  return date.toLocaleDateString('id-ID', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+}
+  
 // =========================================
 // ESCAPE HTML
 // =========================================
@@ -794,20 +921,12 @@ catch (error) {
 // PILIH JENIS DATA
 // =========================================
 
-sheetSelect.addEventListener(
-'change',
-function () {
-
-
+sheetSelect.addEventListener('change', function () {
   updateFormMode();
-
   fileInput.value = '';
-
-  loadData(
-    sheetSelect.value
-  );
-
-}
+  loadData(sheetSelect.value);
+  loadContentList();
+});
 
 
 );
