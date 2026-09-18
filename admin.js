@@ -79,57 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric'
+ });
 
-      const sopForm = document.getElementById('sopForm');
-
-if (sopForm) {
-
-  sopForm.addEventListener('submit', async function (event) {
-
-    event.preventDefault();
-
-    const button =
-      document.getElementById('saveSopButton');
-
-    const statusBox =
-      document.getElementById('sopStatusBox');
-
-    const nomor =
-      document.getElementById('sopNomor').value.trim();
-
-    const judul =
-      document.getElementById('sopJudul').value.trim();
-
-    const unit =
-      document.getElementById('sopUnit').value.trim();
-
-    const tahun =
-      document.getElementById('sopTahun').value;
-
-    const tanggal_update =
-      document.getElementById('sopTanggalUpdate').value;
-
-    const format =
-      document.getElementById('sopFormat').value;
-
-    const status =
-      document.getElementById('sopStatus').value;
-
-    const keterangan =
-      document.getElementById('sopKeterangan').value.trim();
-
-
-    if (!nomor || !judul || !unit || !tahun) {
-
-      statusBox.style.display = 'block';
-      statusBox.className = 'status error';
-      statusBox.textContent =
-        'Nomor, judul, unit, dan tahun wajib diisi.';
-
-      return;
-    }
-
-
+}
     button.disabled = true;
     button.textContent = 'Menyimpan...';
 
@@ -2184,65 +2136,3 @@ if (sopForm) {
 
 });
 
-      const result = await response.json();
-
-      console.log('Response tambah SOP:', result);
-
-      if (!result.success) {
-        throw new Error(
-          result.message ||
-          'SOP gagal ditambahkan.'
-        );
-      }
-
-      const newId =
-        result.id ||
-        result.data?.id ||
-        result.ID ||
-        result.data?.ID ||
-        '';
-
-      if (statusBox) {
-        statusBox.style.display = 'block';
-        statusBox.className = 'status success';
-        statusBox.textContent =
-          'SOP berhasil ditambahkan. ID: ' +
-          (newId || 'berhasil dibuat');
-      }
-
-      sopForm.reset();
-
-      // Setelah berhasil, refresh daftar upload/edit
-      if (typeof loadUploadData === 'function') {
-        loadUploadData();
-      }
-
-      if (typeof loadEditData === 'function') {
-        loadEditData();
-      }
-
-    } catch (error) {
-
-      console.error(
-        'Error tambah SOP:',
-        error
-      );
-
-      if (statusBox) {
-        statusBox.style.display = 'block';
-        statusBox.className = 'status error';
-        statusBox.textContent =
-          error.message ||
-          'Terjadi kesalahan saat menambahkan SOP.';
-      }
-
-    } finally {
-
-      button.disabled = false;
-      button.textContent = 'Simpan SOP';
-
-    }
-
-  });
-
-});
