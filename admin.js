@@ -2112,28 +2112,18 @@ console.log(
 
           let action = '';
 
+if (sheetName === 'BERITA') {
+  action = 'uploadBeritaImage';
 
-          if (
-            sheetName === 'BERITA'
-          ) {
+} else if (sheetName === 'PENGUMUMAN') {
+  action = 'uploadPengumumanImage';
 
-            action =
-              'uploadBeritaImage';
+} else if (sheetName === 'SOP') {
+  action = 'uploadSOPDocument';
 
-          } else if (
-            sheetName === 'PENGUMUMAN'
-          ) {
-
-            action =
-              'uploadPengumumanImage';
-
-          } else {
-
-            action =
-              'upload';
-
-          }
-
+} else {
+  action = 'upload';
+}
 
           const payload = {
 
