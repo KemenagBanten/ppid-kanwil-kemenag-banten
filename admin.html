@@ -617,6 +617,149 @@
 
     <div id="contentForm">
 
+      <section class="admin-card">
+  <div class="card-header">
+    <div>
+      <h2>Edit Konten</h2>
+      <p>
+        Pilih berita atau pengumuman yang ingin diperbarui.
+      </p>
+    </div>
+  </div>
+
+  <form id="editContentForm">
+
+    <div class="form-group">
+      <label for="editSheetName">
+        Jenis Konten
+      </label>
+
+      <select id="editSheetName" required>
+        <option value="">
+          -- Pilih Jenis Konten --
+        </option>
+
+        <option value="BERITA">
+          Berita
+        </option>
+
+        <option value="PENGUMUMAN">
+          Pengumuman
+        </option>
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="editIdValue">
+        ID Konten
+      </label>
+
+      <select id="editIdValue" required>
+        <option value="">
+          -- Pilih Konten --
+        </option>
+      </select>
+    </div>
+
+
+    <div
+      id="editDataInfo"
+      class="data-info"
+    >
+      Pilih jenis konten terlebih dahulu.
+    </div>
+
+
+    <div class="form-group">
+      <label for="editTitle">
+        Judul
+      </label>
+
+      <input
+        type="text"
+        id="editTitle"
+        required
+      >
+    </div>
+
+
+    <div class="form-group">
+      <label for="editDate">
+        Tanggal
+      </label>
+
+      <input
+        type="date"
+        id="editDate"
+        required
+      >
+    </div>
+
+
+    <div
+      class="form-group"
+      id="editCategoryGroup"
+    >
+      <label for="editCategory">
+        Kategori
+      </label>
+
+      <input
+        type="text"
+        id="editCategory"
+      >
+    </div>
+
+
+    <div class="form-group">
+      <label for="editBody">
+        Isi Konten
+      </label>
+
+      <textarea
+        id="editBody"
+        rows="10"
+        required
+      ></textarea>
+    </div>
+
+
+    <div class="form-group">
+      <label for="editStatus">
+        Status
+      </label>
+
+      <select id="editStatus">
+
+        <option value="Published">
+          Published
+        </option>
+
+        <option value="Draft">
+          Draft
+        </option>
+
+      </select>
+    </div>
+
+
+    <button
+      type="submit"
+      id="updateContentButton"
+      class="primary-button"
+    >
+      Simpan Perubahan
+    </button>
+
+
+    <div
+      id="editStatusBox"
+      class="status"
+    ></div>
+
+  </form>
+</section>
       <!-- JENIS KONTEN -->
 
       <div class="form-group">
