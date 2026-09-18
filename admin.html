@@ -391,6 +391,196 @@ content="width=device-width, initial-scale=1.0"
 
 </form>
 
+<!-- ========================================= -->
+<!-- FORM TAMBAH BERITA / PENGUMUMAN -->
+<!-- ========================================= -->
+
+<div
+  id="contentForm"
+  style="
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+  "
+>
+
+  <h2>
+    Tambah Konten
+  </h2>
+
+  <div class="description">
+    Tambahkan berita atau pengumuman baru ke database PPID.
+  </div>
+
+
+  <!-- JENIS KONTEN -->
+
+  <div class="form-group">
+
+    <label for="contentType">
+      Jenis Konten
+    </label>
+
+    <select id="contentType">
+
+      <option value="">
+        -- Pilih Jenis Konten --
+      </option>
+
+      <option value="BERITA">
+        Berita
+      </option>
+
+      <option value="PENGUMUMAN">
+        Pengumuman
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- JUDUL -->
+
+  <div class="form-group">
+
+    <label for="contentTitle">
+      Judul
+    </label>
+
+    <input
+      type="text"
+      id="contentTitle"
+      placeholder="Masukkan judul"
+      style="
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font-size: 15px;
+      "
+    >
+
+  </div>
+
+
+  <!-- TANGGAL -->
+
+  <div class="form-group">
+
+    <label for="contentDate">
+      Tanggal
+    </label>
+
+    <input
+      type="datetime-local"
+      id="contentDate"
+      style="
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font-size: 15px;
+      "
+    >
+
+  </div>
+
+
+  <!-- KATEGORI -->
+  <!-- Hanya untuk BERITA -->
+
+  <div
+    class="form-group"
+    id="categoryGroup"
+  >
+
+    <label for="contentCategory">
+      Kategori
+    </label>
+
+    <input
+      type="text"
+      id="contentCategory"
+      placeholder="Contoh: PPID, Pendidikan, Keagamaan"
+      style="
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font-size: 15px;
+      "
+    >
+
+  </div>
+
+
+  <!-- ISI -->
+
+  <div class="form-group">
+
+    <label for="contentBody">
+      Isi Konten
+    </label>
+
+    <textarea
+      id="contentBody"
+      rows="8"
+      placeholder="Tulis isi berita atau pengumuman..."
+      style="
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 9px;
+        font-size: 15px;
+        font-family: Arial, sans-serif;
+        resize: vertical;
+      "
+    ></textarea>
+
+  </div>
+
+
+  <!-- STATUS -->
+
+  <div class="form-group">
+
+    <label for="contentStatus">
+      Status
+    </label>
+
+    <select id="contentStatus">
+
+      <option value="Published">
+        Published
+      </option>
+
+      <option value="Draft">
+        Draft
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- BUTTON -->
+
+  <button
+    type="button"
+    id="saveContentButton"
+  >
+    Simpan Konten
+  </button>
+
+
+  <div
+    id="contentStatusBox"
+    class="status"
+    style="margin-top: 15px;"
+  ></div>
+
+</div>
 
 <div
   id="statusBox"
