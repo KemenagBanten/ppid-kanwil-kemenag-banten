@@ -54,6 +54,422 @@ statusBox.textContent =
 }
 
 // =========================================
+// TAMBAH BERITA / PENGUMUMAN
+// =========================================
+
+const contentType =
+  document.getElementById('contentType');
+
+const contentTitle =
+  document.getElementById('contentTitle');
+
+const contentDate =
+  document.getElementById('contentDate');
+
+const contentCategory =
+  document.getElementById('contentCategory');
+
+const contentBody =
+  document.getElementById('contentBody');
+
+const contentStatus =
+  document.getElementById('contentStatus');
+
+const saveContentButton =
+  document.getElementById('saveContentButton');
+
+const contentStatusBox =
+  document.getElementById('contentStatusBox');
+
+const categoryGroup =
+  document.getElementById('categoryGroup');
+
+
+// =========================================
+// STATUS KONTEN
+// =========================================
+
+function showContentStatus(
+  message,
+  type
+) {
+
+  if (!contentStatusBox) return;
+
+  contentStatusBox.className =
+    'status ' + (type || '');
+
+  contentStatusBox.textContent =
+    message;
+
+}
+
+
+// =========================================
+// MODE KONTEN
+// =========================================
+
+function updateContentMode() {
+
+  if (!contentType) return;
+
+
+  if (
+    contentType.value === 'BERITA'
+  ) {
+
+    categoryGroup.style.display =
+      'block';
+
+    contentCategory.required =
+      false;
+
+    return;
+
+  }
+
+
+  if (
+    contentType.value === 'PENGUMUMAN'
+  ) {
+
+    categoryGroup.style.display =
+      'none';
+
+    contentCategory.value =
+      '';
+
+    contentCategory.required =
+      false;
+
+    return;
+
+  }
+
+
+  categoryGroup.style.display =
+    'none';
+
+}
+
+
+// =========================================
+// PILIH JENIS KONTEN
+// =========================================
+
+if (contentType) {
+
+  contentType.addEventListener(
+    'change',
+    updateContentMode
+  );
+
+}
+
+
+// =========================================
+// SIMPAN KONTEN
+// =========================================
+
+if (saveContentButton) {
+
+  saveContentButton.addEventListener(
+    'click',
+    async function () {
+
+      try {
+
+        const type =
+          contentType.value;
+
+        const title =
+          contentTitle.value.trim();
+
+        const date =
+          contentDate.value;
+
+        const body =
+          contentBody.value.trim();
+
+        const category =
+          contentCategory.value.trim();
+
+        const status =
+          contentStatus.value;
+
+
+        // ---------------------------------
+        // VALIDASI
+        // ---------------------------------
+
+        if (!type) {
+
+          throw new Error(
+            'Silakan pilih Jenis Konten.'
+          );
+
+        }
+
+
+        if (!title) {
+
+          throw new Error(
+            'Judul wajib diisi.'
+          );
+
+        }
+
+
+        if (!date) {
+
+          throw new Error(
+            'Tanggal wajib diisi.'
+          );
+
+        }
+
+
+        if (!body) {
+
+          throw new Error(
+            'Isi konten wajib diisi.'
+          );
+
+        }
+
+
+        // ---------------------------------
+        // TOMBOL
+        // ---------------------------------
+
+        saveContentButton.disabled =
+          true;
+
+        saveContentButton.textContent =
+          'Menyimpan...';
+
+
+        showContentStatus(
+          'Sedang menyimpan data ke database...',
+          'loading'
+        );
+
+
+        // ---------------------------------
+        // ACTION
+        // ---------------------------------
+
+        let action = '';
+
+        if (type === 'BERITA') {
+
+          action =
+            'tambahBerita';
+
+        }
+
+        else if (
+          type === 'PENGUMUMAN'
+        ) {
+
+          action =
+            'tambahPengumuman';
+
+        }
+
+        else {
+
+          throw new Error(
+            'Jenis konten tidak dikenali.'
+          );
+
+        }
+
+
+        // ---------------------------------
+        // REQUEST
+        // ---------------------------------
+
+        const requestBody = {
+
+          action:
+            action,
+
+          judul:
+            title,
+
+          tanggal:
+            date,
+
+          isi:
+            body,
+
+          kategori:
+            category,
+
+          status:
+            status
+
+        };
+
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'text/plain;charset=utf-8'
+              },
+
+              body:
+                JSON.stringify(
+                  requestBody
+                )
+
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Tambah konten result:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Data gagal disimpan.'
+          );
+
+        }
+
+
+        // ---------------------------------
+        // BERHASIL
+        // ---------------------------------
+
+        showContentStatus(
+          (
+            type === 'BERITA'
+              ? 'Berita'
+              : 'Pengumuman'
+          ) +
+          ' berhasil ditambahkan. ID: ' +
+          result.id,
+          'success'
+        );
+
+
+        // ---------------------------------
+        // RESET FORM
+        // ---------------------------------
+
+        contentTitle.value =
+          '';
+
+        contentDate.value =
+          '';
+
+        contentCategory.value =
+          '';
+
+        contentBody.value =
+          '';
+
+        contentStatus.value =
+          'Published';
+
+
+        // ---------------------------------
+        // REFRESH DROPDOWN UPLOAD
+        // ---------------------------------
+
+        if (
+          sheetSelect.value === type
+        ) {
+
+          await loadData(type);
+
+        }
+
+
+        // ---------------------------------
+        // PILIH DATA BARU OTOMATIS
+        // ---------------------------------
+
+        if (result.id) {
+
+          idSelect.value =
+            result.id;
+
+          dataInfo.textContent =
+            'Data baru berhasil dibuat. ID: ' +
+            result.id +
+            '. Silakan upload gambar.';
+
+        }
+
+
+      }
+
+      catch (error) {
+
+        console.error(
+          'Tambah konten error:',
+          error
+        );
+
+
+        showContentStatus(
+          'Gagal menyimpan: ' +
+          error.message,
+          'error'
+        );
+
+      }
+
+      finally {
+
+        saveContentButton.disabled =
+          false;
+
+        saveContentButton.textContent =
+          'Simpan Konten';
+
+      }
+
+    }
+  );
+
+}
+
+
+// =========================================
+// MODE AWAL KONTEN
+// =========================================
+
+updateContentMode();
+  
+// =========================================
 // MODE FORM
 // =========================================
 
