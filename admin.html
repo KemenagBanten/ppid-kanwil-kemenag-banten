@@ -1,46 +1,84 @@
 <!DOCTYPE html>
 
 <html lang="id">
-
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
-
-  <title>
-    Admin PPID - Kantor Wilayah Kementerian Agama Provinsi Banten
-  </title>
+  <title>Admin PPID - Kantor Wilayah Kementerian Agama Provinsi Banten</title>
 
   <style>
+    :root {
+      --green: #176b45;
+      --green-dark: #105637;
+      --green-soft: #eaf6f0;
+      --gold: #cdb082;
+      --gold-soft: #f8f3e9;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --bg: #f5f7f6;
+      --white: #ffffff;
+      --danger: #991b1b;
+      --danger-bg: #fef2f2;
+      --success: #065f46;
+      --success-bg: #ecfdf5;
+      --loading: #1e40af;
+      --loading-bg: #eff6ff;
+    }
 
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #1f2937;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(205,176,130,0.12), transparent 30%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
     .header {
-      background: #176b45;
+      background:
+        linear-gradient(135deg, #176b45 0%, #125c3b 55%, #0e4c32 100%);
       color: white;
-      padding: 18px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -150px;
+      border-radius: 50%;
+      border: 1px solid rgba(205,176,130,0.35);
+      box-shadow:
+        0 0 0 25px rgba(205,176,130,0.05),
+        0 0 0 50px rgba(205,176,130,0.03);
     }
 
     .header-inner {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 20px 28px;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .header-logo {
@@ -76,142 +114,310 @@ content="width=device-width, initial-scale=1.0"
       margin: 5px 0 0;
       font-size: 11px;
       opacity: 0.9;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
     }
 
+    .admin-badge {
+      margin-left: auto;
+      padding: 8px 13px;
+      border: 1px solid rgba(205,176,130,0.55);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255,255,255,0.07);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       CONTAINER
+    ========================= */
+
     .container {
-      max-width: 850px;
-      margin: 35px auto;
+      max-width: 1200px;
+      margin: 30px auto 50px;
       padding: 0 20px;
     }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 28px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    .page-heading {
+      margin-bottom: 24px;
     }
 
-    .card h2 {
-      margin-top: 0;
-      margin-bottom: 8px;
+    .page-heading h2 {
+      margin: 0;
+      font-size: 25px;
+      color: var(--green-dark);
     }
 
-    .description {
-      color: #6b7280;
-      margin-bottom: 25px;
+    .page-heading p {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.6;
     }
 
+    /* =========================
+       GRID
+    ========================= */
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid rgba(229,231,235,0.9);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.06);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 23px;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--green-soft);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      flex-shrink: 0;
+    }
+
+    .card-header h2 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 19px;
+    }
+
+    .card-header p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     label {
       display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+      color: #374151;
     }
 
     select,
-    input[type="file"] {
+    input[type="text"],
+    input[type="datetime-local"],
+    input[type="file"],
+    textarea {
       width: 100%;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 9px;
-      font-size: 15px;
+      padding: 12px 13px;
+      border: 1px solid #d7dce1;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: Arial, Helvetica, sans-serif;
       background: white;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     select:focus,
-    input:focus {
+    input:focus,
+    textarea:focus {
       outline: none;
-      border-color: #176b45;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(23,107,69,0.10);
     }
 
-    .file-info {
-      margin-top: 8px;
-      font-size: 13px;
-      color: #6b7280;
+    textarea {
+      resize: vertical;
+      min-height: 160px;
+      line-height: 1.6;
+    }
+
+    input[type="file"] {
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .file-info,
+    .helper {
+      margin-top: 7px;
+      font-size: 12px;
+      color: var(--muted);
       line-height: 1.5;
     }
 
+    /* =========================
+       SECTION DIVIDER
+    ========================= */
+
+    .section-divider {
+      margin: 27px 0;
+      border: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
     button {
       width: 100%;
-      border: none;
+      border: 0;
       border-radius: 10px;
-      padding: 14px;
-      background: #176b45;
+      padding: 13px 16px;
+      background: var(--green);
       color: white;
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     button:hover {
-      background: #125437;
+      background: var(--green-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 14px rgba(23,107,69,0.18);
     }
 
     button:disabled {
       background: #9ca3af;
       cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
     }
+
+    .secondary-button {
+      background: #f7f4ee;
+      color: #806a45;
+      border: 1px solid #e7dcc9;
+    }
+
+    .secondary-button:hover {
+      background: #efe7d9;
+      color: #665333;
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
 
     .status {
       display: none;
-      margin-top: 20px;
-      padding: 14px;
+      margin-top: 16px;
+      padding: 13px 14px;
       border-radius: 10px;
-      line-height: 1.5;
+      line-height: 1.55;
+      font-size: 13px;
     }
 
     .status.success {
       display: block;
-      background: #ecfdf5;
-      color: #065f46;
+      background: var(--success-bg);
+      color: var(--success);
       border: 1px solid #a7f3d0;
     }
 
     .status.error {
       display: block;
-      background: #fef2f2;
-      color: #991b1b;
+      background: var(--danger-bg);
+      color: var(--danger);
       border: 1px solid #fecaca;
     }
 
     .status.loading {
       display: block;
-      background: #eff6ff;
-      color: #1e40af;
+      background: var(--loading-bg);
+      color: var(--loading);
       border: 1px solid #bfdbfe;
     }
 
-    .back {
-      display: inline-block;
-      margin-top: 20px;
-      color: #176b45;
-      text-decoration: none;
-      font-weight: 600;
+    /* =========================
+       GOLD ACCENT
+    ========================= */
+
+    .gold-line {
+      width: 48px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--gold);
+      margin-top: 9px;
     }
 
+    /* =========================
+       WARNING
+    ========================= */
+
     .warning {
-      margin-top: 20px;
-      padding: 14px;
-      background: #fffbeb;
-      border: 1px solid #fde68a;
+      margin-top: 24px;
+      padding: 15px 16px;
+      background: var(--gold-soft);
+      border: 1px solid #eadfc9;
+      border-left: 4px solid var(--gold);
       border-radius: 10px;
-      color: #92400e;
+      color: #6b5838;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       FOOTER LINK
+    ========================= */
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 22px;
+      color: var(--green);
+      text-decoration: none;
       font-size: 13px;
-      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .back:hover {
+      color: var(--green-dark);
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-badge {
+        display: none;
+      }
     }
 
     @media (max-width: 600px) {
 
-      .header {
-        padding: 14px 18px;
-      }
-
       .header-inner {
+        padding: 15px 18px;
         gap: 10px;
       }
 
@@ -222,380 +428,400 @@ content="width=device-width, initial-scale=1.0"
 
       .header-text h1 {
         font-size: 11px;
-        line-height: 1.3;
       }
 
       .header-text p {
         font-size: 8px;
-        line-height: 1.3;
         margin-top: 3px;
       }
 
-      .card {
-        padding: 22px 18px;
+      .container {
+        margin-top: 22px;
+        padding: 0 14px;
       }
 
-    }
+      .page-heading h2 {
+        font-size: 21px;
+      }
 
+      .card {
+        padding: 20px 17px;
+        border-radius: 15px;
+      }
+
+      .card-header h2 {
+        font-size: 17px;
+      }
+    }
   </style>
 
 </head>
 
 <body>
 
-<header class="header">
+  <!-- HEADER -->
 
-  <div class="header-inner">
+  <header class="header">
 
-<div class="header-logo">
+```
+<div class="header-inner">
 
-  <img
-    src="assets/logo-kemenag.png"
-    alt="Logo Kementerian Agama Republik Indonesia"
-  >
+  <div class="header-logo">
+    <img
+      src="assets/logo-kemenag.png"
+      alt="Logo Kementerian Agama Republik Indonesia"
+    >
+  </div>
+
+  <div class="header-text">
+    <h1>
+      KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+    </h1>
+
+    <p>
+      PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+    </p>
+  </div>
+
+  <div class="admin-badge">
+    PANEL ADMIN
+  </div>
 
 </div>
+```
 
-<div class="header-text">
+  </header>
 
-  <h1>
-    KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-  </h1>
+  <!-- MAIN -->
 
+  <main class="container">
+
+```
+<div class="page-heading">
+  <h2>Panel Admin PPID</h2>
+  <div class="gold-line"></div>
   <p>
-    PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+    Kelola berita, pengumuman, dokumen, dan informasi publik
+    melalui satu panel administrasi.
   </p>
-
-</div>
-
-  </div>
-
-</header>
-
-<main class="container">
-
-  <div class="card">
-
-<h2 id="formTitle">
-  Upload Dokumen
-</h2>
-
-<div class="description" id="formDescription">
-
-  Upload dokumen PDF ke Google Drive dan simpan URL dokumen
-  secara otomatis ke database Google Sheets.
-
 </div>
 
 
-<form id="uploadForm">
+<div class="admin-grid">
 
 
-  <!-- JENIS DATA -->
+  <!-- =====================================
+       CARD 1 — TAMBAH KONTEN
+  ====================================== -->
 
-  <div class="form-group">
+  <section class="card">
 
-    <label for="sheetName">
-      Jenis Data
-    </label>
+    <div class="card-header">
 
-    <select id="sheetName" required>
+      <div class="card-icon">✦</div>
 
-      <option value="">
-        -- Pilih Jenis Data --
-      </option>
+      <div>
+        <h2>Tambah Konten</h2>
 
-      <option value="INFORMASI_PUBLIK">
-        Informasi Publik
-      </option>
+        <p>
+          Buat berita atau pengumuman baru.
+        </p>
+      </div>
 
-      <option value="DIP">
-        Daftar Informasi Publik (DIP)
-      </option>
-
-      <option value="BERITA">
-        Berita
-      </option>
-
-      <option value="PENGUMUMAN">
-        Pengumuman
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <!-- ID DATA -->
-
-  <div class="form-group">
-
-    <label for="idValue">
-      ID Data
-    </label>
-
-    <select id="idValue" required>
-
-      <option value="">
-        -- Pilih Data --
-      </option>
-
-    </select>
-
-    <div
-      class="file-info"
-      id="dataInfo"
-    >
-      Pilih jenis data terlebih dahulu.
     </div>
 
-  </div>
+
+    <div id="contentForm">
+
+      <!-- JENIS KONTEN -->
+
+      <div class="form-group">
+
+        <label for="contentType">
+          Jenis Konten
+        </label>
+
+        <select id="contentType">
+
+          <option value="">
+            -- Pilih Jenis Konten --
+          </option>
+
+          <option value="BERITA">
+            Berita
+          </option>
+
+          <option value="PENGUMUMAN">
+            Pengumuman
+          </option>
+
+        </select>
+
+      </div>
 
 
-  <!-- FILE -->
+      <!-- JUDUL -->
 
-  <div class="form-group">
+      <div class="form-group">
 
-    <label
-      for="file"
-      id="fileLabel"
-    >
-      Dokumen PDF
-    </label>
+        <label for="contentTitle">
+          Judul
+        </label>
 
-    <input
-      type="file"
-      id="file"
-      accept=".pdf,application/pdf"
-      required
-    >
+        <input
+          type="text"
+          id="contentTitle"
+          placeholder="Masukkan judul berita atau pengumuman"
+        >
 
-    <div
-      class="file-info"
-      id="fileInfo"
-    >
-      Hanya file PDF.
+      </div>
+
+
+      <!-- TANGGAL -->
+
+      <div class="form-group">
+
+        <label for="contentDate">
+          Tanggal
+        </label>
+
+        <input
+          type="datetime-local"
+          id="contentDate"
+        >
+
+      </div>
+
+
+      <!-- KATEGORI -->
+
+      <div
+        class="form-group"
+        id="categoryGroup"
+      >
+
+        <label for="contentCategory">
+          Kategori
+        </label>
+
+        <input
+          type="text"
+          id="contentCategory"
+          placeholder="Contoh: PPID, Pendidikan, Keagamaan"
+        >
+
+      </div>
+
+
+      <!-- ISI -->
+
+      <div class="form-group">
+
+        <label for="contentBody">
+          Isi Konten
+        </label>
+
+        <textarea
+          id="contentBody"
+          placeholder="Tulis isi berita atau pengumuman..."
+        ></textarea>
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="form-group">
+
+        <label for="contentStatus">
+          Status
+        </label>
+
+        <select id="contentStatus">
+
+          <option value="Published">
+            Published
+          </option>
+
+          <option value="Draft">
+            Draft
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <button
+        type="button"
+        id="saveContentButton"
+      >
+        Simpan Konten
+      </button>
+
+
+      <div
+        id="contentStatusBox"
+        class="status"
+      ></div>
+
     </div>
 
-  </div>
+  </section>
 
 
-  <!-- BUTTON -->
+  <!-- =====================================
+       CARD 2 — UPLOAD
+  ====================================== -->
 
-  <button
-    type="submit"
-    id="uploadButton"
-  >
-    Upload Dokumen
-  </button>
+  <section class="card">
 
-</form>
+    <div class="card-header">
 
-<!-- ========================================= -->
-<!-- FORM TAMBAH BERITA / PENGUMUMAN -->
-<!-- ========================================= -->
+      <div class="card-icon">↥</div>
 
-<div
-  id="contentForm"
-  style="
-    margin-top: 35px;
-    padding-top: 30px;
-    border-top: 1px solid #e5e7eb;
-  "
->
+      <div>
+        <h2>Upload File</h2>
 
-  <h2>
-    Tambah Konten
-  </h2>
+        <p>
+          Upload gambar berita/pengumuman atau dokumen PDF.
+        </p>
+      </div>
 
-  <div class="description">
-    Tambahkan berita atau pengumuman baru ke database PPID.
-  </div>
+    </div>
 
 
-  <!-- JENIS KONTEN -->
-
-  <div class="form-group">
-
-    <label for="contentType">
-      Jenis Konten
-    </label>
-
-    <select id="contentType">
-
-      <option value="">
-        -- Pilih Jenis Konten --
-      </option>
-
-      <option value="BERITA">
-        Berita
-      </option>
-
-      <option value="PENGUMUMAN">
-        Pengumuman
-      </option>
-
-    </select>
-
-  </div>
+    <form id="uploadForm">
 
 
-  <!-- JUDUL -->
+      <!-- JENIS DATA -->
 
-  <div class="form-group">
+      <div class="form-group">
 
-    <label for="contentTitle">
-      Judul
-    </label>
+        <label for="sheetName">
+          Jenis Data
+        </label>
 
-    <input
-      type="text"
-      id="contentTitle"
-      placeholder="Masukkan judul"
-      style="
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 9px;
-        font-size: 15px;
-      "
-    >
+        <select id="sheetName" required>
 
-  </div>
+          <option value="">
+            -- Pilih Jenis Data --
+          </option>
 
+          <option value="INFORMASI_PUBLIK">
+            Informasi Publik
+          </option>
 
-  <!-- TANGGAL -->
+          <option value="DIP">
+            Daftar Informasi Publik (DIP)
+          </option>
 
-  <div class="form-group">
+          <option value="BERITA">
+            Berita
+          </option>
 
-    <label for="contentDate">
-      Tanggal
-    </label>
+          <option value="PENGUMUMAN">
+            Pengumuman
+          </option>
 
-    <input
-      type="datetime-local"
-      id="contentDate"
-      style="
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 9px;
-        font-size: 15px;
-      "
-    >
+        </select>
 
-  </div>
+      </div>
 
 
-  <!-- KATEGORI -->
-  <!-- Hanya untuk BERITA -->
+      <!-- ID DATA -->
 
-  <div
-    class="form-group"
-    id="categoryGroup"
-  >
+      <div class="form-group">
 
-    <label for="contentCategory">
-      Kategori
-    </label>
+        <label for="idValue">
+          ID Data
+        </label>
 
-    <input
-      type="text"
-      id="contentCategory"
-      placeholder="Contoh: PPID, Pendidikan, Keagamaan"
-      style="
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 9px;
-        font-size: 15px;
-      "
-    >
+        <select id="idValue" required>
 
-  </div>
+          <option value="">
+            -- Pilih Data --
+          </option>
+
+        </select>
+
+        <div
+          class="file-info"
+          id="dataInfo"
+        >
+          Pilih jenis data terlebih dahulu.
+        </div>
+
+      </div>
 
 
-  <!-- ISI -->
-
-  <div class="form-group">
-
-    <label for="contentBody">
-      Isi Konten
-    </label>
-
-    <textarea
-      id="contentBody"
-      rows="8"
-      placeholder="Tulis isi berita atau pengumuman..."
-      style="
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #d1d5db;
-        border-radius: 9px;
-        font-size: 15px;
-        font-family: Arial, sans-serif;
-        resize: vertical;
-      "
-    ></textarea>
-
-  </div>
+      <hr class="section-divider">
 
 
-  <!-- STATUS -->
+      <!-- FILE -->
 
-  <div class="form-group">
+      <div class="form-group">
 
-    <label for="contentStatus">
-      Status
-    </label>
+        <label
+          for="file"
+          id="fileLabel"
+        >
+          Dokumen PDF
+        </label>
 
-    <select id="contentStatus">
+        <input
+          type="file"
+          id="file"
+          accept=".pdf,application/pdf"
+          required
+        >
 
-      <option value="Published">
-        Published
-      </option>
+        <div
+          class="file-info"
+          id="fileInfo"
+        >
+          Pilih jenis data untuk melihat format file yang diperbolehkan.
+        </div>
 
-      <option value="Draft">
-        Draft
-      </option>
-
-    </select>
-
-  </div>
-
-
-  <!-- BUTTON -->
-
-  <button
-    type="button"
-    id="saveContentButton"
-  >
-    Simpan Konten
-  </button>
+      </div>
 
 
-  <div
-    id="contentStatusBox"
-    class="status"
-    style="margin-top: 15px;"
-  ></div>
+      <button
+        type="submit"
+        id="uploadButton"
+      >
+        Upload File
+      </button>
+
+    </form>
+
+
+    <div
+      id="statusBox"
+      class="status"
+    ></div>
+
+
+    <div class="helper">
+      <strong>Alur:</strong>
+      pilih jenis data → pilih ID → pilih file → upload.
+    </div>
+
+  </section>
 
 </div>
 
-<div
-  id="statusBox"
-  class="status"
-></div>
 
+<!-- WARNING -->
 
 <div class="warning">
 
-  <strong>Catatan:</strong>
+  <strong>Catatan keamanan:</strong>
 
-  Halaman ini sementara digunakan untuk pengujian.
-  Sebelum digunakan secara resmi, kita akan menambahkan
-  mekanisme akses admin agar halaman upload tidak terbuka
-  untuk umum.
+  Halaman ini masih digunakan untuk pengujian.
+  Sebelum digunakan secara resmi, tambahkan mekanisme autentikasi
+  atau pembatasan akses admin agar halaman pengelolaan tidak
+  terbuka untuk umum.
 
 </div>
 
@@ -606,13 +832,11 @@ content="width=device-width, initial-scale=1.0"
 >
   ← Kembali ke Website PPID
 </a>
+```
 
-  </div>
+  </main>
 
-</main>
-
-<script src="admin.js?v=4"></script>
+  <script src="admin.js?v=4"></script>
 
 </body>
-
 </html>
