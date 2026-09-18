@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kontak | PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    :root {
+      --green: #087443;
+      --green-dark: #055c35;
+      --gold: #cdb082;
+      --bg: #f5f7f6;
+      --white: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(205,176,130,.13),
+          transparent 30%
+        ),
+        var(--bg);
+    }
+
+    /* HEADER */
+
+    header {
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green)
+      );
+      color: white;
+      padding: 18px 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    /* NAV */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      gap: 4px;
+      padding: 10px 20px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #374151;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: rgba(8,116,67,.08);
+      color: var(--green);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1180px;
+      margin: 38px auto 25px;
+      padding: 0 20px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8,116,67,.97),
+          rgba(5,92,53,.96)
+        );
+      color: white;
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      right: -75px;
+      top: -100px;
+      background: rgba(205,176,130,.20);
+    }
+
+    .hero-box h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .hero-box p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 760px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.9);
+    }
+
+    /* CONTENT */
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 20px 60px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .search {
+      flex: 1;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+      background: white;
+    }
+
+    .search:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(8,116,67,.08);
+    }
+
+    .filter {
+      min-width: 150px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: white;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .refresh-btn {
+      border: 0;
+      border-radius: 9px;
+      padding: 0 18px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .refresh-btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* CONTACT GRID */
+
+    .contact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: .2s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.08);
+    }
+
+    .contact-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(8,116,67,.08);
+      color: var(--green);
+      font-size: 22px;
+    }
+
+    .contact-name {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 18px;
+      line-height: 1.4;
+    }
+
+    .contact-type {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .contact-value {
+      margin-top: 18px;
+      padding: 14px;
+      background: #f7f9f8;
+      border-radius: 10px;
+      font-size: 15px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .contact-value a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-description {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #e8f7ef;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .empty,
+    .loading,
+    .error {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .error {
+      color: #b42318;
+      background: #fff8f7;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #063e26;
+      color: rgba(255,255,255,.8);
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+
+      .toolbar {
+        flex-direction: column;
+      }
+
+      .filter {
+        width: 100%;
+      }
+
+      .refresh-btn {
+        height: 42px;
+      }
+
+      .contact-list {
+        grid-template-columns: 1fr;
+      }
+
+      .brand h1 {
+        font-size: 17px;
+      }
+
+      .brand p {
+        font-size: 12px;
+      }
+
+      .hero-box {
+        padding: 25px;
+      }
+
+      .hero-box h2 {
+        font-size: 25px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+    <img
+      src="assets/logo-kemenag.png"
+      alt="Logo Kementerian Agama"
+      class="logo"
+    >
+
+    <div class="brand">
+
+      <h1>
+        PPID Kanwil Kementerian Agama Provinsi Banten
+      </h1>
+
+      <p>
+        Pejabat Pengelola Informasi dan Dokumentasi
+      </p>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<nav>
+
+  <div class="nav-inner">
+
+    <a href="index.html">
+      Beranda
+    </a>
+
+    <a href="informasi-publik.html">
+      Informasi Publik
+    </a>
+
+    <a href="dip.html">
+      DIP
+    </a>
+
+    <a href="dik.html">
+      DIK
+    </a>
+
+    <a href="berita.html">
+      Berita
+    </a>
+
+    <a href="pengumuman.html">
+      Pengumuman
+    </a>
+
+  </div>
+
+</nav>
+
+
+<section class="hero">
+
+  <div class="hero-box">
+
+    <h2>
+      Kontak PPID
+    </h2>
+
+    <p>
+      Informasi kontak dan saluran layanan
+      PPID Kanwil Kementerian Agama Provinsi Banten.
+    </p>
+
+  </div>
+
+</section>
+
+
+<main>
+
+  <div class="toolbar">
+
+    <input
+      type="text"
+      id="searchInput"
+      class="search"
+      placeholder="Cari kontak, jenis, atau keterangan..."
+    >
+
+    <select
+      id="jenisFilter"
+      class="filter"
+    >
+      <option value="">
+        Semua Jenis
+      </option>
+    </select>
+
+    <button
+      class="refresh-btn"
+      onclick="loadKontak()"
+    >
+      ↻ Refresh
+    </button>
+
+  </div>
+
+
+  <div id="content">
+
+    <div class="loading">
+      Memuat informasi kontak...
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  PPID Kanwil Kementerian Agama Provinsi Banten
+
+  <br>
+
+  Layanan Informasi Publik
+
+</footer>
+
+
+<script>
+
+  /* =====================================================
+     API
+     ===================================================== */
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+  let allData = [];
+
+
+  /* =====================================================
+     ESCAPE HTML
+     ===================================================== */
+
+  function escapeHTML(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+      return '';
+    }
+
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+  }
+
+
+  /* =====================================================
+     ICON
+     ===================================================== */
+
+  function getIcon(jenis) {
+
+    const type =
+      String(jenis || '')
+        .toLowerCase()
+        .trim();
+
+    if (type.includes('telepon') ||
+        type.includes('phone') ||
+        type.includes('whatsapp') ||
+        type.includes('wa')) {
+
+      return '☎';
+
+    }
+
+    if (type.includes('email')) {
+
+      return '✉';
+
+    }
+
+    if (type.includes('alamat') ||
+        type.includes('lokasi')) {
+
+      return '⌖';
+
+    }
+
+    if (type.includes('website') ||
+        type.includes('web')) {
+
+      return '⌕';
+
+    }
+
+    if (type.includes('fax')) {
+
+      return '▣';
+
+    }
+
+    return '●';
+
+  }
+
+
+  /* =====================================================
+     LINK VALUE
+     ===================================================== */
+
+  function createValueHTML(
+    jenis,
+    value
+  ) {
+
+    const safeValue =
+      escapeHTML(value || '-');
+
+    const type =
+      String(jenis || '')
+        .toLowerCase()
+        .trim();
+
+
+    if (
+      type.includes('email') &&
+      value
+    ) {
+
+      return `
+        <a
+          href="mailto:${encodeURIComponent(value)}"
+        >
+          ${safeValue}
+        </a>
+      `;
+
+    }
+
+
+    if (
+      (
+        type.includes('telepon') ||
+        type.includes('phone')
+      ) &&
+      value
+    ) {
+
+      const phone =
+        String(value)
+          .replace(/[^\d+]/g, '');
+
+      return `
+        <a href="tel:${escapeHTML(phone)}">
+          ${safeValue}
+        </a>
+      `;
+
+    }
+
+
+    if (
+      (
+        type.includes('website') ||
+        type.includes('web')
+      ) &&
+      value
+    ) {
+
+      let url =
+        String(value).trim();
+
+      if (
+        !url.startsWith('http://') &&
+        !url.startsWith('https://')
+      ) {
+
+        url =
+          'https://' + url;
+
+      }
+
+      return `
+        <a
+          href="${escapeHTML(url)}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ${safeValue}
+        </a>
+      `;
+
+    }
+
+
+    return safeValue;
+
+  }
+
+
+  /* =====================================================
+     LOAD DATA
+     ===================================================== */
+
+  async function loadKontak() {
+
+    const content =
+      document.getElementById('content');
+
+    content.innerHTML = `
+      <div class="loading">
+        Memuat informasi kontak...
+      </div>
+    `;
+
+
+    try {
+
+      const response =
+        await fetch(
+          API_URL + '?action=kontak'
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          'HTTP Error ' +
+          response.status
+        );
+
+      }
+
+
+      const result =
+        await response.json();
+
+
+      console.log(
+        'API Kontak:',
+        result
+      );
+
+
+      if (result.success !== true) {
+
+        throw new Error(
+          result.message ||
+          'API mengembalikan success=false'
+        );
+
+      }
+
+
+      allData =
+        Array.isArray(result.data)
+          ? result.data
+          : [];
+
+
+      buildJenisFilter();
+
+      renderData(allData);
+
+
+    } catch (error) {
+
+      console.error(
+        'Gagal memuat kontak:',
+        error
+      );
+
+
+      content.innerHTML = `
+        <div class="error">
+
+          <strong>
+            Informasi kontak gagal dimuat.
+          </strong>
+
+          <br><br>
+
+          ${escapeHTML(error.message)}
+
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     FILTER JENIS
+     ===================================================== */
+
+  function buildJenisFilter() {
+
+    const select =
+      document.getElementById(
+        'jenisFilter'
+      );
+
+
+    const jenisList =
+      [
+        ...new Set(
+          allData
+            .map(item =>
+              String(item.jenis || '').trim()
+            )
+            .filter(Boolean)
+        )
+      ];
+
+
+    select.innerHTML = `
+      <option value="">
+        Semua Jenis
+      </option>
+    `;
+
+
+    jenisList.forEach(jenis => {
+
+      const option =
+        document.createElement('option');
+
+      option.value = jenis;
+
+      option.textContent = jenis;
+
+      select.appendChild(option);
+
+    });
+
+  }
+
+
+  /* =====================================================
+     RENDER DATA
+     ===================================================== */
+
+  function renderData(data) {
+
+    const content =
+      document.getElementById('content');
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      content.innerHTML = `
+        <div class="empty">
+          Belum terdapat informasi kontak
+          yang dipublikasikan.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const list =
+      document.createElement('div');
+
+    list.className =
+      'contact-list';
+
+
+    data.forEach(item => {
+
+      const id =
+        escapeHTML(
+          item.id || '-'
+        );
+
+
+      const nama =
+        escapeHTML(
+          item.nama_kontak ||
+          'Kontak PPID'
+        );
+
+
+      const jenis =
+        escapeHTML(
+          item.jenis || '-'
+        );
+
+
+      const nilai =
+        item.nilai || '';
+
+
+      const keterangan =
+        escapeHTML(
+          item.keterangan || ''
+        );
+
+
+      const status =
+        escapeHTML(
+          item.status || ''
+        );
+
+
+      const icon =
+        getIcon(item.jenis);
+
+
+      const card =
+        document.createElement('article');
+
+      card.className =
+        'contact-card';
+
+
+      card.innerHTML = `
+
+        <div class="contact-head">
+
+          <div class="contact-icon">
+            ${icon}
+          </div>
+
+          <div>
+
+            <h3 class="contact-name">
+              ${nama}
+            </h3>
+
+            <div class="contact-type">
+              ${jenis}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="contact-value">
+
+          ${createValueHTML(
+            item.jenis,
+            nilai
+          )}
+
+        </div>
+
+
+        ${
+          keterangan
+            ? `
+              <div class="contact-description">
+                ${keterangan}
+              </div>
+            `
+            : ''
+        }
+
+
+        ${
+          status
+            ? `
+              <span class="status">
+                ${status}
+              </span>
+            `
+            : ''
+        }
+
+
+        <div
+          style="
+            margin-top:10px;
+            font-size:11px;
+            color:#9ca3af;
+          "
+        >
+          ID: ${id}
+        </div>
+
+      `;
+
+
+      list.appendChild(card);
+
+    });
+
+
+    content.innerHTML = '';
+
+    content.appendChild(list);
+
+  }
+
+
+  /* =====================================================
+     FILTER
+     ===================================================== */
+
+  function applyFilter() {
+
+    const keyword =
+      document
+        .getElementById('searchInput')
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const jenis =
+      document
+        .getElementById('jenisFilter')
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+      allData.filter(item => {
+
+        const searchableText =
+          [
+
+            item.id,
+
+            item.nama_kontak,
+
+            item.jenis,
+
+            item.nilai,
+
+            item.keterangan,
+
+            item.status
+
+          ]
+          .join(' ')
+          .toLowerCase();
+
+
+        const matchesKeyword =
+          !keyword ||
+          searchableText.includes(
+            keyword
+          );
+
+
+        const matchesJenis =
+          !jenis ||
+          String(item.jenis || '')
+            .toLowerCase()
+            .trim() === jenis;
+
+
+        return (
+          matchesKeyword &&
+          matchesJenis
+        );
+
+      });
+
+
+    renderData(filtered);
+
+  }
+
+
+  /* =====================================================
+     SEARCH
+     ===================================================== */
+
+  document
+    .getElementById('searchInput')
+    .addEventListener(
+      'input',
+      applyFilter
+    );
+
+
+  document
+    .getElementById('jenisFilter')
+    .addEventListener(
+      'change',
+      applyFilter
+    );
+
+
+  /* =====================================================
+     INITIAL LOAD
+     ===================================================== */
+
+  loadKontak();
+
+</script>
+
+</body>
+</html>
+
