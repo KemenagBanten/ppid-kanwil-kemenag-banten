@@ -367,16 +367,24 @@ if (saveContentButton) {
         // BERHASIL
         // ---------------------------------
 
-        showContentStatus(
-          (
-            type === 'BERITA'
-              ? 'Berita'
-              : 'Pengumuman'
-          ) +
-          ' berhasil ditambahkan. ID: ' +
-          result.id,
-          'success'
-        );
+        const newId =
+  result.id ||
+  result.data?.id ||
+  result.ID ||
+  result.data?.ID ||
+  '';
+
+
+showContentStatus(
+  (
+    type === 'BERITA'
+      ? 'Berita'
+      : 'Pengumuman'
+  ) +
+  ' berhasil ditambahkan. ID: ' +
+  (newId || 'tidak terbaca'),
+  'success'
+);
 
 
         // ---------------------------------
@@ -416,17 +424,17 @@ if (saveContentButton) {
         // PILIH DATA BARU OTOMATIS
         // ---------------------------------
 
-        if (result.id) {
+        if (newId) {
 
-          idSelect.value =
-            result.id;
+  idSelect.value =
+    newId;
 
-          dataInfo.textContent =
-            'Data baru berhasil dibuat. ID: ' +
-            result.id +
-            '. Silakan upload gambar.';
+  dataInfo.textContent =
+    'Data baru berhasil dibuat. ID: ' +
+    newId +
+    '. Silakan upload gambar.';
 
-        }
+}
 
 
       }
