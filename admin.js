@@ -3,36 +3,19 @@ const API_URL =
 
 document.addEventListener('DOMContentLoaded', function () {
 
-const uploadForm =
-document.getElementById('uploadForm');
+const uploadForm = document.getElementById('uploadForm');
+const uploadButton = document.getElementById('uploadButton');
+const statusBox = document.getElementById('statusBox');
 
-const uploadButton =
-document.getElementById('uploadButton');
+const sheetSelect = document.getElementById('sheetName');
+const idSelect = document.getElementById('idValue');
+const dataInfo = document.getElementById('dataInfo');
 
-const statusBox =
-document.getElementById('statusBox');
+const fileInput = document.getElementById('file');
+const fileLabel = document.getElementById('fileLabel');
+const fileInfo = document.getElementById('fileInfo');
 
-const sheetSelect =
-document.getElementById('sheetName');
-
-const idSelect =
-document.getElementById('idValue');
-
-const dataInfo =
-document.getElementById('dataInfo');
-
-const fileInput =
-document.getElementById('file');
-
-const fileLabel =
-document.getElementById('fileLabel');
-
-const fileInfo =
-document.getElementById('fileInfo');
-
-const formTitle =
-document.getElementById('formTitle');
-
+const formTitle = document.getElementById('formTitle');
 const formDescription =
 document.getElementById('formDescription');
 
@@ -42,14 +25,13 @@ document.getElementById('formDescription');
 
 function escapeHTML(value) {
 
-```
 return String(value ?? '')
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#039;');
-```
+
 
 }
 
@@ -59,16 +41,15 @@ return String(value ?? '')
 
 function showStatus(message, type) {
 
-```
+
 if (!statusBox) return;
 
 statusBox.className =
-  'status ' +
-  (type || '');
+  'status ' + (type || '');
 
 statusBox.textContent =
   message;
-```
+
 
 }
 
@@ -78,7 +59,7 @@ statusBox.textContent =
 
 function updateFormMode() {
 
-```
+
 const sheetName =
   sheetSelect.value;
 
@@ -162,7 +143,7 @@ fileInfo.textContent =
 
 uploadButton.textContent =
   'Upload Dokumen';
-```
+
 
 }
 
@@ -172,7 +153,6 @@ uploadButton.textContent =
 
 async function loadData(sheetName) {
 
-```
 idSelect.innerHTML =
   '<option value="">Memuat data...</option>';
 
@@ -198,43 +178,27 @@ try {
   let action = '';
 
 
-  if (
-    sheetName ===
-    'INFORMASI_PUBLIK'
-  ) {
+  if (sheetName === 'INFORMASI_PUBLIK') {
 
-    action =
-      'informasi';
+    action = 'informasi';
 
   }
 
-  else if (
-    sheetName ===
-    'DIP'
-  ) {
+  else if (sheetName === 'DIP') {
 
-    action =
-      'dip';
+    action = 'dip';
 
   }
 
-  else if (
-    sheetName ===
-    'BERITA'
-  ) {
+  else if (sheetName === 'BERITA') {
 
-    action =
-      'berita';
+    action = 'berita';
 
   }
 
-  else if (
-    sheetName ===
-    'PENGUMUMAN'
-  ) {
+  else if (sheetName === 'PENGUMUMAN') {
 
-    action =
-      'pengumuman';
+    action = 'pengumuman';
 
   }
 
@@ -245,6 +209,14 @@ try {
     );
 
   }
+
+
+  console.log(
+    'Memuat data:',
+    sheetName,
+    '→ action:',
+    action
+  );
 
 
   const response =
@@ -267,6 +239,12 @@ try {
 
   const result =
     await response.json();
+
+
+  console.log(
+    'Hasil API:',
+    result
+  );
 
 
   if (!result.success) {
@@ -314,10 +292,7 @@ try {
     let judul = '';
 
 
-    if (
-      sheetName ===
-      'DIP'
-    ) {
+    if (sheetName === 'DIP') {
 
       judul =
         row.nama_informasi ||
@@ -341,7 +316,6 @@ try {
     option.value =
       id;
 
-
     option.textContent =
       id +
       ' — ' +
@@ -364,6 +338,7 @@ try {
 
 
 }
+
 catch (error) {
 
   console.error(
@@ -387,7 +362,7 @@ catch (error) {
   );
 
 }
-```
+
 
 }
 
@@ -399,7 +374,7 @@ sheetSelect.addEventListener(
 'change',
 function () {
 
-```
+
   updateFormMode();
 
   fileInput.value = '';
@@ -409,7 +384,7 @@ function () {
   );
 
 }
-```
+
 
 );
 
@@ -421,7 +396,7 @@ idSelect.addEventListener(
 'change',
 function () {
 
-```
+
   if (!idSelect.value) {
 
     dataInfo.textContent =
@@ -437,7 +412,7 @@ function () {
     idSelect.value;
 
 }
-```
+
 
 );
 
@@ -447,7 +422,7 @@ function () {
 
 function fileToBase64(file) {
 
-```
+
 return new Promise(
   function (resolve, reject) {
 
@@ -480,9 +455,7 @@ return new Promise(
             .split(',');
 
 
-        if (
-          parts.length < 2
-        ) {
+        if (parts.length < 2) {
 
           reject(
             new Error(
@@ -518,7 +491,7 @@ return new Promise(
 
   }
 );
-```
+
 
 }
 
@@ -530,7 +503,7 @@ uploadForm.addEventListener(
 'submit',
 async function (event) {
 
-```
+
   event.preventDefault();
 
 
@@ -539,10 +512,8 @@ async function (event) {
     const sheetName =
       sheetSelect.value;
 
-
     const idValue =
       idSelect.value;
-
 
     const file =
       fileInput.files[0];
@@ -635,7 +606,6 @@ async function (event) {
       uploadButton.disabled =
         true;
 
-
       uploadButton.textContent =
         'Mengupload...';
 
@@ -656,9 +626,7 @@ async function (event) {
       // BERITA
       // -----------------------------------
 
-      if (
-        sheetName === 'BERITA'
-      ) {
+      if (sheetName === 'BERITA') {
 
         const requestBody = {
 
@@ -684,8 +652,7 @@ async function (event) {
           await fetch(
             API_URL,
             {
-              method:
-                'POST',
+              method: 'POST',
 
               headers: {
                 'Content-Type':
@@ -770,7 +737,6 @@ async function (event) {
         fileInput.value =
           '';
 
-
         return;
 
       }
@@ -780,9 +746,7 @@ async function (event) {
       // PENGUMUMAN
       // -----------------------------------
 
-      if (
-        sheetName === 'PENGUMUMAN'
-      ) {
+      if (sheetName === 'PENGUMUMAN') {
 
         const requestBody = {
 
@@ -808,8 +772,7 @@ async function (event) {
           await fetch(
             API_URL,
             {
-              method:
-                'POST',
+              method: 'POST',
 
               headers: {
                 'Content-Type':
@@ -894,7 +857,6 @@ async function (event) {
         fileInput.value =
           '';
 
-
         return;
 
       }
@@ -907,8 +869,7 @@ async function (event) {
     // -------------------------------------
 
     if (
-      file.type !==
-      'application/pdf' &&
+      file.type !== 'application/pdf' &&
       !fileName
         .toLowerCase()
         .endsWith('.pdf')
@@ -926,8 +887,7 @@ async function (event) {
 
 
     if (
-      sheetName ===
-      'INFORMASI_PUBLIK'
+      sheetName === 'INFORMASI_PUBLIK'
     ) {
 
       folderName =
@@ -936,8 +896,7 @@ async function (event) {
     }
 
     else if (
-      sheetName ===
-      'DIP'
+      sheetName === 'DIP'
     ) {
 
       folderName =
@@ -956,7 +915,6 @@ async function (event) {
 
     uploadButton.disabled =
       true;
-
 
     uploadButton.textContent =
       'Mengupload...';
@@ -1001,8 +959,7 @@ async function (event) {
       await fetch(
         API_URL,
         {
-          method:
-            'POST',
+          method: 'POST',
 
           headers: {
             'Content-Type':
@@ -1097,6 +1054,7 @@ async function (event) {
 
 
   }
+
   catch (error) {
 
     console.error(
@@ -1112,6 +1070,7 @@ async function (event) {
     );
 
   }
+
   finally {
 
     uploadButton.disabled =
@@ -1122,7 +1081,6 @@ async function (event) {
   }
 
 }
-```
 
 );
 
