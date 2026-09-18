@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!statusBox) return;
 
     statusBox.textContent = message;
-    statusBox.className = 'status-box ' + (type || '');
+   statusBox.className = 'status ' + (type || '');
 
   }
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     contentStatusBox.textContent = message;
     contentStatusBox.className =
-      'status-box ' + (type || '');
+  'status ' + (type || '');
 
   }
 
@@ -936,8 +936,8 @@ document.addEventListener('DOMContentLoaded', function () {
       message || '';
 
     editStatusBox.className =
-      'status-box ' +
-      (type || '');
+  'status ' +
+  (type || '');
 
   }
 
