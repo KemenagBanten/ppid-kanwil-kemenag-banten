@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Media Sosial | PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    :root {
+      --green: #0b6b3a;
+      --green-dark: #07512c;
+      --gold: #cdb082;
+      --light: #f6f8f7;
+      --text: #26352d;
+      --muted: #6b776f;
+      --white: #ffffff;
+      --border: #e4e9e6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    header {
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green)
+      );
+      color: white;
+      padding: 18px 6%;
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .header-text h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .header-text p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      padding: 16px 14px;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: .2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--green);
+      border-bottom-color: var(--gold);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1200px;
+      margin: 35px auto 20px;
+      padding: 0 6%;
+    }
+
+    .hero-box {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(11,107,58,.96),
+          rgba(7,81,44,.96)
+        );
+      color: white;
+      border-radius: 20px;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(205,176,130,.35);
+      border-radius: 50%;
+      right: -80px;
+      top: -80px;
+    }
+
+    .hero-box h2 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .hero-box p {
+      margin: 0;
+      max-width: 700px;
+      line-height: 1.7;
+      opacity: .9;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 6% 60px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    .search-box {
+      position: relative;
+      width: min(100%, 320px);
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(11,107,58,.08);
+    }
+
+    /* =========================
+       SOCIAL GRID
+    ========================= */
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .social-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      transition: .25s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .social-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,.09);
+      border-color: rgba(11,107,58,.25);
+    }
+
+    .social-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef5f1;
+      color: var(--green);
+      font-size: 25px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .social-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: var(--green-dark);
+    }
+
+    .social-card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+
+    .social-btn {
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 9px;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      transition: .2s ease;
+    }
+
+    .social-btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    .status.error {
+      color: #b42318;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      background: white;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      padding: 45px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--green-dark);
+      color: white;
+      padding: 25px 6%;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 800px) {
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-box {
+        padding: 28px;
+      }
+
+      .hero-box h2 {
+        font-size: 25px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-text h1 {
+        font-size: 17px;
+      }
+
+      .hero {
+        margin-top: 25px;
+      }
+
+      .hero-box {
+        padding: 25px 20px;
+        border-radius: 16px;
+      }
+
+      main {
+        padding-bottom: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+
+      <img
+        src="assets/logo-kemenag.png"
+        alt="Logo Kementerian Agama"
+        class="logo"
+      >
+
+      <div class="header-text">
+        <h1>PPID Kanwil Kementerian Agama Provinsi Banten</h1>
+        <p>Portal Informasi Publik</p>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+
+      <a href="index.html">Beranda</a>
+
+      <a href="informasi-publik.html">
+        Informasi Publik
+      </a>
+
+      <a href="dip.html">
+        DIP
+      </a>
+
+      <a href="dik.html">
+        DIK
+      </a>
+
+      <a href="berita.html">
+        Berita
+      </a>
+
+      <a href="pengumuman.html">
+        Pengumuman
+      </a>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-box">
+
+      <h2>Media Sosial</h2>
+
+      <p>
+        Temukan kanal media sosial resmi PPID Kanwil
+        Kementerian Agama Provinsi Banten untuk memperoleh
+        informasi dan pembaruan terkini.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTENT -->
+  <main>
+
+    <div class="toolbar">
+
+      <div class="toolbar-title">
+        Kanal Media Sosial
+      </div>
+
+      <div class="search-box">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Cari platform..."
+        >
+      </div>
+
+    </div>
+
+
+    <div
+      id="status"
+      class="status"
+    >
+      Memuat media sosial...
+    </div>
+
+
+    <div
+      id="socialGrid"
+      class="social-grid"
+      style="display:none;"
+    ></div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+    PPID Kanwil Kementerian Agama Provinsi Banten
+    <br>
+    <span>Portal Informasi Publik</span>
+  </footer>
+
+
+  <script>
+
+    /*
+      ==========================================
+      API CONFIG
+      ==========================================
+    */
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let socialData = [];
+
+
+    /*
+      ==========================================
+      ESCAPE HTML
+      ==========================================
+    */
+
+    function escapeHTML(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    /*
+      ==========================================
+      ICON PLATFORM
+      ==========================================
+    */
+
+    function getPlatformIcon(platform) {
+
+      const name =
+        String(platform || '')
+          .toLowerCase()
+          .trim();
+
+      if (name.includes('facebook')) {
+        return 'f';
+      }
+
+      if (name.includes('instagram')) {
+        return '◎';
+      }
+
+      if (
+        name.includes('youtube')
+      ) {
+        return '▶';
+      }
+
+      if (
+        name.includes('twitter') ||
+        name.includes('x.com')
+      ) {
+        return '𝕏';
+      }
+
+      if (
+        name.includes('tiktok')
+      ) {
+        return '♪';
+      }
+
+      if (
+        name.includes('linkedin')
+      ) {
+        return 'in';
+      }
+
+      return '↗';
+
+    }
+
+
+    /*
+      ==========================================
+      LOAD DATA
+      ==========================================
+    */
+
+    async function loadSocialMedia() {
+
+      const status =
+        document.getElementById('status');
+
+      const grid =
+        document.getElementById('socialGrid');
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + '?action=mediaSosial'
+          );
+
+        if (!response.ok) {
+          throw new Error(
+            'HTTP ' + response.status
+          );
+        }
+
+        const result =
+          await response.json();
+
+        console.log(
+          'Response media sosial:',
+          result
+        );
+
+
+        if (
+          !result ||
+          result.success !== true
+        ) {
+
+          throw new Error(
+            result?.message ||
+            'API mengembalikan success=false'
+          );
+
+        }
+
+
+        socialData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        /*
+          Hanya tampilkan data Published
+        */
+
+        socialData =
+          socialData.filter(item => {
+
+            const statusValue =
+              String(
+                item.status || ''
+              )
+                .trim()
+                .toLowerCase();
+
+            return (
+              statusValue === 'published' ||
+              statusValue === ''
+            );
+
+        });
+
+
+        renderSocialMedia();
+
+
+      } catch (error) {
+
+        console.error(
+          'Error media sosial:',
+          error
+        );
+
+        status.className =
+          'status error';
+
+        status.textContent =
+          'Gagal memuat media sosial: ' +
+          error.message;
+
+      }
+
+    }
+
+
+    /*
+      ==========================================
+      RENDER
+      ==========================================
+    */
+
+    function renderSocialMedia() {
+
+      const status =
+        document.getElementById('status');
+
+      const grid =
+        document.getElementById('socialGrid');
+
+      const keyword =
+        document
+          .getElementById('searchInput')
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const filtered =
+        socialData.filter(item => {
+
+          const platform =
+            String(
+              item.nama_platform || ''
+            ).toLowerCase();
+
+          const url =
+            String(
+              item.url || ''
+            ).toLowerCase();
+
+          return (
+            platform.includes(keyword) ||
+            url.includes(keyword)
+          );
+
+        });
+
+
+      if (!filtered.length) {
+
+        status.style.display =
+          'none';
+
+        grid.style.display =
+          'grid';
+
+        grid.innerHTML = `
+          <div class="empty">
+            Tidak ada media sosial yang ditemukan.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      status.style.display =
+        'none';
+
+      grid.style.display =
+        'grid';
+
+
+      grid.innerHTML =
+        filtered.map(item => {
+
+          const platform =
+            escapeHTML(
+              item.nama_platform
+            );
+
+          const url =
+            String(
+              item.url || ''
+            ).trim();
+
+          const safeUrl =
+            escapeHTML(url);
+
+          const icon =
+            escapeHTML(
+              getPlatformIcon(
+                item.nama_platform
+              )
+            );
+
+
+          return `
+
+            <article class="social-card">
+
+              <div class="social-icon">
+                ${icon}
+              </div>
+
+              <h3>
+                ${platform}
+              </h3>
+
+              <p>
+                ${safeUrl || 'Tautan belum tersedia'}
+              </p>
+
+              ${
+                url
+                  ? `
+                    <a
+                      class="social-btn"
+                      href="${safeUrl}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Kunjungi Platform →
+                    </a>
+                  `
+                  : ''
+              }
+
+            </article>
+
+          `;
+
+        }).join('');
+
+    }
+
+
+    /*
+      ==========================================
+      SEARCH
+      ==========================================
+    */
+
+    document
+      .getElementById('searchInput')
+      .addEventListener(
+        'input',
+        renderSocialMedia
+      );
+
+
+    /*
+      ==========================================
+      START
+      ==========================================
+    */
+
+    loadSocialMedia();
+
+  </script>
+
+</body>
+</html>
+
