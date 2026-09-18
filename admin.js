@@ -214,7 +214,15 @@ if (sopForm) {
         const keterangan =
           sopKeterangan.value.trim();
 
+console.log(
+  'DEBUG SOP tanggal_update:',
+  tanggal_update
+);
 
+console.log(
+  'DEBUG SOP keterangan:',
+  keterangan
+);
         // =====================================================
         // VALIDASI
         // =====================================================
