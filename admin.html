@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin PPID - Kantor Wilayah Kementerian Agama Provinsi Banten</title>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+  <title>
+    Admin PPID - Kantor Wilayah Kementerian Agama Provinsi Banten
+  </title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -223,172 +234,199 @@
       .card {
         padding: 22px 18px;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
 
-  <header class="header">
-    <div class="header-inner">
+<header class="header">
 
-      <div class="header-logo">
-        <img
-          src="assets/logo-kemenag.png"
-          alt="Logo Kementerian Agama Republik Indonesia"
-        >
-      </div>
+  <div class="header-inner">
 
-      <div class="header-text">
-        <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
-        <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
-      </div>
+```
+<div class="header-logo">
 
-    </div>
-  </header>
+  <img
+    src="assets/logo-kemenag.png"
+    alt="Logo Kementerian Agama Republik Indonesia"
+  >
 
+</div>
 
-  <main class="container">
+<div class="header-text">
 
-    <div class="card">
+  <h1>
+    KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+  </h1>
 
-      <h2 id="formTitle">
-        Upload Dokumen
-      </h2>
+  <p>
+    PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
+  </p>
 
-      <div class="description" id="formDescription">
-        Upload dokumen PDF ke Google Drive dan simpan URL dokumen
-        secara otomatis ke database Google Sheets.
-      </div>
+</div>
+```
 
+  </div>
 
-      <form id="uploadForm">
+</header>
 
-        <!-- JENIS DATA -->
+<main class="container">
 
-        <div class="form-group">
+  <div class="card">
 
-          <label for="sheetName">
-            Jenis Data
-          </label>
+```
+<h2 id="formTitle">
+  Upload Dokumen
+</h2>
 
-          <select id="sheetName" required>
+<div class="description" id="formDescription">
 
-            <option value="">
-              -- Pilih Jenis Data --
-            </option>
+  Upload dokumen PDF ke Google Drive dan simpan URL dokumen
+  secara otomatis ke database Google Sheets.
 
-            <option value="INFORMASI_PUBLIK">
-              Informasi Publik
-            </option>
-
-            <option value="DIP">
-              Daftar Informasi Publik (DIP)
-            </option>
-
-            <option value="BERITA">
-              Berita
-            </option>
-
-          </select>
-
-        </div>
+</div>
 
 
-        <!-- ID DATA -->
-
-        <div class="form-group">
-
-          <label for="idValue">
-            ID Data
-          </label>
-
-          <select id="idValue" required>
-
-            <option value="">
-              -- Pilih Data --
-            </option>
-
-          </select>
-
-          <div
-            class="file-info"
-            id="dataInfo"
-          >
-            Pilih jenis data terlebih dahulu.
-          </div>
-
-        </div>
+<form id="uploadForm">
 
 
-        <!-- FILE -->
+  <!-- JENIS DATA -->
 
-        <div class="form-group">
+  <div class="form-group">
 
-          <label for="file" id="fileLabel">
-            Dokumen PDF
-          </label>
+    <label for="sheetName">
+      Jenis Data
+    </label>
 
-          <input
-            type="file"
-            id="file"
-            accept=".pdf,application/pdf"
-            required
-          >
+    <select id="sheetName" required>
 
-          <div
-            class="file-info"
-            id="fileInfo"
-          >
-            Hanya file PDF.
-          </div>
+      <option value="">
+        -- Pilih Jenis Data --
+      </option>
 
-        </div>
+      <option value="INFORMASI_PUBLIK">
+        Informasi Publik
+      </option>
 
+      <option value="DIP">
+        Daftar Informasi Publik (DIP)
+      </option>
 
-        <!-- BUTTON -->
+      <option value="BERITA">
+        Berita
+      </option>
 
-        <button
-          type="submit"
-          id="uploadButton"
-        >
-          Upload Dokumen
-        </button>
+      <option value="PENGUMUMAN">
+        Pengumuman
+      </option>
 
-      </form>
+    </select>
+
+  </div>
 
 
-      <div
-        id="statusBox"
-        class="status"
-      ></div>
+  <!-- ID DATA -->
 
+  <div class="form-group">
 
-      <div class="warning">
+    <label for="idValue">
+      ID Data
+    </label>
 
-        <strong>Catatan:</strong>
+    <select id="idValue" required>
 
-        Halaman ini sementara digunakan untuk pengujian.
-        Sebelum digunakan secara resmi, kita akan menambahkan
-        mekanisme akses admin agar halaman upload tidak terbuka
-        untuk umum.
+      <option value="">
+        -- Pilih Data --
+      </option>
 
-      </div>
+    </select>
 
-
-      <a
-        href="index.html"
-        class="back"
-      >
-        ← Kembali ke Website PPID
-      </a>
-
+    <div
+      class="file-info"
+      id="dataInfo"
+    >
+      Pilih jenis data terlebih dahulu.
     </div>
 
-  </main>
+  </div>
 
 
-  <script src="admin.js?v=3"></script>
+  <!-- FILE -->
+
+  <div class="form-group">
+
+    <label
+      for="file"
+      id="fileLabel"
+    >
+      Dokumen PDF
+    </label>
+
+    <input
+      type="file"
+      id="file"
+      accept=".pdf,application/pdf"
+      required
+    >
+
+    <div
+      class="file-info"
+      id="fileInfo"
+    >
+      Hanya file PDF.
+    </div>
+
+  </div>
+
+
+  <!-- BUTTON -->
+
+  <button
+    type="submit"
+    id="uploadButton"
+  >
+    Upload Dokumen
+  </button>
+
+</form>
+
+
+<div
+  id="statusBox"
+  class="status"
+></div>
+
+
+<div class="warning">
+
+  <strong>Catatan:</strong>
+
+  Halaman ini sementara digunakan untuk pengujian.
+  Sebelum digunakan secara resmi, kita akan menambahkan
+  mekanisme akses admin agar halaman upload tidak terbuka
+  untuk umum.
+
+</div>
+
+
+<a
+  href="index.html"
+  class="back"
+>
+  ← Kembali ke Website PPID
+</a>
+```
+
+  </div>
+
+</main>
+
+<script src="admin.js?v=4"></script>
 
 </body>
+
 </html>
