@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kalender | PPID Kanwil Kemenag Banten</title>
+
+  <style>
+    :root {
+      --green: #087443;
+      --green-dark: #055c35;
+      --gold: #cdb082;
+      --bg: #f5f7f6;
+      --white: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(205,176,130,.13),
+          transparent 30%
+        ),
+        var(--bg);
+    }
+
+    /* HEADER */
+
+    header {
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green)
+      );
+      color: white;
+      padding: 18px 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      background: white;
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      opacity: .85;
+    }
+
+    /* NAV */
+
+    nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: flex;
+      gap: 4px;
+      padding: 10px 20px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #374151;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: rgba(8,116,67,.08);
+      color: var(--green);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1180px;
+      margin: 38px auto 25px;
+      padding: 0 20px;
+    }
+
+    .hero-box {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(8,116,67,.97),
+          rgba(5,92,53,.96)
+        );
+      color: white;
+      border-radius: 20px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      right: -75px;
+      top: -100px;
+      background: rgba(205,176,130,.20);
+    }
+
+    .hero-box h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    .hero-box p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 760px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.9);
+    }
+
+    /* CONTENT */
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 20px 60px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .search {
+      flex: 1;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+      background: white;
+    }
+
+    .search:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(8,116,67,.08);
+    }
+
+    .filter {
+      min-width: 150px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: white;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .refresh-btn {
+      border: 0;
+      border-radius: 9px;
+      padding: 0 18px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .refresh-btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* EVENT LIST */
+
+    .event-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: .2s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.08);
+    }
+
+    /* DATE */
+
+    .date-box {
+      background: linear-gradient(
+        160deg,
+        var(--green),
+        var(--green-dark)
+      );
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 10px;
+      text-align: center;
+    }
+
+    .date-day {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .date-month {
+      margin-top: 7px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .date-year {
+      margin-top: 3px;
+      font-size: 12px;
+      opacity: .8;
+    }
+
+    /* EVENT BODY */
+
+    .event-body {
+      padding: 21px 23px;
+    }
+
+    .event-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .event-title {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .event-id {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status-published {
+      background: #e8f7ef;
+      color: var(--green);
+    }
+
+    .status-lain {
+      background: #eef2f7;
+      color: #4b5563;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .meta-item {
+      background: #f7f9f8;
+      border-radius: 8px;
+      padding: 8px 11px;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .description {
+      margin-top: 15px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      line-height: 1.7;
+      color: #4b5563;
+    }
+
+    .empty,
+    .loading,
+    .error {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .error {
+      color: #b42318;
+      background: #fff8f7;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #063e26;
+      color: rgba(255,255,255,.8);
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 760px) {
+
+      .toolbar {
+        flex-direction: column;
+      }
+
+      .filter {
+        width: 100%;
+      }
+
+      .refresh-btn {
+        height: 42px;
+      }
+
+      .event-card {
+        grid-template-columns: 1fr;
+      }
+
+      .date-box {
+        min-height: 105px;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .date-day {
+        font-size: 30px;
+      }
+
+      .date-month {
+        margin-top: 0;
+      }
+
+      .event-head {
+        flex-direction: column;
+      }
+
+      .brand h1 {
+        font-size: 17px;
+      }
+
+      .brand p {
+        font-size: 12px;
+      }
+
+      .hero-box {
+        padding: 25px;
+      }
+
+      .hero-box h2 {
+        font-size: 25px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-inner">
+
+    <img
+      src="assets/logo-kemenag.png"
+      alt="Logo Kementerian Agama"
+      class="logo"
+    >
+
+    <div class="brand">
+
+      <h1>
+        PPID Kanwil Kementerian Agama Provinsi Banten
+      </h1>
+
+      <p>
+        Pejabat Pengelola Informasi dan Dokumentasi
+      </p>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<nav>
+
+  <div class="nav-inner">
+
+    <a href="index.html">
+      Beranda
+    </a>
+
+    <a href="informasi-publik.html">
+      Informasi Publik
+    </a>
+
+    <a href="dip.html">
+      DIP
+    </a>
+
+    <a href="dik.html">
+      DIK
+    </a>
+
+    <a href="berita.html">
+      Berita
+    </a>
+
+    <a href="pengumuman.html">
+      Pengumuman
+    </a>
+
+  </div>
+
+</nav>
+
+
+<section class="hero">
+
+  <div class="hero-box">
+
+    <h2>
+      Kalender Kegiatan
+    </h2>
+
+    <p>
+      Informasi jadwal kegiatan dan agenda PPID
+      Kanwil Kementerian Agama Provinsi Banten.
+    </p>
+
+  </div>
+
+</section>
+
+
+<main>
+
+  <div class="toolbar">
+
+    <input
+      type="text"
+      id="searchInput"
+      class="search"
+      placeholder="Cari kegiatan, lokasi, atau deskripsi..."
+    >
+
+    <select
+      id="statusFilter"
+      class="filter"
+    >
+      <option value="">
+        Semua Status
+      </option>
+    </select>
+
+    <button
+      class="refresh-btn"
+      onclick="loadKalender()"
+    >
+      ↻ Refresh
+    </button>
+
+  </div>
+
+
+  <div id="content">
+
+    <div class="loading">
+      Memuat kalender kegiatan...
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  PPID Kanwil Kementerian Agama Provinsi Banten
+
+  <br>
+
+  Layanan Informasi Publik
+
+</footer>
+
+
+<script>
+
+  /* =====================================================
+     API
+     ===================================================== */
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+  let allData = [];
+
+
+  /* =====================================================
+     FORMAT TANGGAL
+     ===================================================== */
+
+  function parseDate(value) {
+
+    if (!value) {
+      return null;
+    }
+
+    const date = new Date(value);
+
+    if (!isNaN(date.getTime())) {
+      return date;
+    }
+
+    const text = String(value).trim();
+
+    const match = text.match(
+      /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})(?:\s+(\d{1,2}):(\d{2}))?$/
+    );
+
+    if (!match) {
+      return null;
+    }
+
+    const day = Number(match[1]);
+    const month = Number(match[2]) - 1;
+    const year = Number(match[3]);
+    const hour = Number(match[4] || 0);
+    const minute = Number(match[5] || 0);
+
+    return new Date(
+      year,
+      month,
+      day,
+      hour,
+      minute
+    );
+
+  }
+
+
+  function formatTanggal(value) {
+
+    const date = parseDate(value);
+
+    if (!date) {
+      return value || '-';
+    }
+
+    return date.toLocaleDateString(
+      'id-ID',
+      {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      }
+    );
+
+  }
+
+
+  function formatJam(value) {
+
+    const date = parseDate(value);
+
+    if (!date) {
+      return '';
+    }
+
+    const hasTime =
+      String(value).includes(':') ||
+      String(value).includes('T');
+
+    if (!hasTime) {
+      return '';
+    }
+
+    return date.toLocaleTimeString(
+      'id-ID',
+      {
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     ESCAPE HTML
+     ===================================================== */
+
+  function escapeHTML(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+      return '';
+    }
+
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
+  }
+
+
+  /* =====================================================
+     STATUS
+     ===================================================== */
+
+  function getStatusClass(status) {
+
+    const text =
+      String(status || '')
+        .toLowerCase()
+        .trim();
+
+    if (text === 'published') {
+      return 'status-published';
+    }
+
+    return 'status-lain';
+
+  }
+
+
+  /* =====================================================
+     LOAD DATA
+     ===================================================== */
+
+  async function loadKalender() {
+
+    const content =
+      document.getElementById('content');
+
+    content.innerHTML = `
+      <div class="loading">
+        Memuat kalender kegiatan...
+      </div>
+    `;
+
+    try {
+
+      const response =
+        await fetch(
+          API_URL + '?action=kalender'
+        );
+
+      if (!response.ok) {
+
+        throw new Error(
+          'HTTP Error ' +
+          response.status
+        );
+
+      }
+
+      const result =
+        await response.json();
+
+      console.log(
+        'API Kalender:',
+        result
+      );
+
+      if (result.success !== true) {
+
+        throw new Error(
+          result.message ||
+          'API mengembalikan success=false'
+        );
+
+      }
+
+      allData =
+        Array.isArray(result.data)
+          ? result.data
+          : [];
+
+      buildStatusFilter();
+
+      renderData(allData);
+
+    } catch (error) {
+
+      console.error(
+        'Gagal memuat kalender:',
+        error
+      );
+
+      content.innerHTML = `
+        <div class="error">
+          <strong>
+            Data kalender gagal dimuat.
+          </strong>
+
+          <br><br>
+
+          ${escapeHTML(error.message)}
+
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  /* =====================================================
+     STATUS FILTER
+     ===================================================== */
+
+  function buildStatusFilter() {
+
+    const select =
+      document.getElementById(
+        'statusFilter'
+      );
+
+    const statuses =
+      [
+        ...new Set(
+          allData
+            .map(item =>
+              String(item.status || '').trim()
+            )
+            .filter(Boolean)
+        )
+      ];
+
+    select.innerHTML = `
+      <option value="">
+        Semua Status
+      </option>
+    `;
+
+    statuses.forEach(status => {
+
+      const option =
+        document.createElement('option');
+
+      option.value = status;
+
+      option.textContent = status;
+
+      select.appendChild(option);
+
+    });
+
+  }
+
+
+  /* =====================================================
+     RENDER DATA
+     ===================================================== */
+
+  function renderData(data) {
+
+    const content =
+      document.getElementById('content');
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      content.innerHTML = `
+        <div class="empty">
+          Belum terdapat agenda kegiatan
+          yang dipublikasikan.
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    const eventList =
+      document.createElement('div');
+
+    eventList.className =
+      'event-list';
+
+
+    data.forEach(item => {
+
+      const id =
+        escapeHTML(
+          item.id || '-'
+        );
+
+      const judul =
+        escapeHTML(
+          item.judul || 'Tanpa Judul'
+        );
+
+      const tanggalMulai =
+        formatTanggal(
+          item.tanggal_mulai
+        );
+
+      const tanggalSelesai =
+        formatTanggal(
+          item.tanggal_selesai
+        );
+
+      const jamMulai =
+        formatJam(
+          item.tanggal_mulai
+        );
+
+      const jamSelesai =
+        formatJam(
+          item.tanggal_selesai
+        );
+
+      const lokasi =
+        escapeHTML(
+          item.lokasi || '-'
+        );
+
+      const deskripsi =
+        escapeHTML(
+          item.deskripsi || '-'
+        );
+
+      const status =
+        escapeHTML(
+          item.status || 'Tidak ditentukan'
+        );
+
+      const statusClass =
+        getStatusClass(
+          item.status
+        );
+
+
+      /* DATE BOX */
+
+      const startDate =
+        parseDate(
+          item.tanggal_mulai
+        );
+
+      let day = '--';
+      let month = '---';
+      let year = '';
+
+      if (startDate) {
+
+        day =
+          String(
+            startDate.getDate()
+          ).padStart(2, '0');
+
+        month =
+          startDate
+            .toLocaleDateString(
+              'id-ID',
+              {
+                month: 'short'
+              }
+            )
+            .replace('.', '')
+            .toUpperCase();
+
+        year =
+          startDate.getFullYear();
+
+      }
+
+
+      /* TIME */
+
+      let timeHTML = '';
+
+      if (jamMulai && jamSelesai) {
+
+        timeHTML = `
+          <span class="meta-item">
+            🕐 ${escapeHTML(jamMulai)}
+            – ${escapeHTML(jamSelesai)}
+          </span>
+        `;
+
+      } else if (jamMulai) {
+
+        timeHTML = `
+          <span class="meta-item">
+            🕐 ${escapeHTML(jamMulai)}
+          </span>
+        `;
+
+      }
+
+
+      /* DATE RANGE */
+
+      let dateRangeHTML = '';
+
+      if (
+        item.tanggal_selesai &&
+        tanggalSelesai !== tanggalMulai
+      ) {
+
+        dateRangeHTML = `
+          <span class="meta-item">
+            📅 ${escapeHTML(tanggalMulai)}
+            – ${escapeHTML(tanggalSelesai)}
+          </span>
+        `;
+
+      } else {
+
+        dateRangeHTML = `
+          <span class="meta-item">
+            📅 ${escapeHTML(tanggalMulai)}
+          </span>
+        `;
+
+      }
+
+
+      const card =
+        document.createElement('article');
+
+      card.className =
+        'event-card';
+
+
+      card.innerHTML = `
+
+        <div class="date-box">
+
+          <div class="date-day">
+            ${day}
+          </div>
+
+          <div class="date-month">
+            ${month}
+          </div>
+
+          <div class="date-year">
+            ${year}
+          </div>
+
+        </div>
+
+
+        <div class="event-body">
+
+          <div class="event-head">
+
+            <div>
+
+              <h3 class="event-title">
+                ${judul}
+              </h3>
+
+              <div class="event-id">
+                ID: ${id}
+              </div>
+
+            </div>
+
+            <span class="status ${statusClass}">
+              ${status}
+            </span>
+
+          </div>
+
+
+          <div class="event-meta">
+
+            ${dateRangeHTML}
+
+            ${timeHTML}
+
+            <span class="meta-item">
+              📍 ${lokasi}
+            </span>
+
+          </div>
+
+
+          <div class="description">
+
+            ${deskripsi}
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      eventList.appendChild(card);
+
+    });
+
+
+    content.innerHTML = '';
+
+    content.appendChild(eventList);
+
+  }
+
+
+  /* =====================================================
+     FILTER DATA
+     ===================================================== */
+
+  function applyFilter() {
+
+    const keyword =
+      document
+        .getElementById('searchInput')
+        .value
+        .toLowerCase()
+        .trim();
+
+    const status =
+      document
+        .getElementById('statusFilter')
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+      allData.filter(item => {
+
+        const searchableText =
+          [
+
+            item.id,
+
+            item.judul,
+
+            item.lokasi,
+
+            item.deskripsi,
+
+            item.status,
+
+            item.tanggal_mulai,
+
+            item.tanggal_selesai
+
+          ]
+          .join(' ')
+          .toLowerCase();
+
+
+        const matchesKeyword =
+          !keyword ||
+          searchableText.includes(
+            keyword
+          );
+
+
+        const matchesStatus =
+          !status ||
+          String(item.status || '')
+            .toLowerCase()
+            .trim() === status;
+
+
+        return (
+          matchesKeyword &&
+          matchesStatus
+        );
+
+      });
+
+
+    renderData(filtered);
+
+  }
+
+
+  /* =====================================================
+     SEARCH
+     ===================================================== */
+
+  document
+    .getElementById('searchInput')
+    .addEventListener(
+      'input',
+      applyFilter
+    );
+
+
+  document
+    .getElementById('statusFilter')
+    .addEventListener(
+      'change',
+      applyFilter
+    );
+
+
+  /* =====================================================
+     INITIAL LOAD
+     ===================================================== */
+
+  loadKalender();
+
+</script>
+
+</body>
+</html>
+
