@@ -746,6 +746,7 @@ let currentPermohonanPage = 1;
 const permohonanPageSize = 10;
   
 function filterPermohonanTable() {
+  currentPermohonanPage = 1;
   const keyword = document
     .getElementById('searchPermohonan')
     .value
@@ -868,9 +869,49 @@ function renderPermohonanTable(data) {
       </table>
     </div>
   `;
+if (totalPages > 1) {
+  html += `
+    <div class="pagination">
+      <button
+        type="button"
+        onclick="changePermohonanPage(${currentPermohonanPage - 1})"
+        ${currentPermohonanPage === 1 ? 'disabled' : ''}
+      >
+        ‹ Sebelumnya
+      </button>
 
+      <span>
+        Halaman ${currentPermohonanPage} dari ${totalPages}
+      </span>
+
+      <button
+        type="button"
+        onclick="changePermohonanPage(${currentPermohonanPage + 1})"
+        ${currentPermohonanPage === totalPages ? 'disabled' : ''}
+      >
+        Berikutnya ›
+      </button>
+    </div>
+  `;
+}
+  
   container.innerHTML = html;
 }
+
+function changePermohonanPage(page) {
+  const totalPages = Math.ceil(
+    allPermohonanData.length / permohonanPageSize
+  );
+
+  if (page < 1 || page > totalPages) {
+    return;
+  }
+
+  currentPermohonanPage = page;
+
+  filterPermohonanTable();
+}
+  
   let allKeberatanData = [];
 
 function filterKeberatanTable() {
