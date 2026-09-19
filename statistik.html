@@ -598,11 +598,9 @@ tampilkanGrafikKeberatan(
 
     loadStatistik();
 
-    function tampilkanGrafikPermohonan(data) {
+   function tampilkanGrafikPermohonan(data) {
 
-  const canvas = document.getElementById(
-    'grafikPermohonan'
-  );
+  const canvas = document.getElementById('grafikPermohonan');
 
   new Chart(canvas, {
     type: 'bar',
@@ -615,59 +613,140 @@ tampilkanGrafikKeberatan(
         'Ditolak'
       ],
 
-      datasets: [
-        {
-          label: 'Jumlah Permohonan',
+      datasets: [{
+        label: 'Jumlah Permohonan',
 
-          data: [
-            data.diterima,
-            data.dalamProses,
-            data.selesai,
-            data.ditolak
-          ],
+        data: [
+          data.diterima,
+          data.dalamProses,
+          data.selesai,
+          data.ditolak
+        ],
 
-          borderWidth: 1,
-
-          borderRadius: 6
-        }
-      ]
+        borderWidth: 0,
+        borderRadius: 8,
+        borderSkipped: false,
+        maxBarThickness: 45
+      }]
     },
 
     options: {
 
       responsive: true,
-
       maintainAspectRatio: false,
 
+      layout: {
+        padding: {
+          top: 25,
+          right: 10,
+          left: 10,
+          bottom: 5
+        }
+      },
+
       plugins: {
+
         legend: {
           display: false
+        },
+
+        tooltip: {
+          backgroundColor: '#26352d',
+          titleColor: '#ffffff',
+          bodyColor: '#ffffff',
+          padding: 12,
+          cornerRadius: 8,
+          displayColors: false,
+
+          callbacks: {
+            label: function(context) {
+              return 'Jumlah: ' + context.parsed.y;
+            }
+          }
         }
       },
 
       scales: {
 
+        x: {
+          grid: {
+            display: false
+          },
+
+          border: {
+            display: false
+          },
+
+          ticks: {
+            color: '#68756e',
+            font: {
+              size: 12
+            }
+          }
+        },
+
         y: {
           beginAtZero: true,
 
+          border: {
+            display: false
+          },
+
+          grid: {
+            color: '#edf2ef',
+            drawTicks: false
+          },
+
           ticks: {
-            precision: 0
+            color: '#8a968f',
+            precision: 0,
+            padding: 8
           }
         }
-
       }
+    },
 
-    }
+    plugins: [{
+      id: 'valueLabelsPermohonan',
 
+      afterDatasetsDraw: function(chart) {
+
+        const ctx = chart.ctx;
+
+        ctx.save();
+
+        ctx.font = '600 12px Arial';
+        ctx.fillStyle = '#26352d';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+
+        chart.data.datasets.forEach(function(dataset, datasetIndex) {
+
+          const meta = chart.getDatasetMeta(datasetIndex);
+
+          meta.data.forEach(function(bar, index) {
+
+            const value = dataset.data[index];
+
+            ctx.fillText(
+              value,
+              bar.x,
+              bar.y - 7
+            );
+
+          });
+
+        });
+
+        ctx.restore();
+      }
+    }]
   });
-
 }
 
     function tampilkanGrafikKeberatan(data) {
 
-  const canvas = document.getElementById(
-    'grafikKeberatan'
-  );
+  const canvas = document.getElementById('grafikKeberatan');
 
   new Chart(canvas, {
     type: 'bar',
@@ -680,54 +759,136 @@ tampilkanGrafikKeberatan(
         'Ditolak'
       ],
 
-      datasets: [
-        {
-          label: 'Jumlah Keberatan',
+      datasets: [{
+        label: 'Jumlah Keberatan',
 
-          data: [
-            data.diterima,
-            data.dalamProses,
-            data.selesai,
-            data.ditolak
-          ],
+        data: [
+          data.diterima,
+          data.dalamProses,
+          data.selesai,
+          data.ditolak
+        ],
 
-          borderWidth: 1,
-
-          borderRadius: 6
-        }
-      ]
+        borderWidth: 0,
+        borderRadius: 8,
+        borderSkipped: false,
+        maxBarThickness: 45
+      }]
     },
 
     options: {
 
       responsive: true,
-
       maintainAspectRatio: false,
 
+      layout: {
+        padding: {
+          top: 25,
+          right: 10,
+          left: 10,
+          bottom: 5
+        }
+      },
+
       plugins: {
+
         legend: {
           display: false
+        },
+
+        tooltip: {
+          backgroundColor: '#26352d',
+          titleColor: '#ffffff',
+          bodyColor: '#ffffff',
+          padding: 12,
+          cornerRadius: 8,
+          displayColors: false,
+
+          callbacks: {
+            label: function(context) {
+              return 'Jumlah: ' + context.parsed.y;
+            }
+          }
         }
       },
 
       scales: {
 
+        x: {
+          grid: {
+            display: false
+          },
+
+          border: {
+            display: false
+          },
+
+          ticks: {
+            color: '#68756e',
+            font: {
+              size: 12
+            }
+          }
+        },
+
         y: {
           beginAtZero: true,
 
+          border: {
+            display: false
+          },
+
+          grid: {
+            color: '#edf2ef',
+            drawTicks: false
+          },
+
           ticks: {
-            precision: 0
+            color: '#8a968f',
+            precision: 0,
+            padding: 8
           }
         }
-
       }
+    },
 
-    }
+    plugins: [{
+      id: 'valueLabelsKeberatan',
 
+      afterDatasetsDraw: function(chart) {
+
+        const ctx = chart.ctx;
+
+        ctx.save();
+
+        ctx.font = '600 12px Arial';
+        ctx.fillStyle = '#26352d';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+
+        chart.data.datasets.forEach(function(dataset, datasetIndex) {
+
+          const meta = chart.getDatasetMeta(datasetIndex);
+
+          meta.data.forEach(function(bar, index) {
+
+            const value = dataset.data[index];
+
+            ctx.fillText(
+              value,
+              bar.x,
+              bar.y - 7
+            );
+
+          });
+
+        });
+
+        ctx.restore();
+      }
+    }]
   });
-
 }
-
     
   </script>
 
