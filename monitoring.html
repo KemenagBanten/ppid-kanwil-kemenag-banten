@@ -768,7 +768,6 @@ function renderPermohonanTable(data) {
   const container = document.getElementById('permohonanTableContainer');
 
   if (!data || data.length === 0) {
-    
     container.innerHTML = `
       <div class="empty-data">
         Belum ada data permohonan.
@@ -777,10 +776,24 @@ function renderPermohonanTable(data) {
     return;
   }
 
-  function renderPermohonanTable(data) {
-  const container = document.getElementById('permohonanTableContainer');
+  const totalData = data.length;
+  const totalPages = Math.ceil(
+    totalData / permohonanPageSize
+  );
 
-  if (!data || data.length === 0) {
+  if (currentPermohonanPage > totalPages) {
+    currentPermohonanPage = totalPages;
+  }
+
+  const startIndex =
+    (currentPermohonanPage - 1) *
+    permohonanPageSize;
+
+  const endIndex =
+    startIndex + permohonanPageSize;
+
+  const pageData =
+    data.slice(startIndex, endIndex);
 
   let html = `
     <div class="table-wrapper">
@@ -796,30 +809,51 @@ function renderPermohonanTable(data) {
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody>
   `;
 
   pageData.forEach(function(item, index) {
-    const status = normalizeStatus(item.status);
+    const status =
+      normalizeStatus(item.status);
 
-    let statusClass = 'status-diterima';
+    let statusClass =
+      'status-diterima';
 
     if (status === 'dalam proses') {
       statusClass = 'status-proses';
+
     } else if (status === 'selesai') {
       statusClass = 'status-selesai';
+
     } else if (status === 'ditolak') {
       statusClass = 'status-ditolak';
     }
 
     html += `
       <tr>
-        <td>${index + 1}</td>
-        <td>${item.nomor_permohonan || '-'}</td>
-        <td>${item.nama_pemohon || '-'}</td>
-        <td>${item.email || '-'}</td>
-        <td>${item.informasi_diminta || '-'}</td>
-        <td>${item.tanggal_masuk || '-'}</td>
+        <td>${startIndex + index + 1}</td>
+
+        <td>
+          ${item.nomor_permohonan || '-'}
+        </td>
+
+        <td>
+          ${item.nama_pemohon || '-'}
+        </td>
+
+        <td>
+          ${item.email || '-'}
+        </td>
+
+        <td>
+          ${item.informasi_diminta || '-'}
+        </td>
+
+        <td>
+          ${item.tanggal_masuk || '-'}
+        </td>
+
         <td>
           <span class="status-badge ${statusClass}">
             ${item.status || '-'}
@@ -837,7 +871,6 @@ function renderPermohonanTable(data) {
 
   container.innerHTML = html;
 }
-
   let allKeberatanData = [];
 
 function filterKeberatanTable() {
