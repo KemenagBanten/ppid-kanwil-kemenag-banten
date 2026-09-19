@@ -907,6 +907,273 @@ if (laporanForm) {
 
 }
 
+  // =========================================================
+// TAMBAH PENGADAAN - ELEMENT
+// =========================================================
+
+const pengadaanForm =
+  document.getElementById('pengadaanForm');
+
+const pengadaanNama =
+  document.getElementById('pengadaanNama');
+
+const pengadaanNilai =
+  document.getElementById('pengadaanNilai');
+
+const pengadaanHps =
+  document.getElementById('pengadaanHps');
+
+const pengadaanSpesifikasi =
+  document.getElementById('pengadaanSpesifikasi');
+
+const pengadaanLokasi =
+  document.getElementById('pengadaanLokasi');
+
+const pengadaanJadwal =
+  document.getElementById('pengadaanJadwal');
+
+const pengadaanPenyedia =
+  document.getElementById('pengadaanPenyedia');
+
+const pengadaanStatus =
+  document.getElementById('pengadaanStatus');
+
+const savePengadaanButton =
+  document.getElementById('savePengadaanButton');
+
+const pengadaanStatusBox =
+  document.getElementById('pengadaanStatusBox');
+
+
+// =========================================================
+// TAMBAH PENGADAAN - SUBMIT
+// =========================================================
+
+if (pengadaanForm) {
+
+  pengadaanForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      try {
+
+        const namaPekerjaan =
+          pengadaanNama.value.trim();
+
+        const nilai =
+          pengadaanNilai.value;
+
+        const hps =
+          pengadaanHps.value;
+
+        const spesifikasi =
+          pengadaanSpesifikasi.value.trim();
+
+        const lokasi =
+          pengadaanLokasi.value.trim();
+
+        const jadwal =
+          pengadaanJadwal.value.trim();
+
+        const penyedia =
+          pengadaanPenyedia.value.trim();
+
+        const status =
+          pengadaanStatus.value;
+
+
+        // =====================================================
+        // VALIDASI
+        // =====================================================
+
+        if (!namaPekerjaan) {
+
+          throw new Error(
+            'Nama pekerjaan pengadaan wajib diisi.'
+          );
+
+        }
+
+
+        // =====================================================
+        // STATUS PROSES
+        // =====================================================
+
+        savePengadaanButton.disabled =
+          true;
+
+        pengadaanStatusBox.style.display =
+          'block';
+
+        pengadaanStatusBox.className =
+          'status loading';
+
+        pengadaanStatusBox.textContent =
+          'Menyimpan data pengadaan...';
+
+
+        // =====================================================
+        // PAYLOAD
+        // =====================================================
+
+        const payload = {
+
+          action:
+            'tambahPengadaan',
+
+          namaPekerjaan:
+            namaPekerjaan,
+
+          nilai:
+            nilai,
+
+          hps:
+            hps,
+
+          spesifikasi:
+            spesifikasi,
+
+          lokasi:
+            lokasi,
+
+          jadwal:
+            jadwal,
+
+          penyedia:
+            penyedia,
+
+          status:
+            status
+
+        };
+
+
+        console.log(
+          'PAYLOAD TAMBAH PENGADAAN:',
+          payload
+        );
+
+
+        // =====================================================
+        // KIRIM KE APPS SCRIPT
+        // =====================================================
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        // =====================================================
+        // RESPONSE
+        // =====================================================
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL TAMBAH PENGADAAN:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Pengadaan gagal ditambahkan.'
+          );
+
+        }
+
+
+        // =====================================================
+        // ID BARU
+        // =====================================================
+
+        const newId =
+          result.id ||
+          result.data?.id ||
+          result.ID ||
+          result.data?.ID ||
+          '';
+
+
+        // =====================================================
+        // SUKSES
+        // =====================================================
+
+        pengadaanStatusBox.style.display =
+          'block';
+
+        pengadaanStatusBox.className =
+          'status success';
+
+        pengadaanStatusBox.textContent =
+          'Pengadaan berhasil ditambahkan.' +
+          (
+            newId
+              ? ' ID: ' + newId
+              : ''
+          );
+
+
+        // =====================================================
+        // RESET FORM
+        // =====================================================
+
+        pengadaanForm.reset();
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR TAMBAH PENGADAAN:',
+          error
+        );
+
+        pengadaanStatusBox.style.display =
+          'block';
+
+        pengadaanStatusBox.className =
+          'status error';
+
+        pengadaanStatusBox.textContent =
+          error.message ||
+          'Terjadi kesalahan saat menambahkan pengadaan.';
+
+
+      } finally {
+
+        savePengadaanButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
+  
 // =========================================================
 // UPLOAD PDF LAPORAN
 // =========================================================
