@@ -689,6 +689,223 @@ if (regulasiForm) {
   );
 
 }
+
+// =========================================================
+// TAMBAH LAPORAN - SUBMIT
+// =========================================================
+
+if (laporanForm) {
+
+  laporanForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      try {
+
+        const judul =
+          laporanJudul.value.trim();
+
+        const jenis =
+          laporanJenis.value;
+
+        const tahun =
+          laporanTahun.value;
+
+        const ringkasan =
+          laporanRingkasan.value.trim();
+
+        const status =
+          laporanStatus.value;
+
+
+        // =====================================================
+        // VALIDASI
+        // =====================================================
+
+        if (!judul) {
+
+          throw new Error(
+            'Judul laporan wajib diisi.'
+          );
+
+        }
+
+        if (!jenis) {
+
+          throw new Error(
+            'Jenis laporan wajib dipilih.'
+          );
+
+        }
+
+        if (!tahun) {
+
+          throw new Error(
+            'Tahun laporan wajib diisi.'
+          );
+
+        }
+
+
+        // =====================================================
+        // STATUS
+        // =====================================================
+
+        saveLaporanButton.disabled =
+          true;
+
+        laporanStatusBox.style.display =
+          'block';
+
+        laporanStatusBox.className =
+          'status loading';
+
+        laporanStatusBox.textContent =
+          'Menyimpan laporan...';
+
+
+        // =====================================================
+        // PAYLOAD
+        // =====================================================
+
+        const payload = {
+
+          action: 'tambahLaporan',
+
+          judul: judul,
+
+          jenis: jenis,
+
+          tahun: tahun,
+
+          ringkasan: ringkasan,
+
+          status: status
+
+        };
+
+
+        console.log(
+          'PAYLOAD TAMBAH LAPORAN:',
+          payload
+        );
+
+
+        // =====================================================
+        // KIRIM KE APPS SCRIPT
+        // =====================================================
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        // =====================================================
+        // RESPONSE
+        // =====================================================
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL TAMBAH LAPORAN:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Laporan gagal ditambahkan.'
+          );
+
+        }
+
+
+        // =====================================================
+        // SUKSES
+        // =====================================================
+
+        const newId =
+          result.id ||
+          result.data?.id ||
+          result.ID ||
+          result.data?.ID ||
+          '';
+
+
+        laporanStatusBox.style.display =
+          'block';
+
+        laporanStatusBox.className =
+          'status success';
+
+        laporanStatusBox.textContent =
+          'Laporan berhasil ditambahkan.' +
+          (
+            newId
+              ? ' ID: ' + newId
+              : ''
+          );
+
+
+        // =====================================================
+        // RESET FORM
+        // =====================================================
+
+        laporanForm.reset();
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR TAMBAH LAPORAN:',
+          error
+        );
+
+        laporanStatusBox.style.display =
+          'block';
+
+        laporanStatusBox.className =
+          'status error';
+
+        laporanStatusBox.textContent =
+          error.message ||
+          'Terjadi kesalahan saat menambahkan laporan.';
+
+
+      } finally {
+
+        saveLaporanButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
   
   // =========================================================
   // EDIT KONTEN - ELEMENT
