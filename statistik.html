@@ -193,6 +193,16 @@
   align-items: start;
 }
 
+    .statistik-row > .statistik-kpi {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.statistik-row > .statistik-grafik {
+  grid-column: 2;
+  grid-row: 1;
+}
+    
 .statistik-kpi {
   min-width: 0;
 }
@@ -483,7 +493,7 @@
           data.permohonan.diterima;
 
 document.getElementById(
-  'persenPermohonanDiterima'
+  'permohonanDiterimaPersen'
 ).textContent =
   hitungPersentase(
     data.permohonan.diterima,
@@ -495,7 +505,7 @@ document.getElementById(
         ).textContent =
           data.permohonan.dalamProses;
 document.getElementById(
-  'persenPermohonanDalamProses'
+  'permohonanDalamProsesPersen'
 ).textContent =
   hitungPersentase(
     data.permohonan.dalamProses,
@@ -507,7 +517,7 @@ document.getElementById(
         ).textContent =
           data.permohonan.selesai;
 document.getElementById(
-  'persenPermohonanSelesai'
+  'permohonanSelesaiPersen'
 ).textContent =
   hitungPersentase(
     data.permohonan.selesai,
@@ -519,7 +529,7 @@ document.getElementById(
         ).textContent =
           data.permohonan.ditolak;
 document.getElementById(
-  'persenPermohonanDitolak'
+  'permohonanDitolakPersen'
 ).textContent =
   hitungPersentase(
     data.permohonan.ditolak,
