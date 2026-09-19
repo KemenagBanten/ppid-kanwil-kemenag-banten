@@ -2656,32 +2656,38 @@ case 'PENGADAAN': action = 'pengadaan'; break;
 
 
           let label =
-            item.id || '';
+  item.id || '';
 
+if (sheetName === 'DIP') {
 
-          if (
-            sheetName === 'DIP'
-          ) {
+  label +=
+    ' — ' +
+    (
+      item.nama_informasi ||
+      item.judul ||
+      ''
+    );
 
-            label +=
-              ' — ' +
-              (
-                item.nama_informasi ||
-                item.judul ||
-                ''
-              );
+} else if (sheetName === 'PENGADAAN') {
 
-          } else {
+  label +=
+    ' — ' +
+    (
+      item.nama_pekerjaan ||
+      ''
+    );
 
-            label +=
-              ' — ' +
-              (
-                item.judul ||
-                item.nama_informasi ||
-                ''
-              );
+} else {
 
-          }
+  label +=
+    ' — ' +
+    (
+      item.judul ||
+      item.nama_informasi ||
+      ''
+    );
+
+}
 
 
           option.textContent =
