@@ -885,9 +885,7 @@ const totalPages = Math.ceil(
   totalData / permohonanPageSize
 );
 
-console.log('TOTAL DATA PERMOHONAN:', totalData);
-console.log('TOTAL HALAMAN:', totalPages);
-  
+ 
   if (currentPermohonanPage > totalPages) {
     currentPermohonanPage = totalPages;
   }
@@ -1039,14 +1037,7 @@ const statusFilter = document
   .toLowerCase()
   .trim();
 
-console.log('STATUS FILTER:', statusFilter);
-console.log(
-  'STATUS DATA KEBERATAN:',
-  allKeberatanData.map(function(item) {
-    return item.status;
-  })
-);
-  
+
   const filteredData = allKeberatanData.filter(function(item) {
     const matchesKeyword =
   String(item.nomor_keberatan || '')
@@ -1310,9 +1301,6 @@ async function loadMonitoring() {
         ? permohonanResult.data
         : [];
     
-console.log('DATA PERMOHONAN DARI API:', permohonanData);
-console.log('JUMLAH DATA DARI API:', permohonanData.length);
-
     const keberatanData =
       Array.isArray(
         keberatanResult.data
@@ -1388,11 +1376,7 @@ console.log('JUMLAH DATA DARI API:', permohonanData.length);
 
 allKeberatanData = keberatanData;
 
-console.log(
-  'JUMLAH DATA KEBERATAN:',
-  allKeberatanData.length
-);
-    
+   
 renderKeberatanTable(allKeberatanData);
     
     /* SELESAI */
