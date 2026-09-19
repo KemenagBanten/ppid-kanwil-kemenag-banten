@@ -1084,7 +1084,9 @@ async function loadMonitoring() {
       )
         ? permohonanResult.data
         : [];
-
+    
+console.log('DATA PERMOHONAN DARI API:', permohonanData);
+console.log('JUMLAH DATA DARI API:', permohonanData.length);
 
     const keberatanData =
       Array.isArray(
