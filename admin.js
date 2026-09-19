@@ -206,6 +206,33 @@ const saveRegulasiButton =
 const regulasiStatusBox =
   document.getElementById('regulasiStatusBox');
 
+  // =========================================================
+// TAMBAH LAPORAN - ELEMENT
+// =========================================================
+
+const laporanForm =
+  document.getElementById('laporanForm');
+
+const laporanJudul =
+  document.getElementById('laporanJudul');
+
+const laporanJenis =
+  document.getElementById('laporanJenis');
+
+const laporanTahun =
+  document.getElementById('laporanTahun');
+
+const laporanRingkasan =
+  document.getElementById('laporanRingkasan');
+
+const laporanStatus =
+  document.getElementById('laporanStatus');
+
+const saveLaporanButton =
+  document.getElementById('saveLaporanButton');
+
+const laporanStatusBox =
+  document.getElementById('laporanStatusBox');
 // =========================================================
 // TAMBAH SOP - SUBMIT
 // =========================================================
@@ -467,75 +494,6 @@ if (regulasiForm) {
 
         const status =
           regulasiStatus.value;
-
-// =========================
-// SIMPAN LAPORAN
-// =========================
-
-if (laporanForm) {
-
-  laporanForm.addEventListener('submit', async function (e) {
-
-    e.preventDefault();
-
-    laporanStatusBox.style.display = 'block';
-    laporanStatusBox.className = 'status';
-    laporanStatusBox.textContent = 'Menyimpan laporan...';
-
-    saveLaporanButton.disabled = true;
-
-    try {
-
-      const payload = {
-        action: 'tambahLaporan',
-
-        judul: laporanJudul.value.trim(),
-        jenis: laporanJenis.value,
-        tahun: laporanTahun.value,
-        ringkasan: laporanRingkasan.value.trim(),
-        status: laporanStatus.value
-      };
-
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      });
-
-      const result = await response.json();
-
-      if (!result.success) {
-        throw new Error(
-          result.message || 'Gagal menyimpan laporan.'
-        );
-      }
-
-      laporanStatusBox.className = 'status success';
-      laporanStatusBox.textContent =
-        'Laporan berhasil disimpan. ID: ' +
-        (result.data?.id || '-');
-
-      laporanForm.reset();
-
-      // Refresh daftar konten jika fungsi tersedia
-      if (typeof loadContentList === 'function') {
-        loadContentList();
-      }
-
-    } catch (error) {
-
-      console.error('Error simpan laporan:', error);
-
-      laporanStatusBox.className = 'status error';
-      laporanStatusBox.textContent =
-        error.message || 'Terjadi kesalahan saat menyimpan laporan.';
-
-    } finally {
-
-      saveLaporanButton.disabled = false;
-
-    }
-
-  });
 
 }// =========================
 // SIMPAN LAPORAN
