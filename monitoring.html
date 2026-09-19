@@ -918,7 +918,13 @@ function changePermohonanPage(page) {
   
   let allKeberatanData = [];
 
+let currentKeberatanPage = 1;
+const keberatanPageSize = 10;
+  
 function filterKeberatanTable() {
+
+  currentKeberatanPage = 1;
+  
   const keyword = document
     .getElementById('searchKeberatan')
     .value
@@ -939,7 +945,9 @@ function filterKeberatanTable() {
 }
 
 function renderKeberatanTable(data) {
-  const container = document.getElementById('keberatanTableContainer');
+  const container = document.getElementById(
+    'keberatanTableContainer'
+  );
 
   if (!data || data.length === 0) {
     container.innerHTML = `
@@ -949,6 +957,26 @@ function renderKeberatanTable(data) {
     `;
     return;
   }
+
+  const totalData = data.length;
+
+  const totalPages = Math.ceil(
+    totalData / keberatanPageSize
+  );
+
+  if (currentKeberatanPage > totalPages) {
+    currentKeberatanPage = totalPages;
+  }
+
+  const startIndex =
+    (currentKeberatanPage - 1) *
+    keberatanPageSize;
+
+  const endIndex =
+    startIndex + keberatanPageSize;
+
+  const pageData =
+    data.slice(startIndex, endIndex);
 
   let html = `
     <div class="table-wrapper">
@@ -965,31 +993,55 @@ function renderKeberatanTable(data) {
             <th>Status</th>
           </tr>
         </thead>
+
         <tbody>
   `;
 
-  data.forEach(function(item, index) {
-    const status = normalizeStatus(item.status);
+  pageData.forEach(function(item, index) {
+    const status =
+      normalizeStatus(item.status);
 
-    let statusClass = 'status-diterima';
+    let statusClass =
+      'status-diterima';
 
     if (status === 'dalam proses') {
       statusClass = 'status-proses';
+
     } else if (status === 'selesai') {
       statusClass = 'status-selesai';
+
     } else if (status === 'ditolak') {
       statusClass = 'status-ditolak';
     }
 
     html += `
       <tr>
-        <td>${index + 1}</td>
-        <td>${item.nomor_keberatan || '-'}</td>
-        <td>${item.nomor_permohonan || '-'}</td>
-        <td>${item.nama_pemohon || '-'}</td>
-        <td>${item.email || '-'}</td>
-        <td>${item.alasan_keberatan || '-'}</td>
-        <td>${item.tanggal_masuk || '-'}</td>
+        <td>${startIndex + index + 1}</td>
+
+        <td>
+          ${item.nomor_keberatan || '-'}
+        </td>
+
+        <td>
+          ${item.nomor_permohonan || '-'}
+        </td>
+
+        <td>
+          ${item.nama_pemohon || '-'}
+        </td>
+
+        <td>
+          ${item.email || '-'}
+        </td>
+
+        <td>
+          ${item.alasan_keberatan || '-'}
+        </td>
+
+        <td>
+          ${item.tanggal_masuk || '-'}
+        </td>
+
         <td>
           <span class="status-badge ${statusClass}">
             ${item.status || '-'}
@@ -1005,9 +1057,34 @@ function renderKeberatanTable(data) {
     </div>
   `;
 
+  if (totalPages > 1) {
+    html += `
+      <div class="pagination">
+        <button
+          type="button"
+          onclick="changeKeberatanPage(${currentKeberatanPage - 1})"
+          ${currentKeberatanPage === 1 ? 'disabled' : ''}
+        >
+          ‹ Sebelumnya
+        </button>
+
+        <span>
+          Halaman ${currentKeberatanPage} dari ${totalPages}
+        </span>
+
+        <button
+          type="button"
+          onclick="changeKeberatanPage(${currentKeberatanPage + 1})"
+          ${currentKeberatanPage === totalPages ? 'disabled' : ''}
+        >
+          Berikutnya ›
+        </button>
+      </div>
+    `;
+  }
+
   container.innerHTML = html;
 }
-
   
 /* =========================================
    LOAD DATA
