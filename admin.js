@@ -906,6 +906,242 @@ if (laporanForm) {
   );
 
 }
+
+// =========================================================
+// UPLOAD PDF LAPORAN
+// =========================================================
+
+const uploadLaporanButton =
+  document.getElementById('uploadLaporanButton');
+
+const laporanUploadId =
+  document.getElementById('laporanUploadId');
+
+const laporanFile =
+  document.getElementById('laporanFile');
+
+const uploadLaporanStatusBox =
+  document.getElementById('uploadLaporanStatusBox');
+
+
+if (uploadLaporanButton) {
+
+  uploadLaporanButton.addEventListener(
+    'click',
+    async function () {
+
+      try {
+
+        const idValue =
+          laporanUploadId.value.trim();
+
+        const file =
+          laporanFile.files[0];
+
+        // =========================
+        // VALIDASI
+        // =========================
+
+        if (!idValue) {
+          throw new Error(
+            'ID laporan wajib diisi.'
+          );
+        }
+
+        if (!file) {
+          throw new Error(
+            'Silakan pilih file PDF laporan.'
+          );
+        }
+
+        if (
+          file.type !== 'application/pdf' &&
+          !file.name.toLowerCase().endsWith('.pdf')
+        ) {
+          throw new Error(
+            'File laporan harus berupa PDF.'
+          );
+        }
+
+
+        // =========================
+        // STATUS
+        // =========================
+
+        uploadLaporanButton.disabled = true;
+
+        uploadLaporanStatusBox.style.display =
+          'block';
+
+        uploadLaporanStatusBox.className =
+          'status loading';
+
+        uploadLaporanStatusBox.textContent =
+          'Mengupload PDF laporan...';
+
+
+        // =========================
+        // BACA FILE
+        // =========================
+
+        const base64 =
+          await new Promise(
+            function (resolve, reject) {
+
+              const reader =
+                new FileReader();
+
+              reader.onload = function () {
+
+                const result =
+                  reader.result;
+
+                const base64Data =
+                  result.split(',')[1];
+
+                resolve(base64Data);
+
+              };
+
+              reader.onerror =
+                function () {
+
+                  reject(
+                    new Error(
+                      'Gagal membaca file.'
+                    )
+                  );
+
+                };
+
+              reader.readAsDataURL(file);
+
+            }
+          );
+
+
+        // =========================
+        // PAYLOAD
+        // =========================
+
+        const payload = {
+
+          action:
+            'uploadLaporanDocument',
+
+          idValue:
+            idValue,
+
+          fileData:
+            base64,
+
+          fileName:
+            file.name
+
+        };
+
+
+        console.log(
+          'PAYLOAD UPLOAD LAPORAN:',
+          payload
+        );
+
+
+        // =========================
+        // KIRIM KE APPS SCRIPT
+        // =========================
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL UPLOAD LAPORAN:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Upload laporan gagal.'
+          );
+
+        }
+
+
+        // =========================
+        // SUKSES
+        // =========================
+
+        uploadLaporanStatusBox.style.display =
+          'block';
+
+        uploadLaporanStatusBox.className =
+          'status success';
+
+        uploadLaporanStatusBox.textContent =
+          result.message ||
+          'PDF laporan berhasil diupload.';
+
+
+        laporanFile.value = '';
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR UPLOAD LAPORAN:',
+          error
+        );
+
+        uploadLaporanStatusBox.style.display =
+          'block';
+
+        uploadLaporanStatusBox.className =
+          'status error';
+
+        uploadLaporanStatusBox.textContent =
+          error.message ||
+          'Terjadi kesalahan saat upload laporan.';
+
+
+      } finally {
+
+        uploadLaporanButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
+
+
   
   // =========================================================
   // EDIT KONTEN - ELEMENT
