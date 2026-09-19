@@ -185,6 +185,31 @@
   height: 360px;
   position: relative;
 }
+
+    .statistik-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 25px;
+  align-items: stretch;
+}
+
+.statistik-kpi {
+  min-width: 0;
+}
+
+.statistik-grafik {
+  min-width: 0;
+}
+
+.statistik-grafik .section-title {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 900px) {
+  .statistik-row {
+    grid-template-columns: 1fr;
+  }
+}
     
   </style>
 </head>
@@ -215,7 +240,12 @@
 
     <!-- PERMOHONAN -->
 
-    <section class="section">
+<section class="section">
+
+  <div class="statistik-row">
+
+    <!-- KIRI: KPI -->
+    <div class="statistik-kpi">
 
       <div class="section-title">
         <h3>Permohonan Informasi</h3>
@@ -284,30 +314,28 @@
 
       </div>
 
-    </section>
-
-    <!-- GRAFIK PERMOHONAN -->
-
-<div class="statistik-row">
-
-  <div class="statistik-kpi">
-    <!-- KPI Permohonan yang sudah ada -->
-  </div>
-
-  <div class="statistik-grafik">
-    <div class="section-title">
-      <h3>Grafik Status Permohonan</h3>
-      <div class="section-line"></div>
     </div>
 
-    <div class="chart-card">
-      <canvas id="grafikPermohonan"></canvas>
-    </div>
-  </div>
 
-</div>
+    <!-- KANAN: GRAFIK -->
+
+    <div class="statistik-grafik">
+
+      <div class="section-title">
+        <h3>Grafik Status Permohonan</h3>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="chart-card">
+        <canvas id="grafikPermohonan"></canvas>
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
+
 
     <!-- KEBERATAN -->
 
