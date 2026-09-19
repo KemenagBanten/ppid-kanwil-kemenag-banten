@@ -1645,6 +1645,177 @@
   </form>
 
 </div>
+
+<!-- =========================
+     TAMBAH PENGADAAN
+========================= -->
+
+<div class="card">
+
+  <h2>Tambah Pengadaan</h2>
+
+  <p class="description">
+    Tambahkan data pengadaan ke database PPID.
+  </p>
+
+  <form id="pengadaanForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label for="pengadaanNama">
+          Nama Pekerjaan
+        </label>
+
+        <input
+          type="text"
+          id="pengadaanNama"
+          placeholder="Nama pekerjaan pengadaan"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="pengadaanNilai">
+          Nilai Pengadaan
+        </label>
+
+        <input
+          type="number"
+          id="pengadaanNilai"
+          placeholder="Contoh: 50000000"
+          min="0"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="pengadaanHps">
+          HPS
+        </label>
+
+        <input
+          type="number"
+          id="pengadaanHps"
+          placeholder="Contoh: 55000000"
+          min="0"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="pengadaanLokasi">
+          Lokasi
+        </label>
+
+        <input
+          type="text"
+          id="pengadaanLokasi"
+          placeholder="Lokasi pelaksanaan pengadaan"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="pengadaanJadwal">
+          Jadwal
+        </label>
+
+        <input
+          type="text"
+          id="pengadaanJadwal"
+          placeholder="Contoh: September 2026"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="pengadaanPenyedia">
+          Penyedia
+        </label>
+
+        <input
+          type="text"
+          id="pengadaanPenyedia"
+          placeholder="Nama penyedia jika sudah tersedia"
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="pengadaanSpesifikasi">
+        Spesifikasi
+      </label>
+
+      <textarea
+        id="pengadaanSpesifikasi"
+        rows="4"
+        placeholder="Uraikan spesifikasi pengadaan"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="pengadaanStatus">
+        Status
+      </label>
+
+      <select id="pengadaanStatus">
+
+        <option value="Published">
+          Published
+        </option>
+
+        <option value="Draft">
+          Draft
+        </option>
+
+        <option value="Arsip">
+          Arsip
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="savePengadaanButton"
+    >
+      Simpan Pengadaan
+    </button>
+
+
+    <div
+      id="pengadaanStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</div>
+      
       <!-- =================================================
            CARD 2 — EDIT KONTEN
       ================================================== -->
