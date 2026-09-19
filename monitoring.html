@@ -526,6 +526,7 @@
       Daftar permohonan informasi publik
       yang masuk melalui sistem PPID.
     </p>
+    
 <div class="table-tools">
   <input
     type="text"
@@ -533,7 +534,19 @@
     placeholder="Cari nomor, nama, email, atau informasi..."
     oninput="filterPermohonanTable()"
   >
+
+  <select
+    id="statusPermohonan"
+    onchange="filterPermohonanTable()"
+  >
+    <option value="">Semua Status</option>
+    <option value="diterima">Diterima</option>
+    <option value="dalam proses">Dalam Proses</option>
+    <option value="selesai">Selesai</option>
+    <option value="ditolak">Ditolak</option>
+  </select>
 </div>
+    
     <div id="permohonanTableContainer">
   <div class="loading" id="permohonanLoading">
     Memuat data permohonan...
@@ -788,14 +801,34 @@ function filterPermohonanTable() {
     .value
     .toLowerCase()
     .trim();
-
+const statusFilter = document
+  .getElementById('statusPermohonan')
+  .value
+  .toLowerCase()
+  .trim();
+  
   const filteredData = allPermohonanData.filter(function(item) {
-    return (
-      String(item.nomor_permohonan || '').toLowerCase().includes(keyword) ||
-      String(item.nama_pemohon || '').toLowerCase().includes(keyword) ||
-      String(item.email || '').toLowerCase().includes(keyword) ||
-      String(item.informasi_diminta || '').toLowerCase().includes(keyword)
-    );
+    const matchesKeyword =
+  String(item.nomor_permohonan || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.nama_pemohon || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.email || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.informasi_diminta || '')
+    .toLowerCase()
+    .includes(keyword);
+
+const matchesStatus =
+  statusFilter === '' ||
+  String(item.status || '')
+    .toLowerCase()
+    .trim() === statusFilter;
+
+return matchesKeyword && matchesStatus;
   });
 
   renderPermohonanTable(filteredData);
