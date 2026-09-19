@@ -3345,44 +3345,6 @@ if (sheetName === 'BERITA') {
 
   }
 
-
-  // =========================================================
-  // INISIALISASI
-  // =========================================================
-
-  updateContentMode();
-
-  updateEditMode();
-
-  updateFormMode();
-
-
-  // LOAD AWAL
-
-  if (sheetSelect) {
-
-    loadData(
-      sheetSelect.value
-    );
-
-  }
-loadLaporanUploadDropdown();
-
-  if (contentType) {
-
-    loadContentList();
-
-  }
-
-
-  if (editSheetName) {
-
-    loadEditData();
-
-  }
-
-});
-
 // =========================================================
 // ADMIN - PERMOHONAN & KEBERATAN
 // =========================================================
@@ -3985,4 +3947,44 @@ if (adminKeberatanForm) {
   );
 
 }
+
+  
+  // =========================================================
+  // INISIALISASI
+  // =========================================================
+
+  updateContentMode();
+
+  updateEditMode();
+
+  updateFormMode();
+
+
+  // LOAD AWAL
+
+  if (sheetSelect) {
+
+    loadData(
+      sheetSelect.value
+    );
+
+  }
+loadLaporanUploadDropdown();
+
+  if (contentType) {
+
+    loadContentList();
+
+  }
+
+
+  if (editSheetName) {
+
+    loadEditData();
+
+  }
+
+});
+
+
 
