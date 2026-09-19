@@ -274,6 +274,20 @@
 
     </section>
 
+    <!-- GRAFIK PERMOHONAN -->
+
+<section class="section">
+
+  <div class="section-title">
+    <h3>Grafik Status Permohonan</h3>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="chart-card">
+    <canvas id="grafikPermohonan"></canvas>
+  </div>
+
+</section>
 
     <!-- KEBERATAN -->
 
@@ -355,7 +369,8 @@
     PPID Kanwil Kementerian Agama Provinsi Banten
   </footer>
 
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
   <script>
 
     const API_URL =
@@ -417,6 +432,9 @@
         ).textContent =
           data.permohonan.ditolak;
 
+        tampilkanGrafikPermohonan(
+  data.permohonan
+);
 
         // =========================
         // KEBERATAN
@@ -469,6 +487,17 @@
 
       }
 
+
+        .chart-card {
+  background: white;
+  border: 1px solid #e2ebe5;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  height: 360px;
+  position: relative;
+}
+      
       catch (error) {
 
         console.error(
@@ -502,6 +531,70 @@
 
     loadStatistik();
 
+    function tampilkanGrafikPermohonan(data) {
+
+  const canvas = document.getElementById(
+    'grafikPermohonan'
+  );
+
+  new Chart(canvas, {
+    type: 'bar',
+
+    data: {
+      labels: [
+        'Diterima',
+        'Dalam Proses',
+        'Selesai',
+        'Ditolak'
+      ],
+
+      datasets: [
+        {
+          label: 'Jumlah Permohonan',
+
+          data: [
+            data.diterima,
+            data.dalamProses,
+            data.selesai,
+            data.ditolak
+          ],
+
+          borderWidth: 1,
+
+          borderRadius: 6
+        }
+      ]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+
+      scales: {
+
+        y: {
+          beginAtZero: true,
+
+          ticks: {
+            precision: 0
+          }
+        }
+
+      }
+
+    }
+
+  });
+
+}
   </script>
 
 </body>
