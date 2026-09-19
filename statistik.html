@@ -104,6 +104,34 @@
       margin-bottom: 12px;
     }
 
+    .card-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: #176b45;
+  line-height: 1.1;
+}
+
+.card-number {
+  font-size: 30px;
+  font-weight: 700;
+  color: #176b45;
+  line-height: 1.1;
+}
+
+.card-percent {
+  font-size: 12px;
+  color: #7d8983;
+  margin-top: 7px;
+  opacity: 0.85;
+}
+
+.card.total .card-value,
+.card.total .card-number {
+  color: white;
+  font-size: 34px;
+  font-weight: 700;
+}
+    
     .card-number {
       font-size: 30px;
       font-weight: 700;
@@ -373,46 +401,68 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-label">Diterima</div>
-          <div
-            class="card-number"
-            id="keberatanDiterima"
-          >
-            0
-          </div>
-        </div>
+       <div class="card">
+  <div class="card-label">Diterima</div>
+  <div
+    class="card-number"
+    id="keberatanDiterima"
+  >
+    0
+  </div>
+  <div
+    class="card-percent"
+    id="keberatanDiterimaPersen"
+  >
+    0% dari total
+  </div>
+</div>
 
         <div class="card">
-          <div class="card-label">Dalam Proses</div>
-          <div
-            class="card-number"
-            id="keberatanDalamProses"
-          >
-            0
-          </div>
-        </div>
+  <div class="card-label">Dalam Proses</div>
+  <div
+    class="card-number"
+    id="keberatanDalamProses"
+  >
+    0
+  </div>
+  <div
+    class="card-percent"
+    id="keberatanDalamProsesPersen"
+  >
+    0% dari total
+  </div>
+</div>
 
         <div class="card">
-          <div class="card-label">Selesai</div>
-          <div
-            class="card-number"
-            id="keberatanSelesai"
-          >
-            0
-          </div>
-        </div>
-
+  <div class="card-label">Selesai</div>
+  <div
+    class="card-number"
+    id="keberatanSelesai"
+  >
+    0
+  </div>
+  <div
+    class="card-percent"
+    id="keberatanSelesaiPersen"
+  >
+    0% dari total
+  </div>
+</div>
         <div class="card">
-          <div class="card-label">Ditolak</div>
-          <div
-            class="card-number"
-            id="keberatanDitolak"
-          >
-            0
-          </div>
-        </div>
-
+  <div class="card-label">Ditolak</div>
+  <div
+    class="card-number"
+    id="keberatanDitolak"
+  >
+    0
+  </div>
+  <div
+    class="card-percent"
+    id="keberatanDitolakPersen"
+  >
+    0% dari total
+  </div>
+</div>
       </div>
 
     </div>
@@ -568,7 +618,38 @@ document.getElementById(
           'keberatanDitolak'
         ).textContent =
           data.keberatan.ditolak;
+document.getElementById(
+  'keberatanDiterimaPersen'
+).textContent =
+  hitungPersentase(
+    data.keberatan.diterima,
+    data.keberatan.total
+  ) + '% dari total';
 
+document.getElementById(
+  'keberatanDalamProsesPersen'
+).textContent =
+  hitungPersentase(
+    data.keberatan.dalamProses,
+    data.keberatan.total
+  ) + '% dari total';
+
+document.getElementById(
+  'keberatanSelesaiPersen'
+).textContent =
+  hitungPersentase(
+    data.keberatan.selesai,
+    data.keberatan.total
+  ) + '% dari total';
+
+document.getElementById(
+  'keberatanDitolakPersen'
+).textContent =
+  hitungPersentase(
+    data.keberatan.ditolak,
+    data.keberatan.total
+  ) + '% dari total';
+        
 tampilkanGrafikKeberatan(
   data.keberatan
 );
