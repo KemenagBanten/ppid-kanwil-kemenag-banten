@@ -1815,6 +1815,181 @@
   </form>
 
 </div>
+
+<!-- =====================================================
+     TAMBAH PERMOHONAN INFORMASI
+===================================================== -->
+
+<div class="card">
+
+  <h2>Tambah Permohonan Informasi</h2>
+
+  <p class="description">
+    Tambahkan data permohonan informasi publik ke database PPID.
+  </p>
+
+  <form id="permohonanForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="permohonanNomor">
+          Nomor Permohonan
+        </label>
+
+        <input
+          type="text"
+          id="permohonanNomor"
+          placeholder="Contoh: 003/PPID/IX/2026"
+        >
+      </div>
+
+
+      <div class="form-group">
+        <label for="permohonanNama">
+          Nama Pemohon
+        </label>
+
+        <input
+          type="text"
+          id="permohonanNama"
+          placeholder="Nama lengkap pemohon"
+          required
+        >
+      </div>
+
+
+      <div class="form-group">
+        <label for="permohonanEmail">
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="permohonanEmail"
+          placeholder="Email pemohon"
+        >
+      </div>
+
+
+      <div class="form-group">
+        <label for="permohonanTelepon">
+          Telepon
+        </label>
+
+        <input
+          type="text"
+          id="permohonanTelepon"
+          placeholder="Nomor telepon"
+        >
+      </div>
+
+
+      <div class="form-group">
+        <label for="permohonanTanggal">
+          Tanggal Masuk
+        </label>
+
+        <input
+          type="date"
+          id="permohonanTanggal"
+        >
+      </div>
+
+
+      <div class="form-group">
+        <label for="permohonanStatus">
+          Status
+        </label>
+
+        <select id="permohonanStatus">
+
+          <option value="Diterima">
+            Diterima
+          </option>
+
+          <option value="Diproses">
+            Diproses
+          </option>
+
+          <option value="Selesai">
+            Selesai
+          </option>
+
+          <option value="Ditolak">
+            Ditolak
+          </option>
+
+        </select>
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="permohonanInformasi">
+        Informasi yang Diminta
+      </label>
+
+      <textarea
+        id="permohonanInformasi"
+        rows="4"
+        placeholder="Jelaskan informasi yang diminta"
+        required
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="permohonanTujuan">
+        Tujuan Permohonan
+      </label>
+
+      <textarea
+        id="permohonanTujuan"
+        rows="3"
+        placeholder="Tujuan penggunaan informasi"
+      ></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="permohonanCatatan">
+        Catatan
+      </label>
+
+      <textarea
+        id="permohonanCatatan"
+        rows="3"
+        placeholder="Catatan tambahan"
+      ></textarea>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="savePermohonanButton"
+    >
+      Simpan Permohonan
+    </button>
+
+
+    <div
+      id="permohonanStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</div>
       
       <!-- =================================================
            CARD 2 — EDIT KONTEN
