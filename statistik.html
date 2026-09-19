@@ -278,41 +278,68 @@
         <div class="card">
           <div class="card-label">Diterima</div>
           <div
-            class="card-number"
-            id="permohonanDiterima"
-          >
-            0
-          </div>
+  class="card-number"
+  id="permohonanDiterima"
+>
+  0
+</div>
+
+<div
+  class="card-percent"
+  id="persenPermohonanDiterima"
+>
+  0% dari total
+</div>
+        
+        </div>
+
+       <div class="card">
+  <div class="card-label">Dalam Proses</div>
+
+  <div
+    class="card-number"
+    id="permohonanDalamProses"
+  >
+    0
+  </div>
+
+  <div
+    class="card-percent"
+    id="persenPermohonanDalamProses"
+  >
+    0% dari total
+  </div>
+</div>
+        </div>
+
+       <div class="card">
+  <div class="card-label">Selesai</div>
+  <div
+    class="card-number"
+    id="permohonanSelesai"
+  >
+    0
+  </div>
+</div>
         </div>
 
         <div class="card">
-          <div class="card-label">Dalam Proses</div>
-          <div
-            class="card-number"
-            id="permohonanDalamProses"
-          >
-            0
-          </div>
-        </div>
+  <div class="card-label">Ditolak</div>
 
-        <div class="card">
-          <div class="card-label">Selesai</div>
-          <div
-            class="card-number"
-            id="permohonanSelesai"
-          >
-            0
-          </div>
-        </div>
+  <div
+    class="card-number"
+    id="permohonanDitolak"
+  >
+    0
+  </div>
 
-        <div class="card">
-          <div class="card-label">Ditolak</div>
-          <div
-            class="card-number"
-            id="permohonanDitolak"
-          >
-            0
-          </div>
+  <div
+    class="card-percent"
+    id="persenPermohonanDitolak"
+  >
+    0% dari total
+  </div>
+</div>
         </div>
 
       </div>
@@ -493,21 +520,50 @@
         ).textContent =
           data.permohonan.diterima;
 
+document.getElementById(
+  'persenPermohonanDiterima'
+).textContent =
+  hitungPersentase(
+    data.permohonan.diterima,
+    data.permohonan.total
+  ) + '% dari total';
+        
         document.getElementById(
           'permohonanDalamProses'
         ).textContent =
           data.permohonan.dalamProses;
-
+document.getElementById(
+  'persenPermohonanDalamProses'
+).textContent =
+  hitungPersentase(
+    data.permohonan.dalamProses,
+    data.permohonan.total
+  ) + '% dari total';
+        
         document.getElementById(
           'permohonanSelesai'
         ).textContent =
           data.permohonan.selesai;
-
+document.getElementById(
+  'persenPermohonanSelesai'
+).textContent =
+  hitungPersentase(
+    data.permohonan.selesai,
+    data.permohonan.total
+  ) + '% dari total';
+        
         document.getElementById(
           'permohonanDitolak'
         ).textContent =
           data.permohonan.ditolak;
-
+document.getElementById(
+  'persenPermohonanDitolak'
+).textContent =
+  hitungPersentase(
+    data.permohonan.ditolak,
+    data.permohonan.total
+  ) + '% dari total';
+        
         tampilkanGrafikPermohonan(
   data.permohonan
 );
@@ -598,6 +654,14 @@ tampilkanGrafikKeberatan(
 
     loadStatistik();
 
+    function hitungPersentase(nilai, total) {
+
+  if (!total || total === 0) {
+    return 0;
+  }
+
+  return Math.round((nilai / total) * 100);
+}
    function tampilkanGrafikPermohonan(data) {
 
   const canvas = document.getElementById('grafikPermohonan');
