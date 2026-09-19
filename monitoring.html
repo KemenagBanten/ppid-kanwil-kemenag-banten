@@ -742,7 +742,9 @@ function calculateStats(data) {
 
 }
 let allPermohonanData = [];
-
+let currentPermohonanPage = 1;
+const permohonanPageSize = 10;
+  
 function filterPermohonanTable() {
   const keyword = document
     .getElementById('searchPermohonan')
@@ -766,6 +768,7 @@ function renderPermohonanTable(data) {
   const container = document.getElementById('permohonanTableContainer');
 
   if (!data || data.length === 0) {
+    
     container.innerHTML = `
       <div class="empty-data">
         Belum ada data permohonan.
@@ -773,6 +776,11 @@ function renderPermohonanTable(data) {
     `;
     return;
   }
+
+  function renderPermohonanTable(data) {
+  const container = document.getElementById('permohonanTableContainer');
+
+  if (!data || data.length === 0) {
 
   let html = `
     <div class="table-wrapper">
@@ -791,7 +799,7 @@ function renderPermohonanTable(data) {
         <tbody>
   `;
 
-  data.forEach(function(item, index) {
+  pageData.forEach(function(item, index) {
     const status = normalizeStatus(item.status);
 
     let statusClass = 'status-diterima';
