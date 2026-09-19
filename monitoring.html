@@ -530,14 +530,14 @@
 <div class="table-tools">
   <input
     type="text"
-    id="searchPermohonan"
-    placeholder="Cari nomor, nama, email, atau informasi..."
-    oninput="filterPermohonanTable()"
+    id="searchKeberatan"
+    placeholder="Cari nomor keberatan, nomor permohonan, nama, atau email..."
+    oninput="filterKeberatanTable()"
   >
 
   <select
-    id="statusPermohonan"
-    onchange="filterPermohonanTable()"
+    id="statusKeberatan"
+    onchange="filterKeberatanTable()"
   >
     <option value="">Semua Status</option>
     <option value="diterima">Diterima</option>
@@ -1000,14 +1000,38 @@ function filterKeberatanTable() {
     .toLowerCase()
     .trim();
 
+const statusFilter = document
+  .getElementById('statusKeberatan')
+  .value
+  .toLowerCase()
+  .trim();
+  
   const filteredData = allKeberatanData.filter(function(item) {
-    return (
-      String(item.nomor_keberatan || '').toLowerCase().includes(keyword) ||
-      String(item.nomor_permohonan || '').toLowerCase().includes(keyword) ||
-      String(item.nama_pemohon || '').toLowerCase().includes(keyword) ||
-      String(item.email || '').toLowerCase().includes(keyword) ||
-      String(item.alasan_keberatan || '').toLowerCase().includes(keyword)
-    );
+    const matchesKeyword =
+  String(item.nomor_keberatan || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.nomor_permohonan || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.nama_pemohon || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.email || '')
+    .toLowerCase()
+    .includes(keyword) ||
+  String(item.alasan_keberatan || '')
+    .toLowerCase()
+    .includes(keyword);
+
+const matchesStatus =
+  statusFilter === '' ||
+  String(item.status || '')
+    .toLowerCase()
+    .trim() === statusFilter;
+
+return matchesKeyword && matchesStatus;
+    
   });
 
   renderKeberatanTable(filteredData);
