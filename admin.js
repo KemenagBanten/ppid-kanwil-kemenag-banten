@@ -3383,3 +3383,606 @@ loadLaporanUploadDropdown();
 
 });
 
+// =========================================================
+// ADMIN - PERMOHONAN & KEBERATAN
+// =========================================================
+
+// ---------------------------------------------------------
+// HELPER STATUS
+// ---------------------------------------------------------
+
+function setAdminStatus(elementId, type, message) {
+
+  const box = document.getElementById(elementId);
+
+  if (!box) return;
+
+  box.style.display = 'block';
+
+  box.className = 'status ' + type;
+
+  box.textContent = message;
+}
+
+
+// =========================================================
+// TAMBAH PERMOHONAN
+// =========================================================
+
+const adminPermohonanForm =
+  document.getElementById('permohonanForm');
+
+if (adminPermohonanForm) {
+
+  adminPermohonanForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      const button =
+        document.getElementById(
+          'savePermohonanButton'
+        );
+
+      const statusBox =
+        document.getElementById(
+          'permohonanStatusBox'
+        );
+
+
+      try {
+
+        const nomorPermohonan =
+          document.getElementById(
+            'permohonanNomor'
+          )?.value.trim() || '';
+
+        const namaPemohon =
+          document.getElementById(
+            'permohonanNama'
+          )?.value.trim() || '';
+
+        const email =
+          document.getElementById(
+            'permohonanEmail'
+          )?.value.trim() || '';
+
+        const telepon =
+          document.getElementById(
+            'permohonanTelepon'
+          )?.value.trim() || '';
+
+        const tanggalMasuk =
+          document.getElementById(
+            'permohonanTanggal'
+          )?.value || '';
+
+        const status =
+          document.getElementById(
+            'permohonanStatus'
+          )?.value || 'Diterima';
+
+        const informasiDiminta =
+          document.getElementById(
+            'permohonanInformasi'
+          )?.value.trim() || '';
+
+        const tujuan =
+          document.getElementById(
+            'permohonanTujuan'
+          )?.value.trim() || '';
+
+
+        // -------------------------------------------------
+        // VALIDASI
+        // -------------------------------------------------
+
+        if (!namaPemohon) {
+          throw new Error(
+            'Nama pemohon wajib diisi.'
+          );
+        }
+
+
+        if (!informasiDiminta) {
+          throw new Error(
+            'Informasi yang diminta wajib diisi.'
+          );
+        }
+
+
+        // -------------------------------------------------
+        // STATUS
+        // -------------------------------------------------
+
+        if (button) {
+
+          button.disabled = true;
+
+          button.textContent =
+            'Menyimpan...';
+
+        }
+
+
+        setAdminStatus(
+          'permohonanStatusBox',
+          'loading',
+          'Sedang menyimpan permohonan...'
+        );
+
+
+        // -------------------------------------------------
+        // PAYLOAD
+        // -------------------------------------------------
+
+        const payload = {
+
+          action:
+            'tambahPermohonan',
+
+          nomorPermohonan:
+            nomorPermohonan,
+
+          namaPemohon:
+            namaPemohon,
+
+          email:
+            email,
+
+          telepon:
+            telepon,
+
+          informasiDiminta:
+            informasiDiminta,
+
+          tujuan:
+            tujuan,
+
+          tanggalMasuk:
+            tanggalMasuk,
+
+          status:
+            status,
+
+          catatan:
+            ''
+
+        };
+
+
+        console.log(
+          'PAYLOAD PERMOHONAN:',
+          payload
+        );
+
+
+        // -------------------------------------------------
+        // KIRIM KE APPS SCRIPT
+        // -------------------------------------------------
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'text/plain;charset=utf-8'
+              },
+
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL PERMOHONAN:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Permohonan gagal disimpan.'
+          );
+
+        }
+
+
+        // -------------------------------------------------
+        // SUKSES
+        // -------------------------------------------------
+
+        const nomorBaru =
+          result.data?.nomor_permohonan ||
+          result.nomor_permohonan ||
+          nomorPermohonan ||
+          'Berhasil dibuat';
+
+
+        setAdminStatus(
+          'permohonanStatusBox',
+          'success',
+          'Permohonan berhasil disimpan. Nomor Permohonan: ' +
+          nomorBaru
+        );
+
+
+        // -------------------------------------------------
+        // RESET
+        // -------------------------------------------------
+
+        adminPermohonanForm.reset();
+
+
+        // tanggal kembali hari ini
+
+        const tanggalInput =
+          document.getElementById(
+            'permohonanTanggal'
+          );
+
+        if (tanggalInput) {
+
+          const today =
+            new Date()
+              .toISOString()
+              .split('T')[0];
+
+          tanggalInput.value =
+            today;
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR PERMOHONAN:',
+          error
+        );
+
+
+        setAdminStatus(
+          'permohonanStatusBox',
+          'error',
+          error.message ||
+          'Terjadi kesalahan saat menyimpan permohonan.'
+        );
+
+
+      } finally {
+
+        if (button) {
+
+          button.disabled = false;
+
+          button.textContent =
+            'Simpan Permohonan';
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+
+// =========================================================
+// TAMBAH KEBERATAN
+// =========================================================
+
+const adminKeberatanForm =
+  document.getElementById('keberatanForm');
+
+if (adminKeberatanForm) {
+
+  adminKeberatanForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+      const button =
+        document.getElementById(
+          'saveKeberatanButton'
+        );
+
+      const statusBox =
+        document.getElementById(
+          'keberatanStatusBox'
+        );
+
+
+      try {
+
+        const nomorPermohonan =
+          document.getElementById(
+            'keberatanNomorPermohonan'
+          )?.value.trim() || '';
+
+        const namaPemohon =
+          document.getElementById(
+            'keberatanNama'
+          )?.value.trim() || '';
+
+        const email =
+          document.getElementById(
+            'keberatanEmail'
+          )?.value.trim() || '';
+
+        const telepon =
+          document.getElementById(
+            'keberatanTelepon'
+          )?.value.trim() || '';
+
+        const alasanKeberatan =
+          document.getElementById(
+            'keberatanAlasan'
+          )?.value.trim() || '';
+
+        const tanggalMasuk =
+          document.getElementById(
+            'keberatanTanggal'
+          )?.value || '';
+
+        const status =
+          document.getElementById(
+            'keberatanStatus'
+          )?.value || 'Diterima';
+
+        const catatan =
+          document.getElementById(
+            'keberatanCatatan'
+          )?.value.trim() || '';
+
+
+        // -------------------------------------------------
+        // VALIDASI
+        // -------------------------------------------------
+
+        if (!nomorPermohonan) {
+
+          throw new Error(
+            'Nomor permohonan wajib diisi.'
+          );
+
+        }
+
+
+        if (!namaPemohon) {
+
+          throw new Error(
+            'Nama pemohon wajib diisi.'
+          );
+
+        }
+
+
+        if (!alasanKeberatan) {
+
+          throw new Error(
+            'Alasan keberatan wajib diisi.'
+          );
+
+        }
+
+
+        // -------------------------------------------------
+        // STATUS
+        // -------------------------------------------------
+
+        if (button) {
+
+          button.disabled = true;
+
+          button.textContent =
+            'Menyimpan...';
+
+        }
+
+
+        setAdminStatus(
+          'keberatanStatusBox',
+          'loading',
+          'Sedang menyimpan keberatan...'
+        );
+
+
+        // -------------------------------------------------
+        // PAYLOAD
+        // -------------------------------------------------
+
+        const payload = {
+
+          action:
+            'tambahKeberatan',
+
+          nomorKeberatan:
+            '',
+
+          nomorPermohonan:
+            nomorPermohonan,
+
+          namaPemohon:
+            namaPemohon,
+
+          email:
+            email,
+
+          telepon:
+            telepon,
+
+          alasanKeberatan:
+            alasanKeberatan,
+
+          tanggalMasuk:
+            tanggalMasuk,
+
+          status:
+            status,
+
+          catatan:
+            catatan
+
+        };
+
+
+        console.log(
+          'PAYLOAD KEBERATAN:',
+          payload
+        );
+
+
+        // -------------------------------------------------
+        // KIRIM KE APPS SCRIPT
+        // -------------------------------------------------
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              headers: {
+                'Content-Type':
+                  'text/plain;charset=utf-8'
+              },
+
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'HASIL KEBERATAN:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Keberatan gagal disimpan.'
+          );
+
+        }
+
+
+        // -------------------------------------------------
+        // SUKSES
+        // -------------------------------------------------
+
+        const nomorBaru =
+          result.data?.nomor_keberatan ||
+          result.nomor_keberatan ||
+          'Berhasil dibuat';
+
+
+        setAdminStatus(
+          'keberatanStatusBox',
+          'success',
+          'Keberatan berhasil disimpan. Nomor Keberatan: ' +
+          nomorBaru
+        );
+
+
+        // -------------------------------------------------
+        // RESET
+        // -------------------------------------------------
+
+        adminKeberatanForm.reset();
+
+
+        // tanggal kembali hari ini
+
+        const tanggalInput =
+          document.getElementById(
+            'keberatanTanggal'
+          );
+
+        if (tanggalInput) {
+
+          const today =
+            new Date()
+              .toISOString()
+              .split('T')[0];
+
+          tanggalInput.value =
+            today;
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          'ERROR KEBERATAN:',
+          error
+        );
+
+
+        setAdminStatus(
+          'keberatanStatusBox',
+          'error',
+          error.message ||
+          'Terjadi kesalahan saat menyimpan keberatan.'
+        );
+
+
+      } finally {
+
+        if (button) {
+
+          button.disabled = false;
+
+          button.textContent =
+            'Simpan Keberatan';
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
