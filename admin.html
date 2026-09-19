@@ -1598,6 +1598,52 @@
       style="display:none;"
     ></div>
 
+    <!-- =========================
+         UPLOAD DOKUMEN LAPORAN
+    ========================= -->
+    <div class="form-group" style="margin-top:20px;">
+
+      <label for="laporanUploadId">
+        ID Laporan
+      </label>
+
+      <input
+        type="text"
+        id="laporanUploadId"
+        placeholder="Contoh: LAP002"
+      >
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="laporanFile">
+        File PDF Laporan
+      </label>
+
+      <input
+        type="file"
+        id="laporanFile"
+        accept="application/pdf"
+      >
+
+    </div>
+
+    <button
+      type="button"
+      class="btn-primary"
+      id="uploadLaporanButton"
+    >
+      Upload PDF Laporan
+    </button>
+
+    <div
+      id="uploadLaporanStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+
   </form>
 
 </div>
