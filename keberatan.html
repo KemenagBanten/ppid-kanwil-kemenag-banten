@@ -1,923 +1,1763 @@
-html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Keberatan Informasi Publik | PPID Kanwil Kemenag Banten</title>
+  <title>Pengajuan Keberatan | PPID Kanwil Kemenag Banten</title>
 
   <style>
-    :root {
-      --green: #087443;
-      --green-dark: #055c35;
-      --gold: #cdb082;
-      --bg: #f5f7f6;
-      --white: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-    }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top right, rgba(205,176,130,.12), transparent 30%),
-        var(--bg);
-      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
+      background: #f5f7f6;
+      color: #26352e;
+      line-height: 1.6;
     }
 
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, var(--green-dark), var(--green));
-      color: white;
-      padding: 18px 24px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.12);
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: #ffffff;
+
+      border-bottom: 1px solid #e5ebe7;
+
+      box-shadow:
+        0 2px 12px rgba(25, 60, 45, 0.06);
     }
+
 
     .header-inner {
-      max-width: 1180px;
-      margin: auto;
+      width: min(1180px, 92%);
+
+      min-height: 76px;
+
+      margin: 0 auto;
+
       display: flex;
+
       align-items: center;
-      gap: 16px;
+
+      justify-content: space-between;
+
+      gap: 25px;
     }
 
-    .logo {
-      width: 52px;
-      height: 52px;
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      min-width: 220px;
+    }
+
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+
       object-fit: contain;
-      background: white;
-      border-radius: 10px;
-      padding: 5px;
+
+      flex-shrink: 0;
     }
 
-    .brand h1 {
+
+    .header-text h1 {
       margin: 0;
-      font-size: 20px;
+
+      color: #17352a;
+
+      font-size: 15px;
+
+      line-height: 1.25;
+
+      font-weight: 700;
+    }
+
+
+    .header-text p {
+      margin: 3px 0 0;
+
+      color: #66756e;
+
+      font-size: 10px;
+
       line-height: 1.3;
     }
 
-    .brand p {
-      margin: 4px 0 0;
-      font-size: 13px;
-      opacity: .85;
-    }
 
-    /* NAV */
-    nav {
-      background: white;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      margin: auto;
+    .header nav {
       display: flex;
-      gap: 4px;
-      padding: 10px 20px;
-      overflow-x: auto;
+
+      align-items: center;
+
+      gap: 3px;
+
+      flex-wrap: wrap;
+
+      justify-content: flex-end;
     }
 
-    nav a {
+
+    .header nav a {
       text-decoration: none;
-      color: #374151;
-      padding: 10px 14px;
+
+      color: #40544b;
+
+      padding: 8px 12px;
+
       border-radius: 8px;
-      font-size: 14px;
-      white-space: nowrap;
-      transition: .2s;
-    }
 
-    nav a:hover,
-    nav a.active {
-      background: rgba(8,116,67,.08);
-      color: var(--green);
-    }
+      font-size: 13px;
 
-    /* HERO */
-    .hero {
-      max-width: 1180px;
-      margin: 38px auto 25px;
-      padding: 0 20px;
-    }
-
-    .hero-box {
-      background:
-        linear-gradient(135deg, rgba(8,116,67,.97), rgba(5,92,53,.96));
-      color: white;
-      border-radius: 20px;
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-box::after {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 230px;
-      border-radius: 50%;
-      right: -70px;
-      top: -90px;
-      background: rgba(205,176,130,.20);
-    }
-
-    .hero-box h2 {
-      margin: 0 0 10px;
-      font-size: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-box p {
-      margin: 0;
-      max-width: 760px;
-      line-height: 1.7;
-      color: rgba(255,255,255,.9);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* CONTENT */
-    main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 0 20px 60px;
-    }
-
-    .toolbar {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      display: flex;
-      gap: 12px;
-      margin-bottom: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .search {
-      flex: 1;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      font-size: 14px;
-      outline: none;
-    }
-
-    .search:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(8,116,67,.08);
-    }
-
-    .refresh-btn {
-      border: 0;
-      border-radius: 9px;
-      padding: 0 18px;
-      background: var(--green);
-      color: white;
-      cursor: pointer;
       font-weight: 600;
+
+      transition: 0.2s ease;
     }
 
-    .refresh-btn:hover {
-      background: var(--green-dark);
+
+    .header nav a:hover {
+      color: #0f5132;
+
+      background: #eef5f1;
     }
 
-    /* CARD */
-    .list {
+
+    .header nav a.active {
+      color: #0f5132;
+
+      background: #e8f3ed;
+    }
+
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      background:
+
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(255,255,255,0.08) 0,
+          rgba(255,255,255,0.08) 80px,
+          transparent 81px
+        ),
+
+        radial-gradient(
+          circle at 8% 85%,
+          rgba(255,255,255,0.05) 0,
+          rgba(255,255,255,0.05) 120px,
+          transparent 121px
+        ),
+
+        linear-gradient(
+          135deg,
+          #123d2d 0%,
+          #176044 55%,
+          #0f5132 100%
+        );
+
+      color: #ffffff;
+
+      padding: 55px 20px 60px;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    .hero-inner {
+      width: min(1180px, 92%);
+
+      margin: 0 auto;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    .hero-label {
+      margin-bottom: 10px;
+
+      color: #e5d1aa;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: 1.2px;
+
+      text-transform: uppercase;
+    }
+
+
+    .hero h2 {
+      margin: 0;
+
+      max-width: 760px;
+
+      font-size: clamp(28px, 4vw, 42px);
+
+      line-height: 1.15;
+
+      font-weight: 750;
+
+      letter-spacing: -0.7px;
+    }
+
+
+    .hero p {
+      max-width: 720px;
+
+      margin: 16px 0 0;
+
+      color: rgba(255,255,255,0.82);
+
+      font-size: 15px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================
+       CONTENT
+    ========================== */
+
+    .content {
+      padding: 35px 0 70px;
+    }
+
+
+    .container {
+      width: min(1180px, 92%);
+
+      margin: 0 auto;
+    }
+
+
+    .page-grid {
       display: grid;
-      gap: 18px;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        320px;
+
+      gap: 24px;
+
+      align-items: start;
     }
+
+
+    /* =========================
+       CARD
+    ========================== */
 
     .card {
-      background: white;
-      border: 1px solid var(--border);
+      background: #ffffff;
+
+      border: 1px solid #e5ebe7;
+
       border-radius: 16px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      transition: transform .2s, box-shadow .2s;
+
+      box-shadow:
+        0 5px 22px rgba(25, 60, 45, 0.06);
     }
 
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(0,0,0,.08);
+
+    .form-card {
+      padding: 30px;
     }
 
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
 
     .card-title {
       margin: 0;
-      font-size: 19px;
-      color: var(--green-dark);
+
+      color: #17352a;
+
+      font-size: 21px;
+
+      font-weight: 750;
     }
 
-    .card-id {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 5px;
+
+    .card-description {
+      margin: 7px 0 25px;
+
+      color: #718078;
+
+      font-size: 13px;
     }
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
 
-    .status-diproses,
-    .status-diterima {
-      background: #fff7df;
-      color: #8a6510;
-    }
+    /* =========================
+       FORM
+    ========================== */
 
-    .status-selesai,
-    .status-ditolak {
-      background: #e8f7ef;
-      color: #087443;
-    }
-
-    .status-lain {
-      background: #eef2f7;
-      color: #4b5563;
-    }
-
-    .info-grid {
+    .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 10px;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
     }
+
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+
+    label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #31443b;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    .required {
+      color: #b34d3c;
+    }
+
+
+    input,
+    textarea {
+      width: 100%;
+
+      border: 1px solid #dce5df;
+
+      border-radius: 10px;
+
+      background: #fbfcfb;
+
+      color: #26352e;
+
+      padding: 11px 13px;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      outline: none;
+
+      transition: 0.2s ease;
+    }
+
+
+    input {
+      min-height: 44px;
+    }
+
+
+    textarea {
+      min-height: 130px;
+
+      resize: vertical;
+    }
+
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9aa8a1;
+    }
+
+
+    input:focus,
+    textarea:focus {
+      border-color: #6da58a;
+
+      background: #ffffff;
+
+      box-shadow:
+        0 0 0 3px rgba(23, 96, 68, 0.08);
+    }
+
+
+    .helper {
+      margin-top: 6px;
+
+      color: #84918b;
+
+      font-size: 11px;
+    }
+
+
+    /* =========================
+       BUTTON
+    ========================== */
+
+    .button-wrapper {
+      margin-top: 8px;
+    }
+
+
+    .btn-primary {
+      width: 100%;
+
+      min-height: 46px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #176044,
+          #0f5132
+        );
+
+      color: #ffffff;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 7px 18px rgba(15, 81, 50, 0.18);
+    }
+
+
+    .btn-primary:disabled {
+      opacity: 0.65;
+
+      cursor: not-allowed;
+
+      transform: none;
+
+      box-shadow: none;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================== */
+
+    .status-box {
+      display: none;
+
+      margin-top: 18px;
+
+      padding: 13px 15px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+
+    .status-box.success {
+      display: block;
+
+      color: #176044;
+
+      background: #eaf6ef;
+
+      border: 1px solid #cce8d7;
+    }
+
+
+    .status-box.error {
+      display: block;
+
+      color: #9c3f31;
+
+      background: #fff0ed;
+
+      border: 1px solid #f1d0ca;
+    }
+
+
+    .success-number {
+      margin-top: 5px;
+
+      color: #0f5132;
+
+      font-weight: 800;
+    }
+
+
+    /* =========================
+       SIDE INFORMATION
+    ========================== */
+
+    .info-card {
+      padding: 24px;
+    }
+
+
+    .info-card h3 {
+      margin: 0 0 15px;
+
+      color: #17352a;
+
+      font-size: 17px;
+
+      font-weight: 750;
+    }
+
 
     .info-item {
-      background: #f8faf9;
-      border-radius: 10px;
-      padding: 13px;
+      display: flex;
+
+      gap: 12px;
+
+      padding: 13px 0;
+
+      border-bottom: 1px solid #edf1ee;
     }
 
-    .label {
+
+    .info-item:last-child {
+      border-bottom: 0;
+
+      padding-bottom: 0;
+    }
+
+
+    .info-icon {
+      width: 34px;
+
+      height: 34px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 9px;
+
+      background: #e8f3ed;
+
+      color: #176044;
+
+      font-size: 15px;
+
+      flex-shrink: 0;
+    }
+
+
+    .info-item strong {
       display: block;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      color: var(--muted);
-      margin-bottom: 5px;
-    }
 
-    .value {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text);
-    }
+      margin-bottom: 2px;
 
-    .reason {
-      margin-top: 15px;
-      padding: 16px;
-      border-left: 4px solid var(--gold);
-      background: #fcfaf6;
-      border-radius: 8px;
-    }
+      color: #31443b;
 
-    .reason strong {
-      display: block;
       font-size: 12px;
-      color: var(--green-dark);
-      margin-bottom: 7px;
     }
 
-    .reason p {
+
+    .info-item span {
+      display: block;
+
+      color: #75827c;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+    }
+
+
+    .notice {
+      margin-top: 20px;
+
+      padding: 15px;
+
+      border-radius: 11px;
+
+      background: #fbf7ee;
+
+      border: 1px solid #eee2c8;
+    }
+
+
+    .notice strong {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #80662e;
+
+      font-size: 12px;
+    }
+
+
+    .notice p {
       margin: 0;
-      line-height: 1.65;
-      font-size: 14px;
+
+      color: #7d7157;
+
+      font-size: 11px;
+
+      line-height: 1.6;
     }
 
-    .document {
-      margin-top: 15px;
-    }
 
-    .document a {
-      display: inline-block;
-      text-decoration: none;
-      background: var(--green);
-      color: white;
-      padding: 9px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-    }
+    /* =========================
+       FOOTER
+    ========================== */
 
-    .document a:hover {
-      background: var(--green-dark);
-    }
-
-    .empty,
-    .loading,
-    .error {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 35px;
-      text-align: center;
-      color: var(--muted);
-    }
-
-    .error {
-      color: #b42318;
-      background: #fff8f7;
-    }
-
-    /* FOOTER */
     footer {
-      background: #063e26;
-      color: rgba(255,255,255,.8);
-      text-align: center;
-      padding: 25px 20px;
-      font-size: 13px;
+      background: #17352a;
+
+      color: rgba(255,255,255,0.75);
+
+      padding: 28px 20px;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 700px) {
+
+    .footer-inner {
+      width: min(1180px, 92%);
+
+      margin: 0 auto;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 20px;
+    }
+
+
+    .footer-brand {
+      color: #ffffff;
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    .footer-text {
+      margin-top: 3px;
+
+      font-size: 10px;
+
+      color: rgba(255,255,255,0.58);
+    }
+
+
+    .footer-right {
+      font-size: 10px;
+
+      color: rgba(255,255,255,0.55);
+
+      text-align: right;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 900px) {
+
       .header-inner {
-        align-items: flex-start;
-      }
-
-      .brand h1 {
-        font-size: 17px;
-      }
-
-      .brand p {
-        font-size: 12px;
-      }
-
-      .hero-box {
-        padding: 25px;
-      }
-
-      .hero-box h2 {
-        font-size: 25px;
-      }
-
-      .toolbar {
         flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 15px 0;
       }
 
-      .refresh-btn {
-        height: 42px;
+
+      .header nav {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        padding-bottom: 2px;
       }
 
-      .info-grid {
+
+      .page-grid {
         grid-template-columns: 1fr;
       }
 
-      .card-top {
-        flex-direction: column;
+
+      .info-card {
+        order: 2;
       }
+
     }
+
+
+    @media (max-width: 650px) {
+
+      .hero {
+        padding: 42px 20px 45px;
+      }
+
+
+      .hero h2 {
+        font-size: 30px;
+      }
+
+
+      .hero p {
+        font-size: 13px;
+      }
+
+
+      .content {
+        padding: 25px 0 50px;
+      }
+
+
+      .form-card {
+        padding: 21px;
+      }
+
+
+      .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+      }
+
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+
+      .footer-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+
+      .footer-right {
+        text-align: left;
+      }
+
+    }
+
   </style>
+
 </head>
+
 
 <body>
 
-<header>
-  <div class="header-inner">
 
-    <img
-      src="assets/logo-kemenag.png"
-      alt="Logo Kementerian Agama"
-      class="logo"
-    >
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-    <div class="brand">
-      <h1>PPID Kanwil Kementerian Agama Provinsi Banten</h1>
-      <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
-    </div>
+  <header class="header">
 
-  </div>
-</header>
+    <div class="header-inner">
 
-<nav>
-  <div class="nav-inner">
+      <div class="brand">
 
-    <a href="index.html">Beranda</a>
-    <a href="informasi-publik.html">Informasi Publik</a>
-    <a href="dip.html">DIP</a>
-    <a href="dik.html">DIK</a>
-    <a href="berita.html">Berita</a>
-    <a href="pengumuman.html">Pengumuman</a>
+        <img
+          class="header-logo"
+          src="assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama"
+        >
 
-  </div>
-</nav>
+        <div class="header-text">
 
-<section class="hero">
+          <h1>
+            PPID Kanwil Kemenag Banten
+          </h1>
 
-  <div class="hero-box">
+          <p>
+            Kementerian Agama Provinsi Banten
+          </p>
 
-    <h2>Keberatan Informasi Publik</h2>
+        </div>
 
-    <p>
-      Informasi mengenai pengajuan keberatan atas pelayanan
-      informasi publik pada PPID Kanwil Kementerian Agama
-      Provinsi Banten.
-    </p>
-
-  </div>
-
-</section>
-
-<main>
-
-  <div class="toolbar">
-
-    <input
-      type="text"
-      id="searchInput"
-      class="search"
-      placeholder="Cari nomor keberatan, nomor permohonan, alasan, atau status..."
-    >
-
-    <button
-      class="refresh-btn"
-      onclick="loadKeberatan()"
-    >
-      ↻ Refresh
-    </button>
-
-  </div>
-
-  <div id="content">
-
-    <div class="loading">
-      Memuat data keberatan...
-    </div>
-
-  </div>
-
-</main>
-
-<footer>
-
-  PPID Kanwil Kementerian Agama Provinsi Banten
-  <br>
-  Layanan Informasi Publik
-
-</footer>
-
-<script>
-
-  /* =====================================================
-     API
-     ===================================================== */
-
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
-
-  let allData = [];
-
-
-  /* =====================================================
-     FORMAT TANGGAL
-     ===================================================== */
-
-  function formatTanggal(value) {
-
-    if (!value) {
-      return '-';
-    }
-
-    const date = new Date(value);
-
-    if (isNaN(date.getTime())) {
-      return value;
-    }
-
-    return date.toLocaleDateString('id-ID', {
-      day: '2-digit',
-      month: 'long',
-      year: 'numeric'
-    });
-
-  }
-
-
-  /* =====================================================
-     ESCAPE HTML
-     ===================================================== */
-
-  function escapeHTML(value) {
-
-    if (value === null || value === undefined) {
-      return '';
-    }
-
-    return String(value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-
-  }
-
-
-  /* =====================================================
-     STATUS CLASS
-     ===================================================== */
-
-  function getStatusClass(status) {
-
-    const text = String(status || '').toLowerCase();
-
-    if (text.includes('selesai')) {
-      return 'status-selesai';
-    }
-
-    if (text.includes('ditolak')) {
-      return 'status-ditolak';
-    }
-
-    if (text.includes('diterima')) {
-      return 'status-diterima';
-    }
-
-    if (
-      text.includes('proses') ||
-      text.includes('diproses')
-    ) {
-      return 'status-diproses';
-    }
-
-    return 'status-lain';
-
-  }
-
-
-  /* =====================================================
-     LOAD DATA
-     ===================================================== */
-
-  async function loadKeberatan() {
-
-    const content =
-      document.getElementById('content');
-
-    content.innerHTML = `
-      <div class="loading">
-        Memuat data keberatan...
       </div>
-    `;
-
-    try {
-
-      const response =
-        await fetch(API_URL + '?action=keberatan');
-
-      if (!response.ok) {
-        throw new Error(
-          'HTTP Error ' + response.status
-        );
-      }
-
-      const result =
-        await response.json();
-
-      console.log('API Keberatan:', result);
-
-      if (result.success !== true) {
-
-        throw new Error(
-          result.message ||
-          'API mengembalikan success=false'
-        );
-
-      }
-
-      allData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-      renderData(allData);
-
-    } catch (error) {
-
-      console.error(
-        'Gagal memuat keberatan:',
-        error
-      );
-
-      content.innerHTML = `
-        <div class="error">
-          <strong>Data keberatan gagal dimuat.</strong>
-          <br><br>
-          ${escapeHTML(error.message)}
-        </div>
-      `;
-
-    }
-
-  }
 
 
-  /* =====================================================
-     RENDER DATA
-     ===================================================== */
+      <nav>
 
-  function renderData(data) {
+        <a href="index.html">
+          Beranda
+        </a>
 
-    const content =
-      document.getElementById('content');
+        <a href="informasi-publik.html">
+          Informasi Publik
+        </a>
 
-    if (!data || data.length === 0) {
+        <a href="dip.html">
+          DIP
+        </a>
 
-      content.innerHTML = `
-        <div class="empty">
-          Belum terdapat data keberatan yang
-          dipublikasikan.
-        </div>
-      `;
+        <a href="dik.html">
+          DIK
+        </a>
 
-      return;
-    }
+        <a href="berita.html">
+          Berita
+        </a>
 
+        <a href="pengumuman.html">
+          Pengumuman
+        </a>
 
-    const list =
-      document.createElement('div');
+        <a href="permohonan.html">
+          Permohonan
+        </a>
 
-    list.className = 'list';
+        <a href="keberatan.html" class="active">
+          Keberatan
+        </a>
 
+      </nav>
 
-    data.forEach(item => {
+    </div>
 
-      const id =
-        escapeHTML(item.id || '-');
-
-      const nomorKeberatan =
-        escapeHTML(
-          item.nomor_keberatan || '-'
-        );
-
-      const nomorPermohonan =
-        escapeHTML(
-          item.nomor_permohonan || '-'
-        );
-
-      const alasan =
-        escapeHTML(
-          item.alasan_keberatan || '-'
-        );
-
-      const tanggal =
-        formatTanggal(
-          item.tanggal_masuk
-        );
-
-      const catatan =
-        escapeHTML(
-          item.catatan || '-'
-        );
-
-      const status =
-        escapeHTML(
-          item.status || 'Belum ditentukan'
-        );
-
-      const statusClass =
-        getStatusClass(item.status);
+  </header>
 
 
-      let documentHTML = '';
+  <!-- =========================
+       HERO
+  ========================== -->
 
-      if (item.url_dokumen) {
+  <section class="hero">
 
-        documentHTML = `
-          <div class="document">
-            <a
-              href="${escapeHTML(item.url_dokumen)}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📄 Lihat Dokumen
-            </a>
-          </div>
-        `;
+    <div class="hero-inner">
 
-      }
+      <div class="hero-label">
+        Layanan Informasi Publik
+      </div>
 
 
-      const card =
-        document.createElement('article');
+      <h2>
+        Pengajuan Keberatan Informasi Publik
+      </h2>
 
-      card.className = 'card';
+
+      <p>
+        Ajukan keberatan atas pelayanan informasi publik
+        kepada PPID Kantor Wilayah Kementerian Agama
+        Provinsi Banten melalui formulir berikut.
+      </p>
+
+    </div>
+
+  </section>
 
 
-      card.innerHTML = `
+  <!-- =========================
+       CONTENT
+  ========================== -->
 
-        <div class="card-top">
+  <main class="content">
 
-          <div>
+    <div class="container">
 
-            <h3 class="card-title">
-              Keberatan ${nomorKeberatan}
+      <div class="page-grid">
+
+
+        <!-- =====================
+             FORM
+        ====================== -->
+
+        <section class="card form-card">
+
+          <h2 class="card-title">
+            Formulir Pengajuan Keberatan
+          </h2>
+
+
+          <p class="card-description">
+            Silakan lengkapi data berikut dengan benar.
+            Nomor keberatan akan dibuat otomatis oleh sistem.
+          </p>
+
+
+          <form id="keberatanForm">
+
+
+            <div class="form-grid">
+
+
+              <!-- NOMOR PERMOHONAN -->
+
+              <div class="form-group">
+
+                <label for="nomorPermohonan">
+
+                  Nomor Permohonan
+
+                  <span class="required">
+                    *
+                  </span>
+
+                </label>
+
+
+                <input
+                  type="text"
+                  id="nomorPermohonan"
+                  placeholder="Contoh: 004/PPID/IX/2026"
+                  required
+                >
+
+
+                <div class="helper">
+
+                  Masukkan nomor permohonan informasi
+                  yang menjadi dasar pengajuan keberatan.
+
+                </div>
+
+              </div>
+
+
+              <!-- NAMA -->
+
+              <div class="form-group">
+
+                <label for="namaPemohon">
+
+                  Nama Pemohon
+
+                  <span class="required">
+                    *
+                  </span>
+
+                </label>
+
+
+                <input
+                  type="text"
+                  id="namaPemohon"
+                  placeholder="Masukkan nama lengkap"
+                  required
+                >
+
+              </div>
+
+
+              <!-- EMAIL -->
+
+              <div class="form-group">
+
+                <label for="email">
+
+                  Email
+
+                  <span class="required">
+                    *
+                  </span>
+
+                </label>
+
+
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="nama@email.com"
+                  required
+                >
+
+              </div>
+
+
+              <!-- TELEPON -->
+
+              <div class="form-group">
+
+                <label for="telepon">
+
+                  Nomor Telepon
+
+                  <span class="required">
+                    *
+                  </span>
+
+                </label>
+
+
+                <input
+                  type="tel"
+                  id="telepon"
+                  placeholder="Contoh: 081234567890"
+                  required
+                >
+
+              </div>
+
+
+              <!-- TANGGAL -->
+
+              <div class="form-group">
+
+                <label for="tanggalMasuk">
+
+                  Tanggal Keberatan
+
+                </label>
+
+
+                <input
+                  type="date"
+                  id="tanggalMasuk"
+                >
+
+              </div>
+
+
+              <!-- ALASAN -->
+
+              <div class="form-group full">
+
+                <label for="alasanKeberatan">
+
+                  Alasan Keberatan
+
+                  <span class="required">
+                    *
+                  </span>
+
+                </label>
+
+
+                <textarea
+                  id="alasanKeberatan"
+                  placeholder="Jelaskan alasan pengajuan keberatan secara jelas"
+                  required
+                ></textarea>
+
+
+                <div class="helper">
+
+                  Jelaskan alasan keberatan secara spesifik
+                  agar dapat diproses oleh PPID.
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <!-- BUTTON -->
+
+            <div class="button-wrapper">
+
+              <button
+                type="submit"
+                class="btn-primary"
+                id="submitButton"
+              >
+
+                Kirim Pengajuan Keberatan
+
+              </button>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div
+              id="statusBox"
+              class="status-box"
+            ></div>
+
+
+          </form>
+
+        </section>
+
+
+        <!-- =====================
+             INFORMATION
+        ====================== -->
+
+        <aside>
+
+          <div class="card info-card">
+
+            <h3>
+              Informasi Layanan
             </h3>
 
-            <div class="card-id">
-              ID: ${id}
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                1
+              </div>
+
+              <div>
+
+                <strong>
+                  Siapkan Nomor Permohonan
+                </strong>
+
+                <span>
+                  Gunakan nomor permohonan informasi
+                  yang menjadi dasar keberatan.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                2
+              </div>
+
+              <div>
+
+                <strong>
+                  Lengkapi Data
+                </strong>
+
+                <span>
+                  Isi identitas dan alasan keberatan
+                  secara lengkap dan benar.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                3
+              </div>
+
+              <div>
+
+                <strong>
+                  Kirim Pengajuan
+                </strong>
+
+                <span>
+                  Pastikan seluruh data sudah benar
+                  sebelum dikirim.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="info-item">
+
+              <div class="info-icon">
+                4
+              </div>
+
+              <div>
+
+                <strong>
+                  Proses PPID
+                </strong>
+
+                <span>
+                  Pengajuan akan diterima dan
+                  ditindaklanjuti oleh PPID.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="notice">
+
+              <strong>
+                Penting
+              </strong>
+
+
+              <p>
+                Simpan nomor keberatan yang diberikan
+                sistem setelah pengajuan berhasil.
+                Nomor tersebut dapat digunakan
+                sebagai referensi tindak lanjut.
+              </p>
+
             </div>
 
           </div>
 
-          <span class="status ${statusClass}">
-            ${status}
-          </span>
+        </aside>
 
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          PPID Kanwil Kemenag Banten
         </div>
 
-
-        <div class="info-grid">
-
-          <div class="info-item">
-
-            <span class="label">
-              Nomor Keberatan
-            </span>
-
-            <div class="value">
-              ${nomorKeberatan}
-            </div>
-
-          </div>
-
-
-          <div class="info-item">
-
-            <span class="label">
-              Nomor Permohonan
-            </span>
-
-            <div class="value">
-              ${nomorPermohonan}
-            </div>
-
-          </div>
-
-
-          <div class="info-item">
-
-            <span class="label">
-              Tanggal Masuk
-            </span>
-
-            <div class="value">
-              ${escapeHTML(tanggal)}
-            </div>
-
-          </div>
-
-
-          <div class="info-item">
-
-            <span class="label">
-              Status
-            </span>
-
-            <div class="value">
-              ${status}
-            </div>
-
-          </div>
-
+        <div class="footer-text">
+          Kantor Wilayah Kementerian Agama Provinsi Banten
         </div>
 
-
-        <div class="reason">
-
-          <strong>
-            Alasan Keberatan
-          </strong>
-
-          <p>
-            ${alasan}
-          </p>
-
-        </div>
+      </div>
 
 
-        <div class="reason">
+      <div class="footer-right">
+        Layanan Informasi Publik
+      </div>
 
-          <strong>
-            Catatan
-          </strong>
+    </div>
 
-          <p>
-            ${catatan}
-          </p>
-
-        </div>
+  </footer>
 
 
-        ${documentHTML}
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-      `;
-
-
-      list.appendChild(card);
-
-    });
+  <script>
 
 
-    content.innerHTML = '';
+    /* =========================
+       API
+    ========================== */
 
-    content.appendChild(list);
-
-  }
-
-
-  /* =====================================================
-     SEARCH
-     ===================================================== */
-
-  document
-    .getElementById('searchInput')
-    .addEventListener('input', function () {
-
-      const keyword =
-        this.value
-          .toLowerCase()
-          .trim();
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
 
-      if (!keyword) {
+    const form =
+      document.getElementById(
+        'keberatanForm'
+      );
 
-        renderData(allData);
 
-        return;
+    const submitButton =
+      document.getElementById(
+        'submitButton'
+      );
+
+
+    const statusBox =
+      document.getElementById(
+        'statusBox'
+      );
+
+
+    /* =========================
+       DEFAULT DATE
+    ========================== */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      function () {
+
+        const tanggalInput =
+          document.getElementById(
+            'tanggalMasuk'
+          );
+
+
+        const today =
+          new Date();
+
+
+        const year =
+          today.getFullYear();
+
+
+        const month =
+          String(
+            today.getMonth() + 1
+          ).padStart(2, '0');
+
+
+        const day =
+          String(
+            today.getDate()
+          ).padStart(2, '0');
+
+
+        tanggalInput.value =
+          `${year}-${month}-${day}`;
 
       }
+    );
 
 
-      const filtered =
-        allData.filter(item => {
+    /* =========================
+       SUBMIT
+    ========================== */
 
-          const text = [
+    form.addEventListener(
+      'submit',
+      async function (event) {
 
-            item.id,
-
-            item.nomor_keberatan,
-
-            item.nomor_permohonan,
-
-            item.alasan_keberatan,
-
-            item.tanggal_masuk,
-
-            item.status,
-
-            item.catatan
-
-          ]
-          .join(' ')
-          .toLowerCase();
+        event.preventDefault();
 
 
-          return text.includes(keyword);
+        const nomorPermohonan =
+          document
+            .getElementById(
+              'nomorPermohonan'
+            )
+            .value
+            .trim();
 
-        });
+
+        const namaPemohon =
+          document
+            .getElementById(
+              'namaPemohon'
+            )
+            .value
+            .trim();
 
 
-      renderData(filtered);
+        const email =
+          document
+            .getElementById(
+              'email'
+            )
+            .value
+            .trim();
 
-    });
+
+        const telepon =
+          document
+            .getElementById(
+              'telepon'
+            )
+            .value
+            .trim();
 
 
-  /* =====================================================
-     INITIAL LOAD
-     ===================================================== */
+        const alasanKeberatan =
+          document
+            .getElementById(
+              'alasanKeberatan'
+            )
+            .value
+            .trim();
 
-  loadKeberatan();
 
-</script>
+        const tanggalInput =
+          document
+            .getElementById(
+              'tanggalMasuk'
+            )
+            .value;
+
+
+        /* =====================
+           VALIDASI
+        ====================== */
+
+        if (!nomorPermohonan) {
+
+          showStatus(
+            'error',
+            'Nomor permohonan wajib diisi.'
+          );
+
+          return;
+        }
+
+
+        if (!namaPemohon) {
+
+          showStatus(
+            'error',
+            'Nama pemohon wajib diisi.'
+          );
+
+          return;
+        }
+
+
+        if (!email) {
+
+          showStatus(
+            'error',
+            'Email wajib diisi.'
+          );
+
+          return;
+        }
+
+
+        if (!telepon) {
+
+          showStatus(
+            'error',
+            'Nomor telepon wajib diisi.'
+          );
+
+          return;
+        }
+
+
+        if (!alasanKeberatan) {
+
+          showStatus(
+            'error',
+            'Alasan keberatan wajib diisi.'
+          );
+
+          return;
+        }
+
+
+        /* =====================
+           FORMAT TANGGAL
+        ====================== */
+
+        let tanggalMasuk =
+          tanggalInput;
+
+
+        if (!tanggalMasuk) {
+
+          const today =
+            new Date();
+
+
+          tanggalMasuk =
+            String(
+              today.getDate()
+            ).padStart(2, '0') +
+            '/' +
+            String(
+              today.getMonth() + 1
+            ).padStart(2, '0') +
+            '/' +
+            today.getFullYear();
+
+        }
+
+        else {
+
+          const parts =
+            tanggalInput.split('-');
+
+
+          tanggalMasuk =
+            parts[2] +
+            '/' +
+            parts[1] +
+            '/' +
+            parts[0];
+
+        }
+
+
+        /* =====================
+           DISABLE BUTTON
+        ====================== */
+
+        submitButton.disabled =
+          true;
+
+
+        submitButton.textContent =
+          'Mengirim Pengajuan...';
+
+
+        statusBox.className =
+          'status-box';
+
+
+        statusBox.style.display =
+          'none';
+
+
+        /* =====================
+           PAYLOAD
+        ====================== */
+
+        const payload = {
+
+          action:
+            'tambahKeberatan',
+
+          nomorKeberatan:
+            '',
+
+          nomorPermohonan:
+            nomorPermohonan,
+
+          namaPemohon:
+            namaPemohon,
+
+          email:
+            email,
+
+          telepon:
+            telepon,
+
+          alasanKeberatan:
+            alasanKeberatan,
+
+          tanggalMasuk:
+            tanggalMasuk,
+
+          status:
+            'Diterima',
+
+          catatan:
+            ''
+
+        };
+
+
+        try {
+
+          /* ===================
+             POST API
+          ==================== */
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+
+                method: 'POST',
+
+                headers: {
+
+                  'Content-Type':
+                    'text/plain;charset=utf-8'
+
+                },
+
+                body:
+                  JSON.stringify(
+                    payload
+                  )
+
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          console.log(
+            'API Keberatan:',
+            result
+          );
+
+
+          if (
+            result.success !== true
+          ) {
+
+            throw new Error(
+              result.message ||
+              'Pengajuan keberatan gagal disimpan.'
+            );
+
+          }
+
+
+          /* ===================
+             SUCCESS
+          ==================== */
+
+          showStatus(
+            'success',
+            `
+              <strong>
+                Pengajuan keberatan berhasil dikirim.
+              </strong>
+
+              <div class="success-number">
+
+                Nomor Keberatan:
+                ${result.data?.nomor_keberatan || result.data?.id || '-'}
+
+              </div>
+
+              <div style="margin-top:5px;">
+
+                Pengajuan Anda telah diterima
+                oleh sistem PPID.
+
+              </div>
+            `
+          );
+
+
+          /* ===================
+             RESET FORM
+          ==================== */
+
+          form.reset();
+
+
+          const today =
+            new Date();
+
+
+          document.getElementById(
+            'tanggalMasuk'
+          ).value =
+
+            today.getFullYear() +
+            '-' +
+
+            String(
+              today.getMonth() + 1
+            ).padStart(2, '0') +
+
+            '-' +
+
+            String(
+              today.getDate()
+            ).padStart(2, '0');
+
+
+        }
+
+        catch (error) {
+
+          console.error(
+            'Error submit keberatan:',
+            error
+          );
+
+
+          showStatus(
+            'error',
+            `
+              <strong>
+                Pengajuan keberatan belum berhasil dikirim.
+              </strong>
+
+              <div style="margin-top:5px;">
+
+                ${error.message ||
+                'Terjadi kesalahan pada sistem.'}
+
+              </div>
+            `
+          );
+
+        }
+
+        finally {
+
+          submitButton.disabled =
+            false;
+
+
+          submitButton.textContent =
+            'Kirim Pengajuan Keberatan';
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       STATUS MESSAGE
+    ========================== */
+
+    function showStatus(
+      type,
+      message
+    ) {
+
+      statusBox.className =
+        'status-box ' + type;
+
+
+      statusBox.innerHTML =
+        message;
+
+
+      statusBox.style.display =
+        'block';
+
+
+      statusBox.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+
+    }
+
+  </script>
 
 </body>
 </html>
-
