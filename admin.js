@@ -2588,6 +2588,8 @@ case 'REGULASI':
     case 'LAPORAN':
   action = 'laporan';
   break;      
+case 'PENGADAAN': action = 'pengadaan'; break;
+          
         default:
 
           idSelect.innerHTML =
