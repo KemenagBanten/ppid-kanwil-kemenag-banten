@@ -3193,6 +3193,9 @@ if (sheetName === 'BERITA') {
 
 } else if (sheetName === 'LAPORAN') {
   action = 'uploadLaporanDocument';
+
+} else if (sheetName === 'PENGADAAN') {
+  action = 'uploadPengadaanDocument';
   
 } else {
   action = 'upload';
