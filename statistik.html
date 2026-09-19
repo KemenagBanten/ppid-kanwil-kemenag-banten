@@ -204,7 +204,10 @@
 .statistik-kpi .card.total {
   grid-column: 1 / -1;
 }
-
+.statistik-kpi-keberatan .card.total {
+  grid-column: 1 / -1;
+}
+    
 @media (max-width: 900px) {
   .statistik-row {
     grid-template-columns: 1fr;
@@ -337,9 +340,14 @@
 </section>
 
 
-    <!-- KEBERATAN -->
+   <!-- KEBERATAN -->
 
-    <section class="section">
+<section class="section">
+
+  <div class="statistik-row">
+
+    <!-- KIRI: KPI KEBERATAN -->
+    <div class="statistik-kpi statistik-kpi-keberatan">
 
       <div class="section-title">
         <h3>Keberatan Informasi</h3>
@@ -408,8 +416,28 @@
 
       </div>
 
-    </section>
+    </div>
 
+
+    <!-- KANAN: GRAFIK KEBERATAN -->
+
+    <div class="statistik-grafik">
+
+      <div class="section-title">
+        <h3>Grafik Status Keberatan</h3>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="chart-card">
+        <canvas id="grafikKeberatan"></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+    
   </main>
 
 
@@ -513,7 +541,9 @@
         ).textContent =
           data.keberatan.ditolak;
 
-
+tampilkanGrafikKeberatan(
+  data.keberatan
+);
         // tampilkan kartu
 
         document.getElementById(
@@ -632,6 +662,73 @@
   });
 
 }
+
+    function tampilkanGrafikKeberatan(data) {
+
+  const canvas = document.getElementById(
+    'grafikKeberatan'
+  );
+
+  new Chart(canvas, {
+    type: 'bar',
+
+    data: {
+      labels: [
+        'Diterima',
+        'Dalam Proses',
+        'Selesai',
+        'Ditolak'
+      ],
+
+      datasets: [
+        {
+          label: 'Jumlah Keberatan',
+
+          data: [
+            data.diterima,
+            data.dalamProses,
+            data.selesai,
+            data.ditolak
+          ],
+
+          borderWidth: 1,
+
+          borderRadius: 6
+        }
+      ]
+    },
+
+    options: {
+
+      responsive: true,
+
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+
+      scales: {
+
+        y: {
+          beginAtZero: true,
+
+          ticks: {
+            precision: 0
+          }
+        }
+
+      }
+
+    }
+
+  });
+
+}
+
+    
   </script>
 
 </body>
