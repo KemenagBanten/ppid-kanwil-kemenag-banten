@@ -775,6 +775,78 @@ function renderPermohonanTable(data) {
 
   container.innerHTML = html;
 }
+
+function renderKeberatanTable(data) {
+  const container = document.getElementById('keberatanTableContainer');
+
+  if (!data || data.length === 0) {
+    container.innerHTML = `
+      <div class="empty-data">
+        Belum ada data keberatan.
+      </div>
+    `;
+    return;
+  }
+
+  let html = `
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Nomor Keberatan</th>
+            <th>Nomor Permohonan</th>
+            <th>Nama Pemohon</th>
+            <th>Email</th>
+            <th>Alasan Keberatan</th>
+            <th>Tanggal Masuk</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  data.forEach(function(item, index) {
+    const status = normalizeStatus(item.status);
+
+    let statusClass = 'status-diterima';
+
+    if (status === 'dalam proses') {
+      statusClass = 'status-proses';
+    } else if (status === 'selesai') {
+      statusClass = 'status-selesai';
+    } else if (status === 'ditolak') {
+      statusClass = 'status-ditolak';
+    }
+
+    html += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${item.nomor_keberatan || '-'}</td>
+        <td>${item.nomor_permohonan || '-'}</td>
+        <td>${item.nama_pemohon || '-'}</td>
+        <td>${item.email || '-'}</td>
+        <td>${item.alasan_keberatan || '-'}</td>
+        <td>${item.tanggal_masuk || '-'}</td>
+        <td>
+          <span class="status-badge ${statusClass}">
+            ${item.status || '-'}
+          </span>
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  container.innerHTML = html;
+}
+
+  
 /* =========================================
    LOAD DATA
 ========================================= */
@@ -925,7 +997,7 @@ async function loadMonitoring() {
     ).textContent =
       keberatanStats.selesai;
 
-
+renderKeberatanTable(keberatanData);
     /* SELESAI */
 
     renderPermohonanTable(permohonanData);
