@@ -1005,6 +1005,14 @@ const statusFilter = document
   .value
   .toLowerCase()
   .trim();
+
+console.log('STATUS FILTER:', statusFilter);
+console.log(
+  'STATUS DATA KEBERATAN:',
+  allKeberatanData.map(function(item) {
+    return item.status;
+  })
+);
   
   const filteredData = allKeberatanData.filter(function(item) {
     const matchesKeyword =
