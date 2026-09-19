@@ -2337,6 +2337,218 @@
   </form>
 
 </div>
+
+<!-- =================================================
+     CARD — KEBERATAN INFORMASI
+================================================== -->
+
+<section class="card">
+
+  <div class="card-header">
+
+    <div class="card-icon">
+      ⚠
+    </div>
+
+    <div>
+
+      <h2>
+        Keberatan Informasi
+      </h2>
+
+      <p>
+        Catat dan kelola pengajuan keberatan dari pemohon informasi.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <form id="keberatanForm">
+
+    <div class="form-grid">
+
+      <!-- NOMOR PERMOHONAN -->
+
+      <div class="form-group">
+
+        <label for="keberatanNomorPermohonan">
+          Nomor Permohonan
+        </label>
+
+        <input
+          type="text"
+          id="keberatanNomorPermohonan"
+          placeholder="Contoh: 004/PPID/IX/2026"
+          required
+        >
+
+        <div class="helper">
+          Masukkan nomor permohonan informasi yang menjadi dasar keberatan.
+        </div>
+
+      </div>
+
+
+      <!-- NAMA PEMOHON -->
+
+      <div class="form-group">
+
+        <label for="keberatanNama">
+          Nama Pemohon
+        </label>
+
+        <input
+          type="text"
+          id="keberatanNama"
+          placeholder="Nama lengkap pemohon"
+          required
+        >
+
+      </div>
+
+
+      <!-- EMAIL -->
+
+      <div class="form-group">
+
+        <label for="keberatanEmail">
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="keberatanEmail"
+          placeholder="Email pemohon"
+        >
+
+      </div>
+
+
+      <!-- TELEPON -->
+
+      <div class="form-group">
+
+        <label for="keberatanTelepon">
+          Telepon
+        </label>
+
+        <input
+          type="text"
+          id="keberatanTelepon"
+          placeholder="Nomor telepon"
+        >
+
+      </div>
+
+
+      <!-- TANGGAL -->
+
+      <div class="form-group">
+
+        <label for="keberatanTanggal">
+          Tanggal Masuk
+        </label>
+
+        <input
+          type="date"
+          id="keberatanTanggal"
+        >
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="form-group">
+
+        <label for="keberatanStatus">
+          Status
+        </label>
+
+        <select id="keberatanStatus">
+
+          <option value="Diterima">
+            Diterima
+          </option>
+
+          <option value="Diproses">
+            Diproses
+          </option>
+
+          <option value="Selesai">
+            Selesai
+          </option>
+
+          <option value="Ditolak">
+            Ditolak
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- ALASAN KEBERATAN -->
+
+    <div class="form-group">
+
+      <label for="keberatanAlasan">
+        Alasan Keberatan
+      </label>
+
+      <textarea
+        id="keberatanAlasan"
+        rows="5"
+        placeholder="Jelaskan alasan pengajuan keberatan"
+        required
+      ></textarea>
+
+    </div>
+
+
+    <!-- CATATAN -->
+
+    <div class="form-group">
+
+      <label for="keberatanCatatan">
+        Catatan
+      </label>
+
+      <textarea
+        id="keberatanCatatan"
+        rows="3"
+        placeholder="Catatan tambahan"
+      ></textarea>
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="saveKeberatanButton"
+    >
+      Simpan Keberatan
+    </button>
+
+
+    <!-- STATUS -->
+
+    <div
+      id="keberatanStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</section>
       
       <!-- =================================================
            CARD 2 — EDIT KONTEN
