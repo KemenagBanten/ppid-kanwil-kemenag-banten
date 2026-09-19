@@ -1,17 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="id">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Monitoring Layanan PPID</title>
-
 
   <style>
 
@@ -19,438 +16,232 @@
       box-sizing: border-box;
     }
 
-
     body {
-
       margin: 0;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       background: #f4f7f5;
-
       color: #1f2937;
-
     }
-
-
-    /* =========================================
-       LAYOUT
-    ========================================= */
 
     .app {
-
       min-height: 100vh;
-
       display: flex;
-
     }
 
-
-    /* =========================================
-       SIDEBAR
-    ========================================= */
+    /* SIDEBAR */
 
     .sidebar {
-
       width: 250px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #145c3d,
-          #0f4d34
-        );
-
+      background: linear-gradient(180deg, #145c3d, #0f4d34);
       color: white;
-
       padding: 24px 16px;
-
       flex-shrink: 0;
-
     }
-
 
     .sidebar-title {
-
-      padding:
-        8px 12px
-        20px;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.12);
-
+      padding: 8px 12px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
       margin-bottom: 18px;
-
     }
-
 
     .sidebar-title strong {
-
       display: block;
-
       font-size: 18px;
-
       margin-bottom: 5px;
-
     }
-
 
     .sidebar-title span {
-
       font-size: 12px;
-
       opacity: 0.75;
-
     }
-
 
     .menu-title {
-
       font-size: 10px;
-
       text-transform: uppercase;
-
       letter-spacing: 1px;
-
       opacity: 0.6;
-
-      padding:
-        0 12px
-        8px;
-
+      padding: 0 12px 8px;
     }
-
 
     .menu {
-
       display: flex;
-
       flex-direction: column;
-
       gap: 6px;
-
     }
-
 
     .menu button {
-
       width: 100%;
-
       border: none;
-
       background: transparent;
-
       color: white;
-
       text-align: left;
-
-      padding:
-        12px 14px;
-
+      padding: 12px 14px;
       border-radius: 10px;
-
       cursor: pointer;
-
       font-size: 14px;
-
-      transition:
-        background 0.2s ease;
-
+      transition: background 0.2s ease;
     }
-
 
     .menu button:hover {
-
-      background:
-        rgba(255,255,255,0.10);
-
+      background: rgba(255,255,255,0.10);
     }
-
 
     .menu button.active {
-
-      background:
-        rgba(255,255,255,0.16);
-
+      background: rgba(255,255,255,0.16);
       font-weight: 700;
-
     }
 
-
-    /* =========================================
-       CONTENT
-    ========================================= */
+    /* CONTENT */
 
     .content {
-
       flex: 1;
-
       min-width: 0;
-
       padding: 30px;
-
     }
-
 
     .topbar {
-
       margin-bottom: 24px;
-
     }
-
 
     .back {
-
       display: inline-block;
-
       margin-bottom: 14px;
-
       color: #176b45;
-
       text-decoration: none;
-
       font-size: 13px;
-
       font-weight: 600;
-
     }
-
 
     .back:hover {
-
       text-decoration: underline;
-
     }
-
 
     .topbar h1 {
-
       margin: 0 0 7px;
-
       color: #176b45;
-
       font-size: 28px;
-
     }
-
 
     .topbar p {
-
       margin: 0;
-
       color: #6b7280;
-
       font-size: 14px;
-
     }
 
-
-    /* =========================================
-       CONTENT CARD
-    ========================================= */
-
-    .card {
-
-      background: white;
-
-      border-radius: 18px;
-
-      padding: 24px;
-
-      margin-bottom: 22px;
-
-      box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.05);
-
-    }
-
-
-    .card h2 {
-
-      margin:
-        0 0 8px;
-
-      color: #176b45;
-
-      font-size: 20px;
-
-    }
-
-
-    .card-description {
-
-      margin:
-        0 0 20px;
-
-      color: #6b7280;
-
-      font-size: 13px;
-
-    }
-
-
-    /* =========================================
-       KPI
-    ========================================= */
+    /* KPI */
 
     .kpi-grid {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-
       margin-bottom: 22px;
-
     }
-
 
     .kpi {
-
       background: white;
-
       border-radius: 16px;
-
       padding: 20px;
-
-      box-shadow:
-        0 8px 25px
-        rgba(0,0,0,0.05);
-
-      border:
-        1px solid #edf1ee;
-
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      border: 1px solid #edf1ee;
     }
-
 
     .kpi span {
-
       display: block;
-
       color: #6b7280;
-
       font-size: 12px;
-
       margin-bottom: 8px;
-
     }
-
 
     .kpi strong {
-
       display: block;
-
       color: #176b45;
-
       font-size: 28px;
-
     }
 
+    /* CARD */
 
-    /* =========================================
-       PLACEHOLDER
-    ========================================= */
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
 
-    .placeholder {
+    .card h2 {
+      margin: 0 0 8px;
+      color: #176b45;
+      font-size: 20px;
+    }
 
-      padding: 35px;
-
-      text-align: center;
-
+    .card-description {
+      margin: 0 0 20px;
       color: #6b7280;
-
-      background: #fafcfb;
-
-      border-radius: 12px;
-
-      border:
-        1px dashed #d8e3dc;
-
+      font-size: 13px;
     }
 
+    .loading {
+      padding: 35px;
+      text-align: center;
+      color: #6b7280;
+      background: #fafcfb;
+      border-radius: 12px;
+      border: 1px dashed #d8e3dc;
+    }
 
-    /* =========================================
-       RESPONSIVE
-    ========================================= */
+    .error {
+      padding: 20px;
+      text-align: center;
+      color: #991b1b;
+      background: #fef2f2;
+      border-radius: 12px;
+      border: 1px solid #fecaca;
+    }
+
+    /* RESPONSIVE */
 
     @media (max-width: 900px) {
 
       .sidebar {
-
         width: 210px;
-
       }
-
 
       .content {
-
         padding: 22px;
-
       }
 
-
       .kpi-grid {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
       }
 
     }
 
-
     @media (max-width: 650px) {
 
       .app {
-
         display: block;
-
       }
-
 
       .sidebar {
-
         width: 100%;
-
         padding: 15px;
-
       }
-
 
       .menu {
-
         flex-direction: row;
-
       }
-
 
       .menu button {
-
         flex: 1;
-
         text-align: center;
-
       }
-
 
       .content {
-
         padding: 18px;
-
       }
 
-
       .kpi-grid {
-
         grid-template-columns: 1fr;
-
       }
 
     }
@@ -459,280 +250,291 @@
 
 </head>
 
-
 <body>
-
 
 <div class="app">
 
-
-  <!-- =====================================
-       SIDEBAR
-  ====================================== -->
+  <!-- SIDEBAR -->
 
   <aside class="sidebar">
 
-    <div class="sidebar-title">
+```
+<div class="sidebar-title">
 
-      <strong>
-        Monitoring PPID
-      </strong>
+  <strong>
+    Monitoring PPID
+  </strong>
 
-      <span>
-        Layanan Informasi Publik
-      </span>
+  <span>
+    Layanan Informasi Publik
+  </span>
 
-    </div>
+</div>
 
+<div class="menu-title">
+  Layanan PPID
+</div>
 
-    <div class="menu-title">
-      Layanan PPID
-    </div>
+<nav class="menu">
 
+  <button
+    type="button"
+    id="menuPermohonan"
+    class="active"
+    onclick="showSection('permohonan')"
+  >
+    ● &nbsp; Permohonan
+  </button>
 
-    <nav class="menu">
+  <button
+    type="button"
+    id="menuKeberatan"
+    onclick="showSection('keberatan')"
+  >
+    ○ &nbsp; Keberatan
+  </button>
 
-      <button
-        type="button"
-        id="menuPermohonan"
-        class="active"
-        onclick="showSection('permohonan')"
-      >
-        ● &nbsp; Permohonan
-      </button>
-
-
-      <button
-        type="button"
-        id="menuKeberatan"
-        onclick="showSection('keberatan')"
-      >
-        ○ &nbsp; Keberatan
-      </button>
-
-    </nav>
+</nav>
+```
 
   </aside>
 
-
-
-  <!-- =====================================
-       CONTENT
-  ====================================== -->
+  <!-- CONTENT -->
 
   <main class="content">
 
+```
+<div class="topbar">
 
-    <div class="topbar">
+  <a
+    href="admin.html"
+    class="back"
+  >
+    ← Kembali ke Admin
+  </a>
 
-      <a
-        href="admin.html"
-        class="back"
-      >
-        ← Kembali ke Admin
-      </a>
+  <h1>
+    Monitoring Layanan PPID
+  </h1>
+
+  <p>
+    Pemantauan permohonan informasi dan keberatan
+    PPID Kanwil Kementerian Agama Provinsi Banten.
+  </p>
+
+</div>
 
 
-      <h1>
-        Monitoring Layanan PPID
-      </h1>
+<!-- =================================
+     PERMOHONAN
+================================== -->
 
+<section
+  id="sectionPermohonan"
+>
 
-      <p>
-        Pemantauan permohonan informasi dan keberatan
-        PPID Kanwil Kementerian Agama Provinsi Banten.
-      </p>
+  <div class="kpi-grid">
+
+    <div class="kpi">
+
+      <span>
+        Total Permohonan
+      </span>
+
+      <strong id="totalPermohonan">
+        0
+      </strong>
 
     </div>
 
 
+    <div class="kpi">
 
-    <!-- ===================================
-         SECTION PERMOHONAN
-    ==================================== -->
+      <span>
+        Belum Diproses
+      </span>
 
-    <section
-      id="sectionPermohonan"
+      <strong id="permohonanBelumProses">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="kpi">
+
+      <span>
+        Dalam Proses
+      </span>
+
+      <strong id="permohonanProses">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="kpi">
+
+      <span>
+        Selesai
+      </span>
+
+      <strong id="permohonanSelesai">
+        0
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Permohonan Informasi
+    </h2>
+
+    <p class="card-description">
+      Daftar permohonan informasi publik
+      yang masuk melalui sistem PPID.
+    </p>
+
+    <div
+      id="permohonanLoading"
+      class="loading"
     >
+      Memuat data permohonan...
+    </div>
 
-      <div class="kpi-grid">
+  </div>
 
-        <div class="kpi">
-
-          <span>
-            Total Permohonan
-          </span>
-
-          <strong
-            id="totalPermohonan"
-          >
-            0
-          </strong>
-
-        </div>
+</section>
 
 
-        <div class="kpi">
+<!-- =================================
+     KEBERATAN
+================================== -->
 
-          <span>
-            Dalam Proses
-          </span>
+<section
+  id="sectionKeberatan"
+  style="display:none;"
+>
 
-          <strong
-            id="permohonanProses"
-          >
-            0
-          </strong>
+  <div class="kpi-grid">
 
-        </div>
+    <div class="kpi">
 
+      <span>
+        Total Keberatan
+      </span>
 
-        <div class="kpi">
+      <strong id="totalKeberatan">
+        0
+      </strong>
 
-          <span>
-            Selesai
-          </span>
-
-          <strong
-            id="permohonanSelesai"
-          >
-            0
-          </strong>
-
-        </div>
+    </div>
 
 
-        <div class="kpi">
+    <div class="kpi">
 
-          <span>
-            Total Keberatan
-          </span>
+      <span>
+        Belum Diproses
+      </span>
 
-          <strong
-            id="totalKeberatan"
-          >
-            0
-          </strong>
+      <strong id="keberatanBelumProses">
+        0
+      </strong>
 
-        </div>
-
-      </div>
+    </div>
 
 
-      <div class="card">
+    <div class="kpi">
 
-        <h2>
-          Permohonan Informasi
-        </h2>
+      <span>
+        Dalam Proses
+      </span>
 
-        <p class="card-description">
+      <strong id="keberatanProses">
+        0
+      </strong>
 
-          Daftar permohonan informasi publik
-          yang masuk melalui sistem PPID.
-
-        </p>
-
-
-        <div class="placeholder">
-
-          Fitur pencarian, filter dan pagination
-          akan kita tambahkan pada langkah berikutnya.
-
-        </div>
-
-      </div>
-
-    </section>
+    </div>
 
 
+    <div class="kpi">
 
-    <!-- ===================================
-         SECTION KEBERATAN
-    ==================================== -->
+      <span>
+        Selesai
+      </span>
 
-    <section
-      id="sectionKeberatan"
-      style="display:none;"
+      <strong id="keberatanSelesai">
+        0
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      Keberatan Informasi
+    </h2>
+
+    <p class="card-description">
+      Daftar keberatan atas layanan
+      informasi publik.
+    </p>
+
+    <div
+      id="keberatanLoading"
+      class="loading"
     >
+      Memuat data keberatan...
+    </div>
 
-      <div class="kpi-grid">
+  </div>
 
-        <div class="kpi">
-
-          <span>
-            Total Keberatan
-          </span>
-
-          <strong
-            id="totalKeberatanSection"
-          >
-            0
-          </strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <h2>
-          Keberatan Informasi
-        </h2>
-
-        <p class="card-description">
-
-          Daftar keberatan atas layanan
-          informasi publik.
-
-        </p>
-
-
-        <div class="placeholder">
-
-          Fitur pencarian, filter dan pagination
-          akan kita tambahkan pada langkah berikutnya.
-
-        </div>
-
-      </div>
-
-    </section>
-
+</section>
+```
 
   </main>
 
 </div>
 
-
-
 <script>
 
 
 /* =========================================
-   SIDEBAR NAVIGATION
+   API
+========================================= */
+
+const API_URL =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+/* =========================================
+   SIDEBAR
 ========================================= */
 
 function showSection(section) {
-
 
   const permohonan =
     document.getElementById(
       'sectionPermohonan'
     );
 
-
   const keberatan =
     document.getElementById(
       'sectionKeberatan'
     );
 
-
   const menuPermohonan =
     document.getElementById(
       'menuPermohonan'
     );
-
 
   const menuKeberatan =
     document.getElementById(
@@ -740,54 +542,322 @@ function showSection(section) {
     );
 
 
-  if (
-    section === 'permohonan'
-  ) {
+  if (section === 'permohonan') {
 
-    permohonan.style.display =
-      'block';
+    permohonan.style.display = 'block';
+    keberatan.style.display = 'none';
 
-    keberatan.style.display =
-      'none';
-
-
-    menuPermohonan.classList.add(
-      'active'
-    );
-
-    menuKeberatan.classList.remove(
-      'active'
-    );
+    menuPermohonan.classList.add('active');
+    menuKeberatan.classList.remove('active');
 
   }
 
 
-  if (
-    section === 'keberatan'
-  ) {
+  if (section === 'keberatan') {
 
-    permohonan.style.display =
-      'none';
+    permohonan.style.display = 'none';
+    keberatan.style.display = 'block';
 
-    keberatan.style.display =
-      'block';
-
-
-    menuPermohonan.classList.remove(
-      'active'
-    );
-
-    menuKeberatan.classList.add(
-      'active'
-    );
+    menuPermohonan.classList.remove('active');
+    menuKeberatan.classList.add('active');
 
   }
 
 }
 
 
-</script>
+/* =========================================
+   NORMALISASI STATUS
+========================================= */
 
+function normalizeStatus(status) {
+
+  return String(status || '')
+    .trim()
+    .toLowerCase();
+
+}
+
+
+/* =========================================
+   HITUNG STATUS
+========================================= */
+
+function calculateStats(data) {
+
+  let belumProses = 0;
+  let dalamProses = 0;
+  let selesai = 0;
+
+
+  data.forEach(function(row) {
+
+    const status =
+      normalizeStatus(row.status);
+
+
+    if (status === 'diterima') {
+
+      belumProses++;
+
+    }
+
+    else if (
+      status === 'dalam proses'
+    ) {
+
+      dalamProses++;
+
+    }
+
+    else if (
+      status === 'selesai' ||
+      status === 'ditolak'
+    ) {
+
+      selesai++;
+
+    }
+
+  });
+
+
+  const total =
+    belumProses +
+    dalamProses +
+    selesai;
+
+
+  return {
+    total: total,
+    belumProses: belumProses,
+    dalamProses: dalamProses,
+    selesai: selesai
+  };
+
+}
+
+
+/* =========================================
+   LOAD DATA
+========================================= */
+
+async function loadMonitoring() {
+
+  try {
+
+    const [
+      permohonanResponse,
+      keberatanResponse
+    ] = await Promise.all([
+
+      fetch(
+        API_URL +
+        '?action=permohonan'
+      ),
+
+      fetch(
+        API_URL +
+        '?action=keberatan'
+      )
+
+    ]);
+
+
+    if (
+      !permohonanResponse.ok ||
+      !keberatanResponse.ok
+    ) {
+
+      throw new Error(
+        'Gagal menghubungi API.'
+      );
+
+    }
+
+
+    const permohonanResult =
+      await permohonanResponse.json();
+
+    const keberatanResult =
+      await keberatanResponse.json();
+
+
+    if (
+      !permohonanResult.success
+    ) {
+
+      throw new Error(
+        permohonanResult.message ||
+        'Data permohonan gagal dimuat.'
+      );
+
+    }
+
+
+    if (
+      !keberatanResult.success
+    ) {
+
+      throw new Error(
+        keberatanResult.message ||
+        'Data keberatan gagal dimuat.'
+      );
+
+    }
+
+
+    const permohonanData =
+      Array.isArray(
+        permohonanResult.data
+      )
+        ? permohonanResult.data
+        : [];
+
+
+    const keberatanData =
+      Array.isArray(
+        keberatanResult.data
+      )
+        ? keberatanResult.data
+        : [];
+
+
+    /* HITUNG STATISTIK */
+
+    const permohonanStats =
+      calculateStats(
+        permohonanData
+      );
+
+
+    const keberatanStats =
+      calculateStats(
+        keberatanData
+      );
+
+
+    /* UPDATE KPI PERMOHONAN */
+
+    document.getElementById(
+      'totalPermohonan'
+    ).textContent =
+      permohonanStats.total;
+
+
+    document.getElementById(
+      'permohonanBelumProses'
+    ).textContent =
+      permohonanStats.belumProses;
+
+
+    document.getElementById(
+      'permohonanProses'
+    ).textContent =
+      permohonanStats.dalamProses;
+
+
+    document.getElementById(
+      'permohonanSelesai'
+    ).textContent =
+      permohonanStats.selesai;
+
+
+    /* UPDATE KPI KEBERATAN */
+
+    document.getElementById(
+      'totalKeberatan'
+    ).textContent =
+      keberatanStats.total;
+
+
+    document.getElementById(
+      'keberatanBelumProses'
+    ).textContent =
+      keberatanStats.belumProses;
+
+
+    document.getElementById(
+      'keberatanProses'
+    ).textContent =
+      keberatanStats.dalamProses;
+
+
+    document.getElementById(
+      'keberatanSelesai'
+    ).textContent =
+      keberatanStats.selesai;
+
+
+    /* SELESAI */
+
+    document.getElementById(
+      'permohonanLoading'
+    ).innerHTML =
+      'Data permohonan berhasil dimuat.';
+
+
+    document.getElementById(
+      'keberatanLoading'
+    ).innerHTML =
+      'Data keberatan berhasil dimuat.';
+
+
+  }
+
+  catch (error) {
+
+    console.error(
+      'Monitoring error:',
+      error
+    );
+
+
+    document.getElementById(
+      'permohonanLoading'
+    ).className =
+      'error';
+
+
+    document.getElementById(
+      'permohonanLoading'
+    ).textContent =
+      'Gagal memuat data permohonan: ' +
+      error.message;
+
+
+    document.getElementById(
+      'keberatanLoading'
+    ).className =
+      'error';
+
+
+    document.getElementById(
+      'keberatanLoading'
+    ).textContent =
+      'Gagal memuat data keberatan: ' +
+      error.message;
+
+  }
+
+}
+
+
+/* =========================================
+   JALANKAN
+========================================= */
+
+document.addEventListener(
+  'DOMContentLoaded',
+  function() {
+
+    loadMonitoring();
+
+  }
+);
+
+
+</script>
 
 </body>
 
