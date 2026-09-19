@@ -944,6 +944,20 @@ function filterKeberatanTable() {
   renderKeberatanTable(filteredData);
 }
 
+  function changeKeberatanPage(page) {
+  const totalPages = Math.ceil(
+    allKeberatanData.length / keberatanPageSize
+  );
+
+  if (page < 1 || page > totalPages) {
+    return;
+  }
+
+  currentKeberatanPage = page;
+
+  filterKeberatanTable();
+}
+
 function renderKeberatanTable(data) {
   const container = document.getElementById(
     'keberatanTableContainer'
