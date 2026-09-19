@@ -259,7 +259,197 @@
       margin-top: 9px;
     }
 
+/* =====================================================
+   ADMIN LAYOUT + SIDEBAR
+===================================================== */
 
+.admin-layout {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 20px;
+
+  background: #ffffff;
+  border: 1px solid rgba(229,231,235,0.9);
+  border-radius: 18px;
+  padding: 16px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(15,23,42,0.06);
+}
+
+.sidebar-title {
+  padding: 8px 10px 14px;
+
+  color: var(--green-dark);
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.sidebar-group {
+  margin-top: 12px;
+}
+
+.sidebar-group-title {
+  padding: 8px 10px;
+
+  color: #8a8f96;
+  font-size: 10px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 11px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #4b5563;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.sidebar-button:hover {
+  background: var(--green-soft);
+  color: var(--green-dark);
+  transform: none;
+  box-shadow: none;
+}
+
+.sidebar-button.active {
+  background: var(--green);
+  color: #ffffff;
+}
+
+.sidebar-icon {
+  width: 22px;
+  text-align: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.sidebar-submenu {
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+
+  margin: 3px 0 6px 31px;
+}
+
+.sidebar-submenu.open {
+  display: flex;
+}
+
+.sidebar-subbutton {
+  width: 100%;
+
+  padding: 8px 9px;
+
+  border: 0;
+  border-left: 2px solid #dfe9e4;
+  border-radius: 0;
+
+  background: transparent;
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.sidebar-subbutton:hover {
+  background: #f4f8f6;
+  color: var(--green-dark);
+
+  transform: none;
+  box-shadow: none;
+}
+
+.sidebar-subbutton.active {
+  color: var(--green);
+  border-left-color: var(--green);
+  background: #f1f7f4;
+}
+
+.admin-content {
+  min-width: 0;
+}
+
+.admin-section-hidden {
+  display: none !important;
+}
+
+/* =====================================================
+   SIDEBAR MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: relative;
+    top: 0;
+  }
+
+  .sidebar-menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sidebar-submenu {
+    margin-left: 0;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .sidebar-menu {
+    grid-template-columns: 1fr;
+  }
+
+}
     /* =====================================================
        GRID
     ===================================================== */
@@ -1057,6 +1247,164 @@
     <!-- ===================================================
          ADMIN GRID
     ==================================================== -->
+
+   <div class="admin-layout">
+
+  <!-- =================================================
+       SIDEBAR ADMIN
+  ================================================== -->
+
+  <aside class="admin-sidebar">
+
+    <div class="sidebar-title">
+      Menu Admin
+    </div>
+
+    <div class="sidebar-group">
+
+      <div class="sidebar-group-title">
+        Kelola Konten
+      </div>
+
+      <div class="sidebar-menu">
+
+        <button
+          type="button"
+          class="sidebar-button active"
+          data-section="content"
+        >
+          <span class="sidebar-icon">✦</span>
+          <span>Tambah Konten</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="edit"
+        >
+          <span class="sidebar-icon">✎</span>
+          <span>Edit Konten</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="list"
+        >
+          <span class="sidebar-icon">☷</span>
+          <span>Daftar Konten</span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="sidebar-group">
+
+      <div class="sidebar-group-title">
+        Dokumen
+      </div>
+
+      <div class="sidebar-menu">
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="sop"
+        >
+          <span class="sidebar-icon">▤</span>
+          <span>SOP</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="regulasi"
+        >
+          <span class="sidebar-icon">§</span>
+          <span>Regulasi</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="laporan"
+        >
+          <span class="sidebar-icon">▥</span>
+          <span>Laporan</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="pengadaan"
+        >
+          <span class="sidebar-icon">▣</span>
+          <span>Pengadaan</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="upload"
+        >
+          <span class="sidebar-icon">↥</span>
+          <span>Upload Dokumen</span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="sidebar-group">
+
+      <div class="sidebar-group-title">
+        Layanan PPID
+      </div>
+
+      <div class="sidebar-menu">
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="permohonan"
+        >
+          <span class="sidebar-icon">✉</span>
+          <span>Permohonan</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="keberatan"
+        >
+          <span class="sidebar-icon">!</span>
+          <span>Keberatan</span>
+        </button>
+
+        <button
+          type="button"
+          class="sidebar-button"
+          data-section="monitoring"
+        >
+          <span class="sidebar-icon">◉</span>
+          <span>Monitoring</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =================================================
+       AREA KONTEN
+  ================================================== -->
+
+  <div class="admin-content">
 
     <div class="admin-grid">
 
@@ -2476,7 +2824,11 @@
 
 
     </div>
+    </div>
 
+  </div>
+
+</div>
 
 
     <!-- =================================================
@@ -2516,7 +2868,225 @@
        JAVASCRIPT
   ====================================================== -->
 
-  <script src="admin.js?v=5"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  const sidebarButtons =
+    document.querySelectorAll('.sidebar-button');
+
+  const cards =
+    document.querySelectorAll('.admin-grid > .card');
+
+  function hideAllCards() {
+
+    cards.forEach(function (card) {
+
+      card.classList.add(
+        'admin-section-hidden'
+      );
+
+    });
+
+  }
+
+
+  function showCardByElement(element) {
+
+    if (!element) return;
+
+    const card =
+      element.closest('.card');
+
+    if (!card) return;
+
+    card.classList.remove(
+      'admin-section-hidden'
+    );
+
+  }
+
+
+  function activateSection(section) {
+
+    hideAllCards();
+
+
+    sidebarButtons.forEach(function (button) {
+
+      button.classList.remove('active');
+
+    });
+
+
+    const activeButton =
+      document.querySelector(
+        '.sidebar-button[data-section="' +
+        section +
+        '"]'
+      );
+
+
+    if (activeButton) {
+
+      activeButton.classList.add('active');
+
+    }
+
+
+    switch (section) {
+
+      case 'content':
+
+        showCardByElement(
+          document.getElementById(
+            'contentForm'
+          )
+        );
+
+        break;
+
+
+      case 'edit':
+
+        showCardByElement(
+          document.getElementById(
+            'editContentForm'
+          )
+        );
+
+        break;
+
+
+      case 'list':
+
+        showCardByElement(
+          document.getElementById(
+            'contentListBody'
+          )
+        );
+
+        break;
+
+
+      case 'sop':
+
+        showCardByElement(
+          document.getElementById(
+            'sopForm'
+          )
+        );
+
+        break;
+
+
+      case 'regulasi':
+
+        showCardByElement(
+          document.getElementById(
+            'regulasiForm'
+          )
+        );
+
+        break;
+
+
+      case 'laporan':
+
+        showCardByElement(
+          document.getElementById(
+            'laporanForm'
+          )
+        );
+
+        break;
+
+
+      case 'pengadaan':
+
+        showCardByElement(
+          document.getElementById(
+            'pengadaanForm'
+          )
+        );
+
+        break;
+
+
+      case 'permohonan':
+
+        showCardByElement(
+          document.getElementById(
+            'permohonanForm'
+          )
+        );
+
+        break;
+
+
+      case 'upload':
+
+        showCardByElement(
+          document.getElementById(
+            'uploadForm'
+          )
+        );
+
+        break;
+
+
+      case 'keberatan':
+
+        /*
+         * Belum ada form keberatan
+         * di admin.html saat ini.
+         *
+         * Akan kita tambahkan pada
+         * tahap Layanan PPID.
+         */
+
+        break;
+
+
+      case 'monitoring':
+
+        /*
+         * Monitoring akan dibuat
+         * pada tahap berikutnya.
+         */
+
+        break;
+
+    }
+
+  }
+
+
+  sidebarButtons.forEach(function (button) {
+
+    button.addEventListener(
+      'click',
+      function () {
+
+        const section =
+          button.dataset.section;
+
+        activateSection(section);
+
+      }
+    );
+
+  });
+
+
+  /*
+   * Tampilan awal
+   */
+  activateSection('content');
+
+});
+</script>
+
+<script src="admin.js?v=5"></script>
 
 </body>
 </html>
