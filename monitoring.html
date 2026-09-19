@@ -528,16 +528,17 @@
     </p>
     
 <div class="table-tools">
+
   <input
     type="text"
-    id="searchKeberatan"
-    placeholder="Cari nomor keberatan, nomor permohonan, nama, atau email..."
-    oninput="filterKeberatanTable()"
+    id="searchPermohonan"
+    placeholder="Cari nomor, nama, email, atau informasi..."
+    oninput="filterPermohonanTable()"
   >
 
   <select
-    id="statusKeberatan"
-    onchange="filterKeberatanTable()"
+    id="statusPermohonan"
+    onchange="filterPermohonanTable()"
   >
     <option value="">Semua Status</option>
     <option value="diterima">Diterima</option>
@@ -545,6 +546,7 @@
     <option value="selesai">Selesai</option>
     <option value="ditolak">Ditolak</option>
   </select>
+
 </div>
     
     <div id="permohonanTableContainer">
@@ -635,12 +637,25 @@
     </p>
     
 <div class="table-tools">
+
   <input
     type="text"
     id="searchKeberatan"
     placeholder="Cari nomor keberatan, nomor permohonan, nama, atau email..."
     oninput="filterKeberatanTable()"
   >
+
+  <select
+    id="statusKeberatan"
+    onchange="filterKeberatanTable()"
+  >
+    <option value="">Semua Status</option>
+    <option value="diterima">Diterima</option>
+    <option value="dalam proses">Dalam Proses</option>
+    <option value="selesai">Selesai</option>
+    <option value="ditolak">Ditolak</option>
+  </select>
+
 </div>
     
     <div id="keberatanTableContainer">
