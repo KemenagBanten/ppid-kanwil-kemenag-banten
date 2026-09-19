@@ -206,7 +206,25 @@
   width: 100%;
   overflow-x: auto;
 }
+.table-tools {
+  margin-bottom: 15px;
+}
 
+.table-tools input {
+  width: 100%;
+  max-width: 420px;
+  padding: 11px 14px;
+  border: 1px solid #dfe8e2;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+}
+
+.table-tools input:focus {
+  border-color: #176b45;
+  box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.08);
+}
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -472,7 +490,14 @@
       Daftar permohonan informasi publik
       yang masuk melalui sistem PPID.
     </p>
-
+<div class="table-tools">
+  <input
+    type="text"
+    id="searchPermohonan"
+    placeholder="Cari nomor, nama, email, atau informasi..."
+    oninput="filterPermohonanTable()"
+  >
+</div>
     <div id="permohonanTableContainer">
   <div class="loading" id="permohonanLoading">
     Memuat data permohonan...
@@ -707,7 +732,27 @@ function calculateStats(data) {
   };
 
 }
+let allPermohonanData = [];
 
+function filterPermohonanTable() {
+  const keyword = document
+    .getElementById('searchPermohonan')
+    .value
+    .toLowerCase()
+    .trim();
+
+  const filteredData = allPermohonanData.filter(function(item) {
+    return (
+      String(item.nomor_permohonan || '').toLowerCase().includes(keyword) ||
+      String(item.nama_pemohon || '').toLowerCase().includes(keyword) ||
+      String(item.email || '').toLowerCase().includes(keyword) ||
+      String(item.informasi_diminta || '').toLowerCase().includes(keyword)
+    );
+  });
+
+  renderPermohonanTable(filteredData);
+}
+  
 function renderPermohonanTable(data) {
   const container = document.getElementById('permohonanTableContainer');
 
@@ -1000,7 +1045,8 @@ async function loadMonitoring() {
 renderKeberatanTable(keberatanData);
     /* SELESAI */
 
-    renderPermohonanTable(permohonanData);
+   allPermohonanData = permohonanData;
+renderPermohonanTable(allPermohonanData);
 
 
   }
