@@ -2457,7 +2457,69 @@ case 'REGULASI':
 
   }
 
+async function loadLaporanUploadDropdown() {
 
+  const select =
+    document.getElementById('laporanUploadId');
+
+  if (!select) return;
+
+  try {
+
+    const response = await fetch(
+      API_URL + '?action=laporan'
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        'HTTP Error ' + response.status
+      );
+    }
+
+    const result =
+      await response.json();
+
+    if (!result.success) {
+      throw new Error(
+        result.message ||
+        'Gagal mengambil data laporan.'
+      );
+    }
+
+    const data =
+      result.data || [];
+
+    select.innerHTML =
+      '<option value="">Pilih laporan</option>';
+
+    data.forEach(function(item) {
+
+      const option =
+        document.createElement('option');
+
+      option.value =
+        item.id || '';
+
+      option.textContent =
+        (item.id || '') +
+        ' — ' +
+        (item.judul || '');
+
+      select.appendChild(option);
+
+    });
+
+  } catch (error) {
+
+    console.error(
+      'ERROR LOAD LAPORAN:',
+      error
+    );
+
+    select.innerHTML =
+      '<option value="">Gagal memuat laporan</option>';
+  }
+}
   // =========================================================
   // MODE FORM UPLOAD
   // =========================================================
@@ -3026,7 +3088,7 @@ if (sheetName === 'BERITA') {
     );
 
   }
-
+loadLaporanUploadDropdown();
 
   if (contentType) {
 
