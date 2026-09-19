@@ -2317,6 +2317,10 @@ if (uploadLaporanButton) {
 case 'REGULASI':
   action = 'regulasi';
   break;
+
+    case 'LAPORAN':
+  action = 'laporan';
+  break;      
         default:
 
           idSelect.innerHTML =
@@ -2858,9 +2862,14 @@ if (sheetName === 'BERITA') {
 } else if (sheetName === 'REGULASI') {
   action = 'uploadRegulasiDocument';
 
+} else if (sheetName === 'LAPORAN') {
+  action = 'uploadLaporanDocument';
+  
 } else {
   action = 'upload';
 }
+
+
 
           const payload = {
 
