@@ -173,22 +173,26 @@
       border-top: 1px solid #dfe8e2;
     }
 
-    .back-admin {
+   .back-admin {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
-
-  margin-top: 25px;
-
-  color: #176b45;
+  margin-top: -10px;
+  margin-bottom: 28px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #176b45;
+  color: #ffffff !important;
   text-decoration: none;
-
   font-size: 13px;
   font-weight: 700;
+  transition: 0.2s ease;
 }
 
 .back-admin:hover {
-  color: #105637;
+  background: #0d4f32;
+  transform: translateY(-1px);
 }
 
     @media (max-width: 900px) {
@@ -303,7 +307,9 @@
       </p>
     </div>
 
-
+  <a href="admin.html" class="back-admin">
+  ← Kembali ke Admin
+</a>
     <div id="errorMessage" class="error"></div>
 
 
@@ -1025,9 +1031,7 @@ tampilkanGrafikKeberatan(
   });
 }
   </script>
-    <a href="admin.html" class="back-admin">
-  ← Kembali ke Admin
-</a>
+  
     
 
 </body>
