@@ -84,11 +84,11 @@
       background: #dfe8e2;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-    }
+   .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
 
     .card {
       background: white;
@@ -188,7 +188,7 @@
 
     .statistik-row {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 25px;
   align-items: stretch;
 }
@@ -201,8 +201,8 @@
   min-width: 0;
 }
 
-.statistik-grafik .section-title {
-  margin-bottom: 18px;
+.statistik-kpi .card.total {
+  grid-column: 1 / -1;
 }
 
 @media (max-width: 900px) {
