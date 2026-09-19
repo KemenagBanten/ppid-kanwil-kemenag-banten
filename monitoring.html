@@ -778,10 +778,14 @@ function renderPermohonanTable(data) {
   }
 
   const totalData = data.length;
-  const totalPages = Math.ceil(
-    totalData / permohonanPageSize
-  );
 
+const totalPages = Math.ceil(
+  totalData / permohonanPageSize
+);
+
+console.log('TOTAL DATA PERMOHONAN:', totalData);
+console.log('TOTAL HALAMAN:', totalPages);
+  
   if (currentPermohonanPage > totalPages) {
     currentPermohonanPage = totalPages;
   }
