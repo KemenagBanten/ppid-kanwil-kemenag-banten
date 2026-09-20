@@ -549,7 +549,7 @@ SEARCH BUTTON
     ),
     url("assets/hero-kanwil-banten.jpg");
 
-  background-size: cover;
+  background-size: 115% auto;
 
   /* jangan terlalu zoom */
   background-position: 80% center;
