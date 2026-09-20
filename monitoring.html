@@ -1665,17 +1665,24 @@ function changePermohonanPage(page) {
       1,
       Math.ceil(
         filteredPermohonanData.length /
-        itemsPerPage
+        permohonanPageSize
       )
     );
 
-  if (page < 1 || page > totalPages) {
+  if (
+    page < 1 ||
+    page > totalPages
+  ) {
     return;
   }
 
-  currentPermohonanPage = page;
+  currentPermohonanPage =
+    page;
 
-  renderPermohonanTable();
+  renderPermohonanTable(
+    filteredPermohonanData
+  );
+
 }
 
 /* =========================================
@@ -1751,19 +1758,25 @@ function changeKeberatanPage(page) {
       1,
       Math.ceil(
         filteredKeberatanData.length /
-        itemsPerPage
+        keberatanPageSize
       )
     );
 
-  if (page < 1 || page > totalPages) {
+  if (
+    page < 1 ||
+    page > totalPages
+  ) {
     return;
   }
 
-  currentKeberatanPage = page;
+  currentKeberatanPage =
+    page;
 
-  renderKeberatanTable();
+  renderKeberatanTable(
+    filteredKeberatanData
+  );
+
 }
-
 /* =========================================
    RENDER KEBERATAN
 ========================================= */
