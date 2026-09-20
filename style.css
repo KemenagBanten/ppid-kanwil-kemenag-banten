@@ -147,19 +147,12 @@ BRAND
 
   font-size: 14px;
 
-  font-weight: 750;
+  font-weight: 700;
 
   letter-spacing: 0.15px;
 
   line-height: 1.25;
 }
-
-.header-text h1 strong {
-  color: #0f5132;
-
-  font-weight: 800;
-}
-
 
 /* =========================================================
 MAIN NAVIGATION
