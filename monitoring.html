@@ -136,6 +136,10 @@
       margin-bottom: 22px;
     }
 
+    .kpi-grid.keberatan-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
     .kpi {
       background: white;
       border-radius: 16px;
@@ -155,6 +159,12 @@
       display: block;
       color: #176b45;
       font-size: 28px;
+    }
+
+    /* KPI DITOLAK */
+
+    .kpi.ditolak strong {
+      color: #b91c1c;
     }
 
     /* CARD */
@@ -206,6 +216,9 @@
 
     .table-tools {
       margin-bottom: 15px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .table-tools input {
@@ -361,9 +374,7 @@
       font-weight: 600;
     }
 
-    /* =========================================
-       MODAL STATUS
-    ========================================= */
+    /* MODAL STATUS */
 
     .modal-overlay {
       position: fixed;
@@ -391,6 +402,7 @@
     }
 
     @keyframes modalIn {
+
       from {
         opacity: 0;
         transform: translateY(10px);
@@ -400,6 +412,7 @@
         opacity: 1;
         transform: translateY(0);
       }
+
     }
 
     .modal-header {
@@ -553,6 +566,14 @@
 
     /* RESPONSIVE */
 
+    @media (max-width: 1100px) {
+
+      .kpi-grid.keberatan-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+    }
+
     @media (max-width: 900px) {
 
       .sidebar {
@@ -564,6 +585,10 @@
       }
 
       .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .kpi-grid.keberatan-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -593,7 +618,8 @@
         padding: 18px;
       }
 
-      .kpi-grid {
+      .kpi-grid,
+      .kpi-grid.keberatan-grid {
         grid-template-columns: 1fr;
       }
 
@@ -768,11 +794,23 @@
             id="statusPermohonan"
             onchange="filterPermohonanTable()"
           >
-            <option value="">Semua Status</option>
-            <option value="diterima">Diterima</option>
-            <option value="dalam proses">Dalam Proses</option>
-            <option value="selesai">Selesai</option>
-            <option value="ditolak">Ditolak</option>
+
+            <option value="">
+              Semua Status
+            </option>
+
+            <option value="diterima">
+              Diterima
+            </option>
+
+            <option value="dalam proses">
+              Dalam Proses
+            </option>
+
+            <option value="selesai">
+              Selesai
+            </option>
+
           </select>
 
         </div>
@@ -802,7 +840,7 @@
       style="display:none;"
     >
 
-      <div class="kpi-grid">
+      <div class="kpi-grid keberatan-grid">
 
         <div class="kpi">
 
@@ -850,6 +888,19 @@
           </span>
 
           <strong id="keberatanSelesai">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="kpi ditolak">
+
+          <span>
+            Ditolak
+          </span>
+
+          <strong id="keberatanDitolak">
             0
           </strong>
 
@@ -1049,7 +1100,8 @@
 
 </div>
 
-  <!-- =========================================
+
+<!-- =========================================
      MODAL UBAH STATUS KEBERATAN
 ========================================= -->
 
@@ -1170,9 +1222,9 @@
   </div>
 
 </div>
-  
-<script>
 
+
+<script>
 
 /* =========================================
    API
@@ -1189,24 +1241,16 @@ const API_URL =
 function showSection(section) {
 
   const permohonan =
-    document.getElementById(
-      'sectionPermohonan'
-    );
+    document.getElementById('sectionPermohonan');
 
   const keberatan =
-    document.getElementById(
-      'sectionKeberatan'
-    );
+    document.getElementById('sectionKeberatan');
 
   const menuPermohonan =
-    document.getElementById(
-      'menuPermohonan'
-    );
+    document.getElementById('menuPermohonan');
 
   const menuKeberatan =
-    document.getElementById(
-      'menuKeberatan'
-    );
+    document.getElementById('menuKeberatan');
 
 
   if (section === 'permohonan') {
@@ -1254,13 +1298,15 @@ function normalizeStatus(status) {
    HITUNG STATUS
 ========================================= */
 
-function calculateStats(data) {
+function calculateStats(data, jenis) {
 
   let belumProses = 0;
 
   let dalamProses = 0;
 
   let selesai = 0;
+
+  let ditolak = 0;
 
 
   data.forEach(function(row) {
@@ -1284,11 +1330,30 @@ function calculateStats(data) {
     }
 
     else if (
-      status === 'selesai' ||
-      status === 'ditolak'
+      status === 'selesai'
     ) {
 
       selesai++;
+
+    }
+
+    else if (
+      status === 'ditolak'
+    ) {
+
+      /*
+        Ditolak hanya digunakan
+        untuk modul Keberatan.
+
+        Untuk Permohonan, status Ditolak
+        tidak ditampilkan pada filter/KPI.
+      */
+
+      if (jenis === 'keberatan') {
+
+        ditolak++;
+
+      }
 
     }
 
@@ -1298,7 +1363,8 @@ function calculateStats(data) {
   const total =
     belumProses +
     dalamProses +
-    selesai;
+    selesai +
+    (jenis === 'keberatan' ? ditolak : 0);
 
 
   return {
@@ -1309,7 +1375,9 @@ function calculateStats(data) {
 
     dalamProses: dalamProses,
 
-    selesai: selesai
+    selesai: selesai,
+
+    ditolak: ditolak
 
   };
 
@@ -1321,7 +1389,9 @@ function calculateStats(data) {
 ========================================= */
 
 let allPermohonanData = [];
+
 let filteredPermohonanData = [];
+
 let currentPermohonanPage = 1;
 
 const permohonanPageSize = 10;
@@ -1334,8 +1404,11 @@ const permohonanPageSize = 10;
 function filterPermohonanTable(resetPage = true) {
 
   if (resetPage) {
+
     currentPermohonanPage = 1;
+
   }
+
 
   const search =
     document.getElementById('searchPermohonan')
@@ -1343,27 +1416,36 @@ function filterPermohonanTable(resetPage = true) {
       .toLowerCase()
       .trim();
 
+
   const status =
     document.getElementById('statusPermohonan')
       .value
       .toLowerCase()
       .trim();
 
+
   filteredPermohonanData =
     allPermohonanData.filter(function(item) {
 
       const searchableText = [
+
         item.nomor_permohonan,
+
         item.nama_pemohon,
+
         item.email,
+
         item.informasi_diminta
+
       ]
         .join(' ')
         .toLowerCase();
 
+
       const matchSearch =
         !search ||
         searchableText.includes(search);
+
 
       const matchStatus =
         !status ||
@@ -1371,14 +1453,18 @@ function filterPermohonanTable(resetPage = true) {
           .toLowerCase()
           .trim() === status;
 
+
       return matchSearch && matchStatus;
 
     });
 
- renderPermohonanTable(
-  filteredPermohonanData
-);
+
+  renderPermohonanTable(
+    filteredPermohonanData
+  );
+
 }
+
 
 /* =========================================
    RENDER PERMOHONAN
@@ -1395,9 +1481,11 @@ function renderPermohonanTable(data) {
   if (!data || data.length === 0) {
 
     container.innerHTML = `
+
       <div class="empty-data">
         Belum ada data permohonan.
       </div>
+
     `;
 
     return;
@@ -1559,15 +1647,15 @@ function renderPermohonanTable(data) {
 
         <td>
 
-  <span
-    class="status-badge ${statusClass}"
-  >
-    ${escapeHtml(
-      item.status || '-'
-    )}
-  </span>
+          <span
+            class="status-badge ${statusClass}"
+          >
+            ${escapeHtml(
+              item.status || '-'
+            )}
+          </span>
 
-</td>
+        </td>
 
         <td>
 
@@ -1670,15 +1758,20 @@ function changePermohonanPage(page) {
       )
     );
 
+
   if (
     page < 1 ||
     page > totalPages
   ) {
+
     return;
+
   }
+
 
   currentPermohonanPage =
     page;
+
 
   renderPermohonanTable(
     filteredPermohonanData
@@ -1686,12 +1779,15 @@ function changePermohonanPage(page) {
 
 }
 
+
 /* =========================================
    DATA KEBERATAN
 ========================================= */
 
 let allKeberatanData = [];
+
 let filteredKeberatanData = [];
+
 let currentKeberatanPage = 1;
 
 const keberatanPageSize = 10;
@@ -1704,8 +1800,11 @@ const keberatanPageSize = 10;
 function filterKeberatanTable(resetPage = true) {
 
   if (resetPage) {
+
     currentKeberatanPage = 1;
+
   }
+
 
   const search =
     document.getElementById('searchKeberatan')
@@ -1713,27 +1812,36 @@ function filterKeberatanTable(resetPage = true) {
       .toLowerCase()
       .trim();
 
+
   const status =
     document.getElementById('statusKeberatan')
       .value
       .toLowerCase()
       .trim();
 
+
   filteredKeberatanData =
     allKeberatanData.filter(function(item) {
 
       const searchableText = [
+
         item.nomor_keberatan,
+
         item.nomor_permohonan,
+
         item.nama_pemohon,
+
         item.email
+
       ]
         .join(' ')
         .toLowerCase();
 
+
       const matchSearch =
         !search ||
         searchableText.includes(search);
+
 
       const matchStatus =
         !status ||
@@ -1741,15 +1849,19 @@ function filterKeberatanTable(resetPage = true) {
           .toLowerCase()
           .trim() === status;
 
+
       return matchSearch && matchStatus;
 
     });
 
+
   renderKeberatanTable(
-  filteredKeberatanData
-);
+    filteredKeberatanData
+  );
+
 }
-  
+
+
 /* =========================================
    PAGINATION KEBERATAN
 ========================================= */
@@ -1765,21 +1877,28 @@ function changeKeberatanPage(page) {
       )
     );
 
+
   if (
     page < 1 ||
     page > totalPages
   ) {
+
     return;
+
   }
+
 
   currentKeberatanPage =
     page;
+
 
   renderKeberatanTable(
     filteredKeberatanData
   );
 
 }
+
+
 /* =========================================
    RENDER KEBERATAN
 ========================================= */
@@ -1874,7 +1993,8 @@ function renderKeberatanTable(data) {
             <th>Tanggal Masuk</th>
 
             <th>Status</th>
-<th>Aksi</th>
+
+            <th>Aksi</th>
 
           </tr>
 
@@ -1971,27 +2091,27 @@ function renderKeberatanTable(data) {
 
         <td>
 
-  <span
-    class="status-badge ${statusClass}"
-  >
-    ${escapeHtml(
-      item.status || '-'
-    )}
-  </span>
+          <span
+            class="status-badge ${statusClass}"
+          >
+            ${escapeHtml(
+              item.status || '-'
+            )}
+          </span>
 
-</td>
+        </td>
 
-<td>
+        <td>
 
-  <button
-    type="button"
-    class="btn-status"
-    onclick="openStatusKeberatanModal('${escapeJs(item.id)}')"
-  >
-    Ubah Status
-  </button>
+          <button
+            type="button"
+            class="btn-status"
+            onclick="openStatusKeberatanModal('${escapeJs(item.id)}')"
+          >
+            Ubah Status
+          </button>
 
-</td>
+        </td>
 
       </tr>
 
@@ -2100,7 +2220,7 @@ function escapeJs(value) {
 
 
 /* =========================================
-   BUKA MODAL STATUS
+   BUKA MODAL STATUS PERMOHONAN
 ========================================= */
 
 function openStatusModal(id) {
@@ -2190,7 +2310,7 @@ function openStatusModal(id) {
 
 
 /* =========================================
-   TUTUP MODAL
+   TUTUP MODAL PERMOHONAN
 ========================================= */
 
 function closeStatusModal() {
@@ -2358,11 +2478,6 @@ async function saveStatusPermohonan() {
       'Status permohonan berhasil diperbarui.';
 
 
-    /*
-      Tunggu sebentar agar pesan
-      sukses terlihat oleh admin.
-    */
-
     setTimeout(
       async function() {
 
@@ -2407,6 +2522,7 @@ async function saveStatusPermohonan() {
 
 }
 
+
 /* =========================================
    BUKA MODAL STATUS KEBERATAN
 ========================================= */
@@ -2423,6 +2539,7 @@ function openStatusKeberatanModal(id) {
       }
     );
 
+
   if (!item) {
 
     alert(
@@ -2432,6 +2549,7 @@ function openStatusKeberatanModal(id) {
     return;
 
   }
+
 
   document.getElementById(
     'statusKeberatanModalInfo'
@@ -2464,29 +2582,36 @@ function openStatusKeberatanModal(id) {
 
   `;
 
+
   document.getElementById(
     'editStatusKeberatan'
   ).value =
     item.status || 'Diterima';
+
 
   document.getElementById(
     'editCatatanKeberatan'
   ).value =
     item.catatan || '';
 
+
   document.getElementById(
     'statusKeberatanModalMessage'
   ).className =
     'modal-message';
 
+
   document.getElementById(
     'statusKeberatanModalMessage'
-  ).textContent = '';
+  ).textContent =
+    '';
+
 
   document.getElementById(
     'statusKeberatanModal'
   ).dataset.id =
     id;
+
 
   document.getElementById(
     'statusKeberatanModal'
@@ -2537,28 +2662,35 @@ async function saveStatusKeberatan() {
       'statusKeberatanModal'
     );
 
+
   const id =
     modal.dataset.id;
+
 
   const status =
     document.getElementById(
       'editStatusKeberatan'
     ).value;
 
+
   const catatan =
     document.getElementById(
       'editCatatanKeberatan'
-    ).value.trim();
+    ).value
+    .trim();
+
 
   const button =
     document.getElementById(
       'btnSaveStatusKeberatan'
     );
 
+
   const message =
     document.getElementById(
       'statusKeberatanModalMessage'
     );
+
 
   if (!id) {
 
@@ -2572,15 +2704,20 @@ async function saveStatusKeberatan() {
 
   }
 
+
   button.disabled = true;
 
   button.textContent =
     'Menyimpan...';
 
+
   message.className =
     'modal-message';
 
-  message.textContent = '';
+
+  message.textContent =
+    '';
+
 
   try {
 
@@ -2599,6 +2736,7 @@ async function saveStatusKeberatan() {
         catatan
 
     };
+
 
     const response =
       await fetch(
@@ -2620,6 +2758,7 @@ async function saveStatusKeberatan() {
         }
       );
 
+
     if (!response.ok) {
 
       throw new Error(
@@ -2629,8 +2768,10 @@ async function saveStatusKeberatan() {
 
     }
 
+
     const result =
       await response.json();
+
 
     if (!result.success) {
 
@@ -2641,11 +2782,14 @@ async function saveStatusKeberatan() {
 
     }
 
+
     message.className =
       'modal-message success';
 
+
     message.textContent =
       'Status keberatan berhasil diperbarui.';
+
 
     setTimeout(
       async function() {
@@ -2658,6 +2802,7 @@ async function saveStatusKeberatan() {
       700
     );
 
+
   }
 
   catch (error) {
@@ -2667,8 +2812,10 @@ async function saveStatusKeberatan() {
       error
     );
 
+
     message.className =
       'modal-message error';
+
 
     message.textContent =
       'Gagal memperbarui status: ' +
@@ -2687,7 +2834,8 @@ async function saveStatusKeberatan() {
   }
 
 }
-  
+
+
 /* =========================================
    LOAD DATA
 ========================================= */
@@ -2778,13 +2926,15 @@ async function loadMonitoring() {
 
     const permohonanStats =
       calculateStats(
-        permohonanData
+        permohonanData,
+        'permohonan'
       );
 
 
     const keberatanStats =
       calculateStats(
-        keberatanData
+        keberatanData,
+        'keberatan'
       );
 
 
@@ -2840,6 +2990,12 @@ async function loadMonitoring() {
       keberatanStats.selesai;
 
 
+    document.getElementById(
+      'keberatanDitolak'
+    ).textContent =
+      keberatanStats.ditolak;
+
+
     /* SIMPAN DATA */
 
     allKeberatanData =
@@ -2855,7 +3011,6 @@ async function loadMonitoring() {
     filterPermohonanTable();
 
     filterKeberatanTable();
-
 
   }
 
@@ -2919,7 +3074,6 @@ document.addEventListener(
 
   }
 );
-
 
 </script>
 
