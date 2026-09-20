@@ -41,152 +41,367 @@ margin: 0 auto;
 
 /* =========================================================
 HEADER
-SAMA DENGAN INFORMASI-PUBLIK.HTML
+MINIMALIS • ELEGAN • MODERN • PROFESIONAL
 ========================================================= */
 
 .header {
-position: sticky;
-top: 0;
-z-index: 1000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 
-background: #ffffff;
-color: #17352a;
+  background: rgba(255, 255, 255, 0.97);
+  color: #17352a;
 
-border-bottom: 1px solid #e5ebe7;
+  border-bottom: 1px solid #e5ebe7;
 
-box-shadow:
-0 2px 12px rgba(25, 60, 45, 0.06);
+  box-shadow:
+    0 3px 18px rgba(25, 60, 45, 0.055);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .header-inner {
-width: min(1180px, 92%);
-min-height: 76px;
+  width: min(1240px, 94%);
+  min-height: 78px;
 
-margin: 0 auto;
+  margin: 0 auto;
 
-display: flex;
-align-items: center;
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-gap: 25px;
+  gap: 35px;
 }
 
+
+/* =========================================================
+BRAND
+========================================================= */
+
 .header-brand {
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
 
-gap: 13px;
+  gap: 14px;
 
-min-width: 0;
+  min-width: 0;
 
-color: #17352a;
+  color: #17352a;
+  text-decoration: none;
 
-text-decoration: none;
+  flex-shrink: 0;
 }
 
 .header-logo {
-width: 44px;
-height: 44px;
+  width: 48px;
+  height: 48px;
 
-flex: 0 0 44px;
+  flex: 0 0 48px;
 
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-logo img {
-width: 100%;
-height: 100%;
+  width: 100%;
+  height: 100%;
 
-object-fit: contain;
+  object-fit: contain;
 
-display: block;
+  display: block;
 }
 
 .header-text {
-min-width: 0;
+  min-width: 0;
 
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-justify-content: center;
-align-items: flex-start;
+  justify-content: center;
+  align-items: flex-start;
 
-text-align: left;
+  text-align: left;
 
-line-height: 1.2;
+  line-height: 1.2;
+}
+
+.header-kicker {
+  margin-bottom: 4px;
+
+  color: #718078;
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.05px;
+
+  line-height: 1.2;
 }
 
 .header-text h1 {
-margin: 0;
+  margin: 0;
 
-color: #17352a !important;
+  color: #17352a !important;
 
-font-size: 15px;
+  font-size: 14px;
 
-font-weight: 700;
+  font-weight: 750;
 
-letter-spacing: 0.15px;
+  letter-spacing: 0.15px;
+
+  line-height: 1.25;
 }
 
-.header-text p {
-margin: 4px 0 0;
+.header-text h1 strong {
+  color: #0f5132;
 
-color: #66756e !important;
-
-font-size: 10px;
-
-font-weight: 500;
-
-letter-spacing: 0.35px;
+  font-weight: 800;
 }
+
 
 /* =========================================================
-NAVBAR
-SAMA DENGAN INFORMASI-PUBLIK.HTML
+MAIN NAVIGATION
 ========================================================= */
 
-.header nav {
-display: flex;
+.main-nav {
+  display: flex;
 
-align-items: center;
+  align-items: center;
+  justify-content: flex-end;
 
-gap: 5px;
+  gap: 3px;
 
-flex-shrink: 0;
+  flex-shrink: 0;
 }
 
-.header nav a {
-color: #40544b !important;
+.nav-link {
+  position: relative;
 
-text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-padding: 8px 12px;
+  min-height: 38px;
 
-border-radius: 8px;
+  padding: 8px 12px;
 
-font-size: 13px;
+  border: none;
+  border-radius: 8px;
 
-font-weight: 600;
+  background: transparent;
 
-transition: all .2s ease;
+  color: #40544b !important;
+
+  text-decoration: none;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    background .2s ease;
 }
 
-.header nav a:hover {
-color: #0f5132 !important;
+.nav-link:hover {
+  color: #0f5132 !important;
 
-background: #edf6f1;
+  background: #f1f7f4;
 }
 
-.header nav a.active {
-color: #0f5132 !important;
+.nav-link.active {
+  color: #0f5132 !important;
 
-background: #e8f3ed;
+  background: #edf6f1;
 
-font-weight: 700;
+  font-weight: 750;
 }
 
+
+/* =========================================================
+DROPDOWN
+========================================================= */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-button {
+  gap: 6px;
+}
+
+.nav-arrow {
+  display: inline-block;
+
+  color: #718078;
+
+  font-size: 13px;
+
+  line-height: 1;
+
+  transform: translateY(-1px);
+
+  transition: transform .2s ease;
+}
+
+.nav-dropdown:hover .nav-arrow {
+  transform:
+    translateY(1px)
+    rotate(180deg);
+}
+
+
+/* =========================================================
+DROPDOWN MENU
+========================================================= */
+
+.dropdown-menu {
+  position: absolute;
+
+  top: calc(100% + 9px);
+  left: 50%;
+
+  min-width: 235px;
+
+  padding: 8px;
+
+  background: #ffffff;
+
+  border: 1px solid #e1e9e4;
+
+  border-radius: 11px;
+
+  box-shadow:
+    0 16px 40px rgba(25, 60, 45, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translate(-50%, -6px);
+
+  transition:
+    opacity .18s ease,
+    transform .18s ease,
+    visibility .18s ease;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+
+  transform:
+    translate(-50%, 0);
+}
+
+.dropdown-menu::before {
+  content: "";
+
+  position: absolute;
+
+  top: -5px;
+  left: 50%;
+
+  width: 9px;
+  height: 9px;
+
+  background: #ffffff;
+
+  border-left: 1px solid #e1e9e4;
+  border-top: 1px solid #e1e9e4;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+.dropdown-menu a {
+  display: block;
+
+  padding: 9px 11px;
+
+  border-radius: 7px;
+
+  color: #40544b !important;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 550;
+
+  line-height: 1.35;
+
+  transition:
+    color .18s ease,
+    background .18s ease;
+}
+
+.dropdown-menu a:hover {
+  color: #0f5132 !important;
+
+  background: #edf6f1;
+}
+
+
+/* =========================================================
+SEARCH BUTTON
+========================================================= */
+
+.nav-search {
+  width: 37px;
+  height: 37px;
+
+  margin-left: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dfe8e3;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #0f5132;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.nav-search span {
+  font-size: 21px;
+
+  line-height: 1;
+
+  transform:
+    rotate(-20deg);
+}
+
+.nav-search:hover {
+  background: #edf6f1;
+
+  border-color: #cbdcd2;
+
+  transform: translateY(-1px);
+}
 /* =========================================================
 HERO
 ========================================================= */
@@ -918,23 +1133,51 @@ TABLET
 
 @media (max-width: 900px) {
 
-.header-inner {
-gap: 15px;
+  .header-inner {
+    gap: 18px;
+  }
+
+  .header-text h1 {
+    font-size: 12px;
+  }
+
+  .header-kicker {
+    font-size: 7px;
+  }
+
+  .main-nav {
+    gap: 1px;
+  }
+
+  .nav-link {
+    padding: 7px 8px;
+
+    font-size: 11px;
+  }
+
+  .dropdown-menu {
+    min-width: 220px;
+  }
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .card-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .contact-decoration {
+    margin-right: 0;
+  }
+
 }
-
-.header-text h1 {
-font-size: 13px;
-}
-
-.header nav a {
-padding: 7px 8px;
-
-```
-font-size: 12px;
-```
-
-}
-
 .stats-grid {
 grid-template-columns:
 repeat(2, 1fr);
@@ -961,75 +1204,110 @@ MOBILE
 
 @media (max-width: 680px) {
 
-.header-inner {
-min-height: auto;
+  .header-inner {
+    min-height: auto;
 
-```
-padding: 12px 0;
+    padding: 12px 0;
 
-flex-direction: column;
+    flex-direction: column;
 
-align-items: stretch;
+    align-items: stretch;
 
-gap: 10px;
-```
+    gap: 10px;
+  }
 
-}
+  .header-brand {
+    justify-content: flex-start;
+  }
 
-.header-brand {
-justify-content: flex-start;
-}
+  .header-logo {
+    width: 42px;
+    height: 42px;
 
-.header-logo {
-width: 40px;
+    flex-basis: 42px;
+  }
 
-```
-height: 40px;
+  .header-kicker {
+    font-size: 7px;
 
-flex-basis: 40px;
-```
+    letter-spacing: .8px;
+  }
 
-}
+  .header-text h1 {
+    font-size: 11px;
 
-.header-text h1 {
-font-size: 12px;
+    letter-spacing: 0;
+  }
 
-```
-letter-spacing: 0;
-```
+  .main-nav {
+    width: 100%;
 
-}
+    overflow-x: auto;
 
-.header-text p {
-font-size: 8px;
+    justify-content: flex-start;
 
-```
-letter-spacing: .2px;
-```
+    padding-bottom: 2px;
 
-}
+    scrollbar-width: none;
+  }
 
-.header nav {
-width: 100%;
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
 
-```
-overflow-x: auto;
+  .nav-link {
+    flex-shrink: 0;
 
-justify-content: flex-start;
+    font-size: 11px;
 
-padding-bottom: 2px;
-```
+    padding: 7px 9px;
+  }
 
-}
+  .nav-search {
+    flex: 0 0 36px;
+  }
 
+  /*
+   * Pada mobile dropdown dibuka saat tombol disentuh.
+   * Hover tetap digunakan pada desktop.
+   */
+  .nav-dropdown {
+    flex-shrink: 0;
+  }
+
+  .dropdown-menu {
+    position: fixed;
+
+    top: auto;
+    left: 10px;
+    right: 10px;
+
+    min-width: auto;
+
+    width: auto;
+
+    transform:
+      translateY(-5px);
+
+    border-radius: 10px;
+  }
+
+  .nav-dropdown:hover .dropdown-menu {
+    transform:
+      translateY(0);
+  }
+
+  .dropdown-menu::before {
+    display: none;
+  }
 .header nav a {
 white-space: nowrap;
 
-```
+
 font-size: 11px;
 
 padding: 7px 9px;
-```
+
 
 }
 
@@ -1048,9 +1326,9 @@ padding: 45px 0;
 .hero h1 {
 font-size: 34px;
 
-```
+
 letter-spacing: -.8px;
-```
+
 
 }
 
@@ -1061,11 +1339,11 @@ font-size: 15px;
 .search-box {
 flex-direction: column;
 
-```
+
 gap: 5px;
 
 padding: 5px;
-```
+
 
 }
 
@@ -1081,20 +1359,20 @@ min-height: 43px;
 grid-template-columns:
 1fr 1fr;
 
-```
+
 gap: 10px;
-```
+
 
 }
 
 .stat-card {
 min-height: 95px;
 
-```
+
 padding: 15px;
 
 gap: 10px;
-```
+
 
 }
 
@@ -1102,9 +1380,9 @@ gap: 10px;
 width: 36px;
 height: 36px;
 
-```
+
 flex-basis: 36px;
-```
+
 
 }
 
@@ -1119,11 +1397,11 @@ padding: 50px 0;
 .section-heading {
 align-items: flex-start;
 
-```
+
 flex-direction: column;
 
 gap: 8px;
-```
+
 
 }
 
