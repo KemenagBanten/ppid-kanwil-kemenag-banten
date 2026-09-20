@@ -550,8 +550,8 @@ SEARCH BUTTON
     ),
     url("assets/hero-kanwil-banten.png");
 
-  background-size: 115%;
-  background-position: 58% center;
+  background-size: 100%;
+  background-position: 25% center;
 
   color: #17352a;
 }
