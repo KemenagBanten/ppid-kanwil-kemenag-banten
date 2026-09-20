@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="id">
 
 <head>
@@ -198,151 +197,360 @@
       border: 1px solid #fecaca;
     }
 
-/* =========================================
-   TABLE
-========================================= */
+    /* TABLE */
 
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-}
-.table-tools {
-  margin-bottom: 15px;
-}
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
 
-.table-tools input {
-  width: 100%;
-  max-width: 420px;
-  padding: 11px 14px;
-  border: 1px solid #dfe8e2;
-  border-radius: 8px;
-  font-size: 13px;
-  outline: none;
-  background: #ffffff;
-}
+    .table-tools {
+      margin-bottom: 15px;
+    }
 
-.table-tools input:focus {
-  border-color: #176b45;
-  box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.08);
-}
+    .table-tools input {
+      width: 100%;
+      max-width: 420px;
+      padding: 11px 14px;
+      border: 1px solid #dfe8e2;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      background: #ffffff;
+    }
 
-.table-tools select {
-  padding: 11px 14px;
-  border: 1px solid #dfe8e2;
-  border-radius: 8px;
-  font-size: 13px;
-  outline: none;
-  background: #ffffff;
-  color: #333;
-  min-width: 160px;
-  cursor: pointer;
-}
+    .table-tools input:focus {
+      border-color: #176b45;
+      box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.08);
+    }
 
-.table-tools select:focus {
-  border-color: #176b45;
-  box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.08);
-}
-    
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 950px;
-}
+    .table-tools select {
+      padding: 11px 14px;
+      border: 1px solid #dfe8e2;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      background: #ffffff;
+      color: #333;
+      min-width: 160px;
+      cursor: pointer;
+    }
 
-.data-table th {
-  background: #f3f7f4;
-  color: #176b45;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: left;
-  padding: 13px 14px;
-  border-bottom: 1px solid #dfe8e2;
-  white-space: nowrap;
-}
+    .table-tools select:focus {
+      border-color: #176b45;
+      box-shadow: 0 0 0 3px rgba(23, 107, 69, 0.08);
+    }
 
-.data-table td {
-  padding: 13px 14px;
-  border-bottom: 1px solid #edf1ee;
-  font-size: 13px;
-  color: #374151;
-  vertical-align: top;
-}
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1050px;
+    }
 
-.data-table tbody tr:hover {
-  background: #f8fbf9;
-}
+    .data-table th {
+      background: #f3f7f4;
+      color: #176b45;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      padding: 13px 14px;
+      border-bottom: 1px solid #dfe8e2;
+      white-space: nowrap;
+    }
 
-.status-badge {
-  display: inline-block;
-  padding: 5px 9px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  white-space: nowrap;
-}
+    .data-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #edf1ee;
+      font-size: 13px;
+      color: #374151;
+      vertical-align: top;
+    }
 
-.status-diterima {
-  background: #fff7ed;
-  color: #c2410c;
-}
+    .data-table tbody tr:hover {
+      background: #f8fbf9;
+    }
 
-.status-proses {
-  background: #eff6ff;
-  color: #1d4ed8;
-}
+    .status-badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-.status-selesai {
-  background: #ecfdf5;
-  color: #047857;
-}
+    .status-diterima {
+      background: #fff7ed;
+      color: #c2410c;
+    }
 
-.status-ditolak {
-  background: #fef2f2;
-  color: #b91c1c;
-}
+    .status-proses {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
 
-.empty-data {
-  padding: 35px;
-  text-align: center;
-  color: #6b7280;
-}
+    .status-selesai {
+      background: #ecfdf5;
+      color: #047857;
+    }
 
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 18px;
-  padding: 12px 0;
-}
+    .status-ditolak {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
 
-.pagination button {
-  border: 1px solid #dfe8e2;
-  background: #ffffff;
-  color: #176b45;
-  padding: 8px 14px;
-  border-radius: 7px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
+    /* ACTION BUTTON */
 
-.pagination button:hover:not(:disabled) {
-  background: #f3f7f4;
-  border-color: #176b45;
-}
+    .btn-status {
+      border: none;
+      background: #176b45;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
 
-.pagination button:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
+    .btn-status:hover {
+      background: #0f5637;
+      transform: translateY(-1px);
+    }
 
-.pagination span {
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 600;
-}
-    
+    .empty-data {
+      padding: 35px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 18px;
+      padding: 12px 0;
+    }
+
+    .pagination button {
+      border: 1px solid #dfe8e2;
+      background: #ffffff;
+      color: #176b45;
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .pagination button:hover:not(:disabled) {
+      background: #f3f7f4;
+      border-color: #176b45;
+    }
+
+    .pagination button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .pagination span {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    /* =========================================
+       MODAL STATUS
+    ========================================= */
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.20);
+      animation: modalIn 0.18s ease;
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      margin: 0 0 5px;
+      color: #176b45;
+      font-size: 19px;
+    }
+
+    .modal-header p {
+      margin: 0;
+      color: #6b7280;
+      font-size: 12px;
+    }
+
+    .modal-close {
+      border: none;
+      background: #f3f7f4;
+      color: #4b5563;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      background: #e7eee9;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      border: 1px solid #dfe8e2;
+      border-radius: 9px;
+      padding: 11px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #176b45;
+      box-shadow: 0 0 0 3px rgba(23,107,69,0.08);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .modal-info {
+      background: #f5f8f6;
+      border: 1px solid #e1e9e4;
+      border-radius: 9px;
+      padding: 11px 12px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .modal-info strong {
+      color: #176b45;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+      margin-top: 20px;
+    }
+
+    .btn-cancel {
+      border: 1px solid #dfe8e2;
+      background: white;
+      color: #4b5563;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-cancel:hover {
+      background: #f6f8f7;
+    }
+
+    .btn-save {
+      border: none;
+      background: #176b45;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-save:hover {
+      background: #0f5637;
+    }
+
+    .btn-save:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .modal-message {
+      display: none;
+      margin-top: 15px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+
+    .modal-message.success {
+      display: block;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    .modal-message.error {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
     /* RESPONSIVE */
 
     @media (max-width: 900px) {
@@ -389,6 +597,10 @@
         grid-template-columns: 1fr;
       }
 
+      .modal {
+        padding: 20px;
+      }
+
     }
 
   </style>
@@ -403,293 +615,440 @@
 
   <aside class="sidebar">
 
+    <div class="sidebar-title">
 
-<div class="sidebar-title">
+      <strong>
+        Monitoring PPID
+      </strong>
 
-  <strong>
-    Monitoring PPID
-  </strong>
+      <span>
+        Layanan Informasi Publik
+      </span>
 
-  <span>
-    Layanan Informasi Publik
-  </span>
+    </div>
 
-</div>
+    <div class="menu-title">
+      Layanan PPID
+    </div>
 
-<div class="menu-title">
-  Layanan PPID
-</div>
+    <nav class="menu">
 
-<nav class="menu">
+      <button
+        type="button"
+        id="menuPermohonan"
+        class="active"
+        onclick="showSection('permohonan')"
+      >
+        ● &nbsp; Permohonan
+      </button>
 
-  <button
-    type="button"
-    id="menuPermohonan"
-    class="active"
-    onclick="showSection('permohonan')"
-  >
-    ● &nbsp; Permohonan
-  </button>
+      <button
+        type="button"
+        id="menuKeberatan"
+        onclick="showSection('keberatan')"
+      >
+        ○ &nbsp; Keberatan
+      </button>
 
-  <button
-    type="button"
-    id="menuKeberatan"
-    onclick="showSection('keberatan')"
-  >
-    ○ &nbsp; Keberatan
-  </button>
-
-</nav>
-
+    </nav>
 
   </aside>
+
 
   <!-- CONTENT -->
 
   <main class="content">
 
+    <div class="topbar">
 
-<div class="topbar">
+      <a
+        href="admin.html"
+        class="back"
+      >
+        ← Kembali ke Admin
+      </a>
 
-  <a
-    href="admin.html"
-    class="back"
-  >
-    ← Kembali ke Admin
-  </a>
+      <h1>
+        Monitoring Layanan PPID
+      </h1>
 
-  <h1>
-    Monitoring Layanan PPID
-  </h1>
-
-  <p>
-    Pemantauan permohonan informasi dan keberatan
-    PPID Kanwil Kementerian Agama Provinsi Banten.
-  </p>
-
-</div>
-
-
-<!-- =================================
-     PERMOHONAN
-================================== -->
-
-<section
-  id="sectionPermohonan"
->
-
-  <div class="kpi-grid">
-
-    <div class="kpi">
-
-      <span>
-        Total Permohonan
-      </span>
-
-      <strong id="totalPermohonan">
-        0
-      </strong>
+      <p>
+        Pemantauan permohonan informasi dan keberatan
+        PPID Kanwil Kementerian Agama Provinsi Banten.
+      </p>
 
     </div>
 
 
-    <div class="kpi">
+    <!-- =================================
+         PERMOHONAN
+    ================================== -->
 
-      <span>
-        Belum Diproses
-      </span>
+    <section
+      id="sectionPermohonan"
+    >
 
-      <strong id="permohonanBelumProses">
-        0
-      </strong>
+      <div class="kpi-grid">
 
-    </div>
+        <div class="kpi">
 
+          <span>
+            Total Permohonan
+          </span>
 
-    <div class="kpi">
+          <strong id="totalPermohonan">
+            0
+          </strong>
 
-      <span>
-        Dalam Proses
-      </span>
-
-      <strong id="permohonanProses">
-        0
-      </strong>
-
-    </div>
+        </div>
 
 
-    <div class="kpi">
+        <div class="kpi">
 
-      <span>
-        Selesai
-      </span>
+          <span>
+            Belum Diproses
+          </span>
 
-      <strong id="permohonanSelesai">
-        0
-      </strong>
+          <strong id="permohonanBelumProses">
+            0
+          </strong>
 
-    </div>
-
-  </div>
+        </div>
 
 
-  <div class="card">
+        <div class="kpi">
 
-    <h2>
-      Permohonan Informasi
-    </h2>
+          <span>
+            Dalam Proses
+          </span>
 
-    <p class="card-description">
-      Daftar permohonan informasi publik
-      yang masuk melalui sistem PPID.
-    </p>
-    
-<div class="table-tools">
+          <strong id="permohonanProses">
+            0
+          </strong>
 
-  <input
-    type="text"
-    id="searchPermohonan"
-    placeholder="Cari nomor, nama, email, atau informasi..."
-    oninput="filterPermohonanTable()"
-  >
-
-  <select
-    id="statusPermohonan"
-    onchange="filterPermohonanTable()"
-  >
-    <option value="">Semua Status</option>
-    <option value="diterima">Diterima</option>
-    <option value="dalam proses">Dalam Proses</option>
-    <option value="selesai">Selesai</option>
-    <option value="ditolak">Ditolak</option>
-  </select>
-
-</div>
-    
-    <div id="permohonanTableContainer">
-  <div class="loading" id="permohonanLoading">
-    Memuat data permohonan...
-  </div>
-</div>
-
-  </div>
-
-</section>
+        </div>
 
 
-<!-- =================================
-     KEBERATAN
-================================== -->
+        <div class="kpi">
 
-<section
-  id="sectionKeberatan"
-  style="display:none;"
->
+          <span>
+            Selesai
+          </span>
 
-  <div class="kpi-grid">
+          <strong id="permohonanSelesai">
+            0
+          </strong>
 
-    <div class="kpi">
+        </div>
 
-      <span>
-        Total Keberatan
-      </span>
-
-      <strong id="totalKeberatan">
-        0
-      </strong>
-
-    </div>
+      </div>
 
 
-    <div class="kpi">
+      <div class="card">
 
-      <span>
-        Belum Diproses
-      </span>
+        <h2>
+          Permohonan Informasi
+        </h2>
 
-      <strong id="keberatanBelumProses">
-        0
-      </strong>
+        <p class="card-description">
+          Daftar permohonan informasi publik
+          yang masuk melalui sistem PPID.
+        </p>
 
-    </div>
+        <div class="table-tools">
+
+          <input
+            type="text"
+            id="searchPermohonan"
+            placeholder="Cari nomor, nama, email, atau informasi..."
+            oninput="filterPermohonanTable()"
+          >
+
+          <select
+            id="statusPermohonan"
+            onchange="filterPermohonanTable()"
+          >
+            <option value="">Semua Status</option>
+            <option value="diterima">Diterima</option>
+            <option value="dalam proses">Dalam Proses</option>
+            <option value="selesai">Selesai</option>
+            <option value="ditolak">Ditolak</option>
+          </select>
+
+        </div>
+
+        <div id="permohonanTableContainer">
+
+          <div
+            class="loading"
+            id="permohonanLoading"
+          >
+            Memuat data permohonan...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
-    <div class="kpi">
+    <!-- =================================
+         KEBERATAN
+    ================================== -->
 
-      <span>
-        Dalam Proses
-      </span>
+    <section
+      id="sectionKeberatan"
+      style="display:none;"
+    >
 
-      <strong id="keberatanProses">
-        0
-      </strong>
+      <div class="kpi-grid">
 
-    </div>
+        <div class="kpi">
 
+          <span>
+            Total Keberatan
+          </span>
 
-    <div class="kpi">
+          <strong id="totalKeberatan">
+            0
+          </strong>
 
-      <span>
-        Selesai
-      </span>
-
-      <strong id="keberatanSelesai">
-        0
-      </strong>
-
-    </div>
-
-  </div>
+        </div>
 
 
-  <div class="card">
+        <div class="kpi">
 
-    <h2>
-      Keberatan Informasi
-    </h2>
+          <span>
+            Belum Diproses
+          </span>
 
-    <p class="card-description">
-      Daftar keberatan atas layanan
-      informasi publik.
-    </p>
-    
-<div class="table-tools">
+          <strong id="keberatanBelumProses">
+            0
+          </strong>
 
-  <input
-    type="text"
-    id="searchKeberatan"
-    placeholder="Cari nomor keberatan, nomor permohonan, nama, atau email..."
-    oninput="filterKeberatanTable()"
-  >
+        </div>
 
-  <select
-    id="statusKeberatan"
-    onchange="filterKeberatanTable()"
-  >
-    <option value="">Semua Status</option>
-    <option value="diterima">Diterima</option>
-    <option value="dalam proses">Dalam Proses</option>
-    <option value="selesai">Selesai</option>
-    <option value="ditolak">Ditolak</option>
-  </select>
 
-</div>
-    
-    <div id="keberatanTableContainer">
-  <div class="loading" id="keberatanLoading">
-    Memuat data keberatan...
-  </div>
-</div>
+        <div class="kpi">
 
-  </div>
+          <span>
+            Dalam Proses
+          </span>
 
-</section>
+          <strong id="keberatanProses">
+            0
+          </strong>
 
+        </div>
+
+
+        <div class="kpi">
+
+          <span>
+            Selesai
+          </span>
+
+          <strong id="keberatanSelesai">
+            0
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>
+          Keberatan Informasi
+        </h2>
+
+        <p class="card-description">
+          Daftar keberatan atas layanan
+          informasi publik.
+        </p>
+
+        <div class="table-tools">
+
+          <input
+            type="text"
+            id="searchKeberatan"
+            placeholder="Cari nomor keberatan, nomor permohonan, nama, atau email..."
+            oninput="filterKeberatanTable()"
+          >
+
+          <select
+            id="statusKeberatan"
+            onchange="filterKeberatanTable()"
+          >
+
+            <option value="">
+              Semua Status
+            </option>
+
+            <option value="diterima">
+              Diterima
+            </option>
+
+            <option value="dalam proses">
+              Dalam Proses
+            </option>
+
+            <option value="selesai">
+              Selesai
+            </option>
+
+            <option value="ditolak">
+              Ditolak
+            </option>
+
+          </select>
+
+        </div>
+
+        <div id="keberatanTableContainer">
+
+          <div
+            class="loading"
+            id="keberatanLoading"
+          >
+            Memuat data keberatan...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
 </div>
+
+
+<!-- =========================================
+     MODAL UBAH STATUS PERMOHONAN
+========================================= -->
+
+<div
+  id="statusModal"
+  class="modal-overlay"
+  onclick="handleModalOverlayClick(event)"
+>
+
+  <div
+    class="modal"
+    onclick="event.stopPropagation()"
+  >
+
+    <div class="modal-header">
+
+      <div>
+
+        <h3>
+          Ubah Status Permohonan
+        </h3>
+
+        <p>
+          Perbarui status dan catatan permohonan.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        onclick="closeStatusModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="modal-info"
+      id="statusModalInfo"
+    >
+      Nomor Permohonan: -
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="editStatus">
+        Status
+      </label>
+
+      <select id="editStatus">
+
+        <option value="Diterima">
+          Diterima
+        </option>
+
+        <option value="Dalam Proses">
+          Dalam Proses
+        </option>
+
+        <option value="Selesai">
+          Selesai
+        </option>
+
+        <option value="Ditolak">
+          Ditolak
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="editCatatan">
+        Catatan
+      </label>
+
+      <textarea
+        id="editCatatan"
+        placeholder="Masukkan catatan proses permohonan..."
+      ></textarea>
+
+    </div>
+
+
+    <div
+      id="statusModalMessage"
+      class="modal-message"
+    ></div>
+
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="btn-cancel"
+        onclick="closeStatusModal()"
+      >
+        Batal
+      </button>
+
+      <button
+        type="button"
+        id="btnSaveStatus"
+        class="btn-save"
+        onclick="saveStatusPermohonan()"
+      >
+        Simpan Perubahan
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 <script>
 
@@ -732,9 +1091,11 @@ function showSection(section) {
   if (section === 'permohonan') {
 
     permohonan.style.display = 'block';
+
     keberatan.style.display = 'none';
 
     menuPermohonan.classList.add('active');
+
     menuKeberatan.classList.remove('active');
 
   }
@@ -743,9 +1104,11 @@ function showSection(section) {
   if (section === 'keberatan') {
 
     permohonan.style.display = 'none';
+
     keberatan.style.display = 'block';
 
     menuPermohonan.classList.remove('active');
+
     menuKeberatan.classList.add('active');
 
   }
@@ -773,7 +1136,9 @@ function normalizeStatus(status) {
 function calculateStats(data) {
 
   let belumProses = 0;
+
   let dalamProses = 0;
+
   let selesai = 0;
 
 
@@ -816,415 +1181,1132 @@ function calculateStats(data) {
 
 
   return {
+
     total: total,
+
     belumProses: belumProses,
+
     dalamProses: dalamProses,
+
     selesai: selesai
+
   };
 
 }
+
+
+/* =========================================
+   DATA PERMOHONAN
+========================================= */
+
 let allPermohonanData = [];
+
 let currentPermohonanPage = 1;
+
 const permohonanPageSize = 10;
-  
+
+
+/* =========================================
+   FILTER PERMOHONAN
+========================================= */
+
 function filterPermohonanTable() {
+
   currentPermohonanPage = 1;
-  const keyword = document
-    .getElementById('searchPermohonan')
-    .value
-    .toLowerCase()
-    .trim();
-const statusFilter = document
-  .getElementById('statusPermohonan')
-  .value
-  .toLowerCase()
-  .trim();
-  
-  const filteredData = allPermohonanData.filter(function(item) {
-    const matchesKeyword =
-  String(item.nomor_permohonan || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.nama_pemohon || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.email || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.informasi_diminta || '')
-    .toLowerCase()
-    .includes(keyword);
 
-const matchesStatus =
-  statusFilter === '' ||
-  String(item.status || '')
-    .toLowerCase()
-    .trim() === statusFilter;
 
-return matchesKeyword && matchesStatus;
-  });
+  const keyword =
+    document
+      .getElementById('searchPermohonan')
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const statusFilter =
+    document
+      .getElementById('statusPermohonan')
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filteredData =
+    allPermohonanData.filter(function(item) {
+
+      const matchesKeyword =
+
+        String(item.nomor_permohonan || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.nama_pemohon || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.email || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.informasi_diminta || '')
+          .toLowerCase()
+          .includes(keyword);
+
+
+      const matchesStatus =
+
+        statusFilter === ''
+
+        ||
+
+        String(item.status || '')
+          .toLowerCase()
+          .trim() === statusFilter;
+
+
+      return (
+        matchesKeyword &&
+        matchesStatus
+      );
+
+    });
+
 
   renderPermohonanTable(filteredData);
+
 }
-  
+
+
+/* =========================================
+   RENDER PERMOHONAN
+========================================= */
+
 function renderPermohonanTable(data) {
-  const container = document.getElementById('permohonanTableContainer');
+
+  const container =
+    document.getElementById(
+      'permohonanTableContainer'
+    );
+
 
   if (!data || data.length === 0) {
+
     container.innerHTML = `
       <div class="empty-data">
         Belum ada data permohonan.
       </div>
     `;
+
     return;
+
   }
 
-  const totalData = data.length;
 
-const totalPages = Math.ceil(
-  totalData / permohonanPageSize
-);
+  const totalData =
+    data.length;
 
- 
-  if (currentPermohonanPage > totalPages) {
-    currentPermohonanPage = totalPages;
+
+  const totalPages =
+    Math.ceil(
+      totalData /
+      permohonanPageSize
+    );
+
+
+  if (
+    currentPermohonanPage >
+    totalPages
+  ) {
+
+    currentPermohonanPage =
+      totalPages;
+
   }
+
 
   const startIndex =
     (currentPermohonanPage - 1) *
     permohonanPageSize;
 
+
   const endIndex =
-    startIndex + permohonanPageSize;
+    startIndex +
+    permohonanPageSize;
+
 
   const pageData =
-    data.slice(startIndex, endIndex);
+    data.slice(
+      startIndex,
+      endIndex
+    );
+
 
   let html = `
+
     <div class="table-wrapper">
+
       <table class="data-table">
+
         <thead>
+
           <tr>
+
             <th>No.</th>
+
             <th>Nomor Permohonan</th>
+
             <th>Nama Pemohon</th>
+
             <th>Email</th>
+
             <th>Informasi yang Diminta</th>
+
             <th>Tanggal Masuk</th>
+
             <th>Status</th>
+
+            <th>Aksi</th>
+
           </tr>
+
         </thead>
 
         <tbody>
+
   `;
 
+
   pageData.forEach(function(item, index) {
+
     const status =
-      normalizeStatus(item.status);
+      normalizeStatus(
+        item.status
+      );
+
 
     let statusClass =
       'status-diterima';
 
-    if (status === 'dalam proses') {
-      statusClass = 'status-proses';
 
-    } else if (status === 'selesai') {
-      statusClass = 'status-selesai';
+    if (
+      status === 'dalam proses'
+    ) {
 
-    } else if (status === 'ditolak') {
-      statusClass = 'status-ditolak';
+      statusClass =
+        'status-proses';
+
     }
 
+    else if (
+      status === 'selesai'
+    ) {
+
+      statusClass =
+        'status-selesai';
+
+    }
+
+    else if (
+      status === 'ditolak'
+    ) {
+
+      statusClass =
+        'status-ditolak';
+
+    }
+
+
     html += `
+
       <tr>
-        <td>${startIndex + index + 1}</td>
 
         <td>
-          ${item.nomor_permohonan || '-'}
+          ${startIndex + index + 1}
         </td>
 
         <td>
-          ${item.nama_pemohon || '-'}
+          ${escapeHtml(
+            item.nomor_permohonan || '-'
+          )}
         </td>
 
         <td>
-          ${item.email || '-'}
+          ${escapeHtml(
+            item.nama_pemohon || '-'
+          )}
         </td>
 
         <td>
-          ${item.informasi_diminta || '-'}
+          ${escapeHtml(
+            item.email || '-'
+          )}
         </td>
 
         <td>
-          ${item.tanggal_masuk || '-'}
+          ${escapeHtml(
+            item.informasi_diminta || '-'
+          )}
         </td>
 
         <td>
-          <span class="status-badge ${statusClass}">
-            ${item.status || '-'}
+          ${escapeHtml(
+            item.tanggal_masuk || '-'
+          )}
+        </td>
+
+        <td>
+
+          <span
+            class="status-badge ${statusClass}"
+          >
+            ${escapeHtml(
+              item.status || '-'
+            )}
           </span>
+
         </td>
+
+        <td>
+
+          <button
+            type="button"
+            class="btn-status"
+            onclick="openStatusModal('${escapeJs(item.id)}')"
+          >
+            Ubah Status
+          </button>
+
+        </td>
+
       </tr>
+
     `;
+
   });
 
+
   html += `
+
         </tbody>
+
       </table>
-    </div>
-  `;
-if (totalPages > 1) {
-  html += `
-    <div class="pagination">
-      <button
-        type="button"
-        onclick="changePermohonanPage(${currentPermohonanPage - 1})"
-        ${currentPermohonanPage === 1 ? 'disabled' : ''}
-      >
-        ‹ Sebelumnya
-      </button>
 
-      <span>
-        Halaman ${currentPermohonanPage} dari ${totalPages}
-      </span>
-
-      <button
-        type="button"
-        onclick="changePermohonanPage(${currentPermohonanPage + 1})"
-        ${currentPermohonanPage === totalPages ? 'disabled' : ''}
-      >
-        Berikutnya ›
-      </button>
     </div>
+
   `;
+
+
+  if (totalPages > 1) {
+
+    html += `
+
+      <div class="pagination">
+
+        <button
+          type="button"
+          onclick="changePermohonanPage(
+            ${currentPermohonanPage - 1}
+          )"
+          ${
+            currentPermohonanPage === 1
+              ? 'disabled'
+              : ''
+          }
+        >
+          ‹ Sebelumnya
+        </button>
+
+
+        <span>
+          Halaman
+          ${currentPermohonanPage}
+          dari
+          ${totalPages}
+        </span>
+
+
+        <button
+          type="button"
+          onclick="changePermohonanPage(
+            ${currentPermohonanPage + 1}
+          )"
+          ${
+            currentPermohonanPage === totalPages
+              ? 'disabled'
+              : ''
+          }
+        >
+          Berikutnya ›
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+
+  container.innerHTML =
+    html;
+
 }
-  
-  container.innerHTML = html;
-}
+
+
+/* =========================================
+   PAGINATION PERMOHONAN
+========================================= */
 
 function changePermohonanPage(page) {
-  const totalPages = Math.ceil(
-    allPermohonanData.length / permohonanPageSize
-  );
 
-  if (page < 1 || page > totalPages) {
+  if (page < 1) {
     return;
   }
 
-  currentPermohonanPage = page;
+  currentPermohonanPage =
+    page;
+
 
   filterPermohonanTable();
+
 }
-  
-  let allKeberatanData = [];
+
+
+/* =========================================
+   DATA KEBERATAN
+========================================= */
+
+let allKeberatanData = [];
 
 let currentKeberatanPage = 1;
+
 const keberatanPageSize = 10;
-  
+
+
+/* =========================================
+   FILTER KEBERATAN
+========================================= */
+
 function filterKeberatanTable() {
 
   currentKeberatanPage = 1;
-  
-  const keyword = document
-    .getElementById('searchKeberatan')
-    .value
-    .toLowerCase()
-    .trim();
-
-const statusFilter = document
-  .getElementById('statusKeberatan')
-  .value
-  .toLowerCase()
-  .trim();
 
 
-  const filteredData = allKeberatanData.filter(function(item) {
-    const matchesKeyword =
-  String(item.nomor_keberatan || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.nomor_permohonan || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.nama_pemohon || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.email || '')
-    .toLowerCase()
-    .includes(keyword) ||
-  String(item.alasan_keberatan || '')
-    .toLowerCase()
-    .includes(keyword);
+  const keyword =
+    document
+      .getElementById('searchKeberatan')
+      .value
+      .toLowerCase()
+      .trim();
 
-const matchesStatus =
-  statusFilter === '' ||
-  String(item.status || '')
-    .toLowerCase()
-    .trim() === statusFilter;
 
-return matchesKeyword && matchesStatus;
-    
-  });
+  const statusFilter =
+    document
+      .getElementById('statusKeberatan')
+      .value
+      .toLowerCase()
+      .trim();
 
-  renderKeberatanTable(filteredData);
-}
 
-  function changeKeberatanPage(page) {
-  const totalPages = Math.ceil(
-    allKeberatanData.length / keberatanPageSize
+  const filteredData =
+    allKeberatanData.filter(function(item) {
+
+      const matchesKeyword =
+
+        String(item.nomor_keberatan || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.nomor_permohonan || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.nama_pemohon || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.email || '')
+          .toLowerCase()
+          .includes(keyword)
+
+        ||
+
+        String(item.alasan_keberatan || '')
+          .toLowerCase()
+          .includes(keyword);
+
+
+      const matchesStatus =
+
+        statusFilter === ''
+
+        ||
+
+        String(item.status || '')
+          .toLowerCase()
+          .trim() === statusFilter;
+
+
+      return (
+        matchesKeyword &&
+        matchesStatus
+      );
+
+    });
+
+
+  renderKeberatanTable(
+    filteredData
   );
 
-  if (page < 1 || page > totalPages) {
+}
+
+
+/* =========================================
+   PAGINATION KEBERATAN
+========================================= */
+
+function changeKeberatanPage(page) {
+
+  if (page < 1) {
     return;
   }
 
-  currentKeberatanPage = page;
+  currentKeberatanPage =
+    page;
+
 
   filterKeberatanTable();
+
 }
 
-function renderKeberatanTable(data) {
-  const container = document.getElementById(
-    'keberatanTableContainer'
-  );
 
-  if (!data || data.length === 0) {
+/* =========================================
+   RENDER KEBERATAN
+========================================= */
+
+function renderKeberatanTable(data) {
+
+  const container =
+    document.getElementById(
+      'keberatanTableContainer'
+    );
+
+
+  if (
+    !data ||
+    data.length === 0
+  ) {
+
     container.innerHTML = `
+
       <div class="empty-data">
         Belum ada data keberatan.
       </div>
+
     `;
+
     return;
+
   }
 
-  const totalData = data.length;
 
-  const totalPages = Math.ceil(
-    totalData / keberatanPageSize
-  );
+  const totalData =
+    data.length;
 
-  if (currentKeberatanPage > totalPages) {
-    currentKeberatanPage = totalPages;
+
+  const totalPages =
+    Math.ceil(
+      totalData /
+      keberatanPageSize
+    );
+
+
+  if (
+    currentKeberatanPage >
+    totalPages
+  ) {
+
+    currentKeberatanPage =
+      totalPages;
+
   }
+
 
   const startIndex =
     (currentKeberatanPage - 1) *
     keberatanPageSize;
 
+
   const endIndex =
-    startIndex + keberatanPageSize;
+    startIndex +
+    keberatanPageSize;
+
 
   const pageData =
-    data.slice(startIndex, endIndex);
+    data.slice(
+      startIndex,
+      endIndex
+    );
+
 
   let html = `
+
     <div class="table-wrapper">
+
       <table class="data-table">
+
         <thead>
+
           <tr>
+
             <th>No.</th>
+
             <th>Nomor Keberatan</th>
+
             <th>Nomor Permohonan</th>
+
             <th>Nama Pemohon</th>
+
             <th>Email</th>
+
             <th>Alasan Keberatan</th>
+
             <th>Tanggal Masuk</th>
+
             <th>Status</th>
+
           </tr>
+
         </thead>
 
         <tbody>
+
   `;
 
+
   pageData.forEach(function(item, index) {
+
     const status =
-      normalizeStatus(item.status);
+      normalizeStatus(
+        item.status
+      );
+
 
     let statusClass =
       'status-diterima';
 
-    if (status === 'dalam proses') {
-      statusClass = 'status-proses';
 
-    } else if (status === 'selesai') {
-      statusClass = 'status-selesai';
+    if (
+      status === 'dalam proses'
+    ) {
 
-    } else if (status === 'ditolak') {
-      statusClass = 'status-ditolak';
+      statusClass =
+        'status-proses';
+
     }
 
+    else if (
+      status === 'selesai'
+    ) {
+
+      statusClass =
+        'status-selesai';
+
+    }
+
+    else if (
+      status === 'ditolak'
+    ) {
+
+      statusClass =
+        'status-ditolak';
+
+    }
+
+
     html += `
+
       <tr>
-        <td>${startIndex + index + 1}</td>
 
         <td>
-          ${item.nomor_keberatan || '-'}
+          ${startIndex + index + 1}
         </td>
 
         <td>
-          ${item.nomor_permohonan || '-'}
+          ${escapeHtml(
+            item.nomor_keberatan || '-'
+          )}
         </td>
 
         <td>
-          ${item.nama_pemohon || '-'}
+          ${escapeHtml(
+            item.nomor_permohonan || '-'
+          )}
         </td>
 
         <td>
-          ${item.email || '-'}
+          ${escapeHtml(
+            item.nama_pemohon || '-'
+          )}
         </td>
 
         <td>
-          ${item.alasan_keberatan || '-'}
+          ${escapeHtml(
+            item.email || '-'
+          )}
         </td>
 
         <td>
-          ${item.tanggal_masuk || '-'}
+          ${escapeHtml(
+            item.alasan_keberatan || '-'
+          )}
         </td>
 
         <td>
-          <span class="status-badge ${statusClass}">
-            ${item.status || '-'}
+          ${escapeHtml(
+            item.tanggal_masuk || '-'
+          )}
+        </td>
+
+        <td>
+
+          <span
+            class="status-badge ${statusClass}"
+          >
+            ${escapeHtml(
+              item.status || '-'
+            )}
           </span>
+
         </td>
+
       </tr>
+
     `;
+
   });
 
+
   html += `
+
         </tbody>
+
       </table>
+
     </div>
+
   `;
 
+
   if (totalPages > 1) {
+
     html += `
+
       <div class="pagination">
+
         <button
           type="button"
-          onclick="changeKeberatanPage(${currentKeberatanPage - 1})"
-          ${currentKeberatanPage === 1 ? 'disabled' : ''}
+          onclick="changeKeberatanPage(
+            ${currentKeberatanPage - 1}
+          )"
+          ${
+            currentKeberatanPage === 1
+              ? 'disabled'
+              : ''
+          }
         >
           ‹ Sebelumnya
         </button>
 
+
         <span>
-          Halaman ${currentKeberatanPage} dari ${totalPages}
+          Halaman
+          ${currentKeberatanPage}
+          dari
+          ${totalPages}
         </span>
+
 
         <button
           type="button"
-          onclick="changeKeberatanPage(${currentKeberatanPage + 1})"
-          ${currentKeberatanPage === totalPages ? 'disabled' : ''}
+          onclick="changeKeberatanPage(
+            ${currentKeberatanPage + 1}
+          )"
+          ${
+            currentKeberatanPage === totalPages
+              ? 'disabled'
+              : ''
+          }
         >
           Berikutnya ›
         </button>
+
       </div>
+
     `;
+
   }
 
-  container.innerHTML = html;
+
+  container.innerHTML =
+    html;
+
 }
-  
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value) {
+
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+/* =========================================
+   ESCAPE JAVASCRIPT
+========================================= */
+
+function escapeJs(value) {
+
+  return String(value || '')
+    .replace(/\\/g, '\\\\')
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
+    .replace(/\r/g, '\\r');
+
+}
+
+
+/* =========================================
+   BUKA MODAL STATUS
+========================================= */
+
+function openStatusModal(id) {
+
+  const item =
+    allPermohonanData.find(
+      function(row) {
+
+        return String(row.id || '').trim() ===
+          String(id || '').trim();
+
+      }
+    );
+
+
+  if (!item) {
+
+    alert(
+      'Data permohonan tidak ditemukan.'
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    'statusModalInfo'
+  ).innerHTML = `
+
+    Nomor Permohonan:
+    <strong>
+      ${escapeHtml(
+        item.nomor_permohonan || '-'
+      )}
+    </strong>
+
+    <br>
+
+    Pemohon:
+    <strong>
+      ${escapeHtml(
+        item.nama_pemohon || '-'
+      )}
+    </strong>
+
+  `;
+
+
+  document.getElementById(
+    'editStatus'
+  ).value =
+    item.status || 'Diterima';
+
+
+  document.getElementById(
+    'editCatatan'
+  ).value =
+    item.catatan || '';
+
+
+  document.getElementById(
+    'statusModalMessage'
+  ).className =
+    'modal-message';
+
+
+  document.getElementById(
+    'statusModalMessage'
+  ).textContent =
+    '';
+
+
+  document.getElementById(
+    'statusModal'
+  ).dataset.id =
+    id;
+
+
+  document.getElementById(
+    'statusModal'
+  ).classList.add(
+    'show'
+  );
+
+}
+
+
+/* =========================================
+   TUTUP MODAL
+========================================= */
+
+function closeStatusModal() {
+
+  document.getElementById(
+    'statusModal'
+  ).classList.remove(
+    'show'
+  );
+
+}
+
+
+function handleModalOverlayClick(event) {
+
+  if (
+    event.target.id ===
+    'statusModal'
+  ) {
+
+    closeStatusModal();
+
+  }
+
+}
+
+
+/* =========================================
+   SIMPAN STATUS PERMOHONAN
+========================================= */
+
+async function saveStatusPermohonan() {
+
+  const modal =
+    document.getElementById(
+      'statusModal'
+    );
+
+
+  const id =
+    modal.dataset.id;
+
+
+  const status =
+    document.getElementById(
+      'editStatus'
+    ).value;
+
+
+  const catatan =
+    document.getElementById(
+      'editCatatan'
+    ).value
+    .trim();
+
+
+  const button =
+    document.getElementById(
+      'btnSaveStatus'
+    );
+
+
+  const message =
+    document.getElementById(
+      'statusModalMessage'
+    );
+
+
+  if (!id) {
+
+    message.className =
+      'modal-message error';
+
+    message.textContent =
+      'ID permohonan tidak ditemukan.';
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+  button.textContent =
+    'Menyimpan...';
+
+
+  message.className =
+    'modal-message';
+
+
+  message.textContent =
+    '';
+
+
+  try {
+
+    const payload = {
+
+      action:
+        'updateStatusPermohonan',
+
+      id:
+        id,
+
+      status:
+        status,
+
+      catatan:
+        catatan
+
+    };
+
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP ' +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Status gagal diperbarui.'
+      );
+
+    }
+
+
+    message.className =
+      'modal-message success';
+
+
+    message.textContent =
+      'Status permohonan berhasil diperbarui.';
+
+
+    /*
+      Tunggu sebentar agar pesan
+      sukses terlihat oleh admin.
+    */
+
+    setTimeout(
+      async function() {
+
+        closeStatusModal();
+
+        await loadMonitoring();
+
+      },
+      700
+    );
+
+
+  }
+
+  catch (error) {
+
+    console.error(
+      'Update status error:',
+      error
+    );
+
+
+    message.className =
+      'modal-message error';
+
+
+    message.textContent =
+      'Gagal memperbarui status: ' +
+      error.message;
+
+  }
+
+  finally {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      'Simpan Perubahan';
+
+  }
+
+}
+
+
 /* =========================================
    LOAD DATA
 ========================================= */
@@ -1266,6 +2348,7 @@ async function loadMonitoring() {
     const permohonanResult =
       await permohonanResponse.json();
 
+
     const keberatanResult =
       await keberatanResponse.json();
 
@@ -1300,7 +2383,8 @@ async function loadMonitoring() {
       )
         ? permohonanResult.data
         : [];
-    
+
+
     const keberatanData =
       Array.isArray(
         keberatanResult.data
@@ -1374,15 +2458,22 @@ async function loadMonitoring() {
     ).textContent =
       keberatanStats.selesai;
 
-allKeberatanData = keberatanData;
 
-   
-renderKeberatanTable(allKeberatanData);
-    
-    /* SELESAI */
+    /* SIMPAN DATA */
 
-   allPermohonanData = permohonanData;
-renderPermohonanTable(allPermohonanData);
+    allKeberatanData =
+      keberatanData;
+
+
+    allPermohonanData =
+      permohonanData;
+
+
+    /* RENDER */
+
+    filterPermohonanTable();
+
+    filterKeberatanTable();
 
 
   }
@@ -1395,30 +2486,40 @@ renderPermohonanTable(allPermohonanData);
     );
 
 
-    document.getElementById(
-      'permohonanLoading'
-    ).className =
-      'error';
+    const permohonanLoading =
+      document.getElementById(
+        'permohonanLoading'
+      );
 
 
-    document.getElementById(
-      'permohonanLoading'
-    ).textContent =
-      'Gagal memuat data permohonan: ' +
-      error.message;
+    const keberatanLoading =
+      document.getElementById(
+        'keberatanLoading'
+      );
 
 
-    document.getElementById(
-      'keberatanLoading'
-    ).className =
-      'error';
+    if (permohonanLoading) {
+
+      permohonanLoading.className =
+        'error';
+
+      permohonanLoading.textContent =
+        'Gagal memuat data permohonan: ' +
+        error.message;
+
+    }
 
 
-    document.getElementById(
-      'keberatanLoading'
-    ).textContent =
-      'Gagal memuat data keberatan: ' +
-      error.message;
+    if (keberatanLoading) {
+
+      keberatanLoading.className =
+        'error';
+
+      keberatanLoading.textContent =
+        'Gagal memuat data keberatan: ' +
+        error.message;
+
+    }
 
   }
 
