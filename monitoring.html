@@ -1321,7 +1321,7 @@ function calculateStats(data) {
 ========================================= */
 
 let allPermohonanData = [];
-
+let filteredPermohonanData = [];
 let currentPermohonanPage = 1;
 
 const permohonanPageSize = 10;
@@ -1331,76 +1331,51 @@ const permohonanPageSize = 10;
    FILTER PERMOHONAN
 ========================================= */
 
-function filterPermohonanTable() {
+function filterPermohonanTable(resetPage = true) {
 
-  currentPermohonanPage = 1;
+  if (resetPage) {
+    currentPermohonanPage = 1;
+  }
 
-
-  const keyword =
-    document
-      .getElementById('searchPermohonan')
+  const search =
+    document.getElementById('searchPermohonan')
       .value
       .toLowerCase()
       .trim();
 
-
-  const statusFilter =
-    document
-      .getElementById('statusPermohonan')
+  const status =
+    document.getElementById('statusPermohonan')
       .value
       .toLowerCase()
       .trim();
 
-
-  const filteredData =
+  filteredPermohonanData =
     allPermohonanData.filter(function(item) {
 
-      const matchesKeyword =
+      const searchableText = [
+        item.nomor_permohonan,
+        item.nama_pemohon,
+        item.email,
+        item.informasi_diminta
+      ]
+        .join(' ')
+        .toLowerCase();
 
-        String(item.nomor_permohonan || '')
-          .toLowerCase()
-          .includes(keyword)
+      const matchSearch =
+        !search ||
+        searchableText.includes(search);
 
-        ||
-
-        String(item.nama_pemohon || '')
-          .toLowerCase()
-          .includes(keyword)
-
-        ||
-
-        String(item.email || '')
-          .toLowerCase()
-          .includes(keyword)
-
-        ||
-
-        String(item.informasi_diminta || '')
-          .toLowerCase()
-          .includes(keyword);
-
-
-      const matchesStatus =
-
-        statusFilter === ''
-
-        ||
-
+      const matchStatus =
+        !status ||
         String(item.status || '')
           .toLowerCase()
-          .trim() === statusFilter;
+          .trim() === status;
 
-
-      return (
-        matchesKeyword &&
-        matchesStatus
-      );
+      return matchSearch && matchStatus;
 
     });
 
-
-  renderPermohonanTable(filteredData);
-
+  renderPermohonanTable();
 }
 
 
@@ -1685,25 +1660,30 @@ function renderPermohonanTable(data) {
 
 function changePermohonanPage(page) {
 
-  if (page < 1) {
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filteredPermohonanData.length /
+        itemsPerPage
+      )
+    );
+
+  if (page < 1 || page > totalPages) {
     return;
   }
 
-  currentPermohonanPage =
-    page;
+  currentPermohonanPage = page;
 
-
-  filterPermohonanTable();
-
+  renderPermohonanTable();
 }
-
 
 /* =========================================
    DATA KEBERATAN
 ========================================= */
 
 let allKeberatanData = [];
-
+let filteredKeberatanData = [];
 let currentKeberatanPage = 1;
 
 const keberatanPageSize = 10;
@@ -1713,86 +1693,52 @@ const keberatanPageSize = 10;
    FILTER KEBERATAN
 ========================================= */
 
-function filterKeberatanTable() {
+function filterKeberatanTable(resetPage = true) {
 
-  currentKeberatanPage = 1;
+  if (resetPage) {
+    currentKeberatanPage = 1;
+  }
 
-
-  const keyword =
-    document
-      .getElementById('searchKeberatan')
+  const search =
+    document.getElementById('searchKeberatan')
       .value
       .toLowerCase()
       .trim();
 
-
-  const statusFilter =
-    document
-      .getElementById('statusKeberatan')
+  const status =
+    document.getElementById('statusKeberatan')
       .value
       .toLowerCase()
       .trim();
 
-
-  const filteredData =
+  filteredKeberatanData =
     allKeberatanData.filter(function(item) {
 
-      const matchesKeyword =
+      const searchableText = [
+        item.nomor_keberatan,
+        item.nomor_permohonan,
+        item.nama_pemohon,
+        item.email
+      ]
+        .join(' ')
+        .toLowerCase();
 
-        String(item.nomor_keberatan || '')
-          .toLowerCase()
-          .includes(keyword)
+      const matchSearch =
+        !search ||
+        searchableText.includes(search);
 
-        ||
-
-        String(item.nomor_permohonan || '')
-          .toLowerCase()
-          .includes(keyword)
-
-        ||
-
-        String(item.nama_pemohon || '')
-          .toLowerCase()
-          .includes(keyword)
-
-        ||
-
-        String(item.email || '')
-          .toLowerCase()
-          .includes(keyword)
-
-        ||
-
-        String(item.alasan_keberatan || '')
-          .toLowerCase()
-          .includes(keyword);
-
-
-      const matchesStatus =
-
-        statusFilter === ''
-
-        ||
-
+      const matchStatus =
+        !status ||
         String(item.status || '')
           .toLowerCase()
-          .trim() === statusFilter;
+          .trim() === status;
 
-
-      return (
-        matchesKeyword &&
-        matchesStatus
-      );
+      return matchSearch && matchStatus;
 
     });
 
-
-  renderKeberatanTable(
-    filteredData
-  );
-
+  renderKeberatanTable();
 }
-
 
 /* =========================================
    PAGINATION KEBERATAN
@@ -1800,18 +1746,23 @@ function filterKeberatanTable() {
 
 function changeKeberatanPage(page) {
 
-  if (page < 1) {
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        filteredKeberatanData.length /
+        itemsPerPage
+      )
+    );
+
+  if (page < 1 || page > totalPages) {
     return;
   }
 
-  currentKeberatanPage =
-    page;
+  currentKeberatanPage = page;
 
-
-  filterKeberatanTable();
-
+  renderKeberatanTable();
 }
-
 
 /* =========================================
    RENDER KEBERATAN
