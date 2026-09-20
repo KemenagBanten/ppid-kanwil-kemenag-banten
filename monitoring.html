@@ -1170,316 +1170,6 @@
   </div>
 
 </div>
-  /* =========================================
-   BUKA MODAL STATUS KEBERATAN
-========================================= */
-
-function openStatusKeberatanModal(id) {
-
-  const item =
-    allKeberatanData.find(
-      function(row) {
-
-        return String(row.id || '').trim() ===
-          String(id || '').trim();
-
-      }
-    );
-
-
-  if (!item) {
-
-    alert(
-      'Data keberatan tidak ditemukan.'
-    );
-
-    return;
-
-  }
-
-
-  document.getElementById(
-    'statusKeberatanModalInfo'
-  ).innerHTML = `
-
-    Nomor Keberatan:
-    <strong>
-      ${escapeHtml(
-        item.nomor_keberatan || '-'
-      )}
-    </strong>
-
-    <br>
-
-    Nomor Permohonan:
-    <strong>
-      ${escapeHtml(
-        item.nomor_permohonan || '-'
-      )}
-    </strong>
-
-    <br>
-
-    Pemohon:
-    <strong>
-      ${escapeHtml(
-        item.nama_pemohon || '-'
-      )}
-    </strong>
-
-  `;
-
-
-  document.getElementById(
-    'editStatusKeberatan'
-  ).value =
-    item.status || 'Diterima';
-
-
-  document.getElementById(
-    'editCatatanKeberatan'
-  ).value =
-    item.catatan || '';
-
-
-  document.getElementById(
-    'statusKeberatanModalMessage'
-  ).className =
-    'modal-message';
-
-
-  document.getElementById(
-    'statusKeberatanModalMessage'
-  ).textContent =
-    '';
-
-
-  document.getElementById(
-    'statusKeberatanModal'
-  ).dataset.id =
-    id;
-
-
-  document.getElementById(
-    'statusKeberatanModal'
-  ).classList.add(
-    'show'
-  );
-
-}
-
-
-/* =========================================
-   TUTUP MODAL KEBERATAN
-========================================= */
-
-function closeStatusKeberatanModal() {
-
-  document.getElementById(
-    'statusKeberatanModal'
-  ).classList.remove(
-    'show'
-  );
-
-}
-
-
-function handleKeberatanModalOverlayClick(event) {
-
-  if (
-    event.target.id ===
-    'statusKeberatanModal'
-  ) {
-
-    closeStatusKeberatanModal();
-
-  }
-
-}
-
-
-/* =========================================
-   SIMPAN STATUS KEBERATAN
-========================================= */
-
-async function saveStatusKeberatan() {
-
-  const modal =
-    document.getElementById(
-      'statusKeberatanModal'
-    );
-
-
-  const id =
-    modal.dataset.id;
-
-
-  const status =
-    document.getElementById(
-      'editStatusKeberatan'
-    ).value;
-
-
-  const catatan =
-    document.getElementById(
-      'editCatatanKeberatan'
-    ).value
-    .trim();
-
-
-  const button =
-    document.getElementById(
-      'btnSaveStatusKeberatan'
-    );
-
-
-  const message =
-    document.getElementById(
-      'statusKeberatanModalMessage'
-    );
-
-
-  if (!id) {
-
-    message.className =
-      'modal-message error';
-
-    message.textContent =
-      'ID keberatan tidak ditemukan.';
-
-    return;
-
-  }
-
-
-  button.disabled = true;
-
-  button.textContent =
-    'Menyimpan...';
-
-
-  message.className =
-    'modal-message';
-
-  message.textContent =
-    '';
-
-
-  try {
-
-    const payload = {
-
-      action:
-        'updateStatusKeberatan',
-
-      id:
-        id,
-
-      status:
-        status,
-
-      catatan:
-        catatan
-
-    };
-
-
-    const response =
-      await fetch(
-        API_URL,
-        {
-
-          method: 'POST',
-
-          headers: {
-            'Content-Type':
-              'text/plain;charset=utf-8'
-          },
-
-          body:
-            JSON.stringify(
-              payload
-            )
-
-        }
-      );
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        'HTTP ' +
-        response.status
-      );
-
-    }
-
-
-    const result =
-      await response.json();
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.message ||
-        'Status keberatan gagal diperbarui.'
-      );
-
-    }
-
-
-    message.className =
-      'modal-message success';
-
-
-    message.textContent =
-      'Status keberatan berhasil diperbarui.';
-
-
-    setTimeout(
-      async function() {
-
-        closeStatusKeberatanModal();
-
-        await loadMonitoring();
-
-      },
-      700
-    );
-
-
-  }
-
-  catch (error) {
-
-    console.error(
-      'Update status keberatan error:',
-      error
-    );
-
-
-    message.className =
-      'modal-message error';
-
-
-    message.textContent =
-      'Gagal memperbarui status: ' +
-      error.message;
-
-  }
-
-  finally {
-
-    button.disabled =
-      false;
-
-    button.textContent =
-      'Simpan Perubahan';
-
-  }
-
-}
   
 <script>
 
@@ -2750,7 +2440,287 @@ async function saveStatusPermohonan() {
 
 }
 
+/* =========================================
+   BUKA MODAL STATUS KEBERATAN
+========================================= */
 
+function openStatusKeberatanModal(id) {
+
+  const item =
+    allKeberatanData.find(
+      function(row) {
+
+        return String(row.id || '').trim() ===
+          String(id || '').trim();
+
+      }
+    );
+
+  if (!item) {
+
+    alert(
+      'Data keberatan tidak ditemukan.'
+    );
+
+    return;
+
+  }
+
+  document.getElementById(
+    'statusKeberatanModalInfo'
+  ).innerHTML = `
+
+    Nomor Keberatan:
+    <strong>
+      ${escapeHtml(
+        item.nomor_keberatan || '-'
+      )}
+    </strong>
+
+    <br>
+
+    Nomor Permohonan:
+    <strong>
+      ${escapeHtml(
+        item.nomor_permohonan || '-'
+      )}
+    </strong>
+
+    <br>
+
+    Pemohon:
+    <strong>
+      ${escapeHtml(
+        item.nama_pemohon || '-'
+      )}
+    </strong>
+
+  `;
+
+  document.getElementById(
+    'editStatusKeberatan'
+  ).value =
+    item.status || 'Diterima';
+
+  document.getElementById(
+    'editCatatanKeberatan'
+  ).value =
+    item.catatan || '';
+
+  document.getElementById(
+    'statusKeberatanModalMessage'
+  ).className =
+    'modal-message';
+
+  document.getElementById(
+    'statusKeberatanModalMessage'
+  ).textContent = '';
+
+  document.getElementById(
+    'statusKeberatanModal'
+  ).dataset.id =
+    id;
+
+  document.getElementById(
+    'statusKeberatanModal'
+  ).classList.add(
+    'show'
+  );
+
+}
+
+
+/* =========================================
+   TUTUP MODAL KEBERATAN
+========================================= */
+
+function closeStatusKeberatanModal() {
+
+  document.getElementById(
+    'statusKeberatanModal'
+  ).classList.remove(
+    'show'
+  );
+
+}
+
+
+function handleKeberatanModalOverlayClick(event) {
+
+  if (
+    event.target.id ===
+    'statusKeberatanModal'
+  ) {
+
+    closeStatusKeberatanModal();
+
+  }
+
+}
+
+
+/* =========================================
+   SIMPAN STATUS KEBERATAN
+========================================= */
+
+async function saveStatusKeberatan() {
+
+  const modal =
+    document.getElementById(
+      'statusKeberatanModal'
+    );
+
+  const id =
+    modal.dataset.id;
+
+  const status =
+    document.getElementById(
+      'editStatusKeberatan'
+    ).value;
+
+  const catatan =
+    document.getElementById(
+      'editCatatanKeberatan'
+    ).value.trim();
+
+  const button =
+    document.getElementById(
+      'btnSaveStatusKeberatan'
+    );
+
+  const message =
+    document.getElementById(
+      'statusKeberatanModalMessage'
+    );
+
+  if (!id) {
+
+    message.className =
+      'modal-message error';
+
+    message.textContent =
+      'ID keberatan tidak ditemukan.';
+
+    return;
+
+  }
+
+  button.disabled = true;
+
+  button.textContent =
+    'Menyimpan...';
+
+  message.className =
+    'modal-message';
+
+  message.textContent = '';
+
+  try {
+
+    const payload = {
+
+      action:
+        'updateStatusKeberatan',
+
+      id:
+        id,
+
+      status:
+        status,
+
+      catatan:
+        catatan
+
+    };
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
+
+          body:
+            JSON.stringify(
+              payload
+            )
+
+        }
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP ' +
+        response.status
+      );
+
+    }
+
+    const result =
+      await response.json();
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Status keberatan gagal diperbarui.'
+      );
+
+    }
+
+    message.className =
+      'modal-message success';
+
+    message.textContent =
+      'Status keberatan berhasil diperbarui.';
+
+    setTimeout(
+      async function() {
+
+        closeStatusKeberatanModal();
+
+        await loadMonitoring();
+
+      },
+      700
+    );
+
+  }
+
+  catch (error) {
+
+    console.error(
+      'Update status keberatan error:',
+      error
+    );
+
+    message.className =
+      'modal-message error';
+
+    message.textContent =
+      'Gagal memperbarui status: ' +
+      error.message;
+
+  }
+
+  finally {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      'Simpan Perubahan';
+
+  }
+
+}
+  
 /* =========================================
    LOAD DATA
 ========================================= */
