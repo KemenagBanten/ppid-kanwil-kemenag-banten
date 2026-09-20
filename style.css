@@ -552,7 +552,7 @@ SEARCH BUTTON
   background-size: cover;
 
   /* jangan terlalu zoom */
-  background-position: center center;
+  background-position: 58% center;
 
   color: #17352a;
 }
