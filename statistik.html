@@ -360,15 +360,7 @@
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-label">Ditolak</div>
-          <div class="card-value" id="permohonanDitolak">0</div>
-          <div class="card-percent" id="permohonanDitolakPersen">
-            0% dari total
-          </div>
         </div>
-
-      </div>
 
     </div>
 
@@ -598,18 +590,7 @@ document.getElementById(
     data.permohonan.total
   ) + '% dari total';
         
-        document.getElementById(
-          'permohonanDitolak'
-        ).textContent =
-          data.permohonan.ditolak;
-document.getElementById(
-  'permohonanDitolakPersen'
-).textContent =
-  hitungPersentase(
-    data.permohonan.ditolak,
-    data.permohonan.total
-  ) + '% dari total';
-        
+              
         tampilkanGrafikPermohonan(
   data.permohonan
 );
@@ -750,8 +731,7 @@ tampilkanGrafikKeberatan(
       labels: [
         'Diterima',
         'Dalam Proses',
-        'Selesai',
-        'Ditolak'
+        'Selesai'
       ],
 
       datasets: [{
@@ -760,8 +740,7 @@ tampilkanGrafikKeberatan(
         data: [
           data.diterima,
           data.dalamProses,
-          data.selesai,
-          data.ditolak
+          data.selesai
         ],
 
         borderWidth: 0,
