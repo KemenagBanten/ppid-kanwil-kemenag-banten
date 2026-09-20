@@ -1049,6 +1049,127 @@
 
 </div>
 
+  <!-- =========================================
+     MODAL UBAH STATUS KEBERATAN
+========================================= -->
+
+<div
+  id="statusKeberatanModal"
+  class="modal-overlay"
+  onclick="handleKeberatanModalOverlayClick(event)"
+>
+
+  <div
+    class="modal"
+    onclick="event.stopPropagation()"
+  >
+
+    <div class="modal-header">
+
+      <div>
+
+        <h3>
+          Ubah Status Keberatan
+        </h3>
+
+        <p>
+          Perbarui status dan catatan keberatan.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="modal-close"
+        onclick="closeStatusKeberatanModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      class="modal-info"
+      id="statusKeberatanModalInfo"
+    >
+      Nomor Keberatan: -
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="editStatusKeberatan">
+        Status
+      </label>
+
+      <select id="editStatusKeberatan">
+
+        <option value="Diterima">
+          Diterima
+        </option>
+
+        <option value="Dalam Proses">
+          Dalam Proses
+        </option>
+
+        <option value="Selesai">
+          Selesai
+        </option>
+
+        <option value="Ditolak">
+          Ditolak
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="editCatatanKeberatan">
+        Catatan
+      </label>
+
+      <textarea
+        id="editCatatanKeberatan"
+        placeholder="Masukkan catatan proses keberatan..."
+      ></textarea>
+
+    </div>
+
+
+    <div
+      id="statusKeberatanModalMessage"
+      class="modal-message"
+    ></div>
+
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="btn-cancel"
+        onclick="closeStatusKeberatanModal()"
+      >
+        Batal
+      </button>
+
+      <button
+        type="button"
+        id="btnSaveStatusKeberatan"
+        class="btn-save"
+        onclick="saveStatusKeberatan()"
+      >
+        Simpan Perubahan
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
   /* =========================================
    BUKA MODAL STATUS KEBERATAN
 ========================================= */
@@ -1360,128 +1481,6 @@ async function saveStatusKeberatan() {
 
 }
   
-  <!-- =========================================
-     MODAL UBAH STATUS KEBERATAN
-========================================= -->
-
-<div
-  id="statusKeberatanModal"
-  class="modal-overlay"
-  onclick="handleKeberatanModalOverlayClick(event)"
->
-
-  <div
-    class="modal"
-    onclick="event.stopPropagation()"
-  >
-
-    <div class="modal-header">
-
-      <div>
-
-        <h3>
-          Ubah Status Keberatan
-        </h3>
-
-        <p>
-          Perbarui status dan catatan keberatan.
-        </p>
-
-      </div>
-
-      <button
-        type="button"
-        class="modal-close"
-        onclick="closeStatusKeberatanModal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div
-      class="modal-info"
-      id="statusKeberatanModalInfo"
-    >
-      Nomor Keberatan: -
-    </div>
-
-
-    <div class="form-group">
-
-      <label for="editStatusKeberatan">
-        Status
-      </label>
-
-      <select id="editStatusKeberatan">
-
-        <option value="Diterima">
-          Diterima
-        </option>
-
-        <option value="Dalam Proses">
-          Dalam Proses
-        </option>
-
-        <option value="Selesai">
-          Selesai
-        </option>
-
-        <option value="Ditolak">
-          Ditolak
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label for="editCatatanKeberatan">
-        Catatan
-      </label>
-
-      <textarea
-        id="editCatatanKeberatan"
-        placeholder="Masukkan catatan proses keberatan..."
-      ></textarea>
-
-    </div>
-
-
-    <div
-      id="statusKeberatanModalMessage"
-      class="modal-message"
-    ></div>
-
-
-    <div class="modal-actions">
-
-      <button
-        type="button"
-        class="btn-cancel"
-        onclick="closeStatusKeberatanModal()"
-      >
-        Batal
-      </button>
-
-      <button
-        type="button"
-        id="btnSaveStatusKeberatan"
-        class="btn-save"
-        onclick="saveStatusKeberatan()"
-      >
-        Simpan Perubahan
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
 <script>
 
 
@@ -1904,18 +1903,6 @@ function renderPermohonanTable(data) {
 
 </td>
 
-<td>
-
-  <button
-    type="button"
-    class="btn-status"
-    onclick="openStatusKeberatanModal('${escapeJs(item.id)}')"
-  >
-    Ubah Status
-  </button>
-
-</td>
-
         <td>
 
           <button
@@ -2327,15 +2314,27 @@ function renderKeberatanTable(data) {
 
         <td>
 
-          <span
-            class="status-badge ${statusClass}"
-          >
-            ${escapeHtml(
-              item.status || '-'
-            )}
-          </span>
+  <span
+    class="status-badge ${statusClass}"
+  >
+    ${escapeHtml(
+      item.status || '-'
+    )}
+  </span>
 
-        </td>
+</td>
+
+<td>
+
+  <button
+    type="button"
+    class="btn-status"
+    onclick="openStatusKeberatanModal('${escapeJs(item.id)}')"
+  >
+    Ubah Status
+  </button>
+
+</td>
 
       </tr>
 
