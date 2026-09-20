@@ -396,153 +396,101 @@ SEARCH BUTTON
   transform: translateY(-1px);
 }
 /* =========================================================
-HERO
+   HERO
+   FOTO KANTOR KANWIL KEMENAG BANTEN
 ========================================================= */
 
 .hero {
-position: relative;
+  position: relative;
+  min-height: 560px;
 
-overflow: hidden;
+  display: flex;
+  align-items: center;
 
-min-height: 445px;
+  overflow: hidden;
 
-background:
-radial-gradient(
-circle at 90% 15%,
-rgba(205, 176, 130, 0.20),
-transparent 28%
-),
-radial-gradient(
-circle at 10% 90%,
-rgba(15, 81, 50, 0.14),
-transparent 30%
-),
-linear-gradient(
-135deg,
-#e8f2ed 0%,
-#f7faf8 52%,
-#e5f0ea 100%
-);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 54, 38, 0.78) 0%,
+      rgba(8, 54, 38, 0.58) 32%,
+      rgba(8, 54, 38, 0.18) 62%,
+      rgba(8, 54, 38, 0.05) 100%
+    ),
+    url("assets/hero-kanwil-banten.jpg");
 
-border-bottom: 1px solid #dce7e1;
+  background-size: cover;
+  background-position: center center;
+
+  color: #ffffff;
 }
 
-.hero::before {
-content: "";
+.hero::after {
+  content: "";
 
-position: absolute;
+  position: absolute;
+  inset: 0;
 
-width: 520px;
-height: 520px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(8, 54, 38, 0.08)
+    );
 
-right: -220px;
-top: -250px;
-
-border-radius: 50%;
-
-border: 1px solid rgba(15, 81, 50, 0.09);
-
-box-shadow:
-0 0 0 45px rgba(15, 81, 50, 0.025),
-0 0 0 90px rgba(15, 81, 50, 0.018);
-
-pointer-events: none;
-}
-
-.hero-decoration {
-position: absolute;
-
-border-radius: 50%;
-
-pointer-events: none;
-}
-
-.hero-decoration-one {
-width: 16px;
-height: 16px;
-
-right: 17%;
-top: 26%;
-
-background: #cdb082;
-
-opacity: .65;
-
-box-shadow:
-0 0 0 8px rgba(205, 176, 130, .12);
-}
-
-.hero-decoration-two {
-width: 9px;
-height: 9px;
-
-right: 27%;
-bottom: 21%;
-
-background: #0f5132;
-
-opacity: .55;
-
-box-shadow:
-0 0 0 7px rgba(15, 81, 50, .08);
+  pointer-events: none;
 }
 
 .hero-content {
-min-height: 445px;
-
-display: flex;
-
-align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-text {
-position: relative;
+  max-width: 650px;
 
-z-index: 2;
-
-max-width: 730px;
-
-padding: 60px 0;
+  padding: 55px 0;
 }
 
-.eyebrow {
-display: inline-block;
+.hero-text .eyebrow {
+  display: inline-block;
 
-margin-bottom: 15px;
+  margin-bottom: 14px;
 
-color: #0f5132;
+  color: #e6d19d;
 
-font-size: 11px;
+  font-size: 11px;
+  font-weight: 700;
 
-font-weight: 700;
-
-letter-spacing: 1.1px;
+  letter-spacing: 1.8px;
 }
 
-.hero h1 {
-max-width: 720px;
+.hero-text h1 {
+  max-width: 650px;
 
-color: #17352a;
+  margin: 0 0 18px;
 
-font-size: clamp(34px, 5vw, 58px);
+  color: #ffffff;
 
-line-height: 1.08;
+  font-size: clamp(32px, 4vw, 52px);
 
-font-weight: 750;
+  font-weight: 750;
 
-letter-spacing: -1.4px;
+  line-height: 1.08;
 
-margin-bottom: 20px;
+  letter-spacing: -0.8px;
 }
 
-.hero p {
-max-width: 600px;
+.hero-text > p {
+  max-width: 560px;
 
-color: #66756e;
+  margin: 0 0 30px;
 
-font-size: 17px;
+  color: rgba(255, 255, 255, 0.88);
 
-margin-bottom: 30px;
+  font-size: 17px;
+
+  line-height: 1.7;
 }
 
 /* =========================================================
