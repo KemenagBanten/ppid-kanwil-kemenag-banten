@@ -12,46 +12,176 @@
 
 <body>
 
-  <!-- =====================================================
-       HEADER
-       STYLE MENGIKUTI INFORMASI-PUBLIK.HTML
-  ====================================================== -->
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
-  <header class="header">
+<header class="header">
+
+  <div class="header-inner">
+
+    <!-- BRAND -->
+    <a href="index.html" class="header-brand">
+
+      <div class="header-logo">
+        <img
+          src="assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama Republik Indonesia"
+        >
+      </div>
+
+      <div class="header-text">
+        <span class="header-kicker">
+          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI
+        </span>
+
+        <h1>
+          KANWIL KEMENTERIAN AGAMA
+          <strong>PROVINSI BANTEN</strong>
+        </h1>
+      </div>
+
+    </a>
 
 
-<div class="header-inner">
+    <!-- NAVIGATION -->
+    <nav class="main-nav">
 
-  <a href="index.html" class="header-brand">
+      <a href="index.html" class="nav-link active">
+        Beranda
+      </a>
 
-    <div class="header-logo">
-      <img
-        src="assets/logo-kemenag.png"
-        alt="Logo Kementerian Agama Republik Indonesia"
+
+      <!-- INFORMASI PUBLIK -->
+      <div class="nav-dropdown">
+
+        <button class="nav-link nav-dropdown-button" type="button">
+          Informasi Publik
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+          <a href="informasi-publik.html">
+            Informasi Berkala
+          </a>
+
+          <a href="informasi-publik.html">
+            Informasi Serta-Merta
+          </a>
+
+          <a href="informasi-publik.html">
+            Informasi Setiap Saat
+          </a>
+
+          <a href="dip.html">
+            Daftar Informasi Publik (DIP)
+          </a>
+
+          <a href="dik.html">
+            Informasi Dikecualikan (DIK)
+          </a>
+
+          <a href="dokumen.html">
+            Dokumen
+          </a>
+
+          <a href="pengadaan.html">
+            Pengadaan Barang/Jasa
+          </a>
+
+          <a href="laporan.html">
+            Laporan
+          </a>
+
+          <a href="regulasi.html">
+            Regulasi
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- LAYANAN -->
+      <div class="nav-dropdown">
+
+        <button class="nav-link nav-dropdown-button" type="button">
+          Layanan
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+          <a href="permohonan.html">
+            Permohonan Informasi
+          </a>
+
+          <a href="keberatan.html">
+            Keberatan Informasi
+          </a>
+
+          <a href="statistik.html">
+            Statistik Layanan
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- PROFIL -->
+      <div class="nav-dropdown">
+
+        <button class="nav-link nav-dropdown-button" type="button">
+          Profil
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+          <a href="profil.html">
+            Profil PPID
+          </a>
+
+          <a href="ppid-unit.html">
+            PPID Unit
+          </a>
+
+          <a href="sop.html">
+            SOP
+          </a>
+
+          <a href="regulasi.html">
+            Regulasi
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- BERITA -->
+      <a href="berita.html" class="nav-link">
+        Berita &amp; Pengumuman
+      </a>
+
+
+      <!-- SEARCH -->
+      <button
+        type="button"
+        class="nav-search"
+        aria-label="Cari informasi"
+        onclick="document.getElementById('searchInput').focus();"
       >
-    </div>
+        <span>⌕</span>
+      </button>
 
-    <div class="header-text">
-      <h1>KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN</h1>
-      <p>PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)</p>
-    </div>
+    </nav>
 
-  </a>
+  </div>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-<a href="informasi-publik.html">Informasi Publik</a>
-<a href="dip.html">DIP</a>
-<a href="dik.html">DIK</a>
-<a href="berita.html">Berita</a>
-<a href="pengumuman.html">Pengumuman</a>
-  </nav>
-
-</div>
-
-
-  </header>
-
+</header>
   <!-- =====================================================
        MAIN
   ====================================================== -->
