@@ -3185,9 +3185,15 @@ async function loadLaporanUploadDropdown() {
             );
 
 
-          let action = '';
+         let action = '';
 
-if (sheetName === 'BERITA') {
+if (sheetName === 'INFORMASI_PUBLIK') {
+  action = 'upload';
+
+} else if (sheetName === 'DIP') {
+  action = 'upload';
+
+} else if (sheetName === 'BERITA') {
   action = 'uploadBeritaImage';
 
 } else if (sheetName === 'PENGUMUMAN') {
@@ -3204,33 +3210,63 @@ if (sheetName === 'BERITA') {
 
 } else if (sheetName === 'PENGADAAN') {
   action = 'uploadPengadaanDocument';
-  
+
 } else {
-  action = 'upload';
+  throw new Error(
+    'Jenis data upload tidak dikenali: ' +
+    sheetName
+  );
 }
 
 
+          let folderName = '';
 
-          const payload = {
+if (sheetName === 'INFORMASI_PUBLIK') {
+  folderName = '02_INFORMASI_PUBLIK';
 
-            action: action,
+} else if (sheetName === 'DIP') {
+  folderName = '03_DIP';
 
-            sheetName:
-              sheetName,
+} else if (sheetName === 'BERITA') {
+  folderName = '12_BERITA';
 
-            idValue:
-              idValue,
+} else if (sheetName === 'PENGUMUMAN') {
+  folderName = '13_PENGUMUMAN';
 
-            fileData:
-              fileData,
+} else if (sheetName === 'SOP') {
+  folderName = '05_SOP';
 
-            fileName:
-              file.name,
+} else if (sheetName === 'REGULASI') {
+  folderName = '06_REGULASI';
 
-            folderName:
-              ''
+} else if (sheetName === 'LAPORAN') {
+  folderName = '07_LAPORAN';
 
-          };
+} else if (sheetName === 'PENGADAAN') {
+  folderName = '08_PENGADAAN';
+}
+
+
+const payload = {
+
+  action: action,
+
+  sheetName:
+    sheetName,
+
+  idValue:
+    idValue,
+
+  fileData:
+    fileData,
+
+  fileName:
+    file.name,
+
+  folderName:
+    folderName
+
+};
 
 
           const response =
