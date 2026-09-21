@@ -493,16 +493,20 @@
 
 
 <!-- ===================================================
-     BERITA
+     BERITA & KEGIATAN
 ==================================================== -->
 <section id="berita" class="section berita-section">
 
   <div class="container">
 
+    <!-- HEADER SECTION -->
     <div class="section-heading berita-heading">
+
       <div>
         <span class="section-label">INFORMASI TERKINI</span>
+
         <h2>Berita &amp; Kegiatan</h2>
+
         <p class="section-intro">
           Informasi terbaru seputar kegiatan dan layanan
           Kantor Wilayah Kementerian Agama Provinsi Banten.
@@ -518,47 +522,272 @@
         Berita Kemenag Banten
         <span>↗</span>
       </a>
+
     </div>
 
-    <div id="beritaList" class="card-grid">
-      <div class="loading">
-        Memuat berita...
+
+    <!-- =================================================
+         BERITA + STATISTIK
+    ================================================== -->
+    <div class="berita-layout">
+
+      <!-- ===============================================
+           BERITA
+      ================================================ -->
+      <div class="berita-news-area">
+
+        <div id="beritaList" class="card-grid">
+          <div class="loading">
+            Memuat berita...
+          </div>
+        </div>
+
       </div>
+
+
+      <!-- ===============================================
+           STATISTIK LAYANAN
+      ================================================ -->
+      <aside class="statistik-home-card">
+
+        <div class="statistik-home-header">
+
+          <div>
+            <span class="statistik-home-label">
+              DATA LAYANAN
+            </span>
+
+            <h3>
+              Statistik Layanan
+            </h3>
+          </div>
+
+          <div class="statistik-home-icon">
+            ↗
+          </div>
+
+        </div>
+
+
+        <!-- PERMOHONAN -->
+        <div class="statistik-service">
+
+          <div class="statistik-service-top">
+
+            <div>
+              <span class="statistik-service-label">
+                PERMOHONAN INFORMASI
+              </span>
+
+              <strong id="homeTotalPermohonan">
+                -
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="statistik-status-list">
+
+            <div>
+              <span class="status-dot diterima"></span>
+              <span>Diterima</span>
+              <strong id="homePermohonanDiterima">-</strong>
+            </div>
+
+            <div>
+              <span class="status-dot proses"></span>
+              <span>Dalam Proses</span>
+              <strong id="homePermohonanProses">-</strong>
+            </div>
+
+            <div>
+              <span class="status-dot selesai"></span>
+              <span>Selesai</span>
+              <strong id="homePermohonanSelesai">-</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- KEBERATAN -->
+        <div class="statistik-service">
+
+          <div class="statistik-service-top">
+
+            <div>
+              <span class="statistik-service-label">
+                KEBERATAN
+              </span>
+
+              <strong id="homeTotalKeberatan">
+                -
+              </strong>
+            </div>
+
+          </div>
+
+          <div class="statistik-status-list">
+
+            <div>
+              <span class="status-dot diterima"></span>
+              <span>Diterima</span>
+              <strong id="homeKeberatanDiterima">-</strong>
+            </div>
+
+            <div>
+              <span class="status-dot proses"></span>
+              <span>Dalam Proses</span>
+              <strong id="homeKeberatanProses">-</strong>
+            </div>
+
+            <div>
+              <span class="status-dot selesai"></span>
+              <span>Selesai</span>
+              <strong id="homeKeberatanSelesai">-</strong>
+            </div>
+
+            <div>
+              <span class="status-dot ditolak"></span>
+              <span>Ditolak</span>
+              <strong id="homeKeberatanDitolak">-</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <a
+          href="statistik.html"
+          class="statistik-home-button"
+        >
+          Lihat Statistik Lengkap
+          <span>→</span>
+        </a>
+
+      </aside>
+
     </div>
 
-  </div>
 
-</section>
+    <!-- =================================================
+         AKSES CEPAT
+    ================================================== -->
+    <div class="akses-cepat">
 
+      <div class="akses-cepat-heading">
 
-<!-- ===================================================
-     LAYANAN INFORMASI
-==================================================== -->
-<section class="contact-section">
+        <div>
+          <span class="section-label">
+            AKSES CEPAT
+          </span>
 
-  <div class="container">
-
-    <div class="contact-card">
-
-      <div class="contact-content">
-
-        <span class="section-label">
-          PPID KANWIL KEMENAG BANTEN
-        </span>
-
-        <h2>
-          Layanan Informasi Publik
-        </h2>
+          <h3>
+            Layanan Kementerian Agama
+          </h3>
+        </div>
 
         <p>
-          Silakan gunakan layanan PPID untuk memperoleh
-          informasi publik yang tersedia.
+          Akses layanan digital resmi Kementerian Agama
+          dalam satu tempat.
         </p>
 
       </div>
 
-      <div class="contact-decoration">
-        <span>PPID</span>
+
+      <div class="akses-cepat-grid">
+
+
+        <!-- PUSAKA -->
+        <a
+          href="https://pusaka.kemenag.go.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="akses-card"
+        >
+
+          <div class="akses-icon">
+            P
+          </div>
+
+          <div class="akses-content">
+            <strong>PUSAKA</strong>
+            <span>Layanan Digital Kemenag</span>
+          </div>
+
+          <span class="akses-arrow">↗</span>
+
+        </a>
+
+
+        <!-- SATUDATA -->
+        <a
+          href="https://satudata.kemenag.go.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="akses-card"
+        >
+
+          <div class="akses-icon">
+            SD
+          </div>
+
+          <div class="akses-content">
+            <strong>SATUDATA KEMENAG</strong>
+            <span>Data Kementerian Agama</span>
+          </div>
+
+          <span class="akses-arrow">↗</span>
+
+        </a>
+
+
+        <!-- AL-QURAN DIGITAL -->
+        <a
+          href="https://quran.kemenag.go.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="akses-card"
+        >
+
+          <div class="akses-icon">
+            ق
+          </div>
+
+          <div class="akses-content">
+            <strong>AL-QUR'AN DIGITAL</strong>
+            <span>Al-Qur'an Kementerian Agama</span>
+          </div>
+
+          <span class="akses-arrow">↗</span>
+
+        </a>
+
+
+        <!-- LAPOR -->
+        <a
+          href="https://www.lapor.go.id/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="akses-card"
+        >
+
+          <div class="akses-icon">
+            L
+          </div>
+
+          <div class="akses-content">
+            <strong>LAPOR!</strong>
+            <span>Pengaduan Pelayanan Publik</span>
+          </div>
+
+          <span class="akses-arrow">↗</span>
+
+        </a>
+
+
       </div>
 
     </div>
@@ -566,9 +795,6 @@
   </div>
 
 </section>
-
-
-  </main>
 
   <!-- =====================================================
        FOOTER
