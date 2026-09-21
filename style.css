@@ -3788,3 +3788,15 @@ BERITA + STATISTIK — TINGGI SAMA
   background: yellow !important;
   border: 5px solid blue !important;
 }
+
+/* TEST CSS AKSES CEPAT */
+
+.akses-cepat {
+  background: red !important;
+  padding: 30px !important;
+}
+
+.akses-cepat-card {
+  background: yellow !important;
+  border: 5px solid blue !important;
+}
