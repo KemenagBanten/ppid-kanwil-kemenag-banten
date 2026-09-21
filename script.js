@@ -660,19 +660,3 @@ async function loadHomepageStatistik() {
 
 }
 
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media (max-width: 900px) {
-
-  .berita-section .card-grid {
-    gap: 20px;
-  }
-
-  .berita-section .news-image-wrapper {
-    height: 220px;
-  }
-
-}
