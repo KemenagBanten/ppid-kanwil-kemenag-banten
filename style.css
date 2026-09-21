@@ -3786,35 +3786,3 @@ BERITA + STATISTIK — TINGGI SAMA
 
 }
 
-@media (max-width: 500px) {
-  .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 10px !important;
-    margin-top: 22px !important;
-  }
-
-  .akses-cepat-card {
-    min-height: 135px !important;
-    padding: 17px 10px 15px !important;
-    border-radius: 12px !important;
-  }
-
-  .akses-cepat-logo {
-    width: 95px !important;
-    height: 50px !important;
-    margin-bottom: 9px !important;
-  }
-
-  .akses-cepat-logo img {
-    max-width: 88px !important;
-    max-height: 46px !important;
-  }
-
-  .akses-cepat-text strong {
-    font-size: 10px !important;
-  }
-
-  .akses-cepat-text span {
-    font-size: 9px !important;
-  }
-}
