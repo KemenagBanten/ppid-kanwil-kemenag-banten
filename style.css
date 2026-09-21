@@ -2392,3 +2392,50 @@ font-size: 11px;
   }
 
 }
+
+/* =====================================================
+   BERITA + STATISTIK
+===================================================== */
+
+/* Kolom berita dibuat vertikal */
+.berita-section .card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Kartu berita tidak lagi berjajar */
+.berita-section .news-card {
+  width: 100%;
+  max-width: none;
+}
+
+/* Saat berita kosong, panel berita eksternal
+   menggunakan ruang yang tersedia */
+.berita-section .berita-external {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* Supaya isi berita tidak terlalu sempit */
+.berita-section .news-content {
+  width: 100%;
+}
+
+/* Gambar berita tetap proporsional */
+.berita-section .news-image-wrapper {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.berita-section .news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
