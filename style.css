@@ -3450,3 +3450,124 @@ font-size: 11px;
     min-height: 0 !important;
   }
 }
+
+/* =========================================================
+   AKSES CEPAT — APLIKASI & KANAL EKSTERNAL
+========================================================= */
+
+.akses-cepat {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.akses-cepat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 150px;
+  padding: 20px 16px;
+
+  background: #ffffff;
+  border: 1px solid #e5ebe7;
+  border-radius: 16px;
+
+  text-decoration: none;
+  color: #17352a;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.akses-cepat-card:hover {
+  transform: translateY(-3px);
+  border-color: #b9cfc3;
+  box-shadow: 0 10px 24px rgba(23, 53, 42, 0.08);
+}
+
+.akses-cepat-logo {
+  width: 110px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+}
+
+.akses-cepat-logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.akses-cepat-text {
+  min-height: 38px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  line-height: 1.35;
+}
+
+.akses-cepat-text strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #17352a;
+}
+
+.akses-cepat-text span {
+  font-size: 12px;
+  color: #68776f;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .akses-cepat {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* HP */
+@media (max-width: 500px) {
+  .akses-cepat {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .akses-cepat-card {
+    min-height: 135px;
+    padding: 15px 10px;
+    border-radius: 12px;
+  }
+
+  .akses-cepat-logo {
+    width: 90px;
+    height: 58px;
+    margin-bottom: 10px;
+  }
+
+  .akses-cepat-logo img {
+    max-height: 58px;
+  }
+
+  .akses-cepat-text strong {
+    font-size: 11px;
+  }
+
+  .akses-cepat-text span {
+    font-size: 10px;
+  }
+}
