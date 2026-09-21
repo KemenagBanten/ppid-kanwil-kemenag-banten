@@ -573,6 +573,7 @@ async function initWebsite() {
     loadDIP(),
     loadBerita(),
     loadDashboard()
+    loadHomepageStatistik();
   ]);
 
   console.log("Semua proses loading selesai.");
@@ -588,3 +589,73 @@ document.addEventListener(
   "DOMContentLoaded",
   initWebsite
 );
+
+/* =====================================================
+   STATISTIK HOMEPAGE
+===================================================== */
+
+async function loadHomepageStatistik() {
+
+  try {
+
+    const data = await fetchAPI("statistik");
+
+    console.log("Statistik Homepage:", data);
+
+    if (!data) return;
+
+
+    /* ================================
+       PERMOHONAN
+    ================================= */
+
+    if (data.permohonan) {
+
+      document.getElementById("homeTotalPermohonan").textContent =
+        data.permohonan.total ?? 0;
+
+      document.getElementById("homePermohonanDiterima").textContent =
+        data.permohonan.diterima ?? 0;
+
+      document.getElementById("homePermohonanProses").textContent =
+        data.permohonan.dalamProses ?? 0;
+
+      document.getElementById("homePermohonanSelesai").textContent =
+        data.permohonan.selesai ?? 0;
+
+    }
+
+
+    /* ================================
+       KEBERATAN
+    ================================= */
+
+    if (data.keberatan) {
+
+      document.getElementById("homeTotalKeberatan").textContent =
+        data.keberatan.total ?? 0;
+
+      document.getElementById("homeKeberatanDiterima").textContent =
+        data.keberatan.diterima ?? 0;
+
+      document.getElementById("homeKeberatanProses").textContent =
+        data.keberatan.dalamProses ?? 0;
+
+      document.getElementById("homeKeberatanSelesai").textContent =
+        data.keberatan.selesai ?? 0;
+
+      document.getElementById("homeKeberatanDitolak").textContent =
+        data.keberatan.ditolak ?? 0;
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Gagal memuat statistik homepage:",
+      error
+    );
+
+  }
+
+}
