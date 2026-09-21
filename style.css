@@ -1,18 +1,10 @@
 /* =========================================================
-PPID KANWIL KEMENTERIAN AGAMA PROVINSI BANTEN
-FINAL BERANDA.akses-cepat-card {
-  background: yellow !important;
-  border: 5px solid blue !important;
-}
-
-/* =========================================================
-   FINAL OVERRIDE — AKSES CEPAT
-========================================================= */
-
+   PPID KANWIL KEMENTERIAN AGAMA PROVINSI BANTEN
+   STYLE.CSS — CLEAN FINAL
 ========================================================= */
 
 /* =========================================================
-RESET
+   RESET
 ========================================================= */
 
 * {
@@ -39,7 +31,7 @@ body {
 }
 
 /* =========================================================
-CONTAINER
+   CONTAINER
 ========================================================= */
 
 .container {
@@ -48,8 +40,7 @@ CONTAINER
 }
 
 /* =========================================================
-HEADER
-MINIMALIS • ELEGAN • MODERN • PROFESIONAL
+   HEADER
 ========================================================= */
 
 .header {
@@ -83,21 +74,19 @@ MINIMALIS • ELEGAN • MODERN • PROFESIONAL
 }
 
 /* =========================================================
-BRAND
+   BRAND
 ========================================================= */
 
 .header-brand {
   display: flex;
   align-items: center;
-
   gap: 14px;
 
   min-width: 0;
+  flex-shrink: 0;
 
   color: #17352a;
   text-decoration: none;
-
-  flex-shrink: 0;
 }
 
 .header-logo {
@@ -116,7 +105,6 @@ BRAND
   height: 100%;
 
   object-fit: contain;
-
   display: block;
 }
 
@@ -125,12 +113,10 @@ BRAND
 
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   align-items: flex-start;
 
   text-align: left;
-
   line-height: 1.2;
 }
 
@@ -143,7 +129,6 @@ BRAND
   font-weight: 700;
 
   letter-spacing: 1.05px;
-
   line-height: 1.2;
 }
 
@@ -153,16 +138,14 @@ BRAND
   color: #17352a !important;
 
   font-size: 14px;
-
   font-weight: 700;
 
   letter-spacing: 0.15px;
-
   line-height: 1.25;
 }
 
 /* =========================================================
-MAIN NAVIGATION
+   MAIN NAVIGATION
 ========================================================= */
 
 .main-nav {
@@ -171,7 +154,6 @@ MAIN NAVIGATION
   justify-content: flex-end;
 
   gap: 4px;
-
   flex-shrink: 0;
 }
 
@@ -183,7 +165,6 @@ MAIN NAVIGATION
   justify-content: center;
 
   min-height: 38px;
-
   padding: 8px 12px;
 
   border: none;
@@ -206,7 +187,6 @@ MAIN NAVIGATION
   font-weight: 650;
 
   white-space: nowrap;
-
   cursor: pointer;
 
   transition:
@@ -227,7 +207,7 @@ MAIN NAVIGATION
 }
 
 /* =========================================================
-DROPDOWN
+   DROPDOWN
 ========================================================= */
 
 .nav-dropdown {
@@ -248,8 +228,7 @@ DROPDOWN
 
   transform: translateY(-1px);
 
-  transition:
-    transform .2s ease;
+  transition: transform .2s ease;
 }
 
 .nav-dropdown:hover .nav-arrow {
@@ -259,7 +238,7 @@ DROPDOWN
 }
 
 /* =========================================================
-DROPDOWN MENU
+   DROPDOWN MENU
 ========================================================= */
 
 .dropdown-menu {
@@ -284,8 +263,7 @@ DROPDOWN MENU
   opacity: 0;
   visibility: hidden;
 
-  transform:
-    translate(-50%, -6px);
+  transform: translate(-50%, -6px);
 
   transition:
     opacity .18s ease,
@@ -301,11 +279,8 @@ DROPDOWN MENU
   opacity: 1;
   visibility: visible;
 
-  transform:
-    translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
-
-/* ANCHOR / ARROW DROPDOWN */
 
 .dropdown-menu::before {
   content: "";
@@ -328,8 +303,6 @@ DROPDOWN MENU
     rotate(45deg);
 }
 
-/* ITEM DROPDOWN */
-
 .dropdown-menu a {
   display: block;
 
@@ -343,7 +316,6 @@ DROPDOWN MENU
 
   font-size: 12px;
   font-weight: 550;
-
   line-height: 1.4;
 
   transition:
@@ -354,14 +326,13 @@ DROPDOWN MENU
 
 .dropdown-menu a:hover {
   color: #0f5132 !important;
-
   background: #edf6f1;
 
   padding-left: 15px;
 }
 
 /* =========================================================
-SEARCH BUTTON
+   SEARCH BUTTON
 ========================================================= */
 
 .nav-search {
@@ -378,7 +349,6 @@ SEARCH BUTTON
   border-radius: 9px;
 
   background: #ffffff;
-
   color: #0f5132;
 
   cursor: pointer;
@@ -398,14 +368,14 @@ SEARCH BUTTON
 
 .nav-search:hover {
   background: #edf6f1;
-
   border-color: #cbdcd2;
 
   transform: translateY(-1px);
 }
 
 /* =========================================================
-HERO — MODERN PPID
+   HERO
+   FOTO DAN POSISI DIPERTAHANKAN
 ========================================================= */
 
 .hero {
@@ -437,18 +407,14 @@ HERO — MODERN PPID
 }
 
 /* =========================================================
-ORNAMEN HIJAU KIRI
+   HERO DECORATION
 ========================================================= */
 
 .hero-decoration {
   position: absolute;
-
   z-index: 1;
-
   pointer-events: none;
 }
-
-/* lingkaran besar */
 
 .hero-decoration-one {
   width: 330px;
@@ -465,8 +431,6 @@ ORNAMEN HIJAU KIRI
     0 0 0 35px rgba(15, 81, 50, 0.045),
     0 0 0 75px rgba(15, 81, 50, 0.025);
 }
-
-/* lingkaran bawah + aksen */
 
 .hero-decoration-two {
   width: 260px;
@@ -492,22 +456,16 @@ ORNAMEN HIJAU KIRI
 }
 
 /* =========================================================
-HERO CONTENT
+   HERO CONTENT
 ========================================================= */
 
 .hero-content {
   position: relative;
-
   z-index: 3;
 }
 
-/* =========================================================
-HERO TEXT
-========================================================= */
-
 .hero-text {
   max-width: 690px;
-
   padding: 65px 0;
 }
 
@@ -519,7 +477,6 @@ HERO TEXT
   color: #9a7b3f;
 
   font-size: 11px;
-
   font-weight: 700;
 
   letter-spacing: 1.8px;
@@ -533,11 +490,9 @@ HERO TEXT
   color: #17352a !important;
 
   font-size: clamp(34px, 4vw, 52px);
-
   font-weight: 750;
 
   line-height: 1.08;
-
   letter-spacing: -0.8px;
 }
 
@@ -549,25 +504,22 @@ HERO TEXT
   color: #53665d;
 
   font-size: 17px;
-
   line-height: 1.7;
 }
 
 /* =========================================================
-SEARCH
+   SEARCH BOX
 ========================================================= */
 
 .search-box {
   width: min(600px, 100%);
 
   display: flex;
-
   align-items: stretch;
 
-  background: rgba(255,255,255,.94);
+  background: rgba(255, 255, 255, .94);
 
   border: 1px solid #d7e3dc;
-
   border-radius: 12px;
 
   padding: 5px;
@@ -586,11 +538,9 @@ SEARCH
 
 .search-box input {
   flex: 1;
-
   min-width: 0;
 
   border: none;
-
   outline: none;
 
   background: transparent;
@@ -617,7 +567,6 @@ SEARCH
   border: none;
 
   background: #0f5132;
-
   color: #ffffff;
 
   border-radius: 8px;
@@ -632,7 +581,6 @@ SEARCH
     sans-serif;
 
   font-size: 13px;
-
   font-weight: 700;
 
   cursor: pointer;
@@ -650,12 +598,11 @@ SEARCH
 }
 
 /* =========================================================
-STATISTIK
+   TOP STATISTICS
 ========================================================= */
 
 .stats {
   position: relative;
-
   z-index: 3;
 
   margin-top: -1px;
@@ -682,7 +629,6 @@ STATISTIK
   padding: 18px 20px;
 
   display: flex;
-
   align-items: center;
 
   gap: 15px;
@@ -695,7 +641,6 @@ STATISTIK
     );
 
   border: 1px solid #e1e9e4;
-
   border-radius: 12px;
 
   box-shadow:
@@ -723,14 +668,12 @@ STATISTIK
   flex: 0 0 43px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   border-radius: 11px;
 
   background: #edf6f1;
-
   border: 1px solid #dcebe2;
 }
 
@@ -738,7 +681,6 @@ STATISTIK
   color: #0f5132;
 
   font-size: 10px;
-
   font-weight: 800;
 
   letter-spacing: .5px;
@@ -746,7 +688,6 @@ STATISTIK
 
 .stat-card > div:last-child {
   display: flex;
-
   flex-direction: column;
 
   min-width: 0;
@@ -756,7 +697,6 @@ STATISTIK
   color: #66756e;
 
   font-size: 11px;
-
   font-weight: 600;
 
   line-height: 1.35;
@@ -768,19 +708,17 @@ STATISTIK
   color: #17352a;
 
   font-size: 28px;
-
   line-height: 1.1;
 
   font-weight: 750;
 }
 
 /* =========================================================
-SECTION
+   GENERAL SECTION
 ========================================================= */
 
 .section {
   padding: 70px 0;
-
   background: #f5f7f6;
 }
 
@@ -795,9 +733,7 @@ SECTION
 
 .section-heading {
   display: flex;
-
   align-items: flex-end;
-
   justify-content: space-between;
 
   gap: 20px;
@@ -813,7 +749,6 @@ SECTION
   color: #0f5132;
 
   font-size: 10px;
-
   font-weight: 750;
 
   letter-spacing: 1px;
@@ -823,11 +758,9 @@ SECTION
   color: #17352a;
 
   font-size: 28px;
-
   line-height: 1.2;
 
   font-weight: 750;
-
   letter-spacing: -.4px;
 }
 
@@ -839,7 +772,6 @@ SECTION
   text-decoration: none;
 
   font-size: 13px;
-
   font-weight: 700;
 }
 
@@ -848,7 +780,7 @@ SECTION
 }
 
 /* =========================================================
-CARD GRID
+   CARD GRID / GENERAL CARD
 ========================================================= */
 
 .card-grid {
@@ -862,7 +794,6 @@ CARD GRID
 
 .card {
   position: relative;
-
   overflow: hidden;
 
   background:
@@ -873,7 +804,6 @@ CARD GRID
     );
 
   border: 1px solid #e1e9e4;
-
   border-radius: 12px;
 
   padding: 22px;
@@ -921,7 +851,6 @@ CARD GRID
   color: #17352a;
 
   font-size: 17px;
-
   line-height: 1.35;
 
   margin-bottom: 9px;
@@ -929,23 +858,20 @@ CARD GRID
 
 .card p {
   color: #66756e;
-
   font-size: 13px;
 }
 
 /* =========================================================
-TABLE
+   TABLE
 ========================================================= */
 
 .table-wrapper {
   width: 100%;
-
   overflow-x: auto;
 
   background: #ffffff;
 
   border: 1px solid #e1e9e4;
-
   border-radius: 12px;
 
   box-shadow:
@@ -954,19 +880,16 @@ TABLE
 
 .table-wrapper table {
   width: 100%;
+  min-width: 700px;
 
   border-collapse: collapse;
-
-  min-width: 700px;
 }
 
 .table-wrapper th {
   background: #edf6f1;
-
   color: #17352a;
 
   font-size: 12px;
-
   font-weight: 700;
 
   text-align: left;
@@ -995,7 +918,7 @@ TABLE
 }
 
 /* =========================================================
-LOADING
+   LOADING
 ========================================================= */
 
 .loading {
@@ -1009,7 +932,7 @@ LOADING
 }
 
 /* =========================================================
-CONTACT
+   CONTACT
 ========================================================= */
 
 .contact-section {
@@ -1026,13 +949,10 @@ CONTACT
 
 .contact-card {
   position: relative;
-
   overflow: hidden;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   min-height: 200px;
@@ -1048,13 +968,11 @@ CONTACT
     rgba(255,255,255,.045);
 
   border: 1px solid rgba(255,255,255,.10);
-
   border-radius: 16px;
 }
 
 .contact-content {
   position: relative;
-
   z-index: 2;
 }
 
@@ -1066,7 +984,6 @@ CONTACT
   color: #ffffff;
 
   font-size: 30px;
-
   line-height: 1.2;
 
   margin-bottom: 10px;
@@ -1089,7 +1006,6 @@ CONTACT
   margin-right: 30px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -1100,7 +1016,6 @@ CONTACT
   color: #cdb082;
 
   font-size: 18px;
-
   font-weight: 700;
 
   letter-spacing: 2px;
@@ -1111,25 +1026,913 @@ CONTACT
 }
 
 /* =========================================================
-FOOTER
+   BERITA
 ========================================================= */
 
-.footer {
-  padding: 25px 0;
-
-  background: #10291f;
-
-  color: #aabbb2;
-
-  text-align: center;
+.berita-section {
+  position: relative;
+  overflow: hidden;
 }
 
-.footer p {
-  font-size: 12px;
+.berita-heading {
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.section-intro {
+  max-width: 650px;
+
+  margin: 10px 0 0;
+
+  color: #68776f;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #176b4d;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: all .2s ease;
+}
+
+.section-link span {
+  font-size: 17px;
+
+  transition: transform .2s ease;
+}
+
+.section-link:hover {
+  color: #0f5139;
+}
+
+.section-link:hover span {
+  transform: translate(2px, -2px);
 }
 
 /* =========================================================
-TABLET
+   BERITA LAYOUT
+========================================================= */
+
+.berita-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    300px;
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+.berita-news-area {
+  min-width: 0;
+  height: 100%;
+}
+
+.berita-news-area .card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+/* =========================================================
+   NEWS CARD
+========================================================= */
+
+.berita-section .news-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 28px rgba(23, 53, 42, 0.07);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.berita-section .news-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(23, 107, 77, 0.16);
+
+  box-shadow:
+    0 14px 34px rgba(23, 53, 42, 0.11);
+}
+
+/* =========================================================
+   NEWS IMAGE
+========================================================= */
+
+.berita-section .news-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 180px;
+  min-height: 180px;
+
+  overflow: hidden;
+
+  background: #edf2ef;
+
+  border-radius: 18px 18px 0 0;
+}
+
+.berita-section .news-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform .35s ease;
+}
+
+.berita-section .news-card:hover .news-image {
+  transform: scale(1.03);
+}
+
+/* =========================================================
+   NEWS PLACEHOLDER
+========================================================= */
+
+.berita-section .news-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf4f0 0%,
+      #dcebe3 100%
+    );
+
+  color: #48705e;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   NEWS CONTENT
+========================================================= */
+
+.berita-section .news-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  padding: 18px 20px 20px;
+
+  background: #ffffff;
+}
+
+.berita-section .card-badge {
+  align-self: flex-start;
+
+  display: inline-flex;
+
+  padding: 5px 10px;
+  margin-bottom: 10px;
+
+  border-radius: 999px;
+
+  background: #e8f2ed;
+  color: #176b4d;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.berita-section .news-content h3 {
+  margin: 0;
+
+  color: #17352a;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  font-weight: 750;
+}
+
+.berita-section .news-date {
+  margin-top: 8px;
+
+  color: #829087;
+
+  font-size: 11px;
+}
+
+.berita-section .news-content p {
+  margin: 10px 0 0;
+
+  color: #66736d;
+
+  font-size: 11px;
+  line-height: 1.6;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   EMPTY / EXTERNAL NEWS
+========================================================= */
+
+.berita-external {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 270px;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      105deg,
+      #17352a 0%,
+      #205c45 55%,
+      #2d7358 100%
+    );
+
+  box-shadow:
+    0 15px 40px rgba(23, 53, 42, 0.16);
+}
+
+.berita-external::before {
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  right: -80px;
+  top: -110px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.berita-external::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  right: 100px;
+  bottom: -120px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.berita-external-inner {
+  position: relative;
+  z-index: 2;
+
+  max-width: 720px;
+
+  padding: 42px 48px;
+}
+
+.berita-external-label {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.berita-external h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+}
+
+.berita-external p {
+  max-width: 620px;
+
+  margin: 14px 0 24px;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.berita-external-button {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px 18px;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #176b4d;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition: all .2s ease;
+}
+
+.berita-external-button:hover {
+  transform: translateY(-2px);
+
+  background: #f2f7f4;
+}
+
+.berita-external-button span {
+  font-size: 16px;
+}
+
+/* =========================================================
+   HOME STATISTICS
+========================================================= */
+
+.berita-layout > aside.statistik-home-card {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e9e5;
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 24px rgba(23, 53, 42, 0.055);
+}
+
+.berita-layout > aside.statistik-home-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  right: -80px;
+  top: -80px;
+
+  border-radius: 50%;
+
+  background: rgba(23, 107, 77, 0.06);
+}
+
+/* =========================================================
+   STATISTICS HEADER
+========================================================= */
+
+.statistik-home-header {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 22px;
+}
+
+.statistik-home-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #829087;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.statistik-home-header h3 {
+  margin: 0;
+
+  color: #17352a;
+
+  font-size: 21px;
+  font-weight: 750;
+
+  line-height: 1.25;
+}
+
+.statistik-home-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #edf5f1;
+  color: #176b4d;
+
+  font-size: 15px;
+}
+
+/* =========================================================
+   STATISTICS SERVICE
+========================================================= */
+
+.statistik-service {
+  position: relative;
+  z-index: 1;
+
+  padding: 17px 0;
+
+  border-top: 1px solid #edf1ee;
+}
+
+.statistik-service:first-of-type {
+  padding-top: 0;
+  border-top: none;
+}
+
+.statistik-service:last-of-type {
+  border-bottom: none;
+}
+
+.statistik-service-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.statistik-service-label {
+  display: block;
+
+  color: #586a61;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: .05em;
+}
+
+.statistik-service-top strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 48px;
+  height: 34px;
+
+  padding: 0 10px;
+
+  border-radius: 9px;
+
+  background: #f1f6f3;
+  color: #17352a;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+/* =========================================================
+   STATUS LIST
+========================================================= */
+
+.statistik-status-list {
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 6px;
+
+  margin-top: 0;
+}
+
+.statistik-status-list > div {
+  display: flex;
+  align-items: center;
+
+  min-height: 29px;
+
+  padding: 6px 9px;
+
+  border-radius: 8px;
+
+  background: #f8faf9;
+
+  color: #68776f;
+
+  font-size: 11px;
+}
+
+.statistik-status-list > div strong {
+  margin-left: auto;
+
+  color: #34463e;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  margin-right: 8px;
+
+  border-radius: 50%;
+}
+
+.status-dot.diterima {
+  background: #5b8c72;
+}
+
+.status-dot.proses {
+  background: #c99a4a;
+}
+
+.status-dot.selesai {
+  background: #3973a3;
+}
+
+.status-dot.ditolak {
+  background: #a86666;
+}
+
+/* =========================================================
+   STATISTICS BUTTON
+========================================================= */
+
+.berita-layout .statistik-home-button {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: auto;
+
+  padding: 12px 15px;
+
+  border-radius: 10px;
+
+  background: #17352a;
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.berita-layout .statistik-home-button:hover {
+  background: #176b4d;
+
+  transform: translateY(-2px);
+}
+
+.berita-layout .statistik-home-button span {
+  font-size: 16px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  margin-top: 0;
+
+  background: #12372b;
+  color: #dce8e1;
+}
+
+.footer-main {
+  padding: 58px 0 46px;
+}
+
+.footer-grid {
+  display: grid;
+
+  grid-template-columns:
+    1.5fr 1fr 1fr 1.15fr;
+
+  gap: 42px;
+}
+
+.footer-column {
+  text-align: left;
+}
+
+.footer-column h3 {
+  margin: 0 0 16px;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  line-height: 1.4;
+
+  font-weight: 750;
+}
+
+.footer-column h4 {
+  margin: 0 0 17px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  letter-spacing: .02em;
+}
+
+.footer-column p {
+  margin: 0;
+
+  max-width: 330px;
+
+  color: #b9cbc2;
+
+  font-size: 12px;
+  line-height: 1.8;
+
+  text-align: left;
+}
+
+.footer-address {
+  display: block;
+
+  margin-top: 15px !important;
+
+  max-width: 330px;
+
+  color: #d3dfd9 !important;
+
+  text-align: left;
+
+  line-height: 1.6 !important;
+}
+
+/* =========================================================
+   FOOTER CONTACT LIST
+========================================================= */
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  text-align: left;
+}
+
+.footer-list li {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  color: #b9cbc2;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.footer-icon {
+  width: 20px;
+
+  flex: 0 0 20px;
+
+  color: #d9c28a;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  text-align: left;
+}
+
+.footer-links a {
+  color: #b9cbc2;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  transition:
+    color .2s ease,
+    padding-left .2s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+
+  padding-left: 4px;
+}
+
+/* =========================================================
+   FOOTER SOCIAL
+========================================================= */
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.footer-social a {
+  width: auto;
+  min-width: 34px;
+  height: 34px;
+
+  padding: 0 9px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  white-space: nowrap;
+
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 9px;
+
+  color: #ffffff;
+
+  background: rgba(255,255,255,.06);
+
+  text-decoration: none;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.social-icon {
+  width: 18px;
+  height: 18px;
+
+  display: block;
+}
+
+.footer-social a:hover {
+  background: rgba(255,255,255,.13);
+
+  border-color: rgba(255,255,255,.25);
+
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.10);
+
+  background: rgba(0,0,0,.10);
+}
+
+.footer-bottom-inner {
+  min-height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: #91a99d;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -1152,7 +1955,6 @@ TABLET
 
   .nav-link {
     padding: 7px 8px;
-
     font-size: 11px;
   }
 
@@ -1178,10 +1980,26 @@ TABLET
     margin-right: 0;
   }
 
+  .footer-grid {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 36px 28px;
+  }
+
+  .berita-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .berita-layout > aside.statistik-home-card {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
 }
 
 /* =========================================================
-MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 680px) {
@@ -1211,13 +2029,11 @@ MOBILE
 
   .header-kicker {
     font-size: 7px;
-
     letter-spacing: .8px;
   }
 
   .header-text h1 {
     font-size: 11px;
-
     letter-spacing: 0;
   }
 
@@ -1262,18 +2078,15 @@ MOBILE
     right: 10px;
 
     min-width: auto;
-
     width: auto;
 
-    transform:
-      translateY(-5px);
+    transform: translateY(-5px);
 
     border-radius: 10px;
   }
 
   .nav-dropdown:hover .dropdown-menu {
-    transform:
-      translateY(0);
+    transform: translateY(0);
   }
 
   .dropdown-menu::before {
@@ -1284,7 +2097,6 @@ MOBILE
     white-space: nowrap;
 
     font-size: 11px;
-
     padding: 7px 9px;
   }
 
@@ -1302,7 +2114,6 @@ MOBILE
 
   .hero h1 {
     font-size: 34px;
-
     letter-spacing: -.8px;
   }
 
@@ -1314,7 +2125,6 @@ MOBILE
     flex-direction: column;
 
     gap: 5px;
-
     padding: 5px;
   }
 
@@ -1384,267 +2194,42 @@ MOBILE
     display: none;
   }
 
-}
-
-/* =========================================================
-SMALL MOBILE
-========================================================= */
-
-@media (max-width: 420px) {
-
-  .stats-grid {
+  .berita-news-area .card-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 30px;
+  .berita-section .news-image-wrapper {
+    height: 200px;
+    min-height: 200px;
   }
 
-  .header-text h1 {
-    font-size: 11px;
+  .berita-external-inner {
+    padding: 32px 24px;
   }
 
-}
-
-/* =========================================================
-FOOTER
-========================================================= */
-
-.footer {
-  margin-top: 0;
-
-  color: #dce8e1;
-
-  background: #12372b;
-}
-
-/* FOOTER MAIN */
-
-.footer-main {
-  padding: 58px 0 46px;
-}
-
-.footer-grid {
-  display: grid;
-
-  grid-template-columns:
-    1.5fr 1fr 1fr 1.15fr;
-
-  gap: 42px;
-}
-
-.footer-column h3 {
-  margin: 0 0 16px;
-
-  color: #ffffff;
-
-  font-size: 18px;
-
-  line-height: 1.4;
-
-  font-weight: 750;
-}
-
-.footer-column h4 {
-  margin: 0 0 17px;
-
-  color: #ffffff;
-
-  font-size: 13px;
-
-  font-weight: 750;
-
-  letter-spacing: .02em;
-}
-
-.footer-column p {
-  margin: 0;
-
-  max-width: 330px;
-
-  color: #b9cbc2;
-
-  font-size: 12px;
-
-  line-height: 1.8;
-}
-
-.footer-address {
-  margin-top: 15px !important;
-
-  color: #d3dfd9 !important;
-
-  text-align: left;
-
-  line-height: 1.7 !important;
-}
-
-/* KONTAK */
-
-.footer-list {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 13px;
-
-  margin: 0;
-
-  padding: 0;
-
-  list-style: none;
-}
-
-.footer-list li {
-  display: flex;
-
-  align-items: flex-start;
-
-  gap: 10px;
-
-  color: #b9cbc2;
-
-  font-size: 12px;
-
-  line-height: 1.6;
-}
-
-.footer-icon {
-  width: 20px;
-
-  flex: 0 0 20px;
-
-  color: #d9c28a;
-
-  font-size: 13px;
-}
-
-/* TAUTAN */
-
-.footer-links {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 9px;
-
-  margin: 0;
-
-  padding: 0;
-
-  list-style: none;
-}
-
-.footer-links a {
-  color: #b9cbc2;
-
-  text-decoration: none;
-
-  font-size: 12px;
-
-  transition:
-    color .2s ease,
-    padding-left .2s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-
-  padding-left: 4px;
-}
-
-/* SOCIAL MEDIA */
-
-.footer-social {
-  display: flex;
-
-  gap: 9px;
-
-  margin-top: 18px;
-}
-
-.footer-social a {
-  width: 38px;
-  height: 38px;
-
-  padding: 0;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  box-sizing: border-box;
-
-  border: 1px solid rgba(255,255,255,.16);
-
-  border-radius: 10px;
-
-  color: #ffffff;
-
-  background: rgba(255,255,255,.06);
-
-  text-decoration: none;
-
-  transition:
-    background .2s ease,
-    border-color .2s ease,
-    transform .2s ease;
-}
-
-.social-icon {
-  width: 18px;
-  height: 18px;
-
-  display: block;
-}
-
-.footer-social a:hover {
-  background: rgba(255,255,255,.13);
-
-  border-color: rgba(255,255,255,.25);
-
-  transform: translateY(-2px);
-}
-
-/* FOOTER BOTTOM */
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.10);
-
-  background: rgba(0,0,0,.10);
-}
-
-.footer-bottom-inner {
-  min-height: 58px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  color: #91a99d;
-
-  font-size: 11px;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-
-    gap: 36px 28px;
+  .berita-external {
+    min-height: 300px;
   }
 
-}
+  .berita-section .news-content {
+    padding: 18px;
+  }
 
-@media (max-width: 600px) {
+  .statistik-home-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .statistik-home-header h3 {
+    font-size: 19px;
+  }
+
+  .statistik-service-top strong {
+    min-width: 44px;
+    height: 32px;
+
+    font-size: 18px;
+  }
 
   .footer-main {
     padding: 42px 0 34px;
@@ -1671,1689 +2256,43 @@ FOOTER
 }
 
 /* =========================================================
-FOOTER REFINEMENT
+   SMALL MOBILE
 ========================================================= */
 
-.footer-column {
-  text-align: left;
-}
-
-.footer-column h3,
-.footer-column h4,
-.footer-column p {
-  text-align: left;
-}
-
-.footer-list,
-.footer-links {
-  text-align: left;
-}
-
-#footerAlamat {
-  display: block;
-
-  text-align: left;
-
-  line-height: 1.6;
-}
-
-/* SOCIAL MEDIA */
-
-.footer-social {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: flex-start;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-
-  margin-top: 12px;
-}
-
-.footer-social a {
-  width: auto;
-
-  min-width: 34px;
-
-  height: 34px;
-
-  padding: 0 9px;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  box-sizing: border-box;
-
-  white-space: nowrap;
-
-  border: 1px solid rgba(255,255,255,.16);
-
-  border-radius: 9px;
-
-  color: #ffffff;
-
-  background: rgba(255,255,255,.06);
-
-  text-decoration: none;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  line-height: 1;
-}
-
-/* Ukuran gambar berita */
-
-.news-image-wrapper {
-  width: 100%;
-
-  height: 220px;
-
-  overflow: hidden;
-
-  border-radius: 16px 16px 0 0;
-}
-
-.news-image {
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
-}
-
-/* =====================================================
-BERITA & KEGIATAN
-===================================================== */
-
-.berita-section {
-  position: relative;
-
-  overflow: hidden;
-}
-
-.berita-heading {
-  align-items: flex-end;
-
-  margin-bottom: 30px;
-}
-
-.section-intro {
-  max-width: 650px;
-
-  margin: 10px 0 0;
-
-  color: #68776f;
-
-  font-size: 14px;
-
-  line-height: 1.7;
-}
-
-.section-link {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  color: #176b4d;
-
-  font-size: 13px;
-
-  font-weight: 700;
-
-  text-decoration: none;
-
-  white-space: nowrap;
-
-  transition: all 0.2s ease;
-}
-
-.section-link span {
-  font-size: 17px;
-
-  transition: transform 0.2s ease;
-}
-
-.section-link:hover {
-  color: #0f5139;
-}
-
-.section-link:hover span {
-  transform: translate(2px, -2px);
-}
-
-/* =====================================================
-EMPTY / EXTERNAL NEWS PANEL
-===================================================== */
-
-.berita-external {
-  position: relative;
-
-  overflow: hidden;
-
-  min-height: 270px;
-
-  display: flex;
-
-  align-items: center;
-
-  border-radius: 22px;
-
-  background:
-    linear-gradient(
-      105deg,
-      #17352a 0%,
-      #205c45 55%,
-      #2d7358 100%
-    );
-
-  box-shadow:
-    0 15px 40px rgba(23, 53, 42, 0.16);
-}
-
-.berita-external::before {
-  content: "";
-
-  position: absolute;
-
-  width: 280px;
-  height: 280px;
-
-  right: -80px;
-  top: -110px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.berita-external::after {
-  content: "";
-
-  position: absolute;
-
-  width: 180px;
-  height: 180px;
-
-  right: 100px;
-  bottom: -120px;
-
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.berita-external-inner {
-  position: relative;
-
-  z-index: 2;
-
-  max-width: 720px;
-
-  padding: 42px 48px;
-}
-
-.berita-external-label {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  margin-bottom: 12px;
-
-  color: rgba(255, 255, 255, 0.72);
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.1em;
-
-  text-transform: uppercase;
-}
-
-.berita-external h3 {
-  margin: 0;
-
-  color: #ffffff;
-
-  font-size: clamp(24px, 3vw, 34px);
-
-  line-height: 1.2;
-}
-
-.berita-external p {
-  max-width: 620px;
-
-  margin: 14px 0 24px;
-
-  color: rgba(255, 255, 255, 0.78);
-
-  font-size: 14px;
-
-  line-height: 1.75;
-}
-
-.berita-external-button {
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-  padding: 11px 18px;
-
-  border-radius: 10px;
-
-  background: #ffffff;
-
-  color: #176b4d;
-
-  font-size: 13px;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: all 0.2s ease;
-}
-
-.berita-external-button:hover {
-  transform: translateY(-2px);
-
-  background: #f2f7f4;
-}
-
-.berita-external-button span {
-  font-size: 16px;
-}
-
-/* =====================================================
-RESPONSIVE
-===================================================== */
-
-@media (max-width: 900px) {
-
-  .berita-section .card-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-  .berita-heading {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 15px;
-  }
-
-}
-
-@media (max-width: 600px) {
-
-  .berita-section .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .berita-section .news-image-wrapper {
-    height: 200px;
-  }
-
-  .berita-external-inner {
-    padding: 32px 24px;
-  }
-
-  .berita-external {
-    min-height: 300px;
-  }
-
-}
-
-/* =====================================================
-BERITA + STATISTIK LAYOUT
-===================================================== */
-
-.berita-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.45fr)
-    minmax(320px, 0.75fr);
-
-  gap: 28px;
-
-  align-items: stretch;
-}
-
-/* =====================================================
-AREA BERITA
-===================================================== */
-
-.berita-news-area {
-  min-width: 0;
-}
-
-.berita-news-area .card-grid {
-  width: 100%;
-}
-
-/* =====================================================
-STATISTIK HOME
-===================================================== */
-
-.statistik-home-card {
-  position: relative;
-
-  overflow: hidden;
-
-  padding: 28px;
-
-  border-radius: 20px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(23, 53, 42, 0.09);
-
-  box-shadow:
-    0 10px 30px rgba(23, 53, 42, 0.07);
-}
-
-.statistik-home-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 170px;
-  height: 170px;
-
-  right: -80px;
-  top: -80px;
-
-  border-radius: 50%;
-
-  background: rgba(23, 107, 77, 0.06);
-}
-
-.statistik-home-header {
-  position: relative;
-
-  z-index: 1;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: flex-start;
-
-  padding-bottom: 20px;
-
-  border-bottom: 1px solid #edf1ee;
-}
-
-.statistik-home-label {
-  display: block;
-
-  margin-bottom: 6px;
-
-  color: #6f8178;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.1em;
-}
-
-.statistik-home-header h3 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 23px;
-
-  line-height: 1.25;
-}
-
-.statistik-home-icon {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background: #eaf3ee;
-
-  color: #176b4d;
-
-  font-weight: 800;
-}
-
-/* =====================================================
-SERVICE STATISTIC
-===================================================== */
-
-.statistik-service {
-  position: relative;
-
-  z-index: 1;
-
-  padding: 20px 0;
-
-  border-bottom: 1px solid #edf1ee;
-}
-
-.statistik-service:last-of-type {
-  border-bottom: none;
-}
-
-.statistik-service-top {
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-}
-
-.statistik-service-label {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: #718078;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.06em;
-}
-
-.statistik-service-top strong {
-  display: block;
-
-  color: #17352a;
-
-  font-size: 34px;
-
-  line-height: 1;
-}
-
-/* =====================================================
-STATUS LIST
-===================================================== */
-
-.statistik-status-list {
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 9px 15px;
-
-  margin-top: 16px;
-}
-
-.statistik-status-list > div {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  min-width: 0;
-
-  color: #68776f;
-
-  font-size: 11px;
-}
-
-.statistik-status-list strong {
-  margin-left: auto;
-
-  color: #17352a;
-
-  font-size: 12px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-
-  flex: 0 0 7px;
-
-  border-radius: 50%;
-}
-
-.status-dot.diterima {
-  background: #4d8b70;
-}
-
-.status-dot.proses {
-  background: #d29a42;
-}
-
-.status-dot.selesai {
-  background: #3973a3;
-}
-
-.status-dot.ditolak {
-  background: #a75a5a;
-}
-
-/* =====================================================
-STATISTIK BUTTON
-===================================================== */
-
-.statistik-home-button {
-  position: relative;
-
-  z-index: 1;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-top: 20px;
-
-  padding: 12px 15px;
-
-  border-radius: 10px;
-
-  background: #17352a;
-
-  color: #ffffff;
-
-  font-size: 12px;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: all 0.2s ease;
-}
-
-.statistik-home-button:hover {
-  background: #176b4d;
-
-  transform: translateY(-2px);
-}
-
-.statistik-home-button span {
-  font-size: 16px;
-}
-
-/* =====================================================
-FINAL BERITA + STATISTIK
-FOTO DI ATAS — TEKS DI BAWAH
-===================================================== */
-
-.berita-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.55fr)
-    minmax(300px, 0.75fr);
-
-  gap: 28px;
-
-  align-items: stretch;
-}
-
-/* =====================================================
-AREA BERITA
-===================================================== */
-
-.berita-news-area {
-  min-width: 0;
-
-  display: flex;
-}
-
-.berita-news-area .card-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 20px;
-
-  width: 100%;
-}
-
-/* =====================================================
-KARTU BERITA
-===================================================== */
-
-.berita-section .news-card {
-  display: flex;
-
-  flex-direction: column;
-
-  min-width: 0;
-
-  overflow: hidden;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(23, 53, 42, 0.08);
-
-  border-radius: 18px;
-
-  box-shadow:
-    0 8px 28px rgba(23, 53, 42, 0.07);
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease,
-    border-color .25s ease;
-}
-
-.berita-section .news-card:hover {
-  transform: translateY(-4px);
-
-  border-color:
-    rgba(23, 107, 77, 0.16);
-
-  box-shadow:
-    0 14px 34px rgba(23, 53, 42, 0.11);
-}
-
-/* =====================================================
-FOTO BERITA
-===================================================== */
-
-.berita-section .news-image-wrapper {
-  position: relative;
-
-  width: 100%;
-
-  height: 180px;
-
-  min-height: 180px;
-
-  overflow: hidden;
-
-  background: #edf2ef;
-
-  border-radius: 18px 18px 0 0;
-}
-
-.berita-section .news-image {
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
-
-  transition:
-    transform .35s ease;
-}
-
-.berita-section .news-card:hover .news-image {
-  transform: scale(1.03);
-}
-
-/* =====================================================
-PLACEHOLDER FOTO
-===================================================== */
-
-.berita-section .news-placeholder {
-  width: 100%;
-
-  height: 100%;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background:
-    linear-gradient(
-      135deg,
-      #edf4f0 0%,
-      #dcebe3 100%
-    );
-
-  color: #48705e;
-
-  font-size: 12px;
-
-  font-weight: 700;
-}
-
-/* =====================================================
-ISI BERITA
-===================================================== */
-
-.berita-section .news-content {
-  min-width: 0;
-
-  display: flex;
-
-  flex-direction: column;
-
-  padding: 18px 20px 20px;
-}
-
-.berita-section .card-badge {
-  align-self: flex-start;
-
-  display: inline-flex;
-
-  padding: 5px 10px;
-
-  margin-bottom: 10px;
-
-  border-radius: 999px;
-
-  background: #e8f2ed;
-
-  color: #176b4d;
-
-  font-size: 9px;
-
-  font-weight: 800;
-
-  text-transform: uppercase;
-
-  letter-spacing: .05em;
-}
-
-.berita-section .news-content h3 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 16px;
-
-  line-height: 1.4;
-
-  font-weight: 750;
-}
-
-.berita-section .news-date {
-  margin-top: 9px;
-
-  color: #829087;
-
-  font-size: 11px;
-}
-
-.berita-section .news-content p {
-  margin: 10px 0 0;
-
-  color: #66736d;
-
-  font-size: 11px;
-
-  line-height: 1.6;
-
-  display: -webkit-box;
-
-  -webkit-line-clamp: 3;
-
-  -webkit-box-orient: vertical;
-
-  overflow: hidden;
-}
-
-/* =====================================================
-PANEL STATISTIK
-===================================================== */
-
-.statistik-home-card {
-  position: relative;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  padding: 26px;
-
-  border-radius: 20px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(23, 53, 42, 0.09);
-
-  box-shadow:
-    0 10px 30px rgba(23, 53, 42, 0.07);
-}
-
-.statistik-home-card::before {
-  content: "";
-
-  position: absolute;
-
-  width: 170px;
-  height: 170px;
-
-  right: -80px;
-  top: -80px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(23, 107, 77, 0.06);
-}
-
-.statistik-home-header {
-  position: relative;
-
-  z-index: 1;
-
-  display: flex;
-
-  align-items: flex-start;
-
-  justify-content: space-between;
-
-  padding-bottom: 18px;
-
-  border-bottom: 1px solid #edf1ee;
-}
-
-.statistik-home-label {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: #6f8178;
-
-  font-size: 9px;
-
-  font-weight: 800;
-
-  letter-spacing: .1em;
-}
-
-.statistik-home-header h3 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 22px;
-
-  line-height: 1.25;
-}
-
-.statistik-home-icon {
-  width: 38px;
-  height: 38px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background: #eaf3ee;
-
-  color: #176b4d;
-
-  font-weight: 800;
-}
-
-/* =====================================================
-STATISTIK ITEM
-===================================================== */
-
-.statistik-service {
-  position: relative;
-
-  z-index: 1;
-
-  padding: 18px 0;
-
-  border-bottom: 1px solid #edf1ee;
-}
-
-.statistik-service:last-of-type {
-  border-bottom: none;
-}
-
-.statistik-service-top {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-}
-
-.statistik-service-label {
-  display: block;
-
-  margin-bottom: 5px;
-
-  color: #718078;
-
-  font-size: 10px;
-
-  font-weight: 800;
-}
-
-.statistik-service-top strong {
-  display: block;
-
-  color: #17352a;
-
-  font-size: 30px;
-
-  line-height: 1;
-}
-
-/* =====================================================
-STATUS
-===================================================== */
-
-.statistik-status-list {
-  display: grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap: 8px 14px;
-
-  margin-top: 13px;
-}
-
-.statistik-status-list > div {
-  display: flex;
-
-  align-items: center;
-
-  gap: 7px;
-
-  min-width: 0;
-
-  color: #68776f;
-
-  font-size: 10px;
-}
-
-.statistik-status-list strong {
-  margin-left: auto;
-
-  color: #17352a;
-
-  font-size: 11px;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-
-  flex: 0 0 7px;
-
-  border-radius: 50%;
-}
-
-.status-dot.diterima {
-  background: #4d8b70;
-}
-
-.status-dot.proses {
-  background: #d29a42;
-}
-
-.status-dot.selesai {
-  background: #3973a3;
-}
-
-.status-dot.ditolak {
-  background: #a75a5a;
-}
-
-/* =====================================================
-BUTTON STATISTIK
-===================================================== */
-
-.statistik-home-button {
-  position: relative;
-
-  z-index: 1;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-top: 18px;
-
-  padding: 11px 14px;
-
-  border-radius: 10px;
-
-  background: #17352a;
-
-  color: #ffffff;
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  text-decoration: none;
-
-  transition: all .2s ease;
-}
-
-.statistik-home-button:hover {
-  background: #176b4d;
-
-  transform: translateY(-2px);
-}
-
-.statistik-home-button span {
-  font-size: 15px;
-}
-
 @media (max-width: 500px) {
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .header-text h1 {
+    font-size: 11px;
+  }
 
   .berita-section .news-image-wrapper {
     height: 180px;
-
     min-height: 180px;
-
-    border-radius: 18px 18px 0 0;
-  }
-
-  .berita-section .news-content {
-    padding: 18px;
-  }
-
-  .statistik-home-card {
-    padding: 22px;
-  }
-
-  .statistik-status-list {
-    grid-template-columns: 1fr;
-  }
-
- }
-
-/* =====================================================
-BERITA FINAL
-FOTO ATAS - TEKS BAWAH
-===================================================== */
-
-.berita-layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.6fr)
-    minmax(300px, 0.75fr);
-
-  gap: 28px;
-
-  align-items: stretch;
-}
-
-/* AREA BERITA */
-
-.berita-news-area {
-  min-width: 0;
-}
-
-.berita-news-area .card-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-  gap: 20px;
-
-  width: 100%;
-}
-
-/* KARTU */
-
-.berita-section .news-card {
-  display: flex !important;
-
-  flex-direction: column !important;
-
-  width: 100%;
-
-  min-width: 0;
-
-  overflow: hidden;
-
-  background: #fff;
-
-  border: 1px solid rgba(23, 53, 42, .08);
-
-  border-radius: 18px;
-
-  box-shadow:
-    0 8px 28px rgba(23, 53, 42, .07);
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.berita-section .news-card:hover {
-  transform: translateY(-4px);
-
-  box-shadow:
-    0 14px 34px rgba(23, 53, 42, .11);
-}
-
-/* FOTO */
-
-.berita-section .news-image-wrapper {
-  position: relative;
-
-  width: 100% !important;
-
-  height: 180px !important;
-
-  min-height: 180px !important;
-
-  overflow: hidden;
-
-  border-radius: 18px 18px 0 0;
-
-  background: #edf2ef;
-}
-
-.berita-section .news-image {
-  display: block;
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-}
-
-/* ISI */
-
-.berita-section .news-content {
-  display: flex !important;
-
-  flex-direction: column !important;
-
-  width: 100%;
-
-  padding: 18px 20px 20px;
-
-  background: #fff;
-}
-
-.berita-section .news-content h3 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 16px;
-
-  line-height: 1.4;
-}
-
-.berita-section .news-date {
-  margin-top: 8px;
-
-  color: #829087;
-
-  font-size: 11px;
-}
-
-.berita-section .news-content p {
-  margin: 10px 0 0;
-
-  color: #66736d;
-
-  font-size: 11px;
-
-  line-height: 1.6;
-
-  display: -webkit-box;
-
-  -webkit-box-orient: vertical;
-
-  -webkit-line-clamp: 3;
-
-  overflow: hidden;
-}
-
-/* STATISTIK */
-
-.statistik-home-card {
-  height: 100%;
-}
-
-/* TABLET */
-
-@media (max-width: 1000px) {
-
-  .berita-layout {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* HP */
-
-@media (max-width: 700px) {
-
-  .berita-news-area .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .berita-section .news-image-wrapper {
-    height: 200px !important;
-
-    min-height: 200px !important;
-  }
-
-}
-
-/* HP KECIL */
-
-@media (max-width: 500px) {
-
-  .berita-section .news-image-wrapper {
-    height: 180px !important;
-
-    min-height: 180px !important;
-  }
-
-}
-
-/* =========================================================
-STATISTIK LAYANAN — CLEAN MODERN
-========================================================= */
-
-.statistik-home-card {
-  position: relative;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  padding: 24px;
-
-  background: #ffffff;
-
-  border: 1px solid #e2e9e5;
-
-  border-radius: 18px;
-
-  box-shadow:
-    0 8px 24px rgba(23, 53, 42, 0.055);
-}
-
-/* HEADER */
-
-.statistik-home-header {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 22px;
-}
-
-.statistik-home-label {
-  display: block;
-
-  margin-bottom: 4px;
-
-  color: #829087;
-
-  font-size: 9px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.2px;
-}
-
-.statistik-home-header h3 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 21px;
-
-  font-weight: 750;
-
-  line-height: 1.25;
-}
-
-.statistik-home-icon {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background: #edf5f1;
-
-  color: #176b4d;
-
-  font-size: 15px;
-}
-
-/* =========================================================
-BLOK PERMOHONAN / KEBERATAN
-========================================================= */
-
-.statistik-service {
-  padding: 17px 0;
-
-  border-top: 1px solid #edf1ee;
-}
-
-.statistik-service:first-of-type {
-  padding-top: 0;
-
-  border-top: none;
-}
-
-/* JUDUL + TOTAL */
-
-.statistik-service-top {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 12px;
-}
-
-.statistik-service-label {
-  display: block;
-
-  color: #586a61;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: .05em;
-}
-
-.statistik-service-top strong {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  min-width: 48px;
-
-  height: 34px;
-
-  padding: 0 10px;
-
-  border-radius: 9px;
-
-  background: #f1f6f3;
-
-  color: #17352a;
-
-  font-size: 20px;
-
-  font-weight: 800;
-
-  line-height: 1;
-}
-
-/* =========================================================
-STATUS
-========================================================= */
-
-.statistik-status-list {
-  display: grid;
-
-  grid-template-columns: 1fr;
-
-  gap: 6px;
-
-  margin-top: 0;
-}
-
-.statistik-status-list > div {
-  display: flex;
-
-  align-items: center;
-
-  min-height: 29px;
-
-  padding: 6px 9px;
-
-  border-radius: 8px;
-
-  background: #f8faf9;
-
-  color: #68776f;
-
-  font-size: 11px;
-}
-
-.statistik-status-list > div strong {
-  margin-left: auto;
-
-  color: #34463e;
-
-  font-size: 11px;
-
-  font-weight: 800;
-}
-
-/* TITIK STATUS */
-
-.status-dot {
-  width: 7px;
-
-  height: 7px;
-
-  flex: 0 0 7px;
-
-  margin-right: 8px;
-
-  border-radius: 50%;
-}
-
-.status-dot.diterima {
-  background: #5b8c72;
-}
-
-.status-dot.proses {
-  background: #c99a4a;
-}
-
-.status-dot.selesai {
-  background: #3973a3;
-}
-
-.status-dot.ditolak {
-  background: #a86666;
-}
-
-/* =========================================================
-TOMBOL
-========================================================= */
-
-.statistik-home-button {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-top: 18px;
-
-  padding: 12px 15px;
-
-  border-radius: 10px;
-
-  background: #17352a;
-
-  color: #ffffff;
-
-  font-size: 11px;
-
-  font-weight: 750;
-
-  text-decoration: none;
-
-  transition:
-    background .2s ease,
-    transform .2s ease;
-}
-
-.statistik-home-button:hover {
-  background: #176b4d;
-
-  transform: translateY(-2px);
-}
-
-.statistik-home-button span {
-  font-size: 16px;
-}
-
-/* =========================================================
-RESPONSIVE
-========================================================= */
-
-@media (max-width: 1000px) {
-
-  .statistik-home-card {
-    height: auto;
-  }
-
-}
-
-@media (max-width: 500px) {
-
-  .statistik-home-card {
-    padding: 20px;
-
-    border-radius: 16px;
-  }
-
-  .statistik-home-header h3 {
-    font-size: 19px;
-  }
-
-  .statistik-service-top strong {
-    min-width: 44px;
-
-    height: 32px;
-
-    font-size: 18px;
-  }
-
-}
-
-/* =========================================================
-BERITA + STATISTIK — TINGGI SAMA
-========================================================= */
-
-.berita-layout {
-  display: grid !important;
-
-  grid-template-columns:
-    minmax(0, 1fr) 300px !important;
-
-  gap: 24px !important;
-
-  align-items: stretch !important;
-}
-
-/* Kotak berita */
-
-.berita-news-area {
-  min-width: 0 !important;
-
-  height: 100% !important;
-}
-
-/* Kotak statistik mengikuti tinggi area berita */
-
-.berita-layout > aside.statistik-home-card {
-  width: 100% !important;
-
-  height: 100% !important;
-
-  min-height: 100% !important;
-
-  align-self: stretch !important;
-
-  box-sizing: border-box !important;
-}
-
-/* Isi statistik tetap rapi */
-
-.berita-layout > aside.statistik-home-card {
-  display: flex !important;
-
-  flex-direction: column !important;
-}
-
-.berita-layout .statistik-home-button {
-  margin-top: auto !important;
-}
-
-/* Tablet / mobile */
-
-@media (max-width: 1000px) {
-
-  .berita-layout {
-    grid-template-columns: 1fr !important;
-
-    align-items: stretch !important;
   }
 
   .berita-layout > aside.statistik-home-card {
-    height: auto !important;
-
-    min-height: 0 !important;
+    padding: 20px;
   }
 
 }
+
 /* =========================================================
-   AKSES CEPAT — FINAL PREMIUM OVERRIDE
-   Letakkan PALING BAWAH style.css
+   AKSES CEPAT — FINAL PREMIUM
+   SATU-SATUNYA BLOK AKSES CEPAT
 ========================================================= */
 
 .akses-cepat {
   display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr)) !important;
+
   gap: 18px !important;
+
   margin-top: 28px !important;
 }
 
@@ -3378,7 +2317,8 @@ BERITA + STATISTIK — TINGGI SAMA
   text-decoration: none !important;
   color: #17352a !important;
 
-  box-shadow: 0 3px 12px rgba(23, 53, 42, 0.035) !important;
+  box-shadow:
+    0 3px 12px rgba(23, 53, 42, 0.035) !important;
 
   transition:
     transform 0.22s ease,
@@ -3392,6 +2332,7 @@ BERITA + STATISTIK — TINGGI SAMA
   content: "" !important;
 
   position: absolute !important;
+
   top: 0 !important;
   left: 24% !important;
   right: 24% !important;
@@ -3404,7 +2345,8 @@ BERITA + STATISTIK — TINGGI SAMA
 
   opacity: 0 !important;
 
-  transition: opacity 0.22s ease !important;
+  transition:
+    opacity 0.22s ease !important;
 }
 
 .akses-cepat-card:hover {
@@ -3420,9 +2362,8 @@ BERITA + STATISTIK — TINGGI SAMA
   opacity: 1 !important;
 }
 
-
 /* =========================================================
-   LOGO
+   AKSES CEPAT — LOGO
 ========================================================= */
 
 .akses-cepat-logo {
@@ -3450,9 +2391,8 @@ BERITA + STATISTIK — TINGGI SAMA
   object-fit: contain !important;
 }
 
-
 /* =========================================================
-   TEXT
+   AKSES CEPAT — TEXT
 ========================================================= */
 
 .akses-cepat-text {
@@ -3495,42 +2435,48 @@ BERITA + STATISTIK — TINGGI SAMA
   line-height: 1.35 !important;
 }
 
-
 /* =========================================================
-   TABLET
+   AKSES CEPAT — TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
 
   .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
     gap: 14px !important;
   }
 
 }
 
-
 /* =========================================================
-   MOBILE
+   AKSES CEPAT — MOBILE
 ========================================================= */
 
 @media (max-width: 500px) {
 
   .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+
     gap: 10px !important;
+
     margin-top: 22px !important;
   }
 
   .akses-cepat-card {
     min-height: 130px !important;
+
     padding: 15px 9px !important;
+
     border-radius: 11px !important;
   }
 
   .akses-cepat-logo {
     width: 90px !important;
     height: 48px !important;
+
     margin-bottom: 8px !important;
   }
 
@@ -3548,4 +2494,3 @@ BERITA + STATISTIK — TINGGI SAMA
   }
 
 }
-
