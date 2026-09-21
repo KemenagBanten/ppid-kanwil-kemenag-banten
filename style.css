@@ -1709,3 +1709,301 @@ font-size: 11px;
   object-fit: cover;
   display: block;
 }
+
+/* =====================================================
+   BERITA & KEGIATAN
+===================================================== */
+
+.berita-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.berita-heading {
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.section-intro {
+  max-width: 650px;
+  margin: 10px 0 0;
+  color: #68776f;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.section-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #176b4d;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.section-link span {
+  font-size: 17px;
+  transition: transform 0.2s ease;
+}
+
+.section-link:hover {
+  color: #0f5139;
+}
+
+.section-link:hover span {
+  transform: translate(2px, -2px);
+}
+
+
+/* =====================================================
+   NEWS CARD
+===================================================== */
+
+.berita-section .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.berita-section .news-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(23, 53, 42, 0.07);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.berita-section .news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(23, 53, 42, 0.12);
+}
+
+
+/* =====================================================
+   NEWS IMAGE
+===================================================== */
+
+.berita-section .news-image-wrapper {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+  background: #edf2ef;
+}
+
+.berita-section .news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.berita-section .news-placeholder {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(
+      135deg,
+      #edf4f0 0%,
+      #dcebe3 100%
+    );
+  color: #48705e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   NEWS CONTENT
+===================================================== */
+
+.berita-section .news-content {
+  padding: 22px;
+}
+
+.berita-section .card-badge {
+  display: inline-flex;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  background: #e8f2ed;
+  color: #176b4d;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.berita-section .news-content h3 {
+  margin: 0;
+  color: #17352a;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.berita-section .news-date {
+  margin-top: 10px;
+  color: #829087;
+  font-size: 12px;
+}
+
+.berita-section .news-content p {
+  margin: 12px 0 0;
+  color: #66736d;
+  font-size: 13px;
+  line-height: 1.7;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   EMPTY / EXTERNAL NEWS PANEL
+===================================================== */
+
+.berita-external {
+  position: relative;
+  overflow: hidden;
+  min-height: 270px;
+  display: flex;
+  align-items: center;
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      105deg,
+      #17352a 0%,
+      #205c45 55%,
+      #2d7358 100%
+    );
+  box-shadow: 0 15px 40px rgba(23, 53, 42, 0.16);
+}
+
+.berita-external::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -80px;
+  top: -110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.berita-external::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: 100px;
+  bottom: -120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.berita-external-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 42px 48px;
+}
+
+.berita-external-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.berita-external h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.2;
+}
+
+.berita-external p {
+  max-width: 620px;
+  margin: 14px 0 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.berita-external-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #176b4d;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.berita-external-button:hover {
+  transform: translateY(-2px);
+  background: #f2f7f4;
+}
+
+.berita-external-button span {
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .berita-section .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .berita-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .berita-section .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .berita-section .news-image-wrapper {
+    height: 200px;
+  }
+
+  .berita-external-inner {
+    padding: 32px 24px;
+  }
+
+  .berita-external {
+    min-height: 300px;
+  }
+
+}
