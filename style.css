@@ -3786,12 +3786,6 @@ BERITA + STATISTIK — TINGGI SAMA
 
 }
 
-@media (max-width: 900px) {
-  .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  }
-}
-
 @media (max-width: 500px) {
   .akses-cepat {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
