@@ -738,18 +738,46 @@ async function loadFooterData() {
       if (socialContainer) {
         socialContainer.innerHTML = '';
 
-        socialResult.data
-          .filter(item => item.status === 'Published')
-          .forEach(item => {
-            const link = document.createElement('a');
+      socialResult.data
+  .filter(item => item.status === 'Published')
+  .forEach(item => {
 
-            link.href = item.nama;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.textContent = item.platform;
+    const link = document.createElement('a');
 
-            socialContainer.appendChild(link);
-          });
+    link.href = item.nama;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', item.platform);
+    link.title = item.platform;
+
+    const platform = item.platform.toLowerCase();
+
+    if (platform === 'facebook') {
+      link.innerHTML = '<span class="social-icon">f</span>';
+    }
+
+    else if (platform === 'instagram') {
+      link.innerHTML = '<span class="social-icon">◎</span>';
+    }
+
+    else if (platform === 'x') {
+      link.innerHTML = '<span class="social-icon">𝕏</span>';
+    }
+
+    else if (platform === 'tiktok') {
+      link.innerHTML = '<span class="social-icon">♪</span>';
+    }
+
+    else if (platform === 'youtube') {
+      link.innerHTML = '<span class="social-icon">▶</span>';
+    }
+
+    else {
+      link.textContent = item.platform;
+    }
+
+    socialContainer.appendChild(link);
+  });
       }
     }
 
