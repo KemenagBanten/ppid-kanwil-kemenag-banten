@@ -3403,157 +3403,50 @@ font-size: 11px;
 }
 
 /* =========================================================
-   FINAL BERITA + STATISTIK — COMPACT
+   BERITA + STATISTIK — TINGGI SAMA
 ========================================================= */
 
 .berita-layout {
   display: grid !important;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    300px !important;
-
-  gap: 24px;
-
-  align-items: start !important;
+  grid-template-columns: minmax(0, 1fr) 300px !important;
+  gap: 24px !important;
+  align-items: stretch !important;
 }
 
-
-/* =========================================================
-   KOLOM BERITA
-========================================================= */
-
+/* Kotak berita */
 .berita-news-area {
-  min-width: 0;
-  height: auto !important;
+  min-width: 0 !important;
+  height: 100% !important;
 }
 
-.berita-news-area .card-grid {
-  height: auto !important;
+/* Kotak statistik mengikuti tinggi area berita */
+.berita-layout > aside.statistik-home-card {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  align-self: stretch !important;
+  box-sizing: border-box !important;
 }
 
-
-/* =========================================================
-   STATISTIK — TIDAK MENGIKUTI TINGGI BERITA
-========================================================= */
-
-.berita-layout > .statistik-home-card {
-  height: auto !important;
-  min-height: 0 !important;
-
-  align-self: start !important;
-
-  padding: 22px !important;
-
-  border-radius: 16px;
+/* Isi statistik tetap rapi */
+.berita-layout > aside.statistik-home-card {
+  display: flex !important;
+  flex-direction: column !important;
 }
-
-
-/* HEADER */
-
-.berita-layout .statistik-home-header {
-  margin-bottom: 14px !important;
-  padding-bottom: 14px !important;
-}
-
-.berita-layout .statistik-home-header h3 {
-  font-size: 20px !important;
-}
-
-
-/* =========================================================
-   BLOK LAYANAN
-========================================================= */
-
-.berita-layout .statistik-service {
-  padding: 12px 0 !important;
-}
-
-.berita-layout .statistik-service-top {
-  margin-bottom: 9px !important;
-}
-
-.berita-layout .statistik-service-label {
-  font-size: 9px !important;
-}
-
-.berita-layout .statistik-service-top strong {
-  min-width: 42px !important;
-  height: 30px !important;
-
-  padding: 0 8px !important;
-
-  font-size: 18px !important;
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-.berita-layout .statistik-status-list {
-  display: grid !important;
-
-  grid-template-columns: 1fr !important;
-
-  gap: 4px !important;
-
-  margin-top: 0 !important;
-}
-
-.berita-layout .statistik-status-list > div {
-  min-height: 25px !important;
-
-  padding: 4px 7px !important;
-
-  border-radius: 7px;
-
-  font-size: 10px !important;
-}
-
-.berita-layout .statistik-status-list > div strong {
-  font-size: 10px !important;
-}
-
-
-/* =========================================================
-   BUTTON
-========================================================= */
 
 .berita-layout .statistik-home-button {
-  margin-top: 13px !important;
-
-  padding: 10px 12px !important;
-
-  font-size: 10px !important;
+  margin-top: auto !important;
 }
 
-
-/* =========================================================
-   TABLET
-========================================================= */
-
+/* Tablet / mobile */
 @media (max-width: 1000px) {
-
   .berita-layout {
     grid-template-columns: 1fr !important;
+    align-items: stretch !important;
   }
 
-  .berita-layout > .statistik-home-card {
-    width: 100%;
+  .berita-layout > aside.statistik-home-card {
+    height: auto !important;
+    min-height: 0 !important;
   }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 500px) {
-
-  .berita-layout > .statistik-home-card {
-    padding: 20px !important;
-  }
-
 }
