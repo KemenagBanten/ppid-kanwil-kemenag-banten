@@ -218,7 +218,7 @@ async function loadBerita() {
 
     console.log("Data Berita:", data);
 
-    // Hanya berita yang berstatus Published
+    // Hanya berita Published
     const beritaValid = Array.isArray(data)
       ? data
           .filter(item =>
@@ -232,7 +232,6 @@ async function loadBerita() {
           })
       : [];
 
-    // Counter tetap menunjukkan jumlah berita Published
     if (counter) {
       counter.textContent = beritaValid.length;
     }
@@ -248,79 +247,92 @@ async function loadBerita() {
       return;
     }
 
-    // Homepage hanya menampilkan maksimal 3 berita terbaru
+    // Maksimal 3 berita terbaru
     const beritaTerbaru = beritaValid.slice(0, 3);
 
-    container.innerHTML = beritaTerbaru.map(item => `
+    container.innerHTML = beritaTerbaru.map(item => {
 
-      <article class="news-card">
+      const imageUrl = item.gambar_url
+        ? String(item.gambar_url).trim()
+        : "";
 
-        ${
-          item.gambar_url
-            ? `
-              <img
-                src="${escapeAttribute(item.gambar_url)}"
-                alt="${escapeAttribute(item.judul || "Berita")}"
-                class="news-image"
-                loading="lazy"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-              >
+      console.log("URL gambar berita:", imageUrl);
 
-              <div
-                class="news-placeholder"
-                style="display:none;"
-              >
-                PPID Kemenag Banten
-              </div>
-            `
-            : `
-              <div class="news-placeholder">
-                PPID Kemenag Banten
-              </div>
-            `
-        }
-
-        <div class="news-content">
+      return `
+        <article class="news-card">
 
           ${
-            item.kategori
+            imageUrl
               ? `
-                <div class="card-badge">
-                  ${escapeHTML(item.kategori)}
+                <div class="news-image-wrapper">
+                  <img
+                    src="${escapeAttribute(imageUrl)}"
+                    alt="${escapeAttribute(item.judul || "Berita")}"
+                    class="news-image"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    onload="this.parentElement.classList.add('image-loaded');"
+                    onerror="
+                      this.style.display='none';
+                      this.parentElement.querySelector('.news-placeholder').style.display='flex';
+                    "
+                  >
+
+                  <div class="news-placeholder">
+                    PPID Kemenag Banten
+                  </div>
                 </div>
               `
-              : ""
-          }
-
-          <h3>
-            ${escapeHTML(item.judul)}
-          </h3>
-
-          ${
-            item.tanggal
-              ? `
-                <div class="news-date">
-                  ${formatDate(item.tanggal)}
+              : `
+                <div class="news-image-wrapper">
+                  <div class="news-placeholder">
+                    PPID Kemenag Banten
+                  </div>
                 </div>
               `
-              : ""
           }
 
-          ${
-            item.isi
-              ? `
-                <p>
-                  ${escapeHTML(item.isi)}
-                </p>
-              `
-              : ""
-          }
+          <div class="news-content">
 
-        </div>
+            ${
+              item.kategori
+                ? `
+                  <div class="card-badge">
+                    ${escapeHTML(item.kategori)}
+                  </div>
+                `
+                : ""
+            }
 
-      </article>
+            <h3>
+              ${escapeHTML(item.judul)}
+            </h3>
 
-    `).join("");
+            ${
+              item.tanggal
+                ? `
+                  <div class="news-date">
+                    ${formatDate(item.tanggal)}
+                  </div>
+                `
+                : ""
+            }
+
+            ${
+              item.isi
+                ? `
+                  <p>
+                    ${escapeHTML(item.isi)}
+                  </p>
+                `
+                : ""
+            }
+
+          </div>
+
+        </article>
+      `;
+    }).join("");
 
   } catch (error) {
 
@@ -335,6 +347,7 @@ async function loadBerita() {
     }
   }
 }
+
 // =====================================================
 // DASHBOARD / STATISTIK
 // =====================================================
