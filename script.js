@@ -569,12 +569,12 @@ async function initWebsite() {
   console.log("=================================");
 
   await Promise.allSettled([
-    loadInformasi(),
-    loadDIP(),
-    loadBerita(),
-    loadDashboard()
-    loadHomepageStatistik();
-  ]);
+  loadInformasi(),
+  loadDIP(),
+  loadBerita(),
+  loadDashboard(),
+  loadHomepageStatistik()
+]);
 
   console.log("Semua proses loading selesai.");
 
