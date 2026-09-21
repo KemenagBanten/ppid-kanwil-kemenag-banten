@@ -1,6 +1,14 @@
 /* =========================================================
 PPID KANWIL KEMENTERIAN AGAMA PROVINSI BANTEN
-FINAL BERANDA
+FINAL BERANDA.akses-cepat-card {
+  background: yellow !important;
+  border: 5px solid blue !important;
+}
+
+/* =========================================================
+   FINAL OVERRIDE — AKSES CEPAT
+========================================================= */
+
 ========================================================= */
 
 /* =========================================================
@@ -3776,17 +3784,6 @@ BERITA + STATISTIK — TINGGI SAMA
     font-size: 9px !important;
   }
 
-}
-
-/* TEST CSS AKSES CEPAT */
-.akses-cepat {
-  background: red !important;
-  padding: 30px !important;
-}
-
-.akses-cepat-card {
-  background: yellow !important;
-  border: 5px solid blue !important;
 }
 
 /* =========================================================
