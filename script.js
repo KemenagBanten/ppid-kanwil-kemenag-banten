@@ -606,46 +606,31 @@ async function loadHomepageStatistik() {
 
 
     /* ================================
-       PERMOHONAN
+       STATISTIK PERMOHONAN
     ================================= */
 
     if (data.permohonan) {
 
-      document.getElementById("homeTotalPermohonan").textContent =
-        data.permohonan.total ?? 0;
+      const total = document.getElementById("homeTotalPermohonan");
+      const diterima = document.getElementById("homePermohonanDiterima");
+      const proses = document.getElementById("homePermohonanProses");
+      const selesai = document.getElementById("homePermohonanSelesai");
 
-      document.getElementById("homePermohonanDiterima").textContent =
-        data.permohonan.diterima ?? 0;
+      if (total) {
+        total.textContent = data.permohonan.total ?? 0;
+      }
 
-      document.getElementById("homePermohonanProses").textContent =
-        data.permohonan.dalamProses ?? 0;
+      if (diterima) {
+        diterima.textContent = data.permohonan.diterima ?? 0;
+      }
 
-      document.getElementById("homePermohonanSelesai").textContent =
-        data.permohonan.selesai ?? 0;
+      if (proses) {
+        proses.textContent = data.permohonan.dalamProses ?? 0;
+      }
 
-    }
-
-
-    /* ================================
-       KEBERATAN
-    ================================= */
-
-    if (data.keberatan) {
-
-      document.getElementById("homeTotalKeberatan").textContent =
-        data.keberatan.total ?? 0;
-
-      document.getElementById("homeKeberatanDiterima").textContent =
-        data.keberatan.diterima ?? 0;
-
-      document.getElementById("homeKeberatanProses").textContent =
-        data.keberatan.dalamProses ?? 0;
-
-      document.getElementById("homeKeberatanSelesai").textContent =
-        data.keberatan.selesai ?? 0;
-
-      document.getElementById("homeKeberatanDitolak").textContent =
-        data.keberatan.ditolak ?? 0;
+      if (selesai) {
+        selesai.textContent = data.permohonan.selesai ?? 0;
+      }
 
     }
 
@@ -659,4 +644,3 @@ async function loadHomepageStatistik() {
   }
 
 }
-
