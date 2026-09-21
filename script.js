@@ -239,13 +239,43 @@ async function loadBerita() {
     if (!container) return;
 
     if (beritaValid.length === 0) {
-      container.innerHTML = `
-        <div class="empty-state">
-          Belum ada berita yang dipublikasikan.
+  container.innerHTML = `
+    <div class="berita-external">
+
+      <div class="berita-external-inner">
+
+        <div class="berita-external-label">
+          <span>●</span>
+          Berita Resmi
         </div>
-      `;
-      return;
-    }
+
+        <h3>
+          Berita &amp; Kegiatan Kemenag Banten
+        </h3>
+
+        <p>
+          Ikuti informasi, kegiatan, dan berita terbaru
+          Kantor Wilayah Kementerian Agama Provinsi Banten
+          melalui website resmi Kemenag Banten.
+        </p>
+
+        <a
+          href="https://banten.kemenag.go.id/publikasi/berita/kanwil"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="berita-external-button"
+        >
+          Baca Berita Kemenag Banten
+          <span>↗</span>
+        </a>
+
+      </div>
+
+    </div>
+  `;
+
+  return;
+}
 
     // Maksimal 3 berita terbaru
     const beritaTerbaru = beritaValid.slice(0, 3);
