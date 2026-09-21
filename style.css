@@ -2300,225 +2300,6 @@ STATISTIK BUTTON
   font-size: 16px;
 }
 
-/* =========================================================
-   AKSES CEPAT — PREMIUM / ELEGAN
-========================================================= */
-
-.akses-cepat {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 30px;
-}
-
-/* CARD */
-.akses-cepat-card {
-  position: relative;
-  min-width: 0;
-  min-height: 145px;
-  padding: 22px 18px 20px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #e7ece9;
-  border-radius: 14px;
-
-  text-decoration: none;
-  color: #17352a;
-
-  box-shadow:
-    0 2px 8px rgba(23, 53, 42, 0.035);
-
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
-}
-
-/* GARIS AKSEN HALUS */
-.akses-cepat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 22%;
-  right: 22%;
-  height: 2px;
-
-  background: #c7d8cf;
-  border-radius: 0 0 4px 4px;
-
-  opacity: 0;
-  transform: scaleX(0.6);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-}
-
-/* HOVER */
-.akses-cepat-card:hover {
-  transform: translateY(-4px);
-
-  background: #ffffff;
-
-  border-color: #cfdcd5;
-
-  box-shadow:
-    0 12px 28px rgba(23, 53, 42, 0.08);
-}
-
-.akses-cepat-card:hover::before {
-  opacity: 1;
-  transform: scaleX(1);
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.akses-cepat-logo {
-  width: 130px;
-  height: 62px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 14px;
-
-  flex-shrink: 0;
-}
-
-.akses-cepat-logo img {
-  display: block;
-
-  width: auto;
-  height: auto;
-
-  max-width: 118px;
-  max-height: 56px;
-
-  object-fit: contain;
-
-  transition:
-    transform 0.25s ease;
-}
-
-.akses-cepat-card:hover .akses-cepat-logo img {
-  transform: scale(1.035);
-}
-
-
-/* =========================================================
-   TEXT
-========================================================= */
-
-.akses-cepat-text {
-  width: 100%;
-  min-height: 38px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  line-height: 1.35;
-}
-
-.akses-cepat-text strong {
-  display: block;
-
-  color: #17352a;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: -0.1px;
-  line-height: 1.4;
-}
-
-.akses-cepat-text span {
-  display: block;
-
-  margin-top: 3px;
-
-  color: #7b8781;
-
-  font-size: 10px;
-  font-weight: 500;
-
-  line-height: 1.35;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
-
-  .akses-cepat-card {
-    min-height: 145px;
-  }
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 500px) {
-
-  .akses-cepat {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-
-    margin-top: 22px;
-  }
-
-  .akses-cepat-card {
-    min-height: 135px;
-
-    padding: 17px 10px 15px;
-
-    border-radius: 12px;
-  }
-
-  .akses-cepat-logo {
-    width: 95px;
-    height: 50px;
-
-    margin-bottom: 9px;
-  }
-
-  .akses-cepat-logo img {
-    max-width: 88px;
-    max-height: 46px;
-  }
-
-  .akses-cepat-text strong {
-    font-size: 10px;
-    line-height: 1.35;
-  }
-
-  .akses-cepat-text span {
-    margin-top: 2px;
-    font-size: 9px;
-  }
-}
 /* =====================================================
 FINAL BERITA + STATISTIK
 FOTO DI ATAS — TEKS DI BAWAH
@@ -3012,13 +2793,7 @@ BUTTON STATISTIK
     grid-template-columns: 1fr;
   }
 
-  /* AKSES CEPAT */
-  .akses-cepat {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
+ }
 
 /* =====================================================
 BERITA FINAL
@@ -3196,12 +2971,6 @@ FOTO ATAS - TEKS BAWAH
     min-height: 200px !important;
   }
 
-  /* AKSES CEPAT */
-  .akses-cepat {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
 }
 
 /* HP KECIL */
@@ -3212,12 +2981,6 @@ FOTO ATAS - TEKS BAWAH
     height: 180px !important;
 
     min-height: 180px !important;
-  }
-
-  /* AKSES CEPAT */
-  .akses-cepat {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
   }
 
 }
