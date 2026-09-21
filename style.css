@@ -3421,63 +3421,157 @@ font-size: 11px;
 }
 
 /* =========================================================
-   BERITA + STATISTIK — COMPACT BALANCED
+   FINAL BERITA + STATISTIK — COMPACT
 ========================================================= */
 
 .berita-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    300px !important;
+
   gap: 24px;
-  align-items: start;
-}
 
-/* Kolom berita tetap mengikuti tinggi berita */
-.berita-news-area {
-  min-width: 0;
-}
-
-/* Statistik tidak dipaksa mengikuti tinggi berita */
-.berita-layout .statistik-home-card {
-  height: auto !important;
-  align-self: start;
-}
-
-/* Sedikit lebih compact */
-.berita-layout .statistik-home-header {
-  margin-bottom: 16px;
-}
-
-.berita-layout .statistik-service {
-  padding: 13px 0;
-}
-
-.berita-layout .statistik-status-list {
-  gap: 5px;
-}
-
-.berita-layout .statistik-status-list > div {
-  min-height: 27px;
-  padding: 5px 8px;
-}
-
-/* Tombol tetap proporsional */
-.berita-layout .statistik-home-button {
-  margin-top: 14px;
+  align-items: start !important;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   KOLOM BERITA
 ========================================================= */
 
-@media (max-width: 900px) {
+.berita-news-area {
+  min-width: 0;
+  height: auto !important;
+}
+
+.berita-news-area .card-grid {
+  height: auto !important;
+}
+
+
+/* =========================================================
+   STATISTIK — TIDAK MENGIKUTI TINGGI BERITA
+========================================================= */
+
+.berita-layout > .statistik-home-card {
+  height: auto !important;
+  min-height: 0 !important;
+
+  align-self: start !important;
+
+  padding: 22px !important;
+
+  border-radius: 16px;
+}
+
+
+/* HEADER */
+
+.berita-layout .statistik-home-header {
+  margin-bottom: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.berita-layout .statistik-home-header h3 {
+  font-size: 20px !important;
+}
+
+
+/* =========================================================
+   BLOK LAYANAN
+========================================================= */
+
+.berita-layout .statistik-service {
+  padding: 12px 0 !important;
+}
+
+.berita-layout .statistik-service-top {
+  margin-bottom: 9px !important;
+}
+
+.berita-layout .statistik-service-label {
+  font-size: 9px !important;
+}
+
+.berita-layout .statistik-service-top strong {
+  min-width: 42px !important;
+  height: 30px !important;
+
+  padding: 0 8px !important;
+
+  font-size: 18px !important;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.berita-layout .statistik-status-list {
+  display: grid !important;
+
+  grid-template-columns: 1fr !important;
+
+  gap: 4px !important;
+
+  margin-top: 0 !important;
+}
+
+.berita-layout .statistik-status-list > div {
+  min-height: 25px !important;
+
+  padding: 4px 7px !important;
+
+  border-radius: 7px;
+
+  font-size: 10px !important;
+}
+
+.berita-layout .statistik-status-list > div strong {
+  font-size: 10px !important;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.berita-layout .statistik-home-button {
+  margin-top: 13px !important;
+
+  padding: 10px 12px !important;
+
+  font-size: 10px !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
 
   .berita-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
-  .berita-layout .statistik-home-card {
+  .berita-layout > .statistik-home-card {
     width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .berita-layout > .statistik-home-card {
+    padding: 20px !important;
   }
 
 }
