@@ -2007,3 +2007,388 @@ font-size: 11px;
   }
 
 }
+
+/* =====================================================
+   BERITA + STATISTIK LAYOUT
+===================================================== */
+
+.berita-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.75fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+
+/* =====================================================
+   AREA BERITA
+===================================================== */
+
+.berita-news-area {
+  min-width: 0;
+}
+
+.berita-news-area .card-grid {
+  width: 100%;
+}
+
+
+/* =====================================================
+   STATISTIK HOME
+===================================================== */
+
+.statistik-home-card {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 53, 42, 0.09);
+  box-shadow: 0 10px 30px rgba(23, 53, 42, 0.07);
+}
+
+.statistik-home-card::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  right: -80px;
+  top: -80px;
+  border-radius: 50%;
+  background: rgba(23, 107, 77, 0.06);
+}
+
+.statistik-home-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #edf1ee;
+}
+
+.statistik-home-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #6f8178;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.statistik-home-header h3 {
+  margin: 0;
+  color: #17352a;
+  font-size: 23px;
+  line-height: 1.25;
+}
+
+.statistik-home-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #eaf3ee;
+  color: #176b4d;
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   SERVICE STATISTIC
+===================================================== */
+
+.statistik-service {
+  position: relative;
+  z-index: 1;
+  padding: 20px 0;
+  border-bottom: 1px solid #edf1ee;
+}
+
+.statistik-service:last-of-type {
+  border-bottom: none;
+}
+
+.statistik-service-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statistik-service-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #718078;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.statistik-service-top strong {
+  display: block;
+  color: #17352a;
+  font-size: 34px;
+  line-height: 1;
+}
+
+
+/* =====================================================
+   STATUS LIST
+===================================================== */
+
+.statistik-status-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 15px;
+  margin-top: 16px;
+}
+
+.statistik-status-list > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: #68776f;
+  font-size: 11px;
+}
+
+.statistik-status-list strong {
+  margin-left: auto;
+  color: #17352a;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+}
+
+.status-dot.diterima {
+  background: #4d8b70;
+}
+
+.status-dot.proses {
+  background: #d29a42;
+}
+
+.status-dot.selesai {
+  background: #3973a3;
+}
+
+.status-dot.ditolak {
+  background: #a75a5a;
+}
+
+
+/* =====================================================
+   STATISTIK BUTTON
+===================================================== */
+
+.statistik-home-button {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background: #17352a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.statistik-home-button:hover {
+  background: #176b4d;
+  transform: translateY(-2px);
+}
+
+.statistik-home-button span {
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   AKSES CEPAT
+===================================================== */
+
+.akses-cepat {
+  margin-top: 32px;
+  padding: 28px;
+  border-radius: 20px;
+  background: #f1f6f3;
+  border: 1px solid rgba(23, 53, 42, 0.07);
+}
+
+.akses-cepat-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.akses-cepat-heading h3 {
+  margin: 5px 0 0;
+  color: #17352a;
+  font-size: 21px;
+}
+
+.akses-cepat-heading p {
+  max-width: 420px;
+  margin: 0;
+  color: #6b7972;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+
+/* =====================================================
+   AKSES CARD
+===================================================== */
+
+.akses-cepat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+}
+
+.akses-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 53, 42, 0.07);
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.akses-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(23, 107, 77, 0.2);
+  box-shadow: 0 8px 22px rgba(23, 53, 42, 0.08);
+}
+
+.akses-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #e6f0eb;
+  color: #176b4d;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.akses-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.akses-content strong {
+  display: block;
+  overflow: hidden;
+  color: #17352a;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akses-content span {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  color: #7a8881;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.akses-arrow {
+  color: #176b4d;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .berita-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .statistik-home-card {
+    width: 100%;
+  }
+
+  .akses-cepat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .berita-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .akses-cepat {
+    padding: 22px;
+  }
+
+  .akses-cepat-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .akses-cepat-heading p {
+    text-align: left;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .statistik-home-card {
+    padding: 22px;
+  }
+
+  .statistik-status-list {
+    grid-template-columns: 1fr;
+  }
+
+  .akses-cepat-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
