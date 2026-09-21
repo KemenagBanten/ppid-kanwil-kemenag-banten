@@ -752,28 +752,28 @@ async function loadFooterData() {
 
     const platform = item.platform.toLowerCase();
 
-    if (platform === 'facebook') {
-      link.innerHTML = '<span class="social-icon">f</span>';
-    }
+    const icons = {
+      facebook: 'https://cdn.simpleicons.org/facebook/ffffff',
+      instagram: 'https://cdn.simpleicons.org/instagram/ffffff',
+      x: 'https://cdn.simpleicons.org/x/ffffff',
+      tiktok: 'https://cdn.simpleicons.org/tiktok/ffffff',
+      youtube: 'https://cdn.simpleicons.org/youtube/ffffff'
+    };
 
-    else if (platform === 'instagram') {
-      link.innerHTML = '<span class="social-icon">◎</span>';
-    }
+    if (icons[platform]) {
 
-    else if (platform === 'x') {
-      link.innerHTML = '<span class="social-icon">𝕏</span>';
-    }
+      const icon = document.createElement('img');
 
-    else if (platform === 'tiktok') {
-      link.innerHTML = '<span class="social-icon">♪</span>';
-    }
+      icon.src = icons[platform];
+      icon.alt = item.platform;
+      icon.className = 'social-icon';
 
-    else if (platform === 'youtube') {
-      link.innerHTML = '<span class="social-icon">▶</span>';
-    }
+      link.appendChild(icon);
 
-    else {
+    } else {
+
       link.textContent = item.platform;
+
     }
 
     socialContainer.appendChild(link);
