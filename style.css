@@ -3800,3 +3800,135 @@ BERITA + STATISTIK — TINGGI SAMA
   background: yellow !important;
   border: 5px solid blue !important;
 }
+
+/* =========================================================
+   FINAL OVERRIDE — AKSES CEPAT
+========================================================= */
+
+.akses-cepat {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 30px !important;
+}
+
+.akses-cepat-card {
+  position: relative !important;
+  min-width: 0 !important;
+  min-height: 145px !important;
+  padding: 22px 18px 20px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #ffffff !important;
+  border: 1px solid #e7ece9 !important;
+  border-radius: 14px !important;
+
+  text-decoration: none !important;
+  color: #17352a !important;
+
+  box-shadow: 0 2px 8px rgba(23, 53, 42, 0.04) !important;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease !important;
+}
+
+.akses-cepat-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: #cfdcd5 !important;
+  box-shadow: 0 12px 28px rgba(23, 53, 42, 0.08) !important;
+}
+
+.akses-cepat-logo {
+  width: 130px !important;
+  height: 62px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin-bottom: 14px !important;
+}
+
+.akses-cepat-logo img {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 118px !important;
+  max-height: 56px !important;
+  object-fit: contain !important;
+}
+
+.akses-cepat-text {
+  width: 100% !important;
+  min-height: 38px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  text-align: center !important;
+  line-height: 1.35 !important;
+}
+
+.akses-cepat-text strong {
+  display: block !important;
+  color: #17352a !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+}
+
+.akses-cepat-text span {
+  display: block !important;
+  margin-top: 3px !important;
+  color: #7b8781 !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  line-height: 1.35 !important;
+}
+
+@media (max-width: 900px) {
+  .akses-cepat {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .akses-cepat {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin-top: 22px !important;
+  }
+
+  .akses-cepat-card {
+    min-height: 135px !important;
+    padding: 17px 10px 15px !important;
+    border-radius: 12px !important;
+  }
+
+  .akses-cepat-logo {
+    width: 95px !important;
+    height: 50px !important;
+    margin-bottom: 9px !important;
+  }
+
+  .akses-cepat-logo img {
+    max-width: 88px !important;
+    max-height: 46px !important;
+  }
+
+  .akses-cepat-text strong {
+    font-size: 10px !important;
+  }
+
+  .akses-cepat-text span {
+    font-size: 9px !important;
+  }
+}
