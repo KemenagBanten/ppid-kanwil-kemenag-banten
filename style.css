@@ -2455,3 +2455,46 @@ font-size: 11px;
   }
 
 }
+
+/* =====================================================
+   BERITA VERTIKAL
+===================================================== */
+
+.berita-section .card-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.berita-section .news-card {
+  width: 100%;
+  max-width: none;
+}
+
+.berita-section .news-content {
+  width: 100%;
+}
+
+.berita-section .news-image-wrapper {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.berita-section .news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tampilan tablet/HP */
+@media (max-width: 900px) {
+
+  .berita-section .news-image-wrapper {
+    height: 220px;
+  }
+
+}
