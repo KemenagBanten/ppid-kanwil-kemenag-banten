@@ -2089,29 +2089,31 @@ font-size: 11px;
 
 
 /* =========================================================
-   AKSES CEPAT — FINAL
+   AKSES CEPAT — APLIKASI & KANAL EKSTERNAL
 ========================================================= */
 
 .akses-cepat {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: 16px;
   margin-top: 28px;
 }
 
+/* KARTU */
+
 .akses-cepat-card {
   min-width: 0;
-  height: 170px;
-  padding: 20px 16px;
+  min-height: 155px;
+
+  padding: 18px 14px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-
-  box-sizing: border-box;
+  justify-content: center;
 
   background: #ffffff;
+
   border: 1px solid #e3eae6;
   border-radius: 16px;
 
@@ -2119,80 +2121,92 @@ font-size: 11px;
   color: #17352a;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform .2s ease,
+    box-shadow .2s ease,
+    border-color .2s ease;
 }
 
 .akses-cepat-card:hover {
   transform: translateY(-3px);
-  border-color: #b7c9bf;
-  box-shadow: 0 8px 22px rgba(23, 53, 42, 0.08);
+
+  border-color: #b9cfc3;
+
+  box-shadow:
+    0 10px 24px rgba(23, 53, 42, .08);
 }
 
-/* Area logo dibuat SAMA untuk semua */
+
+/* AREA LOGO */
+
 .akses-cepat-logo {
-  width: 150px;
-  height: 82px;
+  width: 120px;
+  height: 70px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  margin-bottom: 12px;
+
   flex-shrink: 0;
-  margin-bottom: 14px;
 }
 
-/* Semua logo masuk ke area yang sama */
 .akses-cepat-logo img {
   display: block;
 
   width: auto;
   height: auto;
 
-  max-width: 140px;
-  max-height: 68px;
+  max-width: 110px;
+  max-height: 62px;
 
   object-fit: contain;
 }
 
-/* Teks */
+
+/* KETERANGAN */
+
 .akses-cepat-text {
   width: 100%;
-  min-height: 40px;
+  min-height: 42px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   text-align: center;
+
   line-height: 1.35;
 }
 
 .akses-cepat-text strong {
   display: block;
 
-  font-size: 13px;
-  font-weight: 700;
-
   color: #17352a;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  line-height: 1.35;
 }
 
 .akses-cepat-text span {
   display: block;
 
-  margin-top: 2px;
+  margin-top: 3px;
 
-  font-size: 11px;
+  color: #718078;
+
+  font-size: 10px;
+
   line-height: 1.35;
-
-  color: #68776f;
 }
 
-/* =========================
+
+/* =========================================================
    TABLET
-========================= */
+========================================================= */
 
 @media (max-width: 900px) {
 
@@ -2202,9 +2216,10 @@ font-size: 11px;
 
 }
 
-/* =========================
+
+/* =========================================================
    HP
-========================= */
+========================================================= */
 
 @media (max-width: 500px) {
 
@@ -2214,28 +2229,30 @@ font-size: 11px;
   }
 
   .akses-cepat-card {
-    height: 145px;
+    min-height: 140px;
     padding: 14px 10px;
+
     border-radius: 12px;
   }
 
   .akses-cepat-logo {
-    width: 100px;
-    height: 60px;
-    margin-bottom: 9px;
+    width: 90px;
+    height: 55px;
+
+    margin-bottom: 8px;
   }
 
   .akses-cepat-logo img {
-    max-width: 90px;
+    max-width: 85px;
     max-height: 50px;
   }
 
   .akses-cepat-text strong {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .akses-cepat-text span {
-    font-size: 10px;
+    font-size: 9px;
   }
 
 }
@@ -2668,217 +2685,6 @@ font-size: 11px;
 }
 
 
-/* =========================================================
-   AKSES CEPAT
-========================================================= */
-
-.akses-cepat {
-  margin-top: 30px;
-
-  padding: 26px;
-
-  border-radius: 20px;
-
-  background: #f1f6f3;
-
-  border: 1px solid rgba(23, 53, 42, 0.07);
-}
-
-.akses-cepat-heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  margin-bottom: 18px;
-}
-
-.akses-cepat-heading h3 {
-  margin: 5px 0 0;
-
-  color: #17352a;
-
-  font-size: 21px;
-}
-
-.akses-cepat-heading p {
-  max-width: 420px;
-
-  margin: 0;
-
-  color: #6b7972;
-
-  font-size: 12px;
-
-  line-height: 1.6;
-
-  text-align: right;
-}
-
-.akses-cepat-grid {
-  display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-
-  gap: 13px;
-}
-
-.akses-card {
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  min-width: 0;
-
-  padding: 15px;
-
-  border-radius: 14px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(23, 53, 42, 0.07);
-
-  text-decoration: none;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
-}
-
-.akses-card:hover {
-  transform: translateY(-3px);
-
-  border-color: rgba(23, 107, 77, .2);
-
-  box-shadow:
-    0 8px 22px rgba(23, 53, 42, .08);
-}
-
-.akses-icon {
-  width: 38px;
-  height: 38px;
-
-  flex: 0 0 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 10px;
-
-  background: #e6f0eb;
-
-  color: #176b4d;
-
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.akses-content {
-  min-width: 0;
-  flex: 1;
-}
-
-.akses-content strong {
-  display: block;
-
-  overflow: hidden;
-
-  color: #17352a;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  line-height: 1.35;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.akses-content span {
-  display: block;
-
-  margin-top: 3px;
-
-  overflow: hidden;
-
-  color: #7a8881;
-
-  font-size: 9px;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.akses-arrow {
-  color: #176b4d;
-
-  font-size: 15px;
-  font-weight: 800;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 1000px) {
-
-  .berita-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .statistik-home-card {
-    width: 100%;
-    height: auto;
-  }
-
-  .akses-cepat-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-}
-
-
-@media (max-width: 700px) {
-
-  .berita-news-area .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .berita-section .news-image-wrapper {
-    height: 200px;
-    min-height: 200px;
-  }
-
-  .berita-section .news-content {
-    padding: 18px;
-  }
-
-  .berita-section .news-content h3 {
-    font-size: 15px;
-  }
-
-  .akses-cepat {
-    padding: 22px;
-  }
-
-  .akses-cepat-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .akses-cepat-heading p {
-    text-align: left;
-  }
-
-}
-
-
 @media (max-width: 500px) {
 
   .berita-section .news-image-wrapper {
@@ -3038,19 +2844,6 @@ font-size: 11px;
 
 .statistik-home-card {
   height: 100%;
-}
-
-
-/* AKSES CEPAT */
-
-.akses-cepat {
-  margin-top: 30px;
-}
-
-.akses-cepat-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 13px;
 }
 
 
@@ -3425,123 +3218,3 @@ font-size: 11px;
   }
 }
 
-/* =========================================================
-   AKSES CEPAT — APLIKASI & KANAL EKSTERNAL
-========================================================= */
-
-.akses-cepat {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.akses-cepat-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 150px;
-  padding: 20px 16px;
-
-  background: #ffffff;
-  border: 1px solid #e5ebe7;
-  border-radius: 16px;
-
-  text-decoration: none;
-  color: #17352a;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.akses-cepat-card:hover {
-  transform: translateY(-3px);
-  border-color: #b9cfc3;
-  box-shadow: 0 10px 24px rgba(23, 53, 42, 0.08);
-}
-
-.akses-cepat-logo {
-  width: 110px;
-  height: 70px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 14px;
-}
-
-.akses-cepat-logo img {
-  display: block;
-  max-width: 100%;
-  max-height: 70px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-.akses-cepat-text {
-  min-height: 38px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  line-height: 1.35;
-}
-
-.akses-cepat-text strong {
-  font-size: 13px;
-  font-weight: 700;
-  color: #17352a;
-}
-
-.akses-cepat-text span {
-  font-size: 12px;
-  color: #68776f;
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-  .akses-cepat {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* HP */
-@media (max-width: 500px) {
-  .akses-cepat {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .akses-cepat-card {
-    min-height: 135px;
-    padding: 15px 10px;
-    border-radius: 12px;
-  }
-
-  .akses-cepat-logo {
-    width: 90px;
-    height: 58px;
-    margin-bottom: 10px;
-  }
-
-  .akses-cepat-logo img {
-    max-height: 58px;
-  }
-
-  .akses-cepat-text strong {
-    font-size: 11px;
-  }
-
-  .akses-cepat-text span {
-    font-size: 10px;
-  }
-}
