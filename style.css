@@ -1494,6 +1494,8 @@ font-size: 11px;
 .footer-address {
   margin-top: 15px !important;
   color: #d3dfd9 !important;
+  text-align: left;
+  line-height: 1.7 !important;
 }
 
 
