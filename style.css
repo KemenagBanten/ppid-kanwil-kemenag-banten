@@ -3419,3 +3419,65 @@ font-size: 11px;
   }
 
 }
+
+/* =========================================================
+   BERITA + STATISTIK — COMPACT BALANCED
+========================================================= */
+
+.berita-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Kolom berita tetap mengikuti tinggi berita */
+.berita-news-area {
+  min-width: 0;
+}
+
+/* Statistik tidak dipaksa mengikuti tinggi berita */
+.berita-layout .statistik-home-card {
+  height: auto !important;
+  align-self: start;
+}
+
+/* Sedikit lebih compact */
+.berita-layout .statistik-home-header {
+  margin-bottom: 16px;
+}
+
+.berita-layout .statistik-service {
+  padding: 13px 0;
+}
+
+.berita-layout .statistik-status-list {
+  gap: 5px;
+}
+
+.berita-layout .statistik-status-list > div {
+  min-height: 27px;
+  padding: 5px 8px;
+}
+
+/* Tombol tetap proporsional */
+.berita-layout .statistik-home-button {
+  margin-top: 14px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .berita-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .berita-layout .statistik-home-card {
+    width: 100%;
+  }
+
+}
