@@ -2413,54 +2413,11 @@ font-size: 11px;
 
 }
 
-/* =====================================================
-   BERITA VERTIKAL
-===================================================== */
-
-.berita-section .card-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-}
-
-.berita-section .news-card {
-  width: 100%;
-  max-width: none;
-}
-
-.berita-section .news-content {
-  width: 100%;
-}
-
-.berita-section .news-image-wrapper {
-  width: 100%;
-  height: 260px;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.berita-section .news-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Tampilan tablet/HP */
-@media (max-width: 900px) {
-
-  .berita-section .news-image-wrapper {
-    height: 220px;
-  }
-
-}
-
 /* =========================================================
    FINAL BERITA + STATISTIK
+   FOTO DI ATAS — TEKS DI BAWAH
 ========================================================= */
 
-/* Layout utama: berita kiri, statistik kanan */
 .berita-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.75fr);
@@ -2475,9 +2432,9 @@ font-size: 11px;
 
 .berita-news-area {
   min-width: 0;
+  display: flex;
 }
 
-/* Dua berita berdampingan */
 .berita-news-area .card-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2491,8 +2448,8 @@ font-size: 11px;
 ========================================================= */
 
 .berita-section .news-card {
-  display: grid;
-  grid-template-columns: 42% 58%;
+  display: flex;
+  flex-direction: column;
 
   min-width: 0;
   overflow: hidden;
@@ -2526,17 +2483,17 @@ font-size: 11px;
 ========================================================= */
 
 .berita-section .news-image-wrapper {
+  position: relative;
+
   width: 100%;
-  height: 100%;
-  min-height: 245px;
+  height: 180px;
+  min-height: 180px;
 
   overflow: hidden;
 
-  position: relative;
-
   background: #edf2ef;
 
-  border-radius: 18px 0 0 18px;
+  border-radius: 18px 18px 0 0;
 }
 
 .berita-section .news-image {
@@ -2555,7 +2512,10 @@ font-size: 11px;
 }
 
 
-/* Placeholder */
+/* =========================================================
+   PLACEHOLDER FOTO
+========================================================= */
+
 .berita-section .news-placeholder {
   width: 100%;
   height: 100%;
@@ -2587,9 +2547,8 @@ font-size: 11px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
-  padding: 22px;
+  padding: 18px 20px 20px;
 }
 
 .berita-section .card-badge {
@@ -2618,7 +2577,7 @@ font-size: 11px;
   color: #17352a;
 
   font-size: 16px;
-  line-height: 1.35;
+  line-height: 1.4;
 
   font-weight: 750;
 }
@@ -2640,7 +2599,7 @@ font-size: 11px;
   line-height: 1.6;
 
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
   overflow: hidden;
@@ -2655,6 +2614,8 @@ font-size: 11px;
   position: relative;
 
   overflow: hidden;
+
+  height: 100%;
 
   padding: 26px;
 
@@ -3038,7 +2999,6 @@ font-size: 11px;
    RESPONSIVE
 ========================================================= */
 
-/* Tablet */
 @media (max-width: 1000px) {
 
   .berita-layout {
@@ -3047,6 +3007,7 @@ font-size: 11px;
 
   .statistik-home-card {
     width: 100%;
+    height: auto;
   }
 
   .akses-cepat-grid {
@@ -3056,19 +3017,15 @@ font-size: 11px;
 }
 
 
-/* HP */
 @media (max-width: 700px) {
 
   .berita-news-area .card-grid {
     grid-template-columns: 1fr;
   }
 
-  .berita-section .news-card {
-    grid-template-columns: 40% 60%;
-  }
-
   .berita-section .news-image-wrapper {
-    min-height: 220px;
+    height: 200px;
+    min-height: 200px;
   }
 
   .berita-section .news-content {
@@ -3096,12 +3053,7 @@ font-size: 11px;
 }
 
 
-/* HP kecil */
 @media (max-width: 500px) {
-
-  .berita-section .news-card {
-    grid-template-columns: 1fr;
-  }
 
   .berita-section .news-image-wrapper {
     height: 180px;
