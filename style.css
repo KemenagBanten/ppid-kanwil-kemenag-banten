@@ -1769,16 +1769,25 @@ font-size: 11px;
 }
 
 .berita-section .news-card {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
   overflow: hidden;
+
   background: #ffffff;
+
   border: 1px solid rgba(23, 53, 42, 0.08);
   border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(23, 53, 42, 0.07);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
 
+  box-shadow:
+    0 8px 28px rgba(23, 53, 42, 0.07);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
 .berita-section .news-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(23, 53, 42, 0.12);
@@ -1791,10 +1800,16 @@ font-size: 11px;
 
 .berita-section .news-image-wrapper {
   width: 100%;
-  height: 210px;
+  height: 175px;
+  min-height: 175px;
+
   overflow: hidden;
+
   position: relative;
+
   background: #edf2ef;
+
+  border-radius: 18px 18px 0 0;
 }
 
 .berita-section .news-image {
@@ -1826,7 +1841,12 @@ font-size: 11px;
 ===================================================== */
 
 .berita-section .news-content {
-  padding: 22px;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px 20px 20px;
 }
 
 .berita-section .card-badge {
