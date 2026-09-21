@@ -1694,3 +1694,18 @@ font-size: 11px;
   font-weight: 700;
   line-height: 1;
 }
+
+/* Ukuran gambar berita */
+.news-image-wrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
