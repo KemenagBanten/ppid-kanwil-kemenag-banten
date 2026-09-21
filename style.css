@@ -3143,3 +3143,188 @@ font-size: 11px;
   }
 
 }
+
+/* =========================================================
+   STATISTIK LAYANAN - SIMPLE & MODERN
+========================================================= */
+
+.statistik-home-card {
+  height: 100%;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(23, 53, 42, 0.06);
+}
+
+.statistik-home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.statistik-home-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #8a978f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.statistik-home-header h3 {
+  margin: 0;
+  color: #17352a;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.statistik-home-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f0f5f2;
+  color: #4f7765;
+  font-size: 15px;
+}
+
+/* BLOK LAYANAN */
+
+.statistik-service {
+  padding: 17px 0;
+  border-top: 1px solid #edf1ee;
+}
+
+.statistik-service:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.statistik-service-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.statistik-service-label {
+  display: block;
+  margin-bottom: 3px;
+  color: #66736d;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .7px;
+}
+
+.statistik-service-top strong {
+  display: block;
+  color: #17352a;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 750;
+}
+
+/* STATUS */
+
+.statistik-status-list {
+  display: grid;
+  gap: 8px;
+}
+
+.statistik-status-list > div {
+  display: grid;
+  grid-template-columns: 8px 1fr auto;
+  align-items: center;
+  column-gap: 9px;
+  min-height: 28px;
+}
+
+.statistik-status-list span:not(.status-dot) {
+  color: #6c7872;
+  font-size: 12px;
+}
+
+.statistik-status-list strong {
+  color: #34463e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* TITIK STATUS */
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  display: block;
+  border-radius: 50%;
+}
+
+.status-dot.diterima {
+  background: #5b8c72;
+}
+
+.status-dot.proses {
+  background: #c99a4a;
+}
+
+.status-dot.selesai {
+  background: #3f7660;
+}
+
+.status-dot.ditolak {
+  background: #a86666;
+}
+
+/* TOMBOL */
+
+.statistik-home-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #17352a;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+.statistik-home-button:hover {
+  background: #28533f;
+  transform: translateY(-1px);
+}
+
+.statistik-home-button span {
+  font-size: 16px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+  .statistik-home-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 500px) {
+  .statistik-home-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .statistik-home-header h3 {
+    font-size: 19px;
+  }
+
+  .statistik-service-top strong {
+    font-size: 28px;
+  }
+}
