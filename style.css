@@ -3145,122 +3145,188 @@ font-size: 11px;
 }
 
 /* =========================================================
-   STATISTIK LAYANAN - SIMPLE & MODERN
+   STATISTIK LAYANAN — CLEAN MODERN
 ========================================================= */
 
 .statistik-home-card {
+  position: relative;
+  overflow: hidden;
+
   height: 100%;
   padding: 24px;
+
   background: #ffffff;
-  border: 1px solid rgba(23, 53, 42, 0.08);
-  border-radius: 20px;
-  box-shadow: 0 8px 28px rgba(23, 53, 42, 0.06);
+
+  border: 1px solid #e2e9e5;
+  border-radius: 18px;
+
+  box-shadow: 0 8px 24px rgba(23, 53, 42, 0.055);
 }
+
+
+/* HEADER */
 
 .statistik-home-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+
+  margin-bottom: 22px;
 }
 
 .statistik-home-label {
   display: block;
-  margin-bottom: 5px;
-  color: #8a978f;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
+
+  margin-bottom: 4px;
+
+  color: #829087;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
 }
 
 .statistik-home-header h3 {
   margin: 0;
+
   color: #17352a;
+
   font-size: 21px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 750;
+
+  line-height: 1.25;
 }
 
 .statistik-home-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #f0f5f2;
-  color: #4f7765;
+
+  border-radius: 10px;
+
+  background: #edf5f1;
+  color: #176b4d;
+
   font-size: 15px;
 }
 
-/* BLOK LAYANAN */
+
+/* =========================================================
+   BLOK PERMOHONAN / KEBERATAN
+========================================================= */
 
 .statistik-service {
   padding: 17px 0;
+
   border-top: 1px solid #edf1ee;
 }
 
 .statistik-service:first-of-type {
-  border-top: 0;
   padding-top: 0;
+
+  border-top: none;
 }
+
+
+/* JUDUL + TOTAL */
 
 .statistik-service-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 13px;
+
+  margin-bottom: 12px;
 }
 
 .statistik-service-label {
   display: block;
-  margin-bottom: 3px;
-  color: #66736d;
+
+  color: #586a61;
+
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .7px;
+  font-weight: 800;
+
+  letter-spacing: .05em;
 }
 
 .statistik-service-top strong {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 48px;
+  height: 34px;
+
+  padding: 0 10px;
+
+  border-radius: 9px;
+
+  background: #f1f6f3;
+
   color: #17352a;
-  font-size: 30px;
+
+  font-size: 20px;
+  font-weight: 800;
+
   line-height: 1;
-  font-weight: 750;
 }
 
-/* STATUS */
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .statistik-status-list {
   display: grid;
-  gap: 8px;
+
+  grid-template-columns: 1fr;
+
+  gap: 6px;
+
+  margin-top: 0;
 }
 
 .statistik-status-list > div {
-  display: grid;
-  grid-template-columns: 8px 1fr auto;
+  display: flex;
   align-items: center;
-  column-gap: 9px;
-  min-height: 28px;
+
+  min-height: 29px;
+
+  padding: 6px 9px;
+
+  border-radius: 8px;
+
+  background: #f8faf9;
+
+  color: #68776f;
+
+  font-size: 11px;
 }
 
-.statistik-status-list span:not(.status-dot) {
-  color: #6c7872;
-  font-size: 12px;
-}
+.statistik-status-list > div strong {
+  margin-left: auto;
 
-.statistik-status-list strong {
   color: #34463e;
-  font-size: 12px;
-  font-weight: 700;
+
+  font-size: 11px;
+  font-weight: 800;
 }
+
 
 /* TITIK STATUS */
 
 .status-dot {
   width: 7px;
   height: 7px;
-  display: block;
+
+  flex: 0 0 7px;
+
+  margin-right: 8px;
+
   border-radius: 50%;
 }
 
@@ -3273,50 +3339,71 @@ font-size: 11px;
 }
 
 .status-dot.selesai {
-  background: #3f7660;
+  background: #3973a3;
 }
 
 .status-dot.ditolak {
   background: #a86666;
 }
 
-/* TOMBOL */
+
+/* =========================================================
+   TOMBOL
+========================================================= */
 
 .statistik-home-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 10px;
-  padding: 13px 15px;
-  border-radius: 12px;
+
+  margin-top: 18px;
+
+  padding: 12px 15px;
+
+  border-radius: 10px;
+
   background: #17352a;
   color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
+
+  font-size: 11px;
+  font-weight: 750;
+
   text-decoration: none;
-  transition: all .2s ease;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
 }
 
 .statistik-home-button:hover {
-  background: #28533f;
-  transform: translateY(-1px);
+  background: #176b4d;
+
+  transform: translateY(-2px);
 }
 
 .statistik-home-button span {
   font-size: 16px;
 }
 
-/* RESPONSIVE */
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media (max-width: 1000px) {
+
   .statistik-home-card {
-    padding: 22px;
+    height: auto;
   }
+
 }
 
+
 @media (max-width: 500px) {
+
   .statistik-home-card {
     padding: 20px;
+
     border-radius: 16px;
   }
 
@@ -3325,6 +3412,10 @@ font-size: 11px;
   }
 
   .statistik-service-top strong {
-    font-size: 28px;
+    min-width: 44px;
+    height: 32px;
+
+    font-size: 18px;
   }
+
 }
