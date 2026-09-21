@@ -218,22 +218,21 @@ async function loadBerita() {
 
     console.log("Data Berita:", data);
 
-    /*
-     * Saat ini sheet BERITA masih berisi
-     * baris kategori kosong.
-     *
-     * Kita hanya menampilkan data yang
-     * benar-benar mempunyai judul.
-     */
-
+    // Hanya berita yang berstatus Published
     const beritaValid = Array.isArray(data)
-      ? data.filter(item =>
-          item &&
-          item.judul &&
-          String(item.judul).trim() !== ""
-        )
+      ? data
+          .filter(item =>
+            item &&
+            item.judul &&
+            String(item.judul).trim() !== "" &&
+            String(item.status || "").toLowerCase() === "published"
+          )
+          .sort((a, b) => {
+            return new Date(b.tanggal || 0) - new Date(a.tanggal || 0);
+          })
       : [];
 
+    // Counter tetap menunjukkan jumlah berita Published
     if (counter) {
       counter.textContent = beritaValid.length;
     }
@@ -249,7 +248,10 @@ async function loadBerita() {
       return;
     }
 
-    container.innerHTML = beritaValid.map(item => `
+    // Homepage hanya menampilkan maksimal 3 berita terbaru
+    const beritaTerbaru = beritaValid.slice(0, 3);
+
+    container.innerHTML = beritaTerbaru.map(item => `
 
       <article class="news-card">
 
@@ -260,7 +262,16 @@ async function loadBerita() {
                 src="${escapeAttribute(item.gambar_url)}"
                 alt="${escapeAttribute(item.judul || "Berita")}"
                 class="news-image"
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
               >
+
+              <div
+                class="news-placeholder"
+                style="display:none;"
+              >
+                PPID Kemenag Banten
+              </div>
             `
             : `
               <div class="news-placeholder">
@@ -324,8 +335,6 @@ async function loadBerita() {
     }
   }
 }
-
-
 // =====================================================
 // DASHBOARD / STATISTIK
 // =====================================================
