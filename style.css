@@ -2499,3 +2499,241 @@ body {
 .berita-section .akses-cepat {
   padding-bottom: 4px;
 }
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+/* Tombol hamburger disembunyikan di desktop */
+.nav-mobile-toggle-wrap {
+  display: none;
+}
+
+.nav-mobile-toggle {
+  width: 42px;
+  height: 42px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 0;
+
+  background: #ffffff;
+  border: 1px solid rgba(23, 53, 42, 0.12);
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+
+  width: 20px;
+  height: 2px;
+
+  background: #17352a;
+
+  border-radius: 2px;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   MOBILE ≤ 900px
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header-inner {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+  }
+
+  /* Brand tetap mengambil ruang utama */
+  .header-brand {
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* Hamburger tampil */
+  .nav-mobile-toggle-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    order: 2;
+  }
+
+  .nav-mobile-toggle {
+    display: flex;
+  }
+
+  /* NAV MENU */
+  .main-nav {
+    position: absolute;
+
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    width: 100%;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(23, 53, 42, 0.10);
+    border-radius: 14px;
+
+    box-shadow:
+      0 14px 35px rgba(23, 53, 42, 0.12);
+  }
+
+  /* Menu aktif */
+  .main-nav.mobile-open {
+    display: flex;
+  }
+
+  /* Semua menu utama */
+  .main-nav > .nav-link,
+  .main-nav > .nav-dropdown > .nav-link {
+    width: 100%;
+
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 9px;
+
+    text-align: left;
+  }
+
+  .main-nav > .nav-link:hover,
+  .main-nav > .nav-dropdown > .nav-link:hover {
+    background: #f2f6f3;
+  }
+
+  /* Dropdown mobile */
+  .main-nav .nav-dropdown {
+    width: 100%;
+  }
+
+  .main-nav .dropdown-menu {
+    position: static;
+
+    display: none;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 4px 0 6px;
+
+    border: 0;
+    border-radius: 0;
+
+    box-shadow: none;
+
+    background: #f7f9f8;
+  }
+
+  /* Dropdown aktif */
+  .main-nav .nav-dropdown.mobile-open .dropdown-menu {
+    display: block;
+  }
+
+  .main-nav .dropdown-menu a {
+    display: flex;
+    align-items: center;
+
+    min-height: 40px;
+
+    padding: 8px 16px 8px 28px;
+
+    box-sizing: border-box;
+
+    color: #365248;
+
+    font-size: 12px;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+  }
+
+  .main-nav .dropdown-menu a:hover {
+    background: #edf3ef;
+  }
+
+  /* Search */
+  .main-nav .nav-search {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 6px;
+
+    border-top: 1px solid #e6ece8;
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #17352a;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE ≤ 500px
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .header-inner {
+    gap: 10px;
+  }
+
+  .nav-mobile-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main-nav {
+    top: calc(100% + 8px);
+
+    padding: 8px;
+
+    border-radius: 12px;
+  }
+
+}
