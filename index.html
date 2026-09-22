@@ -1090,6 +1090,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
+
+    const motionButton =
+    document.querySelector(
+      '[data-accessibility="motion"]'
+    );
+
+  if (motionButton) {
+
+    motionButton.addEventListener("click", function () {
+
+      document.body.classList.toggle(
+        "accessibility-reduced-motion"
+      );
+
+    });
+
+  }
   
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
