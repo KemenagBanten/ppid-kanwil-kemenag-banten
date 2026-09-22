@@ -2430,8 +2430,9 @@ body {
   font-size: 12px !important;
   font-weight: 700 !important;
 
-  line-height: 1.35 !important;
+  line-height: 1.4 !important;
 }
+
 
 .akses-cepat-text span {
   display: block !important;
@@ -2497,8 +2498,10 @@ body {
   }
 
   .akses-cepat-text strong {
-    font-size: 10px !important;
-  }
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
 
   .akses-cepat-text span {
     font-size: 9px !important;
