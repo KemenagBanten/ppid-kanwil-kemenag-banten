@@ -3351,3 +3351,92 @@ body {
     width: min(270px, calc(100vw - 28px));
   }
 }
+
+/* =========================================================
+   AKSESIBILITAS — KONTRAS TINGGI
+========================================================= */
+
+body.accessibility-high-contrast {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+body.accessibility-high-contrast .section,
+body.accessibility-high-contrast .layanan-utama-section,
+body.accessibility-high-contrast .maklumat-section {
+  background: #ffffff !important;
+}
+
+body.accessibility-high-contrast
+.section-heading h2,
+body.accessibility-high-contrast
+.layanan-utama-heading h2,
+body.accessibility-high-contrast
+.layanan-content h3,
+body.accessibility-high-contrast
+.news-content h3,
+body.accessibility-high-contrast
+.maklumat-content p {
+  color: #111111 !important;
+}
+
+body.accessibility-high-contrast
+.section-label,
+body.accessibility-high-contrast
+.layanan-label,
+body.accessibility-high-contrast
+.layanan-heading-kicker {
+  color: #07552f !important;
+}
+
+body.accessibility-high-contrast
+.layanan-utama-card,
+body.accessibility-high-contrast
+.news-card,
+body.accessibility-high-contrast
+.maklumat-card,
+body.accessibility-high-contrast
+.statistik-home-card {
+  border-color: #333333 !important;
+  box-shadow: none !important;
+}
+
+body.accessibility-high-contrast
+.layanan-content p,
+body.accessibility-high-contrast
+.news-content p,
+body.accessibility-high-contrast
+.news-date,
+body.accessibility-high-contrast
+.section-intro {
+  color: #333333 !important;
+}
+
+body.accessibility-high-contrast
+.layanan-icon {
+  background: #ffffff !important;
+  border: 2px solid #07552f !important;
+  color: #07552f !important;
+}
+
+body.accessibility-high-contrast
+.layanan-card-footer {
+  border-top-color: #333333 !important;
+}
+
+body.accessibility-high-contrast
+.akses-cepat {
+  background: #ffffff !important;
+  border-color: #333333 !important;
+}
+
+body.accessibility-high-contrast
+.akses-cepat-card {
+  border-color: #333333 !important;
+  box-shadow: none !important;
+}
+
+body.accessibility-high-contrast
+.akses-cepat-text strong {
+  color: #111111 !important;
+}
