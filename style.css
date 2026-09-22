@@ -2737,3 +2737,128 @@ body {
   }
 
 }
+ /* =========================================================
+    MAKLUMAT PELAYANAN
+ ========================================================= */
+
+.maklumat-section {
+  padding: 34px 0 20px;
+  background: #f7faf8;
+}
+
+.maklumat-card {
+  position: relative;
+
+  padding: 28px 34px 26px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 16px;
+
+  box-shadow:
+    0 6px 22px rgba(23, 53, 42, 0.055);
+
+  overflow: hidden;
+}
+
+.maklumat-label {
+  margin-bottom: 14px;
+
+  color: #176b4d;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.maklumat-content {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+.maklumat-mark {
+  flex-shrink: 0;
+
+  margin-top: -5px;
+
+  color: #cdb082;
+
+  font-family: Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.maklumat-content p {
+  max-width: 1000px;
+
+  margin: 0;
+
+  color: #40534a;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.8;
+}
+
+.maklumat-line {
+  width: 46px;
+  height: 3px;
+
+  margin-top: 20px;
+
+  background: #cdb082;
+
+  border-radius: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+
+  .maklumat-section {
+    padding: 26px 0 16px;
+  }
+
+  .maklumat-card {
+    padding: 22px 20px 20px;
+    border-radius: 13px;
+  }
+
+  .maklumat-label {
+    margin-bottom: 12px;
+
+    font-size: 10px;
+    letter-spacing: 1.2px;
+  }
+
+  .maklumat-content {
+    gap: 9px;
+  }
+
+  .maklumat-mark {
+    font-size: 34px;
+  }
+
+  .maklumat-content p {
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .maklumat-line {
+    margin-top: 16px;
+  }
+
+}
