@@ -2434,20 +2434,6 @@ body {
 }
 
 
-.akses-cepat-text span {
-  display: block !important;
-
-  margin: 3px 0 0 !important;
-
-  color: #7b8781 !important;
-
-  font-size: 10px !important;
-  font-weight: 500 !important;
-
-  line-height: 1.35 !important;
-}
-
-
 /* =========================================================
    TABLET
 ========================================================= */
@@ -2507,4 +2493,16 @@ body {
     font-size: 9px !important;
   }
 
+}
+/* =========================================================
+   SPACING — BERITA → AKSES CEPAT → FOOTER
+========================================================= */
+
+.akses-cepat {
+  margin-top: 32px !important;
+  margin-bottom: 0px !important;
+}
+
+.berita-section .akses-cepat {
+  padding-bottom: 4px;
 }
