@@ -2328,27 +2328,6 @@ body {
 }
 
 
-/* garis aksen halus */
-
-.akses-cepat-card::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 50%;
-
-  width: 0;
-  height: 3px;
-
-  background: #17352a;
-
-  transform: translateX(-50%);
-
-  transition: width 0.25s ease;
-}
-
-
 /* hover */
 
 .akses-cepat-card:hover {
@@ -2359,11 +2338,6 @@ body {
   box-shadow:
     0 10px 26px rgba(23, 53, 42, 0.10);
 }
-
-.akses-cepat-card:hover::before {
-  width: 48px;
-}
-
 
 /* =========================================================
    LOGO
