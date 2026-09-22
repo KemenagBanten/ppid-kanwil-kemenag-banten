@@ -3299,11 +3299,8 @@ body {
 /* TOP */
 
 .layanan-card-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  margin-bottom: 26px;
+  justify-content: flex-end;
+  margin-bottom: 18px;
 }
 
 .layanan-number {
@@ -3616,7 +3613,4 @@ body {
   text-transform: uppercase;
 }
 
-.layanan-card-top {
-  justify-content: flex-end;
-  margin-bottom: 18px;
-}
+
