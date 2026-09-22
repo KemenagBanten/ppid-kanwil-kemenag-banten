@@ -1187,6 +1187,36 @@ if (searchInput) {
 
   });
 }
+
+function searchInformation() {
+
+  const input = document.getElementById("searchInput");
+
+  if (!input) return;
+
+  const keyword = input.value.toLowerCase().trim();
+
+  if (!keyword) {
+    return;
+  }
+
+  const searchableElements = document.querySelectorAll(
+    "main h2, main h3, main p, main a"
+  );
+
+  searchableElements.forEach(function (element) {
+
+    const text = element.textContent.toLowerCase();
+
+    if (text.includes(keyword)) {
+      element.style.opacity = "1";
+    } else {
+      element.style.opacity = "0.25";
+    }
+
+  });
+
+}
       
 </script>
     
