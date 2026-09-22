@@ -2804,7 +2804,7 @@ body {
 
   color: #40534a;
 
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 
   line-height: 1.8;
@@ -2853,10 +2853,10 @@ body {
   }
 
   .maklumat-content p {
-    font-size: 12px;
-    line-height: 1.7;
-  }
-
+  font-size: 13px;
+  line-height: 1.75;
+}
+   
   .maklumat-line {
     margin-top: 16px;
   }
