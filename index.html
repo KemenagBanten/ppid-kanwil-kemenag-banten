@@ -1074,6 +1074,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
+    const contrastButton =
+    document.querySelector(
+      '[data-accessibility="contrast"]'
+    );
+
+  if (contrastButton) {
+
+    contrastButton.addEventListener("click", function () {
+
+      document.body.classList.toggle(
+        "accessibility-high-contrast"
+      );
+
+    });
+
+  }
   
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
