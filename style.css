@@ -3125,3 +3125,229 @@ body {
   }
 
 }
+/* =========================================================
+   AKSESIBILITAS
+========================================================= */
+
+.aksesibilitas {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+}
+
+/* Tombol utama */
+
+.aksesibilitas-toggle {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #176b4d;
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 24px rgba(23, 53, 42, 0.22);
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.aksesibilitas-toggle:hover {
+  transform: translateY(-2px);
+  background: #0f5139;
+
+  box-shadow:
+    0 12px 28px rgba(23, 53, 42, 0.28);
+}
+
+.aksesibilitas-icon {
+  font-size: 23px;
+  line-height: 1;
+}
+
+/* Panel */
+
+.aksesibilitas-panel {
+  position: absolute;
+  right: 0;
+  bottom: 64px;
+
+  width: 270px;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(23, 53, 42, 0.10);
+  border-radius: 16px;
+
+  box-shadow:
+    0 16px 40px rgba(23, 53, 42, 0.16);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility .2s ease;
+}
+
+.aksesibilitas-panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Header panel */
+
+.aksesibilitas-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #edf1ee;
+}
+
+.aksesibilitas-kicker {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #b18d52;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+.aksesibilitas-header strong {
+  color: #17352a;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.aksesibilitas-close {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #f1f5f3;
+  color: #53655d;
+
+  font-size: 19px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+/* Pilihan */
+
+.aksesibilitas-options {
+  display: grid;
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+.aksesibilitas-options button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 11px;
+
+  border: 1px solid #e4ebe7;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #30483d;
+
+  font-size: 12px;
+  font-weight: 650;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.aksesibilitas-options button:hover {
+  background: #f1f7f4;
+  border-color: #cbdcd3;
+  transform: translateX(2px);
+}
+
+.aksesibilitas-options button span {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background: #edf5f0;
+
+  color: #176b4d;
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+  .aksesibilitas {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .aksesibilitas-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .aksesibilitas-panel {
+    right: 0;
+    bottom: 60px;
+
+    width: min(270px, calc(100vw - 28px));
+  }
+}
