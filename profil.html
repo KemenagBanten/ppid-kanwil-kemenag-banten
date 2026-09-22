@@ -1,0 +1,3265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Profil PPID | PPID Kanwil Kemenag Banten</title>
+
+  <style>
+
+    /* =====================================================
+       RESET & BASE
+    ===================================================== */
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #f7faf8;
+      color: #26352e;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: #ffffff;
+      color: #17352a;
+
+      border-bottom: 1px solid #e5ebe7;
+
+      box-shadow:
+        0 2px 12px rgba(25, 60, 45, 0.06);
+    }
+
+    .header-inner {
+      width: min(1180px, 92%);
+      min-height: 76px;
+
+      margin: 0 auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      min-width: 0;
+
+      color: #17352a;
+      text-decoration: none;
+    }
+
+    .header-logo {
+      width: 44px;
+      height: 44px;
+
+      flex: 0 0 44px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-logo img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+      display: block;
+    }
+
+    .header-text {
+      min-width: 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      text-align: left;
+
+      line-height: 1.2;
+    }
+
+    .header-kicker {
+      margin-bottom: 4px;
+
+      color: #718078;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      letter-spacing: 0.8px;
+
+      white-space: nowrap;
+    }
+
+    .header-text h1 {
+      margin: 0;
+
+      color: #17352a;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      letter-spacing: 0.1px;
+
+      line-height: 1.3;
+    }
+
+
+    /* =====================================================
+       DESKTOP NAV
+    ===================================================== */
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+
+      gap: 3px;
+
+      flex-shrink: 0;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 5px;
+
+      padding: 8px 10px;
+
+      border-radius: 8px;
+
+      color: #40544b;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      white-space: nowrap;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-item.active > .nav-link {
+      color: #0f5132;
+      background: #edf6f1;
+    }
+
+    .nav-chevron {
+      font-size: 9px;
+      opacity: 0.65;
+    }
+
+
+    /* =====================================================
+       DROPDOWN
+    ===================================================== */
+
+    .nav-dropdown {
+      position: absolute;
+
+      top: calc(100% + 8px);
+      left: 0;
+
+      min-width: 235px;
+
+      padding: 8px;
+
+      background: #ffffff;
+
+      border: 1px solid #e3ebe6;
+      border-radius: 12px;
+
+      box-shadow:
+        0 15px 35px rgba(23, 53, 42, 0.12);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform: translateY(5px);
+
+      transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+    }
+
+    .nav-item:hover .nav-dropdown {
+      opacity: 1;
+      visibility: visible;
+
+      transform: translateY(0);
+    }
+
+    .nav-dropdown a {
+      display: flex;
+      align-items: center;
+
+      padding: 9px 11px;
+
+      border-radius: 8px;
+
+      color: #40544b;
+
+      text-decoration: none;
+
+      font-size: 12px;
+      font-weight: 500;
+
+      transition:
+        background 0.18s ease,
+        color 0.18s ease;
+    }
+
+    .nav-dropdown a:hover {
+      color: #0f5132;
+      background: #edf6f1;
+    }
+
+    .nav-dropdown a.external::after {
+      content: "↗";
+
+      margin-left: auto;
+
+      color: #8a9a92;
+
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       SEARCH NAV
+    ===================================================== */
+
+    .nav-search {
+      width: 34px;
+      height: 34px;
+
+      margin-left: 4px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+      border-radius: 50%;
+
+      background: transparent;
+
+      color: #40544b;
+
+      cursor: pointer;
+
+      font-size: 19px;
+
+      transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .nav-search:hover {
+      color: #0f5132;
+      background: #edf6f1;
+    }
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    .nav-mobile-toggle-wrap {
+      display: none;
+    }
+
+    .nav-mobile-toggle {
+      width: 40px;
+      height: 40px;
+
+      border: 1px solid #dfe8e3;
+      border-radius: 10px;
+
+      background: #ffffff;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 4px;
+
+      cursor: pointer;
+    }
+
+    .nav-mobile-toggle span {
+      width: 18px;
+      height: 2px;
+
+      border-radius: 2px;
+
+      background: #17352a;
+    }
+
+
+    /* =====================================================
+       PAGE HERO
+    ===================================================== */
+
+    .page-hero {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 52px 0 55px;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          135deg,
+          #123d2d 0%,
+          #176044 55%,
+          #0f5132 100%
+        );
+    }
+
+    .page-hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 320px;
+      height: 320px;
+
+      right: -120px;
+      top: -160px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(205, 176, 130, 0.10);
+    }
+
+    .page-hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 240px;
+      height: 240px;
+
+      left: -100px;
+      bottom: -160px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,0.04);
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-hero-kicker {
+      display: inline-block;
+
+      margin-bottom: 9px;
+
+      color: #e5d1aa;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: 1.2px;
+    }
+
+    .page-hero h2 {
+      margin: 0 0 10px;
+
+      font-size:
+        clamp(28px, 4vw, 40px);
+
+      line-height: 1.15;
+
+      font-weight: 750;
+    }
+
+    .page-hero p {
+      max-width: 720px;
+
+      margin: 0;
+
+      color:
+        rgba(255,255,255,0.82);
+
+      font-size: 13px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       CONTENT
+    ===================================================== */
+
+    .page-content {
+      padding: 42px 0 64px;
+    }
+
+
+    /* =====================================================
+       SECTION HEADING
+    ===================================================== */
+
+    .section-heading {
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      display: block;
+
+      margin-bottom: 5px;
+
+      color: #4d806b;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: 1.15px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+
+      color: #17352a;
+
+      font-size: 24px;
+      font-weight: 750;
+
+      line-height: 1.25;
+    }
+
+    .section-line {
+      width: 48px;
+      height: 3px;
+
+      margin-top: 11px;
+
+      border-radius: 5px;
+
+      background: #cdb082;
+    }
+
+
+    /* =====================================================
+       INTRO CARD
+    ===================================================== */
+
+    .intro-card {
+      padding: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f1f7f4 0%,
+          #ffffff 100%
+        );
+
+      border: 1px solid #dfe9e4;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(23,53,42,0.045);
+
+      margin-bottom: 30px;
+    }
+
+    .intro-card p {
+      margin: 0 0 16px;
+
+      color: #46574f;
+
+      font-size: 13px;
+
+      line-height: 1.85;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro-highlight {
+      margin-top: 22px;
+
+      padding: 16px 18px;
+
+      background: #ffffff;
+
+      border-left: 4px solid #cdb082;
+
+      border-radius: 10px;
+
+      color: #40544b;
+
+      font-size: 12px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       VISION MISSION
+    ===================================================== */
+
+    .vision-section {
+      margin-bottom: 34px;
+    }
+
+    .vision-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 0.9fr)
+        minmax(0, 1.6fr)
+        minmax(0, 0.8fr);
+
+      gap: 18px;
+    }
+
+    .vision-card {
+      position: relative;
+
+      min-height: 190px;
+
+      padding: 24px;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(23,53,42,0.045);
+
+      overflow: hidden;
+    }
+
+    .vision-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 3px;
+
+      background: #cdb082;
+    }
+
+    .vision-label {
+      margin-bottom: 10px;
+
+      color: #4d806b;
+
+      font-size: 9px;
+      font-weight: 750;
+
+      letter-spacing: 1.1px;
+    }
+
+    .vision-card h3 {
+      margin: 0;
+
+      color: #17352a;
+
+      font-size: 19px;
+      font-weight: 750;
+
+      line-height: 1.4;
+    }
+
+    .vision-card p {
+      margin: 0;
+
+      color: #405149;
+
+      font-size: 12px;
+
+      line-height: 1.75;
+    }
+
+    .mission-list {
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .mission-list li {
+      position: relative;
+
+      padding-left: 24px;
+      margin-bottom: 13px;
+
+      color: #405149;
+
+      font-size: 12px;
+
+      line-height: 1.65;
+    }
+
+    .mission-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .mission-list li::before {
+      content: "✓";
+
+      position: absolute;
+
+      left: 0;
+      top: 1px;
+
+      width: 17px;
+      height: 17px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #e8f4ed;
+
+      color: #176044;
+
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .motto-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+    }
+
+    .motto-mark {
+      margin-bottom: 8px;
+
+      color: #cdb082;
+
+      font-size: 30px;
+
+      line-height: 1;
+    }
+
+    .motto-card h3 {
+      font-size: 17px;
+    }
+
+
+    /* =====================================================
+       ROLE / FUNCTION
+    ===================================================== */
+
+    .role-section {
+      margin-bottom: 34px;
+    }
+
+    .role-intro {
+      margin: 0 0 20px;
+
+      color: #5c6b64;
+
+      font-size: 12px;
+
+      line-height: 1.75;
+    }
+
+    .role-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 16px;
+    }
+
+    .role-card {
+      padding: 21px;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(23,53,42,0.04);
+    }
+
+    .role-number {
+      width: 29px;
+      height: 29px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 12px;
+
+      border-radius: 9px;
+
+      background: #edf6f1;
+
+      color: #176044;
+
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .role-card h3 {
+      margin: 0 0 7px;
+
+      color: #17352a;
+
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .role-card p {
+      margin: 0;
+
+      color: #68776f;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       ORGANIZATION
+    ===================================================== */
+
+    .organization-section {
+      margin-bottom: 34px;
+    }
+
+    .organization-intro {
+      margin: 0 0 20px;
+
+      color: #5c6b64;
+
+      font-size: 12px;
+
+      line-height: 1.75;
+    }
+
+    .organization-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 15px;
+    }
+
+    .organization-card {
+      padding: 20px;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(23,53,42,0.04);
+    }
+
+    .organization-card.primary {
+      grid-column: span 3;
+
+      background:
+        linear-gradient(
+          135deg,
+          #edf6f1 0%,
+          #ffffff 100%
+        );
+
+      border-color: #d6e5dc;
+    }
+
+    .organization-label {
+      margin-bottom: 7px;
+
+      color: #4d806b;
+
+      font-size: 9px;
+      font-weight: 750;
+
+      letter-spacing: .8px;
+    }
+
+    .organization-card h3 {
+      margin: 0 0 8px;
+
+      color: #17352a;
+
+      font-size: 14px;
+      font-weight: 750;
+
+      line-height: 1.4;
+    }
+
+    .organization-card p {
+      margin: 0;
+
+      color: #65746d;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       LEGAL BASIS
+    ===================================================== */
+
+    .legal-section {
+      margin-bottom: 34px;
+    }
+
+    .legal-card {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 16px;
+
+      padding: 22px;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(23,53,42,0.04);
+    }
+
+    .legal-icon {
+      flex: 0 0 42px;
+
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #edf6f1;
+
+      color: #176044;
+
+      font-size: 18px;
+    }
+
+    .legal-content h3 {
+      margin: 0 0 6px;
+
+      color: #17352a;
+
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .legal-content p {
+      margin: 0 0 8px;
+
+      color: #66756d;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+    }
+
+    .legal-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .legal-link {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      margin-top: 8px;
+
+      padding: 7px 11px;
+
+      border: 1px solid #d5e3dc;
+
+      border-radius: 8px;
+
+      background: #f1f7f4;
+
+      color: #28624d;
+
+      text-decoration: none;
+
+      font-size: 10px;
+      font-weight: 750;
+    }
+
+    .legal-link:hover {
+      background: #e5f0eb;
+    }
+
+
+    /* =====================================================
+       COMMITMENT
+    ===================================================== */
+
+    .commitment-section {
+      margin-bottom: 34px;
+    }
+
+    .commitment-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #123d2d 0%,
+          #176044 100%
+        );
+
+      border-radius: 18px;
+
+      color: #ffffff;
+    }
+
+    .commitment-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      right: -70px;
+      top: -80px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(205,176,130,.10);
+    }
+
+    .commitment-kicker {
+      position: relative;
+      z-index: 2;
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #e5d1aa;
+
+      font-size: 9px;
+      font-weight: 750;
+
+      letter-spacing: 1px;
+    }
+
+    .commitment-card h2 {
+      position: relative;
+      z-index: 2;
+
+      margin: 0 0 12px;
+
+      font-size: 21px;
+
+      line-height: 1.3;
+    }
+
+    .commitment-card p {
+      position: relative;
+      z-index: 2;
+
+      max-width: 850px;
+
+      margin: 0;
+
+      color: rgba(255,255,255,.82);
+
+      font-size: 12px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       CONTACT
+    ===================================================== */
+
+    .contact-section {
+      margin-bottom: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 15px;
+    }
+
+    .contact-card {
+      padding: 21px;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 5px 18px
+        rgba(23,53,42,0.04);
+    }
+
+    .contact-icon {
+      width: 34px;
+      height: 34px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 11px;
+
+      border-radius: 9px;
+
+      background: #edf6f1;
+
+      color: #176044;
+
+      font-size: 15px;
+    }
+
+    .contact-label {
+      margin-bottom: 5px;
+
+      color: #7a8982;
+
+      font-size: 9px;
+      font-weight: 750;
+
+      letter-spacing: .7px;
+    }
+
+    .contact-card strong {
+      display: block;
+
+      color: #17352a;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      line-height: 1.6;
+    }
+
+    .contact-card a {
+      color: #28624d;
+
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer {
+      margin-top: 0;
+
+      background: #12372b;
+
+      color: #dce8e1;
+    }
+
+    .footer-main {
+      padding: 48px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1.15fr;
+
+      gap: 38px;
+    }
+
+    .footer-title {
+      margin: 0 0 12px;
+
+      color: #ffffff;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-description {
+      margin: 0;
+
+      color: #a9bdb4;
+
+      font-size: 11px;
+
+      line-height: 1.75;
+    }
+
+    .footer-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 7px;
+    }
+
+    .footer-list a {
+      color: #a9bdb4;
+
+      text-decoration: none;
+
+      font-size: 11px;
+
+      transition: color 0.2s ease;
+    }
+
+    .footer-list a:hover {
+      color: #ffffff;
+    }
+
+    .footer-contact {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 8px;
+
+      color: #a9bdb4;
+
+      font-size: 11px;
+
+      line-height: 1.6;
+    }
+
+    .footer-bottom {
+      border-top:
+        1px solid rgba(255,255,255,.10);
+
+      background:
+        rgba(0,0,0,.10);
+    }
+
+    .footer-bottom-inner {
+      min-height: 58px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      color: #91a99d;
+
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       ACCESSIBILITY
+    ===================================================== */
+
+    .aksesibilitas {
+      position: fixed;
+
+      right: 20px;
+      bottom: 20px;
+
+      z-index: 2000;
+    }
+
+    .aksesibilitas-toggle {
+      width: 46px;
+      height: 46px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: #17352a;
+
+      color: #ffffff;
+
+      box-shadow:
+        0 8px 22px rgba(23,53,42,0.22);
+
+      cursor: pointer;
+
+      font-size: 20px;
+    }
+
+    .aksesibilitas-panel {
+      position: absolute;
+
+      right: 0;
+      bottom: 58px;
+
+      width: 250px;
+
+      padding: 15px;
+
+      background: #ffffff;
+
+      border:
+        1px solid #dfe8e3;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 14px 40px
+        rgba(23,53,42,0.16);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transform:
+        translateY(8px);
+
+      transition:
+        opacity .2s ease,
+        transform .2s ease,
+        visibility .2s ease;
+    }
+
+    .aksesibilitas-panel.open {
+      opacity: 1;
+
+      visibility: visible;
+
+      transform:
+        translateY(0);
+    }
+
+    .aksesibilitas-header {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 12px;
+
+      padding-bottom: 10px;
+
+      border-bottom:
+        1px solid #edf1ee;
+    }
+
+    .aksesibilitas-header strong {
+      display: block;
+
+      color: #17352a;
+
+      font-size: 12px;
+    }
+
+    .aksesibilitas-kicker {
+      display: block;
+
+      margin-bottom: 2px;
+
+      color: #4d806b;
+
+      font-size: 8px;
+      font-weight: 700;
+
+      letter-spacing: .8px;
+    }
+
+    .aksesibilitas-close {
+      width: 28px;
+      height: 28px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: #f1f6f3;
+
+      color: #40544b;
+
+      cursor: pointer;
+
+      font-size: 17px;
+    }
+
+    .aksesibilitas-options {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 5px;
+    }
+
+    .aksesibilitas-options button {
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      width: 100%;
+
+      padding: 9px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      background: transparent;
+
+      color: #40544b;
+
+      text-align: left;
+
+      font-size: 11px;
+
+      cursor: pointer;
+    }
+
+    .aksesibilitas-options button:hover {
+      background: #edf6f1;
+
+      color: #0f5132;
+    }
+
+    .aksesibilitas-options button span {
+      width: 22px;
+      height: 22px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 6px;
+
+      background: #f1f6f3;
+
+      color: #28624d;
+
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       ACCESSIBILITY STATES
+    ===================================================== */
+
+    body.accessibility-large-text {
+      font-size: 110%;
+    }
+
+    body.accessibility-small-text {
+      font-size: 92%;
+    }
+
+    body.accessibility-high-contrast {
+      filter: contrast(1.12);
+    }
+
+    body.accessibility-reduced-motion *,
+    body.accessibility-reduced-motion *::before,
+    body.accessibility-reduced-motion *::after {
+      animation: none !important;
+
+      transition: none !important;
+
+      scroll-behavior: auto !important;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 1100px) {
+
+      .main-nav {
+        display: none;
+      }
+
+      .nav-mobile-toggle-wrap {
+        display: block;
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .main-nav.mobile-open {
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+        right: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 2px;
+
+        padding: 10px;
+
+        background: #ffffff;
+
+        border-top:
+          1px solid #e5ebe7;
+
+        border-bottom:
+          1px solid #e5ebe7;
+
+        box-shadow:
+          0 12px 25px
+          rgba(23,53,42,.10);
+      }
+
+      .main-nav.mobile-open .nav-item {
+        width: 100%;
+      }
+
+      .main-nav.mobile-open .nav-link {
+        width: 100%;
+
+        justify-content: space-between;
+
+        padding: 11px 12px;
+      }
+
+      .main-nav.mobile-open .nav-dropdown {
+        position: static;
+
+        display: none;
+
+        width: 100%;
+
+        min-width: 0;
+
+        margin: 0;
+
+        padding: 4px 0 4px 12px;
+
+        border: none;
+
+        box-shadow: none;
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: none;
+      }
+
+      .main-nav.mobile-open
+      .nav-item.mobile-dropdown-open
+      .nav-dropdown {
+        display: block;
+      }
+
+      .main-nav.mobile-open .nav-dropdown a {
+        padding: 9px 12px;
+      }
+
+      .main-nav.mobile-open .nav-search {
+        margin: 4px 0;
+      }
+
+    }
+
+
+    @media (max-width: 900px) {
+
+      .vision-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .vision-card.motto-card {
+        grid-column: span 2;
+        min-height: 150px;
+      }
+
+      .organization-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .organization-card.primary {
+        grid-column: span 2;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 800px) {
+
+      .header-inner {
+        width: min(1180px, 94%);
+
+        min-height: 66px;
+      }
+
+      .header-kicker {
+        display: none;
+      }
+
+      .header-text h1 {
+        font-size: 12px;
+      }
+
+      .header-logo {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+      }
+
+      .page-hero {
+        padding: 40px 0 44px;
+      }
+
+      .page-hero h2 {
+        font-size: 30px;
+      }
+
+      .page-content {
+        padding: 32px 0 50px;
+      }
+
+      .intro-card {
+        padding: 21px;
+      }
+
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .legal-card {
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom-inner {
+        flex-direction: column;
+
+        justify-content: center;
+
+        padding: 15px 0;
+
+        text-align: center;
+      }
+
+    }
+
+
+    @media (max-width: 560px) {
+
+      .container {
+        width: 92%;
+      }
+
+      .header-brand {
+        gap: 9px;
+      }
+
+      .header-text h1 {
+        max-width: 250px;
+
+        font-size: 11px;
+      }
+
+      .page-hero h2 {
+        font-size: 27px;
+      }
+
+      .page-hero p {
+        font-size: 12px;
+      }
+
+      .section-heading h2 {
+        font-size: 21px;
+      }
+
+      .vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vision-card.motto-card {
+        grid-column: span 1;
+      }
+
+      .organization-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .organization-card.primary {
+        grid-column: span 1;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .commitment-card {
+        padding: 23px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .aksesibilitas {
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .aksesibilitas-panel {
+        right: -2px;
+
+        width:
+          min(250px, calc(100vw - 28px));
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <a href="index.html" class="header-brand">
+
+        <div class="header-logo">
+
+          <img
+            src="assets/logo-kemenag.png"
+            alt="Logo Kementerian Agama Republik Indonesia"
+          >
+
+        </div>
+
+        <div class="header-text">
+
+          <span class="header-kicker">
+            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI
+          </span>
+
+          <h1>
+            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+          </h1>
+
+        </div>
+
+      </a>
+
+
+      <!-- MOBILE TOGGLE -->
+
+      <div class="nav-mobile-toggle-wrap">
+
+        <button
+          type="button"
+          class="nav-mobile-toggle"
+          id="mobileMenuToggle"
+          aria-label="Buka menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+
+      <!-- NAVIGATION -->
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+        <!-- BERANDA -->
+
+        <div class="nav-item">
+
+          <a
+            href="index.html"
+            class="nav-link"
+          >
+            Beranda
+          </a>
+
+        </div>
+
+
+        <!-- PROFIL -->
+
+        <div class="nav-item active">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+            Profil
+            <span class="nav-chevron">▾</span>
+          </a>
+
+          <div class="nav-dropdown">
+
+            <a href="profil.html">
+              Profil PPID
+            </a>
+
+            <a href="ppid-unit.html">
+              PPID Unit
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- INFORMASI PUBLIK -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+            Informasi Publik
+            <span class="nav-chevron">▾</span>
+          </a>
+
+          <div class="nav-dropdown">
+
+            <a href="informasi-publik.html">
+              Informasi Berkala
+            </a>
+
+            <a href="informasi-publik.html">
+              Informasi Serta-Merta
+            </a>
+
+            <a href="informasi-publik.html">
+              Informasi Setiap Saat
+            </a>
+
+            <a href="dip.html">
+              DIP
+            </a>
+
+            <a href="dik.html">
+              DIK
+            </a>
+
+            <a href="dokumen.html">
+              Dokumen
+            </a>
+
+            <a href="pengadaan.html">
+              Pengadaan Barang/Jasa
+            </a>
+
+            <a href="laporan.html">
+              Laporan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- LAYANAN -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+            Layanan
+            <span class="nav-chevron">▾</span>
+          </a>
+
+          <div class="nav-dropdown">
+
+            <a href="permohonan.html">
+              Permohonan Informasi
+            </a>
+
+            <a href="keberatan.html">
+              Ajukan Keberatan
+            </a>
+
+            <a
+              href="https://www.lapor.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Pengaduan Masyarakat
+            </a>
+
+            <a href="statistik.html">
+              Statistik Layanan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- REGULASI -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+            Regulasi
+            <span class="nav-chevron">▾</span>
+          </a>
+
+          <div class="nav-dropdown">
+
+            <a href="sop.html">
+              SOP
+            </a>
+
+            <a href="regulasi.html">
+              Regulasi Kanwil
+            </a>
+
+            <a
+              href="https://jdih.kemenag.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Regulasi Pusat — JDIH Kemenag
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- BERITA -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+            Berita & Pengumuman
+            <span class="nav-chevron">▾</span>
+          </a>
+
+          <div class="nav-dropdown">
+
+            <a
+              href="https://banten.kemenag.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Berita Kemenag Banten
+            </a>
+
+            <a href="pengumuman.html">
+              Pengumuman
+            </a>
+
+            <a href="jadwal-pelayanan.html">
+              Jadwal Pelayanan
+            </a>
+
+            <a href="agenda.html">
+              Agenda/Kegiatan PPID
+            </a>
+
+            <a href="hari-penting.html">
+              Hari/Tanggal Penting
+            </a>
+
+            <a href="kalender.html">
+              Kalender Kegiatan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <button
+          type="button"
+          class="nav-search"
+          aria-label="Cari informasi"
+          onclick="
+            window.location.href='index.html#searchInput';
+          "
+        >
+          ⌕
+        </button>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
+
+  <section class="page-hero">
+
+    <div class="container">
+
+      <div class="page-hero-inner">
+
+        <span class="page-hero-kicker">
+          PROFIL PPID
+        </span>
+
+        <h2>
+          Profil PPID
+        </h2>
+
+        <p>
+          Pejabat Pengelola Informasi dan Dokumentasi
+          Kantor Wilayah Kementerian Agama Provinsi Banten.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       CONTENT
+  ===================================================== -->
+
+  <main class="page-content">
+
+    <div class="container">
+
+
+      <!-- =================================================
+           TENTANG PPID
+      ================================================= -->
+
+      <section>
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            TENTANG PPID
+          </span>
+
+          <h2>
+            Pengelolaan Informasi Publik
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <div class="intro-card">
+
+          <p>
+            Sebagai bagian dari komitmen instansi pemerintah
+            dalam mewujudkan tata kelola yang transparan,
+            efektif, efisien, akuntabel, serta bebas dari korupsi,
+            kami hadir untuk memastikan hak masyarakat atas
+            keterbukaan informasi publik terpenuhi dengan baik
+            sesuai dengan amanat Undang-Undang Nomor 14 Tahun 2008
+            dan Keputusan Menteri Agama Republik Indonesia
+            Nomor 1518 Tahun 2025 tentang Pengelola Informasi
+            dan Dokumentasi pada Kementerian Agama.
+          </p>
+
+          <p>
+            PPID Kanwil Kemenag Provinsi Banten bertugas sebagai
+            pusat layanan informasi yang cepat, tepat, dan akurat.
+            Kami bertanggung jawab penuh dalam proses penyediaan,
+            penyimpanan, pendokumentasian, pelayanan, hingga
+            pengamanan dokumen serta informasi publik terkait
+            penyelenggaraan layanan keagamaan dan pendidikan
+            keagamaan di Provinsi Banten.
+          </p>
+
+          <div class="intro-highlight">
+            Pelayanan informasi publik di lingkungan Kanwil
+            Kemenag Provinsi Banten dikoordinasikan secara
+            profesional melalui struktur kelembagaan yang solid
+            dan terintegrasi dengan PPID Utama Kementerian Agama
+            Republik Indonesia.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           VISI MISI MOTO
+      ================================================= -->
+
+      <section class="vision-section">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            ARAH PELAYANAN
+          </span>
+
+          <h2>
+            Visi, Misi & Moto
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <div class="vision-grid">
+
+
+          <!-- VISI -->
+
+          <article class="vision-card">
+
+            <div class="vision-label">
+              VISI
+            </div>
+
+            <h3>
+              TERWUJUDNYA PELAYANAN INFORMASI
+              YANG AKUNTABEL
+            </h3>
+
+          </article>
+
+
+          <!-- MISI -->
+
+          <article class="vision-card">
+
+            <div class="vision-label">
+              MISI
+            </div>
+
+            <ul class="mission-list">
+
+              <li>
+                Meningkatkan layanan informasi yang cepat,
+                tepat, dan transparan.
+              </li>
+
+              <li>
+                Meningkatkan kompetensi SDM pelayan informasi.
+              </li>
+
+              <li>
+                Penguatan koordinasi antar PPID lintas sektoral.
+              </li>
+
+            </ul>
+
+          </article>
+
+
+          <!-- MOTO -->
+
+          <article class="vision-card motto-card">
+
+            <div class="motto-mark">
+              “
+            </div>
+
+            <div class="vision-label">
+              MOTO PELAYANAN
+            </div>
+
+            <h3>
+              MELAYANI DENGAN IKHLAS
+            </h3>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           PERAN & FUNGSI
+      ================================================= -->
+
+      <section class="role-section">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            PERAN PPID
+          </span>
+
+          <h2>
+            Peran & Fungsi dalam Pelayanan Informasi
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <p class="role-intro">
+          Berdasarkan uraian resmi PPID Kanwil Kemenag Provinsi
+          Banten, pengelolaan informasi publik mencakup rangkaian
+          proses penyediaan, penyimpanan, pendokumentasian,
+          pelayanan, hingga pengamanan dokumen dan informasi publik.
+        </p>
+
+
+        <div class="role-grid">
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              01
+            </div>
+
+            <h3>
+              Penyediaan Informasi
+            </h3>
+
+            <p>
+              Menyediakan informasi publik yang berkaitan dengan
+              penyelenggaraan layanan keagamaan dan pendidikan
+              keagamaan di Provinsi Banten.
+            </p>
+
+          </article>
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              02
+            </div>
+
+            <h3>
+              Penyimpanan Informasi
+            </h3>
+
+            <p>
+              Mengelola penyimpanan informasi dan dokumen publik
+              sebagai bagian dari pengelolaan informasi PPID.
+            </p>
+
+          </article>
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              03
+            </div>
+
+            <h3>
+              Pendokumentasian
+            </h3>
+
+            <p>
+              Melaksanakan pendokumentasian informasi publik agar
+              dapat dikelola dan dilayani secara tertib.
+            </p>
+
+          </article>
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              04
+            </div>
+
+            <h3>
+              Pelayanan Informasi
+            </h3>
+
+            <p>
+              Menyelenggarakan pusat layanan informasi yang cepat,
+              tepat, dan akurat bagi masyarakat.
+            </p>
+
+          </article>
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              05
+            </div>
+
+            <h3>
+              Pengamanan Dokumen
+            </h3>
+
+            <p>
+              Bertanggung jawab terhadap pengamanan dokumen serta
+              informasi publik yang dikelola oleh PPID.
+            </p>
+
+          </article>
+
+
+          <article class="role-card">
+
+            <div class="role-number">
+              06
+            </div>
+
+            <h3>
+              Koordinasi Informasi
+            </h3>
+
+            <p>
+              Berkoordinasi dan terintegrasi dengan PPID Utama
+              Kementerian Agama Republik Indonesia dalam pengelolaan
+              informasi publik.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           STRUKTUR ORGANISASI
+      ================================================= -->
+
+      <section class="organization-section">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            KELEMBAGAAN
+          </span>
+
+          <h2>
+            Struktur Organisasi PPID
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <p class="organization-intro">
+          Pelayanan informasi publik di lingkungan Kanwil Kemenag
+          Provinsi Banten dikoordinasikan melalui struktur
+          kelembagaan yang terdiri dari unsur pimpinan,
+          pertimbangan, pengelola informasi sektoral, dan petugas
+          pelayanan informasi publik.
+        </p>
+
+
+        <div class="organization-grid">
+
+
+          <!-- ATASAN -->
+
+          <article class="organization-card primary">
+
+            <div class="organization-label">
+              ATASAN PPID UNIT
+            </div>
+
+            <h3>
+              Kepala Kantor Wilayah Kementerian Agama
+              Provinsi Banten
+            </h3>
+
+            <p>
+              Dipimpin langsung oleh Kepala Kantor Wilayah
+              Kementerian Agama Provinsi Banten selaku pimpinan
+              instansi vertikal yang memberikan arah kebijakan
+              utama pelayanan informasi.
+            </p>
+
+          </article>
+
+
+          <!-- TIM PERTIMBANGAN -->
+
+          <article class="organization-card">
+
+            <div class="organization-label">
+              UNSUR PERTIMBANGAN
+            </div>
+
+            <h3>
+              Tim Pertimbangan
+            </h3>
+
+            <p>
+              Tim ahli dari unsur internal yang ditunjuk berdasarkan
+              kompetensi di bidang hukum, komunikasi, dan layanan
+              informasi publik untuk mengawal kualitas dan validitas
+              layanan.
+            </p>
+
+          </article>
+
+
+          <!-- PPID UNIT -->
+
+          <article class="organization-card">
+
+            <div class="organization-label">
+              PENGELOLA PPID
+            </div>
+
+            <h3>
+              PPID Unit
+            </h3>
+
+            <p>
+              Dijabat oleh Kepala Bagian Tata Usaha Kanwil Kemenag
+              Provinsi Banten yang bertindak sebagai motor penggerak
+              koordinasi pengelolaan dan pelayanan informasi sehari-hari.
+            </p>
+
+          </article>
+
+
+          <!-- PPID PELAKSANA -->
+
+          <article class="organization-card">
+
+            <div class="organization-label">
+              PENGELOLA SEKTORAL
+            </div>
+
+            <h3>
+              PPID Pelaksana
+            </h3>
+
+            <p>
+              Didukung oleh para Kepala Bidang dan Pembimbing
+              Masyarakat di lingkungan Kanwil Kemenag Provinsi Banten
+              yang mengelola data sektoral pada setiap lini teknis
+              keagamaan.
+            </p>
+
+          </article>
+
+
+          <!-- PETUGAS -->
+
+          <article class="organization-card">
+
+            <div class="organization-label">
+              PELAYANAN INFORMASI
+            </div>
+
+            <h3>
+              Petugas Pelayanan Informasi Publik
+            </h3>
+
+            <p>
+              Tim fungsional dan pelaksana profesional yang siap
+              melayani kebutuhan informasi masyarakat secara langsung,
+              baik di bidang kehumasan, kearsipan, data, maupun
+              teknologi informasi.
+            </p>
+
+          </article>
+
+
+          <!-- INTEGRASI -->
+
+          <article class="organization-card">
+
+            <div class="organization-label">
+              KOORDINASI NASIONAL
+            </div>
+
+            <h3>
+              Integrasi dengan PPID Utama
+            </h3>
+
+            <p>
+              PPID Kanwil Kemenag Provinsi Banten senantiasa
+              berkoordinasi dan terintegrasi secara nasional dengan
+              PPID Utama Kementerian Agama Republik Indonesia.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           DASAR HUKUM
+      ================================================= -->
+
+      <section class="legal-section">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            LANDASAN PENYELENGGARAAN
+          </span>
+
+          <h2>
+            Dasar Hukum
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <div class="legal-card">
+
+          <div class="legal-icon">
+            §
+          </div>
+
+          <div class="legal-content">
+
+            <h3>
+              Undang-Undang Nomor 14 Tahun 2008
+            </h3>
+
+            <p>
+              Undang-Undang Nomor 14 Tahun 2008 menjadi salah satu
+              dasar yang disebutkan dalam materi resmi PPID Kanwil
+              Kemenag Provinsi Banten terkait pemenuhan hak masyarakat
+              atas keterbukaan informasi publik.
+            </p>
+
+            <h3 style="margin-top:18px;">
+              Keputusan Menteri Agama Republik Indonesia
+              Nomor 1518 Tahun 2025
+            </h3>
+
+            <p>
+              Keputusan Menteri Agama Republik Indonesia Nomor 1518
+              Tahun 2025 tentang Pengelola Informasi dan Dokumentasi
+              pada Kementerian Agama menjadi dasar yang disebutkan
+              dalam uraian resmi PPID Kanwil Kemenag Provinsi Banten.
+            </p>
+
+            <a
+              href="dokumen.html"
+              class="legal-link"
+            >
+              Lihat Dokumen PPID
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           KOMITMEN
+      ================================================= -->
+
+      <section class="commitment-section">
+
+        <div class="commitment-card">
+
+          <span class="commitment-kicker">
+            KOMITMEN PELAYANAN INFORMASI
+          </span>
+
+          <h2>
+            Melayani informasi publik secara cepat,
+            tepat, dan transparan.
+          </h2>
+
+          <p>
+            PPID Kanwil Kemenag Provinsi Banten berkomitmen
+            memastikan hak masyarakat atas keterbukaan informasi
+            publik terpenuhi dengan baik serta menjalankan
+            pengelolaan informasi secara profesional dan
+            terintegrasi dengan PPID Utama Kementerian Agama
+            Republik Indonesia.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           KONTAK
+      ================================================= -->
+
+      <section class="contact-section">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            HUBUNGI KAMI
+          </span>
+
+          <h2>
+            Kontak PPID
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
+
+
+        <div class="contact-grid">
+
+
+          <!-- ALAMAT -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              ⌖
+            </div>
+
+            <div class="contact-label">
+              ALAMAT
+            </div>
+
+            <strong>
+              Jln. Syech Nawawi Al Bantani
+              Blok Instansi Vertikal No.01
+              KP3B Curug Kota Serang
+            </strong>
+
+          </article>
+
+
+          <!-- HOTLINE -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              ☎
+            </div>
+
+            <div class="contact-label">
+              HOTLINE PPID
+            </div>
+
+            <strong>
+              <a href="tel:+6281121222288">
+                +6281121222288
+              </a>
+            </strong>
+
+          </article>
+
+
+          <!-- EMAIL -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              @
+            </div>
+
+            <div class="contact-label">
+              EMAIL
+            </div>
+
+            <strong>
+              <a href="mailto:kanwilbanten@kemenag.go.id">
+                kanwilbanten@kemenag.go.id
+              </a>
+            </strong>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+
+  <footer class="footer">
+
+    <div class="footer-main">
+
+      <div class="container">
+
+        <div class="footer-grid">
+
+
+          <div>
+
+            <h3 class="footer-title">
+              PPID Kanwil Kementerian Agama Provinsi Banten
+            </h3>
+
+            <p class="footer-description">
+              Layanan informasi publik dan dokumentasi
+              PPID Kantor Wilayah Kementerian Agama
+              Provinsi Banten.
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <h3 class="footer-title">
+              Layanan
+            </h3>
+
+            <div class="footer-list">
+
+              <a href="permohonan.html">
+                Permohonan Informasi
+              </a>
+
+              <a href="keberatan.html">
+                Ajukan Keberatan
+              </a>
+
+              <a href="statistik.html">
+                Statistik Layanan
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <h3 class="footer-title">
+              Informasi Publik
+            </h3>
+
+            <div class="footer-list">
+
+              <a href="dip.html">
+                DIP
+              </a>
+
+              <a href="dik.html">
+                DIK
+              </a>
+
+              <a href="dokumen.html">
+                Dokumen
+              </a>
+
+              <a href="laporan.html">
+                Laporan
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <h3 class="footer-title">
+              Kontak
+            </h3>
+
+            <div class="footer-contact">
+
+              <div>
+                Kanwil Kementerian Agama Provinsi Banten
+              </div>
+
+              <div>
+                Jln. Syech Nawawi Al Bantani
+                KP3B Curug Kota Serang
+              </div>
+
+              <div>
+                kanwilbanten@kemenag.go.id
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+      <div class="container">
+
+        <div class="footer-bottom-inner">
+
+          <span>
+            © 2026 Kementerian Agama Provinsi Banten
+          </span>
+
+          <span>
+            PPID Kanwil Kemenag Banten
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       ACCESSIBILITY
+  ===================================================== -->
+
+  <div class="aksesibilitas">
+
+    <button
+      type="button"
+      class="aksesibilitas-toggle"
+      id="aksesibilitasToggle"
+      aria-label="Buka menu aksesibilitas"
+      aria-expanded="false"
+    >
+      ♿
+    </button>
+
+
+    <div
+      class="aksesibilitas-panel"
+      id="aksesibilitasPanel"
+      aria-hidden="true"
+    >
+
+      <div class="aksesibilitas-header">
+
+        <div>
+
+          <span class="aksesibilitas-kicker">
+            AKSESIBILITAS
+          </span>
+
+          <strong>
+            Akses Disabilitas
+          </strong>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="aksesibilitas-close"
+          id="aksesibilitasClose"
+          aria-label="Tutup menu aksesibilitas"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="aksesibilitas-options">
+
+        <button
+          type="button"
+          data-accessibility="font-plus"
+        >
+          <span>+</span>
+          Perbesar teks
+        </button>
+
+
+        <button
+          type="button"
+          data-accessibility="font-minus"
+        >
+          <span>−</span>
+          Perkecil teks
+        </button>
+
+
+        <button
+          type="button"
+          data-accessibility="contrast"
+        >
+          <span>◐</span>
+          Kontras tinggi
+        </button>
+
+
+        <button
+          type="button"
+          data-accessibility="motion"
+        >
+          <span>◌</span>
+          Kurangi animasi
+        </button>
+
+
+        <button
+          type="button"
+          data-accessibility="reset"
+        >
+          <span>↺</span>
+          Reset tampilan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       MOBILE NAVIGATION
+    ===================================================== */
+
+    const mobileMenuToggle =
+      document.getElementById(
+        'mobileMenuToggle'
+      );
+
+    const mainNav =
+      document.getElementById(
+        'mainNav'
+      );
+
+
+    if (
+      mobileMenuToggle &&
+      mainNav
+    ) {
+
+      mobileMenuToggle.addEventListener(
+        'click',
+        function() {
+
+          const isOpen =
+            mainNav.classList.toggle(
+              'mobile-open'
+            );
+
+
+          mobileMenuToggle.setAttribute(
+            'aria-expanded',
+            isOpen
+          );
+
+        }
+      );
+
+
+      const navItems =
+        mainNav.querySelectorAll(
+          '.nav-item'
+        );
+
+
+      navItems.forEach(
+        function(item) {
+
+          const link =
+            item.querySelector(
+              ':scope > .nav-link'
+            );
+
+          const dropdown =
+            item.querySelector(
+              ':scope > .nav-dropdown'
+            );
+
+
+          if (
+            link &&
+            dropdown
+          ) {
+
+            link.addEventListener(
+              'click',
+              function(event) {
+
+                if (
+                  window.innerWidth <= 1100
+                ) {
+
+                  event.preventDefault();
+
+                  item.classList.toggle(
+                    'mobile-dropdown-open'
+                  );
+
+                }
+
+              }
+            );
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       ACCESSIBILITY
+    ===================================================== */
+
+    const accessibilityToggle =
+      document.getElementById(
+        'aksesibilitasToggle'
+      );
+
+    const accessibilityPanel =
+      document.getElementById(
+        'aksesibilitasPanel'
+      );
+
+    const accessibilityClose =
+      document.getElementById(
+        'aksesibilitasClose'
+      );
+
+
+    if (
+      accessibilityToggle &&
+      accessibilityPanel
+    ) {
+
+      accessibilityToggle.addEventListener(
+        'click',
+        function() {
+
+          const isOpen =
+            accessibilityPanel.classList.toggle(
+              'open'
+            );
+
+
+          accessibilityToggle.setAttribute(
+            'aria-expanded',
+            isOpen
+          );
+
+
+          accessibilityPanel.setAttribute(
+            'aria-hidden',
+            !isOpen
+          );
+
+        }
+      );
+
+    }
+
+
+    if (accessibilityClose) {
+
+      accessibilityClose.addEventListener(
+        'click',
+        function() {
+
+          accessibilityPanel.classList.remove(
+            'open'
+          );
+
+          accessibilityToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+          accessibilityPanel.setAttribute(
+            'aria-hidden',
+            'true'
+          );
+
+        }
+      );
+
+    }
+
+
+    document
+      .querySelectorAll(
+        '[data-accessibility]'
+      )
+      .forEach(
+        function(button) {
+
+          button.addEventListener(
+            'click',
+            function() {
+
+              const action =
+                this.dataset.accessibility;
+
+
+              if (
+                action === 'font-plus'
+              ) {
+
+                document.body.classList.remove(
+                  'accessibility-small-text'
+                );
+
+                document.body.classList.add(
+                  'accessibility-large-text'
+                );
+
+              }
+
+
+              if (
+                action === 'font-minus'
+              ) {
+
+                document.body.classList.remove(
+                  'accessibility-large-text'
+                );
+
+                document.body.classList.add(
+                  'accessibility-small-text'
+                );
+
+              }
+
+
+              if (
+                action === 'contrast'
+              ) {
+
+                document.body.classList.toggle(
+                  'accessibility-high-contrast'
+                );
+
+              }
+
+
+              if (
+                action === 'motion'
+              ) {
+
+                document.body.classList.toggle(
+                  'accessibility-reduced-motion'
+                );
+
+              }
+
+
+              if (
+                action === 'reset'
+              ) {
+
+                document.body.classList.remove(
+                  'accessibility-large-text',
+                  'accessibility-small-text',
+                  'accessibility-high-contrast',
+                  'accessibility-reduced-motion'
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+  </script>
+
+</body>
+</html>
