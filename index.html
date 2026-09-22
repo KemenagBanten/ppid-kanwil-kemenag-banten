@@ -969,23 +969,92 @@ document.addEventListener("DOMContentLoaded", function () {
   const close = document.getElementById("aksesibilitasClose");
 
   if (!toggle || !panel) return;
-  let accessibilityFontSize = 100;
+   /* =========================================================
+     AKSESIBILITAS — PERBESAR TEKS
+  ========================================================= */
 
-  document.querySelectorAll(
-    '[data-accessibility="font-plus"]'
-  ).forEach(function (button) {
+  let accessibilityTextScale = 1;
 
-    button.addEventListener("click", function () {
+  const textSelectors = [
+    ".section-label",
+    ".section-heading h2",
+    ".section-heading p",
+    ".section-heading a",
 
-      if (accessibilityFontSize >= 130) return;
+    ".layanan-heading-kicker",
+    ".layanan-utama-heading h2",
+    ".layanan-label",
+    ".layanan-content h3",
+    ".layanan-content p",
+    ".layanan-card-footer",
 
-      accessibilityFontSize += 10;
+    ".maklumat-label",
+    ".maklumat-content p",
 
-      document.documentElement.style.fontSize =
-        accessibilityFontSize + "%";
+    ".news-content h3",
+    ".news-date",
+    ".news-content p",
+    ".card-badge",
+
+    ".akses-cepat-text strong",
+
+    ".statistik-home-card",
+    ".statistik-home-card h3",
+
+    ".footer",
+    ".footer-bottom"
+  ];
+
+  function updateAccessibilityText() {
+
+    textSelectors.forEach(function (selector) {
+
+      document.querySelectorAll(selector).forEach(function (element) {
+
+        if (!element.dataset.originalFontSize) {
+          const currentSize =
+            parseFloat(
+              window.getComputedStyle(element).fontSize
+            );
+
+          if (!isNaN(currentSize)) {
+            element.dataset.originalFontSize = currentSize;
+          }
+        }
+
+        const originalSize =
+          parseFloat(element.dataset.originalFontSize);
+
+        if (!isNaN(originalSize)) {
+
+          element.style.fontSize =
+            (originalSize * accessibilityTextScale) + "px";
+        }
+
+      });
+
     });
 
-  });
+  }
+
+  const fontPlusButton =
+    document.querySelector(
+      '[data-accessibility="font-plus"]'
+    );
+
+  if (fontPlusButton) {
+
+    fontPlusButton.addEventListener("click", function () {
+
+      if (accessibilityTextScale >= 1.3) return;
+
+      accessibilityTextScale += 0.1;
+
+      updateAccessibilityText();
+
+    });
+
+  }
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
 
