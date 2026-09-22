@@ -2281,89 +2281,93 @@ body {
 }
 
 /* =========================================================
-   AKSES CEPAT — FINAL PREMIUM
-   SATU-SATUNYA BLOK AKSES CEPAT
+   AKSES CEPAT — PREMIUM CLEAN
 ========================================================= */
 
 .akses-cepat {
-  display: grid !important;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
 
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr)) !important;
-
-  gap: 18px !important;
-
-  margin-top: 28px !important;
+  margin-top: 30px;
 }
+
+
+/* =========================================================
+   CARD
+========================================================= */
 
 .akses-cepat-card {
-  position: relative !important;
+  position: relative;
 
-  min-width: 0 !important;
-  min-height: 142px !important;
+  min-height: 158px;
+  padding: 22px 16px 18px;
 
-  padding: 20px 16px 18px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+  text-align: center;
 
-  background: #ffffff !important;
+  background: #ffffff;
 
-  border: 1px solid #e5ebe7 !important;
-  border-radius: 13px !important;
-
-  text-decoration: none !important;
-  color: #17352a !important;
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 14px;
 
   box-shadow:
-    0 3px 12px rgba(23, 53, 42, 0.035) !important;
+    0 4px 16px rgba(23, 53, 42, 0.05);
+
+  text-decoration: none;
 
   transition:
-    transform 0.22s ease,
-    box-shadow 0.22s ease,
-    border-color 0.22s ease !important;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 
-  box-sizing: border-box !important;
+  overflow: hidden;
 }
+
+
+/* garis aksen halus */
 
 .akses-cepat-card::before {
-  content: "" !important;
+  content: "";
 
-  position: absolute !important;
+  position: absolute;
 
-  top: 0 !important;
-  left: 24% !important;
-  right: 24% !important;
+  top: 0;
+  left: 50%;
 
-  height: 2px !important;
+  width: 0;
+  height: 3px;
 
-  background: #a9c2b5 !important;
+  background: #17352a;
 
-  border-radius: 0 0 4px 4px !important;
+  transform: translateX(-50%);
 
-  opacity: 0 !important;
-
-  transition:
-    opacity 0.22s ease !important;
+  transition: width 0.25s ease;
 }
 
-.akses-cepat-card:hover {
-  transform: translateY(-3px) !important;
 
-  border-color: #ccd9d2 !important;
+/* hover */
+
+.akses-cepat-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(23, 53, 42, 0.16);
 
   box-shadow:
-    0 12px 26px rgba(23, 53, 42, 0.08) !important;
+    0 10px 26px rgba(23, 53, 42, 0.10);
 }
 
 .akses-cepat-card:hover::before {
-  opacity: 1 !important;
+  width: 48px;
 }
 
+
 /* =========================================================
-   AKSES CEPAT — LOGO
+   LOGO
 ========================================================= */
 
 .akses-cepat-logo {
@@ -2389,10 +2393,17 @@ body {
   max-height: 54px !important;
 
   object-fit: contain !important;
+
+  transition: transform 0.25s ease;
 }
 
+.akses-cepat-card:hover .akses-cepat-logo img {
+  transform: scale(1.04);
+}
+
+
 /* =========================================================
-   AKSES CEPAT — TEXT
+   TEXT
 ========================================================= */
 
 .akses-cepat-text {
@@ -2435,42 +2446,42 @@ body {
   line-height: 1.35 !important;
 }
 
+
 /* =========================================================
-   AKSES CEPAT — TABLET
+   TABLET
 ========================================================= */
 
 @media (max-width: 900px) {
 
   .akses-cepat {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 14px !important;
+    gap: 14px;
   }
 
 }
 
+
 /* =========================================================
-   AKSES CEPAT — MOBILE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 500px) {
 
   .akses-cepat {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 10px !important;
+    gap: 10px;
 
-    margin-top: 22px !important;
+    margin-top: 22px;
   }
 
   .akses-cepat-card {
-    min-height: 130px !important;
+    min-height: 130px;
 
-    padding: 15px 9px !important;
+    padding: 15px 9px;
 
-    border-radius: 11px !important;
+    border-radius: 11px;
   }
 
   .akses-cepat-logo {
