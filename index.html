@@ -969,7 +969,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const close = document.getElementById("aksesibilitasClose");
 
   if (!toggle || !panel) return;
+  let accessibilityFontSize = 100;
 
+  document.querySelectorAll(
+    '[data-accessibility="font-plus"]'
+  ).forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+      if (accessibilityFontSize >= 130) return;
+
+      accessibilityFontSize += 10;
+
+      document.documentElement.style.fontSize =
+        accessibilityFontSize + "%";
+    });
+
+  });
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
 
