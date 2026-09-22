@@ -3472,3 +3472,133 @@ body {
   }
 
 }
+
+/* =========================================================
+   REFINEMENT — AKSES LAYANAN PPID
+   ========================================================= */
+
+.layanan-utama-section {
+  padding: 48px 0 52px;
+}
+
+/* Heading lebih compact */
+.layanan-utama-heading {
+  margin-bottom: 24px;
+}
+
+.layanan-heading-kicker {
+  margin-bottom: 6px;
+}
+
+.layanan-utama-heading h2 {
+  font-size: 28px;
+}
+
+.layanan-heading-line {
+  width: 34px;
+  height: 2px;
+  margin-top: 10px;
+}
+
+
+/* Hilangkan garis emas pada setiap kartu */
+.layanan-utama-card::before {
+  display: none;
+}
+
+
+/* Kartu dibuat lebih compact */
+.layanan-utama-card {
+  min-height: 205px;
+  padding: 20px 22px 18px;
+  border-radius: 16px;
+
+  box-shadow:
+    0 5px 18px rgba(23, 53, 42, 0.045);
+}
+
+.layanan-utama-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 26px rgba(23, 53, 42, 0.085);
+}
+
+
+/* Nomor + ikon lebih rapat */
+.layanan-card-top {
+  margin-bottom: 17px;
+}
+
+.layanan-number {
+  font-size: 10px;
+}
+
+
+/* Ikon sedikit lebih kecil */
+.layanan-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  font-size: 21px;
+}
+
+
+/* Judul */
+.layanan-content h3 {
+  margin-bottom: 7px;
+  font-size: 17px;
+}
+
+
+/* Deskripsi */
+.layanan-content p {
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+
+/* CTA */
+.layanan-card-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  font-size: 10px;
+}
+
+.layanan-arrow {
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+}
+
+
+/* MOBILE */
+@media (max-width: 680px) {
+
+  .layanan-utama-section {
+    padding: 40px 0 46px;
+  }
+
+  .layanan-utama-heading {
+    margin-bottom: 20px;
+  }
+
+  .layanan-utama-heading h2 {
+    font-size: 24px;
+  }
+
+  .layanan-utama-card {
+    min-height: 200px;
+    padding: 18px 19px 16px;
+  }
+
+  .layanan-card-top {
+    margin-bottom: 16px;
+  }
+
+  .layanan-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+}
