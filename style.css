@@ -2382,8 +2382,8 @@ body {
 .akses-cepat-logo img {
   display: block !important;
 
-  width: auto !important;
-  height: auto !important;
+  width: 100% !important;
+  height: 100% !important;
 
   max-width: 115px !important;
   max-height: 54px !important;
