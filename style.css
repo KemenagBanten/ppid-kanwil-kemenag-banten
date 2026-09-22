@@ -2864,330 +2864,11 @@ body {
 }
 
 /* =========================================================
-   LAYANAN UTAMA
-========================================================= */
-
-.layanan-utama-section {
-  padding: 54px 0;
-  background: #f7faf8;
-}
-
-.layanan-utama-heading {
-  margin-bottom: 28px;
-}
-
-.layanan-utama-heading .section-eyebrow {
-  display: inline-block;
-
-  margin-bottom: 8px;
-
-  color: #176b4d;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-}
-
-.layanan-utama-heading h2 {
-  margin: 0;
-
-  color: #17352a;
-
-  font-size: 28px;
-  font-weight: 800;
-
-  line-height: 1.25;
-}
-
-.layanan-utama-heading .section-intro {
-  max-width: 650px;
-
-  margin: 10px 0 0;
-
-  color: #68776f;
-
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-
-/* =========================================================
-   GRID
-========================================================= */
-
-.layanan-utama-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  gap: 20px;
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.layanan-utama-card {
-  position: relative;
-
-  display: flex;
-  align-items: flex-start;
-
-  gap: 18px;
-
-  min-height: 190px;
-
-  padding: 24px;
-
-  background: #ffffff;
-
-  border: 1px solid rgba(23, 53, 42, 0.08);
-  border-radius: 16px;
-
-  box-shadow:
-    0 6px 20px rgba(23, 53, 42, 0.045);
-
-  text-decoration: none;
-
-  overflow: hidden;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-
-/* aksen atas */
-
-.layanan-utama-card::before {
-  content: "";
-
-  position: absolute;
-
-  top: 0;
-  left: 24px;
-
-  width: 36px;
-  height: 3px;
-
-  background: #cdb082;
-
-  border-radius: 0 0 3px 3px;
-
-  transition: width 0.25s ease;
-}
-
-
-/* hover */
-
-.layanan-utama-card:hover {
-  transform: translateY(-4px);
-
-  border-color: rgba(23, 53, 42, 0.15);
-
-  box-shadow:
-    0 12px 28px rgba(23, 53, 42, 0.09);
-}
-
-.layanan-utama-card:hover::before {
-  width: 58px;
-}
-
-
-/* =========================================================
-   ICON
-========================================================= */
-
-.layanan-icon {
-  flex-shrink: 0;
-
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #edf5f0;
-
-  border: 1px solid rgba(23, 53, 42, 0.07);
-  border-radius: 12px;
-
-  color: #176b4d;
-
-  font-size: 22px;
-  font-weight: 800;
-
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
-}
-
-.layanan-utama-card:hover .layanan-icon {
-  background: #e5f0e9;
-
-  transform: scale(1.04);
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.layanan-content {
-  min-width: 0;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.layanan-content h3 {
-  margin: 2px 0 8px;
-
-  color: #17352a;
-
-  font-size: 16px;
-  font-weight: 800;
-
-  line-height: 1.35;
-}
-
-.layanan-content p {
-  margin: 0;
-
-  color: #68776f;
-
-  font-size: 12px;
-  font-weight: 500;
-
-  line-height: 1.65;
-}
-
-.layanan-link {
-  display: inline-flex;
-  align-items: center;
-
-  gap: 7px;
-
-  margin-top: 16px;
-
-  color: #176b4d;
-
-  font-size: 11px;
-  font-weight: 800;
-
-  line-height: 1;
-
-  transition: gap 0.2s ease;
-}
-
-.layanan-link span {
-  font-size: 15px;
-}
-
-.layanan-utama-card:hover .layanan-link {
-  gap: 10px;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .layanan-utama-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 680px) {
-
-  .layanan-utama-section {
-    padding: 44px 0;
-  }
-
-  .layanan-utama-heading {
-    margin-bottom: 22px;
-  }
-
-  .layanan-utama-heading h2 {
-    font-size: 24px;
-  }
-
-  .layanan-utama-heading .section-intro {
-    font-size: 13px;
-  }
-
-  .layanan-utama-grid {
-    grid-template-columns: 1fr;
-
-    gap: 12px;
-  }
-
-  .layanan-utama-card {
-    min-height: 0;
-
-    padding: 20px;
-
-    gap: 14px;
-
-    border-radius: 14px;
-  }
-
-  .layanan-icon {
-    width: 44px;
-    height: 44px;
-
-    border-radius: 11px;
-
-    font-size: 20px;
-  }
-
-  .layanan-content h3 {
-    font-size: 15px;
-  }
-
-  .layanan-content p {
-    font-size: 12px;
-  }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 500px) {
-
-  .layanan-utama-section {
-    padding: 38px 0;
-  }
-
-  .layanan-utama-card {
-    padding: 18px;
-
-    gap: 12px;
-  }
-
-}
-
-/* =========================================================
-   AKSES LAYANAN PPID — MODERN
+   AKSES LAYANAN PPID
    ========================================================= */
 
 .layanan-utama-section {
-  padding: 58px 0 64px;
+  padding: 48px 0 52px;
   background: linear-gradient(
     180deg,
     #f7faf8 0%,
@@ -3195,31 +2876,35 @@ body {
   );
 }
 
+
+/* HEADING */
+
 .layanan-utama-heading {
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .layanan-heading-kicker {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #b18d52;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 
 .layanan-utama-heading h2 {
   margin: 0;
   color: #17352a;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1.2;
 }
 
 .layanan-heading-line {
-  width: 42px;
-  height: 3px;
-  margin-top: 13px;
+  width: 34px;
+  height: 2px;
+  margin-top: 10px;
   background: #cdb082;
   border-radius: 3px;
 }
@@ -3238,18 +2923,19 @@ body {
 
 .layanan-utama-card {
   position: relative;
+
   display: flex;
   flex-direction: column;
 
-  min-height: 285px;
-  padding: 24px;
+  min-height: 205px;
+  padding: 20px 22px 18px;
 
   background: #ffffff;
   border: 1px solid rgba(23, 53, 42, 0.09);
-  border-radius: 18px;
+  border-radius: 16px;
 
   box-shadow:
-    0 8px 24px rgba(23, 53, 42, 0.045);
+    0 5px 18px rgba(23, 53, 42, 0.045);
 
   text-decoration: none;
   overflow: hidden;
@@ -3261,61 +2947,31 @@ body {
 }
 
 
-/* GOLD ACCENT */
-
-.layanan-utama-card::before {
-  content: "";
-  position: absolute;
-
-  top: 0;
-  left: 24px;
-
-  width: 38px;
-  height: 3px;
-
-  background: #cdb082;
-  border-radius: 0 0 4px 4px;
-
-  transition: width .28s ease;
-}
-
-.layanan-utama-card:hover::before {
-  width: 72px;
-}
-
-
 /* HOVER */
 
 .layanan-utama-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3px);
 
   border-color: rgba(23, 53, 42, 0.15);
 
   box-shadow:
-    0 16px 34px rgba(23, 53, 42, 0.10);
+    0 12px 26px rgba(23, 53, 42, 0.085);
 }
 
 
-/* TOP */
+/* TOP / ICON */
 
 .layanan-card-top {
+  display: flex;
+  align-items: flex-start;
   justify-content: flex-end;
-  margin-bottom: 18px;
+
+  margin-bottom: 17px;
 }
-
-.layanan-number {
-  color: #aab8b1;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-
-/* ICON */
 
 .layanan-icon {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
 
   display: flex;
   align-items: center;
@@ -3323,10 +2979,10 @@ body {
 
   background: #edf5f0;
   border: 1px solid rgba(23, 53, 42, 0.07);
-  border-radius: 14px;
+  border-radius: 12px;
 
   color: #176b4d;
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 800;
 
   transition:
@@ -3344,13 +3000,25 @@ body {
 
 .layanan-content {
   flex: 1;
+  min-width: 0;
+}
+
+.layanan-label {
+  margin-bottom: 7px;
+
+  color: #b18d52;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .layanan-content h3 {
-  margin: 0 0 10px;
+  margin: 0 0 7px;
 
   color: #17352a;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
   line-height: 1.3;
 }
@@ -3359,32 +3027,32 @@ body {
   margin: 0;
 
   color: #68776f;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 
-/* FOOTER / CTA */
+/* CTA */
 
 .layanan-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 25px;
-  padding-top: 15px;
+  margin-top: 16px;
+  padding-top: 12px;
 
   border-top: 1px solid #edf1ee;
 
   color: #176b4d;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
 }
 
 .layanan-arrow {
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
 
   display: inline-flex;
   align-items: center;
@@ -3393,7 +3061,7 @@ body {
   background: #f0f6f2;
   border-radius: 50%;
 
-  font-size: 16px;
+  font-size: 14px;
 
   transition:
     transform .25s ease,
@@ -3406,7 +3074,9 @@ body {
 }
 
 
-/* TABLET */
+/* =========================================================
+   TABLET
+   ========================================================= */
 
 @media (max-width: 900px) {
 
@@ -3417,159 +3087,10 @@ body {
 }
 
 
-/* MOBILE */
-
-@media (max-width: 680px) {
-
-  .layanan-utama-section {
-    padding: 46px 0 52px;
-  }
-
-  .layanan-utama-heading {
-    margin-bottom: 22px;
-  }
-
-  .layanan-utama-heading h2 {
-    font-size: 25px;
-  }
-
-  .layanan-utama-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .layanan-utama-card {
-    min-height: 245px;
-    padding: 20px;
-    border-radius: 15px;
-  }
-
-  .layanan-card-top {
-    margin-bottom: 20px;
-  }
-
-  .layanan-icon {
-    width: 46px;
-    height: 46px;
-    border-radius: 12px;
-    font-size: 20px;
-  }
-
-  .layanan-content h3 {
-    font-size: 16px;
-  }
-
-  .layanan-content p {
-    font-size: 12px;
-    line-height: 1.65;
-  }
-
-  .layanan-card-footer {
-    margin-top: 20px;
-  }
-
-}
-
 /* =========================================================
-   REFINEMENT — AKSES LAYANAN PPID
+   MOBILE
    ========================================================= */
 
-.layanan-utama-section {
-  padding: 48px 0 52px;
-}
-
-/* Heading lebih compact */
-.layanan-utama-heading {
-  margin-bottom: 24px;
-}
-
-.layanan-heading-kicker {
-  margin-bottom: 6px;
-}
-
-.layanan-utama-heading h2 {
-  font-size: 28px;
-}
-
-.layanan-heading-line {
-  width: 34px;
-  height: 2px;
-  margin-top: 10px;
-}
-
-
-/* Hilangkan garis emas pada setiap kartu */
-.layanan-utama-card::before {
-  display: none;
-}
-
-
-/* Kartu dibuat lebih compact */
-.layanan-utama-card {
-  min-height: 205px;
-  padding: 20px 22px 18px;
-  border-radius: 16px;
-
-  box-shadow:
-    0 5px 18px rgba(23, 53, 42, 0.045);
-}
-
-.layanan-utama-card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 12px 26px rgba(23, 53, 42, 0.085);
-}
-
-
-/* Nomor + ikon lebih rapat */
-.layanan-card-top {
-  margin-bottom: 17px;
-}
-
-.layanan-number {
-  font-size: 10px;
-}
-
-
-/* Ikon sedikit lebih kecil */
-.layanan-icon {
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  font-size: 21px;
-}
-
-
-/* Judul */
-.layanan-content h3 {
-  margin-bottom: 7px;
-  font-size: 17px;
-}
-
-
-/* Deskripsi */
-.layanan-content p {
-  font-size: 12px;
-  line-height: 1.55;
-}
-
-
-/* CTA */
-.layanan-card-footer {
-  margin-top: 16px;
-  padding-top: 12px;
-  font-size: 10px;
-}
-
-.layanan-arrow {
-  width: 25px;
-  height: 25px;
-  font-size: 14px;
-}
-
-
-/* MOBILE */
 @media (max-width: 680px) {
 
   .layanan-utama-section {
@@ -3584,9 +3105,15 @@ body {
     font-size: 24px;
   }
 
+  .layanan-utama-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .layanan-utama-card {
     min-height: 200px;
     padding: 18px 19px 16px;
+    border-radius: 15px;
   }
 
   .layanan-card-top {
@@ -3596,21 +3123,21 @@ body {
   .layanan-icon {
     width: 44px;
     height: 44px;
+    border-radius: 12px;
+    font-size: 20px;
+  }
+
+  .layanan-label {
+    font-size: 8px;
+  }
+
+  .layanan-content h3 {
+    font-size: 16px;
+  }
+
+  .layanan-content p {
+    font-size: 12px;
+    line-height: 1.6;
   }
 
 }
-
-/* LABEL KATEGORI KARTU */
-
-.layanan-label {
-  margin-bottom: 7px;
-
-  color: #b18d52;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-
