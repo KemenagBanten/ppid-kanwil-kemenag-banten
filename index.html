@@ -9,69 +9,7 @@
 
   <link rel="stylesheet" href="style.css?v=999">
 </head>
-<!-- AKSESIBILITAS -->
-<div class="aksesibilitas">
-  <button
-    type="button"
-    class="aksesibilitas-toggle"
-    id="aksesibilitasToggle"
-    aria-label="Buka menu aksesibilitas"
-    aria-expanded="false"
-  >
-    <span class="aksesibilitas-icon">♿</span>
-  </button>
 
-  <div
-    class="aksesibilitas-panel"
-    id="aksesibilitasPanel"
-    aria-hidden="true"
-  >
-    <div class="aksesibilitas-header">
-      <div>
-        <span class="aksesibilitas-kicker">AKSESIBILITAS</span>
-        <strong>Akses Disabilitas</strong>
-      </div>
-
-      <button
-        type="button"
-        class="aksesibilitas-close"
-        id="aksesibilitasClose"
-        aria-label="Tutup menu aksesibilitas"
-      >
-        ×
-      </button>
-    </div>
-
-    <div class="aksesibilitas-options">
-
-      <button type="button" data-accessibility="font-plus">
-        <span>+</span>
-        Perbesar teks
-      </button>
-
-      <button type="button" data-accessibility="font-minus">
-        <span>−</span>
-        Perkecil teks
-      </button>
-
-      <button type="button" data-accessibility="contrast">
-        <span>◐</span>
-        Kontras tinggi
-      </button>
-
-      <button type="button" data-accessibility="motion">
-        <span>◌</span>
-        Kurangi animasi
-      </button>
-
-      <button type="button" data-accessibility="reset">
-        <span>↺</span>
-        Reset tampilan
-      </button>
-
-    </div>
-  </div>
-</div>
 <body>
 
 <!-- =====================================================
@@ -959,6 +897,97 @@ async function loadFooterData() {
 
 loadFooterData();
 </script>
+<!-- AKSESIBILITAS -->
+<div class="aksesibilitas">
+  <button
+    type="button"
+    class="aksesibilitas-toggle"
+    id="aksesibilitasToggle"
+    aria-label="Buka menu aksesibilitas"
+    aria-expanded="false"
+  >
+    <span class="aksesibilitas-icon">♿</span>
+  </button>
 
+  <div
+    class="aksesibilitas-panel"
+    id="aksesibilitasPanel"
+    aria-hidden="true"
+  >
+    <div class="aksesibilitas-header">
+      <div>
+        <span class="aksesibilitas-kicker">AKSESIBILITAS</span>
+        <strong>Akses Disabilitas</strong>
+      </div>
+
+      <button
+        type="button"
+        class="aksesibilitas-close"
+        id="aksesibilitasClose"
+        aria-label="Tutup menu aksesibilitas"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="aksesibilitas-options">
+
+      <button type="button" data-accessibility="font-plus">
+        <span>+</span>
+        Perbesar teks
+      </button>
+
+      <button type="button" data-accessibility="font-minus">
+        <span>−</span>
+        Perkecil teks
+      </button>
+
+      <button type="button" data-accessibility="contrast">
+        <span>◐</span>
+        Kontras tinggi
+      </button>
+
+      <button type="button" data-accessibility="motion">
+        <span>◌</span>
+        Kurangi animasi
+      </button>
+
+      <button type="button" data-accessibility="reset">
+        <span>↺</span>
+        Reset tampilan
+      </button>
+
+    </div>
+  </div>
+</div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const toggle = document.getElementById("aksesibilitasToggle");
+  const panel = document.getElementById("aksesibilitasPanel");
+  const close = document.getElementById("aksesibilitasClose");
+
+  if (!toggle || !panel) return;
+
+  toggle.addEventListener("click", function () {
+    const isOpen = panel.classList.toggle("active");
+
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
+  });
+
+  if (close) {
+    close.addEventListener("click", function () {
+      panel.classList.remove("active");
+
+      toggle.setAttribute("aria-expanded", "false");
+      panel.setAttribute("aria-hidden", "true");
+    });
+  }
+
+});
+</script>
+    
 </body>
 </html>
