@@ -2862,3 +2862,322 @@ body {
   }
 
 }
+
+/* =========================================================
+   LAYANAN UTAMA
+========================================================= */
+
+.layanan-utama-section {
+  padding: 54px 0;
+  background: #f7faf8;
+}
+
+.layanan-utama-heading {
+  margin-bottom: 28px;
+}
+
+.layanan-utama-heading .section-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  color: #176b4d;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.layanan-utama-heading h2 {
+  margin: 0;
+
+  color: #17352a;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  line-height: 1.25;
+}
+
+.layanan-utama-heading .section-intro {
+  max-width: 650px;
+
+  margin: 10px 0 0;
+
+  color: #68776f;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.layanan-utama-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.layanan-utama-card {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  min-height: 190px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(23, 53, 42, 0.08);
+  border-radius: 16px;
+
+  box-shadow:
+    0 6px 20px rgba(23, 53, 42, 0.045);
+
+  text-decoration: none;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+/* aksen atas */
+
+.layanan-utama-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 24px;
+
+  width: 36px;
+  height: 3px;
+
+  background: #cdb082;
+
+  border-radius: 0 0 3px 3px;
+
+  transition: width 0.25s ease;
+}
+
+
+/* hover */
+
+.layanan-utama-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(23, 53, 42, 0.15);
+
+  box-shadow:
+    0 12px 28px rgba(23, 53, 42, 0.09);
+}
+
+.layanan-utama-card:hover::before {
+  width: 58px;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.layanan-icon {
+  flex-shrink: 0;
+
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #edf5f0;
+
+  border: 1px solid rgba(23, 53, 42, 0.07);
+  border-radius: 12px;
+
+  color: #176b4d;
+
+  font-size: 22px;
+  font-weight: 800;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.layanan-utama-card:hover .layanan-icon {
+  background: #e5f0e9;
+
+  transform: scale(1.04);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.layanan-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.layanan-content h3 {
+  margin: 2px 0 8px;
+
+  color: #17352a;
+
+  font-size: 16px;
+  font-weight: 800;
+
+  line-height: 1.35;
+}
+
+.layanan-content p {
+  margin: 0;
+
+  color: #68776f;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  line-height: 1.65;
+}
+
+.layanan-link {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 16px;
+
+  color: #176b4d;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  transition: gap 0.2s ease;
+}
+
+.layanan-link span {
+  font-size: 15px;
+}
+
+.layanan-utama-card:hover .layanan-link {
+  gap: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .layanan-utama-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+
+  .layanan-utama-section {
+    padding: 44px 0;
+  }
+
+  .layanan-utama-heading {
+    margin-bottom: 22px;
+  }
+
+  .layanan-utama-heading h2 {
+    font-size: 24px;
+  }
+
+  .layanan-utama-heading .section-intro {
+    font-size: 13px;
+  }
+
+  .layanan-utama-grid {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .layanan-utama-card {
+    min-height: 0;
+
+    padding: 20px;
+
+    gap: 14px;
+
+    border-radius: 14px;
+  }
+
+  .layanan-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 11px;
+
+    font-size: 20px;
+  }
+
+  .layanan-content h3 {
+    font-size: 15px;
+  }
+
+  .layanan-content p {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+  .layanan-utama-section {
+    padding: 38px 0;
+  }
+
+  .layanan-utama-card {
+    padding: 18px;
+
+    gap: 12px;
+  }
+
+}
