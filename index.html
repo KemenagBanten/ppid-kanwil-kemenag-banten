@@ -1107,6 +1107,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
+
+    const resetButton =
+    document.querySelector(
+      '[data-accessibility="reset"]'
+    );
+
+  if (resetButton) {
+
+    resetButton.addEventListener("click", function () {
+
+      /* Kembalikan ukuran teks */
+      accessibilityTextScale = 1;
+      updateAccessibilityText();
+
+      /* Matikan kontras tinggi */
+      document.body.classList.remove(
+        "accessibility-high-contrast"
+      );
+
+      /* Matikan mode kurangi animasi */
+      document.body.classList.remove(
+        "accessibility-reduced-motion"
+      );
+
+    });
+
+  }
   
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
