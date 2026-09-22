@@ -1055,6 +1055,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   }
+
+    const fontMinusButton =
+    document.querySelector(
+      '[data-accessibility="font-minus"]'
+    );
+
+  if (fontMinusButton) {
+
+    fontMinusButton.addEventListener("click", function () {
+
+      if (accessibilityTextScale <= 0.8) return;
+
+      accessibilityTextScale -= 0.1;
+
+      updateAccessibilityText();
+
+    });
+
+  }
+  
   toggle.addEventListener("click", function () {
     const isOpen = panel.classList.toggle("active");
 
