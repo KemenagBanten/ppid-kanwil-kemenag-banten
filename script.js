@@ -644,3 +644,108 @@ async function loadHomepageStatistik() {
   }
 
 }
+
+/* =========================================================
+   MOBILE NAVIGATION
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const toggle = document.getElementById("mobileMenuToggle");
+  const nav = document.getElementById("mainNav");
+
+  if (!toggle || !nav) return;
+
+
+  /* -----------------------------------------
+     BUKA / TUTUP MENU MOBILE
+  ----------------------------------------- */
+
+  toggle.addEventListener("click", function () {
+
+    const isOpen = nav.classList.toggle("mobile-open");
+
+    toggle.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+  });
+
+
+  /* -----------------------------------------
+     DROPDOWN MOBILE
+  ----------------------------------------- */
+
+  const dropdownButtons = nav.querySelectorAll(
+    ".nav-dropdown-button"
+  );
+
+  dropdownButtons.forEach(function (button) {
+
+    button.addEventListener("click", function (event) {
+
+      /* Hanya gunakan mekanisme ini pada mobile */
+      if (window.innerWidth > 900) return;
+
+      event.preventDefault();
+
+      const parent = button.closest(".nav-dropdown");
+
+      if (!parent) return;
+
+      parent.classList.toggle("mobile-open");
+
+    });
+
+  });
+
+
+  /* -----------------------------------------
+     KLIK LINK → TUTUP MENU
+  ----------------------------------------- */
+
+  nav.querySelectorAll("a").forEach(function (link) {
+
+    link.addEventListener("click", function () {
+
+      if (window.innerWidth <= 900) {
+        nav.classList.remove("mobile-open");
+
+        toggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      }
+
+    });
+
+  });
+
+
+  /* -----------------------------------------
+     KEMBALI KE DESKTOP
+  ----------------------------------------- */
+
+  window.addEventListener("resize", function () {
+
+    if (window.innerWidth > 900) {
+
+      nav.classList.remove("mobile-open");
+
+      toggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      nav.querySelectorAll(".nav-dropdown").forEach(
+        function (dropdown) {
+          dropdown.classList.remove("mobile-open");
+        }
+      );
+
+    }
+
+  });
+
+});
