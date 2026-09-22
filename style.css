@@ -2868,15 +2868,13 @@ body {
    ========================================================= */
 
 .layanan-utama-section {
-  padding: 48px 0 52px;
+  padding: 48px 0 28px;
   background: linear-gradient(
     180deg,
     #f7faf8 0%,
     #f3f7f5 100%
   );
 }
-
-
 /* HEADING */
 
 .layanan-utama-heading {
