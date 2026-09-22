@@ -3602,3 +3602,21 @@ body {
   }
 
 }
+
+/* LABEL KATEGORI KARTU */
+
+.layanan-label {
+  margin-bottom: 7px;
+
+  color: #b18d52;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.layanan-card-top {
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
