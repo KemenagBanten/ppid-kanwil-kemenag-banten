@@ -2331,8 +2331,9 @@
 
 
     let allData = [];
-
-
+let filteredData = [];
+let currentPage = 1;
+const rowsPerPage = 10;
     /* =====================================================
        ESCAPE HTML
     ===================================================== */
@@ -2505,7 +2506,89 @@
 
     }
 
+function renderPagination(data) {
+  const pagination = document.getElementById("pagination");
 
+  if (!pagination) return;
+
+  const totalPages = Math.ceil(data.length / rowsPerPage);
+
+  if (totalPages <= 1) {
+    pagination.innerHTML = "";
+    return;
+  }
+
+  let html = `
+    <div class="pagination-info">
+      Halaman ${currentPage} dari ${totalPages}
+    </div>
+  `;
+
+  html += `
+    <button
+      type="button"
+      onclick="changePage(${currentPage - 1})"
+      ${currentPage === 1 ? "disabled" : ""}
+    >
+      ←
+    </button>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    html += `
+      <button
+        type="button"
+        class="${i === currentPage ? "active" : ""}"
+        onclick="changePage(${i})"
+      >
+        ${i}
+      </button>
+    `;
+  }
+
+  html += `
+    <button
+      type="button"
+      onclick="changePage(${currentPage + 1})"
+      ${currentPage === totalPages ? "disabled" : ""}
+    >
+      →
+    </button>
+  `;
+
+  pagination.innerHTML = html;
+}
+
+    function changePage(page) {
+
+  const totalPages =
+    Math.ceil(
+      filteredData.length / rowsPerPage
+    );
+
+  if (
+    page < 1 ||
+    page > totalPages
+  ) {
+    return;
+  }
+
+  currentPage = page;
+
+  renderTablePage(
+    filteredData
+  );
+
+}
+    function renderTablePage(data) {
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+
+  const pageData = data.slice(startIndex, endIndex);
+
+  renderTable(pageData);
+  renderPagination(data);
+}
     /* =====================================================
        RENDER TABLE
     ===================================================== */
@@ -2700,8 +2783,8 @@
         yearFilter.value;
 
 
-      const filtered =
-        allData.filter(
+      filteredData =
+  allData.filter(
           function(row) {
 
             const text = [
@@ -2748,9 +2831,9 @@
           }
         );
 
-
+ currentPage = 1;
       renderTable(
-        filtered
+        filteredData
       );
 
     }
@@ -2856,9 +2939,13 @@
 
         populateFilters();
 
-        renderTable(
-          allData
-        );
+filteredData = allData;
+
+currentPage = 1;
+
+renderTablePage(
+  filteredData
+);
 
 
       } catch (error) {
