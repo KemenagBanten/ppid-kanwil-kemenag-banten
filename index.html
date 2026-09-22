@@ -1154,69 +1154,454 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // =========================================================
-// SEARCH SEDERHANA
+// SEARCH DOKUMEN — MASTER DOKUMEN
 // =========================================================
 
-const searchInput = document.getElementById("searchInput");
+const DOKUMEN_API =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec?action=dokumen';
 
-if (searchInput) {
-  searchInput.addEventListener("input", function () {
+let masterDokumenSearch = [];
+let searchDebounceTimer = null;
 
-    const keyword = this.value.toLowerCase().trim();
 
-    const searchableElements = document.querySelectorAll(
-      "main h2, main h3, main p, main a"
-    );
+// ---------------------------------------------------------
+// LOAD MASTER DOKUMEN
+// ---------------------------------------------------------
 
-    searchableElements.forEach(function (element) {
+async function loadMasterDokumenSearch() {
 
-      if (!keyword) {
-        element.style.opacity = "";
-        return;
-      }
+  try {
 
-      const text = element.textContent.toLowerCase();
+    const response = await fetch(DOKUMEN_API);
 
-      if (text.includes(keyword)) {
-        element.style.opacity = "1";
-      } else {
-        element.style.opacity = "0.25";
-      }
+    if (!response.ok) {
+      throw new Error('Gagal menghubungi API dokumen.');
+    }
+
+    const result = await response.json();
+
+    if (!result.success || !Array.isArray(result.data)) {
+      throw new Error('Data dokumen tidak valid.');
+    }
+
+    masterDokumenSearch = result.data.filter(function (item) {
+
+      return (
+        item &&
+        String(item.status || '').toLowerCase() === 'published' &&
+        String(item.nama_dokumen || '').trim() !== ''
+      );
 
     });
 
-  });
+    console.log(
+      'Master DOKUMEN berhasil dimuat:',
+      masterDokumenSearch.length
+    );
+
+  } catch (error) {
+
+    console.error(
+      'Gagal memuat Master DOKUMEN:',
+      error
+    );
+
+    masterDokumenSearch = [];
+
+  }
+
 }
 
-function searchInformation() {
 
-  const input = document.getElementById("searchInput");
+// ---------------------------------------------------------
+// ESCAPE HTML
+// ---------------------------------------------------------
 
-  if (!input) return;
+function escapeSearchHTML(value) {
 
-  const keyword = input.value.toLowerCase().trim();
+  return String(value || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+// ---------------------------------------------------------
+// FORMAT JENIS DOKUMEN
+// ---------------------------------------------------------
+
+function formatJenisDokumen(jenis) {
+
+  const value = String(jenis || '').trim();
+
+  if (!value) {
+    return 'Dokumen';
+  }
+
+  return value;
+
+}
+
+
+// ---------------------------------------------------------
+// HASIL SEARCH
+// ---------------------------------------------------------
+
+function renderSearchResults(keyword) {
+
+  const oldResults =
+    document.getElementById('homepageSearchResults');
+
+  if (oldResults) {
+    oldResults.remove();
+  }
+
 
   if (!keyword) {
     return;
   }
 
-  const searchableElements = document.querySelectorAll(
-    "main h2, main h3, main p, main a"
+
+  const keywordLower =
+    keyword.toLowerCase();
+
+
+  const hasil = masterDokumenSearch
+    .filter(function (item) {
+
+      const nama =
+        String(item.nama_dokumen || '').toLowerCase();
+
+      const jenis =
+        String(item.jenis_dokumen || '').toLowerCase();
+
+      const tahun =
+        String(item.tahun || '').toLowerCase();
+
+      const id =
+        String(item.id || '').toLowerCase();
+
+      const informasiId =
+        String(item.informasi_id || '').toLowerCase();
+
+
+      return (
+        nama.includes(keywordLower) ||
+        jenis.includes(keywordLower) ||
+        tahun.includes(keywordLower) ||
+        id.includes(keywordLower) ||
+        informasiId.includes(keywordLower)
+      );
+
+    })
+    .slice(0, 10);
+
+
+  const wrapper =
+    document.createElement('div');
+
+  wrapper.id =
+    'homepageSearchResults';
+
+  wrapper.className =
+    'homepage-search-results';
+
+
+  if (hasil.length === 0) {
+
+    wrapper.innerHTML = `
+      <div class="homepage-search-header">
+        <div>
+          <span class="homepage-search-label">
+            HASIL PENCARIAN
+          </span>
+
+          <strong>
+            Tidak ditemukan
+          </strong>
+        </div>
+
+        <button
+          type="button"
+          class="homepage-search-close"
+          onclick="closeHomepageSearch()"
+          aria-label="Tutup hasil pencarian"
+        >
+          ×
+        </button>
+      </div>
+
+      <div class="homepage-search-empty">
+        <div class="homepage-search-empty-icon">⌕</div>
+
+        <strong>
+          Dokumen tidak ditemukan
+        </strong>
+
+        <p>
+          Tidak ada dokumen yang sesuai dengan
+          kata kunci "<b>${escapeSearchHTML(keyword)}</b>".
+        </p>
+      </div>
+    `;
+
+  } else {
+
+    wrapper.innerHTML = `
+
+      <div class="homepage-search-header">
+
+        <div>
+
+          <span class="homepage-search-label">
+            HASIL PENCARIAN
+          </span>
+
+          <strong>
+            ${hasil.length} dokumen ditemukan
+          </strong>
+
+        </div>
+
+        <button
+          type="button"
+          class="homepage-search-close"
+          onclick="closeHomepageSearch()"
+          aria-label="Tutup hasil pencarian"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="homepage-search-list">
+
+        ${hasil.map(function (item) {
+
+          const nama =
+            escapeSearchHTML(item.nama_dokumen);
+
+          const jenis =
+            escapeSearchHTML(
+              formatJenisDokumen(item.jenis_dokumen)
+            );
+
+          const tahun =
+            escapeSearchHTML(item.tahun);
+
+          const url =
+            escapeSearchHTML(item.url_dokumen);
+
+          return `
+
+            <article class="homepage-search-item">
+
+              <div class="homepage-search-item-icon">
+                ▤
+              </div>
+
+              <div class="homepage-search-item-content">
+
+                <div class="homepage-search-item-meta">
+
+                  <span>${jenis}</span>
+
+                  ${
+                    tahun
+                      ? `<span>${tahun}</span>`
+                      : ''
+                  }
+
+                </div>
+
+                <h3>
+                  ${nama}
+                </h3>
+
+                <div class="homepage-search-item-id">
+                  ${escapeSearchHTML(item.id)}
+                </div>
+
+              </div>
+
+              ${
+                url
+                  ? `
+                    <a
+                      href="${url}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="homepage-search-item-link"
+                    >
+                      Lihat
+                      <span>↗</span>
+                    </a>
+                  `
+                  : ''
+              }
+
+            </article>
+
+          `;
+
+        }).join('')}
+
+      </div>
+
+
+      ${
+        hasil.length === 10
+          ? `
+            <div class="homepage-search-footer">
+              Menampilkan maksimal 10 hasil teratas.
+              Gunakan kata kunci yang lebih spesifik
+              untuk mempersempit pencarian.
+            </div>
+          `
+          : ''
+      }
+
+    `;
+
+  }
+
+
+  const searchBox =
+    document.querySelector('.search-box');
+
+  if (!searchBox) {
+    return;
+  }
+
+
+  searchBox.insertAdjacentElement(
+    'afterend',
+    wrapper
   );
 
-  searchableElements.forEach(function (element) {
+}
 
-    const text = element.textContent.toLowerCase();
 
-    if (text.includes(keyword)) {
-      element.style.opacity = "1";
-    } else {
-      element.style.opacity = "0.25";
+// ---------------------------------------------------------
+// SEARCH SAAT INPUT
+// ---------------------------------------------------------
+
+const searchInput =
+  document.getElementById('searchInput');
+
+
+if (searchInput) {
+
+  searchInput.addEventListener(
+    'input',
+    function () {
+
+      const keyword =
+        this.value.trim();
+
+
+      clearTimeout(
+        searchDebounceTimer
+      );
+
+
+      if (!keyword) {
+
+        closeHomepageSearch();
+
+        return;
+
+      }
+
+
+      searchDebounceTimer =
+        setTimeout(function () {
+
+          renderSearchResults(keyword);
+
+        }, 250);
+
     }
+  );
 
-  });
+
+  searchInput.addEventListener(
+    'keydown',
+    function (event) {
+
+      if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+        searchInformation();
+
+      }
+
+    }
+  );
 
 }
+
+
+// ---------------------------------------------------------
+// TOMBOL CARI
+// ---------------------------------------------------------
+
+function searchInformation() {
+
+  const input =
+    document.getElementById('searchInput');
+
+  if (!input) {
+    return;
+  }
+
+
+  const keyword =
+    input.value.trim();
+
+
+  if (!keyword) {
+
+    closeHomepageSearch();
+
+    return;
+
+  }
+
+
+  renderSearchResults(keyword);
+
+}
+
+
+// ---------------------------------------------------------
+// TUTUP HASIL
+// ---------------------------------------------------------
+
+function closeHomepageSearch() {
+
+  const results =
+    document.getElementById(
+      'homepageSearchResults'
+    );
+
+  if (results) {
+    results.remove();
+  }
+
+}
+
+
+// ---------------------------------------------------------
+// LOAD DATA SAAT HALAMAN SIAP
+// ---------------------------------------------------------
+
+loadMasterDokumenSearch();
       
 </script>
     
