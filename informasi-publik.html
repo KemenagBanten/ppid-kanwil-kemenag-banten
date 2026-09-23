@@ -45,9 +45,7 @@
         sans-serif;
 
       background: #f5f7f6;
-
       color: #26352e;
-
       line-height: 1.6;
     }
 
@@ -64,7 +62,6 @@
 
     /* =====================================================
        HEADER
-       PUTIH
     ===================================================== */
 
     .header {
@@ -113,7 +110,7 @@
 
 
     /* =====================================================
-       LOGO
+       BRAND
     ===================================================== */
 
     .header-brand {
@@ -132,9 +129,6 @@
 
       color:
         #17352a;
-
-      text-decoration:
-        none;
     }
 
 
@@ -176,10 +170,6 @@
     }
 
 
-    /* =====================================================
-       IDENTITAS HEADER
-    ===================================================== */
-
     .header-text {
 
       min-width:
@@ -205,13 +195,35 @@
     }
 
 
+    .header-kicker {
+
+      display:
+        block;
+
+      color:
+        #718078;
+
+      font-size:
+        9px;
+
+      font-weight:
+        600;
+
+      letter-spacing:
+        .45px;
+
+      margin-bottom:
+        3px;
+    }
+
+
     .header-text h1 {
 
       margin:
         0;
 
       color:
-        #17352a !important;
+        #17352a;
 
       font-size:
         15px;
@@ -220,34 +232,72 @@
         700;
 
       letter-spacing:
-        0.15px;
-    }
-
-
-    .header-text p {
-
-      margin:
-        4px 0 0;
-
-      color:
-        #66756e !important;
-
-      font-size:
-        10px;
-
-      font-weight:
-        500;
-
-      letter-spacing:
-        0.35px;
+        .15px;
     }
 
 
     /* =====================================================
-       NAVIGASI
+       MOBILE TOGGLE
     ===================================================== */
 
-    .header nav {
+    .nav-mobile-toggle-wrap {
+      display: none;
+    }
+
+    .nav-mobile-toggle {
+
+      width: 42px;
+      height: 42px;
+
+      border:
+        1px solid #dce5df;
+
+      background:
+        #ffffff;
+
+      border-radius:
+        9px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      gap:
+        5px;
+
+      cursor:
+        pointer;
+    }
+
+    .nav-mobile-toggle span {
+
+      width:
+        19px;
+
+      height:
+        2px;
+
+      background:
+        #315244;
+
+      border-radius:
+        2px;
+    }
+
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    .main-nav {
 
       display:
         flex;
@@ -263,16 +313,29 @@
     }
 
 
-    .header nav a {
+    .nav-item {
+
+      position:
+        relative;
+    }
+
+
+    .nav-link {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      gap:
+        5px;
 
       color:
-        #40544b !important;
-
-      text-decoration:
-        none;
+        #40544b;
 
       padding:
-        8px 12px;
+        8px 11px;
 
       border-radius:
         8px;
@@ -288,26 +351,195 @@
     }
 
 
-    .header nav a:hover {
+    .nav-link:hover {
 
       color:
-        #0f5132 !important;
+        #0f5132;
 
       background:
         #edf6f1;
     }
 
 
-    .header nav a.active {
+    .nav-item.active > .nav-link {
 
       color:
-        #0f5132 !important;
+        #0f5132;
 
       background:
         #e8f3ed;
 
       font-weight:
         700;
+    }
+
+
+    .nav-chevron {
+
+      font-size:
+        11px;
+
+      opacity:
+        .75;
+    }
+
+
+    /* =====================================================
+       DROPDOWN
+    ===================================================== */
+
+    .nav-dropdown {
+
+      position:
+        absolute;
+
+      top:
+        calc(100% + 8px);
+
+      left:
+        0;
+
+      min-width:
+        230px;
+
+      background:
+        #ffffff;
+
+      border:
+        1px solid #e2e9e5;
+
+      border-radius:
+        11px;
+
+      padding:
+        7px;
+
+      box-shadow:
+        0 12px 30px rgba(25,60,45,.12);
+
+      opacity:
+        0;
+
+      visibility:
+        hidden;
+
+      transform:
+        translateY(-5px);
+
+      transition:
+        all .18s ease;
+    }
+
+
+    .nav-item:hover > .nav-dropdown {
+
+      opacity:
+        1;
+
+      visibility:
+        visible;
+
+      transform:
+        translateY(0);
+    }
+
+
+    .nav-dropdown a {
+
+      display:
+        block;
+
+      padding:
+        9px 11px;
+
+      border-radius:
+        7px;
+
+      color:
+        #40544b;
+
+      font-size:
+        13px;
+
+      font-weight:
+        500;
+    }
+
+
+    .nav-dropdown a:hover {
+
+      background:
+        #edf6f1;
+
+      color:
+        #0f5132;
+    }
+
+
+    .nav-dropdown a.external::after {
+
+      content:
+        " ↗";
+
+      font-size:
+        11px;
+
+      opacity:
+        .65;
+    }
+
+
+    /* =====================================================
+       SEARCH NAV
+    ===================================================== */
+
+    .nav-search {
+
+      width:
+        35px;
+
+      height:
+        35px;
+
+      border:
+        1px solid #dce5df;
+
+      background:
+        #ffffff;
+
+      color:
+        #315244;
+
+      border-radius:
+        8px;
+
+      cursor:
+        pointer;
+
+      font-size:
+        19px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      margin-left:
+        3px;
+    }
+
+
+    .nav-search:hover {
+
+      background:
+        #edf6f1;
+
+      border-color:
+        #c9dbd0;
     }
 
 
@@ -407,7 +639,7 @@
         auto;
 
       padding:
-        62px 24px 68px;
+        58px 24px 62px;
     }
 
 
@@ -429,7 +661,7 @@
         rgba(255,255,255,.75);
 
       margin-bottom:
-        20px;
+        18px;
     }
 
 
@@ -450,7 +682,7 @@
     .hero h1 {
 
       font-size:
-        clamp(32px, 5vw, 48px);
+        clamp(32px, 5vw, 46px);
 
       line-height:
         1.1;
@@ -459,7 +691,7 @@
         -.8px;
 
       margin-bottom:
-        14px;
+        13px;
 
       color:
         #ffffff;
@@ -525,10 +757,6 @@
     }
 
 
-    /* =====================================================
-       SEARCH
-    ===================================================== */
-
     .search-wrapper {
 
       position:
@@ -554,7 +782,7 @@
         #7a8781;
 
       font-size:
-        18px;
+        17px;
 
       pointer-events:
         none;
@@ -576,7 +804,7 @@
         11px;
 
       padding:
-        14px 16px 14px 45px;
+        14px 16px 14px 44px;
 
       outline:
         none;
@@ -606,7 +834,7 @@
 
 
     /* =====================================================
-       FILTER
+       CATEGORY FILTER
     ===================================================== */
 
     .filters {
@@ -695,7 +923,7 @@
         15px;
 
       margin-bottom:
-        18px;
+        12px;
     }
 
 
@@ -719,6 +947,38 @@
 
       white-space:
         nowrap;
+    }
+
+
+    /* =====================================================
+       ERROR
+    ===================================================== */
+
+    #error {
+
+      display:
+        none;
+
+      background:
+        #fff3f3;
+
+      border:
+        1px solid #f0cccc;
+
+      color:
+        #9b3030;
+
+      border-radius:
+        12px;
+
+      padding:
+        15px 18px;
+
+      margin-bottom:
+        20px;
+
+      font-size:
+        14px;
     }
 
 
@@ -787,62 +1047,16 @@
 
 
     /* =====================================================
-       ERROR
-    ===================================================== */
-
-    #error {
-
-      display:
-        none;
-
-      background:
-        #fff3f3;
-
-      border:
-        1px solid #f0cccc;
-
-      color:
-        #9b3030;
-
-      border-radius:
-        12px;
-
-      padding:
-        15px 18px;
-
-      margin-bottom:
-        20px;
-
-      font-size:
-        14px;
-    }
-
-
-    /* =====================================================
-       DATA GRID
+       LIST DOKUMEN
     ===================================================== */
 
     .data-list {
 
       display:
-        grid;
+        flex;
 
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap:
-        18px;
-    }
-
-
-    /* =====================================================
-       CARD
-    ===================================================== */
-
-    .card {
-
-      position:
-        relative;
+      flex-direction:
+        column;
 
       background:
         #ffffff;
@@ -851,41 +1065,70 @@
         1px solid #e2e9e5;
 
       border-radius:
-        16px;
+        15px;
 
-      padding:
-        23px;
+      overflow:
+        hidden;
 
       box-shadow:
-        0 7px 25px rgba(26,54,41,.045);
+        0 6px 24px rgba(26,54,41,.045);
+    }
 
-      transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        border-color .2s ease;
+
+    /* =====================================================
+       LIST ITEM
+    ===================================================== */
+
+    .document-row {
 
       display:
         flex;
 
-      flex-direction:
-        column;
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+      padding:
+        19px 21px;
+
+      border-bottom:
+        1px solid #edf1ee;
+
+      transition:
+        background .18s ease;
     }
 
 
-    .card:hover {
+    .document-row:last-child {
 
-      transform:
-        translateY(-3px);
-
-      border-color:
-        #cbdcd2;
-
-      box-shadow:
-        0 12px 32px rgba(26,54,41,.09);
+      border-bottom:
+        none;
     }
 
 
-    .card-top {
+    .document-row:hover {
+
+      background:
+        #fafcfb;
+    }
+
+
+    .document-main {
+
+      min-width:
+        0;
+
+      flex:
+        1;
+    }
+
+
+    .document-title {
 
       display:
         flex;
@@ -893,30 +1136,24 @@
       align-items:
         flex-start;
 
-      justify-content:
-        space-between;
-
       gap:
-        15px;
-
-      margin-bottom:
-        15px;
+        12px;
     }
 
 
-    .document-icon {
+    .pdf-icon {
 
       width:
-        44px;
+        40px;
 
       height:
-        44px;
+        40px;
 
-      flex-shrink:
-        0;
+      flex:
+        0 0 40px;
 
       border-radius:
-        11px;
+        9px;
 
       background:
         #edf6f1;
@@ -934,82 +1171,55 @@
         center;
 
       font-size:
-        12px;
+        11px;
 
       font-weight:
         800;
     }
 
 
-    .document-id {
-
-      font-size:
-        12px;
+    .document-name {
 
       color:
-        #7b8781;
-
-      margin-bottom:
-        4px;
-    }
-
-
-    .card h3 {
+        #263a30;
 
       font-size:
-        18px;
+        15px;
 
       line-height:
-        1.4;
+        1.45;
 
-      color:
-        #203128;
+      font-weight:
+        650;
 
-      margin:
-        0;
+      margin-top:
+        1px;
     }
 
 
-    .summary {
-
-      color:
-        #68756f;
-
-      font-size:
-        14px;
-
-      line-height:
-        1.65;
-
-      margin-bottom:
-        17px;
-
-      min-height:
-        46px;
-    }
-
-
-    /* =====================================================
-       META
-    ===================================================== */
-
-    .meta {
+    .document-meta {
 
       display:
         flex;
+
+      align-items:
+        center;
 
       flex-wrap:
         wrap;
 
       gap:
+        6px;
+
+      margin-top:
         7px;
 
-      margin-bottom:
-        20px;
+      margin-left:
+        52px;
     }
 
 
-    .badge {
+    .meta-badge {
 
       display:
         inline-flex;
@@ -1018,65 +1228,61 @@
         center;
 
       padding:
-        5px 9px;
-
-      border-radius:
-        7px;
-
-      background:
-        #f1f5f3;
-
-      color:
-        #53615a;
-
-      font-size:
-        12px;
+        4px 8px;
 
       border:
-        1px solid #e4ebe7;
+        1px solid #e1e9e4;
+
+      border-radius:
+        6px;
+
+      background:
+        #f5f8f6;
+
+      color:
+        #617069;
+
+      font-size:
+        11px;
     }
 
 
-    .badge.primary {
+    .meta-badge.primary {
 
       background:
         #e9f5ef;
 
+      border-color:
+        #d4e9dd;
+
       color:
         #0f5132;
 
-      border-color:
-        #d4e9dd;
+      font-weight:
+        600;
     }
 
 
-    .badge.published {
-
-      background:
-        #eaf7ef;
-
-      color:
-        #187443;
-
-      border-color:
-        #d2ebdc;
-    }
-
-
-    /* =====================================================
-       CARD FOOTER
-    ===================================================== */
-
-    .card-footer {
+    .document-date {
 
       margin-top:
-        auto;
+        5px;
 
-      padding-top:
-        15px;
+      margin-left:
+        52px;
 
-      border-top:
-        1px solid #edf0ee;
+      color:
+        #87928d;
+
+      font-size:
+        11px;
+    }
+
+
+    .document-actions {
+
+      flex:
+        0 0 auto;
 
       display:
         flex;
@@ -1084,21 +1290,14 @@
       align-items:
         center;
 
-      justify-content:
-        space-between;
-
       gap:
-        12px;
-    }
+        8px;
 
+      flex-wrap:
+        wrap;
 
-    .date {
-
-      font-size:
-        12px;
-
-      color:
-        #7b8781;
+      justify-content:
+        flex-end;
     }
 
 
@@ -1114,7 +1313,7 @@
         center;
 
       gap:
-        7px;
+        6px;
 
       background:
         #0f5132;
@@ -1129,7 +1328,7 @@
         8px;
 
       font-size:
-        13px;
+        12px;
 
       font-weight:
         600;
@@ -1171,17 +1370,11 @@
 
     .no-data {
 
-      grid-column:
-        1 / -1;
+      width:
+        100%;
 
       background:
         #ffffff;
-
-      border:
-        1px solid #e3e9e5;
-
-      border-radius:
-        16px;
 
       padding:
         55px 20px;
@@ -1197,7 +1390,7 @@
     .no-data-icon {
 
       font-size:
-        35px;
+        34px;
 
       margin-bottom:
         10px;
@@ -1214,6 +1407,121 @@
 
       margin-bottom:
         5px;
+    }
+
+
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
+
+    .pagination {
+
+      display:
+        flex;
+
+      justify-content:
+        center;
+
+      align-items:
+        center;
+
+      gap:
+        6px;
+
+      margin-top:
+        24px;
+
+      flex-wrap:
+        wrap;
+    }
+
+
+    .pagination button {
+
+      min-width:
+        36px;
+
+      height:
+        36px;
+
+      padding:
+        0 10px;
+
+      border:
+        1px solid #d9e4de;
+
+      border-radius:
+        8px;
+
+      background:
+        #ffffff;
+
+      color:
+        #315244;
+
+      font-size:
+        13px;
+
+      font-weight:
+        600;
+
+      cursor:
+        pointer;
+
+      transition:
+        all .2s ease;
+    }
+
+
+    .pagination button:hover {
+
+      background:
+        #f1f7f4;
+
+      border-color:
+        #b8cfc3;
+    }
+
+
+    .pagination button.active {
+
+      background:
+        #1f5a43;
+
+      border-color:
+        #1f5a43;
+
+      color:
+        #ffffff;
+    }
+
+
+    .pagination button:disabled {
+
+      opacity:
+        .45;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .pagination-info {
+
+      width:
+        100%;
+
+      text-align:
+        center;
+
+      margin-bottom:
+        8px;
+
+      color:
+        #71847a;
+
+      font-size:
+        12px;
     }
 
 
@@ -1278,7 +1586,7 @@
         1.6;
 
       max-width:
-        500px;
+        520px;
     }
 
 
@@ -1305,39 +1613,28 @@
        TABLET
     ===================================================== */
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
 
       .header-inner {
-        gap:
-          15px;
+        gap: 12px;
       }
 
+      .nav-link {
+        padding:
+          8px 8px;
+
+        font-size:
+          12px;
+      }
 
       .header-text h1 {
         font-size:
           13px;
       }
 
-
-      .header-text p {
+      .header-kicker {
         font-size:
-          9px;
-      }
-
-
-      .header nav a {
-        padding:
-          7px 8px;
-
-        font-size:
-          12px;
-      }
-
-
-      .data-list {
-
-        grid-template-columns:
-          1fr;
+          8px;
       }
 
     }
@@ -1346,6 +1643,168 @@
     /* =====================================================
        MOBILE
     ===================================================== */
+
+    @media (max-width: 850px) {
+
+      .nav-mobile-toggle-wrap {
+        display:
+          block;
+      }
+
+
+      .main-nav {
+
+        position:
+          absolute;
+
+        top:
+          100%;
+
+        left:
+          0;
+
+        right:
+          0;
+
+        background:
+          #ffffff;
+
+        border-top:
+          1px solid #e5ebe7;
+
+        box-shadow:
+          0 12px 25px rgba(25,60,45,.10);
+
+        display:
+          none;
+
+        flex-direction:
+          column;
+
+        align-items:
+          stretch;
+
+        gap:
+          0;
+
+        padding:
+          8px 4% 14px;
+      }
+
+
+      .main-nav.open {
+        display:
+          flex;
+      }
+
+
+      .nav-item {
+        width:
+          100%;
+      }
+
+
+      .nav-link {
+
+        width:
+          100%;
+
+        justify-content:
+          space-between;
+
+        padding:
+          11px 10px;
+      }
+
+
+      .nav-dropdown {
+
+        position:
+          static;
+
+        display:
+          none;
+
+        opacity:
+          1;
+
+        visibility:
+          visible;
+
+        transform:
+          none;
+
+        min-width:
+          0;
+
+        box-shadow:
+          none;
+
+        border:
+          none;
+
+        padding:
+          0 0 4px 15px;
+
+        background:
+          #f8faf9;
+      }
+
+
+      .nav-item:hover > .nav-dropdown {
+        display:
+          none;
+      }
+
+
+      .nav-item.mobile-open > .nav-dropdown {
+        display:
+          block;
+      }
+
+
+      .nav-dropdown a {
+        padding:
+          9px 11px;
+      }
+
+
+      .nav-search {
+        margin:
+          5px 10px 0;
+
+        align-self:
+          flex-start;
+      }
+
+
+      .document-row {
+
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+        gap:
+          13px;
+      }
+
+
+      .document-actions {
+
+        width:
+          100%;
+
+        justify-content:
+          flex-start;
+
+        margin-left:
+          52px;
+      }
+
+    }
+
 
     @media (max-width: 680px) {
 
@@ -1356,16 +1815,12 @@
 
         padding:
           10px 0;
-
-        flex-wrap:
-          wrap;
       }
 
 
       .header-brand {
-
-        width:
-          100%;
+        flex:
+          1;
       }
 
 
@@ -1383,48 +1838,14 @@
 
 
       .header-text h1 {
-
         font-size:
           12px;
       }
 
 
-      .header-text p {
-
+      .header-kicker {
         font-size:
-          8px;
-
-        margin-top:
-          3px;
-      }
-
-
-      .header nav {
-
-        width:
-          100%;
-
-        justify-content:
-          flex-start;
-
-        overflow-x:
-          auto;
-
-        padding-bottom:
-          2px;
-      }
-
-
-      .header nav a {
-
-        white-space:
-          nowrap;
-
-        font-size:
-          11px;
-
-        padding:
-          6px 8px;
+          7.5px;
       }
 
 
@@ -1455,36 +1876,58 @@
       }
 
 
-      .card {
+      .document-row {
 
         padding:
-          20px;
+          17px 15px;
       }
 
 
-      .card-footer {
+      .document-name {
+        font-size:
+          14px;
+      }
 
-        align-items:
-          flex-start;
 
-        flex-direction:
-          column;
+      .document-meta,
+      .document-date,
+      .document-actions {
+
+        margin-left:
+          52px;
       }
 
 
       .document-button {
-
         width:
-          100%;
+          auto;
       }
 
 
       .footer-inner {
-
         padding:
           30px 20px;
       }
 
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    body.accessibility-reduced-motion *,
+    body.accessibility-reduced-motion *::before,
+    body.accessibility-reduced-motion *::after {
+
+      animation:
+        none !important;
+
+      transition:
+        none !important;
+
+      scroll-behavior:
+        auto !important;
     }
 
   </style>
@@ -1495,973 +1938,1784 @@
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+  <!-- =====================================================
+       HEADER
+  ===================================================== -->
 
-<header class="header">
+  <header class="header">
 
-  <div class="header-inner">
-
-    <a
-      href="index.html"
-      class="header-brand"
-    >
-
-      <div class="header-logo">
-
-        <img
-          src="assets/logo-kemenag.png"
-          alt="Logo Kementerian Agama Republik Indonesia"
-        >
-
-      </div>
+    <div class="header-inner">
 
 
-      <div class="header-text">
+      <a
+        href="index.html"
+        class="header-brand"
+      >
 
-        <h1>
-          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-        </h1>
+        <div class="header-logo">
 
-        <p>
-          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI (PPID)
-        </p>
+          <img
+            src="assets/logo-kemenag.png"
+            alt="Logo Kementerian Agama Republik Indonesia"
+          >
 
-      </div>
-
-    </a>
-
-
-    <nav>
-
-      <nav>
-
-  <a href="index.html">
-    Beranda
-  </a>
-
-  <a
-    href="informasi-publik.html"
-    class="active"
-  >
-    Informasi Publik
-  </a>
-
-  <a href="dip.html">
-    DIP
-  </a>
-
-  <a href="dik.html">
-    DIK
-  </a>
-
-  <a href="berita.html">
-    Berita
-  </a>
-
-  <a href="pengumuman.html">
-    Pengumuman
-  </a>
-
-</nav>
-
-    </nav>
-
-  </div>
-
-</header>
+        </div>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+        <div class="header-text">
 
-<section class="hero">
+          <span class="header-kicker">
+            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI
+          </span>
 
-  <div class="hero-inner">
+          <h1>
+            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+          </h1>
 
-    <div class="breadcrumb">
+        </div>
 
-      <a href="index.html">
-        Beranda
       </a>
 
-      <span>
-        ›
-      </span>
 
-      <span>
+      <!-- MOBILE -->
+
+      <div class="nav-mobile-toggle-wrap">
+
+        <button
+          type="button"
+          class="nav-mobile-toggle"
+          id="mobileMenuToggle"
+          aria-label="Buka menu"
+          aria-expanded="false"
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </button>
+
+      </div>
+
+
+      <!-- NAVIGATION -->
+
+      <nav
+        class="main-nav"
+        id="mainNav"
+      >
+
+
+        <!-- BERANDA -->
+
+        <div class="nav-item">
+
+          <a
+            href="index.html"
+            class="nav-link"
+          >
+            Beranda
+          </a>
+
+        </div>
+
+
+        <!-- PROFIL -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+
+            Profil
+
+            <span class="nav-chevron">
+              ▾
+            </span>
+
+          </a>
+
+
+          <div class="nav-dropdown">
+
+            <a href="profil.html">
+              Profil PPID
+            </a>
+
+            <a href="ppid-unit.html">
+              PPID Unit
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- INFORMASI & DOKUMEN -->
+
+        <div class="nav-item active">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+
+            Informasi &amp; Dokumen
+
+            <span class="nav-chevron">
+              ▾
+            </span>
+
+          </a>
+
+
+          <div class="nav-dropdown">
+
+            <a
+              href="informasi-publik.html"
+              class="active"
+            >
+              Informasi Publik
+            </a>
+
+            <a href="dip.html">
+              DIP
+            </a>
+
+            <a href="dik.html">
+              DIK
+            </a>
+
+            <a href="dokumen.html">
+              Dokumen
+            </a>
+
+            <a href="pengadaan.html">
+              Pengadaan Barang/Jasa
+            </a>
+
+            <a href="laporan.html">
+              Laporan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- LAYANAN -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+
+            Layanan
+
+            <span class="nav-chevron">
+              ▾
+            </span>
+
+          </a>
+
+
+          <div class="nav-dropdown">
+
+            <a href="permohonan.html">
+              Permohonan Informasi
+            </a>
+
+            <a href="keberatan.html">
+              Ajukan Keberatan
+            </a>
+
+            <a
+              href="https://www.lapor.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Pengaduan Masyarakat
+            </a>
+
+            <a href="statistik.html">
+              Statistik Layanan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- REGULASI -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+
+            Regulasi
+
+            <span class="nav-chevron">
+              ▾
+            </span>
+
+          </a>
+
+
+          <div class="nav-dropdown">
+
+            <a href="sop.html">
+              SOP
+            </a>
+
+            <a href="regulasi.html">
+              Regulasi Kanwil
+            </a>
+
+            <a
+              href="https://jdih.kemenag.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Regulasi Pusat — JDIH Kemenag
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- BERITA -->
+
+        <div class="nav-item">
+
+          <a
+            href="#"
+            class="nav-link"
+          >
+
+            Berita &amp; Pengumuman
+
+            <span class="nav-chevron">
+              ▾
+            </span>
+
+          </a>
+
+
+          <div class="nav-dropdown">
+
+            <a
+              href="https://banten.kemenag.go.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="external"
+            >
+              Berita Kemenag Banten
+            </a>
+
+            <a href="pengumuman.html">
+              Pengumuman
+            </a>
+
+            <a href="jadwal-pelayanan.html">
+              Jadwal Pelayanan
+            </a>
+
+            <a href="agenda.html">
+              Agenda/Kegiatan PPID
+            </a>
+
+            <a href="hari-penting.html">
+              Hari/Tanggal Penting
+            </a>
+
+            <a href="kalender.html">
+              Kalender Kegiatan
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <button
+          type="button"
+          class="nav-search"
+          aria-label="Cari informasi"
+          onclick="window.location.href='index.html#searchInput';"
+        >
+          ⌕
+        </button>
+
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       HERO
+  ===================================================== -->
+
+  <section class="hero">
+
+    <div class="hero-inner">
+
+
+      <div class="breadcrumb">
+
+        <a href="index.html">
+          Beranda
+        </a>
+
+        <span>
+          ›
+        </span>
+
+        <span>
+          Informasi Publik
+        </span>
+
+      </div>
+
+
+      <h1>
         Informasi Publik
-      </span>
-
-    </div>
+      </h1>
 
 
-    <h1>
-      Informasi Publik
-    </h1>
+      <p class="hero-description">
 
+        Akses informasi publik Kanwil Kementerian Agama
+        Provinsi Banten secara mudah, transparan, dan
+        terintegrasi.
 
-    <p class="hero-description">
-
-      Akses informasi publik Kanwil Kementerian Agama
-      Provinsi Banten secara mudah, transparan, dan
-      terintegrasi.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main>
-
-
-  <!-- SEARCH + FILTER -->
-
-  <section class="toolbar">
-
-    <div class="search-wrapper">
-
-      <span class="search-icon">
-        🔎
-      </span>
-
-
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Cari judul, kategori, jenis informasi, atau kata kunci..."
-        autocomplete="off"
-      >
-
-    </div>
-
-
-    <div
-      class="filters"
-      id="filters"
-    >
-
-      <button
-        type="button"
-        class="filter-btn active"
-        data-filter="all"
-      >
-        Semua
-      </button>
-
-
-      <button
-        type="button"
-        class="filter-btn"
-        data-filter="Berkala"
-      >
-        Berkala
-      </button>
-
-
-      <button
-        type="button"
-        class="filter-btn"
-        data-filter="Setiap Saat"
-      >
-        Setiap Saat
-      </button>
+      </p>
 
     </div>
 
   </section>
 
 
-  <!-- RESULT -->
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
 
-  <div class="result-header">
-
-    <h2>
-      Daftar Informasi
-    </h2>
+  <main>
 
 
-    <span id="resultCount">
-      Memuat data...
-    </span>
+    <!-- TOOLBAR -->
 
-  </div>
+    <section class="toolbar">
 
 
-  <!-- ERROR -->
+      <div class="search-wrapper">
 
-  <div id="error"></div>
-
-
-  <!-- LOADING -->
-
-  <div id="loading">
-
-    <div class="spinner"></div>
-
-    <div>
-      Memuat informasi publik...
-    </div>
-
-  </div>
+        <span class="search-icon">
+          🔎
+        </span>
 
 
-  <!-- DATA -->
-
-  <div
-    id="dataList"
-    class="data-list"
-  ></div>
-
-
-</main>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-  <div class="footer-inner">
-
-    <div>
-
-      <div class="footer-title">
-        PPID Kanwil Kementerian Agama Provinsi Banten
-      </div>
-
-
-      <div class="footer-text">
-
-        Portal layanan informasi publik untuk mendukung
-        keterbukaan informasi dan pelayanan publik
-        di lingkungan Kanwil Kementerian Agama
-        Provinsi Banten.
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari judul, kategori, jenis informasi, atau kata kunci..."
+          autocomplete="off"
+        >
 
       </div>
 
+
+      <!-- FILTER -->
+
+      <div
+        class="filters"
+        id="filters"
+      >
+
+        <button
+          type="button"
+          class="filter-btn active"
+          data-filter="all"
+        >
+          Semua
+        </button>
+
+
+        <button
+          type="button"
+          class="filter-btn"
+          data-filter="Berkala"
+        >
+          Berkala
+        </button>
+
+
+        <button
+          type="button"
+          class="filter-btn"
+          data-filter="Serta-Merta"
+        >
+          Serta-Merta
+        </button>
+
+
+        <button
+          type="button"
+          class="filter-btn"
+          data-filter="Setiap Saat"
+        >
+          Setiap Saat
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULT HEADER -->
+
+    <div class="result-header">
+
+      <h2>
+        Daftar Informasi
+      </h2>
+
+      <span id="resultCount">
+        Memuat data...
+      </span>
+
     </div>
 
-  </div>
+
+    <!-- ERROR -->
+
+    <div id="error"></div>
 
 
-  <div class="footer-copy">
+    <!-- LOADING -->
 
-    © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
+    <div id="loading">
 
-  </div>
+      <div class="spinner"></div>
 
-</footer>
+      <div>
+        Memuat informasi publik...
+      </div>
 
-
-<script>
-
-/* =====================================================
-   API
-===================================================== */
-
-const API_URL =
-  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+    </div>
 
 
-/* =====================================================
-   STATE
-===================================================== */
+    <!-- DATA -->
 
-let allData = [];
-
-let activeFilter = 'all';
-
-
-/* =====================================================
-   ELEMENT
-===================================================== */
-
-const dataList =
-  document.getElementById('dataList');
-
-const loading =
-  document.getElementById('loading');
-
-const errorBox =
-  document.getElementById('error');
-
-const resultCount =
-  document.getElementById('resultCount');
-
-const searchInput =
-  document.getElementById('searchInput');
+    <div
+      id="dataList"
+      class="data-list"
+      style="display:none;"
+    ></div>
 
 
-/* =====================================================
-   LOAD DATA
-===================================================== */
+    <!-- PAGINATION -->
 
-async function loadInformasiPublik() {
+    <div
+      id="pagination"
+      class="pagination"
+    ></div>
 
-  try {
 
-    loading.style.display = 'block';
-    errorBox.style.display = 'none';
+  </main>
 
-    // Ambil Informasi Publik dan Dokumen secara bersamaan
-    const [informasiResponse, dokumenResponse] =
-      await Promise.all([
 
-        fetch(
-          API_URL +
-          '?action=informasi'
-        ),
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
 
-        fetch(
-          API_URL +
-          '?action=dokumen'
-        )
+  <footer>
 
-      ]);
+    <div class="footer-inner">
 
-    if (!informasiResponse.ok) {
+      <div>
 
-      throw new Error(
-        'Gagal mengambil data Informasi Publik. HTTP ' +
-        informasiResponse.status
+        <div class="footer-title">
+          PPID Kanwil Kementerian Agama Provinsi Banten
+        </div>
+
+
+        <div class="footer-text">
+
+          Portal layanan informasi publik dan dokumentasi
+          PPID Kantor Wilayah Kementerian Agama
+          Provinsi Banten.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer-copy">
+
+      © 2026 PPID Kanwil Kementerian Agama Provinsi Banten
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       SCRIPT
+  ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       API
+    ===================================================== */
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let allData = [];
+
+    let activeFilter = 'all';
+
+    let currentPage = 1;
+
+    const pageSize = 10;
+
+
+    /* =====================================================
+       ELEMENT
+    ===================================================== */
+
+    const dataList =
+      document.getElementById('dataList');
+
+    const loading =
+      document.getElementById('loading');
+
+    const errorBox =
+      document.getElementById('error');
+
+    const resultCount =
+      document.getElementById('resultCount');
+
+    const searchInput =
+      document.getElementById('searchInput');
+
+    const pagination =
+      document.getElementById('pagination');
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const mobileMenuToggle =
+      document.getElementById(
+        'mobileMenuToggle'
       );
 
-    }
-
-    if (!dokumenResponse.ok) {
-
-      throw new Error(
-        'Gagal mengambil data Dokumen. HTTP ' +
-        dokumenResponse.status
+    const mainNav =
+      document.getElementById(
+        'mainNav'
       );
 
-    }
 
-    const informasiResult =
-      await informasiResponse.json();
-
-    const dokumenResult =
-      await dokumenResponse.json();
-
-    if (!informasiResult.success) {
-
-      throw new Error(
-        informasiResult.message ||
-        'Data Informasi Publik gagal dimuat.'
-      );
-
-    }
-
-    if (!dokumenResult.success) {
-
-      throw new Error(
-        dokumenResult.message ||
-        'Data Dokumen gagal dimuat.'
-      );
-
-    }
-
-    const informasiData =
-      Array.isArray(informasiResult.data)
-        ? informasiResult.data
-        : [];
-
-    const dokumenData =
-      Array.isArray(dokumenResult.data)
-        ? dokumenResult.data
-        : [];
-
-    // =========================================
-    // HUBUNGKAN DOKUMEN DENGAN INFORMASI
-    // =========================================
-
-    const dokumenMap = {};
-
-    dokumenData.forEach(function (dokumen) {
-
-      const informasiId =
-        String(
-          dokumen.informasi_id || ''
-        ).trim();
-
-      if (!informasiId) return;
-
-      if (!dokumenMap[informasiId]) {
-
-        dokumenMap[informasiId] = [];
-
-      }
-
-      dokumenMap[informasiId].push(dokumen);
-
-    });
-
-    // =========================================
-    // GABUNGKAN DATA
-    // =========================================
-
-    allData =
-      informasiData.map(function (row) {
-
-        const id =
-          String(
-            row.id || ''
-          ).trim();
-
-        return {
-
-          ...row,
-
-          dokumen:
-            dokumenMap[id] || []
-
-        };
-
-      });
-
-    loading.style.display = 'none';
-
-    applyFilter();
-
-  }
-
-  catch (error) {
-
-    console.error(
-      'LOAD INFORMASI ERROR:',
-      error
-    );
-
-    loading.style.display = 'none';
-
-    errorBox.style.display = 'block';
-
-    errorBox.textContent =
-      'Gagal memuat informasi publik: ' +
-      error.message;
-
-    resultCount.textContent =
-      'Data tidak tersedia';
-
-  }
-
-}
-
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-document
-  .querySelectorAll('.filter-btn')
-  .forEach(function(button) {
-
-    button.addEventListener(
+    mobileMenuToggle.addEventListener(
       'click',
       function() {
 
-        document
-          .querySelectorAll('.filter-btn')
-          .forEach(function(btn) {
+        const open =
+          mainNav.classList.toggle(
+            'open'
+          );
 
-            btn.classList.remove(
-              'active'
-            );
-
-          });
-
-        this.classList.add(
-          'active'
+        mobileMenuToggle.setAttribute(
+          'aria-expanded',
+          open
         );
 
-        activeFilter =
-          this.dataset.filter;
+      }
+    );
+
+
+    /* =====================================================
+       MOBILE DROPDOWN
+    ===================================================== */
+
+    document
+      .querySelectorAll(
+        '.nav-item > .nav-link'
+      )
+      .forEach(
+        function(link) {
+
+          const item =
+            link.parentElement;
+
+          const dropdown =
+            item.querySelector(
+              '.nav-dropdown'
+            );
+
+          if (!dropdown) return;
+
+
+          link.addEventListener(
+            'click',
+            function(event) {
+
+              if (
+                window.innerWidth <= 850
+              ) {
+
+                event.preventDefault();
+
+                item.classList.toggle(
+                  'mobile-open'
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       LOAD DATA
+    ===================================================== */
+
+    async function loadInformasiPublik() {
+
+      try {
+
+        loading.style.display =
+          'block';
+
+        dataList.style.display =
+          'none';
+
+        errorBox.style.display =
+          'none';
+
+
+        const [
+          informasiResponse,
+          dokumenResponse
+        ] = await Promise.all([
+
+          fetch(
+            API_URL +
+            '?action=informasi'
+          ),
+
+          fetch(
+            API_URL +
+            '?action=dokumen'
+          )
+
+        ]);
+
+
+        if (
+          !informasiResponse.ok
+        ) {
+
+          throw new Error(
+            'HTTP Error Informasi: ' +
+            informasiResponse.status
+          );
+
+        }
+
+
+        if (
+          !dokumenResponse.ok
+        ) {
+
+          throw new Error(
+            'HTTP Error Dokumen: ' +
+            dokumenResponse.status
+          );
+
+        }
+
+
+        const [
+          informasiResult,
+          dokumenResult
+        ] = await Promise.all([
+
+          informasiResponse.json(),
+
+          dokumenResponse.json()
+
+        ]);
+
+
+        if (
+          !informasiResult.success
+        ) {
+
+          throw new Error(
+            informasiResult.message ||
+            'Data informasi gagal dimuat.'
+          );
+
+        }
+
+
+        if (
+          !dokumenResult.success
+        ) {
+
+          throw new Error(
+            dokumenResult.message ||
+            'Data dokumen gagal dimuat.'
+          );
+
+        }
+
+
+        const informasiData =
+          Array.isArray(
+            informasiResult.data
+          )
+            ? informasiResult.data
+            : [];
+
+
+        const dokumenData =
+          Array.isArray(
+            dokumenResult.data
+          )
+            ? dokumenResult.data
+            : [];
+
+
+        /* =================================================
+           MASTER DOKUMEN MAP
+        ================================================= */
+
+        const dokumenMap = {};
+
+
+        dokumenData.forEach(
+          function(dokumen) {
+
+            const informasiId =
+              String(
+                dokumen.informasi_id ||
+                ''
+              ).trim();
+
+
+            if (!informasiId) return;
+
+
+            if (
+              !dokumenMap[
+                informasiId
+              ]
+            ) {
+
+              dokumenMap[
+                informasiId
+              ] = [];
+
+            }
+
+
+            if (
+              String(
+                dokumen.status || ''
+              ).toLowerCase()
+              === 'published'
+            ) {
+
+              dokumenMap[
+                informasiId
+              ].push(
+                dokumen
+              );
+
+            }
+
+          }
+        );
+
+
+        /* =================================================
+           GABUNG INFORMASI + DOKUMEN
+        ================================================= */
+
+        allData =
+          informasiData
+            .filter(
+              function(row) {
+
+                return String(
+                  row.status || ''
+                ).toLowerCase()
+                === 'published';
+
+              }
+            )
+            .map(
+              function(row) {
+
+                const id =
+                  String(
+                    row.id || ''
+                  ).trim();
+
+
+                return {
+
+                  ...row,
+
+                  dokumen:
+                    dokumenMap[id] ||
+                    []
+
+                };
+
+              }
+            );
+
+
+        loading.style.display =
+          'none';
+
+        dataList.style.display =
+          'flex';
+
+
+        currentPage = 1;
+
+        applyFilter();
+
+
+      } catch (error) {
+
+        console.error(
+          'LOAD INFORMASI ERROR:',
+          error
+        );
+
+
+        loading.style.display =
+          'none';
+
+        dataList.style.display =
+          'none';
+
+
+        errorBox.style.display =
+          'block';
+
+
+        errorBox.textContent =
+          'Gagal memuat informasi publik: ' +
+          error.message;
+
+
+        resultCount.textContent =
+          'Data tidak tersedia';
+
+      }
+
+    }
+
+
+    /* =====================================================
+       FILTER BUTTON
+    ===================================================== */
+
+    document
+      .querySelectorAll(
+        '.filter-btn'
+      )
+      .forEach(
+        function(button) {
+
+          button.addEventListener(
+            'click',
+            function() {
+
+              document
+                .querySelectorAll(
+                  '.filter-btn'
+                )
+                .forEach(
+                  function(btn) {
+
+                    btn.classList.remove(
+                      'active'
+                    );
+
+                  }
+                );
+
+
+              this.classList.add(
+                'active'
+              );
+
+
+              activeFilter =
+                this.dataset.filter;
+
+
+              currentPage = 1;
+
+              applyFilter();
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    searchInput.addEventListener(
+      'input',
+      function() {
+
+        currentPage = 1;
 
         applyFilter();
 
       }
     );
 
-  });
+
+    /* =====================================================
+       APPLY FILTER
+    ===================================================== */
+
+    function applyFilter() {
+
+      const keyword =
+        searchInput.value
+          .toLowerCase()
+          .trim();
 
 
-/* =====================================================
-   SEARCH
-===================================================== */
+      const filtered =
+        allData.filter(
+          function(row) {
 
-searchInput.addEventListener(
-  'input',
-  function() {
-
-    applyFilter();
-
-  }
-);
+            const jenis =
+              String(
+                row.jenis ||
+                row.jenis_informasi ||
+                ''
+              );
 
 
-/* =====================================================
-   APPLY FILTER
-===================================================== */
+            const searchText = [
 
-function applyFilter() {
+              row.id,
 
-  const keyword =
-    searchInput.value
-      .toLowerCase()
-      .trim();
+              row.judul,
 
-  const filtered =
-    allData.filter(
-      function(row) {
+              row.jenis,
 
-        const jenis =
-          String(
-            row.jenis ||
-            row.jenis_informasi ||
-            ''
-          );
+              row.jenis_informasi,
 
-        const searchText = [
+              row.kategori,
 
-          row.id,
-          row.judul,
-          row.jenis,
-          row.jenis_informasi,
-          row.kategori,
-          row.ringkasan,
-          row.unit,
-          row.pejabat_unit,
-          row.tahun,
-          row.status
+              row.ringkasan,
 
-        ]
-        .join(' ')
-        .toLowerCase();
+              row.unit,
 
-        const matchesSearch =
-          !keyword ||
-          searchText.includes(
-            keyword
-          );
+              row.pejabat_unit,
 
-        const matchesFilter =
-          activeFilter === 'all' ||
-          jenis.toLowerCase() ===
-          activeFilter.toLowerCase();
+              row.tahun,
 
-        return (
-          matchesSearch &&
-          matchesFilter
+              row.status
+
+            ]
+              .join(' ')
+              .toLowerCase();
+
+
+            const matchesSearch =
+              !keyword ||
+              searchText.includes(
+                keyword
+              );
+
+
+            const normalizedJenis =
+              jenis
+                .toLowerCase()
+                .replace(
+                  /\s+/g,
+                  ' '
+                )
+                .trim();
+
+
+            const normalizedFilter =
+              activeFilter
+                .toLowerCase()
+                .replace(
+                  /\s+/g,
+                  ' '
+                )
+                .trim();
+
+
+            const matchesFilter =
+              activeFilter === 'all' ||
+              normalizedJenis ===
+                normalizedFilter;
+
+
+            return (
+              matchesSearch &&
+              matchesFilter
+            );
+
+          }
         );
 
-      }
-    );
 
-  renderData(filtered);
-
-}
-
-
-/* =====================================================
-   RENDER DATA
-===================================================== */
-
-function renderData(data) {
-
-  dataList.innerHTML = '';
-
-  resultCount.textContent =
-    data.length +
-    ' informasi tersedia';
-
-  if (!data.length) {
-
-    dataList.innerHTML = `
-
-      <div class="no-data">
-
-        <div class="no-data-icon">
-          🔎
-        </div>
-
-        <strong>
-          Informasi tidak ditemukan
-        </strong>
-
-        <span>
-          Coba gunakan kata kunci pencarian
-          yang berbeda.
-        </span>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  data.forEach(
-    function(row) {
-
-      const card =
-        document.createElement(
-          'article'
-        );
-
-      card.className =
-        'card';
-
-      const id =
-        row.id || '';
-
-      const judul =
-        row.judul ||
-        'Tanpa Judul';
-
-      const ringkasan =
-        row.ringkasan ||
-        'Informasi publik Kanwil Kementerian Agama Provinsi Banten.';
-
-      const jenis =
-        row.jenis ||
-        row.jenis_informasi ||
-        '';
-
-      const kategori =
-        row.kategori ||
-        '';
-
-      const tahun =
-        row.tahun ||
-        '';
-
-      const status =
-        row.status ||
-        '';
-
-      const tanggal =
-        formatTanggal(
-          row.tanggal_update
-        );
-
-      // =========================================
-      // DOKUMEN DARI SHEET DOKUMEN
-      // =========================================
-
-      const dokumen =
-        Array.isArray(row.dokumen)
-          ? row.dokumen
-          : [];
-
-      let documentButtons = '';
-
-      if (dokumen.length > 0) {
-
-        documentButtons =
-          dokumen
-            .map(function(doc, index) {
-
-              const url =
-                doc.url_dokumen || '';
-
-              const namaDokumen =
-                doc.nama_dokumen ||
-                'Lihat Dokumen';
-
-              if (!url) return '';
-
-              return `
-
-                <a
-                  href="${escapeAttribute(url)}"
-                  class="document-button"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  ${escapeHTML(
-                    namaDokumen
-                  )}
-                  →
-                </a>
-
-              `;
-
-            })
-            .join('');
-
-      }
-
-      // =========================================
-      // FALLBACK
-      // =========================================
-
-      // Jika belum ada record di DOKUMEN,
-      // tetap gunakan url_dokumen lama
-      // bila tersedia.
-
-      if (!documentButtons && row.url_dokumen) {
-
-        documentButtons = `
-
-          <a
-            href="${escapeAttribute(
-              row.url_dokumen
-            )}"
-            class="document-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Lihat Dokumen →
-          </a>
-
-        `;
-
-      }
-
-      if (!documentButtons) {
-
-        documentButtons = `
-
-          <span
-            class="document-button disabled"
-          >
-            Dokumen belum tersedia
-          </span>
-
-        `;
-
-      }
-
-      card.innerHTML = `
-
-        <div class="card-top">
-
-          <div>
-
-            <div class="document-id">
-              ${escapeHTML(id)}
-            </div>
-
-            <h3>
-              ${escapeHTML(judul)}
-            </h3>
-
-          </div>
-
-          <div class="document-icon">
-            PDF
-          </div>
-
-        </div>
-
-
-        <div class="summary">
-
-          ${escapeHTML(ringkasan)}
-
-        </div>
-
-
-        <div class="meta">
-
-          ${
-            jenis
-              ? `
-                <span class="badge primary">
-                  ${escapeHTML(jenis)}
-                </span>
-              `
-              : ''
-          }
-
-
-          ${
-            kategori
-              ? `
-                <span class="badge">
-                  ${escapeHTML(kategori)}
-                </span>
-              `
-              : ''
-          }
-
-
-          ${
-            tahun
-              ? `
-                <span class="badge">
-                  ${escapeHTML(tahun)}
-                </span>
-              `
-              : ''
-          }
-
-
-          ${
-            status
-              ? `
-                <span class="badge published">
-                  ${escapeHTML(status)}
-                </span>
-              `
-              : ''
-          }
-
-        </div>
-
-
-        <div class="card-footer">
-
-          <span class="date">
-
-            ${
-              tanggal
-                ? 'Diperbarui ' +
-                  escapeHTML(tanggal)
-                : ''
-            }
-
-          </span>
-
-
-          <div
-            style="
-              display:flex;
-              flex-wrap:wrap;
-              gap:8px;
-              justify-content:flex-end;
-            "
-          >
-
-            ${documentButtons}
-
-          </div>
-
-        </div>
-
-      `;
-
-      dataList.appendChild(
-        card
+      renderData(
+        filtered
       );
 
     }
-  );
-
-}
-
-/* =====================================================
-   FORMAT TANGGAL
-===================================================== */
-
-function formatTanggal(value) {
-
-  if (!value) {
-
-    return '';
-
-  }
 
 
-  const date =
-    new Date(value);
+    /* =====================================================
+       RENDER DATA
+    ===================================================== */
+
+    function renderData(data) {
+
+      dataList.innerHTML =
+        '';
+
+      pagination.innerHTML =
+        '';
 
 
-  if (isNaN(date.getTime())) {
-
-    return String(value);
-
-  }
+      resultCount.textContent =
+        data.length +
+        ' informasi tersedia';
 
 
-  return date.toLocaleDateString(
-    'id-ID',
-    {
-      day:
-        '2-digit',
+      if (!data.length) {
 
-      month:
-        'short',
+        dataList.innerHTML = `
 
-      year:
-        'numeric'
+          <div class="no-data">
+
+            <div class="no-data-icon">
+              🔎
+            </div>
+
+            <strong>
+              Informasi tidak ditemukan
+            </strong>
+
+            <span>
+              Coba gunakan kata kunci pencarian
+              atau kategori yang berbeda.
+            </span>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      const totalPages =
+        Math.ceil(
+          data.length /
+          pageSize
+        );
+
+
+      if (
+        currentPage >
+        totalPages
+      ) {
+
+        currentPage =
+          totalPages;
+
+      }
+
+
+      const start =
+        (
+          currentPage -
+          1
+        ) *
+        pageSize;
+
+
+      const end =
+        start +
+        pageSize;
+
+
+      const pageData =
+        data.slice(
+          start,
+          end
+        );
+
+
+      pageData.forEach(
+        function(row) {
+
+          const item =
+            document.createElement(
+              'article'
+            );
+
+
+          item.className =
+            'document-row';
+
+
+          const judul =
+            row.judul ||
+            'Tanpa Judul';
+
+
+          const jenis =
+            row.jenis ||
+            row.jenis_informasi ||
+            '';
+
+
+          const kategori =
+            row.kategori ||
+            '';
+
+
+          const tahun =
+            row.tahun ||
+            '';
+
+
+          const tanggal =
+            formatTanggal(
+              row.tanggal_update
+            );
+
+
+          /* =============================================
+             MASTER DOKUMEN
+          ============================================= */
+
+          const dokumen =
+            Array.isArray(
+              row.dokumen
+            )
+              ? row.dokumen
+              : [];
+
+
+          let documentButtons =
+            '';
+
+
+          if (
+            dokumen.length > 0
+          ) {
+
+            documentButtons =
+              dokumen
+                .map(
+                  function(doc) {
+
+                    const url =
+                      doc.url_dokumen ||
+                      '';
+
+
+                    const namaDokumen =
+                      doc.nama_dokumen ||
+                      'Lihat Dokumen';
+
+
+                    if (!url) {
+                      return '';
+                    }
+
+
+                    return `
+
+                      <a
+                        href="${escapeAttribute(url)}"
+                        class="document-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ${escapeHTML(
+                          namaDokumen
+                        )}
+                        →
+                      </a>
+
+                    `;
+
+                  }
+                )
+                .join('');
+
+          }
+
+
+          /* =============================================
+             FALLBACK URL LAMA
+          ============================================= */
+
+          if (
+            !documentButtons &&
+            row.url_dokumen
+          ) {
+
+            documentButtons = `
+
+              <a
+                href="${escapeAttribute(
+                  row.url_dokumen
+                )}"
+                class="document-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Lihat Dokumen →
+              </a>
+
+            `;
+
+          }
+
+
+          if (
+            !documentButtons
+          ) {
+
+            documentButtons = `
+
+              <span
+                class="document-button disabled"
+              >
+                Dokumen belum tersedia
+              </span>
+
+            `;
+
+          }
+
+
+          item.innerHTML = `
+
+            <div class="document-main">
+
+              <div class="document-title">
+
+                <div class="pdf-icon">
+                  PDF
+                </div>
+
+                <div>
+
+                  <div class="document-name">
+                    ${escapeHTML(judul)}
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="document-meta">
+
+                ${
+                  jenis
+                    ? `
+                      <span class="meta-badge primary">
+                        ${escapeHTML(jenis)}
+                      </span>
+                    `
+                    : ''
+                }
+
+
+                ${
+                  kategori
+                    ? `
+                      <span class="meta-badge">
+                        ${escapeHTML(kategori)}
+                      </span>
+                    `
+                    : ''
+                }
+
+
+                ${
+                  tahun
+                    ? `
+                      <span class="meta-badge">
+                        ${escapeHTML(tahun)}
+                      </span>
+                    `
+                    : ''
+                }
+
+              </div>
+
+
+              ${
+                tanggal
+                  ? `
+                    <div class="document-date">
+                      Diperbarui ${escapeHTML(tanggal)}
+                    </div>
+                  `
+                  : ''
+              }
+
+            </div>
+
+
+            <div class="document-actions">
+
+              ${documentButtons}
+
+            </div>
+
+          `;
+
+
+          dataList.appendChild(
+            item
+          );
+
+        }
+      );
+
+
+      renderPagination(
+        data.length,
+        totalPages
+      );
+
     }
-  );
-
-}
 
 
-/* =====================================================
-   SECURITY
-===================================================== */
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
 
-function escapeHTML(value) {
+    function renderPagination(
+      totalItems,
+      totalPages
+    ) {
 
-  return String(value)
-
-    .replace(
-      /&/g,
-      '&amp;'
-    )
-
-    .replace(
-      /</g,
-      '&lt;'
-    )
-
-    .replace(
-      />/g,
-      '&gt;'
-    )
-
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-
-    .replace(
-      /'/g,
-      '&#039;'
-    );
-
-}
+      pagination.innerHTML =
+        '';
 
 
-function escapeAttribute(value) {
+      if (
+        totalItems <=
+        pageSize
+      ) {
 
-  return String(value)
+        return;
 
-    .replace(
-      /"/g,
-      '&quot;'
-    )
-
-    .replace(
-      /'/g,
-      '&#039;'
-    );
-
-}
+      }
 
 
-/* =====================================================
-   START
-===================================================== */
+      const info =
+        document.createElement(
+          'div'
+        );
 
-loadInformasiPublik();
 
-</script>
+      info.className =
+        'pagination-info';
+
+
+      const start =
+        (
+          currentPage -
+          1
+        ) *
+        pageSize +
+        1;
+
+
+      const end =
+        Math.min(
+          currentPage *
+            pageSize,
+          totalItems
+        );
+
+
+      info.textContent =
+        'Menampilkan ' +
+        start +
+        '–' +
+        end +
+        ' dari ' +
+        totalItems +
+        ' informasi';
+
+
+      pagination.appendChild(
+        info
+      );
+
+
+      const prev =
+        document.createElement(
+          'button'
+        );
+
+
+      prev.type =
+        'button';
+
+      prev.textContent =
+        '‹';
+
+      prev.disabled =
+        currentPage === 1;
+
+
+      prev.addEventListener(
+        'click',
+        function() {
+
+          if (
+            currentPage >
+            1
+          ) {
+
+            currentPage--;
+
+            applyFilter();
+
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+
+          }
+
+        }
+      );
+
+
+      pagination.appendChild(
+        prev
+      );
+
+
+      const maxButtons =
+        5;
+
+
+      let startPage =
+        Math.max(
+          1,
+          currentPage -
+            Math.floor(
+              maxButtons / 2
+            )
+        );
+
+
+      let endPage =
+        Math.min(
+          totalPages,
+          startPage +
+            maxButtons -
+            1
+        );
+
+
+      if (
+        endPage -
+        startPage +
+        1 <
+        maxButtons
+      ) {
+
+        startPage =
+          Math.max(
+            1,
+            endPage -
+              maxButtons +
+              1
+          );
+
+      }
+
+
+      for (
+        let page =
+          startPage;
+        page <= endPage;
+        page++
+      ) {
+
+        const button =
+          document.createElement(
+            'button'
+          );
+
+
+        button.type =
+          'button';
+
+
+        button.textContent =
+          page;
+
+
+        if (
+          page ===
+          currentPage
+        ) {
+
+          button.classList.add(
+            'active'
+          );
+
+        }
+
+
+        button.addEventListener(
+          'click',
+          function() {
+
+            currentPage =
+              page;
+
+            applyFilter();
+
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+
+          }
+        );
+
+
+        pagination.appendChild(
+          button
+        );
+
+      }
+
+
+      const next =
+        document.createElement(
+          'button'
+        );
+
+
+      next.type =
+        'button';
+
+      next.textContent =
+        '›';
+
+      next.disabled =
+        currentPage ===
+        totalPages;
+
+
+      next.addEventListener(
+        'click',
+        function() {
+
+          if (
+            currentPage <
+            totalPages
+          ) {
+
+            currentPage++;
+
+            applyFilter();
+
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+
+          }
+
+        }
+      );
+
+
+      pagination.appendChild(
+        next
+      );
+
+    }
+
+
+    /* =====================================================
+       FORMAT TANGGAL
+    ===================================================== */
+
+    function formatTanggal(
+      value
+    ) {
+
+      if (!value) {
+        return '';
+      }
+
+
+      const date =
+        new Date(value);
+
+
+      if (
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return String(value);
+
+      }
+
+
+      return date.toLocaleDateString(
+        'id-ID',
+        {
+          day:
+            '2-digit',
+
+          month:
+            'short',
+
+          year:
+            'numeric'
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       SECURITY
+    ===================================================== */
+
+    function escapeHTML(
+      value
+    ) {
+
+      return String(
+        value ?? ''
+      )
+
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+
+        .replace(
+          /</g,
+          '&lt;'
+        )
+
+        .replace(
+          />/g,
+          '&gt;'
+        )
+
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+    function escapeAttribute(
+      value
+    ) {
+
+      return String(
+        value ?? ''
+      )
+
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    loadInformasiPublik();
+
+
+  </script>
 
 
 </body>
