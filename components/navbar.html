@@ -1,0 +1,182 @@
+<header class="header">
+  <div class="header-inner">
+
+    <a href="index.html" class="header-brand">
+      <div class="header-logo">
+        <img
+          src="./assets/logo-kemenag.png"
+          alt="Logo Kementerian Agama Republik Indonesia"
+        >
+      </div>
+
+      <div class="header-text">
+        <span class="header-kicker">
+          PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI
+        </span>
+
+        <h1>
+          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+        </h1>
+      </div>
+    </a>
+
+    <div class="nav-mobile-toggle-wrap">
+      <button
+        type="button"
+        class="nav-mobile-toggle"
+        id="mobileMenuToggle"
+        aria-label="Buka menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="main-nav" id="mainNav">
+
+      <a href="index.html" class="nav-link">
+        Beranda
+      </a>
+
+      <div class="nav-dropdown">
+
+        <button
+          class="nav-link nav-dropdown-button"
+          type="button"
+        >
+          Profil
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <a href="profil.html">Profil PPID</a>
+          <a href="ppid-unit.html">PPID Unit</a>
+        </div>
+
+      </div>
+
+      <div class="nav-dropdown">
+
+        <button
+          class="nav-link nav-dropdown-button"
+          type="button"
+        >
+          Informasi &amp; Dokumen
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <a href="informasi-publik.html">Informasi Publik</a>
+          <a href="dip.html">Daftar Informasi Publik (DIP)</a>
+          <a href="dik.html">Informasi Dikecualikan (DIK)</a>
+          <a href="dokumen.html">Laporan</a>
+          <a href="pengadaan.html">Informasi Barang &amp; Jasa</a>
+          <a href="laporan.html">Dokumen</a>
+        </div>
+
+      </div>
+
+      <div class="nav-dropdown">
+
+        <button
+          class="nav-link nav-dropdown-button"
+          type="button"
+        >
+          Layanan
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <a href="permohonan.html">Permohonan Informasi</a>
+          <a href="keberatan.html">Ajukan Keberatan</a>
+
+          <a
+            href="https://www.lapor.go.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pengaduan Masyarakat ↗
+          </a>
+
+          <a href="statistik.html">Statistik Layanan</a>
+        </div>
+
+      </div>
+
+      <div class="nav-dropdown">
+
+        <button
+          class="nav-link nav-dropdown-button"
+          type="button"
+        >
+          Regulasi
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+          <a href="sop.html">SOP</a>
+          <a href="regulasi.html">Regulasi Kanwil</a>
+
+          <a
+            href="https://jdih.kemenag.go.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Regulasi Pusat — JDIH Kemenag ↗
+          </a>
+        </div>
+
+      </div>
+
+      <div class="nav-dropdown">
+
+        <button
+          class="nav-link nav-dropdown-button"
+          type="button"
+        >
+          Berita &amp; Pengumuman
+          <span class="nav-arrow">⌄</span>
+        </button>
+
+        <div class="dropdown-menu">
+
+          <a
+            href="https://banten.kemenag.go.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Berita Kemenag Banten ↗
+          </a>
+
+          <a href="pengumuman.html">Pengumuman</a>
+          <a href="jadwal-pelayanan.html">Jadwal Pelayanan</a>
+          <a href="agenda.html">Agenda/Kegiatan PPID</a>
+          <a href="hari-penting.html">Hari/Tanggal Penting</a>
+          <a href="kalender.html">Kalender Kegiatan</a>
+
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="nav-search"
+        aria-label="Cari informasi"
+        onclick="
+          const searchInput = document.getElementById('searchInput');
+          if (searchInput) {
+            searchInput.focus();
+          } else {
+            window.location.href = 'index.html#beranda';
+          }
+        "
+      >
+        <span>⌕</span>
+      </button>
+
+    </nav>
+
+  </div>
+</header>
