@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", async function () {
    * BAHWA LAYOUT SUDAH SELESAI DIMUAT
    * =========================================================
    */
-
+initAccessibility();
   document.dispatchEvent(
     new CustomEvent("layout:loaded")
   );
@@ -212,6 +212,331 @@ function setInnerHero() {
     return;
   }
 
+  /*
+ * =========================================================
+ * AKSESIBILITAS
+ * =========================================================
+ */
+
+function initAccessibility() {
+
+  const toggle =
+    document.getElementById("aksesibilitasToggle");
+
+  const panel =
+    document.getElementById("aksesibilitasPanel");
+
+  const close =
+    document.getElementById("aksesibilitasClose");
+
+  if (!toggle || !panel) {
+    console.warn("Komponen aksesibilitas belum ditemukan.");
+    return;
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * UKURAN TEKS
+   * ---------------------------------------------------------
+   */
+
+  let accessibilityTextScale = 1;
+
+  const textSelectors = [
+    ".section-label",
+    ".section-heading h2",
+    ".section-heading p",
+    ".section-heading a",
+
+    ".layanan-heading-kicker",
+    ".layanan-utama-heading h2",
+    ".layanan-label",
+    ".layanan-content h3",
+    ".layanan-content p",
+    ".layanan-card-footer",
+
+    ".maklumat-label",
+    ".maklumat-content p",
+
+    ".news-content h3",
+    ".news-date",
+    ".news-content p",
+    ".card-badge",
+
+    ".akses-cepat-text strong",
+
+    ".statistik-home-card",
+    ".statistik-home-card h3",
+
+    ".footer",
+    ".footer-bottom"
+  ];
+
+
+  function updateAccessibilityText() {
+
+    textSelectors.forEach(function (selector) {
+
+      document
+        .querySelectorAll(selector)
+        .forEach(function (element) {
+
+          if (!element.dataset.originalFontSize) {
+
+            const currentSize =
+              parseFloat(
+                window.getComputedStyle(element).fontSize
+              );
+
+            if (!isNaN(currentSize)) {
+              element.dataset.originalFontSize =
+                currentSize;
+            }
+
+          }
+
+
+          const originalSize =
+            parseFloat(
+              element.dataset.originalFontSize
+            );
+
+
+          if (!isNaN(originalSize)) {
+
+            element.style.fontSize =
+              (originalSize * accessibilityTextScale) +
+              "px";
+
+          }
+
+        });
+
+    });
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * PERBESAR TEKS
+   * ---------------------------------------------------------
+   */
+
+  const fontPlusButton =
+    document.querySelector(
+      '[data-accessibility="font-plus"]'
+    );
+
+
+  if (fontPlusButton) {
+
+    fontPlusButton.addEventListener(
+      "click",
+      function () {
+
+        if (accessibilityTextScale >= 1.3) {
+          return;
+        }
+
+        accessibilityTextScale += 0.1;
+
+        updateAccessibilityText();
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * PERKECIL TEKS
+   * ---------------------------------------------------------
+   */
+
+  const fontMinusButton =
+    document.querySelector(
+      '[data-accessibility="font-minus"]'
+    );
+
+
+  if (fontMinusButton) {
+
+    fontMinusButton.addEventListener(
+      "click",
+      function () {
+
+        if (accessibilityTextScale <= 0.8) {
+          return;
+        }
+
+        accessibilityTextScale -= 0.1;
+
+        updateAccessibilityText();
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * KONTRAS TINGGI
+   * ---------------------------------------------------------
+   */
+
+  const contrastButton =
+    document.querySelector(
+      '[data-accessibility="contrast"]'
+    );
+
+
+  if (contrastButton) {
+
+    contrastButton.addEventListener(
+      "click",
+      function () {
+
+        document.body.classList.toggle(
+          "accessibility-high-contrast"
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * KURANGI ANIMASI
+   * ---------------------------------------------------------
+   */
+
+  const motionButton =
+    document.querySelector(
+      '[data-accessibility="motion"]'
+    );
+
+
+  if (motionButton) {
+
+    motionButton.addEventListener(
+      "click",
+      function () {
+
+        document.body.classList.toggle(
+          "accessibility-reduced-motion"
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * RESET
+   * ---------------------------------------------------------
+   */
+
+  const resetButton =
+    document.querySelector(
+      '[data-accessibility="reset"]'
+    );
+
+
+  if (resetButton) {
+
+    resetButton.addEventListener(
+      "click",
+      function () {
+
+        accessibilityTextScale = 1;
+
+        updateAccessibilityText();
+
+
+        document.body.classList.remove(
+          "accessibility-high-contrast"
+        );
+
+
+        document.body.classList.remove(
+          "accessibility-reduced-motion"
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+   * ---------------------------------------------------------
+   * BUKA PANEL
+   * ---------------------------------------------------------
+   */
+
+  toggle.addEventListener(
+    "click",
+    function () {
+
+      const isOpen =
+        panel.classList.toggle("active");
+
+
+      toggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+
+      panel.setAttribute(
+        "aria-hidden",
+        isOpen ? "false" : "true"
+      );
+
+    }
+  );
+
+
+  /*
+   * ---------------------------------------------------------
+   * TUTUP PANEL
+   * ---------------------------------------------------------
+   */
+
+  if (close) {
+
+    close.addEventListener(
+      "click",
+      function () {
+
+        panel.classList.remove("active");
+
+
+        toggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+
+        panel.setAttribute(
+          "aria-hidden",
+          "true"
+        );
+
+      }
+    );
+
+  }
+
+}
 
   const body =
     document.body;
