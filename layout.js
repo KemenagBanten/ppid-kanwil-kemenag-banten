@@ -57,14 +57,15 @@ document.addEventListener("DOMContentLoaded", async function () {
    * LOAD INNER HERO
    * =========================================================
    *
-   * Inner hero hanya digunakan oleh halaman dalam.
-   * Index tidak perlu menggunakan komponen ini.
+   * Hanya halaman dalam yang menggunakan inner hero.
+   * Index tidak menggunakan komponen ini.
    */
 
   await loadComponent(
     "#innerHero",
     "components/inner-hero.html"
   );
+
 
   /*
    * =========================================================
@@ -76,7 +77,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     "#accessibility",
     "components/accessibility.html"
   );
-  
+
+
   /*
    * =========================================================
    * LOAD FOOTER
@@ -109,11 +111,22 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   /*
    * =========================================================
+   * INITIALIZE ACCESSIBILITY
+   * =========================================================
+   *
+   * Dipanggil setelah accessibility.html selesai dimuat.
+   */
+
+  initAccessibility();
+
+
+  /*
+   * =========================================================
    * BERITAHU SCRIPT LAIN
    * BAHWA LAYOUT SUDAH SELESAI DIMUAT
    * =========================================================
    */
-initAccessibility();
+
   document.dispatchEvent(
     new CustomEvent("layout:loaded")
   );
@@ -212,7 +225,61 @@ function setInnerHero() {
     return;
   }
 
-  /*
+
+  const body =
+    document.body;
+
+
+  const kicker =
+    body.dataset.heroKicker || "";
+
+
+  const title =
+    body.dataset.heroTitle || "";
+
+
+  const description =
+    body.dataset.heroDescription || "";
+
+
+  const kickerElement =
+    document.getElementById(
+      "innerHeroKicker"
+    );
+
+
+  const titleElement =
+    document.getElementById(
+      "innerHeroTitle"
+    );
+
+
+  const descriptionElement =
+    document.getElementById(
+      "innerHeroDescription"
+    );
+
+
+  if (kickerElement) {
+    kickerElement.textContent = kicker;
+  }
+
+
+  if (titleElement) {
+    titleElement.textContent = title;
+  }
+
+
+  if (descriptionElement) {
+    descriptionElement.textContent =
+      description;
+  }
+
+}
+
+
+
+/*
  * =========================================================
  * AKSESIBILITAS
  * =========================================================
@@ -221,16 +288,29 @@ function setInnerHero() {
 function initAccessibility() {
 
   const toggle =
-    document.getElementById("aksesibilitasToggle");
+    document.getElementById(
+      "aksesibilitasToggle"
+    );
+
 
   const panel =
-    document.getElementById("aksesibilitasPanel");
+    document.getElementById(
+      "aksesibilitasPanel"
+    );
+
 
   const close =
-    document.getElementById("aksesibilitasClose");
+    document.getElementById(
+      "aksesibilitasClose"
+    );
+
 
   if (!toggle || !panel) {
-    console.warn("Komponen aksesibilitas belum ditemukan.");
+
+    console.warn(
+      "Komponen aksesibilitas belum ditemukan."
+    );
+
     return;
   }
 
@@ -243,8 +323,11 @@ function initAccessibility() {
 
   let accessibilityTextScale = 1;
 
+
   const textSelectors = [
+
     ".section-label",
+
     ".section-heading h2",
     ".section-heading p",
     ".section-heading a",
@@ -271,6 +354,7 @@ function initAccessibility() {
 
     ".footer",
     ".footer-bottom"
+
   ];
 
 
@@ -286,12 +370,17 @@ function initAccessibility() {
 
             const currentSize =
               parseFloat(
-                window.getComputedStyle(element).fontSize
+                window.getComputedStyle(
+                  element
+                ).fontSize
               );
 
+
             if (!isNaN(currentSize)) {
+
               element.dataset.originalFontSize =
                 currentSize;
+
             }
 
           }
@@ -306,8 +395,10 @@ function initAccessibility() {
           if (!isNaN(originalSize)) {
 
             element.style.fontSize =
-              (originalSize * accessibilityTextScale) +
-              "px";
+              (
+                originalSize *
+                accessibilityTextScale
+              ) + "px";
 
           }
 
@@ -336,11 +427,15 @@ function initAccessibility() {
       "click",
       function () {
 
-        if (accessibilityTextScale >= 1.3) {
+        if (
+          accessibilityTextScale >= 1.3
+        ) {
           return;
         }
 
+
         accessibilityTextScale += 0.1;
+
 
         updateAccessibilityText();
 
@@ -368,11 +463,15 @@ function initAccessibility() {
       "click",
       function () {
 
-        if (accessibilityTextScale <= 0.8) {
+        if (
+          accessibilityTextScale <= 0.8
+        ) {
           return;
         }
 
+
         accessibilityTextScale -= 0.1;
+
 
         updateAccessibilityText();
 
@@ -458,6 +557,7 @@ function initAccessibility() {
 
         accessibilityTextScale = 1;
 
+
         updateAccessibilityText();
 
 
@@ -517,7 +617,9 @@ function initAccessibility() {
       "click",
       function () {
 
-        panel.classList.remove("active");
+        panel.classList.remove(
+          "active"
+        );
 
 
         toggle.setAttribute(
@@ -534,57 +636,6 @@ function initAccessibility() {
       }
     );
 
-  }
-
-}
-
-  const body =
-    document.body;
-
-
-  const kicker =
-    body.dataset.heroKicker || "";
-
-
-  const title =
-    body.dataset.heroTitle || "";
-
-
-  const description =
-    body.dataset.heroDescription || "";
-
-
-  const kickerElement =
-    document.getElementById(
-      "innerHeroKicker"
-    );
-
-
-  const titleElement =
-    document.getElementById(
-      "innerHeroTitle"
-    );
-
-
-  const descriptionElement =
-    document.getElementById(
-      "innerHeroDescription"
-    );
-
-
-  if (kickerElement) {
-    kickerElement.textContent = kicker;
-  }
-
-
-  if (titleElement) {
-    titleElement.textContent = title;
-  }
-
-
-  if (descriptionElement) {
-    descriptionElement.textContent =
-      description;
   }
 
 }
