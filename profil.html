@@ -659,16 +659,16 @@
     }
 
 
-    /* =====================================================
-       VISI MISI MOTO
-    ===================================================== */
+  /* =====================================================
+   VISI MISI MOTO
+===================================================== */
 
-    .vm-section {
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
+.vm-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
-   .vm-grid {
+.vm-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.5fr 0.9fr;
   gap: 20px;
@@ -748,12 +748,27 @@
   );
 }
 
-.vm-card-moto p {
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1.5;
+.vm-card-moto h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.4;
   color: #1f5a43;
-  letter-spacing: 0.3px;
+}
+
+.vm-card-moto p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 700;
+  color: #52645b;
+  letter-spacing: 0;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .vm-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 
