@@ -426,14 +426,6 @@
       min-width: 0;
     }
 
-    .unit-id {
-      margin-bottom: 3px;
-      color: #4c7a64;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.6px;
-    }
-
     .unit-heading h3 {
       margin: 0;
       color: #203b2d;
@@ -1389,11 +1381,6 @@
               'Nama unit tidak tersedia';
 
 
-            const jenis =
-              item.jenis_unit ||
-              'PPID Unit';
-
-
             const alamat =
               item.alamat ||
               '-';
@@ -1437,15 +1424,6 @@
 
                   <div class="unit-heading">
 
-                    <div class="unit-id">
-
-                      ${escapeHTML(
-                        item.id || '-'
-                      )}
-
-                    </div>
-
-
                     <h3>
 
                       ${escapeHTML(
@@ -1455,15 +1433,7 @@
                     </h3>
 
 
-                    <span class="unit-type">
-
-                      ${escapeHTML(
-                        jenis
-                      )}
-
-                    </span>
-
-                  </div>
+                       </div>
 
                 </div>
 
