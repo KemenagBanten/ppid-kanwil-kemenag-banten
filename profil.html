@@ -665,74 +665,91 @@
       margin-bottom: 30px;
     }
 
-    .vm-grid {
-      display: grid;
+   .vm-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr 0.9fr;
+  gap: 20px;
+  align-items: stretch;
+}
 
-      grid-template-columns:
-        .9fr
-        1.5fr
-        .9fr;
+.vm-card {
+  position: relative;
+  padding: 28px 26px;
+  background: #ffffff;
+  border: 1px solid #e2e9e5;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(23, 53, 42, 0.045);
+}
 
-      gap: 18px;
-    }
+.vm-card h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #1f5a43;
+}
 
-    .vm-card {
-      position: relative;
+.vm-card p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #52645b;
+}
 
-      padding: 24px;
+.vm-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #f1f7f4 0%,
-          #ffffff 100%
-        );
+.vm-card li {
+  position: relative;
+  margin-bottom: 14px;
+  padding-left: 30px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #52645b;
+}
 
-      border: 1px solid #dfe9e4;
+.vm-card li:last-child {
+  margin-bottom: 0;
+}
 
-      border-radius: 16px;
+.vm-card li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e9f2ed;
+  color: #1f5a43;
+  font-size: 11px;
+  font-weight: 700;
+}
 
-      min-height: 190px;
-    }
+.vm-card-moto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(
+    145deg,
+    #f1f7f4 0%,
+    #e8f1ec 100%
+  );
+}
 
-    .vm-label {
-      margin-bottom: 12px;
-
-      color: #4d806b;
-
-      font-size: 10px;
-      font-weight: 750;
-
-      letter-spacing: 1px;
-    }
-
-    .vm-card h3 {
-      margin: 0;
-
-      color: #17352a;
-
-      font-size: 20px;
-      line-height: 1.5;
-    }
-
-    .vm-card ul {
-      margin: 0;
-      padding-left: 19px;
-    }
-
-    .vm-card li {
-      margin-bottom: 9px;
-
-      color: #52645b;
-
-      font-size: 15px;
-
-      line-height: 1.65;
-    }
-
-    .vm-card li:last-child {
-      margin-bottom: 0;
-    }
+.vm-card-moto p {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #1f5a43;
+  letter-spacing: 0.3px;
+}
 
 
     /* =====================================================
@@ -2130,17 +2147,11 @@
 
           <article class="vm-card">
 
-            <div class="vm-label">
-              MOTO
-            </div>
-
-            <h3>
-              MELAYANI DENGAN IKHLAS
-            </h3>
-
-          </article>
-
-        </div>
+            <div class="vm-card vm-card-moto">
+  <h3>Moto</h3>
+  <p>MELAYANI DENGAN IKHLAS</p>
+</div>
+            
 
       </section>
 
