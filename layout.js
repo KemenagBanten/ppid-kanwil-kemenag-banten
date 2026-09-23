@@ -66,7 +66,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     "components/inner-hero.html"
   );
 
+  /*
+   * =========================================================
+   * LOAD ACCESSIBILITY
+   * =========================================================
+   */
 
+  await loadComponent(
+    "#accessibility",
+    "components/accessibility.html"
+  );
+  
   /*
    * =========================================================
    * LOAD FOOTER
