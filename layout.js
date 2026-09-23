@@ -1,3 +1,29 @@
+let accessibilityTextScale = 1;
+
+const textSelectors = [
+  ".section-label",
+  ".section-heading h2",
+  ".section-heading p",
+  ".section-heading a",
+  ".layanan-heading-kicker",
+  ".layanan-utama-heading h2",
+  ".layanan-label",
+  ".layanan-content h3",
+  ".layanan-content p",
+  ".layanan-card-footer",
+  ".maklumat-label",
+  ".maklumat-content p",
+  ".news-content h3",
+  ".news-date",
+  ".news-content p",
+  ".card-badge",
+  ".akses-cepat-text strong",
+  ".statistik-home-card",
+  ".statistik-home-card h3",
+  ".footer",
+  ".footer-bottom"
+];
+
 document.addEventListener("DOMContentLoaded", async function () {
 
   async function loadComponent(selector, file) {
@@ -103,7 +129,8 @@ function setActiveNavigation() {
 
 
     const linkPage =
-      href.split("/")
+      href
+        .split("/")
         .pop()
         .split("#")[0]
         .toLowerCase();
@@ -112,9 +139,7 @@ function setActiveNavigation() {
     link.classList.remove("active");
 
 
-    if (
-      linkPage === currentPage
-    ) {
+    if (linkPage === currentPage) {
       link.classList.add("active");
     }
 
@@ -130,9 +155,7 @@ function setActiveNavigation() {
 function setInnerHero() {
 
   const hero =
-    document.querySelector(
-      "#innerHero"
-    );
+    document.querySelector("#innerHero");
 
   if (!hero) return;
 
@@ -140,26 +163,18 @@ function setInnerHero() {
   const kicker =
     document.body.dataset.heroKicker || "";
 
-
   const title =
     document.body.dataset.heroTitle || "";
-
 
   const description =
     document.body.dataset.heroDescription || "";
 
 
   const kickerElement =
-    document.getElementById(
-      "innerHeroKicker"
-    );
-
+    document.getElementById("innerHeroKicker");
 
   const titleElement =
-    document.getElementById(
-      "innerHeroTitle"
-    );
-
+    document.getElementById("innerHeroTitle");
 
   const descriptionElement =
     document.getElementById(
@@ -168,23 +183,15 @@ function setInnerHero() {
 
 
   if (kickerElement && kicker) {
-    kickerElement.textContent =
-      kicker;
+    kickerElement.textContent = kicker;
   }
-
 
   if (titleElement && title) {
-    titleElement.textContent =
-      title;
+    titleElement.textContent = title;
   }
 
-
-  if (
-    descriptionElement &&
-    description
-  ) {
-    descriptionElement.textContent =
-      description;
+  if (descriptionElement && description) {
+    descriptionElement.textContent = description;
   }
 
 }
@@ -196,45 +203,15 @@ function setInnerHero() {
 
 function initAccessibility() {
 
-  let accessibilityTextScale = 1;
-
-
-  const textSelectors = [
-    ".section-label",
-    ".section-heading h2",
-    ".section-heading p",
-    ".section-heading a",
-    ".layanan-heading-kicker",
-    ".layanan-utama-heading h2",
-    ".layanan-label",
-    ".layanan-content h3",
-    ".layanan-content p",
-    ".layanan-card-footer",
-    ".maklumat-label",
-    ".maklumat-content p",
-    ".news-content h3",
-    ".news-date",
-    ".news-content p",
-    ".card-badge",
-    ".akses-cepat-text strong",
-    ".statistik-home-card",
-    ".statistik-home-card h3",
-    ".footer",
-    ".footer-bottom"
-  ];
-
-
   const toggle =
     document.getElementById(
       "aksesibilitasToggle"
     );
 
-
   const panel =
     document.getElementById(
       "aksesibilitasPanel"
     );
-
 
   const close =
     document.getElementById(
@@ -256,16 +233,13 @@ function initAccessibility() {
     function () {
 
       const isOpen =
-        panel.classList.toggle(
-          "active"
-        );
+        panel.classList.toggle("active");
 
 
       toggle.setAttribute(
         "aria-expanded",
         isOpen ? "true" : "false"
       );
-
 
       panel.setAttribute(
         "aria-hidden",
@@ -286,16 +260,12 @@ function initAccessibility() {
       "click",
       function () {
 
-        panel.classList.remove(
-          "active"
-        );
-
+        panel.classList.remove("active");
 
         toggle.setAttribute(
           "aria-expanded",
           "false"
         );
-
 
         panel.setAttribute(
           "aria-hidden",
@@ -309,7 +279,7 @@ function initAccessibility() {
 
 
   // ---------------------------------------------------------
-  // ACCESSIBILITY OPTIONS
+  // ACCESSIBILITY BUTTONS
   // ---------------------------------------------------------
 
   const accessibilityButtons =
@@ -329,13 +299,11 @@ function initAccessibility() {
             this.dataset.accessibility;
 
 
-          // -----------------------------------------------
-          // FONT PLUS
-          // -----------------------------------------------
+          // =================================================
+          // PERBESAR TEKS
+          // =================================================
 
-          if (
-            action === "font-plus"
-          ) {
+          if (action === "font-plus") {
 
             accessibilityTextScale =
               Math.min(
@@ -343,23 +311,16 @@ function initAccessibility() {
                 accessibilityTextScale + 0.1
               );
 
-
-            document.documentElement.style
-              .setProperty(
-                "--accessibility-scale",
-                accessibilityTextScale
-              );
+            applyTextScale();
 
           }
 
 
-          // -----------------------------------------------
-          // FONT MINUS
-          // -----------------------------------------------
+          // =================================================
+          // PERKECIL TEKS
+          // =================================================
 
-          if (
-            action === "font-minus"
-          ) {
+          if (action === "font-minus") {
 
             accessibilityTextScale =
               Math.max(
@@ -367,23 +328,16 @@ function initAccessibility() {
                 accessibilityTextScale - 0.1
               );
 
-
-            document.documentElement.style
-              .setProperty(
-                "--accessibility-scale",
-                accessibilityTextScale
-              );
+            applyTextScale();
 
           }
 
 
-          // -----------------------------------------------
-          // HIGH CONTRAST
-          // -----------------------------------------------
+          // =================================================
+          // KONTRAS TINGGI
+          // =================================================
 
-          if (
-            action === "contrast"
-          ) {
+          if (action === "contrast") {
 
             document.body.classList.toggle(
               "accessibility-high-contrast"
@@ -392,13 +346,11 @@ function initAccessibility() {
           }
 
 
-          // -----------------------------------------------
-          // REDUCED MOTION
-          // -----------------------------------------------
+          // =================================================
+          // KURANGI ANIMASI
+          // =================================================
 
-          if (
-            action === "motion"
-          ) {
+          if (action === "motion") {
 
             document.body.classList.toggle(
               "accessibility-reduced-motion"
@@ -407,27 +359,19 @@ function initAccessibility() {
           }
 
 
-          // -----------------------------------------------
+          // =================================================
           // RESET
-          // -----------------------------------------------
+          // =================================================
 
-          if (
-            action === "reset"
-          ) {
+          if (action === "reset") {
 
             accessibilityTextScale = 1;
 
-
-            document.documentElement.style
-              .removeProperty(
-                "--accessibility-scale"
-              );
-
+            resetTextScale();
 
             document.body.classList.remove(
               "accessibility-high-contrast"
             );
-
 
             document.body.classList.remove(
               "accessibility-reduced-motion"
@@ -440,6 +384,92 @@ function initAccessibility() {
 
     }
   );
+
+}
+
+
+// =========================================================
+// APPLY TEXT SCALE
+// =========================================================
+
+function applyTextScale() {
+
+  const elements =
+    document.querySelectorAll(
+      textSelectors.join(",")
+    );
+
+
+  elements.forEach(function (element) {
+
+    if (!element.dataset.accessibilityBaseSize) {
+
+      const computedStyle =
+        window.getComputedStyle(element);
+
+      const baseSize =
+        parseFloat(
+          computedStyle.fontSize
+        );
+
+
+      if (!isNaN(baseSize)) {
+
+        element.dataset.accessibilityBaseSize =
+          baseSize;
+
+      }
+
+    }
+
+
+    const baseSize =
+      parseFloat(
+        element.dataset.accessibilityBaseSize
+      );
+
+
+    if (!isNaN(baseSize)) {
+
+      element.style.fontSize =
+        (baseSize * accessibilityTextScale) +
+        "px";
+
+    }
+
+  });
+
+}
+
+
+// =========================================================
+// RESET TEXT SCALE
+// =========================================================
+
+function resetTextScale() {
+
+  const elements =
+    document.querySelectorAll(
+      "[data-accessibility-base-size]"
+    );
+
+
+  elements.forEach(function (element) {
+
+    const baseSize =
+      parseFloat(
+        element.dataset.accessibilityBaseSize
+      );
+
+
+    if (!isNaN(baseSize)) {
+
+      element.style.fontSize =
+        baseSize + "px";
+
+    }
+
+  });
 
 }
 
@@ -473,12 +503,10 @@ function initNavbarSearch() {
 
 
       // =====================================================
-      // JIKA SEDANG DI BERANDA
+      // BERANDA
       // =====================================================
 
-      if (
-        currentPage === "index.html"
-      ) {
+      if (currentPage === "index.html") {
 
         const searchInput =
           document.getElementById(
@@ -512,7 +540,7 @@ function initNavbarSearch() {
 
 
       // =====================================================
-      // JIKA DI HALAMAN LAIN
+      // HALAMAN LAIN
       // =====================================================
 
       window.location.href =
