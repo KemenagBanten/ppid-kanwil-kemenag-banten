@@ -665,8 +665,8 @@
 ===================================================== */
 
 .vm-section {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 34px;
+  margin-bottom: 34px;
 }
 
 .vm-grid {
@@ -678,7 +678,7 @@
 
 .vm-card {
   position: relative;
-  padding: 28px 26px;
+  padding: 28px;
   background: #ffffff;
   border: 1px solid #e2e9e5;
   border-radius: 16px;
@@ -778,120 +778,27 @@
       margin-bottom: 34px;
     }
 
-    .struktur-card {
-      overflow: hidden;
+.struktur-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e9e5;
+  border-radius: 18px;
+  box-shadow: 0 7px 25px rgba(23,53,42,0.045);
+}
 
-      background: #ffffff;
+.struktur-image-area {
+  padding: 28px;
+  background: #ffffff;
+  text-align: center;
+}
 
-      border: 1px solid #e2e9e5;
-
-      border-radius: 18px;
-
-      box-shadow:
-        0 7px 25px
-        rgba(23,53,42,0.055);
-    }
-
-    .struktur-header {
-      padding: 22px 25px;
-
-      border-bottom: 1px solid #e9efeb;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f1f7f4 0%,
-          #ffffff 100%
-        );
-    }
-
-    .struktur-header h3 {
-      margin: 0 0 5px;
-
-      color: #17352a;
-
-      font-size: 18px;
-      font-weight: 750;
-    }
-
-    .struktur-header p {
-      margin: 0;
-
-      color: #7b8982;
-
-      font-size: 13px;
-    }
-
-    .struktur-image-area {
-      padding: 28px;
-
-      background: #ffffff;
-
-      text-align: center;
-    }
-
-    .struktur-image {
-      display: block;
-
-      width: 100%;
-      max-width: 1050px;
-
-      height: auto;
-
-      margin: 0 auto;
-
-      border-radius: 10px;
-    }
-
-    .struktur-placeholder {
-      min-height: 360px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 30px;
-
-      border:
-        1px dashed #c8d8d0;
-
-      border-radius: 14px;
-
-      background: #f7faf8;
-
-      color: #819088;
-
-      text-align: center;
-
-      font-size: 13px;
-    }
-
-    .struktur-placeholder strong {
-      display: block;
-
-      margin-bottom: 5px;
-
-      color: #40544b;
-
-      font-size: 15px;
-    }
-
-
-    /* =====================================================
-       ORGANIZATION SUMMARY
-    ===================================================== */
-
-    .org-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap: 16px;
-
-      margin-top: 20px;
-    }
-
+.org-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 28px 28px;
+  margin-top: 0;
+}
     .org-item {
       padding: 19px;
 
@@ -942,12 +849,10 @@
     .task-section {
   margin-top: 34px;
   margin-bottom: 34px;
-  padding-left: 24px;
-  padding-right: 24px;
 }
 
     .task-card {
-      padding: 27px;
+      padding: 28px;
 
       background: #ffffff;
 
@@ -1019,12 +924,10 @@
     .legal-section {
   margin-top: 34px;
   margin-bottom: 34px;
-  padding-left: 24px;
-  padding-right: 24px;
-}
+  }
 
     .legal-card {
-      padding: 25px;
+      padding: 28px;
 
       background:
         linear-gradient(
@@ -1069,9 +972,7 @@
     .contact-section {
   margin-top: 34px;
   margin-bottom: 34px;
-  padding-left: 24px;
-  padding-right: 24px;
-}
+  }
     .contact-grid {
       display: grid;
 
@@ -1082,7 +983,7 @@
     }
 
     .contact-card {
-      padding: 21px;
+      padding: 28px;
 
       background: #ffffff;
 
@@ -2193,7 +2094,7 @@
             Struktur Organisasi PPID
           </h2>
 
-          <div class="section-line"></div>
+          <div class="struktur-card">
 
         </div>
         
@@ -2249,8 +2150,7 @@
 
           <div
             class="org-grid"
-            style="padding: 0 28px 28px;"
-          >
+                     >
 
             <div class="org-item">
 
