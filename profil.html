@@ -774,9 +774,10 @@
     ===================================================== */
 
     .struktur-section {
-      margin-top: 34px;
-      margin-bottom: 34px;
-    }
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 .struktur-card {
   overflow: hidden;
@@ -786,10 +787,24 @@
   box-shadow: 0 7px 25px rgba(23,53,42,0.045);
 }
 
+.struktur-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+    
 .struktur-image-area {
+  width: 100%;
+  max-width: 100%;
   padding: 28px;
+  box-sizing: border-box;
+  overflow: hidden;
   background: #ffffff;
-  text-align: center;
+  border: 1px solid #e2e9e5;
+  border-radius: 16px;
 }
 
 .org-grid {
