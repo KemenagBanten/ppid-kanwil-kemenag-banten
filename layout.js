@@ -327,11 +327,15 @@ function initNavbarSearch() {
       const searchInput = document.getElementById("searchInput");
 
       if (searchInput) {
-        searchInput.focus();
         searchInput.scrollIntoView({
           behavior: "smooth",
           block: "center"
         });
+
+        setTimeout(function () {
+          searchInput.focus();
+          searchInput.click();
+        }, 400);
       }
 
       return;
