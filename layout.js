@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   initAccessibility();
 
-
+initNavbarSearch();
   /*
    * =========================================================
    * BERITAHU SCRIPT LAIN
@@ -314,7 +314,32 @@ function initAccessibility() {
     return;
   }
 
+function initNavbarSearch() {
+  const searchButton = document.getElementById("navbarSearchButton");
 
+  if (!searchButton) return;
+
+  searchButton.addEventListener("click", function () {
+    const currentPage =
+      window.location.pathname.split("/").pop().toLowerCase() || "index.html";
+
+    if (currentPage === "index.html") {
+      const searchInput = document.getElementById("searchInput");
+
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+
+      return;
+    }
+
+    window.location.href = "index.html#beranda";
+  });
+}
   /*
    * ---------------------------------------------------------
    * UKURAN TEKS
