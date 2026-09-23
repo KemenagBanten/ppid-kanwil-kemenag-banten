@@ -1,21 +1,11 @@
 document.addEventListener("DOMContentLoaded", async function () {
 
-  /*
-   * =========================================================
-   * LOAD COMPONENT
-   * =========================================================
-   */
-
   async function loadComponent(selector, file) {
-
     const target = document.querySelector(selector);
 
-    if (!target) {
-      return;
-    }
+    if (!target) return;
 
     try {
-
       const response = await fetch(file);
 
       if (!response.ok) {
@@ -24,66 +14,35 @@ document.addEventListener("DOMContentLoaded", async function () {
         );
       }
 
-      const html = await response.text();
-
-      target.innerHTML = html;
+      target.innerHTML = await response.text();
 
     } catch (error) {
-
       console.error(
         `Gagal memuat komponen ${file}:`,
         error
       );
-
     }
-
   }
 
 
-  /*
-   * =========================================================
-   * LOAD NAVBAR
-   * =========================================================
-   */
+  // =========================================================
+  // LOAD SHARED COMPONENTS
+  // =========================================================
 
   await loadComponent(
     "#siteNavbar",
     "components/navbar.html"
   );
 
-
-  /*
-   * =========================================================
-   * LOAD INNER HERO
-   * =========================================================
-   *
-   * Hanya halaman dalam yang menggunakan inner hero.
-   * Index tidak menggunakan komponen ini.
-   */
-
   await loadComponent(
     "#innerHero",
     "components/inner-hero.html"
   );
 
-
-  /*
-   * =========================================================
-   * LOAD ACCESSIBILITY
-   * =========================================================
-   */
-
   await loadComponent(
     "#accessibility",
     "components/accessibility.html"
   );
-
-
-  /*
-   * =========================================================
-   * LOAD FOOTER
-   * =========================================================
-   */
 
   await loadComponent(
     "#siteFooter",
@@ -91,41 +50,15 @@ document.addEventListener("DOMContentLoaded", async function () {
   );
 
 
-  /*
-   * =========================================================
-   * SET ACTIVE NAVIGATION
-   * =========================================================
-   */
+  // =========================================================
+  // INITIALIZE SHARED FEATURES
+  // =========================================================
 
   setActiveNavigation();
-
-
-  /*
-   * =========================================================
-   * SET INNER HERO TEXT
-   * =========================================================
-   */
-
   setInnerHero();
-
-
-  /*
-   * =========================================================
-   * INITIALIZE ACCESSIBILITY
-   * =========================================================
-   *
-   * Dipanggil setelah accessibility.html selesai dimuat.
-   */
-
   initAccessibility();
+  initNavbarSearch();
 
-initNavbarSearch();
-  /*
-   * =========================================================
-   * BERITAHU SCRIPT LAIN
-   * BAHWA LAYOUT SUDAH SELESAI DIMUAT
-   * =========================================================
-   */
 
   document.dispatchEvent(
     new CustomEvent("layout:loaded")
@@ -134,12 +67,9 @@ initNavbarSearch();
 });
 
 
-
-/*
- * =========================================================
- * ACTIVE NAVIGATION
- * =========================================================
- */
+// =========================================================
+// ACTIVE NAVIGATION
+// =========================================================
 
 function setActiveNavigation() {
 
@@ -161,40 +91,30 @@ function setActiveNavigation() {
     const href =
       link.getAttribute("href");
 
-    if (!href) {
-      return;
-    }
-
-
-    /*
-     * Abaikan link eksternal
-     */
+    if (!href) return;
 
     if (
-      href.startsWith("http://") ||
-      href.startsWith("https://") ||
-      href.startsWith("#")
+      href.startsWith("http") ||
+      href.startsWith("#") ||
+      href.startsWith("mailto:")
     ) {
       return;
     }
 
 
-    /*
-     * Hapus active dari semua link
-     */
+    const linkPage =
+      href.split("/")
+        .pop()
+        .split("#")[0]
+        .toLowerCase();
+
 
     link.classList.remove("active");
 
 
-    /*
-     * Cek halaman saat ini
-     */
-
-    const linkPage =
-      href.split("/").pop().toLowerCase();
-
-
-    if (linkPage === currentPage) {
+    if (
+      linkPage === currentPage
+    ) {
       link.classList.add("active");
     }
 
@@ -203,43 +123,30 @@ function setActiveNavigation() {
 }
 
 
-
-/*
- * =========================================================
- * INNER HERO
- * =========================================================
- */
+// =========================================================
+// INNER HERO
+// =========================================================
 
 function setInnerHero() {
 
   const hero =
-    document.querySelector("#innerHero");
+    document.querySelector(
+      "#innerHero"
+    );
 
-
-  /*
-   * Kalau halaman tidak menggunakan inner hero,
-   * hentikan fungsi.
-   */
-
-  if (!hero) {
-    return;
-  }
-
-
-  const body =
-    document.body;
+  if (!hero) return;
 
 
   const kicker =
-    body.dataset.heroKicker || "";
+    document.body.dataset.heroKicker || "";
 
 
   const title =
-    body.dataset.heroTitle || "";
+    document.body.dataset.heroTitle || "";
 
 
   const description =
-    body.dataset.heroDescription || "";
+    document.body.dataset.heroDescription || "";
 
 
   const kickerElement =
@@ -260,17 +167,22 @@ function setInnerHero() {
     );
 
 
-  if (kickerElement) {
-    kickerElement.textContent = kicker;
+  if (kickerElement && kicker) {
+    kickerElement.textContent =
+      kicker;
   }
 
 
-  if (titleElement) {
-    titleElement.textContent = title;
+  if (titleElement && title) {
+    titleElement.textContent =
+      title;
   }
 
 
-  if (descriptionElement) {
+  if (
+    descriptionElement &&
+    description
+  ) {
     descriptionElement.textContent =
       description;
   }
@@ -278,14 +190,39 @@ function setInnerHero() {
 }
 
 
-
-/*
- * =========================================================
- * AKSESIBILITAS
- * =========================================================
- */
+// =========================================================
+// ACCESSIBILITY
+// =========================================================
 
 function initAccessibility() {
+
+  let accessibilityTextScale = 1;
+
+
+  const textSelectors = [
+    ".section-label",
+    ".section-heading h2",
+    ".section-heading p",
+    ".section-heading a",
+    ".layanan-heading-kicker",
+    ".layanan-utama-heading h2",
+    ".layanan-label",
+    ".layanan-content h3",
+    ".layanan-content p",
+    ".layanan-card-footer",
+    ".maklumat-label",
+    ".maklumat-content p",
+    ".news-content h3",
+    ".news-date",
+    ".news-content p",
+    ".card-badge",
+    ".akses-cepat-text strong",
+    ".statistik-home-card",
+    ".statistik-home-card h3",
+    ".footer",
+    ".footer-bottom"
+  ];
+
 
   const toggle =
     document.getElementById(
@@ -306,317 +243,22 @@ function initAccessibility() {
 
 
   if (!toggle || !panel) {
-
-    console.warn(
-      "Komponen aksesibilitas belum ditemukan."
-    );
-
     return;
   }
 
-function initNavbarSearch() {
-  const searchButton = document.getElementById("navbarSearchButton");
 
-  if (!searchButton) return;
-
-  searchButton.addEventListener("click", function () {
-    const currentPage =
-      window.location.pathname.split("/").pop().toLowerCase() || "index.html";
-
-    if (currentPage === "index.html") {
-      const searchInput = document.getElementById("searchInput");
-
-      if (searchInput) {
-        searchInput.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-        setTimeout(function () {
-          searchInput.focus();
-          searchInput.click();
-        }, 400);
-      }
-
-      return;
-    }
-
-    window.location.href = "index.html#beranda";
-  });
-}
-  /*
-   * ---------------------------------------------------------
-   * UKURAN TEKS
-   * ---------------------------------------------------------
-   */
-
-  let accessibilityTextScale = 1;
-
-
-  const textSelectors = [
-
-    ".section-label",
-
-    ".section-heading h2",
-    ".section-heading p",
-    ".section-heading a",
-
-    ".layanan-heading-kicker",
-    ".layanan-utama-heading h2",
-    ".layanan-label",
-    ".layanan-content h3",
-    ".layanan-content p",
-    ".layanan-card-footer",
-
-    ".maklumat-label",
-    ".maklumat-content p",
-
-    ".news-content h3",
-    ".news-date",
-    ".news-content p",
-    ".card-badge",
-
-    ".akses-cepat-text strong",
-
-    ".statistik-home-card",
-    ".statistik-home-card h3",
-
-    ".footer",
-    ".footer-bottom"
-
-  ];
-
-
-  function updateAccessibilityText() {
-
-    textSelectors.forEach(function (selector) {
-
-      document
-        .querySelectorAll(selector)
-        .forEach(function (element) {
-
-          if (!element.dataset.originalFontSize) {
-
-            const currentSize =
-              parseFloat(
-                window.getComputedStyle(
-                  element
-                ).fontSize
-              );
-
-
-            if (!isNaN(currentSize)) {
-
-              element.dataset.originalFontSize =
-                currentSize;
-
-            }
-
-          }
-
-
-          const originalSize =
-            parseFloat(
-              element.dataset.originalFontSize
-            );
-
-
-          if (!isNaN(originalSize)) {
-
-            element.style.fontSize =
-              (
-                originalSize *
-                accessibilityTextScale
-              ) + "px";
-
-          }
-
-        });
-
-    });
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * PERBESAR TEKS
-   * ---------------------------------------------------------
-   */
-
-  const fontPlusButton =
-    document.querySelector(
-      '[data-accessibility="font-plus"]'
-    );
-
-
-  if (fontPlusButton) {
-
-    fontPlusButton.addEventListener(
-      "click",
-      function () {
-
-        if (
-          accessibilityTextScale >= 1.3
-        ) {
-          return;
-        }
-
-
-        accessibilityTextScale += 0.1;
-
-
-        updateAccessibilityText();
-
-      }
-    );
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * PERKECIL TEKS
-   * ---------------------------------------------------------
-   */
-
-  const fontMinusButton =
-    document.querySelector(
-      '[data-accessibility="font-minus"]'
-    );
-
-
-  if (fontMinusButton) {
-
-    fontMinusButton.addEventListener(
-      "click",
-      function () {
-
-        if (
-          accessibilityTextScale <= 0.8
-        ) {
-          return;
-        }
-
-
-        accessibilityTextScale -= 0.1;
-
-
-        updateAccessibilityText();
-
-      }
-    );
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * KONTRAS TINGGI
-   * ---------------------------------------------------------
-   */
-
-  const contrastButton =
-    document.querySelector(
-      '[data-accessibility="contrast"]'
-    );
-
-
-  if (contrastButton) {
-
-    contrastButton.addEventListener(
-      "click",
-      function () {
-
-        document.body.classList.toggle(
-          "accessibility-high-contrast"
-        );
-
-      }
-    );
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * KURANGI ANIMASI
-   * ---------------------------------------------------------
-   */
-
-  const motionButton =
-    document.querySelector(
-      '[data-accessibility="motion"]'
-    );
-
-
-  if (motionButton) {
-
-    motionButton.addEventListener(
-      "click",
-      function () {
-
-        document.body.classList.toggle(
-          "accessibility-reduced-motion"
-        );
-
-      }
-    );
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * RESET
-   * ---------------------------------------------------------
-   */
-
-  const resetButton =
-    document.querySelector(
-      '[data-accessibility="reset"]'
-    );
-
-
-  if (resetButton) {
-
-    resetButton.addEventListener(
-      "click",
-      function () {
-
-        accessibilityTextScale = 1;
-
-
-        updateAccessibilityText();
-
-
-        document.body.classList.remove(
-          "accessibility-high-contrast"
-        );
-
-
-        document.body.classList.remove(
-          "accessibility-reduced-motion"
-        );
-
-      }
-    );
-
-  }
-
-
-  /*
-   * ---------------------------------------------------------
-   * BUKA PANEL
-   * ---------------------------------------------------------
-   */
+  // ---------------------------------------------------------
+  // TOGGLE PANEL
+  // ---------------------------------------------------------
 
   toggle.addEventListener(
     "click",
     function () {
 
       const isOpen =
-        panel.classList.toggle("active");
+        panel.classList.toggle(
+          "active"
+        );
 
 
       toggle.setAttribute(
@@ -634,11 +276,9 @@ function initNavbarSearch() {
   );
 
 
-  /*
-   * ---------------------------------------------------------
-   * TUTUP PANEL
-   * ---------------------------------------------------------
-   */
+  // ---------------------------------------------------------
+  // CLOSE PANEL
+  // ---------------------------------------------------------
 
   if (close) {
 
@@ -666,5 +306,219 @@ function initNavbarSearch() {
     );
 
   }
+
+
+  // ---------------------------------------------------------
+  // ACCESSIBILITY OPTIONS
+  // ---------------------------------------------------------
+
+  const accessibilityButtons =
+    document.querySelectorAll(
+      "[data-accessibility]"
+    );
+
+
+  accessibilityButtons.forEach(
+    function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const action =
+            this.dataset.accessibility;
+
+
+          // -----------------------------------------------
+          // FONT PLUS
+          // -----------------------------------------------
+
+          if (
+            action === "font-plus"
+          ) {
+
+            accessibilityTextScale =
+              Math.min(
+                1.3,
+                accessibilityTextScale + 0.1
+              );
+
+
+            document.documentElement.style
+              .setProperty(
+                "--accessibility-scale",
+                accessibilityTextScale
+              );
+
+          }
+
+
+          // -----------------------------------------------
+          // FONT MINUS
+          // -----------------------------------------------
+
+          if (
+            action === "font-minus"
+          ) {
+
+            accessibilityTextScale =
+              Math.max(
+                0.8,
+                accessibilityTextScale - 0.1
+              );
+
+
+            document.documentElement.style
+              .setProperty(
+                "--accessibility-scale",
+                accessibilityTextScale
+              );
+
+          }
+
+
+          // -----------------------------------------------
+          // HIGH CONTRAST
+          // -----------------------------------------------
+
+          if (
+            action === "contrast"
+          ) {
+
+            document.body.classList.toggle(
+              "accessibility-high-contrast"
+            );
+
+          }
+
+
+          // -----------------------------------------------
+          // REDUCED MOTION
+          // -----------------------------------------------
+
+          if (
+            action === "motion"
+          ) {
+
+            document.body.classList.toggle(
+              "accessibility-reduced-motion"
+            );
+
+          }
+
+
+          // -----------------------------------------------
+          // RESET
+          // -----------------------------------------------
+
+          if (
+            action === "reset"
+          ) {
+
+            accessibilityTextScale = 1;
+
+
+            document.documentElement.style
+              .removeProperty(
+                "--accessibility-scale"
+              );
+
+
+            document.body.classList.remove(
+              "accessibility-high-contrast"
+            );
+
+
+            document.body.classList.remove(
+              "accessibility-reduced-motion"
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+// =========================================================
+// NAVBAR SEARCH
+// =========================================================
+
+function initNavbarSearch() {
+
+  const searchButton =
+    document.getElementById(
+      "navbarSearchButton"
+    );
+
+
+  if (!searchButton) {
+    return;
+  }
+
+
+  searchButton.addEventListener(
+    "click",
+    function () {
+
+      const currentPage =
+        window.location.pathname
+          .split("/")
+          .pop()
+          .toLowerCase() || "index.html";
+
+
+      // =====================================================
+      // JIKA SEDANG DI BERANDA
+      // =====================================================
+
+      if (
+        currentPage === "index.html"
+      ) {
+
+        const searchInput =
+          document.getElementById(
+            "searchInput"
+          );
+
+
+        if (searchInput) {
+
+          searchInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+
+          setTimeout(
+            function () {
+
+              searchInput.focus();
+
+            },
+            400
+          );
+
+        }
+
+
+        return;
+
+      }
+
+
+      // =====================================================
+      // JIKA DI HALAMAN LAIN
+      // =====================================================
+
+      window.location.href =
+        "index.html#beranda";
+
+    }
+  );
 
 }
