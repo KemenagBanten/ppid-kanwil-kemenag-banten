@@ -338,12 +338,8 @@ function initAccessibility() {
           // =================================================
 
           if (action === "contrast") {
-
-            document.body.classList.toggle(
-              "accessibility-high-contrast"
-            );
-
-          }
+  document.documentElement.classList.toggle("accessibility-high-contrast");
+}
 
 
           // =================================================
@@ -358,7 +354,34 @@ function initAccessibility() {
 
           }
 
+html.accessibility-high-contrast .header,
+html.accessibility-high-contrast .inner-hero,
+html.accessibility-high-contrast .profile-section,
+html.accessibility-high-contrast .profile-card,
+html.accessibility-high-contrast .vm-card,
+html.accessibility-high-contrast .task-card,
+html.accessibility-high-contrast .legal-card,
+html.accessibility-high-contrast .contact-card,
+html.accessibility-high-contrast .footer {
+  border-color: #ffffff !important;
+}
 
+html.accessibility-high-contrast .profile-card,
+html.accessibility-high-contrast .vm-card,
+html.accessibility-high-contrast .task-card,
+html.accessibility-high-contrast .legal-card,
+html.accessibility-high-contrast .contact-card {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .profile-card *,
+html.accessibility-high-contrast .vm-card *,
+html.accessibility-high-contrast .task-card *,
+html.accessibility-high-contrast .legal-card *,
+html.accessibility-high-contrast .contact-card * {
+  color: #ffffff !important;
+}
           // =================================================
           // RESET
           // =================================================
@@ -369,10 +392,7 @@ function initAccessibility() {
 
             resetTextScale();
 
-            document.body.classList.remove(
-              "accessibility-high-contrast"
-            );
-
+            document.documentElement.classList.remove("accessibility-high-contrast");
             document.body.classList.remove(
               "accessibility-reduced-motion"
             );
