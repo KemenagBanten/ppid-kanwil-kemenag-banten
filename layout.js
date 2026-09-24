@@ -722,7 +722,7 @@ function initNavbarSearch() {
       // =====================================================
 
       window.location.href =
-        "index.html#beranda";
+        "index.html#searchInput";
 
     }
   );
