@@ -64,7 +64,29 @@ const textSelectors = [
 ];
 
 document.addEventListener("DOMContentLoaded", async function () {
+  // =========================================================
+  // LOAD GLOBAL ACCESSIBILITY CSS
+  // =========================================================
 
+  if (!document.getElementById("globalAccessibilityCSS")) {
+
+    const accessibilityCSS =
+      document.createElement("link");
+
+    accessibilityCSS.id =
+      "globalAccessibilityCSS";
+
+    accessibilityCSS.rel =
+      "stylesheet";
+
+    accessibilityCSS.href =
+      "assets/css/accessibility.css";
+
+    document.head.appendChild(
+      accessibilityCSS
+    );
+
+  }
   async function loadComponent(selector, file) {
     const target = document.querySelector(selector);
 
