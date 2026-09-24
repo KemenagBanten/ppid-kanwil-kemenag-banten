@@ -324,20 +324,62 @@ function setFooterSocial() {
 
   FOOTER_SOCIAL.forEach(function (item) {
 
+    let icon = "";
+
+    if (item.platform === "Facebook") {
+      icon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14 8h3V4h-3c-3.3 0-5 1.7-5 5v3H6v4h3v8h4v-8h3.5l.5-4H13V9c0-.7.3-1 1-1z"/>
+        </svg>
+      `;
+    }
+
+    if (item.platform === "Instagram") {
+      icon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="1"/>
+        </svg>
+      `;
+    }
+
+    if (item.platform === "X") {
+      icon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4h4.2l3.1 4.3L16.2 4H19l-5.4 6.2L20 20h-4.2l-3.6-5-4.3 5H5l5.7-6.8L5 4zm3.4 2 7.9 12h1.8L10.2 6H8.4z"/>
+        </svg>
+      `;
+    }
+
+    if (item.platform === "TikTok") {
+      icon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 3c.3 2.2 1.5 3.7 3.8 4.1v3.1c-1.4-.1-2.7-.5-3.8-1.2v6.1c0 3.8-2.4 5.9-5.5 5.9-3 0-5.5-2.2-5.5-5.3 0-3.2 2.5-5.4 5.8-5.4.4 0 .8 0 1.2.1v3.2c-.4-.1-.8-.2-1.2-.2-1.4 0-2.5.9-2.5 2.3 0 1.3 1 2.2 2.2 2.2 1.4 0 2.3-.8 2.3-2.5V3H15z"/>
+        </svg>
+      `;
+    }
+
+    if (item.platform === "YouTube") {
+      icon = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.8V8.2l6.3 3.8-6.3 3.8z"/>
+        </svg>
+      `;
+    }
+
     const link = document.createElement("a");
 
     link.href = item.url;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-
+    link.title = item.platform;
     link.setAttribute(
       "aria-label",
       "Kunjungi " + item.platform
     );
 
-    link.title = item.platform;
-
-    link.textContent = item.platform;
+    link.innerHTML = icon;
 
     socialContainer.appendChild(link);
 
