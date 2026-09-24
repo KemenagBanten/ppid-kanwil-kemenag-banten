@@ -168,40 +168,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 // LOAD SHARED COMPONENTS
 // =========================================================
 
-await loadComponent(
-  "#siteNavbar",
-  "components/navbar.html"
-);
-
-await loadComponent(
-  "#innerHero",
-  "components/inner-hero.html"
-);
-
-await loadComponent(
-  "#accessibility",
-  "components/accessibility.html"
-);
-
-await loadComponent(
-  "#siteFooter",
-  "components/footer.html"
-);
+await loadComponent("#siteNavbar", "components/navbar.html");
+await loadComponent("#innerHero", "components/inner-hero.html");
+await loadComponent("#accessibility", "components/accessibility.html");
+await loadComponent("#siteFooter", "components/footer.html");
 
 setFooterSocial();
-// =========================================================
-// INITIALIZE SHARED FEATURES
-// =========================================================
 
 setActiveNavigation();
 setInnerHero();
 initAccessibility();
 initNavbarSearch();
+initMobileNavigation();
 
-document.dispatchEvent(
-  new CustomEvent("layout:loaded")
-);
-
+document.dispatchEvent(new CustomEvent("layout:loaded"));
  
 });
 
@@ -704,7 +684,218 @@ function initNavbarSearch() {
           .pop()
           .toLowerCase() || "index.html";
 
+// =========================================================
+// MOBILE NAVIGATION
+// Hanya bekerja pada layar <= 900px
+// =========================================================
 
+function initMobileNavigation() {
+
+  const toggle =
+    document.getElementById("mobileMenuToggle");
+
+  const mainNav =
+    document.getElementById("mainNav");
+
+  if (!toggle || !mainNav) return;
+
+
+  const isMobile =
+    () => window.innerWidth <= 900;
+
+
+  function closeMobileMenu() {
+
+    mainNav.classList.remove("mobile-open");
+
+    toggle.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    toggle.setAttribute(
+      "aria-label",
+      "Buka menu"
+    );
+
+
+    document
+      .querySelectorAll(
+        ".main-nav .nav-item.mobile-open"
+      )
+      .forEach(function (item) {
+
+        item.classList.remove(
+          "mobile-open"
+        );
+
+      });
+
+  }
+
+
+  // ---------------------------------------------------------
+  // TOMBOL HAMBURGER
+  // ---------------------------------------------------------
+
+  toggle.addEventListener(
+    "click",
+    function (event) {
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!isMobile()) return;
+
+
+      const isOpen =
+        mainNav.classList.toggle(
+          "mobile-open"
+        );
+
+
+      toggle.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+
+      toggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Tutup menu"
+          : "Buka menu"
+      );
+
+    }
+  );
+
+
+  // ---------------------------------------------------------
+  // DROPDOWN MOBILE
+  // ---------------------------------------------------------
+
+  mainNav
+    .querySelectorAll(".nav-item")
+    .forEach(function (item) {
+
+      const link =
+        item.querySelector(
+          ":scope > .nav-link"
+        );
+
+      const dropdown =
+        item.querySelector(
+          ":scope > .nav-dropdown"
+        );
+
+
+      if (!link || !dropdown) return;
+
+
+      link.addEventListener(
+        "click",
+        function (event) {
+
+          if (!isMobile()) return;
+
+
+          event.preventDefault();
+          event.stopPropagation();
+
+
+          // Tutup dropdown lain
+          mainNav
+            .querySelectorAll(
+              ".nav-item.mobile-open"
+            )
+            .forEach(function (otherItem) {
+
+              if (otherItem !== item) {
+
+                otherItem.classList.remove(
+                  "mobile-open"
+                );
+
+              }
+
+            });
+
+
+          // Buka/tutup dropdown yang diklik
+          item.classList.toggle(
+            "mobile-open"
+          );
+
+        }
+      );
+
+    });
+
+
+  // ---------------------------------------------------------
+  // KLIK DI LUAR MENU
+  // ---------------------------------------------------------
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (!isMobile()) return;
+
+
+      if (
+        !mainNav.contains(event.target) &&
+        !toggle.contains(event.target)
+      ) {
+
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+
+  // ---------------------------------------------------------
+  // TOMBOL ESC
+  // ---------------------------------------------------------
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key === "Escape" &&
+        isMobile()
+      ) {
+
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+
+  // ---------------------------------------------------------
+  // KEMBALI KE DESKTOP
+  // ---------------------------------------------------------
+
+  window.addEventListener(
+    "resize",
+    function () {
+
+      if (!isMobile()) {
+
+        closeMobileMenu();
+
+      }
+
+    }
+  );
+
+}
       // =====================================================
       // BERANDA
       // =====================================================
@@ -741,6 +932,7 @@ function initNavbarSearch() {
 
       }
 
+}
 
       // =====================================================
       // HALAMAN LAIN
