@@ -87,7 +87,35 @@ document.addEventListener("DOMContentLoaded", async function () {
     );
 
   }
+
+
+  // =========================================================
+  // LOAD FOOTER CSS
+  // =========================================================
+
+  if (!document.getElementById("footerCSS")) {
+
+    const footerCSS =
+      document.createElement("link");
+
+    footerCSS.id =
+      "footerCSS";
+
+    footerCSS.rel =
+      "stylesheet";
+
+    footerCSS.href =
+      "components/footer.css";
+
+    document.head.appendChild(
+      footerCSS
+    );
+
+  }
+
+
   async function loadComponent(selector, file) {
+    
     const target = document.querySelector(selector);
 
     if (!target) return;
