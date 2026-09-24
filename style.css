@@ -372,7 +372,169 @@ body {
 
   transform: translateY(-1px);
 }
+/* =========================================================
+   INNER HERO
+========================================================= */
 
+.inner-hero {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #174d39 0%,
+      #1f5a43 52%,
+      #2f7959 100%
+    );
+
+  color: #ffffff;
+}
+
+.inner-hero-content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.inner-hero-text {
+  max-width: 760px;
+}
+
+.inner-hero-kicker {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: rgba(255,255,255,.78);
+
+  font-size: 11px;
+  font-weight: 750;
+
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.inner-hero h1 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: clamp(30px, 4vw, 42px);
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+.inner-hero p {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: rgba(255,255,255,.90);
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* Dekorasi */
+
+.inner-hero-pattern {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.inner-hero-pattern-one {
+  width: 340px;
+  height: 340px;
+
+  right: -120px;
+  top: -150px;
+
+  background: rgba(255,255,255,.06);
+}
+
+.inner-hero-pattern-two {
+  width: 220px;
+  height: 220px;
+
+  left: -120px;
+  bottom: -150px;
+
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.inner-hero-decoration {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 7px;
+
+  opacity: .7;
+}
+
+.inner-hero-decoration span {
+  display: block;
+
+  width: 6px;
+
+  border-radius: 5px;
+
+  background: #cdb082;
+}
+
+.inner-hero-decoration span:nth-child(1) {
+  height: 28px;
+}
+
+.inner-hero-decoration span:nth-child(2) {
+  height: 44px;
+}
+
+.inner-hero-decoration span:nth-child(3) {
+  height: 62px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .inner-hero-content {
+    min-height: 210px;
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .inner-hero-decoration {
+    display: none;
+  }
+
+  .inner-hero h1 {
+    font-size: 30px;
+  }
+
+  .inner-hero p {
+    font-size: 13px;
+  }
+
+}
 /* =========================================================
    HERO
    FOTO DAN POSISI DIPERTAHANKAN
