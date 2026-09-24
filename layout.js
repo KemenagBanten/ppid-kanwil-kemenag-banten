@@ -139,10 +139,31 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+// =========================================================
+// LOAD SHARED COMPONENTS
+// =========================================================
+
+await loadComponent(
+  "#siteNavbar",
+  "components/navbar.html"
+);
+
+await loadComponent(
+  "#innerHero",
+  "components/inner-hero.html"
+);
+
+await loadComponent(
+  "#accessibility",
+  "components/accessibility.html"
+);
+
 await loadComponent(
   "#siteFooter",
   "components/footer.html"
 );
+
+
 // =========================================================
 // INITIALIZE SHARED FEATURES
 // =========================================================
@@ -152,10 +173,11 @@ setInnerHero();
 initAccessibility();
 initNavbarSearch();
 
-  document.dispatchEvent(
-    new CustomEvent("layout:loaded")
-  );
+document.dispatchEvent(
+  new CustomEvent("layout:loaded")
+);
 
+ 
 });
 
 
