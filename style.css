@@ -2598,12 +2598,11 @@ body {
 
 /* =========================================================
    MOBILE NAVIGATION — FIX
-   Desktop tidak diubah
+   Sesuai struktur navbar.html saat ini
 ========================================================= */
 
 @media (max-width: 900px) {
 
-  /* Header */
   .header-inner {
     position: relative;
     display: flex;
@@ -2612,13 +2611,13 @@ body {
     gap: 12px;
   }
 
-  /* Logo/nama tetap di kiri */
   .header-brand {
     flex: 1 1 auto;
     min-width: 0;
   }
 
-  /* Hamburger di kanan */
+  /* TOMBOL HAMBURGER */
+
   .nav-mobile-toggle-wrap {
     display: flex;
     align-items: center;
@@ -2636,21 +2635,19 @@ body {
     cursor: pointer;
   }
 
-
-  /* =======================================================
-     MENU UTAMA MOBILE
-  ======================================================= */
+  /* MENU UTAMA */
 
   .main-nav {
     position: absolute;
-
     top: calc(100% + 8px);
     left: 0;
     right: 0;
 
     width: 100%;
+    box-sizing: border-box;
 
     display: none;
+
     flex-direction: column;
     align-items: stretch;
 
@@ -2661,28 +2658,28 @@ body {
     border: 1px solid rgba(23, 53, 42, 0.10);
     border-radius: 12px;
 
-    box-shadow:
-      0 14px 35px rgba(23, 53, 42, 0.14);
+    box-shadow: 0 14px 35px rgba(23, 53, 42, 0.14);
 
     z-index: 9999;
   }
 
-  /* Menu terbuka */
   .main-nav.mobile-open {
     display: flex !important;
   }
 
+  /* SEMUA ITEM NAVBAR */
 
-  /* =======================================================
-     ITEM MENU
-  ======================================================= */
-
-  .main-nav .nav-item {
+  .main-nav > .nav-link,
+  .main-nav > .nav-dropdown {
     width: 100%;
-    position: relative;
+    box-sizing: border-box;
+    flex-shrink: 0;
   }
 
-  .main-nav .nav-item > .nav-link {
+  /* BERANDA + TOMBOL DROPDOWN */
+
+  .main-nav > .nav-link,
+  .main-nav .nav-dropdown-button {
     width: 100%;
     min-height: 44px;
 
@@ -2699,23 +2696,47 @@ body {
     border-radius: 8px;
   }
 
-  .main-nav .nav-item > .nav-link:hover {
+  .main-nav > .nav-link {
+    text-decoration: none;
+  }
+
+  .main-nav > .nav-link:hover,
+  .main-nav .nav-dropdown-button:hover {
     background: #f2f6f3;
   }
 
-
-  /* =======================================================
-     DROPDOWN
-  ======================================================= */
+  /* KOTAK DROPDOWN */
 
   .main-nav .nav-dropdown {
+    position: static;
+
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+    box-shadow: none;
+
+    box-sizing: border-box;
+  }
+
+  /* SUBMENU DISIMPAN */
+
+  .main-nav .nav-dropdown .dropdown-menu {
     position: static;
 
     display: none;
 
     width: 100%;
+    min-width: 0;
 
     margin: 0;
+
     padding: 4px 0 6px;
 
     background: #f7f9f8;
@@ -2728,15 +2749,19 @@ body {
     opacity: 1;
     visibility: visible;
     transform: none;
+
+    box-sizing: border-box;
   }
 
-  /* Dropdown dibuka */
-  .main-nav .nav-item.mobile-open > .nav-dropdown {
+  /* SUBMENU TAMPIL SAAT DROPDOWN DIBUKA */
+
+  .main-nav .nav-dropdown.mobile-open .dropdown-menu {
     display: block;
   }
 
-  /* Link dropdown */
-  .main-nav .nav-dropdown a {
+  /* LINK DI DALAM SUBMENU */
+
+  .main-nav .dropdown-menu a {
     display: flex;
     align-items: center;
 
@@ -2752,12 +2777,34 @@ body {
     border-radius: 7px;
   }
 
-  .main-nav .nav-dropdown a:hover {
+  .main-nav .dropdown-menu a:hover {
     background: #edf3ef;
   }
 
-}
+  /* PANAH */
 
+  .main-nav .nav-arrow {
+    margin-left: 10px;
+    flex-shrink: 0;
+  }
+
+  /* SEARCH */
+
+  .main-nav .nav-search {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 10px 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 8px;
+  }
+}
 
 /* =========================================================
    MOBILE KECIL
