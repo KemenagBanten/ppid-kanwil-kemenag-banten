@@ -668,11 +668,9 @@ function initNavbarSearch() {
       "navbarSearchButton"
     );
 
-
   if (!searchButton) {
     return;
   }
-
 
   searchButton.addEventListener(
     "click",
@@ -684,6 +682,54 @@ function initNavbarSearch() {
           .pop()
           .toLowerCase() || "index.html";
 
+
+      // =====================================================
+      // BERANDA
+      // =====================================================
+
+      if (currentPage === "index.html") {
+
+        const searchInput =
+          document.getElementById(
+            "searchInput"
+          );
+
+        if (searchInput) {
+
+          searchInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+          setTimeout(
+            function () {
+
+              searchInput.focus();
+
+            },
+            400
+          );
+
+        }
+
+        return;
+
+      }
+
+
+      // =====================================================
+      // HALAMAN LAIN
+      // =====================================================
+
+      window.location.href =
+        "index.html#beranda";
+
+    }
+  );
+
+}
+
+
 // =========================================================
 // MOBILE NAVIGATION
 // Hanya bekerja pada layar <= 900px
@@ -692,21 +738,33 @@ function initNavbarSearch() {
 function initMobileNavigation() {
 
   const toggle =
-    document.getElementById("mobileMenuToggle");
+    document.getElementById(
+      "mobileMenuToggle"
+    );
 
   const mainNav =
-    document.getElementById("mainNav");
+    document.getElementById(
+      "mainNav"
+    );
 
-  if (!toggle || !mainNav) return;
+  if (!toggle || !mainNav) {
+    return;
+  }
 
 
   const isMobile =
     () => window.innerWidth <= 900;
 
 
+  // =======================================================
+  // TUTUP MENU MOBILE
+  // =======================================================
+
   function closeMobileMenu() {
 
-    mainNav.classList.remove("mobile-open");
+    mainNav.classList.remove(
+      "mobile-open"
+    );
 
     toggle.setAttribute(
       "aria-expanded",
@@ -719,24 +777,26 @@ function initMobileNavigation() {
     );
 
 
-    document
+    mainNav
       .querySelectorAll(
-        ".main-nav .nav-item.mobile-open"
+        ".nav-item.mobile-open"
       )
-      .forEach(function (item) {
+      .forEach(
+        function (item) {
 
-        item.classList.remove(
-          "mobile-open"
-        );
+          item.classList.remove(
+            "mobile-open"
+          );
 
-      });
+        }
+      );
 
   }
 
 
-  // ---------------------------------------------------------
+  // =======================================================
   // TOMBOL HAMBURGER
-  // ---------------------------------------------------------
+  // =======================================================
 
   toggle.addEventListener(
     "click",
@@ -745,7 +805,9 @@ function initMobileNavigation() {
       event.preventDefault();
       event.stopPropagation();
 
-      if (!isMobile()) return;
+      if (!isMobile()) {
+        return;
+      }
 
 
       const isOpen =
@@ -771,77 +833,90 @@ function initMobileNavigation() {
   );
 
 
-  // ---------------------------------------------------------
+  // =======================================================
   // DROPDOWN MOBILE
-  // ---------------------------------------------------------
+  // =======================================================
 
   mainNav
-    .querySelectorAll(".nav-item")
-    .forEach(function (item) {
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(
+      function (item) {
 
-      const link =
-        item.querySelector(
-          ":scope > .nav-link"
-        );
-
-      const dropdown =
-        item.querySelector(
-          ":scope > .nav-dropdown"
-        );
-
-
-      if (!link || !dropdown) return;
-
-
-      link.addEventListener(
-        "click",
-        function (event) {
-
-          if (!isMobile()) return;
-
-
-          event.preventDefault();
-          event.stopPropagation();
-
-
-          // Tutup dropdown lain
-          mainNav
-            .querySelectorAll(
-              ".nav-item.mobile-open"
-            )
-            .forEach(function (otherItem) {
-
-              if (otherItem !== item) {
-
-                otherItem.classList.remove(
-                  "mobile-open"
-                );
-
-              }
-
-            });
-
-
-          // Buka/tutup dropdown yang diklik
-          item.classList.toggle(
-            "mobile-open"
+        const link =
+          item.querySelector(
+            ":scope > .nav-link"
           );
 
+        const dropdown =
+          item.querySelector(
+            ":scope > .nav-dropdown"
+          );
+
+
+        // Menu tanpa dropdown
+        if (!link || !dropdown) {
+          return;
         }
-      );
-
-    });
 
 
-  // ---------------------------------------------------------
+        link.addEventListener(
+          "click",
+          function (event) {
+
+            if (!isMobile()) {
+              return;
+            }
+
+
+            event.preventDefault();
+            event.stopPropagation();
+
+
+            // Tutup dropdown lainnya
+            mainNav
+              .querySelectorAll(
+                ".nav-item.mobile-open"
+              )
+              .forEach(
+                function (otherItem) {
+
+                  if (otherItem !== item) {
+
+                    otherItem.classList.remove(
+                      "mobile-open"
+                    );
+
+                  }
+
+                }
+              );
+
+
+            // Buka / tutup dropdown
+            item.classList.toggle(
+              "mobile-open"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  // =======================================================
   // KLIK DI LUAR MENU
-  // ---------------------------------------------------------
+  // =======================================================
 
   document.addEventListener(
     "click",
     function (event) {
 
-      if (!isMobile()) return;
+      if (!isMobile()) {
+        return;
+      }
 
 
       if (
@@ -857,9 +932,9 @@ function initMobileNavigation() {
   );
 
 
-  // ---------------------------------------------------------
+  // =======================================================
   // TOMBOL ESC
-  // ---------------------------------------------------------
+  // =======================================================
 
   document.addEventListener(
     "keydown",
@@ -878,9 +953,9 @@ function initMobileNavigation() {
   );
 
 
-  // ---------------------------------------------------------
+  // =======================================================
   // KEMBALI KE DESKTOP
-  // ---------------------------------------------------------
+  // =======================================================
 
   window.addEventListener(
     "resize",
@@ -891,55 +966,6 @@ function initMobileNavigation() {
         closeMobileMenu();
 
       }
-
-    }
-  );
-
-}
-      // =====================================================
-      // BERANDA
-      // =====================================================
-
-      if (currentPage === "index.html") {
-
-        const searchInput =
-          document.getElementById(
-            "searchInput"
-          );
-
-
-        if (searchInput) {
-
-          searchInput.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-
-
-          setTimeout(
-            function () {
-
-              searchInput.focus();
-
-            },
-            400
-          );
-
-        }
-
-
-        return;
-
-      }
-
-}
-
-      // =====================================================
-      // HALAMAN LAIN
-      // =====================================================
-
-      window.location.href =
-        "index.html#beranda";
 
     }
   );
