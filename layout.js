@@ -732,28 +732,52 @@ function initNavbarSearch() {
 
 // =========================================================
 // MOBILE NAVIGATION
-// Hanya bekerja pada layar <= 900px
+// Sesuai struktur MASTER navbar.html
 // =========================================================
 
 function initMobileNavigation() {
 
   const toggle =
-    document.getElementById(
-      "mobileMenuToggle"
-    );
+    document.getElementById("mobileMenuToggle");
 
   const mainNav =
-    document.getElementById(
-      "mainNav"
-    );
+    document.getElementById("mainNav");
 
   if (!toggle || !mainNav) {
     return;
   }
 
-
   const isMobile =
     () => window.innerWidth <= 900;
+
+
+  // =======================================================
+  // TUTUP SEMUA DROPDOWN
+  // =======================================================
+
+  function closeAllDropdowns() {
+
+    mainNav
+      .querySelectorAll(".nav-dropdown.mobile-open")
+      .forEach(function (item) {
+
+        item.classList.remove("mobile-open");
+
+        const button =
+          item.querySelector(
+            ":scope > .nav-dropdown-button"
+          );
+
+        if (button) {
+          button.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+
+      });
+
+  }
 
 
   // =======================================================
@@ -776,20 +800,7 @@ function initMobileNavigation() {
       "Buka menu"
     );
 
-
-    mainNav
-      .querySelectorAll(
-        ".nav-item.mobile-open"
-      )
-      .forEach(
-        function (item) {
-
-          item.classList.remove(
-            "mobile-open"
-          );
-
-        }
-      );
+    closeAllDropdowns();
 
   }
 
@@ -809,18 +820,15 @@ function initMobileNavigation() {
         return;
       }
 
-
       const isOpen =
         mainNav.classList.toggle(
           "mobile-open"
         );
 
-
       toggle.setAttribute(
         "aria-expanded",
         isOpen ? "true" : "false"
       );
-
 
       toggle.setAttribute(
         "aria-label",
@@ -839,29 +847,27 @@ function initMobileNavigation() {
 
   mainNav
     .querySelectorAll(
-      ".nav-item"
+      ".nav-dropdown"
     )
     .forEach(
       function (item) {
 
-        const link =
+        const button =
           item.querySelector(
-            ":scope > .nav-link"
+            ":scope > .nav-dropdown-button"
           );
 
         const dropdown =
           item.querySelector(
-            ":scope > .nav-dropdown"
+            ":scope > .dropdown-menu"
           );
 
-
-        // Menu tanpa dropdown
-        if (!link || !dropdown) {
+        if (!button || !dropdown) {
           return;
         }
 
 
-        link.addEventListener(
+        button.addEventListener(
           "click",
           function (event) {
 
@@ -869,15 +875,20 @@ function initMobileNavigation() {
               return;
             }
 
-
             event.preventDefault();
             event.stopPropagation();
+
+
+            const isOpen =
+              item.classList.contains(
+                "mobile-open"
+              );
 
 
             // Tutup dropdown lainnya
             mainNav
               .querySelectorAll(
-                ".nav-item.mobile-open"
+                ".nav-dropdown.mobile-open"
               )
               .forEach(
                 function (otherItem) {
@@ -888,16 +899,75 @@ function initMobileNavigation() {
                       "mobile-open"
                     );
 
+                    const otherButton =
+                      otherItem.querySelector(
+                        ":scope > .nav-dropdown-button"
+                      );
+
+                    if (otherButton) {
+
+                      otherButton.setAttribute(
+                        "aria-expanded",
+                        "false"
+                      );
+
+                    }
+
                   }
 
                 }
               );
 
 
-            // Buka / tutup dropdown
-            item.classList.toggle(
-              "mobile-open"
-            );
+            // Toggle dropdown yang diklik
+            if (isOpen) {
+
+              item.classList.remove(
+                "mobile-open"
+              );
+
+              button.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            } else {
+
+              item.classList.add(
+                "mobile-open"
+              );
+
+              button.setAttribute(
+                "aria-expanded",
+                "true"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+  // =======================================================
+  // KLIK LINK SUBMENU
+  // Biarkan navigasi berjalan normal
+  // =======================================================
+
+  mainNav
+    .querySelectorAll(
+      ".dropdown-menu a"
+    )
+    .forEach(
+      function (link) {
+
+        link.addEventListener(
+          "click",
+          function () {
+
+            closeMobileMenu();
 
           }
         );
@@ -917,7 +987,6 @@ function initMobileNavigation() {
       if (!isMobile()) {
         return;
       }
-
 
       if (
         !mainNav.contains(event.target) &&
