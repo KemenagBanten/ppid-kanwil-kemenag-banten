@@ -354,323 +354,387 @@
     }
 
 
-    /* =====================================================
-       LIST DOKUMEN
-    ===================================================== */
+ /* =====================================================
+   TABEL INFORMASI PUBLIK
+===================================================== */
+
+.data-list {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e9e5;
+  border-radius: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+}
 
-    .data-list {
 
-      display:
-        flex;
+/* =====================================================
+   TABLE
+===================================================== */
 
-      flex-direction:
-        column;
+.informasi-table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
 
-      background:
-        #ffffff;
 
-      border:
-        1px solid #e2e9e5;
+/* =====================================================
+   TABLE HEADER
+===================================================== */
 
-      border-radius:
-        15px;
+.informasi-table thead th {
+  background: #0f5132;
+  color: #ffffff;
 
-      overflow:
-        hidden;
+  padding: 14px 14px;
 
-      box-shadow:
-        0 6px 24px rgba(26,54,41,.045);
-    }
+  font-size: 12px;
+  font-weight: 700;
 
+  text-align: left;
+  vertical-align: middle;
 
-    /* =====================================================
-       LIST ITEM
-    ===================================================== */
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
 
-    .document-row {
+.informasi-table thead th:last-child {
+  border-right: none;
+}
 
-      display:
-        flex;
 
-      align-items:
-        center;
+/* =====================================================
+   COLUMN WIDTH
+===================================================== */
 
-      justify-content:
-        space-between;
+.informasi-table th:nth-child(1),
+.informasi-table td:nth-child(1) {
+  width: 55px;
+  text-align: center;
+}
 
-      gap:
-        20px;
+.informasi-table th:nth-child(2),
+.informasi-table td:nth-child(2) {
+  width: 38%;
+}
 
-      padding:
-        19px 21px;
+.informasi-table th:nth-child(3),
+.informasi-table td:nth-child(3) {
+  width: 13%;
+}
 
-      border-bottom:
-        1px solid #edf1ee;
+.informasi-table th:nth-child(4),
+.informasi-table td:nth-child(4) {
+  width: 14%;
+}
 
-      transition:
-        background .18s ease;
-    }
+.informasi-table th:nth-child(5),
+.informasi-table td:nth-child(5) {
+  width: 8%;
+  text-align: center;
+}
 
+.informasi-table th:nth-child(6),
+.informasi-table td:nth-child(6) {
+  width: 12%;
+}
 
-    .document-row:last-child {
+.informasi-table th:nth-child(7),
+.informasi-table td:nth-child(7) {
+  width: 15%;
+  text-align: center;
+}
 
-      border-bottom:
-        none;
-    }
 
+/* =====================================================
+   TABLE BODY
+===================================================== */
 
-    .document-row:hover {
+.informasi-table tbody td {
+  padding: 15px 14px;
 
-      background:
-        #fafcfb;
-    }
+  border-bottom: 1px solid #edf1ee;
 
+  color: #45534c;
 
-    .document-main {
+  font-size: 13px;
 
-      min-width:
-        0;
+  vertical-align: top;
 
-      flex:
-        1;
-    }
+  line-height: 1.5;
 
+  background: #ffffff;
+}
 
-    .document-title {
+.informasi-table tbody tr:last-child td {
+  border-bottom: none;
+}
 
-      display:
-        flex;
 
-      align-items:
-        flex-start;
+/* =====================================================
+   HOVER
+===================================================== */
 
-      gap:
-        12px;
-    }
+.informasi-table tbody tr:hover td {
+  background: #f8fbf9;
+}
 
 
-    .pdf-icon {
+/* =====================================================
+   NOMOR
+===================================================== */
 
-      width:
-        40px;
+.table-number {
+  color: #718078;
+  font-size: 12px;
+  font-weight: 600;
+}
 
-      height:
-        40px;
 
-      flex:
-        0 0 40px;
+/* =====================================================
+   JUDUL INFORMASI
+===================================================== */
 
-      border-radius:
-        9px;
+.table-title {
+  color: #263a30;
 
-      background:
-        #edf6f1;
+  font-size: 14px;
+  font-weight: 650;
 
-      color:
-        #0f5132;
+  line-height: 1.5;
+}
 
-      display:
-        flex;
 
-      align-items:
-        center;
+/* =====================================================
+   JENIS INFORMASI
+===================================================== */
 
-      justify-content:
-        center;
+.table-badge {
+  display: inline-flex;
 
-      font-size:
-        11px;
+  align-items: center;
+  justify-content: center;
 
-      font-weight:
-        800;
-    }
+  padding: 5px 9px;
 
+  border-radius: 6px;
 
-    .document-name {
+  background: #e9f5ef;
 
-      color:
-        #263a30;
+  border: 1px solid #d4e9dd;
 
-      font-size:
-        15px;
+  color: #0f5132;
 
-      line-height:
-        1.45;
+  font-size: 11px;
+  font-weight: 600;
 
-      font-weight:
-        650;
+  line-height: 1.2;
+}
 
-      margin-top:
-        1px;
-    }
+.table-badge.empty {
+  background: #f5f7f6;
+  border-color: #e3e9e5;
+  color: #7a8781;
+}
 
 
-    .document-meta {
+/* =====================================================
+   KATEGORI
+===================================================== */
 
-      display:
-        flex;
+.table-category {
+  color: #52615a;
+  font-size: 12px;
+}
 
-      align-items:
-        center;
 
-      flex-wrap:
-        wrap;
+/* =====================================================
+   TAHUN
+===================================================== */
 
-      gap:
-        6px;
+.table-year {
+  color: #52615a;
+  font-size: 12px;
+  font-weight: 600;
+}
 
-      margin-top:
-        7px;
 
-      margin-left:
-        52px;
-    }
+/* =====================================================
+   TANGGAL
+===================================================== */
 
+.table-date {
+  color: #718078;
+  font-size: 12px;
+}
 
-    .meta-badge {
 
-      display:
-        inline-flex;
+/* =====================================================
+   DOKUMEN
+===================================================== */
 
-      align-items:
-        center;
+.table-documents {
+  display: flex;
 
-      padding:
-        4px 8px;
+  flex-direction: column;
 
-      border:
-        1px solid #e1e9e4;
+  align-items: center;
 
-      border-radius:
-        6px;
+  gap: 6px;
+}
 
-      background:
-        #f5f8f6;
 
-      color:
-        #617069;
+/* =====================================================
+   BUTTON DOKUMEN
+===================================================== */
 
-      font-size:
-        11px;
-    }
+.table-document-button {
+  display: inline-flex;
 
+  align-items: center;
+  justify-content: center;
 
-    .meta-badge.primary {
+  min-width: 82px;
 
-      background:
-        #e9f5ef;
+  padding: 7px 10px;
 
-      border-color:
-        #d4e9dd;
+  background: #0f5132;
 
-      color:
-        #0f5132;
+  color: #ffffff;
 
-      font-weight:
-        600;
-    }
+  border-radius: 7px;
 
+  font-size: 11px;
+  font-weight: 600;
 
-    .document-date {
+  text-decoration: none;
 
-      margin-top:
-        5px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
 
-      margin-left:
-        52px;
+.table-document-button:hover {
+  background: #146c43;
 
-      color:
-        #87928d;
+  transform: translateY(-1px);
+}
 
-      font-size:
-        11px;
-    }
 
+/* =====================================================
+   MULTIPLE DOCUMENT
+===================================================== */
 
-    .document-actions {
+.table-document-name {
+  max-width: 145px;
 
-      flex:
-        0 0 auto;
+  overflow: hidden;
 
-      display:
-        flex;
+  text-overflow: ellipsis;
 
-      align-items:
-        center;
+  white-space: nowrap;
 
-      gap:
-        8px;
+  color: #64736b;
 
-      flex-wrap:
-        wrap;
+  font-size: 10px;
+}
 
-      justify-content:
-        flex-end;
-    }
 
+/* =====================================================
+   DOKUMEN BELUM TERSEDIA
+===================================================== */
 
-    .document-button {
+.table-document-empty {
+  display: inline-flex;
 
-      display:
-        inline-flex;
+  align-items: center;
+  justify-content: center;
 
-      align-items:
-        center;
+  padding: 7px 10px;
 
-      justify-content:
-        center;
+  background: #eef1ef;
 
-      gap:
-        6px;
+  color: #7b8580;
 
-      background:
-        #0f5132;
+  border-radius: 7px;
 
-      color:
-        #ffffff;
+  font-size: 10px;
 
-      padding:
-        9px 13px;
+  white-space: nowrap;
+}
 
-      border-radius:
-        8px;
 
-      font-size:
-        12px;
+/* =====================================================
+   NO DATA
+===================================================== */
 
-      font-weight:
-        600;
+.no-data {
+  width: 100%;
 
-      transition:
-        .2s ease;
+  background: #ffffff;
 
-      white-space:
-        nowrap;
-    }
+  padding: 55px 20px;
 
+  text-align: center;
 
-    .document-button:hover {
+  color: #718078;
+}
 
-      background:
-        #146c43;
+.no-data-icon {
+  font-size: 34px;
 
-      transform:
-        translateY(-1px);
-    }
+  margin-bottom: 10px;
+}
 
+.no-data strong {
+  display: block;
 
-    .document-button.disabled {
+  color: #435149;
 
-      background:
-        #eef1ef;
+  margin-bottom: 5px;
+}
 
-      color:
-        #7b8580;
 
-      cursor:
-        default;
-    }
+/* =====================================================
+   RESPONSIVE TABLE
+===================================================== */
 
+@media (max-width: 680px) {
+
+  .data-list {
+    border-radius: 12px;
+  }
+
+  .informasi-table {
+    min-width: 950px;
+  }
+
+  .informasi-table thead th {
+    padding: 12px 11px;
+
+    font-size: 11px;
+  }
+
+  .informasi-table tbody td {
+    padding: 13px 11px;
+
+    font-size: 12px;
+  }
+
+  .table-title {
+    font-size: 13px;
+  }
+
+  .table-badge {
+    font-size: 10px;
+
+    padding: 4px 7px;
+  }
+
+}
 
     /* =====================================================
        NO DATA
@@ -854,34 +918,7 @@
           4px;
       }
 
-
-      .document-row {
-
-        padding:
-          17px 15px;
-      }
-
-
-      .document-name {
-        font-size:
-          14px;
-      }
-
-
-      .document-meta,
-      .document-date,
-      .document-actions {
-
-        margin-left:
-          52px;
-      }
-
-
-      .document-button {
-        width:
-          auto;
-      }
-
+  
 
      }
 
@@ -1515,334 +1552,401 @@
 
     }
 
+/* =====================================================
+   RENDER DATA - TABEL
+===================================================== */
 
-    /* =====================================================
-       RENDER DATA
-    ===================================================== */
+function renderData(data) {
 
-    function renderData(data) {
+  dataList.innerHTML = '';
+  pagination.innerHTML = '';
 
-      dataList.innerHTML =
+  resultCount.textContent =
+    data.length + ' informasi tersedia';
+
+
+  /* ===================================================
+     DATA KOSONG
+  =================================================== */
+
+  if (!data.length) {
+
+    dataList.innerHTML = `
+
+      <div class="no-data">
+
+        <div class="no-data-icon">
+          🔎
+        </div>
+
+        <strong>
+          Informasi tidak ditemukan
+        </strong>
+
+        <span>
+          Coba gunakan kata kunci pencarian
+          atau kategori yang berbeda.
+        </span>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  /* ===================================================
+     PAGINATION
+  =================================================== */
+
+  const totalPages =
+    Math.ceil(
+      data.length / pageSize
+    );
+
+
+  if (currentPage > totalPages) {
+
+    currentPage =
+      totalPages;
+
+  }
+
+
+  const start =
+    (
+      currentPage - 1
+    ) * pageSize;
+
+
+  const end =
+    start + pageSize;
+
+
+  const pageData =
+    data.slice(
+      start,
+      end
+    );
+
+
+  /* ===================================================
+     TABLE HEADER
+  =================================================== */
+
+  const table =
+    document.createElement('table');
+
+  table.className =
+    'informasi-table';
+
+
+  table.innerHTML = `
+
+    <thead>
+
+      <tr>
+
+        <th>No.</th>
+
+        <th>Informasi Publik</th>
+
+        <th>Jenis</th>
+
+        <th>Kategori</th>
+
+        <th>Tahun</th>
+
+        <th>Diperbarui</th>
+
+        <th>Dokumen</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody></tbody>
+
+  `;
+
+
+  const tbody =
+    table.querySelector('tbody');
+
+
+  /* ===================================================
+     TABLE ROW
+  =================================================== */
+
+  pageData.forEach(
+    function(row, index) {
+
+      const tr =
+        document.createElement('tr');
+
+
+      /* ===============================================
+         DATA
+      =============================================== */
+
+      const nomor =
+        start + index + 1;
+
+
+      const judul =
+        row.judul ||
+        'Tanpa Judul';
+
+
+      const jenis =
+        row.jenis ||
+        row.jenis_informasi ||
         '';
 
-      pagination.innerHTML =
+
+      const kategori =
+        row.kategori ||
         '';
 
 
-      resultCount.textContent =
-        data.length +
-        ' informasi tersedia';
+      const tahun =
+        row.tahun ||
+        '';
 
 
-      if (!data.length) {
+      const tanggal =
+        formatTanggal(
+          row.tanggal_update
+        );
 
-        dataList.innerHTML = `
 
-          <div class="no-data">
+      /* ===============================================
+         MASTER DOKUMEN
+      =============================================== */
 
-            <div class="no-data-icon">
-              🔎
-            </div>
+      const dokumen =
+        Array.isArray(row.dokumen)
+          ? row.dokumen
+          : [];
 
-            <strong>
-              Informasi tidak ditemukan
-            </strong>
 
-            <span>
-              Coba gunakan kata kunci pencarian
-              atau kategori yang berbeda.
-            </span>
+      let documentHTML =
+        '';
 
-          </div>
+
+      if (dokumen.length > 0) {
+
+        documentHTML =
+          dokumen
+            .map(
+              function(doc) {
+
+                const url =
+                  doc.url_dokumen ||
+                  '';
+
+
+                const namaDokumen =
+                  doc.nama_dokumen ||
+                  'Lihat Dokumen';
+
+
+                if (!url) {
+                  return '';
+                }
+
+
+                return `
+
+                  <a
+                    href="${escapeAttribute(url)}"
+                    class="table-document-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="${escapeHTML(namaDokumen)}"
+                  >
+                    Lihat
+                  </a>
+
+                `;
+
+              }
+            )
+            .join('');
+
+      }
+
+
+      /* ===============================================
+         FALLBACK URL LAMA
+      =============================================== */
+
+      if (
+        !documentHTML &&
+        row.url_dokumen
+      ) {
+
+        documentHTML = `
+
+          <a
+            href="${escapeAttribute(
+              row.url_dokumen
+            )}"
+            class="table-document-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Lihat Dokumen"
+          >
+            Lihat
+          </a>
 
         `;
 
-        return;
+      }
+
+
+      /* ===============================================
+         DOKUMEN TIDAK TERSEDIA
+      =============================================== */
+
+      if (!documentHTML) {
+
+        documentHTML = `
+
+          <span class="table-document-empty">
+            Belum tersedia
+          </span>
+
+        `;
 
       }
 
 
-      const totalPages =
-        Math.ceil(
-          data.length /
-          pageSize
-        );
+      /* ===============================================
+         ROW
+      =============================================== */
+
+      tr.innerHTML = `
+
+        <td>
+
+          <span class="table-number">
+            ${nomor}
+          </span>
+
+        </td>
 
 
-      if (
-        currentPage >
-        totalPages
-      ) {
+        <td>
 
-        currentPage =
-          totalPages;
+          <div class="table-title">
+            ${escapeHTML(judul)}
+          </div>
 
-      }
+        </td>
 
 
-      const start =
-        (
-          currentPage -
-          1
-        ) *
-        pageSize;
+        <td>
 
-
-      const end =
-        start +
-        pageSize;
-
-
-      const pageData =
-        data.slice(
-          start,
-          end
-        );
-
-
-      pageData.forEach(
-        function(row) {
-
-          const item =
-            document.createElement(
-              'article'
-            );
-
-
-          item.className =
-            'document-row';
-
-
-          const judul =
-            row.judul ||
-            'Tanpa Judul';
-
-
-          const jenis =
-            row.jenis ||
-            row.jenis_informasi ||
-            '';
-
-
-          const kategori =
-            row.kategori ||
-            '';
-
-
-          const tahun =
-            row.tahun ||
-            '';
-
-
-          const tanggal =
-            formatTanggal(
-              row.tanggal_update
-            );
-
-
-          /* =============================================
-             MASTER DOKUMEN
-          ============================================= */
-
-          const dokumen =
-            Array.isArray(
-              row.dokumen
-            )
-              ? row.dokumen
-              : [];
-
-
-          let documentButtons =
-            '';
-
-
-          if (
-            dokumen.length > 0
-          ) {
-
-            documentButtons =
-              dokumen
-                .map(
-                  function(doc) {
-
-                    const url =
-                      doc.url_dokumen ||
-                      '';
-
-
-                    const namaDokumen =
-                      doc.nama_dokumen ||
-                      'Lihat Dokumen';
-
-
-                    if (!url) {
-                      return '';
-                    }
-
-
-                    return `
-
-                      <a
-                        href="${escapeAttribute(url)}"
-                        class="document-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        ${escapeHTML(
-                          namaDokumen
-                        )}
-                        →
-                      </a>
-
-                    `;
-
-                  }
-                )
-                .join('');
-
+          ${
+            jenis
+              ? `
+                <span class="table-badge">
+                  ${escapeHTML(jenis)}
+                </span>
+              `
+              : `
+                <span class="table-badge empty">
+                  -
+                </span>
+              `
           }
 
-
-          /* =============================================
-             FALLBACK URL LAMA
-          ============================================= */
-
-          if (
-            !documentButtons &&
-            row.url_dokumen
-          ) {
-
-            documentButtons = `
-
-              <a
-                href="${escapeAttribute(
-                  row.url_dokumen
-                )}"
-                class="document-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Lihat Dokumen →
-              </a>
-
-            `;
-
-          }
+        </td>
 
 
-          if (
-            !documentButtons
-          ) {
+        <td>
 
-            documentButtons = `
+          <span class="table-category">
 
-              <span
-                class="document-button disabled"
-              >
-                Dokumen belum tersedia
-              </span>
+            ${
+              kategori
+                ? escapeHTML(kategori)
+                : '-'
+            }
 
-            `;
+          </span>
 
-          }
+        </td>
 
 
-          item.innerHTML = `
+        <td>
 
-            <div class="document-main">
+          <span class="table-year">
 
-              <div class="document-title">
+            ${
+              tahun
+                ? escapeHTML(tahun)
+                : '-'
+            }
 
-                <div class="pdf-icon">
-                  PDF
-                </div>
+          </span>
 
-                <div>
-
-                  <div class="document-name">
-                    ${escapeHTML(judul)}
-                  </div>
-
-                </div>
-
-              </div>
+        </td>
 
 
-              <div class="document-meta">
+        <td>
 
-                ${
-                  jenis
-                    ? `
-                      <span class="meta-badge primary">
-                        ${escapeHTML(jenis)}
-                      </span>
-                    `
-                    : ''
-                }
+          <span class="table-date">
 
+            ${
+              tanggal
+                ? escapeHTML(tanggal)
+                : '-'
+            }
 
-                ${
-                  kategori
-                    ? `
-                      <span class="meta-badge">
-                        ${escapeHTML(kategori)}
-                      </span>
-                    `
-                    : ''
-                }
+          </span>
+
+        </td>
 
 
-                ${
-                  tahun
-                    ? `
-                      <span class="meta-badge">
-                        ${escapeHTML(tahun)}
-                      </span>
-                    `
-                    : ''
-                }
+        <td>
 
-              </div>
+          <div class="table-documents">
 
+            ${documentHTML}
 
-              ${
-                tanggal
-                  ? `
-                    <div class="document-date">
-                      Diperbarui ${escapeHTML(tanggal)}
-                    </div>
-                  `
-                  : ''
-              }
+          </div>
 
-            </div>
+        </td>
+
+      `;
 
 
-            <div class="document-actions">
-
-              ${documentButtons}
-
-            </div>
-
-          `;
-
-
-          dataList.appendChild(
-            item
-          );
-
-        }
-      );
-
-
-      renderPagination(
-        data.length,
-        totalPages
-      );
+      tbody.appendChild(tr);
 
     }
+  );
 
 
+  /* ===================================================
+     MASUKKAN TABLE
+  =================================================== */
+
+  dataList.appendChild(table);
+
+
+  /* ===================================================
+     PAGINATION
+  =================================================== */
+
+  renderPagination(
+    data.length,
+    totalPages
+  );
+
+}
     /* =====================================================
        PAGINATION
     ===================================================== */
