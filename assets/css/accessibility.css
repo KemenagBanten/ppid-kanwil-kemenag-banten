@@ -458,3 +458,111 @@ html.accessibility-high-contrast
   outline: 3px solid #ffffff !important;
   outline-offset: 3px !important;
 }
+
+/* =========================================================
+   PENYEMPURNAAN BERANDA — KONTRAS TINGGI
+   ========================================================= */
+
+
+/* =========================================================
+   HERO BERANDA
+   ========================================================= */
+
+html.accessibility-high-contrast .hero {
+  background-color: #000000 !important;
+}
+
+html.accessibility-high-contrast .hero::before,
+html.accessibility-high-contrast .hero::after {
+  background: #000000 !important;
+  opacity: 0.85 !important;
+}
+
+html.accessibility-high-contrast .hero-content,
+html.accessibility-high-contrast .hero-content * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   SEARCH BERANDA
+   ========================================================= */
+
+html.accessibility-high-contrast .search-box,
+html.accessibility-high-contrast .search-container {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .search-box input,
+html.accessibility-high-contrast .search-container input {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+
+/* =========================================================
+   AKSES LAYANAN PPID
+   ========================================================= */
+
+html.accessibility-high-contrast .layanan-utama {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .layanan-utama-heading {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .layanan-utama-heading h2,
+html.accessibility-high-contrast .layanan-utama-heading p,
+html.accessibility-high-contrast .layanan-heading-kicker,
+html.accessibility-high-contrast .layanan-label {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   SEMUA TEKS AREA LAYANAN
+   ========================================================= */
+
+html.accessibility-high-contrast .layanan-utama *,
+html.accessibility-high-contrast .layanan-content *,
+html.accessibility-high-contrast .layanan-card-footer * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   KARTU LAYANAN
+   ========================================================= */
+
+html.accessibility-high-contrast .layanan-card {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .layanan-card * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   MAKLU​MAT PELAYANAN
+   ========================================================= */
+
+html.accessibility-high-contrast .maklumat {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast .maklumat *,
+html.accessibility-high-contrast .maklumat-label,
+html.accessibility-high-contrast .maklumat-content,
+html.accessibility-high-contrast .maklumat-content p {
+  color: #ffffff !important;
+}
