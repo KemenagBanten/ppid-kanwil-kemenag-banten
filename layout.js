@@ -164,6 +164,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     "components/footer.html"
   );
 
+await loadComponent(
+  "#siteFooter",
+  "components/footer.html"
+);
 
   // =========================================================
   // INITIALIZE SHARED FEATURES
@@ -284,7 +288,190 @@ function setInnerHero() {
   }
 
 }
+// =========================================================
+// FOOTER DATA
+// =========================================================
 
+async function loadFooterData() {
+
+  try {
+
+    const API_URL =
+      "https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec";
+
+
+    // =======================================================
+    // KONTAK
+    // =======================================================
+
+    const response = await fetch(
+      API_URL + "?action=kontak"
+    );
+
+    const kontakResult = await response.json();
+
+    if (kontakResult.success) {
+
+      const kontak = kontakResult.data;
+
+      const hotline =
+        kontak.find(item => item.jenis === "Hotline");
+
+      const email =
+        kontak.find(item => item.jenis === "Email");
+
+      const alamat =
+        kontak.find(item => item.jenis === "Alamat");
+
+
+      if (hotline) {
+
+        const el =
+          document.getElementById("footerHotline");
+
+        if (el) {
+          el.textContent = hotline.nilai;
+        }
+
+      }
+
+
+      if (email) {
+
+        const el =
+          document.getElementById("footerEmail");
+
+        if (el) {
+          el.textContent = email.nilai;
+        }
+
+      }
+
+
+      if (alamat) {
+
+        const el =
+          document.getElementById("footerAlamat");
+
+        if (el) {
+          el.textContent = alamat.nilai;
+        }
+
+      }
+
+    }
+
+
+    // =======================================================
+    // MEDIA SOSIAL
+    // =======================================================
+
+    const socialResponse = await fetch(
+      API_URL + "?action=mediaSosial"
+    );
+
+    const socialResult =
+      await socialResponse.json();
+
+
+    if (socialResult.success) {
+
+      const socialContainer =
+        document.getElementById("footerSocial");
+
+
+      if (socialContainer) {
+
+        socialContainer.innerHTML = "";
+
+
+        socialResult.data
+          .filter(item => item.status === "Published")
+          .forEach(item => {
+
+            const link =
+              document.createElement("a");
+
+
+            link.href = item.nama;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            link.setAttribute(
+              "aria-label",
+              item.platform
+            );
+
+            link.title =
+              item.platform;
+
+
+            const platform =
+              item.platform.toLowerCase();
+
+
+            const icons = {
+
+              facebook:
+                "https://cdn.simpleicons.org/facebook/ffffff",
+
+              instagram:
+                "https://cdn.simpleicons.org/instagram/ffffff",
+
+              x:
+                "https://cdn.simpleicons.org/x/ffffff",
+
+              tiktok:
+                "https://cdn.simpleicons.org/tiktok/ffffff",
+
+              youtube:
+                "https://cdn.simpleicons.org/youtube/ffffff"
+
+            };
+
+
+            if (icons[platform]) {
+
+              const icon =
+                document.createElement("img");
+
+              icon.src =
+                icons[platform];
+
+              icon.alt =
+                item.platform;
+
+              icon.className =
+                "social-icon";
+
+              link.appendChild(icon);
+
+            } else {
+
+              link.textContent =
+                item.platform;
+
+            }
+
+
+            socialContainer.appendChild(link);
+
+          });
+
+      }
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Gagal memuat data footer:",
+      error
+    );
+
+  }
+
+}
 
 // =========================================================
 // ACCESSIBILITY
