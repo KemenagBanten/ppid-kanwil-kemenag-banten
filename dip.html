@@ -833,18 +833,578 @@ document.addEventListener("layout:loaded", function () {
 
   <script>
 
-    /*
-     * Script DIP akan kita isi pada tahap berikutnya.
-     *
-     * Fungsi yang akan dibuat:
-     *
-     * 1. Memanggil data DIP
-     * 2. Menampilkan 10 data per halaman
-     * 3. Pencarian nama informasi
-     * 4. Pagination
-     * 5. Menampilkan jadwal retensi
-     * 6. Menampilkan dasar SK
-     */
+    <script>
+/* =====================================================
+   DIP - DATABASE & TAMPILAN
+===================================================== */
+
+const DIP_API_URL =
+  'https://script.google.com/macros/s/AKfcyby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+let dipData = [];
+let dipFilteredData = [];
+let dipCurrentPage = 1;
+
+const DIP_PAGE_SIZE = 10;
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const dipTableWrapper =
+  document.getElementById('dipTableWrapper');
+
+const dipTableBody =
+  document.getElementById('dipTableBody');
+
+const dipLoading =
+  document.getElementById('dipLoading');
+
+const dipError =
+  document.getElementById('dipError');
+
+const dipEmpty =
+  document.getElementById('dipEmpty');
+
+const dipSearchInput =
+  document.getElementById('dipSearchInput');
+
+const dipResultCount =
+  document.getElementById('dipResultCount');
+
+const dipPagination =
+  document.getElementById('dipPagination');
+
+const dipSkButton =
+  document.getElementById('dipSkButton');
+
+
+/* =====================================================
+   LOAD DIP
+===================================================== */
+
+async function loadDIP() {
+
+  try {
+
+    dipLoading.style.display = 'block';
+    dipTableWrapper.style.display = 'none';
+    dipEmpty.style.display = 'none';
+    dipError.style.display = 'none';
+
+    dipResultCount.textContent = 'Memuat data...';
+
+    const response = await fetch(
+      DIP_API_URL + '?action=dip'
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        'HTTP Error ' + response.status
+      );
+    }
+
+    const result = await response.json();
+
+    console.log('Response DIP:', result);
+
+    if (!result.success) {
+      throw new Error(
+        result.message ||
+        'API DIP mengembalikan success=false'
+      );
+    }
+
+    if (!Array.isArray(result.data)) {
+      throw new Error(
+        'Data DIP tidak berbentuk array'
+      );
+    }
+
+    dipData = result.data;
+
+    dipFilteredData = dipData.slice();
+
+    dipCurrentPage = 1;
+
+    dipLoading.style.display = 'none';
+
+    renderDIP();
+
+  } catch (error) {
+
+    console.error(
+      'Gagal memuat DIP:',
+      error
+    );
+
+    dipLoading.style.display = 'none';
+    dipTableWrapper.style.display = 'none';
+    dipEmpty.style.display = 'none';
+
+    dipError.style.display = 'block';
+
+    dipError.textContent =
+      'Gagal memuat Daftar Informasi Publik. ' +
+      error.message;
+
+    dipResultCount.textContent =
+      'Data tidak dapat dimuat';
+
+  }
+
+}
+
+
+/* =====================================================
+   RENDER DIP
+===================================================== */
+
+function renderDIP() {
+
+  dipTableBody.innerHTML = '';
+  dipPagination.innerHTML = '';
+
+  const totalData =
+    dipFilteredData.length;
+
+  dipResultCount.textContent =
+    totalData + ' informasi tersedia';
+
+
+  /* -----------------------------------------------
+     DATA KOSONG
+  ------------------------------------------------ */
+
+  if (totalData === 0) {
+
+    dipTableWrapper.style.display = 'none';
+    dipEmpty.style.display = 'block';
+
+    return;
+  }
+
+
+  dipEmpty.style.display = 'none';
+  dipTableWrapper.style.display = 'block';
+
+
+  /* -----------------------------------------------
+     PAGINATION
+  ------------------------------------------------ */
+
+  const totalPages =
+    Math.ceil(
+      totalData / DIP_PAGE_SIZE
+    );
+
+  if (dipCurrentPage > totalPages) {
+    dipCurrentPage = totalPages;
+  }
+
+
+  const startIndex =
+    (dipCurrentPage - 1) *
+    DIP_PAGE_SIZE;
+
+  const endIndex =
+    startIndex + DIP_PAGE_SIZE;
+
+  const pageData =
+    dipFilteredData.slice(
+      startIndex,
+      endIndex
+    );
+
+
+  /* -----------------------------------------------
+     TABLE ROW
+  ------------------------------------------------ */
+
+  pageData.forEach(function(row, index) {
+
+    const tr =
+      document.createElement('tr');
+
+    const nomor =
+      startIndex + index + 1;
+
+    const namaInformasi =
+      getDIPValue(
+        row,
+        'NAMA_INFORMASI'
+      );
+
+    const bentukInformasi =
+      getDIPValue(
+        row,
+        'BENTUK_INFORMASI'
+      );
+
+    const retensiAktif =
+      getDIPValue(
+        row,
+        'RETENSI_AKTIF'
+      );
+
+    const retensiInaktif =
+      getDIPValue(
+        row,
+        'RETENSI_INAKTIF'
+      );
+
+
+    tr.innerHTML = `
+
+      <td>
+        <span class="dip-number">
+          ${nomor}
+        </span>
+      </td>
+
+      <td>
+        <div class="dip-title">
+          ${escapeDIPHTML(
+            namaInformasi || '-'
+          )}
+        </div>
+      </td>
+
+      <td>
+        ${
+          bentukInformasi
+            ? `
+              <span class="dip-form">
+                ${escapeDIPHTML(
+                  bentukInformasi
+                )}
+              </span>
+            `
+            : `
+              <span class="dip-form">
+                -
+              </span>
+            `
+        }
+      </td>
+
+      <td>
+
+        <div class="dip-retention">
+
+          <div class="dip-retention-item">
+
+            <span class="dip-retention-label">
+              Aktif:
+            </span>
+
+            ${escapeDIPHTML(
+              retensiAktif || '-'
+            )}
+
+          </div>
+
+          <div class="dip-retention-item">
+
+            <span class="dip-retention-label">
+              Inaktif:
+            </span>
+
+            ${escapeDIPHTML(
+              retensiInaktif || '-'
+            )}
+
+          </div>
+
+        </div>
+
+      </td>
+
+    `;
+
+    dipTableBody.appendChild(tr);
+
+  });
+
+
+  renderDIPPagination(
+    totalData,
+    totalPages
+  );
+
+}
+
+
+/* =====================================================
+   GET VALUE
+===================================================== */
+
+function getDIPValue(row, key) {
+
+  if (!row) return '';
+
+  if (
+    Object.prototype.hasOwnProperty.call(
+      row,
+      key
+    )
+  ) {
+    return row[key] == null
+      ? ''
+      : String(row[key]).trim();
+  }
+
+  return '';
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+if (dipSearchInput) {
+
+  dipSearchInput.addEventListener(
+    'input',
+    function () {
+
+      const keyword =
+        dipSearchInput.value
+          .trim()
+          .toLowerCase();
+
+      if (!keyword) {
+
+        dipFilteredData =
+          dipData.slice();
+
+      } else {
+
+        dipFilteredData =
+          dipData.filter(function(row) {
+
+            const nama =
+              getDIPValue(
+                row,
+                'NAMA_INFORMASI'
+              ).toLowerCase();
+
+            return nama.includes(
+              keyword
+            );
+
+          });
+
+      }
+
+      dipCurrentPage = 1;
+
+      renderDIP();
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+function renderDIPPagination(
+  totalData,
+  totalPages
+) {
+
+  dipPagination.innerHTML = '';
+
+  if (totalPages <= 1) {
+    return;
+  }
+
+
+  /* -----------------------------------------------
+     PREVIOUS
+  ------------------------------------------------ */
+
+  const previousButton =
+    document.createElement('button');
+
+  previousButton.type = 'button';
+
+  previousButton.className =
+    'dip-page-button';
+
+  previousButton.textContent =
+    '‹';
+
+  previousButton.disabled =
+    dipCurrentPage === 1;
+
+  previousButton.addEventListener(
+    'click',
+    function () {
+
+      if (dipCurrentPage > 1) {
+
+        dipCurrentPage--;
+
+        renderDIP();
+
+        scrollDIPToTable();
+
+      }
+
+    }
+  );
+
+  dipPagination.appendChild(
+    previousButton
+  );
+
+
+  /* -----------------------------------------------
+     PAGE NUMBER
+  ------------------------------------------------ */
+
+  for (
+    let page = 1;
+    page <= totalPages;
+    page++
+  ) {
+
+    const pageButton =
+      document.createElement('button');
+
+    pageButton.type = 'button';
+
+    pageButton.className =
+      'dip-page-button';
+
+    pageButton.textContent =
+      page;
+
+    if (
+      page === dipCurrentPage
+    ) {
+
+      pageButton.classList.add(
+        'active'
+      );
+
+    }
+
+    pageButton.addEventListener(
+      'click',
+      function () {
+
+        dipCurrentPage = page;
+
+        renderDIP();
+
+        scrollDIPToTable();
+
+      }
+    );
+
+    dipPagination.appendChild(
+      pageButton
+    );
+
+  }
+
+
+  /* -----------------------------------------------
+     NEXT
+  ------------------------------------------------ */
+
+  const nextButton =
+    document.createElement('button');
+
+  nextButton.type = 'button';
+
+  nextButton.className =
+    'dip-page-button';
+
+  nextButton.textContent =
+    '›';
+
+  nextButton.disabled =
+    dipCurrentPage === totalPages;
+
+  nextButton.addEventListener(
+    'click',
+    function () {
+
+      if (
+        dipCurrentPage <
+        totalPages
+      ) {
+
+        dipCurrentPage++;
+
+        renderDIP();
+
+        scrollDIPToTable();
+
+      }
+
+    }
+  );
+
+  dipPagination.appendChild(
+    nextButton
+  );
+
+}
+
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+function scrollDIPToTable() {
+
+  const table =
+    document.getElementById(
+      'dipTableWrapper'
+    );
+
+  if (!table) return;
+
+  table.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+
+}
+
+
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
+
+function escapeDIPHTML(value) {
+
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadDIP();
+
+
 
   </script>
 
