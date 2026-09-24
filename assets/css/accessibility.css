@@ -191,6 +191,69 @@ html.accessibility-high-contrast
   border-color: #ffffff !important;
 }
 
+/* =========================================================
+   CARD BERTINGKAT / CARD DI DALAM CARD
+   ========================================================= */
+
+html.accessibility-high-contrast
+[class*="card"] [class*="item"],
+html.accessibility-high-contrast
+[class*="card"] [class*="content"],
+html.accessibility-high-contrast
+[class*="card"] [class*="body"],
+html.accessibility-high-contrast
+[class*="card"] [class*="box"],
+html.accessibility-high-contrast
+[class*="card"] [class*="panel"] {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+
+/* Elemen teks di dalam card bertingkat */
+
+html.accessibility-high-contrast
+[class*="card"] [class*="item"] *,
+html.accessibility-high-contrast
+[class*="card"] [class*="content"] *,
+html.accessibility-high-contrast
+[class*="card"] [class*="body"] *,
+html.accessibility-high-contrast
+[class*="card"] [class*="box"] *,
+html.accessibility-high-contrast
+[class*="card"] [class*="panel"] * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   KHUSUS KOMPONEN PROFIL / TUGAS
+   ========================================================= */
+
+html.accessibility-high-contrast
+.task-card .task-item,
+html.accessibility-high-contrast
+.legal-card .legal-item,
+html.accessibility-high-contrast
+.profile-card .profile-item,
+html.accessibility-high-contrast
+.vm-card .vm-item {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.task-card .task-item *,
+html.accessibility-high-contrast
+.legal-card .legal-item *,
+html.accessibility-high-contrast
+.profile-card .profile-item *,
+html.accessibility-high-contrast
+.vm-card .vm-item * {
+  color: #ffffff !important;
+}
 
 /* Isi seluruh card */
 
