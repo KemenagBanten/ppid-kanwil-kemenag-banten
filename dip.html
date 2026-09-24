@@ -812,7 +812,21 @@
 
   <script src="layout.js"></script>
 
+<script>
+document.addEventListener("layout:loaded", function () {
+  const title = document.getElementById("innerHeroTitle");
+  const description = document.getElementById("innerHeroDescription");
 
+  if (title) {
+    title.textContent = "Daftar Informasi Publik";
+  }
+
+  if (description) {
+    description.textContent =
+      "Informasi publik yang tersedia pada Kantor Wilayah Kementerian Agama Provinsi Banten.";
+  }
+});
+</script>
   <!-- =====================================================
        DIP SCRIPT
   ===================================================== -->
