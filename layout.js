@@ -188,7 +188,7 @@ await loadComponent(
   "components/footer.html"
 );
 
-
+setFooterSocial();
 // =========================================================
 // INITIALIZE SHARED FEATURES
 // =========================================================
