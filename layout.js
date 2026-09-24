@@ -141,43 +141,45 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
   // =========================================================
-  // LOAD SHARED COMPONENTS
-  // =========================================================
+// LOAD SHARED COMPONENTS
+// =========================================================
 
-  await loadComponent(
-    "#siteNavbar",
-    "components/navbar.html"
-  );
+await loadComponent(
+  "#siteNavbar",
+  "components/navbar.html"
+);
 
-  await loadComponent(
-    "#innerHero",
-    "components/inner-hero.html"
-  );
+await loadComponent(
+  "#innerHero",
+  "components/inner-hero.html"
+);
 
-  await loadComponent(
-    "#accessibility",
-    "components/accessibility.html"
-  );
-
-  await loadComponent(
-    "#siteFooter",
-    "components/footer.html"
-  );
+await loadComponent(
+  "#accessibility",
+  "components/accessibility.html"
+);
 
 await loadComponent(
   "#siteFooter",
   "components/footer.html"
 );
 
-  // =========================================================
-  // INITIALIZE SHARED FEATURES
-  // =========================================================
 
-  setActiveNavigation();
-  setInnerHero();
-  initAccessibility();
-  initNavbarSearch();
+// =========================================================
+// LOAD FOOTER DATA
+// =========================================================
 
+await loadFooterData();
+
+
+// =========================================================
+// INITIALIZE SHARED FEATURES
+// =========================================================
+
+setActiveNavigation();
+setInnerHero();
+initAccessibility();
+initNavbarSearch();
 
   document.dispatchEvent(
     new CustomEvent("layout:loaded")
@@ -393,7 +395,7 @@ async function loadFooterData() {
               document.createElement("a");
 
 
-            link.href = item.nama;
+            link.href = item.url;
             link.target = "_blank";
             link.rel = "noopener noreferrer";
 
