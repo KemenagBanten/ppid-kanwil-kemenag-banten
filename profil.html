@@ -467,7 +467,139 @@
       line-height: 1.7;
     }
 
+/* =====================================================
+   SHARED INNER HERO
+===================================================== */
 
+.inner-hero {
+  position: relative;
+  overflow: hidden;
+
+  padding: 52px 0 55px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #123d2d 0%,
+      #176044 55%,
+      #0f5132 100%
+    );
+}
+
+.inner-hero-pattern {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.inner-hero-pattern-one {
+  width: 320px;
+  height: 320px;
+
+  right: -120px;
+  top: -160px;
+
+  background:
+    rgba(205, 176, 130, 0.10);
+}
+
+.inner-hero-pattern-two {
+  width: 240px;
+  height: 240px;
+
+  left: -100px;
+  bottom: -160px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+}
+
+.inner-hero-content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+}
+
+.inner-hero-text {
+  max-width: 760px;
+}
+
+.inner-hero-kicker {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: #e5d1aa;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+.inner-hero h1 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(28px, 4vw, 40px);
+
+  line-height: 1.15;
+
+  font-weight: 750;
+}
+
+.inner-hero p {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+.inner-hero-decoration {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 7px;
+
+  opacity: 0.7;
+}
+
+.inner-hero-decoration span {
+  display: block;
+
+  width: 6px;
+
+  border-radius: 10px;
+
+  background: #cdb082;
+}
+
+.inner-hero-decoration span:nth-child(1) {
+  height: 30px;
+}
+
+.inner-hero-decoration span:nth-child(2) {
+  height: 48px;
+}
+
+.inner-hero-decoration span:nth-child(3) {
+  height: 68px;
+}
     /* =====================================================
        CONTENT
     ===================================================== */
@@ -1548,6 +1680,17 @@
 
         text-align: center;
       }
+      .inner-hero {
+  padding: 40px 0 44px;
+}
+
+.inner-hero-decoration {
+  display: none;
+}
+
+.inner-hero h1 {
+  font-size: 30px;
+}
 
     }
 
@@ -1604,6 +1747,13 @@
         grid-template-columns: 1fr;
       }
 
+      .inner-hero h1 {
+  font-size: 27px;
+}
+
+.inner-hero p {
+  font-size: 14px;
+}
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -1629,299 +1779,25 @@
 </head>
 
 
-<body>
+<body
+  data-hero-kicker="PROFIL PPID"
+  data-hero-title="Profil PPID"
+  data-hero-description="Informasi mengenai profil, visi, misi, struktur organisasi, tugas, fungsi, serta kontak PPID Kanwil Kementerian Agama Provinsi Banten."
+>
 
 
   <!-- =====================================================
        HEADER
   ===================================================== -->
 
-  <header class="header">
-
-    <div class="header-inner">
-
-      <a href="index.html" class="header-brand">
-
-        <div class="header-logo">
-          <img
-            src="assets/logo-kemenag.png"
-            alt="Logo Kementerian Agama Republik Indonesia"
-          >
-        </div>
-
-        <div class="header-text">
-
-          <span class="header-kicker">
-            PEJABAT PENGELOLA INFORMASI DAN DOKUMENTASI
-          </span>
-
-          <h1>
-            KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
-          </h1>
-
-        </div>
-
-      </a>
-
-
-      <!-- MOBILE TOGGLE -->
-
-      <div class="nav-mobile-toggle-wrap">
-
-        <button
-          type="button"
-          class="nav-mobile-toggle"
-          id="mobileMenuToggle"
-          aria-label="Buka menu"
-          aria-expanded="false"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-      </div>
-
-
-      <!-- NAVIGATION -->
-
-      <nav class="main-nav" id="mainNav">
-
-        <div class="nav-item">
-
-          <a href="index.html" class="nav-link">
-            Beranda
-          </a>
-
-        </div>
-
-
-        <!-- PROFIL -->
-
-        <div class="nav-item active">
-
-          <a href="#" class="nav-link">
-            Profil
-            <span class="nav-chevron">▾</span>
-          </a>
-
-          <div class="nav-dropdown">
-
-            <a href="profil.html">
-              Profil PPID
-            </a>
-
-            <a href="ppid-unit.html">
-              PPID Unit
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- INFORMASI PUBLIK -->
-
-        <div class="nav-item">
-
-          <a href="#" class="nav-link">
-            Informasi & Dokumen
-            <span class="nav-chevron">▾</span>
-          </a>
-
-          <div class="nav-dropdown">
-
-            <a href="informasi-publik.html">
-              Informasi Publik
-            </a>
-
-            <a href="dip.html">
-              Daftar Informasi Publik (DIP)
-            </a>
-
-            <a href="dik.html">
-              Informasi Dikecualikan (DIK)
-            </a>
-
-            <a href="dokumen.html">
-              Laporan
-            </a>
-
-            <a href="pengadaan.html">
-              Informasi Barang & Jasa
-            </a>
-
-            <a href="laporan.html">
-              Dokumen
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- LAYANAN -->
-
-        <div class="nav-item">
-
-          <a href="#" class="nav-link">
-            Layanan
-            <span class="nav-chevron">▾</span>
-          </a>
-
-          <div class="nav-dropdown">
-
-            <a href="permohonan.html">
-              Permohonan Informasi
-            </a>
-
-            <a href="keberatan.html">
-              Ajukan Keberatan
-            </a>
-
-            <a
-              href="https://www.lapor.go.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="external"
-            >
-              Pengaduan Masyarakat
-            </a>
-
-            <a href="statistik.html">
-              Statistik Layanan
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- REGULASI -->
-
-        <div class="nav-item">
-
-          <a href="#" class="nav-link">
-            Regulasi
-            <span class="nav-chevron">▾</span>
-          </a>
-
-          <div class="nav-dropdown">
-
-            <a href="sop.html">
-              SOP
-            </a>
-
-            <a href="regulasi.html">
-              Regulasi Kanwil
-            </a>
-
-            <a
-              href="https://jdih.kemenag.go.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="external"
-            >
-              Regulasi Pusat — JDIH Kemenag
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- BERITA -->
-
-        <div class="nav-item">
-
-          <a href="#" class="nav-link">
-            Berita & Pengumuman
-            <span class="nav-chevron">▾</span>
-          </a>
-
-          <div class="nav-dropdown">
-
-            <a
-              href="https://banten.kemenag.go.id/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="external"
-            >
-              Berita Kemenag Banten
-            </a>
-
-            <a href="pengumuman.html">
-              Pengumuman
-            </a>
-
-            <a href="jadwal-pelayanan.html">
-              Jadwal Pelayanan
-            </a>
-
-            <a href="agenda.html">
-              Agenda/Kegiatan PPID
-            </a>
-
-            <a href="hari-penting.html">
-              Hari/Tanggal Penting
-            </a>
-
-            <a href="kalender.html">
-              Kalender Kegiatan
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <!-- SEARCH -->
-
-        <button
-          type="button"
-          class="nav-search"
-          aria-label="Cari informasi"
-          onclick="window.location.href='index.html#searchInput';"
-        >
-          ⌕
-        </button>
-
-      </nav>
-
-    </div>
-
-  </header>
+<div id="siteNavbar"></div>
 
 
   <!-- =====================================================
        HERO
   ===================================================== -->
 
-  <section class="page-hero">
-
-    <div class="container">
-
-      <div class="page-hero-inner">
-
-        <span class="page-hero-kicker">
-          PROFIL PPID
-        </span>
-
-        <h2>
-          Profil PPID
-        </h2>
-
-        <p>
-          Informasi mengenai profil, visi, misi, struktur organisasi,
-          tugas, fungsi, serta kontak PPID Kanwil Kementerian Agama
-          Provinsi Banten.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
+<div id="innerHero"></div>
 
 
   <!-- =====================================================
@@ -2471,502 +2347,17 @@
        FOOTER
   ===================================================== -->
 
-  <footer class="footer">
-
-    <div class="footer-main">
-
-      <div class="container">
-
-        <div class="footer-grid">
-
-
-          <div>
-
-            <h3 class="footer-title">
-              PPID Kanwil Kementerian Agama Provinsi Banten
-            </h3>
-
-            <p class="footer-description">
-              Layanan informasi publik dan dokumentasi
-              PPID Kantor Wilayah Kementerian Agama
-              Provinsi Banten.
-            </p>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="footer-title">
-              Layanan
-            </h3>
-
-            <div class="footer-list">
-
-              <a href="permohonan.html">
-                Permohonan Informasi
-              </a>
-
-              <a href="keberatan.html">
-                Ajukan Keberatan
-              </a>
-
-              <a href="statistik.html">
-                Statistik Layanan
-              </a>
-
-            </div>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="footer-title">
-              Informasi Publik
-            </h3>
-
-            <div class="footer-list">
-
-              <a href="dip.html">
-                DIP
-              </a>
-
-              <a href="dik.html">
-                DIK
-              </a>
-
-              <a href="dokumen.html">
-                Dokumen
-              </a>
-
-              <a href="laporan.html">
-                Laporan
-              </a>
-
-            </div>
-
-          </div>
-
-
-          <div>
-
-            <h3 class="footer-title">
-              Kontak
-            </h3>
-
-            <div class="footer-contact">
-
-              <div>
-                Kanwil Kementerian Agama Provinsi Banten
-              </div>
-
-              <div>
-                Jln. Syech Nawawi Al Bantani
-                KP3B Curug Kota Serang
-              </div>
-
-              <div>
-                kanwilbanten@kemenag.go.id
-              </div>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-      <div class="container">
-
-        <div class="footer-bottom-inner">
-
-          <span>
-            © 2026 Kementerian Agama Provinsi Banten
-          </span>
-
-          <span>
-            PPID Kanwil Kemenag Banten
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </footer>
+  <div id="siteFooter"></div>
 
 
   <!-- =====================================================
        ACCESSIBILITY
   ===================================================== -->
 
-  <div class="aksesibilitas">
+ <div id="accessibility"></div>
+   <script src="layout.js"></script>
 
-    <button
-      type="button"
-      class="aksesibilitas-toggle"
-      id="aksesibilitasToggle"
-      aria-label="Buka menu aksesibilitas"
-      aria-expanded="false"
-    >
-      ♿
-    </button>
-
-
-    <div
-      class="aksesibilitas-panel"
-      id="aksesibilitasPanel"
-      aria-hidden="true"
-    >
-
-      <div class="aksesibilitas-header">
-
-        <div>
-
-          <span class="aksesibilitas-kicker">
-            AKSESIBILITAS
-          </span>
-
-          <strong>
-            Akses Disabilitas
-          </strong>
-
-        </div>
-
-
-        <button
-          type="button"
-          class="aksesibilitas-close"
-          id="aksesibilitasClose"
-          aria-label="Tutup menu aksesibilitas"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div class="aksesibilitas-options">
-
-        <button
-          type="button"
-          data-accessibility="font-plus"
-        >
-          <span>+</span>
-          Perbesar teks
-        </button>
-
-
-        <button
-          type="button"
-          data-accessibility="font-minus"
-        >
-          <span>−</span>
-          Perkecil teks
-        </button>
-
-
-        <button
-          type="button"
-          data-accessibility="contrast"
-        >
-          <span>◐</span>
-          Kontras tinggi
-        </button>
-
-
-        <button
-          type="button"
-          data-accessibility="motion"
-        >
-          <span>◌</span>
-          Kurangi animasi
-        </button>
-
-
-        <button
-          type="button"
-          data-accessibility="reset"
-        >
-          <span>↺</span>
-          Reset tampilan
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       JAVASCRIPT
-  ===================================================== -->
-
-  <script>
-
-    /* =====================================================
-       MOBILE NAVIGATION
-    ===================================================== */
-
-    const mobileMenuToggle =
-      document.getElementById(
-        'mobileMenuToggle'
-      );
-
-    const mainNav =
-      document.getElementById(
-        'mainNav'
-      );
-
-
-    if (
-      mobileMenuToggle &&
-      mainNav
-    ) {
-
-      mobileMenuToggle.addEventListener(
-        'click',
-        function() {
-
-          const isOpen =
-            mainNav.classList.toggle(
-              'mobile-open'
-            );
-
-          mobileMenuToggle.setAttribute(
-            'aria-expanded',
-            isOpen
-          );
-
-        }
-      );
-
-
-      const navItems =
-        mainNav.querySelectorAll(
-          '.nav-item'
-        );
-
-
-      navItems.forEach(
-        function(item) {
-
-          const link =
-            item.querySelector(
-              ':scope > .nav-link'
-            );
-
-          const dropdown =
-            item.querySelector(
-              ':scope > .nav-dropdown'
-            );
-
-
-          if (
-            link &&
-            dropdown
-          ) {
-
-            link.addEventListener(
-              'click',
-              function(event) {
-
-                if (
-                  window.innerWidth <= 1100
-                ) {
-
-                  event.preventDefault();
-
-                  item.classList.toggle(
-                    'mobile-dropdown-open'
-                  );
-
-                }
-
-              }
-            );
-
-          }
-
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       ACCESSIBILITY
-    ===================================================== */
-
-    const accessibilityToggle =
-      document.getElementById(
-        'aksesibilitasToggle'
-      );
-
-    const accessibilityPanel =
-      document.getElementById(
-        'aksesibilitasPanel'
-      );
-
-    const accessibilityClose =
-      document.getElementById(
-        'aksesibilitasClose'
-      );
-
-
-    if (
-      accessibilityToggle &&
-      accessibilityPanel
-    ) {
-
-      accessibilityToggle.addEventListener(
-        'click',
-        function() {
-
-          const isOpen =
-            accessibilityPanel.classList.toggle(
-              'open'
-            );
-
-          accessibilityToggle.setAttribute(
-            'aria-expanded',
-            isOpen
-          );
-
-          accessibilityPanel.setAttribute(
-            'aria-hidden',
-            !isOpen
-          );
-
-        }
-      );
-
-    }
-
-
-    if (accessibilityClose) {
-
-      accessibilityClose.addEventListener(
-        'click',
-        function() {
-
-          accessibilityPanel.classList.remove(
-            'open'
-          );
-
-          accessibilityToggle.setAttribute(
-            'aria-expanded',
-            'false'
-          );
-
-          accessibilityPanel.setAttribute(
-            'aria-hidden',
-            'true'
-          );
-
-        }
-      );
-
-    }
-
-
-    document
-      .querySelectorAll(
-        '[data-accessibility]'
-      )
-      .forEach(
-        function(button) {
-
-          button.addEventListener(
-            'click',
-            function() {
-
-              const action =
-                this.dataset.accessibility;
-
-
-              if (
-                action === 'font-plus'
-              ) {
-
-                document.body.classList.remove(
-                  'accessibility-small-text'
-                );
-
-                document.body.classList.add(
-                  'accessibility-large-text'
-                );
-
-              }
-
-
-              if (
-                action === 'font-minus'
-              ) {
-
-                document.body.classList.remove(
-                  'accessibility-large-text'
-                );
-
-                document.body.classList.add(
-                  'accessibility-small-text'
-                );
-
-              }
-
-
-              if (
-                action === 'contrast'
-              ) {
-
-                document.body.classList.toggle(
-                  'accessibility-high-contrast'
-                );
-
-              }
-
-
-              if (
-                action === 'motion'
-              ) {
-
-                document.body.classList.toggle(
-                  'accessibility-reduced-motion'
-                );
-
-              }
-
-
-              if (
-                action === 'reset'
-              ) {
-
-                document.body.classList.remove(
-                  'accessibility-large-text',
-                  'accessibility-small-text',
-                  'accessibility-high-contrast',
-                  'accessibility-reduced-motion'
-                );
-
-              }
-
-            }
-          );
-
-        }
-      );
-
-  </script>
+    
 
 </body>
 </html>
