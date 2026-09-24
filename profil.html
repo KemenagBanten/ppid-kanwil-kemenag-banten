@@ -1564,86 +1564,154 @@ html.accessibility-high-contrast .contact-card * {
     }
 
 
-    @media (max-width: 560px) {
+   /* =====================================================
+   FIX NAVBAR MOBILE
+===================================================== */
 
-      .container {
-        width: 92%;
-      }
+@media (max-width: 900px) {
 
-      .header-brand {
-        gap: 9px;
-      }
+  .header-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
 
-      .header-text h1 {
-        max-width: 250px;
+  .header-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 
-        font-size: 11px;
-      }
+  .nav-mobile-toggle-wrap {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
 
-      .page-hero h2 {
-        font-size: 27px;
-      }
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
 
-      .page-hero p {
-        font-size: 15px;
-      }
+  .main-nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
 
-      .section-heading h2 {
-        font-size: 21px;
-      }
+    display: none !important;
+    flex-direction: column;
+    align-items: stretch;
 
-      .profile-card,
-      .profile-highlight,
-      .task-card,
-      .legal-card {
-        padding: 21px;
-      }
+    padding: 8px;
 
-      .struktur-image-area {
-        padding: 15px 15px 0;
-      }
+    background: #ffffff;
+    border: 1px solid rgba(23, 53, 42, 0.10);
+    border-radius: 12px;
 
-      .org-grid {
-        padding: 0 15px 15px;
-        margin-top: 20px;
-      }
+    box-shadow:
+      0 14px 35px rgba(23, 53, 42, 0.14);
 
-      .struktur-placeholder {
-        min-height: 240px;
-      }
+    z-index: 9999;
+  }
 
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
+  .main-nav.mobile-open {
+    display: flex !important;
+  }
 
-      .inner-hero h1 {
-  font-size: 27px;
+  .main-nav > .nav-link,
+  .main-nav > .nav-dropdown {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .main-nav > .nav-link,
+  .main-nav .nav-dropdown-button {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 14px;
+    box-sizing: border-box;
+
+    text-align: left;
+    border-radius: 8px;
+  }
+
+  .main-nav .nav-dropdown {
+    position: static;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .main-nav .nav-dropdown .dropdown-menu {
+    position: static;
+
+    display: none;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 4px 0 6px;
+
+    background: #f7f9f8;
+    border: none;
+    border-radius: 8px;
+
+    box-shadow: none;
+
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .main-nav .nav-dropdown.mobile-open .dropdown-menu {
+    display: block;
+  }
+
+  .main-nav .dropdown-menu a {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 40px;
+
+    padding: 8px 14px 8px 28px;
+
+    box-sizing: border-box;
+
+    text-decoration: none;
+    border-radius: 7px;
+  }
+
+  .main-nav .nav-search {
+    width: 100%;
+    min-height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 10px 14px;
+
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
 }
-
-.inner-hero p {
-  font-size: 14px;
-}
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .aksesibilitas {
-        right: 14px;
-        bottom: 14px;
-      }
-
-      .aksesibilitas-panel {
-        right: -2px;
-
-        width:
-          min(
-            250px,
-            calc(100vw - 28px)
-          );
-      }
-
-    }
-
   </style>
 </head>
 
