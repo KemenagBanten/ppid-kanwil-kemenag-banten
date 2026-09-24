@@ -1,25 +1,64 @@
 let accessibilityTextScale = 1;
 
 const textSelectors = [
+  /* =========================
+     UMUM / BERANDA
+     ========================= */
   ".section-label",
   ".section-heading h2",
   ".section-heading p",
   ".section-heading a",
+
   ".layanan-heading-kicker",
   ".layanan-utama-heading h2",
   ".layanan-label",
   ".layanan-content h3",
   ".layanan-content p",
   ".layanan-card-footer",
+
   ".maklumat-label",
   ".maklumat-content p",
+
   ".news-content h3",
   ".news-date",
   ".news-content p",
+
   ".card-badge",
   ".akses-cepat-text strong",
+
   ".statistik-home-card",
   ".statistik-home-card h3",
+
+  /* =========================
+     PROFIL PPID
+     ========================= */
+  ".profile-card h3",
+  ".profile-card p",
+
+  ".vm-card h3",
+  ".vm-card p",
+  ".vm-card li",
+
+  ".org-item h3",
+  ".org-item p",
+
+  ".task-item h3",
+  ".task-item p",
+
+  ".legal-card h3",
+  ".legal-list li",
+
+  ".contact-card h3",
+  ".contact-label",
+  ".contact-value",
+
+  /* =========================
+     KOMPONEN LAIN
+     ========================= */
+  ".inner-hero-kicker",
+  ".inner-hero-text h1",
+  ".inner-hero-text p",
+
   ".footer",
   ".footer-bottom"
 ];
