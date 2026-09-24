@@ -1,5 +1,30 @@
 let accessibilityTextScale = 1;
+// =========================================================
+// MEDIA SOSIAL FOOTER
+// =========================================================
 
+const FOOTER_SOCIAL = [
+  {
+    platform: "Facebook",
+    url: "https://www.facebook.com/p/Kemenag-Banten-100067774616570/"
+  },
+  {
+    platform: "Instagram",
+    url: "https://www.instagram.com/kemenag_banten_official/"
+  },
+  {
+    platform: "X",
+    url: "https://www.x.com/kemenag_banten_official/"
+  },
+  {
+    platform: "TikTok",
+    url: "https://www.tiktok.com/@kemenag.banten.of/"
+  },
+  {
+    platform: "YouTube",
+    url: "https://www.youtube.com/@kemenagbantenofficial890"
+  }
+];
 const textSelectors = [
   /* =========================
      UMUM / BERANDA
@@ -283,6 +308,43 @@ function setInnerHero() {
   }
 
 }
+
+// =========================================================
+// TAMPILKAN MEDIA SOSIAL FOOTER
+// =========================================================
+
+function setFooterSocial() {
+
+  const socialContainer =
+    document.getElementById("footerSocial");
+
+  if (!socialContainer) return;
+
+  socialContainer.innerHTML = "";
+
+  FOOTER_SOCIAL.forEach(function (item) {
+
+    const link = document.createElement("a");
+
+    link.href = item.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    link.setAttribute(
+      "aria-label",
+      "Kunjungi " + item.platform
+    );
+
+    link.title = item.platform;
+
+    link.textContent = item.platform;
+
+    socialContainer.appendChild(link);
+
+  });
+
+}
+
 // =========================================================
 // ACCESSIBILITY
 // =========================================================
