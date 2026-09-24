@@ -1,0 +1,313 @@
+/* =========================================================
+   ACCESSIBILITY GLOBAL
+   PPID KANWIL KEMENTERIAN AGAMA PROVINSI BANTEN
+   ========================================================= */
+
+
+/* =========================================================
+   KONTRAS TINGGI
+   ========================================================= */
+
+/*
+   Class accessibility-high-contrast dipasang pada <html>
+   oleh layout.js.
+*/
+
+html.accessibility-high-contrast {
+  background: #000000 !important;
+}
+
+
+/* BODY */
+
+html.accessibility-high-contrast body {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+
+/* TEKS UMUM */
+
+html.accessibility-high-contrast
+body,
+html.accessibility-high-contrast
+p,
+html.accessibility-high-contrast
+span,
+html.accessibility-high-contrast
+li,
+html.accessibility-high-contrast
+label,
+html.accessibility-high-contrast
+small,
+html.accessibility-high-contrast
+strong,
+html.accessibility-high-contrast
+h1,
+html.accessibility-high-contrast
+h2,
+html.accessibility-high-contrast
+h3,
+html.accessibility-high-contrast
+h4,
+html.accessibility-high-contrast
+h5,
+html.accessibility-high-contrast
+h6 {
+  color: #ffffff !important;
+}
+
+
+/* LINK */
+
+html.accessibility-high-contrast
+a {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+html.accessibility-high-contrast
+.header {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.header * {
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.main-nav {
+  background: #000000 !important;
+}
+
+html.accessibility-high-contrast
+.nav-link {
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.nav-link:hover,
+html.accessibility-high-contrast
+.nav-link.active {
+  color: #ffffff !important;
+  background: #333333 !important;
+}
+
+html.accessibility-high-contrast
+.dropdown-menu {
+  background: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.dropdown-menu a {
+  color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.dropdown-menu a:hover {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   INNER HERO
+   ========================================================= */
+
+html.accessibility-high-contrast
+.inner-hero {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.inner-hero * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   KONTEN / CARD
+   ========================================================= */
+
+html.accessibility-high-contrast
+.card,
+html.accessibility-high-contrast
+.profile-card,
+html.accessibility-high-contrast
+.vm-card,
+html.accessibility-high-contrast
+.task-card,
+html.accessibility-high-contrast
+.legal-card,
+html.accessibility-high-contrast
+.contact-card,
+html.accessibility-high-contrast
+.news-card,
+html.accessibility-high-contrast
+.layanan-card,
+html.accessibility-high-contrast
+.statistik-home-card {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+
+/* Isi card */
+
+html.accessibility-high-contrast
+.card *,
+html.accessibility-high-contrast
+.profile-card *,
+html.accessibility-high-contrast
+.vm-card *,
+html.accessibility-high-contrast
+.task-card *,
+html.accessibility-high-contrast
+.legal-card *,
+html.accessibility-high-contrast
+.contact-card *,
+html.accessibility-high-contrast
+.news-card *,
+html.accessibility-high-contrast
+.layanan-card *,
+html.accessibility-high-contrast
+.statistik-home-card * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TOMBOL
+   ========================================================= */
+
+html.accessibility-high-contrast
+button {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+button:hover {
+  background: #333333 !important;
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   INPUT / FORM
+   ========================================================= */
+
+html.accessibility-high-contrast
+input,
+html.accessibility-high-contrast
+textarea,
+html.accessibility-high-contrast
+select {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+input::placeholder,
+html.accessibility-high-contrast
+textarea::placeholder {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TABEL
+   ========================================================= */
+
+html.accessibility-high-contrast
+table,
+html.accessibility-high-contrast
+th,
+html.accessibility-high-contrast
+td {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+html.accessibility-high-contrast
+.footer {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.footer * {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   AKSESIBILITAS PANEL
+   ========================================================= */
+
+html.accessibility-high-contrast
+.aksesibilitas-panel {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+html.accessibility-high-contrast
+.aksesibilitas-panel * {
+  color: #ffffff !important;
+}
+
+
+/* TOMBOL FLOATING */
+
+html.accessibility-high-contrast
+.aksesibilitas-toggle {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+
+/* =========================================================
+   KURANGI ANIMASI
+   ========================================================= */
+
+html.accessibility-reduced-motion *,
+html.accessibility-reduced-motion *::before,
+html.accessibility-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+
+/* =========================================================
+   FOCUS KEYBOARD
+   ========================================================= */
+
+html.accessibility-high-contrast
+*:focus {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 3px !important;
+}
