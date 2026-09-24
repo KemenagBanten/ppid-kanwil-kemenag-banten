@@ -161,56 +161,49 @@
     }
 
 
-    .filter-btn {
+ .filter-btn {
+  appearance: none;
+  -webkit-appearance: none;
 
-      border:
-        1px solid #dce5df;
+  border: 1px solid #dfe7e2;
+  background: #ffffff;
+  color: #53615a;
 
-      background:
-        #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
 
-      color:
-        #52615a;
+  padding: 9px 15px;
+  min-height: 38px;
 
-      border-radius:
-        30px;
+  border-radius: 8px;
+  cursor: pointer;
 
-      padding:
-        8px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-      cursor:
-        pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
 
-      font-size:
-        13px;
+.filter-btn:hover {
+  background: #f4f8f5;
+  border-color: #cbdad1;
+  color: #0f5132;
+}
 
-      transition:
-        .2s ease;
-    }
-
-
-    .filter-btn:hover {
-
-      border-color:
-        #198754;
-
-      color:
-        #0f5132;
-    }
-
-
-    .filter-btn.active {
-
-      background:
-        #0f5132;
-
-      color:
-        #ffffff;
-
-      border-color:
-        #0f5132;
-    }
-
+.filter-btn.active {
+  background: #0f5132;
+  border-color: #0f5132;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
+}
 
     /* =====================================================
        RESULT HEADER
