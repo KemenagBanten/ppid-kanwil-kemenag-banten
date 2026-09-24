@@ -1,11 +1,13 @@
 <header class="header">
   <div class="header-inner">
 
+    <!-- BRAND -->
     <a href="index.html" class="header-brand">
+
       <div class="header-logo">
         <img
-          src="./assets/logo-kemenag.png"
-          alt="Logo Kementerian Agama Republik Indonesia"
+          src="assets/img/logo-kemenag.png"
+          alt="Logo Kementerian Agama"
         >
       </div>
 
@@ -15,82 +17,136 @@
         </span>
 
         <h1>
-          KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI BANTEN
+          PPID Kanwil Kementerian Agama<br>
+          Provinsi Banten
         </h1>
       </div>
+
     </a>
 
+
+    <!-- HAMBURGER MOBILE -->
     <div class="nav-mobile-toggle-wrap">
+
       <button
         type="button"
         class="nav-mobile-toggle"
         id="mobileMenuToggle"
         aria-label="Buka menu"
         aria-expanded="false"
+        aria-controls="mainNav"
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
+
     </div>
 
+
+    <!-- NAVBAR MASTER -->
     <nav class="main-nav" id="mainNav">
 
-      <a href="index.html" class="nav-link">
+      <!-- BERANDA -->
+      <a
+        href="index.html"
+        class="nav-link"
+      >
         Beranda
       </a>
 
+
+      <!-- PROFIL -->
       <div class="nav-dropdown">
 
         <button
-          class="nav-link nav-dropdown-button"
           type="button"
+          class="nav-link nav-dropdown-button"
+          aria-expanded="false"
         >
-          Profil
+          <span>Profil</span>
           <span class="nav-arrow">⌄</span>
         </button>
 
         <div class="dropdown-menu">
-          <a href="profil.html">Profil PPID</a>
-          <a href="ppid-unit.html">PPID Unit</a>
+
+          <a href="profil.html">
+            Profil PPID
+          </a>
+
+          <a href="ppid-unit.html">
+            PPID Unit
+          </a>
+
         </div>
 
       </div>
 
+
+      <!-- INFORMASI & DOKUMEN -->
       <div class="nav-dropdown">
 
         <button
-          class="nav-link nav-dropdown-button"
           type="button"
+          class="nav-link nav-dropdown-button"
+          aria-expanded="false"
         >
-          Informasi &amp; Dokumen
+          <span>Informasi &amp; Dokumen</span>
           <span class="nav-arrow">⌄</span>
         </button>
 
         <div class="dropdown-menu">
-          <a href="informasi-publik.html">Informasi Publik</a>
-          <a href="dip.html">Daftar Informasi Publik (DIP)</a>
-          <a href="dik.html">Informasi Dikecualikan (DIK)</a>
-          <a href="dokumen.html">Laporan</a>
-          <a href="pengadaan.html">Informasi Barang &amp; Jasa</a>
-          <a href="laporan.html">Dokumen</a>
+
+          <a href="informasi-publik.html">
+            Informasi Publik
+          </a>
+
+          <a href="dip.html">
+            Daftar Informasi Publik (DIP)
+          </a>
+
+          <a href="dik.html">
+            Informasi Dikecualikan (DIK)
+          </a>
+
+          <a href="dokumen.html">
+            Laporan
+          </a>
+
+          <a href="pengadaan.html">
+            Informasi Barang &amp; Jasa
+          </a>
+
+          <a href="laporan.html">
+            Dokumen
+          </a>
+
         </div>
 
       </div>
 
+
+      <!-- LAYANAN -->
       <div class="nav-dropdown">
 
         <button
-          class="nav-link nav-dropdown-button"
           type="button"
+          class="nav-link nav-dropdown-button"
+          aria-expanded="false"
         >
-          Layanan
+          <span>Layanan</span>
           <span class="nav-arrow">⌄</span>
         </button>
 
         <div class="dropdown-menu">
-          <a href="permohonan.html">Permohonan Informasi</a>
-          <a href="keberatan.html">Ajukan Keberatan</a>
+
+          <a href="permohonan.html">
+            Permohonan Informasi
+          </a>
+
+          <a href="keberatan.html">
+            Ajukan Keberatan
+          </a>
 
           <a
             href="https://www.lapor.go.id/"
@@ -100,24 +156,36 @@
             Pengaduan Masyarakat ↗
           </a>
 
-          <a href="statistik.html">Statistik Layanan</a>
+          <a href="statistik.html">
+            Statistik Layanan
+          </a>
+
         </div>
 
       </div>
 
+
+      <!-- REGULASI -->
       <div class="nav-dropdown">
 
         <button
-          class="nav-link nav-dropdown-button"
           type="button"
+          class="nav-link nav-dropdown-button"
+          aria-expanded="false"
         >
-          Regulasi
+          <span>Regulasi</span>
           <span class="nav-arrow">⌄</span>
         </button>
 
         <div class="dropdown-menu">
-          <a href="sop.html">SOP</a>
-          <a href="regulasi.html">Regulasi Kanwil</a>
+
+          <a href="sop.html">
+            SOP
+          </a>
+
+          <a href="regulasi.html">
+            Regulasi Kanwil
+          </a>
 
           <a
             href="https://jdih.kemenag.go.id/"
@@ -126,17 +194,21 @@
           >
             Regulasi Pusat — JDIH Kemenag ↗
           </a>
+
         </div>
 
       </div>
 
+
+      <!-- BERITA & PENGUMUMAN -->
       <div class="nav-dropdown">
 
         <button
-          class="nav-link nav-dropdown-button"
           type="button"
+          class="nav-link nav-dropdown-button"
+          aria-expanded="false"
         >
-          Berita &amp; Pengumuman
+          <span>Berita &amp; Pengumuman</span>
           <span class="nav-arrow">⌄</span>
         </button>
 
@@ -150,25 +222,41 @@
             Berita Kemenag Banten ↗
           </a>
 
-          <a href="pengumuman.html">Pengumuman</a>
-          <a href="jadwal-pelayanan.html">Jadwal Pelayanan</a>
-          <a href="agenda.html">Agenda/Kegiatan PPID</a>
-          <a href="hari-penting.html">Hari/Tanggal Penting</a>
-          <a href="kalender.html">Kalender Kegiatan</a>
+          <a href="pengumuman.html">
+            Pengumuman
+          </a>
+
+          <a href="jadwal-pelayanan.html">
+            Jadwal Pelayanan
+          </a>
+
+          <a href="agenda.html">
+            Agenda/Kegiatan PPID
+          </a>
+
+          <a href="hari-penting.html">
+            Hari/Tanggal Penting
+          </a>
+
+          <a href="kalender.html">
+            Kalender Kegiatan
+          </a>
 
         </div>
 
       </div>
 
+
+      <!-- SEARCH -->
       <button
-  type="button"
-  class="nav-search"
-  id="navbarSearchButton"
-  aria-label="Cari dokumen"
-  title="Cari dokumen"
->
-  <span>⌕</span>
-</button>
+        type="button"
+        class="nav-search"
+        id="navbarSearchButton"
+        aria-label="Cari dokumen"
+        title="Cari dokumen"
+      >
+        <span>⌕</span>
+      </button>
 
     </nav>
 
