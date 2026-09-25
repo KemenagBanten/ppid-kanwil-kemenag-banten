@@ -752,9 +752,17 @@ const regulasiSort =
       renderRegulasi();
 
     }
-    filteredRegulasi.sort(function(a, b) {
-  const tahunA = Number(a.tahun) || 0;
-  const tahunB = Number(b.tahun) || 0;
+   filteredRegulasi.sort(function(a, b) {
+
+  const tahunA = parseInt(
+    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
+
+  const tahunB = parseInt(
+    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
 
   if (regulasiSort.value === 'terlama') {
     return tahunA - tahunB;
@@ -762,7 +770,8 @@ const regulasiSort =
 
   return tahunB - tahunA;
 });
-function escapeHTML(value) {
+    
+    function escapeHTML(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
