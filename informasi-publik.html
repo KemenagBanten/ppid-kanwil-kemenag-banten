@@ -1479,7 +1479,18 @@
       }
     );
 
+informasiSort.addEventListener(
+  'change',
+  function() {
 
+    currentPage = 1;
+
+    applyFilter();
+
+  }
+);
+
+    
     /* =====================================================
        APPLY FILTER
     ===================================================== */
@@ -1571,33 +1582,32 @@
 
           }
         );
-filteredInformasi.sort(function(a, b) {
 
-  const tahunA = parseInt(
-    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
+      /* =================================================
+         SORT BERDASARKAN TAHUN
+      ================================================= */
 
-  const tahunB = parseInt(
-    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
+      filtered.sort(function(a, b) {
 
-  if (informasiSort.value === 'terlama') {
-    return tahunA - tahunB;
-  }
+        const tahunA = parseInt(
+          String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
+          10
+        );
 
-  return tahunB - tahunA;
-});
+        const tahunB = parseInt(
+          String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
+          10
+        );
 
-      informasiSort.addEventListener(
-  'change',
-  function() {
-    applyInformasiFilter();
-  }
-);
+        if (informasiSort.value === 'terlama') {
+          return tahunA - tahunB;
+        }
 
-      renderData(
+        return tahunB - tahunA;
+
+      });
+      
+     renderData(
         filtered
       );
 
