@@ -1587,25 +1587,25 @@ informasiSort.addEventListener(
          SORT BERDASARKAN TAHUN
       ================================================= */
 
-      filtered.sort(function(a, b) {
+     filtered.sort(function(a, b) {
 
-        const tahunA = parseInt(
-          String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
-          10
-        );
+  const tahunA = parseInt(
+    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
 
-        const tahunB = parseInt(
-          String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
-          10
-        );
+  const tahunB = parseInt(
+    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
 
-        if (informasiSort.value === 'terlama') {
-          return tahunA - tahunB;
-        }
+  if (informasiSort.value === 'terlama') {
+    return tahunA - tahunB;
+  }
 
-        return tahunB - tahunA;
+  return tahunB - tahunA;
 
-      });
+});
       
      renderData(
         filtered
