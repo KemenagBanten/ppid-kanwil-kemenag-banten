@@ -1,876 +1,1578 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Regulasi - PPID Kanwil Kemenag Banten</title>
+  <title>Regulasi | PPID Kanwil Kemenag Banten</title>
+
+  <link rel="stylesheet" href="style.css?v=999">
 
   <style>
-    * {
-      box-sizing: border-box;
+    /* =====================================================
+       REGULASI
+    ===================================================== */
+
+    .regulasi-section {
+      padding: 42px 0 70px;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7f5;
-      color: #263326;
+    .regulasi-container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e4e9e4;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
+    .regulasi-intro {
+      margin-bottom: 28px;
     }
 
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 250px;
-    }
-
-    .brand img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    .brand-text h1 {
-      margin: 0;
-      font-size: 16px;
-      color: #176b3a;
-      font-weight: 700;
-    }
-
-    .brand-text p {
-      margin: 3px 0 0;
+    .regulasi-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: #0f5132;
       font-size: 12px;
-      color: #777;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    nav {
+    .regulasi-description {
+      margin: 0;
+      max-width: 820px;
+      color: #66746d;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* =====================================================
+       TOOLBAR
+    ===================================================== */
+
+    .regulasi-toolbar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .regulasi-search-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .regulasi-search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7a8780;
+      font-size: 15px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .regulasi-search {
+      width: 100%;
+      min-height: 44px;
+      padding: 11px 15px 11px 44px;
+      box-sizing: border-box;
+      border: 1px solid #dfe7e2;
+      border-radius: 9px;
+      background: #ffffff;
+      color: #34433b;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      box-shadow: 0 3px 14px rgba(26, 54, 41, 0.035);
+    }
+
+    .regulasi-search::placeholder {
+      color: #8a958f;
+    }
+
+    .regulasi-search:focus {
+      border-color: #9eb9aa;
+      box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.06);
+    }
+
+    .regulasi-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .regulasi-filter-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid #dfe7e2;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 9px 15px;
+      min-height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .regulasi-filter-btn:hover {
+      background: #f4f8f5;
+      border-color: #cbdad1;
+      color: #0f5132;
+    }
+
+    .regulasi-filter-btn.active {
+      background: #0f5132;
+      border-color: #0f5132;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
+    }
+
+    /* =====================================================
+       RESULT HEADER
+    ===================================================== */
+
+    .regulasi-result-header {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #555;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      background: #eef6f0;
-      color: #176b3a;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #176b3a, #2d8a52);
-      color: white;
-      padding: 52px 24px;
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .hero h2 {
-      margin: 0 0 10px;
-      font-size: 32px;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 760px;
-      line-height: 1.6;
-      opacity: 0.92;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 32px 24px 60px;
-    }
-
-    .toolbar {
-      background: #ffffff;
-      border: 1px solid #e4e9e4;
-      border-radius: 14px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr 180px 180px;
-      gap: 12px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d9dfd9;
-      border-radius: 9px;
-      font-size: 14px;
-      outline: none;
-      background: #ffffff;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #2d8a52;
-    }
-
-    .status {
-      margin-bottom: 18px;
-      font-size: 14px;
-      color: #6b736b;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e3e8e3;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-    }
-
-    .card-top {
-      display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
+      gap: 15px;
       margin-bottom: 12px;
     }
 
-    .jenis {
-      color: #176b3a;
-      font-size: 13px;
+    .regulasi-result-header h2 {
+      margin: 0;
+      color: #263a30;
+      font-size: 20px;
       font-weight: 700;
     }
 
-    .badge {
-      background: #eef6f0;
-      color: #176b3a;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
+    .regulasi-result-count {
+      color: #718078;
+      font-size: 12px;
       white-space: nowrap;
     }
 
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 19px;
-      line-height: 1.4;
+    /* =====================================================
+       TABLE
+    ===================================================== */
+
+    .regulasi-table-wrapper {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
     }
 
-    .nomor {
+    .regulasi-table {
+      width: 100%;
+      min-width: 1050px;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .regulasi-table thead th {
+      background: #0f5132;
+      color: #ffffff;
+      padding: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+      vertical-align: middle;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      white-space: nowrap;
+    }
+
+    .regulasi-table thead th:last-child {
+      border-right: none;
+    }
+
+    .regulasi-table th:nth-child(1),
+    .regulasi-table td:nth-child(1) {
+      width: 55px;
+      text-align: center;
+    }
+
+    .regulasi-table th:nth-child(2),
+    .regulasi-table td:nth-child(2) {
+      width: 20%;
+    }
+
+    .regulasi-table th:nth-child(3),
+    .regulasi-table td:nth-child(3) {
+      width: 35%;
+    }
+
+    .regulasi-table th:nth-child(4),
+    .regulasi-table td:nth-child(4) {
+      width: 20%;
+    }
+
+    .regulasi-table th:nth-child(5),
+    .regulasi-table td:nth-child(5) {
+      width: 9%;
+      text-align: center;
+    }
+
+    .regulasi-table th:nth-child(6),
+    .regulasi-table td:nth-child(6) {
+      width: 16%;
+      text-align: center;
+    }
+
+    .regulasi-table tbody td {
+      padding: 15px 14px;
+      border-bottom: 1px solid #edf1ee;
+      color: #45534c;
       font-size: 13px;
-      color: #596359;
-      margin-bottom: 14px;
+      vertical-align: top;
+      line-height: 1.5;
+      background: #ffffff;
+    }
+
+    .regulasi-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .regulasi-table tbody tr:hover td {
+      background: #f8fbf9;
+    }
+
+    .regulasi-number {
+      color: #718078;
+      font-size: 12px;
       font-weight: 600;
     }
 
-    .tentang {
-      background: #f7f9f7;
-      border-left: 3px solid #2d8a52;
-      padding: 12px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #687168;
-      margin-bottom: 16px;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 16px;
-      margin-bottom: 18px;
-      font-size: 13px;
-      color: #687168;
-    }
-
-    .button {
-      display: inline-block;
-      background: #176b3a;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .button:hover {
-      background: #11562e;
-    }
-
-    .no-document {
-      font-size: 13px;
-      color: #8a918a;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      background: #ffffff;
-      border: 1px dashed #ccd4cc;
-      border-radius: 14px;
-      padding: 45px 20px;
-      text-align: center;
-      color: #747b74;
-    }
-
-    .loading {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: #6d756d;
-    }
-
-    footer {
-      background: #173d27;
-      color: rgba(255,255,255,0.85);
-      text-align: center;
-      padding: 24px;
+    .regulasi-nomor {
+      color: #52615a;
       font-size: 12px;
+      font-weight: 600;
+      line-height: 1.5;
     }
 
-    @media (max-width: 900px) {
-
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      .toolbar {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    .regulasi-title {
+      color: #263a30;
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
+    .regulasi-about {
+      margin-top: 5px;
+      color: #718078;
+      font-size: 12px;
+      line-height: 1.55;
+    }
 
-      .hero {
-        padding: 40px 20px;
+    .regulasi-category {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 9px;
+      border-radius: 6px;
+      background: #e9f5ef;
+      border: 1px solid #d4e9dd;
+      color: #0f5132;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .regulasi-year {
+      color: #52615a;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .regulasi-document-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 92px;
+      padding: 7px 10px;
+      background: #0f5132;
+      color: #ffffff;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .regulasi-document-button:hover {
+      background: #146c43;
+      transform: translateY(-1px);
+    }
+
+    .regulasi-document-empty {
+      color: #7b8580;
+      font-size: 11px;
+    }
+
+    /* =====================================================
+       LOADING / ERROR / EMPTY
+    ===================================================== */
+
+    .regulasi-loading,
+    .regulasi-empty,
+    .regulasi-error {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
+      padding: 55px 20px;
+      text-align: center;
+      color: #718078;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+    }
+
+    .regulasi-empty strong,
+    .regulasi-error strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #435149;
+    }
+
+    .regulasi-loading {
+      display: none;
+    }
+
+    .regulasi-error {
+      display: none;
+    }
+
+    .regulasi-empty {
+      display: none;
+    }
+
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
+
+    .regulasi-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 24px;
+    }
+
+    .regulasi-page-button {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid #dfe7e2;
+      border-radius: 7px;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .regulasi-page-button:hover:not(:disabled) {
+      background: #f3f7f4;
+      border-color: #cbdad1;
+      color: #0f5132;
+    }
+
+    .regulasi-page-button.active {
+      background: #0f5132;
+      border-color: #0f5132;
+      color: #ffffff;
+    }
+
+    .regulasi-page-button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 680px) {
+
+      .regulasi-container {
+        width: min(100% - 28px, 1180px);
       }
 
-      .hero h2 {
-        font-size: 26px;
+      .regulasi-section {
+        padding-top: 32px;
+        padding-bottom: 55px;
       }
 
-      .container {
-        padding: 24px 16px 45px;
+      .regulasi-result-header h2 {
+        font-size: 18px;
       }
 
-      .header-inner {
-        padding: 12px 16px;
+      .regulasi-table-wrapper {
+        border-radius: 12px;
       }
 
-      nav a {
+      .regulasi-table {
+        min-width: 980px;
+      }
+
+      .regulasi-table thead th {
+        padding: 12px 11px;
+        font-size: 11px;
+      }
+
+      .regulasi-table tbody td {
+        padding: 13px 11px;
         font-size: 12px;
-        padding: 8px 9px;
+      }
+
+      .regulasi-title {
+        font-size: 13px;
+      }
+
+      .regulasi-category {
+        font-size: 10px;
+        padding: 4px 7px;
+      }
+
+      .regulasi-filter-btn {
+        font-size: 12px;
+        padding: 8px 12px;
       }
     }
   </style>
-
 </head>
 
 <body>
 
-<header>
+  <div id="siteNavbar"></div>
 
-  <div class="header-inner">
+  <div id="innerHero"></div>
 
+  <main>
 
-<div class="brand">
+    <section class="regulasi-section">
 
-  <img
-    src="assets/logo-kemenag.png"
-    alt="Logo Kementerian Agama"
-  >
+      <div class="regulasi-container">
 
-  <div class="brand-text">
-    <h1>PPID Kanwil Kemenag Banten</h1>
-    <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
-  </div>
+        <!-- INTRO -->
+        <div class="regulasi-intro">
 
-</div>
+          <span class="regulasi-kicker">
+            DAFTAR REGULASI
+          </span>
 
-<nav>
+          <p class="regulasi-description">
+            Regulasi yang ditetapkan dan digunakan dalam
+            penyelenggaraan tugas serta layanan informasi
+            di lingkungan Kantor Wilayah Kementerian Agama
+            Provinsi Banten.
+          </p>
 
-  <a href="index.html">
-    Beranda
-  </a>
+        </div>
 
-  <a href="informasi-publik.html">
-    Informasi Publik
-  </a>
 
-  <a href="dip.html">
-    DIP
-  </a>
+        <!-- TOOLBAR -->
+        <div class="regulasi-toolbar">
 
-  <a href="dik.html">
-    DIK
-  </a>
+          <div class="regulasi-search-wrapper">
 
-  <a href="berita.html">
-    Berita
-  </a>
+            <span class="regulasi-search-icon">
+              🔎
+            </span>
 
-  <a href="pengumuman.html">
-    Pengumuman
-  </a>
+            <input
+              type="text"
+              id="regulasiSearchInput"
+              class="regulasi-search"
+              placeholder="Cari nomor, judul, atau kata kunci..."
+              autocomplete="off"
+            >
 
-</nav>
+          </div>
 
 
-  </div>
+          <div
+            class="regulasi-filters"
+            id="regulasiFilters"
+          >
 
-</header>
+            <button
+              type="button"
+              class="regulasi-filter-btn active"
+              data-filter="all"
+            >
+              Semua
+            </button>
 
-<section class="hero">
+            <button
+              type="button"
+              class="regulasi-filter-btn"
+              data-filter="Keputusan Kepala Kantor Wilayah"
+            >
+              Keputusan Kepala Kantor Wilayah
+            </button>
 
-  <div class="hero-inner">
+            <button
+              type="button"
+              class="regulasi-filter-btn"
+              data-filter="Surat Edaran Kakanwil"
+            >
+              Surat Edaran Kakanwil
+            </button>
 
+            <button
+              type="button"
+              class="regulasi-filter-btn"
+              data-filter="Peraturan Lainnya"
+            >
+              Peraturan Lainnya
+            </button>
 
-<h2>Regulasi</h2>
+          </div>
 
-<p>
-  Kumpulan peraturan dan regulasi yang menjadi dasar
-  pelaksanaan keterbukaan informasi publik di lingkungan
-  Kanwil Kementerian Agama Provinsi Banten.
-</p>
+        </div>
 
 
-  </div>
+        <!-- RESULT HEADER -->
+        <div class="regulasi-result-header">
 
-</section>
+          <h2>
+            Daftar Regulasi
+          </h2>
 
-<main class="container">
+          <span
+            id="regulasiResultCount"
+            class="regulasi-result-count"
+          >
+            Memuat data...
+          </span>
 
-  <div class="toolbar">
+        </div>
 
 
-<input
-  type="text"
-  id="searchInput"
-  placeholder="Cari judul, nomor, atau tentang..."
->
+        <!-- ERROR -->
+        <div
+          id="regulasiError"
+          class="regulasi-error"
+        ></div>
 
-<select id="jenisFilter">
 
-  <option value="">
-    Semua Jenis
-  </option>
+        <!-- LOADING -->
+        <div
+          id="regulasiLoading"
+          class="regulasi-loading"
+        >
+          Memuat regulasi...
+        </div>
 
-</select>
 
-<select id="tahunFilter">
-
-  <option value="">
-    Semua Tahun
-  </option>
-
-</select>
-
-
-  </div>
-
-  <div
-    id="status"
-    class="status"
-  >
-    Memuat data regulasi...
-  </div>
-
-  <div
-    id="regulasiList"
-    class="grid"
-  >
-
-
-<div class="loading">
-  Memuat data...
-</div>
-
-
-  </div>
-
-</main>
-
-<footer>
-
-© PPID Kanwil Kementerian Agama Provinsi Banten
-
-</footer>
-
-<script>
-
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
-  let regulasiData = [];
-
-
-  async function loadRegulasi() {
-
-    const list =
-      document.getElementById('regulasiList');
-
-    const status =
-      document.getElementById('status');
-
-    try {
-
-      status.textContent =
-        'Memuat data regulasi...';
-
-      const response =
-        await fetch(
-          API_URL + '?action=regulasi'
-        );
-
-      if (!response.ok) {
-
-        throw new Error(
-          'HTTP Error ' +
-          response.status
-        );
-
-      }
-
-      const result =
-        await response.json();
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'API regulasi mengembalikan success=false'
-        );
-
-      }
-
-      regulasiData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-      setupFilters();
-
-      renderRegulasi();
-
-    } catch (error) {
-
-      console.error(
-        'Error load regulasi:',
-        error
-      );
-
-      status.textContent =
-        'Gagal memuat data regulasi.';
-
-      list.innerHTML = `
-        <div class="empty">
+        <!-- EMPTY -->
+        <div
+          id="regulasiEmpty"
+          class="regulasi-empty"
+        >
           <strong>
-            Data regulasi tidak dapat dimuat.
+            Regulasi tidak ditemukan
           </strong>
 
-          <br><br>
-
-          ${escapeHTML(error.message)}
+          <span>
+            Coba gunakan kata kunci atau kategori yang berbeda.
+          </span>
         </div>
-      `;
+
+
+        <!-- TABLE -->
+        <div
+          id="regulasiTableWrapper"
+          class="regulasi-table-wrapper"
+          style="display:none;"
+        >
+
+          <table class="regulasi-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  No.
+                </th>
+
+                <th>
+                  Nomor Regulasi
+                </th>
+
+                <th>
+                  Judul / Tentang
+                </th>
+
+                <th>
+                  Kategori
+                </th>
+
+                <th>
+                  Tahun
+                </th>
+
+                <th>
+                  Dokumen
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="regulasiTableBody"></tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+        <div
+          id="regulasiPagination"
+          class="regulasi-pagination"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <div id="siteFooter"></div>
+
+  <div id="accessibility"></div>
+
+
+  <script src="layout.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       REGULASI - DATABASE & TAMPILAN
+    ===================================================== */
+
+    const REGULASI_API_URL =
+      'https://script.google.com/macros/s/AKfcyby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let regulasiData = [];
+    let regulasiFilteredData = [];
+    let regulasiCurrentPage = 1;
+
+    const REGULASI_PAGE_SIZE = 10;
+
+
+    /* =====================================================
+       ELEMENT
+    ===================================================== */
+
+    const regulasiTableWrapper =
+      document.getElementById(
+        'regulasiTableWrapper'
+      );
+
+    const regulasiTableBody =
+      document.getElementById(
+        'regulasiTableBody'
+      );
+
+    const regulasiLoading =
+      document.getElementById(
+        'regulasiLoading'
+      );
+
+    const regulasiError =
+      document.getElementById(
+        'regulasiError'
+      );
+
+    const regulasiEmpty =
+      document.getElementById(
+        'regulasiEmpty'
+      );
+
+    const regulasiSearchInput =
+      document.getElementById(
+        'regulasiSearchInput'
+      );
+
+    const regulasiResultCount =
+      document.getElementById(
+        'regulasiResultCount'
+      );
+
+    const regulasiPagination =
+      document.getElementById(
+        'regulasiPagination'
+      );
+
+    const regulasiFilters =
+      document.getElementById(
+        'regulasiFilters'
+      );
+
+
+    /* =====================================================
+       LOAD REGULASI
+    ===================================================== */
+
+    async function loadRegulasi() {
+
+      try {
+
+        regulasiLoading.style.display =
+          'block';
+
+        regulasiTableWrapper.style.display =
+          'none';
+
+        regulasiEmpty.style.display =
+          'none';
+
+        regulasiError.style.display =
+          'none';
+
+        regulasiResultCount.textContent =
+          'Memuat data...';
+
+
+        const response =
+          await fetch(
+            REGULASI_API_URL +
+            '?action=regulasi'
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'Response Regulasi:',
+          result
+        );
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'API regulasi mengembalikan success=false'
+          );
+
+        }
+
+
+        if (
+          !Array.isArray(
+            result.data
+          )
+        ) {
+
+          throw new Error(
+            'Data regulasi tidak berbentuk array'
+          );
+
+        }
+
+
+        regulasiData =
+          result.data;
+
+
+        regulasiFilteredData =
+          regulasiData.slice();
+
+
+        regulasiCurrentPage = 1;
+
+
+        regulasiLoading.style.display =
+          'none';
+
+
+        renderRegulasi();
+
+
+      } catch (error) {
+
+        console.error(
+          'Gagal memuat regulasi:',
+          error
+        );
+
+
+        regulasiLoading.style.display =
+          'none';
+
+        regulasiTableWrapper.style.display =
+          'none';
+
+        regulasiEmpty.style.display =
+          'none';
+
+
+        regulasiError.style.display =
+          'block';
+
+
+        regulasiError.innerHTML = `
+          <strong>
+            Data regulasi belum dapat dimuat.
+          </strong>
+
+          <span>
+            ${escapeRegulasiHTML(
+              error.message
+            )}
+          </span>
+        `;
+
+
+        regulasiResultCount.textContent =
+          'Data tidak dapat dimuat';
+
+      }
 
     }
 
-  }
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    function applyRegulasiFilter() {
+
+      const keyword =
+        regulasiSearchInput.value
+          .trim()
+          .toLowerCase();
 
 
-  function setupFilters() {
+      regulasiFilteredData =
+        regulasiData.filter(
+          function(row) {
 
-    const jenisFilter =
-      document.getElementById('jenisFilter');
+            const judul =
+              getRegulasiValue(
+                row,
+                'judul'
+              ).toLowerCase();
 
-    const tahunFilter =
-      document.getElementById('tahunFilter');
+            const nomor =
+              getRegulasiValue(
+                row,
+                'nomor'
+              ).toLowerCase();
 
+            const tentang =
+              getRegulasiValue(
+                row,
+                'tentang'
+              ).toLowerCase();
 
-    const jenisList = [
-      ...new Set(
-        regulasiData
-          .map(item => item.jenis)
-          .filter(Boolean)
-      )
-    ].sort();
+            const jenis =
+              getRegulasiValue(
+                row,
+                'jenis'
+              ).toLowerCase();
 
+            const kategori =
+              getRegulasiValue(
+                row,
+                'kategori'
+              ).toLowerCase();
 
-    const tahunList = [
-      ...new Set(
-        regulasiData
-          .map(item => item.tahun)
-          .filter(Boolean)
-      )
-    ].sort(
-      (a, b) =>
-        Number(b) - Number(a)
-    );
-
-
-    jenisFilter.innerHTML =
-      '<option value="">Semua Jenis</option>' +
-      jenisList
-        .map(
-          jenis =>
-            `<option value="${escapeHTML(jenis)}">${escapeHTML(jenis)}</option>`
-        )
-        .join('');
-
-
-    tahunFilter.innerHTML =
-      '<option value="">Semua Tahun</option>' +
-      tahunList
-        .map(
-          tahun =>
-            `<option value="${escapeHTML(tahun)}">${escapeHTML(tahun)}</option>`
-        )
-        .join('');
-
-  }
+            const tahun =
+              getRegulasiValue(
+                row,
+                'tahun'
+              ).toLowerCase();
 
 
-  function renderRegulasi() {
-
-    const list =
-      document.getElementById('regulasiList');
-
-    const status =
-      document.getElementById('status');
-
-
-    const search =
-      document
-        .getElementById('searchInput')
-        .value
-        .toLowerCase()
-        .trim();
+            const searchableText =
+              [
+                judul,
+                nomor,
+                tentang,
+                jenis,
+                kategori,
+                tahun
+              ]
+                .join(' ');
 
 
-    const jenis =
-      document
-        .getElementById('jenisFilter')
-        .value;
+            const matchesSearch =
+              !keyword ||
+              searchableText.includes(
+                keyword
+              );
 
 
-    const tahun =
-      document
-        .getElementById('tahunFilter')
-        .value;
+            const activeButton =
+              regulasiFilters.querySelector(
+                '.regulasi-filter-btn.active'
+              );
 
 
-    const filtered =
-      regulasiData.filter(
-        item => {
-
-          const text = [
-
-            item.id,
-            item.judul,
-            item.jenis,
-            item.nomor,
-            item.tahun,
-            item.tentang
-
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .toLowerCase();
+            const activeFilter =
+              activeButton
+                ? activeButton.dataset.filter
+                : 'all';
 
 
-          const matchSearch =
-            !search ||
-            text.includes(search);
+            const matchesFilter =
+              activeFilter === 'all' ||
+              kategori ===
+                activeFilter.toLowerCase() ||
+              jenis ===
+                activeFilter.toLowerCase();
 
 
-          const matchJenis =
-            !jenis ||
-            String(item.jenis) ===
-            String(jenis);
+            return (
+              matchesSearch &&
+              matchesFilter
+            );
+
+          }
+        );
 
 
-          const matchTahun =
-            !tahun ||
-            String(item.tahun) ===
-            String(tahun);
+      regulasiCurrentPage = 1;
+
+      renderRegulasi();
+
+    }
 
 
-          return (
-            matchSearch &&
-            matchJenis &&
-            matchTahun
+    /* =====================================================
+       RENDER
+    ===================================================== */
+
+    function renderRegulasi() {
+
+      regulasiTableBody.innerHTML =
+        '';
+
+      regulasiPagination.innerHTML =
+        '';
+
+
+      const totalData =
+        regulasiFilteredData.length;
+
+
+      regulasiResultCount.textContent =
+        totalData +
+        ' regulasi tersedia';
+
+
+      if (totalData === 0) {
+
+        regulasiTableWrapper.style.display =
+          'none';
+
+        regulasiEmpty.style.display =
+          'block';
+
+        return;
+
+      }
+
+
+      regulasiEmpty.style.display =
+        'none';
+
+      regulasiTableWrapper.style.display =
+        'block';
+
+
+      const totalPages =
+        Math.ceil(
+          totalData /
+          REGULASI_PAGE_SIZE
+        );
+
+
+      if (
+        regulasiCurrentPage >
+        totalPages
+      ) {
+
+        regulasiCurrentPage =
+          totalPages;
+
+      }
+
+
+      const startIndex =
+        (
+          regulasiCurrentPage -
+          1
+        ) *
+        REGULASI_PAGE_SIZE;
+
+
+      const endIndex =
+        startIndex +
+        REGULASI_PAGE_SIZE;
+
+
+      const pageData =
+        regulasiFilteredData.slice(
+          startIndex,
+          endIndex
+        );
+
+
+      pageData.forEach(
+        function(row, index) {
+
+          const tr =
+            document.createElement(
+              'tr'
+            );
+
+
+          const nomorUrut =
+            startIndex +
+            index +
+            1;
+
+
+          const nomor =
+            getRegulasiValue(
+              row,
+              'nomor'
+            );
+
+
+          const judul =
+            getRegulasiValue(
+              row,
+              'judul'
+            );
+
+
+          const tentang =
+            getRegulasiValue(
+              row,
+              'tentang'
+            );
+
+
+          const kategori =
+            getRegulasiValue(
+              row,
+              'kategori'
+            ) ||
+            getRegulasiValue(
+              row,
+              'jenis'
+            );
+
+
+          const tahun =
+            getRegulasiValue(
+              row,
+              'tahun'
+            );
+
+
+          const urlDokumen =
+            getRegulasiValue(
+              row,
+              'url_dokumen'
+            );
+
+
+          const judulHTML =
+            escapeRegulasiHTML(
+              judul ||
+              'Tanpa Judul'
+            );
+
+
+          const tentangHTML =
+            tentang
+              ? `
+                <div class="regulasi-about">
+                  ${escapeRegulasiHTML(
+                    tentang
+                  )}
+                </div>
+              `
+              : '';
+
+
+          const documentHTML =
+            urlDokumen
+              ? `
+                <a
+                  href="${escapeRegulasiHTML(
+                    urlDokumen
+                  )}"
+                  class="regulasi-document-button"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Lihat Dokumen
+                </a>
+              `
+              : `
+                <span class="regulasi-document-empty">
+                  Belum tersedia
+                </span>
+              `;
+
+
+          tr.innerHTML = `
+
+            <td>
+              <span class="regulasi-number">
+                ${nomorUrut}
+              </span>
+            </td>
+
+
+            <td>
+              <div class="regulasi-nomor">
+                ${
+                  nomor
+                    ? escapeRegulasiHTML(
+                        nomor
+                      )
+                    : '-'
+                }
+              </div>
+            </td>
+
+
+            <td>
+              <div class="regulasi-title">
+                ${judulHTML}
+              </div>
+
+              ${tentangHTML}
+            </td>
+
+
+            <td>
+              ${
+                kategori
+                  ? `
+                    <span class="regulasi-category">
+                      ${escapeRegulasiHTML(
+                        kategori
+                      )}
+                    </span>
+                  `
+                  : '-'
+              }
+            </td>
+
+
+            <td>
+              <span class="regulasi-year">
+                ${
+                  tahun
+                    ? escapeRegulasiHTML(
+                        tahun
+                      )
+                    : '-'
+                }
+              </span>
+            </td>
+
+
+            <td>
+              ${documentHTML}
+            </td>
+
+          `;
+
+
+          regulasiTableBody.appendChild(
+            tr
           );
 
         }
       );
 
 
-    status.textContent =
-      filtered.length +
-      ' regulasi ditemukan';
-
-
-    if (!filtered.length) {
-
-      list.innerHTML = `
-        <div class="empty">
-          Tidak ada regulasi yang sesuai
-          dengan pencarian.
-        </div>
-      `;
-
-      return;
+      renderRegulasiPagination(
+        totalData,
+        totalPages
+      );
 
     }
 
 
-    list.innerHTML =
-      filtered
-        .map(
-          item => {
+    /* =====================================================
+       PAGINATION
+    ===================================================== */
 
-            const documentUrl =
-              item.url_dokumen
-                ? String(
-                    item.url_dokumen
-                  ).trim()
-                : '';
+    function renderRegulasiPagination(
+      totalData,
+      totalPages
+    ) {
 
-
-            const statusText =
-              item.status ||
-              'Published';
+      regulasiPagination.innerHTML =
+        '';
 
 
-            return `
-
-              <article class="card">
-
-                <div class="card-top">
-
-                  <div class="jenis">
-                    ${escapeHTML(
-                      item.jenis ||
-                      'Regulasi'
-                    )}
-                  </div>
-
-                  <div class="badge">
-                    ${escapeHTML(
-                      statusText
-                    )}
-                  </div>
-
-                </div>
+      if (totalPages <= 1) {
+        return;
+      }
 
 
-                <h3>
-                  ${escapeHTML(
-                    item.judul ||
-                    'Tanpa Judul'
-                  )}
-                </h3>
+      const previousButton =
+        document.createElement(
+          'button'
+        );
 
 
-                <div class="nomor">
+      previousButton.type =
+        'button';
 
-                  ${escapeHTML(
-                    item.nomor ||
-                    '-'
-                  )}
+      previousButton.className =
+        'regulasi-page-button';
 
-                </div>
+      previousButton.textContent =
+        '‹';
 
-
-                ${
-                  item.tentang
-                    ? `
-                      <div class="tentang">
-                        <strong>
-                          Tentang:
-                        </strong>
-                        ${escapeHTML(
-                          item.tentang
-                        )}
-                      </div>
-                    `
-                    : ''
-                }
+      previousButton.disabled =
+        regulasiCurrentPage === 1;
 
 
-                <div class="meta">
+      previousButton.addEventListener(
+        'click',
+        function() {
 
-                  <span>
-                    <strong>
-                      Tahun:
-                    </strong>
-                    ${escapeHTML(
-                      item.tahun ||
-                      '-'
-                    )}
-                  </span>
+          if (
+            regulasiCurrentPage >
+            1
+          ) {
 
-                  <span>
-                    <strong>
-                      ID:
-                    </strong>
-                    ${escapeHTML(
-                      item.id ||
-                      '-'
-                    )}
-                  </span>
+            regulasiCurrentPage--;
 
-                </div>
+            renderRegulasi();
 
-
-                ${
-                  documentUrl
-                    ? `
-                      <a
-                        class="button"
-                        href="${escapeAttribute(
-                          documentUrl
-                        )}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Lihat / Unduh Dokumen
-                      </a>
-                    `
-                    : `
-                      <span class="no-document">
-                        Dokumen belum tersedia
-                      </span>
-                    `
-                }
-
-              </article>
-
-            `;
+            scrollRegulasiToTable();
 
           }
-        )
-        .join('');
 
-  }
-
-
-  function escapeHTML(value) {
-
-    return String(
-      value ?? ''
-    )
-      .replace(
-        /&/g,
-        '&amp;'
-      )
-      .replace(
-        /</g,
-        '&lt;'
-      )
-      .replace(
-        />/g,
-        '&gt;'
-      )
-      .replace(
-        /"/g,
-        '&quot;'
-      )
-      .replace(
-        /'/g,
-        '&#039;'
+        }
       );
 
-  }
+
+      regulasiPagination.appendChild(
+        previousButton
+      );
 
 
-  function escapeAttribute(value) {
+      for (
+        let page = 1;
+        page <= totalPages;
+        page++
+      ) {
 
-    return escapeHTML(value);
-
-  }
-
-
-  document
-    .getElementById('searchInput')
-    .addEventListener(
-      'input',
-      renderRegulasi
-    );
+        const pageButton =
+          document.createElement(
+            'button'
+          );
 
 
-  document
-    .getElementById('jenisFilter')
-    .addEventListener(
-      'change',
-      renderRegulasi
-    );
+        pageButton.type =
+          'button';
+
+        pageButton.className =
+          'regulasi-page-button';
+
+        pageButton.textContent =
+          page;
 
 
-  document
-    .getElementById('tahunFilter')
-    .addEventListener(
-      'change',
-      renderRegulasi
-    );
+        if (
+          page ===
+          regulasiCurrentPage
+        ) {
+
+          pageButton.classList.add(
+            'active'
+          );
+
+        }
 
 
-  loadRegulasi();
+        pageButton.addEventListener(
+          'click',
+          function() {
 
-</script>
+            regulasiCurrentPage =
+              page;
+
+            renderRegulasi();
+
+            scrollRegulasiToTable();
+
+          }
+        );
+
+
+        regulasiPagination.appendChild(
+          pageButton
+        );
+
+      }
+
+
+      const nextButton =
+        document.createElement(
+          'button'
+        );
+
+
+      nextButton.type =
+        'button';
+
+      nextButton.className =
+        'regulasi-page-button';
+
+      nextButton.textContent =
+        '›';
+
+      nextButton.disabled =
+        regulasiCurrentPage ===
+        totalPages;
+
+
+      nextButton.addEventListener(
+        'click',
+        function() {
+
+          if (
+            regulasiCurrentPage <
+            totalPages
+          ) {
+
+            regulasiCurrentPage++;
+
+            renderRegulasi();
+
+            scrollRegulasiToTable();
+
+          }
+
+        }
+      );
+
+
+      regulasiPagination.appendChild(
+        nextButton
+      );
+
+    }
+
+
+    /* =====================================================
+       FILTER BUTTON
+    ===================================================== */
+
+    regulasiFilters
+      .querySelectorAll(
+        '.regulasi-filter-btn'
+      )
+      .forEach(
+        function(button) {
+
+          button.addEventListener(
+            'click',
+            function() {
+
+              regulasiFilters
+                .querySelectorAll(
+                  '.regulasi-filter-btn'
+                )
+                .forEach(
+                  function(item) {
+
+                    item.classList.remove(
+                      'active'
+                    );
+
+                  }
+                );
+
+
+              button.classList.add(
+                'active'
+              );
+
+
+              applyRegulasiFilter();
+
+            }
+          );
+
+        }
+      );
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    regulasiSearchInput
+      .addEventListener(
+        'input',
+        function() {
+
+          applyRegulasiFilter();
+
+        }
+      );
+
+
+    /* =====================================================
+       VALUE
+    ===================================================== */
+
+    function getRegulasiValue(
+      row,
+      key
+    ) {
+
+      if (!row) {
+        return '';
+      }
+
+
+      if (
+        Object.prototype.hasOwnProperty.call(
+          row,
+          key
+        )
+      ) {
+
+        return row[key] == null
+          ? ''
+          : String(
+              row[key]
+            ).trim();
+
+      }
+
+
+      return '';
+
+    }
+
+
+    /* =====================================================
+       SCROLL
+    ===================================================== */
+
+    function scrollRegulasiToTable() {
+
+      const table =
+        document.getElementById(
+          'regulasiTableWrapper'
+        );
+
+
+      if (!table) {
+        return;
+      }
+
+
+      table.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
+    }
+
+
+    /* =====================================================
+       ESCAPE
+    ===================================================== */
+
+    function escapeRegulasiHTML(
+      value
+    ) {
+
+      return String(
+        value ?? ''
+      )
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+        .replace(
+          /</g,
+          '&lt;'
+        )
+        .replace(
+          />/g,
+          '&gt;'
+        )
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+    /* =====================================================
+       START
+    ===================================================== */
+
+    loadRegulasi();
+
+  </script>
 
 </body>
 </html>
