@@ -2660,6 +2660,15 @@ if (sheetName === 'DIP') {
       ''
     );
 
+} else if (sheetName === 'LAPORAN') {
+
+  label +=
+    ' — ' +
+    (
+      item.judul_laporan ||
+      ''
+    );
+
 } else {
 
   label +=
