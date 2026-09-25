@@ -745,31 +745,33 @@ const regulasiSort =
             matchesFilter
           );
 
-        });
+                });
+
+      /* SORT BERDASARKAN TAHUN */
+      filteredRegulasi.sort(function(a, b) {
+
+        const tahunA = parseInt(
+          String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
+          10
+        );
+
+        const tahunB = parseInt(
+          String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
+          10
+        );
+
+        if (regulasiSort.value === 'terlama') {
+          return tahunA - tahunB;
+        }
+
+        return tahunB - tahunA;
+      });
 
       regulasiCurrentPage = 1;
 
       renderRegulasi();
 
     }
-   filteredRegulasi.sort(function(a, b) {
-
-  const tahunA = parseInt(
-    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
-
-  const tahunB = parseInt(
-    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
-
-  if (regulasiSort.value === 'terlama') {
-    return tahunA - tahunB;
-  }
-
-  return tahunB - tahunA;
-});
     
     function escapeHTML(value) {
   return String(value ?? "")
