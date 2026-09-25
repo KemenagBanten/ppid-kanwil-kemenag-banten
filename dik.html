@@ -225,7 +225,128 @@
       gap: 15px;
       margin-top: 18px;
     }
+/* =========================
+   DASAR PENETAPAN
+========================= */
 
+.legal-section {
+  margin-top: 55px;
+  padding-top: 10px;
+}
+
+.legal-section .section-heading {
+  margin-bottom: 24px;
+}
+
+.legal-section .section-kicker {
+  display: block;
+  margin-bottom: 8px;
+  color: #0f5132;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.legal-section .section-heading h2 {
+  margin: 0;
+  color: #263a30;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 750;
+}
+
+.legal-section .section-line {
+  width: 48px;
+  height: 3px;
+  margin-top: 14px;
+  background: #0f5132;
+  border-radius: 3px;
+}
+
+.legal-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 26px 28px;
+  background: #ffffff;
+  border: 1px solid #e1e9e4;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+}
+
+.legal-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.legal-card-label {
+  display: block;
+  margin-bottom: 9px;
+  color: #718078;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.legal-card h3 {
+  margin: 0;
+  color: #263a30;
+  font-size: 16px;
+  line-height: 1.65;
+  font-weight: 650;
+}
+
+.legal-card-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #0f5132;
+  border: 1px solid #0f5132;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.legal-card-button:hover {
+  background: #0b4027;
+  border-color: #0b4027;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+
+  .legal-section {
+    margin-top: 40px;
+  }
+
+  .legal-section .section-heading h2 {
+    font-size: 23px;
+  }
+
+  .legal-card {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    padding: 22px;
+  }
+
+  .legal-card-button {
+    width: 100%;
+  }
+
+}
     .dik-page-info {
       color: #718078;
       font-size: 12px;
