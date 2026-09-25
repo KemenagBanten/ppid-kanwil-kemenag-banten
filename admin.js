@@ -2771,9 +2771,9 @@ async function loadLaporanUploadDropdown() {
         item.id || '';
 
       option.textContent =
-        (item.id || '') +
-        ' — ' +
-        (item.judul || '');
+  (item.id || '') +
+  ' — ' +
+  (item.judul_laporan || '');
 
       select.appendChild(option);
 
