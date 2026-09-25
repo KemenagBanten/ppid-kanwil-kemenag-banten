@@ -368,80 +368,159 @@
     }
 
     function dikRenderTable() {
-      const tableWrap = document.getElementById("dikTableWrap");
-      const loading = document.getElementById("dikLoading");
+  const tableWrap = document.getElementById("dikTableWrap");
+  const loading = document.getElementById("dikLoading");
 
-      if (!tableWrap) return;
+  if (!tableWrap) return;
 
-      if (loading) loading.style.display = "none";
+  if (loading) loading.style.display = "none";
 
-      if (!dikFilteredData.length) {
-        tableWrap.innerHTML =
-          '<div class="dik-empty">Tidak ada informasi yang sesuai.</div>';
+  if (!dikFilteredData.length) {
+    tableWrap.innerHTML =
+      '<div class="dik-empty">Tidak ada informasi yang sesuai.</div>';
 
-        document.getElementById("dikResultCount").textContent = "0 informasi";
-        dikRenderPagination();
-        return;
-      }
+    document.getElementById("dikResultCount").textContent =
+      "0 informasi";
 
-      const start = (dikCurrentPage - 1) * DIK_PER_PAGE;
-      const pageRows = dikFilteredData.slice(start, start + DIK_PER_PAGE);
+    dikRenderPagination();
+    return;
+  }
 
-      let html = `
-        <table class="dik-table">
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Informasi</th>
-              <th>Dasar Hukum Pengecualian Informasi</th>
-              <th>Konsekuensi/Pertimbangan bagi Publik</th>
-              <th>Jangka Waktu</th>
-              <th>Dibuka</th>
-              <th>Ditutup</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
+  const start = (dikCurrentPage - 1) * DIK_PER_PAGE;
 
-      pageRows.forEach(function (row, index) {
-        const values = dikGetValues(row);
+  const pageRows = dikFilteredData.slice(
+    start,
+    start + DIK_PER_PAGE
+  );
 
-        const informasi = dikNormalize(values[0]);
-        const dasarHukum = dikNormalize(values[1]);
-        const konsekuensi = dikNormalize(values[2]);
-        const jangkaWaktu = dikNormalize(values[3]);
-        const dibuka = dikNormalize(values[4]);
-        const ditutup = dikNormalize(values[5]);
+  function getField(row, fieldName, fallbackIndex) {
+    if (!row) return "";
 
-        const nomor = start + index + 1;
-
-        html += `
-          <tr>
-            <td>${nomor}</td>
-            <td><div class="dik-cell-title">${dikEscapeHtml(informasi)}</div></td>
-            <td>${dikEscapeHtml(dasarHukum)}</td>
-            <td>${dikEscapeHtml(konsekuensi)}</td>
-            <td>${dikEscapeHtml(jangkaWaktu)}</td>
-            <td style="text-align:center;">${dikEscapeHtml(dibuka)}</td>
-            <td style="text-align:center;">${dikEscapeHtml(ditutup)}</td>
-          </tr>
-        `;
-      });
-
-      html += `
-          </tbody>
-        </table>
-      `;
-
-      tableWrap.innerHTML = html;
-
-      const total = dikFilteredData.length;
-      document.getElementById("dikResultCount").textContent =
-        total + (total === 1 ? " informasi" : " informasi");
-
-      dikRenderPagination();
+    // Jika API mengembalikan object berdasarkan nama kolom
+    if (
+      typeof row === "object" &&
+      !Array.isArray(row) &&
+      Object.prototype.hasOwnProperty.call(row, fieldName)
+    ) {
+      return dikNormalize(row[fieldName]);
     }
 
+    // Fallback jika API mengembalikan array
+    if (Array.isArray(row)) {
+      return dikNormalize(row[fallbackIndex]);
+    }
+
+    return "";
+  }
+
+  let html = `
+    <table class="dik-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Kelompok Informasi</th>
+          <th>Item Informasi</th>
+          <th>Dasar Hukum Pengecualian Informasi</th>
+          <th>Konsekuensi Jika Dibuka</th>
+          <th>Konsekuensi Jika Ditutup</th>
+          <th>Jangka Waktu</th>
+        </tr>
+      </thead>
+
+      <tbody>
+  `;
+
+  pageRows.forEach(function (row, index) {
+
+    const kelompokInformasi = getField(
+      row,
+      "KELOMPOK_INFORMASI",
+      0
+    );
+
+    const itemInformasi = getField(
+      row,
+      "ITEM_INFORMASI",
+      1
+    );
+
+    const dasarHukum = getField(
+      row,
+      "DASAR_HUKUM_PENGECUALIAN_INFORMASI",
+      2
+    );
+
+    const konsekuensiDibuka = getField(
+      row,
+      "KONSEKUENSI_DIBUKA",
+      3
+    );
+
+    const konsekuensiDitutup = getField(
+      row,
+      "KONSEKUENSI_DITUTUP",
+      4
+    );
+
+    const jangkaWaktu = getField(
+      row,
+      "JANGKA_WAKTU",
+      5
+    );
+
+    const nomor = start + index + 1;
+
+    html += `
+      <tr>
+
+        <td>
+          ${nomor}
+        </td>
+
+        <td>
+          <div class="dik-cell-title">
+            ${dikEscapeHtml(kelompokInformasi)}
+          </div>
+        </td>
+
+        <td>
+          ${dikEscapeHtml(itemInformasi)}
+        </td>
+
+        <td>
+          ${dikEscapeHtml(dasarHukum)}
+        </td>
+
+        <td>
+          ${dikEscapeHtml(konsekuensiDibuka)}
+        </td>
+
+        <td>
+          ${dikEscapeHtml(konsekuensiDitutup)}
+        </td>
+
+        <td>
+          ${dikEscapeHtml(jangkaWaktu)}
+        </td>
+
+      </tr>
+    `;
+  });
+
+  html += `
+      </tbody>
+    </table>
+  `;
+
+  tableWrap.innerHTML = html;
+
+  const total = dikFilteredData.length;
+
+  document.getElementById("dikResultCount").textContent =
+    total + " informasi";
+
+  dikRenderPagination();
+}
     function dikRenderPagination() {
       const totalPages = Math.max(
         1,
