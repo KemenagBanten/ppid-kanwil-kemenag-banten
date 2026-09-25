@@ -487,9 +487,9 @@
             <button
               type="button"
               class="regulasi-filter-btn"
-              data-filter="Keputusan Kepala Kantor Wilayah"
+              data-filter="Keputusan Kepala Kanwil"
             >
-              Keputusan Kepala Kantor Wilayah
+              Keputusan Kepala Kanwil
             </button>
 
             <button
@@ -550,7 +550,31 @@
   <div id="accessibility"></div>
 
   <script src="layout.js"></script>
+<script>
+document.addEventListener("layout:loaded", function () {
+  const hero = document.getElementById("innerHero");
 
+  if (!hero) return;
+
+  const kicker = hero.querySelector(".inner-hero-kicker");
+  const title = hero.querySelector(".inner-hero-title");
+  const description = hero.querySelector(".inner-hero-description");
+
+  if (kicker) {
+    kicker.textContent = "REGULASI";
+  }
+
+  if (title) {
+    title.textContent =
+      "Regulasi Kanwil Kementerian Agama Provinsi Banten";
+  }
+
+  if (description) {
+    description.textContent =
+      "Daftar regulasi yang ditetapkan dan digunakan di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.";
+  }
+});
+</script>
   <script>
     const REGULASI_API_URL =
       'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
