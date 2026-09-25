@@ -198,6 +198,37 @@
   box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
 }
 
+    .informasi-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.informasi-sort label {
+  color: #66736c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#informasiSort {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #dfe7e2;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #53615a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+#informasiSort:focus {
+  border-color: #0f5132;
+  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
+}
+    
     /* =====================================================
        RESULT HEADER
     ===================================================== */
@@ -1016,7 +1047,14 @@
       </div>
 
     </section>
+<div class="informasi-sort">
+  <label for="informasiSort">Urutkan:</label>
 
+  <select id="informasiSort">
+    <option value="terbaru">Terbaru → Terlama</option>
+    <option value="terlama">Terlama → Terbaru</option>
+  </select>
+</div>
 
     <!-- RESULT HEADER -->
 
@@ -1124,6 +1162,9 @@
 
     const pagination =
       document.getElementById('pagination');
+
+    const informasiSort =
+  document.getElementById('informasiSort');
 
 
        /* =====================================================
@@ -1530,7 +1571,31 @@
 
           }
         );
+filteredInformasi.sort(function(a, b) {
 
+  const tahunA = parseInt(
+    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
+
+  const tahunB = parseInt(
+    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
+    10
+  );
+
+  if (informasiSort.value === 'terlama') {
+    return tahunA - tahunB;
+  }
+
+  return tahunB - tahunA;
+});
+
+      informasiSort.addEventListener(
+  'change',
+  function() {
+    applyInformasiFilter();
+  }
+);
 
       renderData(
         filtered
