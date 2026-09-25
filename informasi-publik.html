@@ -135,6 +135,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 0;
 }
 
 .informasi-sort label {
@@ -165,47 +166,24 @@
        RESULT HEADER
     ===================================================== */
 
-    .result-header {
+   .result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 12px;
+}
 
-      display:
-        flex;
+.result-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #263a30;
+}
 
-      align-items:
-        center;
-
-      justify-content:
-        space-between;
-
-      gap:
-        15px;
-
-      margin-bottom:
-        12px;
-    }
-
-
-    .result-header h2 {
-
-      font-size:
-        22px;
-
-      color:
-        #26352e;
-    }
-
-
-    #resultCount {
-
-      font-size:
-        13px;
-
-      color:
-        #738079;
-
-      white-space:
-        nowrap;
-    }
-
+#resultCount {
+  color: #718078;
+  font-size: 12px;
+}
 
     /* =====================================================
        ERROR
