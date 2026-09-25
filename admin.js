@@ -222,17 +222,24 @@ const laporanJenis =
 const laporanTahun =
   document.getElementById('laporanTahun');
 
-const laporanRingkasan =
-  document.getElementById('laporanRingkasan');
+const laporanForm =
+  document.getElementById('laporanForm');
 
-const laporanStatus =
-  document.getElementById('laporanStatus');
+const laporanJudul =
+  document.getElementById('laporanJudul');
+
+const laporanJenis =
+  document.getElementById('laporanJenis');
+
+const laporanTahun =
+  document.getElementById('laporanTahun');
 
 const saveLaporanButton =
   document.getElementById('saveLaporanButton');
 
 const laporanStatusBox =
   document.getElementById('laporanStatusBox');
+  
 // =========================================================
 // TAMBAH SOP - SUBMIT
 // =========================================================
@@ -713,13 +720,6 @@ if (laporanForm) {
         const tahun =
           laporanTahun.value;
 
-        const ringkasan =
-          laporanRingkasan.value.trim();
-
-        const status =
-          laporanStatus.value;
-
-
         // =====================================================
         // VALIDASI
         // =====================================================
@@ -772,20 +772,15 @@ if (laporanForm) {
 
         const payload = {
 
-          action: 'tambahLaporan',
+  action: 'tambahLaporan',
 
-          judul: judul,
+  judul: judul,
 
-          jenis: jenis,
+  jenis: jenis,
 
-          tahun: tahun,
+  tahun: tahun
 
-          ringkasan: ringkasan,
-
-          status: status
-
-        };
-
+};
 
         console.log(
           'PAYLOAD TAMBAH LAPORAN:',
