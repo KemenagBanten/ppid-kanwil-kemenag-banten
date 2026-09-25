@@ -4,492 +4,283 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Daftar Informasi Dikecualikan - PPID Kanwil Kemenag Banten</title>
+  <title>Informasi Dikecualikan — PPID Kanwil Kementerian Agama Provinsi Banten</title>
+
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    * {
-      box-sizing: border-box;
+    .dik-page {
+      padding: 60px 0 80px;
     }
 
-    body {
+    .dik-intro {
+      margin-bottom: 28px;
+    }
+
+    .dik-intro .section-kicker {
+      margin-bottom: 8px;
+    }
+
+    .dik-intro h2 {
+      margin: 0 0 10px;
+    }
+
+    .dik-intro p {
       margin: 0;
-      font-family:
-        Inter,
-        "Segoe UI",
-        Arial,
-        Helvetica,
-        sans-serif;
-      background: #f5f7f6;
-      color: #26352e;
-      line-height: 1.6;
+      max-width: 850px;
+      line-height: 1.7;
+      color: #66736c;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #ffffff;
-      color: #17352a;
-      border-bottom: 1px solid #e5ebe7;
-      box-shadow: 0 2px 12px rgba(25, 60, 45, 0.06);
-    }
-
-    .header-inner {
-      width: min(1180px, 92%);
-      min-height: 76px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      min-width: 0;
-      color: #17352a;
-      text-decoration: none;
-    }
-
-    .header-logo {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .header-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .header-text {
-      min-width: 0;
+    .dik-toolbar {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      text-align: left;
-      line-height: 1.2;
-    }
-
-    .header-text h1 {
-      margin: 0;
-      color: #17352a !important;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 0.15px;
-    }
-
-    .header-text p {
-      margin: 4px 0 0;
-      color: #66756e !important;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.35px;
-    }
-
-    .header nav {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-    }
-
-    .header nav a {
-      color: #40544b !important;
-      text-decoration: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all .2s ease;
-    }
-
-    .header nav a:hover {
-      color: #0f5132 !important;
-      background: #edf6f1;
-    }
-
-    .header nav a.active {
-      color: #0f5132 !important;
-      background: #e8f3ed;
-      font-weight: 700;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      background:
-        linear-gradient(
-          135deg,
-          #123d2d 0%,
-          #176044 55%,
-          #0f5132 100%
-        );
-      color: #ffffff;
-      padding: 55px 20px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: rgba(205, 176, 130, 0.10);
-      top: -140px;
-      right: -80px;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.04);
-      bottom: -120px;
-      left: -70px;
-    }
-
-    .hero-inner {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-label {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      color: #e5d1aa;
+      gap: 14px;
       margin-bottom: 10px;
     }
 
-    .hero h2 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.15;
-      font-weight: 750;
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: 0;
-      color: rgba(255,255,255,.84);
-      font-size: 14px;
-    }
-
-    /* =========================
-       CONTENT
-    ========================= */
-
-    .container {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-    }
-
-    .content {
-      padding: 35px 0 70px;
-    }
-
-    .toolbar {
-      background: #ffffff;
-      border: 1px solid #e5ebe7;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 22px;
-      box-shadow: 0 4px 18px rgba(25, 60, 45, 0.05);
-    }
-
-    .search-box {
+    .dik-search-wrapper {
       position: relative;
-    }
-
-    .search-box input {
       width: 100%;
-      border: 1px solid #dce5df;
-      border-radius: 10px;
-      padding: 13px 16px;
+    }
+
+    .dik-search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #7a8781;
+      pointer-events: none;
+    }
+
+    #dikSearchInput {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px 0 44px;
+      box-sizing: border-box;
+      border: 1px solid #dfe7e2;
+      border-radius: 9px;
+      background: #ffffff;
+      color: #34433b;
       font-family: inherit;
-      font-size: 14px;
-      color: #26352e;
+      font-size: 13px;
       outline: none;
-      background: #fbfcfb;
-      transition: .2s ease;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
-    .search-box input:focus {
-      border-color: #6b9b84;
-      box-shadow: 0 0 0 3px rgba(23, 96, 68, 0.08);
-      background: #ffffff;
+    #dikSearchInput:focus {
+      border-color: #0f5132;
+      box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
     }
 
-    /* =========================
-       TABLE CARD
-    ========================= */
-
-    .table-card {
-      background: #ffffff;
-      border: 1px solid #e5ebe7;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 5px 22px rgba(25, 60, 45, 0.06);
-    }
-
-    .table-header {
-      padding: 20px 22px;
-      border-bottom: 1px solid #e9efeb;
+    .dik-result-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 15px;
+      margin-top: 36px;
+      margin-bottom: 12px;
     }
 
-    .table-header h3 {
+    .dik-result-header h3 {
       margin: 0;
-      color: #17352a;
       font-size: 18px;
+      color: #263a30;
     }
 
-    .table-header span {
-      color: #75837d;
+    #dikResultCount {
+      color: #718078;
       font-size: 12px;
     }
 
-    .table-wrapper {
+    .dik-data-list {
       width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
       overflow-x: auto;
+      overflow-y: hidden;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
     }
 
-    table {
+    .dik-table {
       width: 100%;
-      border-collapse: collapse;
-      min-width: 1000px;
+      min-width: 1050px;
+      border-collapse: separate;
+      border-spacing: 0;
+      table-layout: fixed;
     }
 
-    th {
-      background: #f1f6f3;
-      color: #29463a;
-      font-size: 12px;
-      font-weight: 700;
+    .dik-table th {
+      background: #0f5132;
+      color: #ffffff;
+      padding: 14px 12px;
       text-align: left;
-      padding: 14px 15px;
-      border-bottom: 1px solid #dfe8e2;
-      white-space: nowrap;
-    }
-
-    td {
-      padding: 16px 15px;
-      border-bottom: 1px solid #edf1ee;
-      vertical-align: top;
       font-size: 13px;
-      color: #405149;
+      font-weight: 700;
+      line-height: 1.35;
+      border-right: 1px solid rgba(255,255,255,0.10);
     }
 
-    tbody tr:hover {
-      background: #fafcfb;
+    .dik-table th:last-child {
+      border-right: none;
     }
 
-    tbody tr:last-child td {
+    .dik-table th:first-child {
+      width: 55px;
+      text-align: center;
+    }
+
+    .dik-table th:nth-child(2) {
+      width: 24%;
+    }
+
+    .dik-table th:nth-child(3) {
+      width: 25%;
+    }
+
+    .dik-table th:nth-child(4) {
+      width: 25%;
+    }
+
+    .dik-table th:nth-child(5) {
+      width: 12%;
+    }
+
+    .dik-table th:nth-child(6),
+    .dik-table th:nth-child(7) {
+      width: 9%;
+      text-align: center;
+    }
+
+    .dik-table td {
+      padding: 15px 12px;
+      border-bottom: 1px solid #e8eeeb;
+      color: #53615a;
+      font-size: 13px;
+      line-height: 1.65;
+      vertical-align: top;
+      background: #ffffff;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .dik-table td:first-child {
+      text-align: center;
+      color: #718078;
+      font-weight: 600;
+    }
+
+    .dik-table tr:last-child td {
       border-bottom: none;
     }
 
-    .number {
-      width: 55px;
-      text-align: center;
-      font-weight: 700;
-      color: #17352a;
+    .dik-table tr:hover td {
+      background: #fbfdfc;
     }
 
-    .info-title {
-      min-width: 250px;
-      color: #17352a;
+    .dik-cell-title {
+      color: #263a30;
       font-weight: 700;
     }
 
-    .reason {
-      min-width: 260px;
-    }
-
-    .legal {
-      min-width: 260px;
-    }
-
-    .period {
-      min-width: 170px;
-    }
-
-    .date {
-      min-width: 130px;
-      white-space: nowrap;
-    }
-
-    /* =========================
-       STATUS
-    ========================= */
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .status-published {
-      color: #176044;
-      background: #e8f4ed;
-    }
-
-    .status-draft {
-      color: #86651f;
-      background: #faf2dc;
-    }
-
-    .status-other {
-      color: #5c6862;
-      background: #eef1ef;
-    }
-
-    /* =========================
-       EMPTY / LOADING
-    ========================= */
-
-    .state {
-      padding: 50px 25px;
+    .dik-empty {
+      padding: 40px 20px;
       text-align: center;
       color: #718078;
-      font-size: 14px;
-    }
-
-    .state strong {
-      display: block;
-      color: #34463e;
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-
-    /* =========================
-       INFO BOX
-    ========================= */
-
-    .info-box {
-      margin-top: 22px;
-      padding: 18px 20px;
-      border-left: 4px solid #cdb082;
-      background: #fffdf8;
-      border-radius: 10px;
-      color: #5d5a50;
       font-size: 13px;
     }
 
-    .info-box strong {
-      color: #4c4639;
+    .dik-loading {
+      padding: 40px 20px;
+      text-align: center;
+      color: #718078;
+      font-size: 13px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #17352a;
-      color: rgba(255,255,255,.75);
-      padding: 28px 20px;
+    .dik-error {
+      display: none;
+      margin: 14px 0;
+      padding: 14px 16px;
+      border: 1px solid #ead6d6;
+      border-radius: 9px;
+      background: #fff8f8;
+      color: #8a4141;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
-    .footer-inner {
-      width: min(1180px, 92%);
-      margin: 0 auto;
+    .dik-pagination {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 18px;
     }
 
-    .footer-brand {
-      font-size: 13px;
+    .dik-page-info {
+      color: #718078;
+      font-size: 12px;
+    }
+
+    .dik-page-buttons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dik-page-btn {
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border: 1px solid #dfe7e2;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 12px;
       font-weight: 600;
+      cursor: pointer;
+    }
+
+    .dik-page-btn:hover:not(:disabled) {
+      border-color: #cbdad1;
+      background: #f4f8f5;
+      color: #0f5132;
+    }
+
+    .dik-page-btn.active {
+      border-color: #0f5132;
+      background: #0f5132;
       color: #ffffff;
     }
 
-    .footer-copy {
-      font-size: 11px;
+    .dik-page-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    @media (max-width: 680px) {
+      .dik-page {
+        padding: 30px 18px 55px;
+      }
 
-    @media (max-width: 800px) {
-
-      .header-inner {
-        min-height: auto;
-        padding: 13px 0;
-        flex-direction: column;
+      .dik-result-header {
         align-items: flex-start;
-        gap: 12px;
+        flex-direction: column;
+        gap: 5px;
       }
 
-      .header nav {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 3px;
-      }
-
-      .header nav a {
-        white-space: nowrap;
-      }
-
-      .hero {
-        padding: 42px 20px 48px;
-      }
-
-      .hero h2 {
-        font-size: 30px;
-      }
-
-      .content {
-        padding-top: 25px;
-      }
-
-      .table-header {
+      .dik-pagination {
         align-items: flex-start;
         flex-direction: column;
       }
 
-      .toolbar {
-        padding: 14px;
-      }
-
-      footer {
-        text-align: center;
-      }
-
-      .footer-inner {
-        justify-content: center;
+      .dik-page-buttons {
+        flex-wrap: wrap;
       }
     }
   </style>
@@ -497,596 +288,384 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+  <div id="siteNavbar"></div>
+  <div id="innerHero"></div>
 
-  <header class="header">
-    <div class="header-inner">
-
-      <a href="index.html" class="header-brand">
-
-        <div class="header-logo">
-          <img
-            src="assets/logo-kemenag.png"
-            alt="Logo Kementerian Agama"
-          >
-        </div>
-
-        <div class="header-text">
-          <h1>PPID Kanwil Kementerian Agama Provinsi Banten</h1>
-          <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
-        </div>
-
-      </a>
-
-      <nav>
-        <nav>
-
- <nav>
-  <a href="index.html">
-    Beranda
-  </a>
-
-  <a href="informasi-publik.html">
-    Informasi Publik
-  </a>
-
-  <a href="dip.html">
-    DIP
-  </a>
-
-  <a href="dik.html" class="active">
-    DIK
-  </a>
-
-  <a href="berita.html">
-    Berita
-  </a>
-
-  <a href="pengumuman.html">
-    Pengumuman
-  </a>
-</nav>
-</nav>
-      </nav>
-
-    </div>
-  </header>
-
-
-  <!-- =========================
-       HERO
-  ========================= -->
-
-  <section class="hero">
-
-    <div class="hero-inner">
-
-      <div class="hero-label">
-        INFORMASI PUBLIK
-      </div>
-
-      <h2>
-        Daftar Informasi Dikecualikan
-      </h2>
-
-      <p>
-        Daftar informasi yang dikecualikan dari keterbukaan informasi
-        publik berdasarkan ketentuan peraturan perundang-undangan
-        dan pertimbangan pengecualian informasi.
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       CONTENT
-  ========================= -->
-
-  <main class="content">
+  <main class="dik-page">
 
     <div class="container">
 
-      <!-- SEARCH -->
+      <section class="dik-intro">
+        <span class="section-kicker">INFORMASI DIKECUALIKAN</span>
+        <h2>Daftar Informasi Dikecualikan</h2>
+        <p>
+          Informasi yang dikecualikan dari keterbukaan informasi publik
+          pada Kantor Wilayah Kementerian Agama Provinsi Banten.
+        </p>
+      </section>
 
-      <div class="toolbar">
-
-        <div class="search-box">
-
+      <section class="dik-toolbar">
+        <div class="dik-search-wrapper">
+          <span class="dik-search-icon">⌕</span>
           <input
-            type="search"
-            id="searchInput"
-            placeholder="Cari informasi, alasan pengecualian, atau dasar hukum..."
+            type="text"
+            id="dikSearchInput"
+            placeholder="Cari informasi, dasar hukum, konsekuensi, atau kata kunci..."
             autocomplete="off"
           >
-
         </div>
+      </section>
 
+      <div class="dik-result-header">
+        <h3>Daftar Informasi Dikecualikan</h3>
+        <span id="dikResultCount">Memuat data...</span>
       </div>
 
+      <div id="dikError" class="dik-error"></div>
 
-      <!-- TABLE -->
-
-      <div class="table-card">
-
-        <div class="table-header">
-
-          <h3>
-            Daftar Informasi Dikecualikan
-          </h3>
-
-          <span id="recordCount">
-            Memuat data...
-          </span>
-
+      <div class="dik-data-list">
+        <div id="dikLoading" class="dik-loading">
+          Memuat informasi dikecualikan...
         </div>
 
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th class="number">No.</th>
-                <th>Informasi</th>
-                <th>Alasan Pengecualian</th>
-                <th>Dasar Hukum</th>
-                <th>Jangka Waktu</th>
-                <th>Tanggal Update</th>
-                <th>Status</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="dikTableBody">
-
-              <tr>
-                <td colspan="7">
-
-                  <div class="state">
-                    Memuat data DIK...
-                  </div>
-
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
+        <div id="dikTableWrap"></div>
       </div>
 
-
-      <!-- INFO -->
-
-      <div class="info-box">
-
-        <strong>Catatan:</strong>
-        Informasi yang tercantum dalam Daftar Informasi Dikecualikan
-        merupakan informasi yang berdasarkan ketentuan peraturan
-        perundang-undangan tidak dapat diberikan kepada pemohon
-        informasi publik secara terbuka, sesuai dengan dasar hukum
-        dan pertimbangan pengecualian yang berlaku.
-
+      <div class="dik-pagination">
+        <div id="dikPageInfo" class="dik-page-info"></div>
+        <div id="dikPageButtons" class="dik-page-buttons"></div>
       </div>
 
     </div>
 
   </main>
 
+  <div id="siteFooter"></div>
+  <div id="accessibility"></div>
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <div class="footer-inner">
-
-      <div class="footer-brand">
-        PPID Kanwil Kementerian Agama Provinsi Banten
-      </div>
-
-      <div class="footer-copy">
-        © 2026 Kementerian Agama Provinsi Banten
-      </div>
-
-    </div>
-
-  </footer>
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================= -->
+  <script src="layout.js"></script>
 
   <script>
+    const DIK_API_URL =
+      "https://script.google.com/macros/s/AKfcyby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec";
 
-    const API_URL =
-      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+    const DIK_PER_PAGE = 10;
 
+    let dikAllData = [];
+    let dikFilteredData = [];
+    let dikCurrentPage = 1;
 
-    const tableBody =
-      document.getElementById('dikTableBody');
+    function dikGetValues(row) {
+      if (!row || typeof row !== "object") return [];
 
-    const searchInput =
-      document.getElementById('searchInput');
+      if (Array.isArray(row)) return row;
 
-    const recordCount =
-      document.getElementById('recordCount');
-
-
-    let allData = [];
-
-
-    /* =========================
-       ESCAPE HTML
-    ========================= */
-
-    function escapeHTML(value) {
-
-      return String(value ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-
+      return Object.keys(row).map(function (key) {
+        return row[key];
+      });
     }
 
-
-    /* =========================
-       FORMAT DATE
-    ========================= */
-
-    function formatDate(value) {
-
-      if (!value) {
-        return '-';
-      }
-
-      const date = new Date(value);
-
-      if (isNaN(date.getTime())) {
-        return escapeHTML(value);
-      }
-
-      return date.toLocaleDateString(
-        'id-ID',
-        {
-          day: '2-digit',
-          month: 'short',
-          year: 'numeric'
-        }
-      );
-
+    function dikNormalize(value) {
+      return String(value ?? "")
+        .replace(/\s+/g, " ")
+        .trim();
     }
 
-
-    /* =========================
-       STATUS CLASS
-    ========================= */
-
-    function getStatusClass(status) {
-
-      const value =
-        String(status || '')
-          .toLowerCase()
-          .trim();
-
-      if (
-        value === 'published' ||
-        value === 'publish' ||
-        value === 'diterbitkan'
-      ) {
-        return 'status-published';
-      }
-
-      if (
-        value === 'draft' ||
-        value === 'draf'
-      ) {
-        return 'status-draft';
-      }
-
-      return 'status-other';
-
+    function dikEscapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
 
+    function dikShowError(message) {
+      const errorBox = document.getElementById("dikError");
+      if (!errorBox) return;
 
-    /* =========================
-       RENDER TABLE
-    ========================= */
+      errorBox.textContent = message;
+      errorBox.style.display = "block";
+    }
 
-    function renderTable(data) {
+    function dikHideError() {
+      const errorBox = document.getElementById("dikError");
+      if (errorBox) errorBox.style.display = "none";
+    }
 
-      if (!data || data.length === 0) {
+    function dikRenderTable() {
+      const tableWrap = document.getElementById("dikTableWrap");
+      const loading = document.getElementById("dikLoading");
 
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="7">
-              <div class="state">
-                <strong>Belum ada data DIK.</strong>
-                Data Daftar Informasi Dikecualikan belum tersedia.
-              </div>
-            </td>
-          </tr>
-        `;
+      if (!tableWrap) return;
 
-        recordCount.textContent =
-          '0 data';
+      if (loading) loading.style.display = "none";
 
+      if (!dikFilteredData.length) {
+        tableWrap.innerHTML =
+          '<div class="dik-empty">Tidak ada informasi yang sesuai.</div>';
+
+        document.getElementById("dikResultCount").textContent = "0 informasi";
+        dikRenderPagination();
         return;
       }
 
+      const start = (dikCurrentPage - 1) * DIK_PER_PAGE;
+      const pageRows = dikFilteredData.slice(start, start + DIK_PER_PAGE);
 
-      recordCount.textContent =
-        data.length + ' data';
-
-
-      tableBody.innerHTML =
-        data.map(function(row, index) {
-
-          const nomor =
-            row.nomor ||
-            (index + 1);
-
-          const informasi =
-            row.nama_informasi ||
-            '-';
-
-          const alasan =
-            row.alasan_pengecualian ||
-            '-';
-
-          const dasarHukum =
-            row.dasar_hukum ||
-            '-';
-
-          const jangkaWaktu =
-            row.jangka_waktu ||
-            '-';
-
-          const tanggalUpdate =
-            formatDate(row.tanggal_update);
-
-          const status =
-            row.status ||
-            '-';
-
-          return `
-
+      let html = `
+        <table class="dik-table">
+          <thead>
             <tr>
-
-              <td class="number">
-                ${escapeHTML(nomor)}
-              </td>
-
-              <td class="info-title">
-                ${escapeHTML(informasi)}
-              </td>
-
-              <td class="reason">
-                ${escapeHTML(alasan)}
-              </td>
-
-              <td class="legal">
-                ${escapeHTML(dasarHukum)}
-              </td>
-
-              <td class="period">
-                ${escapeHTML(jangkaWaktu)}
-              </td>
-
-              <td class="date">
-                ${tanggalUpdate}
-              </td>
-
-              <td>
-                <span class="status ${getStatusClass(status)}">
-                  ${escapeHTML(status)}
-                </span>
-              </td>
-
+              <th>No.</th>
+              <th>Informasi</th>
+              <th>Dasar Hukum Pengecualian Informasi</th>
+              <th>Konsekuensi/Pertimbangan bagi Publik</th>
+              <th>Jangka Waktu</th>
+              <th>Dibuka</th>
+              <th>Ditutup</th>
             </tr>
+          </thead>
+          <tbody>
+      `;
 
-          `;
+      pageRows.forEach(function (row, index) {
+        const values = dikGetValues(row);
 
-        }).join('');
+        const informasi = dikNormalize(values[0]);
+        const dasarHukum = dikNormalize(values[1]);
+        const konsekuensi = dikNormalize(values[2]);
+        const jangkaWaktu = dikNormalize(values[3]);
+        const dibuka = dikNormalize(values[4]);
+        const ditutup = dikNormalize(values[5]);
 
+        const nomor = start + index + 1;
+
+        html += `
+          <tr>
+            <td>${nomor}</td>
+            <td><div class="dik-cell-title">${dikEscapeHtml(informasi)}</div></td>
+            <td>${dikEscapeHtml(dasarHukum)}</td>
+            <td>${dikEscapeHtml(konsekuensi)}</td>
+            <td>${dikEscapeHtml(jangkaWaktu)}</td>
+            <td style="text-align:center;">${dikEscapeHtml(dibuka)}</td>
+            <td style="text-align:center;">${dikEscapeHtml(ditutup)}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+          </tbody>
+        </table>
+      `;
+
+      tableWrap.innerHTML = html;
+
+      const total = dikFilteredData.length;
+      document.getElementById("dikResultCount").textContent =
+        total + (total === 1 ? " informasi" : " informasi");
+
+      dikRenderPagination();
     }
 
+    function dikRenderPagination() {
+      const totalPages = Math.max(
+        1,
+        Math.ceil(dikFilteredData.length / DIK_PER_PAGE)
+      );
 
-    /* =========================
-       LOAD DIK
-    ========================= */
+      const pageInfo = document.getElementById("dikPageInfo");
+      const pageButtons = document.getElementById("dikPageButtons");
+
+      if (!pageInfo || !pageButtons) return;
+
+      if (!dikFilteredData.length) {
+        pageInfo.textContent = "";
+        pageButtons.innerHTML = "";
+        return;
+      }
+
+      const start = (dikCurrentPage - 1) * DIK_PER_PAGE + 1;
+      const end = Math.min(
+        dikCurrentPage * DIK_PER_PAGE,
+        dikFilteredData.length
+      );
+
+      pageInfo.textContent =
+        "Menampilkan " +
+        start +
+        "–" +
+        end +
+        " dari " +
+        dikFilteredData.length +
+        " informasi";
+
+      let html = `
+        <button
+          type="button"
+          class="dik-page-btn"
+          ${dikCurrentPage === 1 ? "disabled" : ""}
+          onclick="dikGoToPage(${dikCurrentPage - 1})"
+        >
+          ‹
+        </button>
+      `;
+
+      for (let page = 1; page <= totalPages; page++) {
+        html += `
+          <button
+            type="button"
+            class="dik-page-btn ${page === dikCurrentPage ? "active" : ""}"
+            onclick="dikGoToPage(${page})"
+          >
+            ${page}
+          </button>
+        `;
+      }
+
+      html += `
+        <button
+          type="button"
+          class="dik-page-btn"
+          ${dikCurrentPage === totalPages ? "disabled" : ""}
+          onclick="dikGoToPage(${dikCurrentPage + 1})"
+        >
+          ›
+        </button>
+      `;
+
+      pageButtons.innerHTML = html;
+    }
+
+    function dikGoToPage(page) {
+      const totalPages = Math.max(
+        1,
+        Math.ceil(dikFilteredData.length / DIK_PER_PAGE)
+      );
+
+      if (page < 1 || page > totalPages) return;
+
+      dikCurrentPage = page;
+      dikRenderTable();
+
+      const tableWrap = document.querySelector(".dik-data-list");
+      if (tableWrap) {
+        tableWrap.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+
+    function dikApplySearch() {
+      const input = document.getElementById("dikSearchInput");
+      const keyword = dikNormalize(input ? input.value : "").toLowerCase();
+
+      dikFilteredData = dikAllData.filter(function (row) {
+        if (!keyword) return true;
+
+        const values = dikGetValues(row);
+
+        return values.some(function (value) {
+          return dikNormalize(value)
+            .toLowerCase()
+            .includes(keyword);
+        });
+      });
+
+      dikCurrentPage = 1;
+      dikRenderTable();
+    }
 
     async function loadDIK() {
+      const loading = document.getElementById("dikLoading");
 
       try {
+        dikHideError();
 
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="7">
-              <div class="state">
-                Memuat data DIK...
-              </div>
-            </td>
-          </tr>
-        `;
-
-        recordCount.textContent =
-          'Memuat data...';
-
-
-        const response =
-          await fetch(
-            API_URL + '?action=dik'
-          );
-
+        const response = await fetch(
+          DIK_API_URL + "?action=dik"
+        );
 
         if (!response.ok) {
-
           throw new Error(
-            'HTTP Error ' +
-            response.status
+            "HTTP " + response.status + " saat mengambil data DIK."
           );
-
         }
 
+        const result = await response.json();
 
-        const result =
-          await response.json();
-
-
-        console.log(
-          'Response DIK:',
-          result
-        );
-
-
-        if (
-          result.success !== true
-        ) {
-
+        if (!result || result.success !== true) {
           throw new Error(
-            result.message ||
-            'API DIK mengembalikan success=false'
+            result && result.message
+              ? result.message
+              : "API DIK mengembalikan success=false."
           );
-
         }
 
-
-        if (
-          !Array.isArray(result.data)
-        ) {
-
-          throw new Error(
-            'Format data DIK tidak valid.'
-          );
-
+        if (!Array.isArray(result.data)) {
+          throw new Error("Format data DIK tidak sesuai.");
         }
 
+        dikAllData = result.data;
+        dikFilteredData = dikAllData.slice();
 
-        allData =
-          result.data;
+        if (loading) loading.style.display = "none";
 
-
-        renderTable(allData);
-
+        dikRenderTable();
 
       } catch (error) {
+        console.error("Gagal memuat DIK:", error);
 
-        console.error(
-          'Error load DIK:',
-          error
+        if (loading) loading.style.display = "none";
+
+        dikShowError(
+          "Data Informasi Dikecualikan belum dapat dimuat. " +
+          error.message
         );
 
+        document.getElementById("dikResultCount").textContent =
+          "Gagal memuat data";
 
-        tableBody.innerHTML = `
-          <tr>
-            <td colspan="7">
-
-              <div class="state">
-
-                <strong>
-                  Data DIK gagal dimuat.
-                </strong>
-
-                ${escapeHTML(error.message)}
-
-              </div>
-
-            </td>
-          </tr>
-        `;
-
-
-        recordCount.textContent =
-          'Gagal memuat';
-
+        document.getElementById("dikTableWrap").innerHTML = "";
       }
-
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchInput =
+        document.getElementById("dikSearchInput");
 
-    /* =========================
-       SEARCH
-    ========================= */
+      if (searchInput) {
+        searchInput.addEventListener("input", dikApplySearch);
+      }
 
-    searchInput.addEventListener(
-      'input',
-      function() {
+      document.addEventListener("layout:loaded", function () {
+        const kicker =
+          document.getElementById("innerHeroKicker");
 
-        const keyword =
-          this.value
-            .toLowerCase()
-            .trim();
+        const title =
+          document.getElementById("innerHeroTitle");
 
+        const description =
+          document.getElementById("innerHeroDescription");
 
-        if (!keyword) {
-
-          renderTable(allData);
-
-          return;
-
+        if (kicker) {
+          kicker.textContent = "INFORMASI DIKECUALIKAN";
         }
 
+        if (title) {
+          title.textContent = "Informasi Dikecualikan";
+        }
 
-        const filtered =
-          allData.filter(function(row) {
+        if (description) {
+          description.textContent =
+            "Daftar informasi yang dikecualikan dari keterbukaan informasi publik pada Kantor Wilayah Kementerian Agama Provinsi Banten.";
+        }
 
-            const text = [
-
-              row.nomor,
-
-              row.nama_informasi,
-
-              row.alasan_pengecualian,
-
-              row.dasar_hukum,
-
-              row.jangka_waktu,
-
-              row.tanggal_update,
-
-              row.status
-
-            ]
-              .filter(Boolean)
-              .join(' ')
-              .toLowerCase();
-
-
-            return text.includes(keyword);
-
-          });
-
-
-        renderTable(filtered);
-
-      }
-    );
-
-
-    /* =========================
-       START
-    ========================= */
-
-    document.addEventListener(
-      'DOMContentLoaded',
-      loadDIK
-    );
-
+        loadDIK();
+      });
+    });
   </script>
 
 </body>
 </html>
-
