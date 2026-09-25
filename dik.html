@@ -13,6 +13,10 @@
       padding: 60px 0 80px;
     }
 
+    /* =========================
+       SEARCH
+    ========================= */
+
     .dik-toolbar {
       display: flex;
       flex-direction: column;
@@ -57,6 +61,10 @@
       box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
     }
 
+    /* =========================
+       RESULT HEADER
+    ========================= */
+
     .dik-result-header {
       display: flex;
       align-items: center;
@@ -76,6 +84,10 @@
       color: #718078;
       font-size: 12px;
     }
+
+    /* =========================
+       TABLE
+    ========================= */
 
     .dik-data-list {
       width: 100%;
@@ -103,41 +115,43 @@
       font-size: 13px;
       font-weight: 700;
       line-height: 1.35;
-      border-right: 1px solid rgba(255,255,255,0.10);
+      border-right: 1px solid rgba(255, 255, 255, 0.10);
     }
 
     .dik-table th:last-child {
       border-right: none;
     }
 
+    /* Proporsi kolom */
+
     .dik-table th:first-child {
-  width: 5%;
-  text-align: center;
-}
+      width: 5%;
+      text-align: center;
+    }
 
-.dik-table th:nth-child(2) {
-  width: 17%;
-}
+    .dik-table th:nth-child(2) {
+      width: 17%;
+    }
 
-.dik-table th:nth-child(3) {
-  width: 14%;
-}
+    .dik-table th:nth-child(3) {
+      width: 14%;
+    }
 
-.dik-table th:nth-child(4) {
-  width: 19%;
-}
+    .dik-table th:nth-child(4) {
+      width: 19%;
+    }
 
-.dik-table th:nth-child(5) {
-  width: 17%;
-}
+    .dik-table th:nth-child(5) {
+      width: 17%;
+    }
 
-.dik-table th:nth-child(6) {
-  width: 17%;
-}
+    .dik-table th:nth-child(6) {
+      width: 17%;
+    }
 
-.dik-table th:nth-child(7) {
-  width: 11%;
-}
+    .dik-table th:nth-child(7) {
+      width: 11%;
+    }
 
     .dik-table td {
       padding: 15px 12px;
@@ -170,6 +184,10 @@
       font-weight: 700;
     }
 
+    /* =========================
+       STATE
+    ========================= */
+
     .dik-empty {
       padding: 40px 20px;
       text-align: center;
@@ -196,6 +214,10 @@
       line-height: 1.6;
     }
 
+    /* =========================
+       PAGINATION
+    ========================= */
+
     .dik-pagination {
       display: flex;
       align-items: center;
@@ -203,311 +225,700 @@
       gap: 15px;
       margin-top: 18px;
     }
+
+    .dik-page-info {
+      color: #718078;
+      font-size: 12px;
+    }
+
+    .dik-page-buttons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .dik-page-btn {
+      min-width: 34px;
+      height: 34px;
+      padding: 0 9px;
+      border: 1px solid #dfe7e2;
+      border-radius: 7px;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .dik-page-btn:hover:not(:disabled) {
+      background: #f4f8f5;
+      border-color: #cbdad1;
+      color: #0f5132;
+    }
+
+    .dik-page-btn.active {
+      background: #0f5132;
+      border-color: #0f5132;
+      color: #ffffff;
+    }
+
+    .dik-page-btn:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 768px) {
+
+      .dik-page {
+        padding: 40px 0 60px;
+      }
+
+      .dik-result-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 28px;
+      }
+
+      .dik-pagination {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .dik-page-buttons {
+        width: 100%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <div id="siteNavbar"></div>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <div id="innerHero"></div>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================= -->
+
+  <main>
+
+    <section class="container dik-page">
+
+      <!-- =========================
+           SEARCH
+      ========================= -->
+
+      <section class="dik-toolbar">
+
+        <div class="dik-search-wrapper">
+
+          <span class="dik-search-icon">
+            🔍
+          </span>
+
+          <input
+            type="search"
+            id="dikSearchInput"
+            placeholder="Cari kelompok, item informasi, dasar hukum, atau kata kunci..."
+            autocomplete="off"
+          >
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           RESULT HEADER
+      ========================= -->
+
       <div class="dik-result-header">
-        <h3>Daftar Informasi Dikecualikan</h3>
-        <span id="dikResultCount">Memuat data...</span>
+
+        <h3>
+          Daftar Informasi Dikecualikan
+        </h3>
+
+        <span id="dikResultCount">
+          Memuat data...
+        </span>
+
       </div>
 
-      <div id="dikError" class="dik-error"></div>
+
+      <!-- =========================
+           ERROR
+      ========================= -->
+
+      <div
+        id="dikError"
+        class="dik-error">
+      </div>
+
+
+      <!-- =========================
+           TABLE
+      ========================= -->
 
       <div class="dik-data-list">
-        <div id="dikLoading" class="dik-loading">
+
+        <div
+          id="dikLoading"
+          class="dik-loading">
+
           Memuat informasi dikecualikan...
+
         </div>
 
         <div id="dikTableWrap"></div>
+
       </div>
+
+
+      <!-- =========================
+           PAGINATION
+      ========================= -->
 
       <div class="dik-pagination">
-        <div id="dikPageInfo" class="dik-page-info"></div>
-        <div id="dikPageButtons" class="dik-page-buttons"></div>
+
+        <div
+          id="dikPageInfo"
+          class="dik-page-info">
+        </div>
+
+        <div
+          id="dikPageButtons"
+          class="dik-page-buttons">
+        </div>
+
       </div>
-    <!-- =================================================
-     DASAR PENETAPAN DIK
-================================================== -->
-
-<section class="legal-section">
-
-  <div class="section-heading">
-
-    <span class="section-kicker">
-      DASAR PENETAPAN
-    </span>
-
-    <h2>
-      Dasar Penetapan Daftar Informasi Dikecualikan
-    </h2>
-
-    <div class="section-line"></div>
-
-  </div>
 
 
-  <div class="legal-card">
+      <!-- =================================================
+           DASAR PENETAPAN DIK
+      ================================================== -->
 
-    <div class="legal-card-content">
+      <section class="legal-section">
 
-      <span class="legal-card-label">
-        DOKUMEN KEPUTUSAN
-      </span>
+        <div class="section-heading">
 
-      <h3>
-        Keputusan Kepala Kantor Wilayah Kementerian Agama
-        Provinsi Banten Nomor 003/A1/TAHUN 2026 tentang Daftar Informasi yang
-        Dikecualikan pada Kantor Wilayah Kementerian Agama
-        Provinsi Banten Tahun 2026
-      </h3>
+          <span class="section-kicker">
+            DASAR PENETAPAN
+          </span>
 
-    </div>
+          <h2>
+            Dasar Penetapan Daftar Informasi Dikecualikan
+          </h2>
+
+          <div class="section-line"></div>
+
+        </div>
 
 
-    <a
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="legal-card-button"
-    >
-      Lihat SK
-    </a>
+        <div class="legal-card">
 
-  </div>
+          <div class="legal-card-content">
 
-</section>
-    
+            <span class="legal-card-label">
+              DOKUMEN KEPUTUSAN
+            </span>
 
-    </div>
+            <h3>
+              Keputusan Kepala Kantor Wilayah Kementerian Agama
+              Provinsi Banten Nomor 003/A1/Tahun 2026 tentang Daftar Informasi yang
+              Dikecualikan pada Kantor Wilayah Kementerian Agama
+              Provinsi Banten Tahun 2026
+            </h3>
+
+          </div>
+
+
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="legal-card-button"
+          >
+            Lihat SK
+          </a>
+
+        </div>
+
+      </section>
+
+
+    </section>
 
   </main>
 
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
   <div id="siteFooter"></div>
+
   <div id="accessibility"></div>
+
+
+  <!-- =========================
+       LAYOUT
+  ========================= -->
 
   <script src="layout.js"></script>
 
+
+  <!-- =========================
+       DIK JAVASCRIPT
+  ========================= -->
+
   <script>
+
     const DIK_API_URL =
       "https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec";
 
+
     const DIK_PER_PAGE = 10;
 
+
     let dikAllData = [];
+
     let dikFilteredData = [];
+
     let dikCurrentPage = 1;
 
-    function dikGetValues(row) {
-      if (!row || typeof row !== "object") return [];
 
-      if (Array.isArray(row)) return row;
+    /* =========================
+       HELPER
+    ========================= */
+
+    function dikGetValues(row) {
+
+      if (!row || typeof row !== "object") {
+        return [];
+      }
+
+      if (Array.isArray(row)) {
+        return row;
+      }
 
       return Object.keys(row).map(function (key) {
         return row[key];
       });
+
     }
 
+
     function dikNormalize(value) {
+
       return String(value ?? "")
         .replace(/\s+/g, " ")
         .trim();
+
     }
 
+
     function dikEscapeHtml(value) {
+
       return String(value ?? "")
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
     }
 
+
+    /* =========================
+       ERROR
+    ========================= */
+
     function dikShowError(message) {
-      const errorBox = document.getElementById("dikError");
+
+      const errorBox =
+        document.getElementById("dikError");
+
       if (!errorBox) return;
 
       errorBox.textContent = message;
+
       errorBox.style.display = "block";
+
     }
+
 
     function dikHideError() {
-      const errorBox = document.getElementById("dikError");
-      if (errorBox) errorBox.style.display = "none";
+
+      const errorBox =
+        document.getElementById("dikError");
+
+      if (errorBox) {
+        errorBox.style.display = "none";
+      }
+
     }
+
+
+    /* =========================
+       RENDER TABLE
+    ========================= */
 
     function dikRenderTable() {
-  const tableWrap = document.getElementById("dikTableWrap");
-  const loading = document.getElementById("dikLoading");
 
-  if (!tableWrap) return;
+      const tableWrap =
+        document.getElementById("dikTableWrap");
 
-  if (loading) loading.style.display = "none";
+      const loading =
+        document.getElementById("dikLoading");
 
-  if (!dikFilteredData.length) {
-    tableWrap.innerHTML =
-      '<div class="dik-empty">Tidak ada informasi yang sesuai.</div>';
+      if (!tableWrap) return;
 
-    document.getElementById("dikResultCount").textContent =
-      "0 informasi";
 
-    dikRenderPagination();
-    return;
-  }
+      if (loading) {
+        loading.style.display = "none";
+      }
 
-  const start = (dikCurrentPage - 1) * DIK_PER_PAGE;
-
-  const pageRows = dikFilteredData.slice(
-    start,
-    start + DIK_PER_PAGE
-  );
-
-  function getField(row, fieldName, fallbackIndex) {
-    if (!row) return "";
-
-    // Jika API mengembalikan object berdasarkan nama kolom
-    if (
-      typeof row === "object" &&
-      !Array.isArray(row) &&
-      Object.prototype.hasOwnProperty.call(row, fieldName)
-    ) {
-      return dikNormalize(row[fieldName]);
-    }
-
-    // Fallback jika API mengembalikan array
-    if (Array.isArray(row)) {
-      return dikNormalize(row[fallbackIndex]);
-    }
-
-    return "";
-  }
-
-  let html = `
-    <table class="dik-table">
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>Kelompok Informasi</th>
-          <th>Item Informasi</th>
-          <th>Dasar Hukum Pengecualian Informasi</th>
-          <th>Konsekuensi Jika Dibuka</th>
-          <th>Konsekuensi Jika Ditutup</th>
-          <th>Jangka Waktu</th>
-        </tr>
-      </thead>
-
-      <tbody>
-  `;
-
-  pageRows.forEach(function (row, index) {
-
-    const kelompokInformasi = getField(
-      row,
-      "KELOMPOK_INFORMASI",
-      0
-    );
-
-    const itemInformasi = getField(
-      row,
-      "ITEM_INFORMASI",
-      1
-    );
-
-    const dasarHukum = getField(
-      row,
-      "DASAR_HUKUM_PENGECUALIAN_INFORMASI",
-      2
-    );
-
-    const konsekuensiDibuka = getField(
-      row,
-      "KONSEKUENSI_DIBUKA",
-      3
-    );
-
-    const konsekuensiDitutup = getField(
-      row,
-      "KONSEKUENSI_DITUTUP",
-      4
-    );
-
-    const jangkaWaktu = getField(
-      row,
-      "JANGKA_WAKTU",
-      5
-    );
-
-    const nomor = start + index + 1;
-
-    html += `
-      <tr>
-
-        <td>
-          ${nomor}
-        </td>
-
-        <td>
-          <div class="dik-cell-title">
-            ${dikEscapeHtml(kelompokInformasi)}
-          </div>
-        </td>
-
-        <td>
-          ${dikEscapeHtml(itemInformasi)}
-        </td>
-
-        <td>
-          ${dikEscapeHtml(dasarHukum)}
-        </td>
-
-        <td>
-          ${dikEscapeHtml(konsekuensiDibuka)}
-        </td>
-
-        <td>
-          ${dikEscapeHtml(konsekuensiDitutup)}
-        </td>
-
-        <td>
-          ${dikEscapeHtml(jangkaWaktu)}
-        </td>
-
-      </tr>
-    `;
-  });
-
-  html += `
-      </tbody>
-    </table>
-  `;
-
-  tableWrap.innerHTML = html;
-
-  const total = dikFilteredData.length;
-
-  document.getElementById("dikResultCount").textContent =
-    total + " informasi";
-
-  dikRenderPagination();
-}
-    function dikRenderPagination() {
-      const totalPages = Math.max(
-        1,
-        Math.ceil(dikFilteredData.length / DIK_PER_PAGE)
-      );
-
-      const pageInfo = document.getElementById("dikPageInfo");
-      const pageButtons = document.getElementById("dikPageButtons");
-
-      if (!pageInfo || !pageButtons) return;
 
       if (!dikFilteredData.length) {
-        pageInfo.textContent = "";
-        pageButtons.innerHTML = "";
+
+        tableWrap.innerHTML =
+          '<div class="dik-empty">Tidak ada informasi yang sesuai.</div>';
+
+        const resultCount =
+          document.getElementById("dikResultCount");
+
+        if (resultCount) {
+          resultCount.textContent = "0 informasi";
+        }
+
+        dikRenderPagination();
+
         return;
       }
 
-      const start = (dikCurrentPage - 1) * DIK_PER_PAGE + 1;
-      const end = Math.min(
-        dikCurrentPage * DIK_PER_PAGE,
-        dikFilteredData.length
-      );
+
+      const start =
+        (dikCurrentPage - 1) * DIK_PER_PAGE;
+
+
+      const pageRows =
+        dikFilteredData.slice(
+          start,
+          start + DIK_PER_PAGE
+        );
+
+
+      function getField(
+        row,
+        fieldName,
+        fallbackIndex
+      ) {
+
+        if (!row) return "";
+
+
+        /* API object berdasarkan nama kolom */
+
+        if (
+          typeof row === "object" &&
+          !Array.isArray(row) &&
+          Object.prototype.hasOwnProperty.call(
+            row,
+            fieldName
+          )
+        ) {
+
+          return dikNormalize(
+            row[fieldName]
+          );
+
+        }
+
+
+        /* Fallback jika API array */
+
+        if (Array.isArray(row)) {
+
+          return dikNormalize(
+            row[fallbackIndex]
+          );
+
+        }
+
+
+        return "";
+
+      }
+
+
+      let html = `
+
+        <table class="dik-table">
+
+          <thead>
+
+            <tr>
+
+              <th>No.</th>
+
+              <th>Kelompok Informasi</th>
+
+              <th>Item Informasi</th>
+
+              <th>Dasar Hukum Pengecualian Informasi</th>
+
+              <th>Konsekuensi Jika Dibuka</th>
+
+              <th>Konsekuensi Jika Ditutup</th>
+
+              <th>Jangka Waktu</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+      `;
+
+
+      pageRows.forEach(function (
+        row,
+        index
+      ) {
+
+
+        const kelompokInformasi =
+          getField(
+            row,
+            "KELOMPOK_INFORMASI",
+            0
+          );
+
+
+        const itemInformasi =
+          getField(
+            row,
+            "ITEM_INFORMASI",
+            1
+          );
+
+
+        const dasarHukum =
+          getField(
+            row,
+            "DASAR_HUKUM_PENGECUALIAN_INFORMASI",
+            2
+          );
+
+
+        const konsekuensiDibuka =
+          getField(
+            row,
+            "KONSEKUENSI_DIBUKA",
+            3
+          );
+
+
+        const konsekuensiDitutup =
+          getField(
+            row,
+            "KONSEKUENSI_DITUTUP",
+            4
+          );
+
+
+        const jangkaWaktu =
+          getField(
+            row,
+            "JANGKA_WAKTU",
+            5
+          );
+
+
+        const nomor =
+          start + index + 1;
+
+
+        html += `
+
+          <tr>
+
+            <td>
+              ${nomor}
+            </td>
+
+
+            <td>
+
+              <div class="dik-cell-title">
+                ${dikEscapeHtml(
+                  kelompokInformasi
+                )}
+              </div>
+
+            </td>
+
+
+            <td>
+              ${dikEscapeHtml(
+                itemInformasi
+              )}
+            </td>
+
+
+            <td>
+              ${dikEscapeHtml(
+                dasarHukum
+              )}
+            </td>
+
+
+            <td>
+              ${dikEscapeHtml(
+                konsekuensiDibuka
+              )}
+            </td>
+
+
+            <td>
+              ${dikEscapeHtml(
+                konsekuensiDitutup
+              )}
+            </td>
+
+
+            <td>
+              ${dikEscapeHtml(
+                jangkaWaktu
+              )}
+            </td>
+
+          </tr>
+
+        `;
+
+      });
+
+
+      html += `
+
+          </tbody>
+
+        </table>
+
+      `;
+
+
+      tableWrap.innerHTML = html;
+
+
+      const total =
+        dikFilteredData.length;
+
+
+      const resultCount =
+        document.getElementById(
+          "dikResultCount"
+        );
+
+
+      if (resultCount) {
+
+        resultCount.textContent =
+          total + " informasi";
+
+      }
+
+
+      dikRenderPagination();
+
+    }
+
+
+    /* =========================
+       PAGINATION
+    ========================= */
+
+    function dikRenderPagination() {
+
+      const totalPages =
+        Math.max(
+          1,
+          Math.ceil(
+            dikFilteredData.length /
+            DIK_PER_PAGE
+          )
+        );
+
+
+      const pageInfo =
+        document.getElementById(
+          "dikPageInfo"
+        );
+
+
+      const pageButtons =
+        document.getElementById(
+          "dikPageButtons"
+        );
+
+
+      if (
+        !pageInfo ||
+        !pageButtons
+      ) {
+        return;
+      }
+
+
+      if (!dikFilteredData.length) {
+
+        pageInfo.textContent = "";
+
+        pageButtons.innerHTML = "";
+
+        return;
+
+      }
+
+
+      const start =
+        (dikCurrentPage - 1) *
+        DIK_PER_PAGE + 1;
+
+
+      const end =
+        Math.min(
+          dikCurrentPage *
+          DIK_PER_PAGE,
+          dikFilteredData.length
+        );
+
 
       pageInfo.textContent =
         "Menampilkan " +
@@ -518,171 +929,395 @@
         dikFilteredData.length +
         " informasi";
 
+
       let html = `
+
         <button
           type="button"
           class="dik-page-btn"
-          ${dikCurrentPage === 1 ? "disabled" : ""}
-          onclick="dikGoToPage(${dikCurrentPage - 1})"
+          ${
+            dikCurrentPage === 1
+              ? "disabled"
+              : ""
+          }
+          onclick="dikGoToPage(${
+            dikCurrentPage - 1
+          })"
         >
           ‹
         </button>
+
       `;
 
-      for (let page = 1; page <= totalPages; page++) {
+
+      for (
+        let page = 1;
+        page <= totalPages;
+        page++
+      ) {
+
         html += `
+
           <button
             type="button"
-            class="dik-page-btn ${page === dikCurrentPage ? "active" : ""}"
+            class="dik-page-btn ${
+              page === dikCurrentPage
+                ? "active"
+                : ""
+            }"
             onclick="dikGoToPage(${page})"
           >
             ${page}
           </button>
+
         `;
+
       }
 
+
       html += `
+
         <button
           type="button"
           class="dik-page-btn"
-          ${dikCurrentPage === totalPages ? "disabled" : ""}
-          onclick="dikGoToPage(${dikCurrentPage + 1})"
+          ${
+            dikCurrentPage === totalPages
+              ? "disabled"
+              : ""
+          }
+          onclick="dikGoToPage(${
+            dikCurrentPage + 1
+          })"
         >
           ›
         </button>
+
       `;
 
+
       pageButtons.innerHTML = html;
+
     }
 
-    function dikGoToPage(page) {
-      const totalPages = Math.max(
-        1,
-        Math.ceil(dikFilteredData.length / DIK_PER_PAGE)
-      );
 
-      if (page < 1 || page > totalPages) return;
+    function dikGoToPage(page) {
+
+      const totalPages =
+        Math.max(
+          1,
+          Math.ceil(
+            dikFilteredData.length /
+            DIK_PER_PAGE
+          )
+        );
+
+
+      if (
+        page < 1 ||
+        page > totalPages
+      ) {
+        return;
+      }
+
 
       dikCurrentPage = page;
+
       dikRenderTable();
 
-      const tableWrap = document.querySelector(".dik-data-list");
+
+      const tableWrap =
+        document.querySelector(
+          ".dik-data-list"
+        );
+
+
       if (tableWrap) {
+
         tableWrap.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
+
       }
+
     }
+
+
+    /* =========================
+       SEARCH
+    ========================= */
 
     function dikApplySearch() {
-      const input = document.getElementById("dikSearchInput");
-      const keyword = dikNormalize(input ? input.value : "").toLowerCase();
 
-      dikFilteredData = dikAllData.filter(function (row) {
-        if (!keyword) return true;
-
-        const values = dikGetValues(row);
-
-        return values.some(function (value) {
-          return dikNormalize(value)
-            .toLowerCase()
-            .includes(keyword);
-        });
-      });
-
-      dikCurrentPage = 1;
-      dikRenderTable();
-    }
-
-    async function loadDIK() {
-      const loading = document.getElementById("dikLoading");
-
-      try {
-        dikHideError();
-
-        const response = await fetch(
-          DIK_API_URL + "?action=dik"
+      const input =
+        document.getElementById(
+          "dikSearchInput"
         );
 
-        if (!response.ok) {
-          throw new Error(
-            "HTTP " + response.status + " saat mengambil data DIK."
+
+      const keyword =
+        dikNormalize(
+          input
+            ? input.value
+            : ""
+        ).toLowerCase();
+
+
+      dikFilteredData =
+        dikAllData.filter(
+          function (row) {
+
+            if (!keyword) {
+              return true;
+            }
+
+
+            const values =
+              dikGetValues(row);
+
+
+            return values.some(
+              function (value) {
+
+                return dikNormalize(
+                  value
+                )
+                  .toLowerCase()
+                  .includes(keyword);
+
+              }
+            );
+
+          }
+        );
+
+
+      dikCurrentPage = 1;
+
+      dikRenderTable();
+
+    }
+
+
+    /* =========================
+       LOAD API
+    ========================= */
+
+    async function loadDIK() {
+
+      const loading =
+        document.getElementById(
+          "dikLoading"
+        );
+
+
+      try {
+
+        dikHideError();
+
+
+        const response =
+          await fetch(
+            DIK_API_URL +
+            "?action=dik"
           );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "HTTP " +
+            response.status +
+            " saat mengambil data DIK."
+          );
+
         }
 
-        const result = await response.json();
 
-        if (!result || result.success !== true) {
+        const result =
+          await response.json();
+
+
+        if (
+          !result ||
+          result.success !== true
+        ) {
+
           throw new Error(
-            result && result.message
+            result &&
+            result.message
               ? result.message
               : "API DIK mengembalikan success=false."
           );
+
         }
 
-        if (!Array.isArray(result.data)) {
-          throw new Error("Format data DIK tidak sesuai.");
+
+        if (
+          !Array.isArray(
+            result.data
+          )
+        ) {
+
+          throw new Error(
+            "Format data DIK tidak sesuai."
+          );
+
         }
 
-        dikAllData = result.data;
-        dikFilteredData = dikAllData.slice();
 
-        if (loading) loading.style.display = "none";
+        dikAllData =
+          result.data;
+
+
+        dikFilteredData =
+          dikAllData.slice();
+
+
+        if (loading) {
+
+          loading.style.display =
+            "none";
+
+        }
+
 
         dikRenderTable();
 
-      } catch (error) {
-        console.error("Gagal memuat DIK:", error);
 
-        if (loading) loading.style.display = "none";
+      } catch (error) {
+
+        console.error(
+          "Gagal memuat DIK:",
+          error
+        );
+
+
+        if (loading) {
+
+          loading.style.display =
+            "none";
+
+        }
+
 
         dikShowError(
           "Data Informasi Dikecualikan belum dapat dimuat. " +
           error.message
         );
 
-        document.getElementById("dikResultCount").textContent =
-          "Gagal memuat data";
 
-        document.getElementById("dikTableWrap").innerHTML = "";
+        const resultCount =
+          document.getElementById(
+            "dikResultCount"
+          );
+
+
+        if (resultCount) {
+
+          resultCount.textContent =
+            "Gagal memuat data";
+
+        }
+
+
+        const tableWrap =
+          document.getElementById(
+            "dikTableWrap"
+          );
+
+
+        if (tableWrap) {
+
+          tableWrap.innerHTML = "";
+
+        }
+
       }
+
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const searchInput =
-        document.getElementById("dikSearchInput");
 
-      if (searchInput) {
-        searchInput.addEventListener("input", dikApplySearch);
+    /* =========================
+       INITIALIZATION
+    ========================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        const searchInput =
+          document.getElementById(
+            "dikSearchInput"
+          );
+
+
+        if (searchInput) {
+
+          searchInput.addEventListener(
+            "input",
+            dikApplySearch
+          );
+
+        }
+
+
+        document.addEventListener(
+          "layout:loaded",
+          function () {
+
+
+            const kicker =
+              document.getElementById(
+                "innerHeroKicker"
+              );
+
+
+            const title =
+              document.getElementById(
+                "innerHeroTitle"
+              );
+
+
+            const description =
+              document.getElementById(
+                "innerHeroDescription"
+              );
+
+
+            if (kicker) {
+
+              kicker.textContent =
+                "INFORMASI DIKECUALIKAN";
+
+            }
+
+
+            if (title) {
+
+              title.textContent =
+                "Informasi Dikecualikan";
+
+            }
+
+
+            if (description) {
+
+              description.textContent =
+                "Daftar informasi yang dikecualikan dari keterbukaan informasi publik pada Kantor Wilayah Kementerian Agama Provinsi Banten.";
+
+            }
+
+
+            loadDIK();
+
+          }
+        );
+
       }
+    );
 
-      document.addEventListener("layout:loaded", function () {
-        const kicker =
-          document.getElementById("innerHeroKicker");
-
-        const title =
-          document.getElementById("innerHeroTitle");
-
-        const description =
-          document.getElementById("innerHeroDescription");
-
-        if (kicker) {
-          kicker.textContent = "INFORMASI DIKECUALIKAN";
-        }
-
-        if (title) {
-          title.textContent = "Informasi Dikecualikan";
-        }
-
-        if (description) {
-          description.textContent =
-            "Daftar informasi yang dikecualikan dari keterbukaan informasi publik pada Kantor Wilayah Kementerian Agama Provinsi Banten.";
-        }
-
-        loadDIK();
-      });
-    });
   </script>
 
 </body>
