@@ -853,27 +853,47 @@ function escapeAttribute(value) {
             row.url_dokumen || '';
 
 
-          let judulHTML =
-            escapeHTML(judul);
+         let judulHTML = '';
 
-          if (tentang) {
+if (tentang) {
+  judulHTML = `
+    <div
+      style="
+        color:#263a30;
+        font-size:14px;
+        font-weight:650;
+        line-height:1.5;
+      "
+    >
+      ${escapeHTML(tentang)}
+    </div>
 
-            judulHTML += `
-              <div
-                style="
-                  margin-top:5px;
-                  color:#718078;
-                  font-size:12px;
-                  font-weight:400;
-                "
-              >
-                ${escapeHTML(tentang)}
-              </div>
-            `;
-
-          }
-
-
+    <div
+      style="
+        margin-top:5px;
+        color:#718078;
+        font-size:12px;
+        font-weight:400;
+        line-height:1.5;
+      "
+    >
+      ${escapeHTML(judul)}
+    </div>
+  `;
+} else {
+  judulHTML = `
+    <div
+      style="
+        color:#263a30;
+        font-size:14px;
+        font-weight:650;
+        line-height:1.5;
+      "
+    >
+      ${escapeHTML(judul)}
+    </div>
+  `;
+}
           let dokumenHTML;
 
           if (urlDokumen) {
