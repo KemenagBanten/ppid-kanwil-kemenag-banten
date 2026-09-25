@@ -128,7 +128,36 @@
       color: #ffffff;
       box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
     }
+.regulasi-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+.regulasi-sort label {
+  color: #66736c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#regulasiSort {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #dfe7e2;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #53615a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+#regulasiSort:focus {
+  border-color: #0f5132;
+  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
+}
     /* Result header */
 
     .regulasi-result-header {
@@ -492,7 +521,15 @@
             >
               Peraturan Lainnya
             </button>
+            
+<div class="regulasi-sort">
+  <label for="regulasiSort">Urutkan:</label>
 
+  <select id="regulasiSort">
+    <option value="terbaru">Terbaru → Terlama</option>
+    <option value="terlama">Terlama → Terbaru</option>
+  </select>
+</div>
           </div>
 
         </section>
@@ -587,7 +624,8 @@ document.addEventListener("layout:loaded", function () {
 
     const regulasiPagination =
       document.getElementById('regulasiPagination');
-
+const regulasiSort =
+  document.getElementById('regulasiSort');
     let activeRegulasiFilter = 'all';
 
 
@@ -714,6 +752,16 @@ document.addEventListener("layout:loaded", function () {
       renderRegulasi();
 
     }
+    filteredRegulasi.sort(function(a, b) {
+  const tahunA = Number(a.tahun) || 0;
+  const tahunB = Number(b.tahun) || 0;
+
+  if (regulasiSort.value === 'terlama') {
+    return tahunA - tahunB;
+  }
+
+  return tahunB - tahunA;
+});
 function escapeHTML(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -1116,7 +1164,12 @@ if (tentang) {
       }
     );
 
-
+regulasiSort.addEventListener(
+  'change',
+  function() {
+    applyRegulasiFilter();
+  }
+);
     /* =========================================================
        FILTER BUTTON
     ========================================================= */
