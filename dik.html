@@ -203,240 +203,6 @@
       gap: 15px;
       margin-top: 18px;
     }
-/* =================================================
-   DASAR PENETAPAN DIK
-================================================= */
-
-.dik-legal-section {
-  margin-top: 70px;
-  margin-bottom: 70px;
-}
-
-.dik-legal-section .section-heading {
-  margin-bottom: 24px;
-}
-
-.dik-legal-section .section-kicker {
-  display: block;
-  margin-bottom: 10px;
-
-  color: #0f5132;
-
-  font-size: 12px;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-}
-
-.dik-legal-section .section-heading h2 {
-  margin: 0 0 12px;
-
-  color: #263a30;
-
-  font-size: 28px;
-  line-height: 1.25;
-}
-
-.dik-legal-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-
-  padding: 28px 30px;
-
-  background: #ffffff;
-
-  border: 1px solid #e2e9e5;
-  border-radius: 15px;
-
-  box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
-}
-
-.dik-legal-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.dik-legal-label {
-  display: block;
-
-  margin-bottom: 10px;
-
-  color: #66736c;
-
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.dik-legal-content h3 {
-  margin: 0;
-
-  color: #263a30;
-
-  font-size: 16px;
-  line-height: 1.65;
-  font-weight: 700;
-}
-
-.dik-legal-button {
-  flex-shrink: 0;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 96px;
-  min-height: 48px;
-
-  padding: 0 18px;
-
-  background: #0f5132;
-  color: #ffffff;
-
-  border-radius: 10px;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  text-decoration: none;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.dik-legal-button:hover {
-  background: #0b4229;
-  color: #ffffff;
-
-  transform: translateY(-1px);
-
-  box-shadow: 0 6px 14px rgba(15, 81, 50, 0.16);
-}
-
-
-/* MOBILE */
-
-@media (max-width: 700px) {
-
-  .dik-legal-section {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-
-  .dik-legal-section .section-heading h2 {
-    font-size: 23px;
-  }
-
-  .dik-legal-card {
-    flex-direction: column;
-    align-items: stretch;
-
-    gap: 20px;
-
-    padding: 22px;
-  }
-
-  .dik-legal-content h3 {
-    font-size: 14px;
-  }
-
-  .dik-legal-button {
-    width: 100%;
-  }
-
-}
-    .dik-page-info {
-      color: #718078;
-      font-size: 12px;
-    }
-
-    .dik-page-buttons {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dik-page-btn {
-      min-width: 36px;
-      height: 36px;
-      padding: 0 10px;
-      border: 1px solid #dfe7e2;
-      border-radius: 8px;
-      background: #ffffff;
-      color: #53615a;
-      font-family: inherit;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .dik-page-btn:hover:not(:disabled) {
-      border-color: #cbdad1;
-      background: #f4f8f5;
-      color: #0f5132;
-    }
-
-    .dik-page-btn.active {
-      border-color: #0f5132;
-      background: #0f5132;
-      color: #ffffff;
-    }
-
-    .dik-page-btn:disabled {
-      opacity: 0.45;
-      cursor: default;
-    }
-
-    @media (max-width: 680px) {
-      .dik-page {
-        padding: 30px 18px 55px;
-      }
-
-      .dik-result-header {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 5px;
-      }
-
-      .dik-pagination {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .dik-page-buttons {
-        flex-wrap: wrap;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div id="siteNavbar"></div>
-  <div id="innerHero"></div>
-
-  <main class="dik-page">
-
-    <div class="container">
-
-  
-
-      <section class="dik-toolbar">
-        <div class="dik-search-wrapper">
-          <span class="dik-search-icon">⌕</span>
-          <input
-            type="text"
-            id="dikSearchInput"
-            placeholder="Cari informasi, dasar hukum, konsekuensi, atau kata kunci..."
-            autocomplete="off"
-          >
-        </div>
-      </section>
-
       <div class="dik-result-header">
         <h3>Daftar Informasi Dikecualikan</h3>
         <span id="dikResultCount">Memuat data...</span>
@@ -456,11 +222,11 @@
         <div id="dikPageInfo" class="dik-page-info"></div>
         <div id="dikPageButtons" class="dik-page-buttons"></div>
       </div>
-<!-- =================================================
+    <!-- =================================================
      DASAR PENETAPAN DIK
 ================================================== -->
 
-<section class="dik-legal-section">
+<section class="legal-section">
 
   <div class="section-heading">
 
@@ -477,28 +243,29 @@
   </div>
 
 
-  <div class="dik-legal-card">
+  <div class="legal-card">
 
-    <div class="dik-legal-content">
+    <div class="legal-card-content">
 
-      <span class="dik-legal-label">
+      <span class="legal-card-label">
         DOKUMEN KEPUTUSAN
       </span>
 
       <h3>
         Keputusan Kepala Kantor Wilayah Kementerian Agama
-        Provinsi Banten Nomor ........ Tahun 2026 tentang
-        Daftar Informasi yang Dikecualikan pada Kantor Wilayah
-        Kementerian Agama Provinsi Banten Tahun 2026
+        Provinsi Banten Nomor 003/A1/TAHUN 2026 tentang Daftar Informasi yang
+        Dikecualikan pada Kantor Wilayah Kementerian Agama
+        Provinsi Banten Tahun 2026
       </h3>
 
     </div>
+
 
     <a
       href="#"
       target="_blank"
       rel="noopener noreferrer"
-      class="dik-legal-button"
+      class="legal-card-button"
     >
       Lihat SK
     </a>
@@ -506,6 +273,8 @@
   </div>
 
 </section>
+    
+
     </div>
 
   </main>
