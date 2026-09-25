@@ -2659,6 +2659,15 @@ if (sheetName === 'DIP') {
       item.nama_pekerjaan ||
       ''
     );
+  
+} else if (sheetName === 'REGULASI') {
+
+  label +=
+    ' — ' +
+    (
+      item.tentang ||
+      ''
+    );
 
 } else if (sheetName === 'LAPORAN') {
 
