@@ -39,132 +39,77 @@
     }
 
 
-    /* =====================================================
-       TOOLBAR
-    ===================================================== */
+ /* =====================================================
+   TOOLBAR
+===================================================== */
 
-  .toolbar {
-  background: #ffffff;
-  border: 1px solid #e3e9e5;
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 8px 30px rgba(24,51,39,.05);
-  margin-bottom: 14px;
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
-
-    .search-wrapper {
-
-      position:
-        relative;
-    }
-
-
-    .search-icon {
-
-      position:
-        absolute;
-
-      left:
-        16px;
-
-      top:
-        50%;
-
-      transform:
-        translateY(-50%);
-
-      color:
-        #7a8781;
-
-      font-size:
-        17px;
-
-      pointer-events:
-        none;
-    }
-
-
-   #searchInput {
+.search-wrapper {
+  position: relative;
   width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #7a8781;
+  pointer-events: none;
+}
+
+#searchInput {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 44px;
   box-sizing: border-box;
-  border: none;
+  border: 1px solid #dfe7e2;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #34433b;
+  font-family: inherit;
+  font-size: 13px;
   outline: none;
-  background: transparent;
-
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #435149;
-
-  padding: 12px 14px 12px 42px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-#searchInput::placeholder {
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 400;
-  color: #8a9690;
-  opacity: 1;
+#searchInput:focus {
+  border-color: #0f5132;
+  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
 }
 
-    #searchInput:focus {
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-      background:
-        #ffffff;
-
-      border-color:
-        #198754;
-
-      box-shadow:
-        0 0 0 4px rgba(25,135,84,.08);
-    }
-
-
-    /* =====================================================
-       CATEGORY FILTER
-    ===================================================== */
-
-    .filters {
-
-      display:
-        flex;
-
-      flex-wrap:
-        wrap;
-
-      gap:
-        8px;
-
-      margin-top:
-        14px;
-    }
-
-
- .filter-btn {
+.filter-btn {
   appearance: none;
   -webkit-appearance: none;
-
   border: 1px solid #dfe7e2;
   background: #ffffff;
   color: #53615a;
-
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
   line-height: 1.2;
-
   padding: 9px 15px;
   min-height: 38px;
-
   border-radius: 8px;
   cursor: pointer;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -186,11 +131,10 @@
   box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
 }
 
-  .informasi-sort {
+.informasi-sort {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 30px;
 }
 
 .informasi-sort label {
@@ -216,8 +160,7 @@
 #informasiSort:focus {
   border-color: #0f5132;
   box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
-}
-    
+} 
     /* =====================================================
        RESULT HEADER
     ===================================================== */
