@@ -222,18 +222,6 @@ const laporanJenis =
 const laporanTahun =
   document.getElementById('laporanTahun');
 
-const laporanForm =
-  document.getElementById('laporanForm');
-
-const laporanJudul =
-  document.getElementById('laporanJudul');
-
-const laporanJenis =
-  document.getElementById('laporanJenis');
-
-const laporanTahun =
-  document.getElementById('laporanTahun');
-
 const saveLaporanButton =
   document.getElementById('saveLaporanButton');
 
