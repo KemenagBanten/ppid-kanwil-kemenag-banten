@@ -566,7 +566,27 @@ document.addEventListener("layout:loaded", function () {
   }
 });
 </script>
-  
+  <script>
+document.addEventListener("layout:loaded", function () {
+  const kicker = document.getElementById("innerHeroKicker");
+  const title = document.getElementById("innerHeroTitle");
+  const description = document.getElementById("innerHeroDescription");
+
+  if (kicker) {
+    kicker.style.display = "none";
+  }
+
+  if (title) {
+    title.textContent =
+      "Regulasi Kanwil Kementerian Agama Provinsi Banten";
+  }
+
+  if (description) {
+    description.textContent =
+      "Daftar regulasi yang ditetapkan dan digunakan di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.";
+  }
+});
+</script>
   <script>
     const REGULASI_API_URL =
       'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
