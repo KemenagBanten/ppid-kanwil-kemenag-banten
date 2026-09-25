@@ -552,17 +552,8 @@
   <script src="layout.js"></script>
 <script>
 document.addEventListener("layout:loaded", function () {
-  const hero = document.getElementById("innerHero");
-
-  if (!hero) return;
-
-  const kicker = hero.querySelector(".inner-hero-kicker");
-  const title = hero.querySelector(".inner-hero-title");
-  const description = hero.querySelector(".inner-hero-description");
-
-  if (kicker) {
-    kicker.textContent = "REGULASI";
-  }
+  const title = document.getElementById("innerHeroTitle");
+  const description = document.getElementById("innerHeroDescription");
 
   if (title) {
     title.textContent =
@@ -575,6 +566,7 @@ document.addEventListener("layout:loaded", function () {
   }
 });
 </script>
+  
   <script>
     const REGULASI_API_URL =
       'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
