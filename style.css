@@ -4029,9 +4029,8 @@ body.accessibility-reduced-motion *::after {
 ====================================================== */
 
 @media (max-width: 768px) {
-
   .slider-container {
-    aspect-ratio: 4 / 2.1;
+    aspect-ratio: 8 / 3;
   }
 
   .slider-prev,
