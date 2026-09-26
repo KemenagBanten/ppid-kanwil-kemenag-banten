@@ -1,241 +1,99 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Permohonan Informasi | PPID Kanwil Kemenag Banten</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Permohonan Informasi | PPID Kanwil Kemenag Banten
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css?v=999"
+  >
 
   <style>
-    * {
-      box-sizing: border-box;
+
+    /* =================================================
+       PERMOHONAN INFORMASI
+    ================================================= */
+
+    .permohonan-content {
+      padding: 34px 0 70px;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
-      background: #f5f7f6;
-      color: #26352e;
-      line-height: 1.6;
-    }
-
-    /* =========================
-       HEADER
-    ========================== */
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #ffffff;
-      border-bottom: 1px solid #e5ebe7;
-      box-shadow: 0 2px 12px rgba(25, 60, 45, 0.06);
-    }
-
-    .header-inner {
-      width: min(1180px, 92%);
-      min-height: 76px;
-      margin: 0 auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 25px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 220px;
-    }
-
-    .header-logo {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .header-text h1 {
-      margin: 0;
-      color: #17352a;
-      font-size: 15px;
-      line-height: 1.25;
-      font-weight: 700;
-    }
-
-    .header-text p {
-      margin: 3px 0 0;
-      color: #66756e;
-      font-size: 10px;
-      line-height: 1.3;
-    }
-
-    .header nav {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .header nav a {
-      text-decoration: none;
-      color: #40544b;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      transition: 0.2s ease;
-    }
-
-    .header nav a:hover {
-      color: #0f5132;
-      background: #eef5f1;
-    }
-
-    .header nav a.active {
-      color: #0f5132;
-      background: #e8f3ed;
-    }
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      background:
-        radial-gradient(
-          circle at 90% 20%,
-          rgba(255,255,255,0.08) 0,
-          rgba(255,255,255,0.08) 80px,
-          transparent 81px
-        ),
-        radial-gradient(
-          circle at 8% 85%,
-          rgba(255,255,255,0.05) 0,
-          rgba(255,255,255,0.05) 120px,
-          transparent 121px
-        ),
-        linear-gradient(
-          135deg,
-          #123d2d 0%,
-          #176044 55%,
-          #0f5132 100%
-        );
-
-      color: #ffffff;
-      padding: 55px 20px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-label {
-      margin-bottom: 10px;
-      color: #e5d1aa;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-    }
-
-    .hero h2 {
-      margin: 0;
-      max-width: 760px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.15;
-      font-weight: 750;
-      letter-spacing: -0.7px;
-    }
-
-    .hero p {
-      max-width: 720px;
-      margin: 16px 0 0;
-      color: rgba(255,255,255,0.82);
-      font-size: 15px;
-      line-height: 1.7;
-    }
-
-    /* =========================
-       CONTENT
-    ========================== */
-
-    .content {
-      padding: 35px 0 70px;
-    }
-
-    .container {
+    .permohonan-container {
       width: min(1180px, 92%);
       margin: 0 auto;
     }
 
-    .page-grid {
+    .permohonan-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-columns:
+        minmax(0, 1fr)
+        320px;
       gap: 24px;
       align-items: start;
     }
 
-    /* =========================
-       CARD
-    ========================== */
 
-    .card {
+    /* =================================================
+       FORM CARD
+    ================================================= */
+
+    .permohonan-card {
       background: #ffffff;
-      border: 1px solid #e5ebe7;
+      border: 1px solid #e4ebe7;
       border-radius: 16px;
-      box-shadow: 0 5px 22px rgba(25, 60, 45, 0.06);
-    }
-
-    .form-card {
       padding: 30px;
+      box-shadow:
+        0 6px 24px
+        rgba(25, 60, 45, 0.06);
     }
 
-    .card-title {
+    .permohonan-card-title {
       margin: 0;
       color: #17352a;
       font-size: 21px;
+      line-height: 1.3;
       font-weight: 750;
     }
 
-    .card-description {
-      margin: 7px 0 25px;
+    .permohonan-card-description {
+      margin: 8px 0 26px;
       color: #718078;
       font-size: 13px;
+      line-height: 1.65;
     }
 
-    /* =========================
-       FORM
-    ========================== */
 
-    .form-grid {
+    /* =================================================
+       FORM GRID
+    ================================================= */
+
+    .permohonan-form-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .form-group {
+    .permohonan-form-group {
       margin-bottom: 18px;
     }
 
-    .form-group.full {
+    .permohonan-form-group.full {
       grid-column: 1 / -1;
     }
 
-    label {
+    .permohonan-form-group label {
       display: block;
       margin-bottom: 7px;
       color: #31443b;
@@ -243,456 +101,481 @@
       font-weight: 700;
     }
 
-    .required {
+    .permohonan-required {
       color: #b34d3c;
     }
 
-    input,
-    textarea,
-    select {
+
+    /* =================================================
+       INPUT
+    ================================================= */
+
+    .permohonan-form-group input,
+    .permohonan-form-group textarea,
+    .permohonan-form-group select {
+
       width: 100%;
-      border: 1px solid #dce5df;
+
+      border:
+        1px solid #dce5df;
+
       border-radius: 10px;
+
       background: #fbfcfb;
+
       color: #26352e;
 
-      padding: 11px 13px;
+      padding:
+        11px 13px;
 
       font-family: inherit;
+
       font-size: 13px;
 
       outline: none;
-      transition: 0.2s ease;
+
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+
     }
 
-    input {
+    .permohonan-form-group input {
       min-height: 44px;
     }
 
-    textarea {
+    .permohonan-form-group textarea {
       min-height: 110px;
       resize: vertical;
     }
 
-    select {
-      min-height: 44px;
-      cursor: pointer;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
+    .permohonan-form-group input::placeholder,
+    .permohonan-form-group textarea::placeholder {
       color: #9aa8a1;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    .permohonan-form-group input:focus,
+    .permohonan-form-group textarea:focus,
+    .permohonan-form-group select:focus {
+
       border-color: #6da58a;
+
       background: #ffffff;
-      box-shadow: 0 0 0 3px rgba(23, 96, 68, 0.08);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(23, 96, 68, 0.08);
+
     }
 
-    .helper {
+
+    /* =================================================
+       HELPER
+    ================================================= */
+
+    .permohonan-helper {
       margin-top: 6px;
       color: #84918b;
       font-size: 11px;
+      line-height: 1.5;
     }
 
-    /* =========================
-       BUTTON
-    ========================== */
 
-    .button-wrapper {
+    /* =================================================
+       BUTTON
+    ================================================= */
+
+    .permohonan-button-wrapper {
       margin-top: 8px;
     }
 
-    .btn-primary {
+    .permohonan-submit {
+
       width: 100%;
+
       min-height: 46px;
 
       border: 0;
+
       border-radius: 10px;
 
-      background: linear-gradient(
-        135deg,
-        #176044,
-        #0f5132
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #176044,
+          #0f5132
+        );
 
       color: #ffffff;
 
       font-family: inherit;
+
       font-size: 13px;
+
       font-weight: 700;
 
       cursor: pointer;
 
-      transition: 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 7px 18px rgba(15, 81, 50, 0.18);
+    .permohonan-submit:hover {
+
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 7px 18px
+        rgba(15, 81, 50, 0.18);
+
     }
 
-    .btn-primary:disabled {
+    .permohonan-submit:disabled {
+
       opacity: 0.65;
+
       cursor: not-allowed;
+
       transform: none;
+
       box-shadow: none;
+
     }
 
-    /* =========================
-       STATUS
-    ========================== */
 
-    .status-box {
+    /* =================================================
+       STATUS
+    ================================================= */
+
+    .permohonan-status {
+
       display: none;
 
       margin-top: 18px;
-      padding: 13px 15px;
 
-      border-radius: 10px;
+      padding:
+        14px 16px;
+
+      border-radius: 11px;
 
       font-size: 13px;
-      line-height: 1.5;
+
+      line-height: 1.55;
+
     }
 
-    .status-box.success {
+    .permohonan-status.success {
+
       display: block;
+
       color: #176044;
+
       background: #eaf6ef;
-      border: 1px solid #cce8d7;
+
+      border:
+        1px solid #cce8d7;
+
     }
 
-    .status-box.error {
+    .permohonan-status.error {
+
       display: block;
+
       color: #9c3f31;
+
       background: #fff0ed;
-      border: 1px solid #f1d0ca;
+
+      border:
+        1px solid #f1d0ca;
+
     }
 
-    .success-number {
-      margin-top: 5px;
+    .permohonan-success-number {
+
+      margin-top: 6px;
+
       color: #0f5132;
+
+      font-size: 16px;
+
       font-weight: 800;
+
     }
 
-    /* =========================
-       SIDE INFORMATION
-    ========================== */
 
-    .info-card {
+    /* =================================================
+       INFORMATION CARD
+    ================================================= */
+
+    .permohonan-info-card {
+
+      background: #ffffff;
+
+      border:
+        1px solid #e4ebe7;
+
+      border-radius: 16px;
+
       padding: 24px;
+
+      box-shadow:
+        0 6px 24px
+        rgba(25, 60, 45, 0.06);
+
     }
 
-    .info-card h3 {
+    .permohonan-info-card h3 {
+
       margin: 0 0 15px;
+
       color: #17352a;
+
       font-size: 17px;
+
       font-weight: 750;
+
     }
 
-    .info-item {
+    .permohonan-info-item {
+
       display: flex;
+
       gap: 12px;
+
       padding: 13px 0;
-      border-bottom: 1px solid #edf1ee;
+
+      border-bottom:
+        1px solid #edf1ee;
+
     }
 
-    .info-item:last-child {
+    .permohonan-info-item:last-child {
+
       border-bottom: 0;
+
       padding-bottom: 0;
+
     }
 
-    .info-icon {
+    .permohonan-info-icon {
+
       width: 34px;
+
       height: 34px;
 
+      flex:
+        0 0 34px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       border-radius: 9px;
+
       background: #e8f3ed;
+
       color: #176044;
 
       font-size: 15px;
-      flex-shrink: 0;
+
     }
 
-    .info-item strong {
+    .permohonan-info-item strong {
+
       display: block;
+
       margin-bottom: 2px;
+
       color: #31443b;
+
       font-size: 12px;
+
     }
 
-    .info-item span {
+    .permohonan-info-item span {
+
       display: block;
+
       color: #75827c;
+
       font-size: 11px;
+
       line-height: 1.5;
+
     }
 
-    .notice {
+
+    /* =================================================
+       NOTICE
+    ================================================= */
+
+    .permohonan-notice {
+
       margin-top: 20px;
+
       padding: 15px;
 
       border-radius: 11px;
 
       background: #fbf7ee;
-      border: 1px solid #eee2c8;
+
+      border:
+        1px solid #eee2c8;
+
     }
 
-    .notice strong {
+    .permohonan-notice strong {
+
       display: block;
+
       margin-bottom: 5px;
+
       color: #80662e;
+
       font-size: 12px;
+
     }
 
-    .notice p {
+    .permohonan-notice p {
+
       margin: 0;
+
       color: #7d7157;
+
       font-size: 11px;
+
       line-height: 1.6;
+
     }
 
-    /* =========================
-       FOOTER
-    ========================== */
 
-    footer {
-      background: #17352a;
-      color: rgba(255,255,255,0.75);
-      padding: 28px 20px;
-    }
-
-    .footer-inner {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      gap: 20px;
-    }
-
-    .footer-brand {
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .footer-text {
-      margin-top: 3px;
-      font-size: 10px;
-      color: rgba(255,255,255,0.58);
-    }
-
-    .footer-right {
-      font-size: 10px;
-      color: rgba(255,255,255,0.55);
-      text-align: right;
-    }
-
-    /* =========================
+    /* =================================================
        RESPONSIVE
-    ========================== */
+    ================================================= */
 
     @media (max-width: 900px) {
 
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 0;
-      }
+      .permohonan-grid {
 
-      .header nav {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 2px;
-      }
-
-      .page-grid {
         grid-template-columns: 1fr;
+
       }
 
-      .info-card {
+      .permohonan-info-card {
+
         order: 2;
+
       }
+
     }
+
 
     @media (max-width: 650px) {
 
-      .hero {
-        padding: 42px 20px 45px;
+      .permohonan-content {
+
+        padding:
+          25px 0 50px;
+
       }
 
-      .hero h2 {
-        font-size: 30px;
-      }
+      .permohonan-card {
 
-      .hero p {
-        font-size: 13px;
-      }
-
-      .content {
-        padding: 25px 0 50px;
-      }
-
-      .form-card {
         padding: 21px;
+
       }
 
-      .form-grid {
+      .permohonan-form-grid {
+
         grid-template-columns: 1fr;
+
         gap: 0;
+
       }
 
-      .form-group.full {
+      .permohonan-form-group.full {
+
         grid-column: auto;
+
       }
 
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .footer-right {
-        text-align: left;
-      }
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
 
-  <header class="header">
+  <!-- =================================================
+       NAVBAR
+  ================================================== -->
 
-    <div class="header-inner">
-
-      <div class="brand">
-
-        <img
-          class="header-logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Logo_Kementerian_Agama_Republik_Indonesia.svg/512px-Logo_Kementerian_Agama_Republik_Indonesia.svg.png"
-          alt="Logo Kementerian Agama"
-        >
-
-        <div class="header-text">
-          <h1>PPID Kanwil Kemenag Banten</h1>
-          <p>Kementerian Agama Provinsi Banten</p>
-        </div>
-
-      </div>
-
-      <nav>
-
-        <a href="index.html">Beranda</a>
-
-        <a href="informasi-publik.html">
-          Informasi Publik
-        </a>
-
-        <a href="dip.html">
-          DIP
-        </a>
-
-        <a href="dik.html">
-          DIK
-        </a>
-
-        <a href="berita.html">
-          Berita
-        </a>
-
-        <a href="pengumuman.html">
-          Pengumuman
-        </a>
-
-        <a href="permohonan.html" class="active">
-          Permohonan
-        </a>
-
-      </nav>
-
-    </div>
-
-  </header>
+  <div id="siteNavbar"></div>
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
+  <!-- =================================================
+       INNER HERO
+  ================================================== -->
 
-  <section class="hero">
-
-    <div class="hero-inner">
-
-      <div class="hero-label">
-        Layanan Informasi Publik
-      </div>
-
-      <h2>
-        Permohonan Informasi Publik
-      </h2>
-
-      <p>
-        Ajukan permohonan informasi publik kepada PPID
-        Kantor Wilayah Kementerian Agama Provinsi Banten
-        melalui formulir berikut.
-      </p>
-
-    </div>
-
-  </section>
+  <div id="innerHero"></div>
 
 
-  <!-- =========================
+  <!-- =================================================
        CONTENT
-  ========================== -->
+  ================================================== -->
 
-  <main class="content">
+  <main class="permohonan-content">
 
-    <div class="container">
+    <div class="permohonan-container">
 
-      <div class="page-grid">
+      <div class="permohonan-grid">
 
-        <!-- =====================
-             FORM
-        ====================== -->
 
-        <section class="card form-card">
+        <!-- =========================================
+             FORM PERMOHONAN
+        ========================================== -->
 
-          <h2 class="card-title">
+        <section class="permohonan-card">
+
+          <h2 class="permohonan-card-title">
             Formulir Permohonan Informasi
           </h2>
 
-          <p class="card-description">
+          <p class="permohonan-card-description">
             Silakan lengkapi data berikut dengan benar.
-            Data yang dikirim akan diterima oleh PPID untuk diproses.
+            Data yang dikirim akan diterima oleh PPID
+            untuk diproses.
           </p>
 
 
           <form id="permohonanForm">
 
-            <div class="form-grid">
 
-              <!-- Nama -->
+            <div class="permohonan-form-grid">
 
-              <div class="form-group">
+
+              <!-- NAMA -->
+
+              <div class="permohonan-form-group">
 
                 <label for="namaPemohon">
+
                   Nama Pemohon
-                  <span class="required">*</span>
+
+                  <span class="permohonan-required">
+                    *
+                  </span>
+
                 </label>
 
                 <input
@@ -705,13 +588,18 @@
               </div>
 
 
-              <!-- Email -->
+              <!-- EMAIL -->
 
-              <div class="form-group">
+              <div class="permohonan-form-group">
 
                 <label for="email">
+
                   Email
-                  <span class="required">*</span>
+
+                  <span class="permohonan-required">
+                    *
+                  </span>
+
                 </label>
 
                 <input
@@ -724,13 +612,18 @@
               </div>
 
 
-              <!-- Telepon -->
+              <!-- TELEPON -->
 
-              <div class="form-group">
+              <div class="permohonan-form-group">
 
                 <label for="telepon">
+
                   Nomor Telepon
-                  <span class="required">*</span>
+
+                  <span class="permohonan-required">
+                    *
+                  </span>
+
                 </label>
 
                 <input
@@ -743,12 +636,14 @@
               </div>
 
 
-              <!-- Tanggal -->
+              <!-- TANGGAL -->
 
-              <div class="form-group">
+              <div class="permohonan-form-group">
 
                 <label for="tanggalMasuk">
+
                   Tanggal Permohonan
+
                 </label>
 
                 <input
@@ -759,13 +654,20 @@
               </div>
 
 
-              <!-- Informasi -->
+              <!-- INFORMASI DIMINTA -->
 
-              <div class="form-group full">
+              <div
+                class="permohonan-form-group full"
+              >
 
                 <label for="informasiDiminta">
+
                   Informasi yang Diminta
-                  <span class="required">*</span>
+
+                  <span class="permohonan-required">
+                    *
+                  </span>
+
                 </label>
 
                 <textarea
@@ -774,19 +676,27 @@
                   required
                 ></textarea>
 
-                <div class="helper">
-                  Jelaskan informasi secara spesifik agar PPID dapat memproses permohonan dengan tepat.
+                <div class="permohonan-helper">
+
+                  Jelaskan informasi secara spesifik
+                  agar PPID dapat memproses permohonan
+                  dengan tepat.
+
                 </div>
 
               </div>
 
 
-              <!-- Tujuan -->
+              <!-- TUJUAN -->
 
-              <div class="form-group full">
+              <div
+                class="permohonan-form-group full"
+              >
 
                 <label for="tujuan">
+
                   Tujuan Penggunaan Informasi
+
                 </label>
 
                 <textarea
@@ -796,16 +706,17 @@
 
               </div>
 
+
             </div>
 
 
             <!-- BUTTON -->
 
-            <div class="button-wrapper">
+            <div class="permohonan-button-wrapper">
 
               <button
                 type="submit"
-                class="btn-primary"
+                class="permohonan-submit"
                 id="submitButton"
               >
                 Kirim Permohonan
@@ -818,108 +729,135 @@
 
             <div
               id="statusBox"
-              class="status-box"
+              class="permohonan-status"
             ></div>
+
 
           </form>
 
         </section>
 
 
-        <!-- =====================
-             INFORMATION
-        ====================== -->
+        <!-- =========================================
+             INFORMASI LAYANAN
+        ========================================== -->
 
         <aside>
 
-          <div class="card info-card">
+          <div class="permohonan-info-card">
 
             <h3>
               Informasi Layanan
             </h3>
 
 
-            <div class="info-item">
+            <div class="permohonan-info-item">
 
-              <div class="info-icon">
+              <div class="permohonan-info-icon">
                 ✓
               </div>
 
               <div>
-                <strong>Isi Data</strong>
+
+                <strong>
+                  Isi Data
+                </strong>
+
                 <span>
-                  Lengkapi identitas dan informasi yang diminta.
+                  Lengkapi identitas dan informasi
+                  yang diminta.
                 </span>
+
               </div>
 
             </div>
 
 
-            <div class="info-item">
+            <div class="permohonan-info-item">
 
-              <div class="info-icon">
+              <div class="permohonan-info-icon">
                 ↗
               </div>
 
               <div>
-                <strong>Kirim Permohonan</strong>
+
+                <strong>
+                  Kirim Permohonan
+                </strong>
+
                 <span>
-                  Pastikan data yang Anda masukkan sudah benar.
+                  Pastikan data yang Anda masukkan
+                  sudah benar.
                 </span>
+
               </div>
 
             </div>
 
 
-            <div class="info-item">
+            <div class="permohonan-info-item">
 
-              <div class="info-icon">
+              <div class="permohonan-info-icon">
                 ⏳
               </div>
 
               <div>
-                <strong>Proses PPID</strong>
+
+                <strong>
+                  Proses PPID
+                </strong>
+
                 <span>
-                  Permohonan akan diterima dan diproses oleh PPID.
+                  Permohonan akan diterima dan
+                  diproses oleh PPID.
                 </span>
+
               </div>
 
             </div>
 
 
-            <div class="info-item">
+            <div class="permohonan-info-item">
 
-              <div class="info-icon">
+              <div class="permohonan-info-icon">
                 ✓
               </div>
 
               <div>
-                <strong>Tindak Lanjut</strong>
+
+                <strong>
+                  Tindak Lanjut
+                </strong>
+
                 <span>
-                  Petugas akan melakukan tindak lanjut sesuai ketentuan.
+                  Petugas akan melakukan tindak lanjut
+                  sesuai ketentuan.
                 </span>
+
               </div>
 
             </div>
 
 
-            <div class="notice">
+            <div class="permohonan-notice">
 
               <strong>
                 Penting
               </strong>
 
               <p>
-                Pastikan alamat email dan nomor telepon yang
-                dicantumkan dapat dihubungi untuk keperluan
-                tindak lanjut permohonan.
+                Pastikan alamat email dan nomor telepon
+                yang dicantumkan dapat dihubungi untuk
+                keperluan tindak lanjut permohonan.
               </p>
 
             </div>
 
+
           </div>
 
         </aside>
+
 
       </div>
 
@@ -928,374 +866,545 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =================================================
        FOOTER
-  ========================== -->
+  ================================================== -->
 
-  <footer>
-
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-brand">
-          PPID Kanwil Kemenag Banten
-        </div>
-
-        <div class="footer-text">
-          Kantor Wilayah Kementerian Agama Provinsi Banten
-        </div>
-
-      </div>
-
-      <div class="footer-right">
-        Layanan Informasi Publik
-      </div>
-
-    </div>
-
-  </footer>
+  <div id="siteFooter"></div>
 
 
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
+  <!-- =================================================
+       ACCESSIBILITY
+  ================================================== -->
+
+  <div id="accessibility"></div>
+
+
+  <!-- =================================================
+       LAYOUT
+  ================================================== -->
+
+  <script src="layout.js"></script>
+
+
+  <!-- =================================================
+       INNER HERO CONTENT
+  ================================================== -->
 
   <script>
 
-    const API_URL =
-      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
-
-    const form =
-      document.getElementById('permohonanForm');
-
-    const submitButton =
-      document.getElementById('submitButton');
-
-    const statusBox =
-      document.getElementById('statusBox');
-
-
-    /* =========================
-       DEFAULT DATE
-    ========================== */
-
-    document.addEventListener('DOMContentLoaded', function () {
-
-      const tanggalInput =
-        document.getElementById('tanggalMasuk');
-
-      const today =
-        new Date();
-
-      const year =
-        today.getFullYear();
-
-      const month =
-        String(today.getMonth() + 1).padStart(2, '0');
-
-      const day =
-        String(today.getDate()).padStart(2, '0');
-
-      tanggalInput.value =
-        `${year}-${month}-${day}`;
-
-    });
-
-
-    /* =========================
-       SUBMIT FORM
-    ========================== */
-
-    form.addEventListener('submit', async function (event) {
-
-      event.preventDefault();
-
-
-      const namaPemohon =
-        document
-          .getElementById('namaPemohon')
-          .value
-          .trim();
-
-
-      const email =
-        document
-          .getElementById('email')
-          .value
-          .trim();
-
-
-      const telepon =
-        document
-          .getElementById('telepon')
-          .value
-          .trim();
-
-
-      const informasiDiminta =
-        document
-          .getElementById('informasiDiminta')
-          .value
-          .trim();
-
-
-      const tujuan =
-        document
-          .getElementById('tujuan')
-          .value
-          .trim();
-
-
-      const tanggalInput =
-        document
-          .getElementById('tanggalMasuk')
-          .value;
-
-
-      if (!namaPemohon) {
-
-        showStatus(
-          'error',
-          'Nama pemohon wajib diisi.'
-        );
-
-        return;
-      }
-
-
-      if (!email) {
-
-        showStatus(
-          'error',
-          'Email wajib diisi.'
-        );
-
-        return;
-      }
-
-
-      if (!telepon) {
-
-        showStatus(
-          'error',
-          'Nomor telepon wajib diisi.'
-        );
-
-        return;
-      }
-
-
-      if (!informasiDiminta) {
-
-        showStatus(
-          'error',
-          'Informasi yang diminta wajib diisi.'
-        );
-
-        return;
-      }
-
-
-      let tanggalMasuk =
-        tanggalInput;
-
-
-      if (!tanggalMasuk) {
-
-        const today =
-          new Date();
-
-        tanggalMasuk =
-          String(today.getDate()).padStart(2, '0') +
-          '/' +
-          String(today.getMonth() + 1).padStart(2, '0') +
-          '/' +
-          today.getFullYear();
-
-      } else {
-
-        const parts =
-          tanggalInput.split('-');
-
-        tanggalMasuk =
-          parts[2] +
-          '/' +
-          parts[1] +
-          '/' +
-          parts[0];
-
-      }
-
-
-      submitButton.disabled = true;
-
-      submitButton.textContent =
-        'Mengirim Permohonan...';
-
-
-      statusBox.className =
-        'status-box';
-
-      statusBox.style.display =
-        'none';
-
-
-      try {
-
-        const payload = {
-
-          action: 'tambahPermohonan',
-
-          nomorPermohonan: '',
-
-          namaPemohon:
-            namaPemohon,
-
-          email:
-            email,
-
-          telepon:
-            telepon,
-
-          informasiDiminta:
-            informasiDiminta,
-
-          tujuan:
-            tujuan,
-
-          tanggalMasuk:
-            tanggalMasuk,
-
-          status:
-            'Diterima',
-
-          catatan:
-            ''
-
-        };
-
-
-        const response =
-          await fetch(API_URL, {
-
-            method: 'POST',
-
-            headers: {
-              'Content-Type':
-                'text/plain;charset=utf-8'
-            },
-
-            body:
-              JSON.stringify(payload)
-
-          });
-
-
-        const result =
-          await response.json();
-
-
-        if (!result.success) {
-
-          throw new Error(
-            result.message ||
-            'Permohonan gagal disimpan.'
+    document.addEventListener(
+      "layout:loaded",
+      function () {
+
+        const title =
+          document.getElementById(
+            "innerHeroTitle"
           );
+
+        const description =
+          document.getElementById(
+            "innerHeroDescription"
+          );
+
+        if (title) {
+
+          title.textContent =
+            "Permohonan Informasi Publik";
+
+        }
+
+        if (description) {
+
+          description.textContent =
+            "Ajukan permohonan informasi publik kepada PPID Kantor Wilayah Kementerian Agama Provinsi Banten melalui formulir berikut.";
+
+        }
+
+      }
+    );
+
+  </script>
+
+
+  <!-- =================================================
+       PERMOHONAN SCRIPT
+  ================================================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const form =
+          document.getElementById(
+            "permohonanForm"
+          );
+
+        const submitButton =
+          document.getElementById(
+            "submitButton"
+          );
+
+        const statusBox =
+          document.getElementById(
+            "statusBox"
+          );
+
+
+        if (!form) return;
+
+
+        /* =============================================
+           DEFAULT DATE
+        ============================================== */
+
+        const tanggalInput =
+          document.getElementById(
+            "tanggalMasuk"
+          );
+
+        if (tanggalInput) {
+
+          const today =
+            new Date();
+
+          const year =
+            today.getFullYear();
+
+          const month =
+            String(
+              today.getMonth() + 1
+            ).padStart(2, "0");
+
+          const day =
+            String(
+              today.getDate()
+            ).padStart(2, "0");
+
+          tanggalInput.value =
+            `${year}-${month}-${day}`;
 
         }
 
 
-        showStatus(
-          'success',
-          `
-            <strong>Permohonan berhasil dikirim.</strong>
-            <div class="success-number">
-              Nomor Permohonan:
-              ${result.data?.nomor_permohonan || result.data?.id || '-'}
-            </div>
-            <div style="margin-top:5px;">
-              Permohonan Anda telah diterima oleh sistem PPID.
-            </div>
-          `
+        /* =============================================
+           SUBMIT
+        ============================================== */
+
+        form.addEventListener(
+          "submit",
+          async function (event) {
+
+            event.preventDefault();
+
+
+            const namaPemohon =
+              document
+                .getElementById(
+                  "namaPemohon"
+                )
+                .value
+                .trim();
+
+
+            const email =
+              document
+                .getElementById(
+                  "email"
+                )
+                .value
+                .trim();
+
+
+            const telepon =
+              document
+                .getElementById(
+                  "telepon"
+                )
+                .value
+                .trim();
+
+
+            const informasiDiminta =
+              document
+                .getElementById(
+                  "informasiDiminta"
+                )
+                .value
+                .trim();
+
+
+            const tujuan =
+              document
+                .getElementById(
+                  "tujuan"
+                )
+                .value
+                .trim();
+
+
+            const tanggalInput =
+              document
+                .getElementById(
+                  "tanggalMasuk"
+                )
+                .value;
+
+
+            /* =========================================
+               VALIDASI
+            ========================================== */
+
+            if (!namaPemohon) {
+
+              showStatus(
+                "error",
+                "Nama pemohon wajib diisi."
+              );
+
+              return;
+
+            }
+
+
+            if (!email) {
+
+              showStatus(
+                "error",
+                "Email wajib diisi."
+              );
+
+              return;
+
+            }
+
+
+            if (!telepon) {
+
+              showStatus(
+                "error",
+                "Nomor telepon wajib diisi."
+              );
+
+              return;
+
+            }
+
+
+            if (!informasiDiminta) {
+
+              showStatus(
+                "error",
+                "Informasi yang diminta wajib diisi."
+              );
+
+              return;
+
+            }
+
+
+            /* =========================================
+               FORMAT TANGGAL
+            ========================================== */
+
+            let tanggalMasuk =
+              tanggalInput;
+
+
+            if (!tanggalMasuk) {
+
+              const today =
+                new Date();
+
+              tanggalMasuk =
+                String(
+                  today.getDate()
+                ).padStart(2, "0") +
+                "/" +
+                String(
+                  today.getMonth() + 1
+                ).padStart(2, "0") +
+                "/" +
+                today.getFullYear();
+
+            }
+
+            else {
+
+              const parts =
+                tanggalInput.split("-");
+
+              tanggalMasuk =
+                parts[2] +
+                "/" +
+                parts[1] +
+                "/" +
+                parts[0];
+
+            }
+
+
+            /* =========================================
+               UI LOADING
+            ========================================== */
+
+            submitButton.disabled =
+              true;
+
+            submitButton.textContent =
+              "Mengirim Permohonan...";
+
+
+            statusBox.className =
+              "permohonan-status";
+
+            statusBox.style.display =
+              "none";
+
+
+            try {
+
+
+              /* =======================================
+                 PAYLOAD
+              ======================================== */
+
+              const payload = {
+
+                action:
+                  "tambahPermohonan",
+
+                nomorPermohonan:
+                  "",
+
+                namaPemohon:
+                  namaPemohon,
+
+                email:
+                  email,
+
+                telepon:
+                  telepon,
+
+                informasiDiminta:
+                  informasiDiminta,
+
+                tujuan:
+                  tujuan,
+
+                tanggalMasuk:
+                  tanggalMasuk,
+
+                status:
+                  "Diterima",
+
+                catatan:
+                  ""
+
+              };
+
+
+              /* =======================================
+                 API
+              ======================================== */
+
+              const response =
+                await fetch(
+                  API_URL,
+                  {
+
+                    method:
+                      "POST",
+
+                    headers: {
+
+                      "Content-Type":
+                        "text/plain;charset=utf-8"
+
+                    },
+
+                    body:
+                      JSON.stringify(
+                        payload
+                      )
+
+                  }
+                );
+
+
+              const result =
+                await response.json();
+
+
+              /* =======================================
+                 ERROR API
+              ======================================== */
+
+              if (!result.success) {
+
+                throw new Error(
+
+                  result.message ||
+                  "Permohonan gagal disimpan."
+
+                );
+
+              }
+
+
+              /* =======================================
+                 SUCCESS
+              ======================================== */
+
+              const nomorPermohonan =
+                result.data?.nomor_permohonan ||
+                result.data?.id ||
+                "-";
+
+
+              showStatus(
+
+                "success",
+
+                `
+                  <strong>
+                    Permohonan berhasil dikirim.
+                  </strong>
+
+                  <div
+                    class="permohonan-success-number"
+                  >
+                    Nomor Permohonan:
+                    ${nomorPermohonan}
+                  </div>
+
+                  <div
+                    style="margin-top:6px;"
+                  >
+                    Permohonan Anda telah diterima
+                    oleh sistem PPID.
+                  </div>
+                `
+
+              );
+
+
+              /* =======================================
+                 RESET FORM
+              ======================================== */
+
+              form.reset();
+
+
+              /* =======================================
+                 SET DATE AGAIN
+              ======================================== */
+
+              const today =
+                new Date();
+
+              document.getElementById(
+                "tanggalMasuk"
+              ).value =
+
+                today.getFullYear() +
+                "-" +
+                String(
+                  today.getMonth() + 1
+                ).padStart(2, "0") +
+                "-" +
+                String(
+                  today.getDate()
+                ).padStart(2, "0");
+
+
+            }
+
+            catch (error) {
+
+              console.error(
+                "Error submit permohonan:",
+                error
+              );
+
+
+              showStatus(
+
+                "error",
+
+                `
+                  <strong>
+                    Permohonan belum berhasil dikirim.
+                  </strong>
+
+                  <div
+                    style="margin-top:5px;"
+                  >
+                    ${
+                      error.message ||
+                      "Terjadi kesalahan pada sistem."
+                    }
+                  </div>
+                `
+
+              );
+
+            }
+
+            finally {
+
+              submitButton.disabled =
+                false;
+
+              submitButton.textContent =
+                "Kirim Permohonan";
+
+            }
+
+          }
         );
 
 
-        form.reset();
+        /* =============================================
+           STATUS
+        ============================================== */
+
+        function showStatus(
+          type,
+          message
+        ) {
+
+          statusBox.className =
+            "permohonan-status " +
+            type;
+
+          statusBox.innerHTML =
+            message;
+
+          statusBox.style.display =
+            "block";
 
 
-        const today =
-          new Date();
+          statusBox.scrollIntoView({
 
-        document.getElementById(
-          'tanggalMasuk'
-        ).value =
-          today.getFullYear() +
-          '-' +
-          String(
-            today.getMonth() + 1
-          ).padStart(2, '0') +
-          '-' +
-          String(
-            today.getDate()
-          ).padStart(2, '0');
+            behavior:
+              "smooth",
 
+            block:
+              "nearest"
 
-      } catch (error) {
+          });
 
-        console.error(
-          'Error submit permohonan:',
-          error
-        );
-
-
-        showStatus(
-          'error',
-          `
-            <strong>Permohonan belum berhasil dikirim.</strong>
-            <div style="margin-top:5px;">
-              ${error.message || 'Terjadi kesalahan pada sistem.'}
-            </div>
-          `
-        );
-
-      } finally {
-
-        submitButton.disabled = false;
-
-        submitButton.textContent =
-          'Kirim Permohonan';
+        }
 
       }
-
-    });
-
-
-    /* =========================
-       STATUS MESSAGE
-    ========================== */
-
-    function showStatus(type, message) {
-
-      statusBox.className =
-        'status-box ' + type;
-
-      statusBox.innerHTML =
-        message;
-
-      statusBox.style.display =
-        'block';
-
-
-      statusBox.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-
-    }
+    );
 
   </script>
 
+
 </body>
+
 </html>
