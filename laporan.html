@@ -1,874 +1,1164 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Laporan - PPID Kanwil Kemenag Banten</title>
+  <title>Laporan - PPID Kanwil Kementerian Agama Provinsi Banten</title>
+
+  <link rel="stylesheet" href="style.css?v=999">
 
   <style>
-    * {
-      box-sizing: border-box;
+    /* =========================================================
+       LAPORAN
+       Mengikuti pola tampilan REGULASI
+       ========================================================= */
+
+    .laporan-page {
+      padding: 60px 0 80px;
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7f5;
-      color: #263326;
-    }
+    /* =========================
+       TOOLBAR
+       ========================= */
 
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e4e9e4;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 14px 24px;
+    .laporan-toolbar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 250px;
-    }
-
-    .brand img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    .brand-text h1 {
-      margin: 0;
-      font-size: 16px;
-      color: #176b3a;
-      font-weight: 700;
-    }
-
-    .brand-text p {
-      margin: 3px 0 0;
-      font-size: 12px;
-      color: #777;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #555;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      background: #eef6f0;
-      color: #176b3a;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #176b3a, #2d8a52);
-      color: #ffffff;
-      padding: 52px 24px;
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .hero h2 {
-      margin: 0 0 10px;
-      font-size: 32px;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 760px;
-      line-height: 1.6;
-      opacity: 0.92;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 32px 24px 60px;
-    }
-
-    .toolbar {
-      background: #ffffff;
-      border: 1px solid #e4e9e4;
-      border-radius: 14px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr 220px 180px;
-      gap: 12px;
+      flex-direction: column;
+      gap: 14px;
       margin-bottom: 24px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
     }
 
-    input,
-    select {
+    .laporan-search-wrapper {
+      position: relative;
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d9dfd9;
+    }
+
+    .laporan-search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: #7a8781;
+      pointer-events: none;
+    }
+
+    #laporanSearchInput {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px 0 44px;
+      box-sizing: border-box;
+      border: 1px solid #dfe7e2;
       border-radius: 9px;
-      font-size: 14px;
+      background: #ffffff;
+      color: #34433b;
+      font-family: inherit;
+      font-size: 13px;
       outline: none;
-      background: #ffffff;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
-    input:focus,
-    select:focus {
-      border-color: #2d8a52;
+    #laporanSearchInput:focus {
+      border-color: #0f5132;
+      box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
     }
 
-    .status {
-      margin-bottom: 18px;
-      font-size: 14px;
-      color: #6b736b;
-    }
+    /* =========================
+       FILTER
+       ========================= */
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e3e8e3;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-    }
-
-    .card-top {
+    .laporan-filters {
       display: flex;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .laporan-filter-btn {
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid #dfe7e2;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 9px 15px;
+      min-height: 38px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .laporan-filter-btn:hover {
+      background: #f4f8f5;
+      border-color: #cbdad1;
+      color: #0f5132;
+    }
+
+    .laporan-filter-btn.active {
+      background: #0f5132;
+      border-color: #0f5132;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
+    }
+
+    /* =========================
+       SORT
+       ========================= */
+
+    .laporan-sort {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .laporan-sort label {
+      color: #66736c;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    #laporanSort {
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid #dfe7e2;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #53615a;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    #laporanSort:focus {
+      border-color: #0f5132;
+      box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
+    }
+
+    /* =========================
+       RESULT HEADER
+       ========================= */
+
+    .laporan-result-header {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 15px;
+      margin-top: 36px;
       margin-bottom: 12px;
     }
 
-    .jenis {
-      color: #176b3a;
-      font-size: 13px;
-      font-weight: 700;
+    .laporan-result-header h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #263a30;
     }
 
-    .badge {
-      background: #eef6f0;
-      color: #176b3a;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 11px;
+    #laporanResultCount {
+      color: #718078;
+      font-size: 12px;
+    }
+
+    /* =========================
+       TABLE
+       ========================= */
+
+    .laporan-data-list {
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+    }
+
+    .laporan-table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .laporan-table th {
+      background: #f4f8f5;
+      color: #40544b;
       font-weight: 700;
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid #dfe7e2;
       white-space: nowrap;
     }
 
-    .card h3 {
-      margin: 0 0 14px;
-      font-size: 19px;
-      line-height: 1.4;
+    .laporan-table td {
+      padding: 15px 16px;
+      color: #53615a;
+      border-bottom: 1px solid #edf1ee;
+      vertical-align: middle;
+      line-height: 1.6;
     }
 
-    .tahun {
-      display: inline-block;
-      margin-bottom: 16px;
-      background: #f1f4f1;
-      padding: 6px 10px;
+    .laporan-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .laporan-table tbody tr:hover {
+      background: #fafcfb;
+    }
+
+    .laporan-table th:first-child,
+    .laporan-table td:first-child {
+      width: 6%;
+      text-align: center;
+    }
+
+    .laporan-table th:nth-child(2) {
+      width: 42%;
+    }
+
+    .laporan-table th:nth-child(3) {
+      width: 22%;
+    }
+
+    .laporan-table th:nth-child(4) {
+      width: 10%;
+      text-align: center;
+    }
+
+    .laporan-table th:nth-child(5) {
+      width: 20%;
+      text-align: center;
+    }
+
+    .laporan-table td:nth-child(4) {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .laporan-table td:nth-child(5) {
+      text-align: center;
+    }
+
+    /* =========================
+       JUDUL LAPORAN
+       ========================= */
+
+    .laporan-title {
+      color: #263a30;
+      font-weight: 650;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       KATEGORI
+       ========================= */
+
+    .laporan-category {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
       border-radius: 7px;
-      font-size: 12px;
-      color: #596359;
-      font-weight: 600;
+      background: #f1f6f3;
+      color: #536b5e;
+      font-size: 11px;
+      font-weight: 650;
+      line-height: 1.3;
     }
 
-    .ringkasan {
-      font-size: 13px;
-      line-height: 1.7;
-      color: #687168;
-      margin-bottom: 18px;
+    /* =========================
+       TAHUN
+       ========================= */
+
+    .laporan-year {
+      color: #53615a;
+      font-weight: 650;
     }
 
-    .button {
-      display: inline-block;
-      background: #176b3a;
+    /* =========================
+       BUTTON DOKUMEN
+       ========================= */
+
+    .laporan-document-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 8px 13px;
+      border: 1px solid #0f5132;
+      border-radius: 8px;
+      background: #0f5132;
       color: #ffffff;
       text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 650;
+      line-height: 1.2;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+      white-space: nowrap;
     }
 
-    .button:hover {
-      background: #11562e;
+    .laporan-document-btn:hover {
+      background: #0b4228;
+      border-color: #0b4228;
+      transform: translateY(-1px);
     }
 
-    .no-document {
-      font-size: 13px;
-      color: #8a918a;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      background: #ffffff;
-      border: 1px dashed #ccd4cc;
-      border-radius: 14px;
-      padding: 45px 20px;
-      text-align: center;
-      color: #747b74;
-    }
-
-    .loading {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: #6d756d;
-    }
-
-    footer {
-      background: #173d27;
-      color: rgba(255,255,255,0.85);
-      text-align: center;
-      padding: 24px;
+    .laporan-no-document {
+      color: #8a958f;
       font-size: 12px;
     }
 
-    @media (max-width: 900px) {
+    /* =========================
+       EMPTY / LOADING
+       ========================= */
 
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      .toolbar {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    .laporan-empty {
+      padding: 45px 20px;
+      text-align: center;
+      color: #747f78;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
-    @media (max-width: 600px) {
+    .laporan-loading {
+      padding: 45px 20px;
+      text-align: center;
+      color: #718078;
+      font-size: 13px;
+    }
 
-      .hero {
-        padding: 40px 20px;
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 700px) {
+
+      .laporan-page {
+        padding: 45px 0 60px;
       }
 
-      .hero h2 {
-        font-size: 26px;
+      .laporan-result-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
       }
 
-      .container {
-        padding: 24px 16px 45px;
+      .laporan-sort {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
-      .header-inner {
-        padding: 12px 16px;
+      #laporanSort {
+        width: 100%;
       }
 
-      nav a {
-        font-size: 12px;
-        padding: 8px 9px;
+      .laporan-table {
+        min-width: 850px;
       }
+
     }
   </style>
-
 </head>
 
 <body>
 
-<header>
+  <!-- =======================================================
+       NAVBAR
+       ======================================================= -->
 
-  <div class="header-inner">
+  <div id="siteNavbar"></div>
 
+  <!-- =======================================================
+       INNER HERO
+       ======================================================= -->
 
-<div class="brand">
+  <div id="innerHero"></div>
 
-  <img
-    src="assets/logo-kemenag.png"
-    alt="Logo Kementerian Agama"
-  >
+  <!-- =======================================================
+       CONTENT
+       ======================================================= -->
 
-  <div class="brand-text">
-    <h1>PPID Kanwil Kemenag Banten</h1>
-    <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
-  </div>
+  <main class="laporan-page">
 
-</div>
+    <div class="container">
 
-<nav>
+      <!-- SEARCH + FILTER -->
 
-  <a href="index.html">
-    Beranda
-  </a>
+      <section class="laporan-toolbar">
 
-  <a href="informasi-publik.html">
-    Informasi Publik
-  </a>
+        <div class="laporan-search-wrapper">
 
-  <a href="dip.html">
-    DIP
-  </a>
+          <span class="laporan-search-icon">
+            ⌕
+          </span>
 
-  <a href="dik.html">
-    DIK
-  </a>
-
-  <a href="berita.html">
-    Berita
-  </a>
-
-  <a href="pengumuman.html">
-    Pengumuman
-  </a>
-
-</nav>
-
-
-  </div>
-
-</header>
-
-<section class="hero">
-
-  <div class="hero-inner">
-
-
-<h2>Laporan</h2>
-
-<p>
-  Kumpulan laporan yang berkaitan dengan pelaksanaan
-  keterbukaan informasi publik di lingkungan
-  Kanwil Kementerian Agama Provinsi Banten.
-</p>
-
-
-  </div>
-
-</section>
-
-<main class="container">
-
-  <div class="toolbar">
-
-
-<input
-  type="text"
-  id="searchInput"
-  placeholder="Cari judul atau ringkasan laporan..."
->
-
-<select id="jenisFilter">
-
-  <option value="">
-    Semua Jenis
-  </option>
-
-</select>
-
-<select id="tahunFilter">
-
-  <option value="">
-    Semua Tahun
-  </option>
-
-</select>
-
-
-  </div>
-
-  <div
-    id="status"
-    class="status"
-  >
-    Memuat data laporan...
-  </div>
-
-  <div
-    id="laporanList"
-    class="grid"
-  >
-
-
-<div class="loading">
-  Memuat data...
-</div>
-
-
-  </div>
-
-</main>
-
-<footer>
-
-© PPID Kanwil Kementerian Agama Provinsi Banten
-
-</footer>
-
-<script>
-
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
-  let laporanData = [];
-
-
-  async function loadLaporan() {
-
-    const list =
-      document.getElementById('laporanList');
-
-    const status =
-      document.getElementById('status');
-
-    try {
-
-      status.textContent =
-        'Memuat data laporan...';
-
-
-      const response =
-        await fetch(
-          API_URL + '?action=laporan'
-        );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          'HTTP Error ' +
-          response.status
-        );
-
-      }
-
-
-      const result =
-        await response.json();
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'API laporan mengembalikan success=false'
-        );
-
-      }
-
-
-      laporanData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-
-      setupFilters();
-
-      renderLaporan();
-
-
-    } catch (error) {
-
-      console.error(
-        'Error load laporan:',
-        error
-      );
-
-
-      status.textContent =
-        'Gagal memuat data laporan.';
-
-
-      list.innerHTML = `
-        <div class="empty">
-
-          <strong>
-            Data laporan tidak dapat dimuat.
-          </strong>
-
-          <br><br>
-
-          ${escapeHTML(error.message)}
+          <input
+            type="text"
+            id="laporanSearchInput"
+            placeholder="Cari judul laporan..."
+            autocomplete="off"
+          >
 
         </div>
-      `;
+
+        <div
+          class="laporan-filters"
+          id="laporanFilters"
+        >
+
+          <button
+            type="button"
+            class="laporan-filter-btn active"
+            data-category=""
+          >
+            Semua
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="Laporan Tahunan PPID"
+          >
+            Laporan Tahunan PPID
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="Laporan Kinerja"
+          >
+            Laporan Kinerja
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="Laporan Keuangan"
+          >
+            Laporan Keuangan
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="Laporan BMN"
+          >
+            Laporan BMN
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="LHKPN Kakanwil"
+          >
+            LHKPN Kakanwil
+          </button>
+
+          <button
+            type="button"
+            class="laporan-filter-btn"
+            data-category="Statistik Kanwil"
+          >
+            Statistik Kanwil
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- SORT -->
+
+      <div class="laporan-sort">
+
+        <label for="laporanSort">
+          Urutkan:
+        </label>
+
+        <select id="laporanSort">
+
+          <option value="terbaru">
+            Terbaru → Terlama
+          </option>
+
+          <option value="terlama">
+            Terlama → Terbaru
+          </option>
+
+        </select>
+
+      </div>
+
+      <!-- RESULT HEADER -->
+
+      <div class="laporan-result-header">
+
+        <h3>
+          Daftar Laporan
+        </h3>
+
+        <span id="laporanResultCount">
+          Memuat data...
+        </span>
+
+      </div>
+
+      <!-- TABLE -->
+
+      <div class="laporan-data-list">
+
+        <div
+          id="laporanTableWrapper"
+          class="laporan-loading"
+        >
+          Memuat data laporan...
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <div id="siteFooter"></div>
+
+  <!-- ACCESSIBILITY -->
+
+  <div id="accessibility"></div>
+
+  <!-- =======================================================
+       LAYOUT
+       ======================================================= -->
+
+  <script src="layout.js"></script>
+
+  <!-- =======================================================
+       LAPORAN SCRIPT
+       ======================================================= -->
+
+  <script>
+
+    const LAPORAN_API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let laporanData = [];
+
+    let laporanActiveCategory = '';
+
+
+    /* =======================================================
+       LOAD DATA
+       ======================================================= */
+
+    async function loadLaporanData() {
+
+      const wrapper =
+        document.getElementById(
+          'laporanTableWrapper'
+        );
+
+      const resultCount =
+        document.getElementById(
+          'laporanResultCount'
+        );
+
+      try {
+
+        wrapper.innerHTML =
+          '<div class="laporan-loading">Memuat data laporan...</div>';
+
+        resultCount.textContent =
+          'Memuat data...';
+
+
+        const response =
+          await fetch(
+            LAPORAN_API_URL +
+            '?action=laporan'
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'API laporan mengembalikan success=false'
+          );
+
+        }
+
+
+        laporanData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        renderLaporan();
+
+      } catch (error) {
+
+        console.error(
+          'ERROR LOAD LAPORAN:',
+          error
+        );
+
+
+        resultCount.textContent =
+          'Gagal memuat data';
+
+
+        wrapper.innerHTML = `
+
+          <div class="laporan-empty">
+
+            <strong>
+              Data laporan tidak dapat dimuat.
+            </strong>
+
+            <br><br>
+
+            ${escapeHTML(
+              error.message
+            )}
+
+          </div>
+
+        `;
+
+      }
 
     }
 
-  }
+
+    /* =======================================================
+       RENDER
+       ======================================================= */
+
+    function renderLaporan() {
+
+      const wrapper =
+        document.getElementById(
+          'laporanTableWrapper'
+        );
+
+      const resultCount =
+        document.getElementById(
+          'laporanResultCount'
+        );
+
+      const searchInput =
+        document.getElementById(
+          'laporanSearchInput'
+        );
+
+      const sortSelect =
+        document.getElementById(
+          'laporanSort'
+        );
 
 
-  function setupFilters() {
-
-    const jenisFilter =
-      document.getElementById('jenisFilter');
-
-    const tahunFilter =
-      document.getElementById('tahunFilter');
-
-
-    const jenisList = [
-      ...new Set(
-        laporanData
-          .map(item => item.jenis)
-          .filter(Boolean)
-      )
-    ].sort();
+      const search =
+        searchInput
+          ? searchInput.value
+              .toLowerCase()
+              .trim()
+          : '';
 
 
-    const tahunList = [
-      ...new Set(
-        laporanData
-          .map(item => item.tahun)
-          .filter(Boolean)
-      )
-    ].sort(
-      (a, b) =>
-        Number(b) - Number(a)
-    );
+      const sort =
+        sortSelect
+          ? sortSelect.value
+          : 'terbaru';
 
 
-    jenisFilter.innerHTML =
-      '<option value="">Semua Jenis</option>' +
+      /* =========================
+         FILTER
+         ========================= */
 
-      jenisList
-        .map(
-          jenis =>
-            `<option value="${escapeHTML(jenis)}">${escapeHTML(jenis)}</option>`
-        )
-        .join('');
+      let filtered =
+        laporanData.filter(
+          function(item) {
 
+            const judul =
+              String(
+                item.judul_laporan ||
+                ''
+              );
 
-    tahunFilter.innerHTML =
-      '<option value="">Semua Tahun</option>' +
+            const kategori =
+              String(
+                item.kategori ||
+                ''
+              );
 
-      tahunList
-        .map(
-          tahun =>
-            `<option value="${escapeHTML(tahun)}">${escapeHTML(tahun)}</option>`
-        )
-        .join('');
-
-  }
-
-
-  function renderLaporan() {
-
-    const list =
-      document.getElementById('laporanList');
-
-    const status =
-      document.getElementById('status');
+            const tahun =
+              String(
+                item.tahun ||
+                ''
+              );
 
 
-    const search =
-      document
-        .getElementById('searchInput')
-        .value
-        .toLowerCase()
-        .trim();
+            const searchText =
+              (
+                judul +
+                ' ' +
+                kategori +
+                ' ' +
+                tahun
+              )
+                .toLowerCase();
 
 
-    const jenis =
-      document
-        .getElementById('jenisFilter')
-        .value;
+            const matchSearch =
+              !search ||
+              searchText.includes(
+                search
+              );
 
 
-    const tahun =
-      document
-        .getElementById('tahunFilter')
-        .value;
+            const matchCategory =
+              !laporanActiveCategory ||
+              kategori ===
+                laporanActiveCategory;
 
 
-    const filtered =
-      laporanData.filter(
-        item => {
+            return (
+              matchSearch &&
+              matchCategory
+            );
 
-          const text = [
-
-            item.id,
-            item.judul,
-            item.jenis,
-            item.tahun,
-            item.ringkasan
-
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .toLowerCase();
+          }
+        );
 
 
-          const matchSearch =
-            !search ||
-            text.includes(search);
+      /* =========================
+         SORT
+         ========================= */
+
+      filtered.sort(
+        function(a, b) {
+
+          const tahunA =
+            Number(
+              a.tahun || 0
+            );
+
+          const tahunB =
+            Number(
+              b.tahun || 0
+            );
 
 
-          const matchJenis =
-            !jenis ||
-            String(item.jenis) ===
-            String(jenis);
+          if (
+            sort === 'terlama'
+          ) {
+
+            return tahunA - tahunB;
+
+          }
 
 
-          const matchTahun =
-            !tahun ||
-            String(item.tahun) ===
-            String(tahun);
-
-
-          return (
-            matchSearch &&
-            matchJenis &&
-            matchTahun
-          );
+          return tahunB - tahunA;
 
         }
       );
 
 
-    status.textContent =
-      filtered.length +
-      ' laporan ditemukan';
+      /* =========================
+         RESULT COUNT
+         ========================= */
+
+      resultCount.textContent =
+        filtered.length +
+        ' laporan ditemukan';
 
 
-    if (!filtered.length) {
+      /* =========================
+         EMPTY
+         ========================= */
 
-      list.innerHTML = `
-        <div class="empty">
+      if (!filtered.length) {
 
-          Tidak ada laporan yang sesuai
-          dengan pencarian.
+        wrapper.innerHTML = `
 
-        </div>
+          <div class="laporan-empty">
+
+            Tidak ada laporan yang sesuai
+            dengan pencarian atau filter.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      /* =========================
+         TABLE
+         ========================= */
+
+      wrapper.innerHTML = `
+
+        <table class="laporan-table">
+
+          <thead>
+
+            <tr>
+
+              <th>No.</th>
+
+              <th>Judul Laporan</th>
+
+              <th>Kategori</th>
+
+              <th>Tahun</th>
+
+              <th>Dokumen</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            ${
+              filtered
+                .map(
+                  function(item, index) {
+
+                    const judul =
+                      item.judul_laporan ||
+                      'Tanpa Judul';
+
+
+                    const kategori =
+                      item.kategori ||
+                      '-';
+
+
+                    const tahun =
+                      item.tahun ||
+                      '-';
+
+
+                    const documentUrl =
+                      item.url_dokumen
+                        ? String(
+                            item.url_dokumen
+                          ).trim()
+                        : '';
+
+
+                    return `
+
+                      <tr>
+
+                        <td>
+                          ${index + 1}
+                        </td>
+
+                        <td>
+
+                          <div class="laporan-title">
+
+                            ${escapeHTML(
+                              judul
+                            )}
+
+                          </div>
+
+                        </td>
+
+                        <td>
+
+                          <span class="laporan-category">
+
+                            ${escapeHTML(
+                              kategori
+                            )}
+
+                          </span>
+
+                        </td>
+
+                        <td>
+
+                          <span class="laporan-year">
+
+                            ${escapeHTML(
+                              tahun
+                            )}
+
+                          </span>
+
+                        </td>
+
+                        <td>
+
+                          ${
+                            documentUrl
+
+                              ? `
+
+                                <a
+                                  class="laporan-document-btn"
+                                  href="${escapeAttribute(
+                                    documentUrl
+                                  )}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Lihat Dokumen
+                                </a>
+
+                              `
+
+                              : `
+
+                                <span class="laporan-no-document">
+                                  Dokumen belum tersedia
+                                </span>
+
+                              `
+                          }
+
+                        </td>
+
+                      </tr>
+
+                    `;
+
+                  }
+                )
+                .join('')
+            }
+
+          </tbody>
+
+        </table>
+
       `;
-
-      return;
 
     }
 
 
-    list.innerHTML =
-      filtered
-        .map(
-          item => {
+    /* =======================================================
+       SEARCH
+       ======================================================= */
 
-            const documentUrl =
-              item.url_dokumen
-                ? String(
-                    item.url_dokumen
-                  ).trim()
-                : '';
-
-
-            const statusText =
-              item.status ||
-              'Published';
-
-
-            return `
-
-              <article class="card">
-
-                <div class="card-top">
-
-                  <div class="jenis">
-
-                    ${escapeHTML(
-                      item.jenis ||
-                      'Laporan'
-                    )}
-
-                  </div>
-
-
-                  <div class="badge">
-
-                    ${escapeHTML(
-                      statusText
-                    )}
-
-                  </div>
-
-                </div>
-
-
-                <h3>
-
-                  ${escapeHTML(
-                    item.judul ||
-                    'Tanpa Judul'
-                  )}
-
-                </h3>
-
-
-                <div class="tahun">
-
-                  Tahun:
-                  ${escapeHTML(
-                    item.tahun ||
-                    '-'
-                  )}
-
-                </div>
-
-
-                ${
-                  item.ringkasan
-                    ? `
-
-                      <div class="ringkasan">
-
-                        ${escapeHTML(
-                          item.ringkasan
-                        )}
-
-                      </div>
-
-                    `
-                    : ''
-
-                }
-
-
-                ${
-                  documentUrl
-                    ? `
-
-                      <a
-                        class="button"
-                        href="${escapeAttribute(
-                          documentUrl
-                        )}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-
-                        Lihat / Unduh Dokumen
-
-                      </a>
-
-                    `
-                    : `
-
-                      <span class="no-document">
-
-                        Dokumen belum tersedia
-
-                      </span>
-
-                    `
-                }
-
-              </article>
-
-            `;
-
-          }
-        )
-        .join('');
-
-  }
-
-
-  function escapeHTML(value) {
-
-    return String(
-      value ?? ''
-    )
-      .replace(
-        /&/g,
-        '&amp;'
-      )
-      .replace(
-        /</g,
-        '&lt;'
-      )
-      .replace(
-        />/g,
-        '&gt;'
-      )
-      .replace(
-        /"/g,
-        '&quot;'
-      )
-      .replace(
-        /'/g,
-        '&#039;'
+    const laporanSearchInput =
+      document.getElementById(
+        'laporanSearchInput'
       );
 
-  }
+
+    if (laporanSearchInput) {
+
+      laporanSearchInput.addEventListener(
+        'input',
+        renderLaporan
+      );
+
+    }
 
 
-  function escapeAttribute(value) {
+    /* =======================================================
+       FILTER CATEGORY
+       ======================================================= */
 
-    return escapeHTML(value);
+    const laporanFilterButtons =
+      document.querySelectorAll(
+        '.laporan-filter-btn'
+      );
 
-  }
+
+    laporanFilterButtons.forEach(
+      function(button) {
+
+        button.addEventListener(
+          'click',
+          function() {
+
+            laporanFilterButtons.forEach(
+              function(btn) {
+
+                btn.classList.remove(
+                  'active'
+                );
+
+              }
+            );
 
 
-  document
-    .getElementById('searchInput')
-    .addEventListener(
-      'input',
-      renderLaporan
+            this.classList.add(
+              'active'
+            );
+
+
+            laporanActiveCategory =
+              this.dataset.category ||
+              '';
+
+
+            renderLaporan();
+
+          }
+        );
+
+      }
     );
 
 
-  document
-    .getElementById('jenisFilter')
-    .addEventListener(
-      'change',
-      renderLaporan
+    /* =======================================================
+       SORT
+       ======================================================= */
+
+    const laporanSort =
+      document.getElementById(
+        'laporanSort'
+      );
+
+
+    if (laporanSort) {
+
+      laporanSort.addEventListener(
+        'change',
+        renderLaporan
+      );
+
+    }
+
+
+    /* =======================================================
+       ESCAPE HTML
+       ======================================================= */
+
+    function escapeHTML(value) {
+
+      return String(
+        value ?? ''
+      )
+
+        .replace(
+          /&/g,
+          '&amp;'
+        )
+
+        .replace(
+          /</g,
+          '&lt;'
+        )
+
+        .replace(
+          />/g,
+          '&gt;'
+        )
+
+        .replace(
+          /"/g,
+          '&quot;'
+        )
+
+        .replace(
+          /'/g,
+          '&#039;'
+        );
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return escapeHTML(
+        value
+      );
+
+    }
+
+
+    /* =======================================================
+       INNER HERO
+       ======================================================= */
+
+    document.addEventListener(
+      'layout:loaded',
+      function() {
+
+        const title =
+          document.getElementById(
+            'innerHeroTitle'
+          );
+
+        const description =
+          document.getElementById(
+            'innerHeroDescription'
+          );
+
+
+        if (title) {
+
+          title.textContent =
+            'Laporan';
+
+        }
+
+
+        if (description) {
+
+          description.textContent =
+            'Kumpulan laporan terkait pelaksanaan keterbukaan informasi publik di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.';
+
+        }
+
+      }
     );
 
 
-  document
-    .getElementById('tahunFilter')
-    .addEventListener(
-      'change',
-      renderLaporan
-    );
+    /* =======================================================
+       START
+       ======================================================= */
 
+    loadLaporanData();
 
-  loadLaporan();
-
-</script>
+  </script>
 
 </body>
 </html>
