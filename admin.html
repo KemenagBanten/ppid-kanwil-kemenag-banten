@@ -3489,8 +3489,161 @@ case 'slider':
   activateSection('content');
 
 });
+    const API_URL =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 </script>
+  
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
+  const sliderForm = document.getElementById('sliderForm');
+
+  if (!sliderForm) return;
+
+  sliderForm.addEventListener('submit', async function (e) {
+
+    e.preventDefault();
+
+    const urutan =
+      document.getElementById('sliderUrutan').value;
+
+    const judul =
+      document.getElementById('sliderJudul').value.trim();
+
+    const fileInput =
+      document.getElementById('sliderFile');
+
+    const aktif =
+      document.getElementById('sliderAktif').value;
+
+    const statusBox =
+      document.getElementById('sliderStatusBox');
+
+    const button =
+      document.getElementById('uploadSliderButton');
+
+
+    if (!urutan || !judul || !fileInput.files.length) {
+
+      statusBox.style.display = 'block';
+
+      statusBox.textContent =
+        'Lengkapi semua data slider terlebih dahulu.';
+
+      return;
+    }
+
+
+    const file = fileInput.files[0];
+
+
+    button.disabled = true;
+
+    button.textContent = 'Mengupload...';
+
+    statusBox.style.display = 'block';
+
+    statusBox.textContent =
+      'Sedang mengupload gambar slider...';
+
+
+    try {
+
+      const base64Data =
+        await new Promise(function (resolve, reject) {
+
+          const reader = new FileReader();
+
+          reader.onload = function () {
+
+            const result = reader.result;
+
+            const base64 =
+              result.split(',')[1];
+
+            resolve(base64);
+
+          };
+
+          reader.onerror = reject;
+
+          reader.readAsDataURL(file);
+
+        });
+
+
+      const payload = {
+
+        action: 'uploadSlider',
+
+        idValue:
+          'SLIDER-' +
+          Date.now(),
+
+        urutan: urutan,
+
+        judul: judul,
+
+        fileName: file.name,
+
+        fileData: base64Data,
+
+        aktif: aktif
+
+      };
+
+
+      const response = await fetch(API_URL, {
+
+        method: 'POST',
+
+        body: JSON.stringify(payload)
+
+      });
+
+
+      const result =
+        await response.json();
+
+
+      if (!result.success) {
+
+        throw new Error(
+          result.message ||
+          'Upload slider gagal.'
+        );
+
+      }
+
+
+      statusBox.textContent =
+        'Slider berhasil diupload.';
+
+
+      sliderForm.reset();
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      statusBox.textContent =
+        error.message ||
+        'Terjadi kesalahan saat upload slider.';
+
+    } finally {
+
+      button.disabled = false;
+
+      button.textContent =
+        'Upload Slider';
+
+    }
+
+  });
+
+});
+</script>
 <script src="admin.js?v=5"></script>
 
 </body>
