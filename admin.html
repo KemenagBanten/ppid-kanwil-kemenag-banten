@@ -2036,7 +2036,103 @@
         </select>
 
       </div>
+<!-- =====================================================
+     SLIDER BERANDA
+====================================================== -->
+<div class="admin-card" id="sliderCard">
 
+  <div class="admin-card-header">
+    <div>
+      <h2>Slider Beranda</h2>
+      <p>
+        Upload gambar yang akan ditampilkan pada slider halaman beranda.
+      </p>
+    </div>
+  </div>
+
+  <form id="sliderForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="sliderUrutan">
+          Urutan
+        </label>
+
+        <select id="sliderUrutan" required>
+          <option value="">Pilih urutan</option>
+          <option value="1">1 — Selamat Datang</option>
+          <option value="2">2 — Jadwal Pelayanan</option>
+          <option value="3">3 — Maklumat Pelayanan</option>
+          <option value="4">4 — Pesan Antigratifikasi</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sliderJudul">
+          Judul
+        </label>
+
+        <input
+          type="text"
+          id="sliderJudul"
+          placeholder="Judul slider"
+          required
+        >
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="sliderFile">
+        Gambar Slider
+      </label>
+
+      <input
+        type="file"
+        id="sliderFile"
+        accept="image/jpeg,image/png,image/webp"
+        required
+      >
+
+      <div class="helper">
+        Gunakan gambar ukuran 1600 × 600 px.
+        Format JPG, PNG, atau WebP.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="sliderAktif">
+        Status
+      </label>
+
+      <select id="sliderAktif" required>
+        <option value="YA">Aktif</option>
+        <option value="TIDAK">Tidak Aktif</option>
+      </select>
+
+    </div>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="uploadSliderButton"
+    >
+      Upload Slider
+    </button>
+
+    <div
+      id="sliderStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</div>
     </div>
 
 
