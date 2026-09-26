@@ -1952,7 +1952,126 @@
   </form>
 
 </div>
+<!-- =========================
+     INFORMASI BARANG DAN JASA
+========================= -->
 
+<div class="card">
+
+  <h2>Informasi Barang dan Jasa</h2>
+
+  <p class="description">
+    Upload dokumen pendukung informasi pengadaan barang dan jasa
+    Tahun Anggaran 2026.
+  </p>
+
+  <form id="barangJasaForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label for="barangJasaNama">
+          Nama Pekerjaan
+        </label>
+
+        <input
+          type="text"
+          id="barangJasaNama"
+          placeholder="Nama pekerjaan pengadaan"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="barangJasaJenis">
+          Jenis Dokumen
+        </label>
+
+        <select id="barangJasaJenis" required>
+
+          <option value="">
+            Pilih jenis dokumen
+          </option>
+
+          <option value="HPS">
+            HPS
+          </option>
+
+          <option value="Spesifikasi Teknis">
+            Spesifikasi Teknis
+          </option>
+
+          <option value="Jadwal Pelaksanaan">
+            Jadwal Pelaksanaan
+          </option>
+
+          <option value="BA Penetapan/Pengumuman Penyedia">
+            BA Penetapan/Pengumuman Penyedia
+          </option>
+
+          <option value="Ringkasan Kontrak">
+            Ringkasan Kontrak
+          </option>
+
+          <option value="SPMK">
+            SPMK
+          </option>
+
+          <option value="Monitoring dan Evaluasi">
+            Monitoring dan Evaluasi
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="barangJasaFile">
+        File Dokumen
+      </label>
+
+      <input
+        type="file"
+        id="barangJasaFile"
+        accept="application/pdf"
+        required
+      >
+
+      <div class="helper">
+        Format PDF. Dokumen akan disimpan pada folder
+        Dokumen Pendukung SAQ Tahun 2026.
+      </div>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="uploadBarangJasaButton"
+    >
+      Upload Dokumen PBJ
+    </button>
+
+
+    <div
+      id="barangJasaStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</div>
+      
 <!-- =========================
      TAMBAH PENGADAAN
 ========================= -->
