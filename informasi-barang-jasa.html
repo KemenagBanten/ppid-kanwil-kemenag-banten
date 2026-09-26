@@ -429,17 +429,18 @@
 
           <thead>
             <tr>
-              <th>No.</th>
-              <th>Informasi / Dokumen</th>
-              <th>Tahun</th>
-              <th>Akses</th>
-            </tr>
+  <th>No.</th>
+  <th>Nama Pekerjaan</th>
+  <th>Dokumen</th>
+  <th>Tahun</th>
+  <th>Akses</th>
+</tr>
           </thead>
 
           <tbody id="barangJasaTableBody">
 
             <tr>
-              <td colspan="4" class="pbj-empty">
+              <td colspan="5" class="pbj-empty">
                 Memuat dokumen...
               </td>
             </tr>
@@ -555,7 +556,7 @@
 
           tbody.innerHTML = `
             <tr>
-              <td colspan="4" class="pbj-empty">
+              <td colspan="5" class="pbj-empty">
                 Belum ada dokumen pendukung yang tersedia.
               </td>
             </tr>
@@ -568,22 +569,26 @@
         tbody.innerHTML =
           data.map(function (item, index) {
 
-            return `
-              <tr>
+           return `
+  <tr>
 
-                <td>
-                  ${index + 1}
-                </td>
+    <td>
+      ${index + 1}
+    </td>
 
-                <td>
-                  ${escapeHtml(item.jenis_dokumen)}
-                </td>
+    <td>
+      ${escapeHtml(item.nama_pekerjaan)}
+    </td>
 
-                <td>
-                  ${escapeHtml(item.tahun)}
-                </td>
+    <td>
+      ${escapeHtml(item.jenis_dokumen)}
+    </td>
 
-                <td>
+    <td>
+      ${escapeHtml(item.tahun)}
+    </td>
+
+    <td>
 
                   <a
                     href="${escapeAttribute(item.url_dokumen)}"
@@ -611,7 +616,7 @@
 
         tbody.innerHTML = `
           <tr>
-            <td colspan="4" class="pbj-empty">
+            <td colspan="5" class="pbj-empty">
               Data dokumen belum dapat dimuat.
             </td>
           </tr>
