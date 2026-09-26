@@ -227,8 +227,9 @@
     }
 
     .laporan-table th:nth-child(2) {
-      width: 42%;
-    }
+  width: 42%;
+  text-align: left;
+}
 
     .laporan-table th:nth-child(3) {
       width: 22%;
@@ -1119,38 +1120,39 @@
        ======================================================= */
 
     document.addEventListener(
-      'layout:loaded',
-      function() {
+  'layout:loaded',
+  function() {
 
-        const title =
-          document.getElementById(
-            'innerHeroTitle'
-          );
+    const kicker =
+      document.getElementById(
+        'innerHeroKicker'
+      );
 
-        const description =
-          document.getElementById(
-            'innerHeroDescription'
-          );
+    const title =
+      document.getElementById(
+        'innerHeroTitle'
+      );
 
+    const description =
+      document.getElementById(
+        'innerHeroDescription'
+      );
 
-        if (title) {
+    if (kicker) {
+      kicker.textContent = 'LAPORAN';
+    }
 
-          title.textContent =
-            'Laporan';
+    if (title) {
+      title.textContent = 'Laporan';
+    }
 
-        }
+    if (description) {
+      description.textContent =
+        'Kumpulan laporan terkait pelaksanaan keterbukaan informasi publik di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.';
+    }
 
-
-        if (description) {
-
-          description.textContent =
-            'Kumpulan laporan terkait pelaksanaan keterbukaan informasi publik di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.';
-
-        }
-
-      }
-    );
-
+  }
+);
 
     /* =======================================================
        START
