@@ -417,7 +417,373 @@
        JAVASCRIPT
        TIDAK DIUBAH
   ====================================================== -->
+<script>
+/* =====================================================
+   SLIDER BERANDA DINAMIS
+====================================================== */
 
+document.addEventListener('DOMContentLoaded', function () {
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+  const container =
+    document.getElementById('sliderContainer');
+
+  const dotsContainer =
+    document.getElementById('sliderDots');
+
+  const prevButton =
+    document.getElementById('sliderPrev');
+
+  const nextButton =
+    document.getElementById('sliderNext');
+
+  if (!container) return;
+
+
+  let slides = [];
+  let currentSlide = 0;
+  let autoplayTimer = null;
+
+
+  /* ===================================================
+     LOAD DATA SLIDER
+  =================================================== */
+
+  async function loadSlider() {
+
+    try {
+
+      const response =
+        await fetch(API_URL + '?action=slider');
+
+      if (!response.ok) {
+        throw new Error(
+          'Gagal menghubungi API slider.'
+        );
+      }
+
+      const result =
+        await response.json();
+
+
+      if (
+        !result.success ||
+        !Array.isArray(result.data)
+      ) {
+        throw new Error(
+          result.message ||
+          'Data slider tidak tersedia.'
+        );
+      }
+
+
+      slides = result.data
+        .filter(function (item) {
+
+          return String(item.AKTIF)
+            .toUpperCase() === 'YA';
+
+        })
+        .sort(function (a, b) {
+
+          return Number(a.URUTAN) -
+                 Number(b.URUTAN);
+
+        });
+
+
+      if (!slides.length) {
+
+        container.innerHTML = `
+          <div class="slider-loading">
+            Belum ada slider aktif.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      renderSlider();
+
+      startAutoplay();
+
+
+    } catch (error) {
+
+      console.error(
+        'Slider error:',
+        error
+      );
+
+      container.innerHTML = `
+        <div class="slider-loading">
+          Slider belum dapat dimuat.
+        </div>
+      `;
+
+    }
+
+  }
+
+
+  /* ===================================================
+     RENDER SLIDER
+  =================================================== */
+
+  function renderSlider() {
+
+    container.innerHTML = '';
+
+    dotsContainer.innerHTML = '';
+
+
+    slides.forEach(function (item, index) {
+
+      const slide =
+        document.createElement('div');
+
+      slide.className =
+        'slider-item' +
+        (index === 0 ? ' active' : '');
+
+
+      const image =
+        document.createElement('img');
+
+      image.src =
+        item.URL_GAMBAR;
+
+      image.alt =
+        item.JUDUL ||
+        'Slider PPID Kanwil Kementerian Agama Provinsi Banten';
+
+
+      slide.appendChild(image);
+
+      container.appendChild(slide);
+
+
+      const dot =
+        document.createElement('button');
+
+      dot.type = 'button';
+
+      dot.className =
+        'slider-dot' +
+        (index === 0 ? ' active' : '');
+
+      dot.setAttribute(
+        'aria-label',
+        'Slide ' + (index + 1)
+      );
+
+
+      dot.addEventListener(
+        'click',
+        function () {
+
+          goToSlide(index);
+
+        }
+      );
+
+
+      dotsContainer.appendChild(dot);
+
+    });
+
+
+    updateButtons();
+
+  }
+
+
+  /* ===================================================
+     PINDAH SLIDE
+  =================================================== */
+
+  function goToSlide(index) {
+
+    const slideElements =
+      container.querySelectorAll(
+        '.slider-item'
+      );
+
+    const dotElements =
+      dotsContainer.querySelectorAll(
+        '.slider-dot'
+      );
+
+
+    if (!slideElements.length) return;
+
+
+    currentSlide = index;
+
+
+    slideElements.forEach(
+      function (slide, i) {
+
+        slide.classList.toggle(
+          'active',
+          i === currentSlide
+        );
+
+      }
+    );
+
+
+    dotElements.forEach(
+      function (dot, i) {
+
+        dot.classList.toggle(
+          'active',
+          i === currentSlide
+        );
+
+      }
+    );
+
+  }
+
+
+  /* ===================================================
+     NEXT / PREVIOUS
+  =================================================== */
+
+  function nextSlide() {
+
+    const next =
+      (currentSlide + 1) %
+      slides.length;
+
+    goToSlide(next);
+
+  }
+
+
+  function previousSlide() {
+
+    const previous =
+      (currentSlide - 1 + slides.length) %
+      slides.length;
+
+    goToSlide(previous);
+
+  }
+
+
+  /* ===================================================
+     BUTTON
+  =================================================== */
+
+  if (nextButton) {
+
+    nextButton.addEventListener(
+      'click',
+      function () {
+
+        nextSlide();
+        restartAutoplay();
+
+      }
+    );
+
+  }
+
+
+  if (prevButton) {
+
+    prevButton.addEventListener(
+      'click',
+      function () {
+
+        previousSlide();
+        restartAutoplay();
+
+      }
+    );
+
+  }
+
+
+  /* ===================================================
+     AUTOPLAY
+  =================================================== */
+
+  function startAutoplay() {
+
+    if (slides.length <= 1) return;
+
+    autoplayTimer =
+      setInterval(
+        nextSlide,
+        5000
+      );
+
+  }
+
+
+  function restartAutoplay() {
+
+    if (autoplayTimer) {
+
+      clearInterval(
+        autoplayTimer
+      );
+
+    }
+
+    startAutoplay();
+
+  }
+
+
+  /* ===================================================
+     BUTTON VISIBILITY
+  =================================================== */
+
+  function updateButtons() {
+
+    const showControls =
+      slides.length > 1;
+
+    if (prevButton) {
+
+      prevButton.style.display =
+        showControls ? 'flex' : 'none';
+
+    }
+
+    if (nextButton) {
+
+      nextButton.style.display =
+        showControls ? 'flex' : 'none';
+
+    }
+
+    if (dotsContainer) {
+
+      dotsContainer.style.display =
+        showControls ? 'flex' : 'none';
+
+    }
+
+  }
+
+
+  /* ===================================================
+     START
+  =================================================== */
+
+  loadSlider();
+
+});
+</script>
+    
  <script src="script.js"></script>
 <script src="layout.js"></script>
 <script>
