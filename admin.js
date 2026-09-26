@@ -23,7 +23,96 @@ document.addEventListener('DOMContentLoaded', function () {
   const formDescription =
     document.getElementById('formDescription');
 
+const barangJasaForm = document.getElementById('barangJasaForm');
+const barangJasaNama = document.getElementById('barangJasaNama');
+const barangJasaJenis = document.getElementById('barangJasaJenis');
+const barangJasaFile = document.getElementById('barangJasaFile');
+const uploadBarangJasaButton = document.getElementById('uploadBarangJasaButton');
+const barangJasaStatusBox = document.getElementById('barangJasaStatusBox');
 
+if (barangJasaForm) {
+  barangJasaForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const namaPekerjaan = barangJasaNama.value.trim();
+    const jenisDokumen = barangJasaJenis.value;
+    const file = barangJasaFile.files[0];
+
+    if (!namaPekerjaan || !jenisDokumen || !file) {
+      alert('Nama pekerjaan, jenis dokumen, dan file wajib diisi.');
+      return;
+    }
+
+    try {
+      uploadBarangJasaButton.disabled = true;
+      uploadBarangJasaButton.textContent = 'Mengupload...';
+
+      barangJasaStatusBox.style.display = 'block';
+      barangJasaStatusBox.textContent = 'Sedang mengupload dokumen...';
+
+      const reader = new FileReader();
+
+      reader.onload = async function () {
+        try {
+          const base64Data = reader.result.split(',')[1];
+
+          const idValue =
+            'PBJ' + Date.now();
+
+          const payload = {
+            action: 'uploadBarangJasaDocument',
+            idValue: idValue,
+            namaPekerjaan: namaPekerjaan,
+            jenisDokumen: jenisDokumen,
+            fileName: file.name,
+            fileData: base64Data
+          };
+
+          const response = await fetch(API_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload)
+          });
+
+          const result = await response.json();
+
+          if (!result.success) {
+            throw new Error(
+              result.message || 'Upload dokumen gagal.'
+            );
+          }
+
+          barangJasaStatusBox.textContent =
+            'Dokumen PBJ berhasil diupload.';
+
+          barangJasaForm.reset();
+
+        } catch (error) {
+          console.error(error);
+
+          barangJasaStatusBox.textContent =
+            'Gagal: ' + error.message;
+        } finally {
+          uploadBarangJasaButton.disabled = false;
+          uploadBarangJasaButton.textContent =
+            'Upload Dokumen PBJ';
+        }
+      };
+
+      reader.readAsDataURL(file);
+
+    } catch (error) {
+      console.error(error);
+
+      barangJasaStatusBox.style.display = 'block';
+      barangJasaStatusBox.textContent =
+        'Gagal: ' + error.message;
+
+      uploadBarangJasaButton.disabled = false;
+      uploadBarangJasaButton.textContent =
+        'Upload Dokumen PBJ';
+    }
+  });
+}
   // =========================================================
   // HELPER
   // =========================================================
