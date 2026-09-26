@@ -556,7 +556,11 @@ document.addEventListener('DOMContentLoaded', function () {
 console.log('URL SLIDER:', item.URL_GAMBAR);
 
 image.src =
-  item.URL_GAMBAR;
+  item.URL_GAMBAR
+    .replace(
+      'https://drive.google.com/uc?export=view&id=',
+      'https://drive.google.com/thumbnail?id='
+    ) + '&sz=w1600';
 
       image.alt =
         item.JUDUL ||
