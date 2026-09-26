@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Informasi Barang dan Jasa | PPID Kanwil Kemenag Banten</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="components/footer.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+
+    .pbj-page {
+      padding: 60px 0 80px;
+    }
+
+    .pbj-intro {
+      margin-bottom: 28px;
+    }
+
+    .pbj-intro .section-kicker {
+      margin-bottom: 8px;
+    }
+
+    .pbj-intro h2 {
+      margin: 0 0 10px;
+    }
+
+    .pbj-intro p {
+      margin: 0;
+      max-width: 850px;
+      line-height: 1.7;
+      color: #66736c;
+    }
+
+    .pbj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .pbj-card {
+      display: flex;
+      gap: 18px;
+      padding: 24px;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+    }
+
+    .pbj-card-icon {
+      flex: 0 0 46px;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf6f1;
+      color: #0f5132;
+      font-size: 18px;
+    }
+
+    .pbj-card-content {
+      min-width: 0;
+    }
+
+    .pbj-card-kicker {
+      margin-bottom: 5px;
+      color: #0f5132;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .pbj-card h3 {
+      margin: 0 0 7px;
+      color: #263a30;
+      font-size: 17px;
+    }
+
+    .pbj-card p {
+      margin: 0 0 14px;
+      color: #66736c;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .pbj-card-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 36px;
+      padding: 8px 13px;
+      border-radius: 8px;
+      background: #0f5132;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pbj-card-button:hover {
+      background: #0b4229;
+    }
+
+    .pbj-source-note {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      margin-bottom: 42px;
+      border: 1px solid #dfe7e2;
+      border-radius: 12px;
+      background: #f7faf8;
+    }
+
+    .pbj-source-icon {
+      color: #0f5132;
+      font-size: 16px;
+      padding-top: 2px;
+    }
+
+    .pbj-source-note strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #34433b;
+      font-size: 13px;
+    }
+
+    .pbj-source-note p {
+      margin: 0;
+      color: #66736c;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .pbj-section-heading {
+      margin-bottom: 18px;
+    }
+
+    .pbj-section-heading .section-kicker {
+      margin-bottom: 5px;
+    }
+
+    .pbj-section-heading h3 {
+      margin: 0;
+      color: #263a30;
+      font-size: 18px;
+    }
+
+    .pbj-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: #ffffff;
+      border: 1px solid #e2e9e5;
+      border-radius: 15px;
+      box-shadow: 0 6px 24px rgba(26, 54, 41, 0.045);
+    }
+
+    .pbj-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    .pbj-table th {
+      background: #f4f8f5;
+      color: #40544b;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid #dfe7e2;
+      white-space: nowrap;
+    }
+
+    .pbj-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #edf1ee;
+      color: #53615a;
+      font-size: 13px;
+      line-height: 1.55;
+      vertical-align: middle;
+    }
+
+    .pbj-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pbj-table th:first-child,
+    .pbj-table td:first-child {
+      width: 7%;
+      text-align: center;
+    }
+
+    .pbj-table th:nth-child(2) {
+      width: 53%;
+      text-align: center;
+    }
+
+    .pbj-table td:nth-child(2) {
+      text-align: left;
+    }
+
+    .pbj-table th:nth-child(3) {
+      width: 12%;
+      text-align: center;
+    }
+
+    .pbj-table td:nth-child(3) {
+      text-align: center;
+    }
+
+    .pbj-table th:nth-child(4) {
+      width: 28%;
+      text-align: center;
+    }
+
+    .pbj-table td:nth-child(4) {
+      text-align: center;
+    }
+
+    .pbj-document-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #edf6f1;
+      color: #0f5132;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .pbj-document-link:hover {
+      background: #dfeee6;
+    }
+
+    .pbj-empty {
+      padding: 28px 20px;
+      text-align: center;
+      color: #7a8781;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+
+      .pbj-page {
+        padding: 40px 0 60px;
+      }
+
+      .pbj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pbj-card {
+        padding: 20px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="siteNavbar"></div>
+
+  <div id="innerHero"></div>
+
+  <main class="page-content">
+
+    <section class="pbj-page">
+
+      <!-- INTRO -->
+      <div class="pbj-intro">
+
+        <div class="section-heading">
+
+          <div class="section-kicker">
+            PENGADAAN TAHUN 2026
+          </div>
+
+          <h2>
+            Informasi Pengadaan Barang dan Jasa
+          </h2>
+
+          <p>
+            Informasi pengadaan barang dan jasa pada lingkungan
+            Kantor Wilayah Kementerian Agama Provinsi Banten
+            dapat diakses melalui platform pengadaan pemerintah.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUMBER INFORMASI -->
+      <div class="pbj-grid">
+
+        <article class="pbj-card">
+
+          <div class="pbj-card-icon">
+            <i class="fa-solid fa-list-check"></i>
+          </div>
+
+          <div class="pbj-card-content">
+
+            <div class="pbj-card-kicker">
+              RENCANA PENGADAAN
+            </div>
+
+            <h3>
+              Rencana Umum Pengadaan
+            </h3>
+
+            <p>
+              Informasi Rencana Umum Pengadaan (RUP)
+              Tahun Anggaran 2026.
+            </p>
+
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pbj-card-button"
+            >
+              Lihat RUP 2026
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <article class="pbj-card">
+
+          <div class="pbj-card-icon">
+            <i class="fa-solid fa-file-contract"></i>
+          </div>
+
+          <div class="pbj-card-content">
+
+            <div class="pbj-card-kicker">
+              PROSES PENGADAAN
+            </div>
+
+            <h3>
+              Pengadaan Barang/Jasa
+            </h3>
+
+            <p>
+              Informasi proses pengadaan barang dan jasa
+              yang tersedia melalui sistem pengadaan elektronik.
+            </p>
+
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pbj-card-button"
+            >
+              Lihat Pengadaan 2026
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- CATATAN SUMBER -->
+      <div class="pbj-source-note">
+
+        <div class="pbj-source-icon">
+          <i class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <div>
+
+          <strong>
+            Sumber Informasi
+          </strong>
+
+          <p>
+            Informasi pengadaan barang dan jasa Tahun Anggaran
+            2026 terhubung dengan platform pengadaan pemerintah
+            yang dikelola secara nasional.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- DOKUMEN SAQ -->
+      <div class="pbj-section-heading">
+
+        <div class="section-kicker">
+          DOKUMEN PENDUKUNG
+        </div>
+
+        <h3>
+          Dokumen Pendukung SAQ
+        </h3>
+
+      </div>
+
+
+      <div class="pbj-table-wrapper">
+
+        <table class="pbj-table">
+
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Informasi / Dokumen</th>
+              <th>Tahun</th>
+              <th>Akses</th>
+            </tr>
+          </thead>
+
+          <tbody id="barangJasaTableBody">
+
+            <tr>
+              <td colspan="4" class="pbj-empty">
+                Memuat dokumen...
+              </td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <div id="siteFooter"></div>
+
+  <div id="accessibility"></div>
+
+
+  <script src="layout.js"></script>
+
+  <script>
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfcyby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    document.addEventListener(
+      'layout:loaded',
+      function () {
+
+        const kicker =
+          document.getElementById('innerHeroKicker');
+
+        const title =
+          document.getElementById('innerHeroTitle');
+
+        const description =
+          document.getElementById('innerHeroDescription');
+
+
+        if (kicker) {
+          kicker.textContent =
+            'INFORMASI BARANG DAN JASA';
+        }
+
+
+        if (title) {
+          title.textContent =
+            'Informasi Barang dan Jasa';
+        }
+
+
+        if (description) {
+          description.textContent =
+            'Informasi pengadaan barang dan jasa Tahun Anggaran 2026 di lingkungan Kantor Wilayah Kementerian Agama Provinsi Banten.';
+        }
+
+      }
+    );
+
+
+    async function loadBarangJasa() {
+
+      const tbody =
+        document.getElementById(
+          'barangJasaTableBody'
+        );
+
+
+      try {
+
+        const response = await fetch(
+          API_URL + '?action=barangjasa'
+        );
+
+
+        if (!response.ok) {
+          throw new Error(
+            'Gagal menghubungi API.'
+          );
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (
+          !result.success ||
+          !Array.isArray(result.data)
+        ) {
+          throw new Error(
+            result.message ||
+            'Data PBJ tidak tersedia.'
+          );
+        }
+
+
+        const data =
+          result.data.filter(function (item) {
+
+            return (
+              item.jenis_dokumen &&
+              item.url_dokumen
+            );
+
+          });
+
+
+        if (data.length === 0) {
+
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="4" class="pbj-empty">
+                Belum ada dokumen pendukung yang tersedia.
+              </td>
+            </tr>
+          `;
+
+          return;
+        }
+
+
+        tbody.innerHTML =
+          data.map(function (item, index) {
+
+            return `
+              <tr>
+
+                <td>
+                  ${index + 1}
+                </td>
+
+                <td>
+                  ${escapeHtml(item.jenis_dokumen)}
+                </td>
+
+                <td>
+                  ${escapeHtml(item.tahun)}
+                </td>
+
+                <td>
+
+                  <a
+                    href="${escapeAttribute(item.url_dokumen)}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="pbj-document-link"
+                  >
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Lihat Dokumen
+                  </a>
+
+                </td>
+
+              </tr>
+            `;
+
+          }).join('');
+
+      } catch (error) {
+
+        console.error(
+          'Gagal memuat data PBJ:',
+          error
+        );
+
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4" class="pbj-empty">
+              Data dokumen belum dapat dimuat.
+            </td>
+          </tr>
+        `;
+
+      }
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return String(value ?? '')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+
+    }
+
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      function () {
+        loadBarangJasa();
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
