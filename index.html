@@ -551,10 +551,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
       const image =
-        document.createElement('img');
+  document.createElement('img');
 
-      image.src =
-        item.URL_GAMBAR;
+console.log('URL SLIDER:', item.URL_GAMBAR);
+
+image.src =
+  item.URL_GAMBAR;
 
       image.alt =
         item.JUDUL ||
