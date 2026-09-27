@@ -4657,3 +4657,559 @@ body.accessibility-reduced-motion *::after {
     padding: 18px;
   }
 }
+
+/* =========================================================
+   STATISTIK PPID — PREMIUM / ELEGANT
+   Visual only — tidak mengubah logic/API
+========================================================= */
+
+.statistik-page {
+  background:
+    radial-gradient(
+      circle at 85% 8%,
+      rgba(205, 176, 130, 0.08),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #f8faf9 0%,
+      #ffffff 45%,
+      #f8faf9 100%
+    );
+
+  padding-top: 28px;
+  padding-bottom: 80px;
+}
+
+
+/* =========================================================
+   FILTER TAHUN
+========================================================= */
+
+.statistik-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  max-width: 1180px;
+  margin: 0 auto 38px;
+
+  padding: 18px 22px;
+
+  border: 1px solid rgba(15, 81, 50, 0.10);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.98),
+      rgba(248,250,249,0.96)
+    );
+
+  box-shadow:
+    0 8px 28px rgba(25, 61, 45, 0.06);
+}
+
+
+.statistik-filter-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+
+.statistik-filter-kicker {
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  font-weight: 750;
+  color: #9b8054;
+}
+
+
+.statistik-filter-label strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #183f30;
+}
+
+
+.statistik-filter-control select,
+#tahunStatistik {
+  min-width: 180px;
+  height: 42px;
+
+  padding: 0 40px 0 14px;
+
+  border: 1px solid rgba(15, 81, 50, 0.16);
+  border-radius: 10px;
+
+  background-color: #ffffff;
+  color: #234738;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.statistik-filter-control select:hover,
+#tahunStatistik:hover {
+  border-color: rgba(15, 81, 50, 0.30);
+}
+
+
+.statistik-filter-control select:focus,
+#tahunStatistik:focus {
+  border-color: #0f5132;
+
+  box-shadow:
+    0 0 0 3px rgba(15, 81, 50, 0.08);
+}
+
+
+/* =========================================================
+   ROW STATISTIK
+========================================================= */
+
+.statistik-row {
+  width: min(1180px, calc(100% - 40px));
+
+  margin-left: auto;
+  margin-right: auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(340px, 0.82fr)
+    minmax(500px, 1.18fr);
+
+  gap: 34px;
+
+  align-items: start;
+
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   JUDUL BAGIAN
+========================================================= */
+
+.statistik-row .section-title {
+  margin-bottom: 16px;
+}
+
+
+.statistik-row .section-title h3 {
+  margin: 0;
+
+  font-size: 20px;
+  line-height: 1.25;
+
+  font-weight: 750;
+
+  letter-spacing: -0.015em;
+
+  color: #173e2e;
+}
+
+
+.statistik-row .section-line {
+  width: 42px;
+  height: 3px;
+
+  margin-top: 10px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0f5132,
+      #cdb082
+    );
+}
+
+
+/* =========================================================
+   KPI AREA
+========================================================= */
+
+.statistik-kpi {
+  min-width: 0;
+}
+
+
+.statistik-kpi .cards {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   KPI CARD
+========================================================= */
+
+.statistik-kpi .card {
+  position: relative;
+
+  min-width: 0;
+  min-height: 128px;
+
+  padding: 21px 20px 18px;
+
+  margin: 0;
+
+  border:
+    1px solid rgba(15, 81, 50, 0.09);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #f9fbfa 100%
+    );
+
+  box-shadow:
+    0 7px 22px rgba(24, 62, 46, 0.055);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.statistik-kpi .card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0f5132,
+      #cdb082
+    );
+}
+
+
+.statistik-kpi .card:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(15, 81, 50, 0.15);
+
+  box-shadow:
+    0 12px 28px rgba(24, 62, 46, 0.09);
+}
+
+
+/* =========================================================
+   TOTAL CARD
+========================================================= */
+
+.statistik-kpi .card.total {
+  grid-column: 1 / -1;
+
+  min-height: 122px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1f7f3 0%,
+      #ffffff 72%
+    );
+}
+
+
+.statistik-kpi .card.total::after {
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  right: -45px;
+  top: -45px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(205, 176, 130, 0.20);
+}
+
+
+/* =========================================================
+   LABEL & ANGKA
+========================================================= */
+
+.statistik-kpi .card-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  line-height: 1.3;
+
+  font-weight: 650;
+
+  letter-spacing: 0.01em;
+
+  color: #687970;
+}
+
+
+.statistik-kpi .card-value,
+.statistik-kpi .card-number {
+  display: block;
+
+  margin: 0;
+
+  font-size: 32px;
+  line-height: 1;
+
+  font-weight: 780;
+
+  letter-spacing: -0.025em;
+
+  color: #145238;
+}
+
+
+.statistik-kpi .card.total .card-value,
+.statistik-kpi .card.total .card-number {
+  font-size: 38px;
+}
+
+
+.statistik-kpi .card-percent {
+  display: block;
+
+  margin-top: 9px;
+
+  font-size: 11px;
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  color: #9a7c4f;
+}
+
+
+/* =========================================================
+   GRAFIK
+========================================================= */
+
+.statistik-grafik {
+  min-width: 0;
+}
+
+
+.statistik-grafik .chart-card {
+  position: relative;
+
+  width: 100%;
+
+  height: 366px;
+  min-height: 366px;
+
+  padding: 22px 24px 20px;
+
+  border:
+    1px solid rgba(15, 81, 50, 0.09);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fafcfb 100%
+    );
+
+  box-shadow:
+    0 9px 28px rgba(24, 62, 46, 0.065);
+}
+
+
+.statistik-grafik .chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* =========================================================
+   JARAK ANTAR BAGIAN
+========================================================= */
+
+.statistik-page .section {
+  margin-top: 44px;
+}
+
+
+.statistik-page .section:first-child {
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.statistik-kpi .loading {
+  min-height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  border:
+    1px solid rgba(15, 81, 50, 0.08);
+
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.8);
+
+  color: #718078;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .statistik-row {
+    grid-template-columns: 1fr;
+
+    width:
+      min(760px, calc(100% - 32px));
+
+    gap: 24px;
+  }
+
+
+  .statistik-grafik .chart-card {
+    height: 340px;
+    min-height: 340px;
+  }
+
+}
+
+
+@media (max-width: 640px) {
+
+  .statistik-filter {
+    width:
+      calc(100% - 28px);
+
+    margin-bottom: 28px;
+
+    padding: 16px;
+
+    align-items: stretch;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+
+  .statistik-filter-control select,
+  #tahunStatistik {
+    width: 100%;
+    min-width: 0;
+  }
+
+
+  .statistik-row {
+    width:
+      calc(100% - 28px);
+
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+
+  .statistik-kpi .cards {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+
+  .statistik-kpi .card.total {
+    grid-column: auto;
+  }
+
+
+  .statistik-kpi .card {
+    min-height: 116px;
+
+    padding: 19px 18px;
+  }
+
+
+  .statistik-kpi .card-value,
+  .statistik-kpi .card-number {
+    font-size: 30px;
+  }
+
+
+  .statistik-kpi .card.total .card-value,
+  .statistik-kpi .card.total .card-number {
+    font-size: 36px;
+  }
+
+
+  .statistik-grafik .chart-card {
+    height: 320px;
+    min-height: 320px;
+
+    padding: 18px 14px;
+  }
+
+
+  .statistik-row .section-title h3 {
+    font-size: 18px;
+  }
+
+}
