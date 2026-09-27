@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kemenag Banten Dalam Angka</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<script>
+const API_URL =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  const container =
+    document.getElementById('publikasiContainer');
+
+  if (!container) return;
+
+  fetch(API_URL + '?action=publikasi')
+    .then(function (response) {
+
+      if (!response.ok) {
+        throw new Error(
+          'Gagal menghubungi server.'
+        );
+      }
+
+      return response.json();
+
+    })
+    .then(function (result) {
+
+      if (!result.success) {
+        throw new Error(
+          result.message ||
+          'Data publikasi gagal dimuat.'
+        );
+      }
+
+      const data = result.data || [];
+
+      if (data.length === 0) {
+
+        container.innerHTML = `
+          <div class="empty-state">
+            Belum ada publikasi yang tersedia.
+          </div>
+        `;
+
+        return;
+      }
+
+      container.innerHTML = data.map(function (item) {
+
+        return `
+          <article class="publikasi-card">
+
+            <div class="publikasi-cover">
+
+              <img
+                src="${item.coverUrl}"
+                alt="${item.judul}"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="publikasi-info">
+
+              <span class="publikasi-kategori">
+                ${item.kategori || 'Publikasi'}
+              </span>
+
+              <h2>
+                ${item.judul}
+              </h2>
+
+              <div class="publikasi-tahun">
+                Tahun ${item.tahun}
+              </div>
+
+              <p>
+                ${item.deskripsi || ''}
+              </p>
+
+              <a
+                href="${item.fileUrl}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary"
+              >
+                Baca Publikasi ↗
+              </a>
+
+            </div>
+
+          </article>
+        `;
+
+      }).join('');
+
+    })
+    .catch(function (error) {
+
+      console.error(error);
+
+      container.innerHTML = `
+        <div class="error-state">
+          Gagal memuat publikasi.
+        </div>
+      `;
+
+    });
+
+});
+</script>
+<body>
+
+  <div id="siteNavbar"></div>
+
+  <div id="innerHero"></div>
+
+  <main class="page-container">
+
+    <section class="content-section">
+
+      <div class="section-heading">
+        <span class="section-kicker">PUBLIKASI</span>
+
+        <h1>
+          Kemenag Banten Dalam Angka
+        </h1>
+
+        <p>
+          Koleksi publikasi statistik dan data Kementerian Agama
+          Provinsi Banten.
+        </p>
+      </div>
+
+      <div id="publikasiContainer">
+
+        <div class="loading-state">
+          Memuat publikasi...
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <div id="accessibility"></div>
+
+  <script src="layout.js"></script>
+
+</body>
+</html>
