@@ -6,6 +6,7 @@
 
   <title>Pengajuan Keberatan | PPID Kanwil Kemenag Banten</title>
 <link rel="stylesheet" href="style.css?v=999">
+  <link rel="stylesheet" href="components/footer.css">
   <style>
 
     * {
@@ -424,100 +425,96 @@
       line-height: 1.6;
     }
 
+/* =========================
+   RESPONSIVE
+========================= */
 
-    <div id="siteFooter"></div>
-    
-    /* =========================
-       RESPONSIVE
-    ========================== */
+@media (max-width: 900px) {
 
-    @media (max-width: 900px) {
+  .content {
+    padding: 28px 0 50px;
+  }
 
-      .header-inner {
-        flex-direction: column;
+  .page-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
 
-        align-items: flex-start;
+  .info-card {
+    order: 2;
+  }
 
-        padding: 15px 0;
-      }
-
-
-      .header nav {
-        width: 100%;
-
-        justify-content: flex-start;
-
-        overflow-x: auto;
-
-        padding-bottom: 2px;
-      }
+}
 
 
-      .page-grid {
-        grid-template-columns: 1fr;
-      }
+@media (max-width: 650px) {
 
+  .container {
+    width: min(100% - 28px, 1180px);
+  }
 
-      .info-card {
-        order: 2;
-      }
+  .content {
+    padding: 22px 0 40px;
+  }
 
-    }
+  .form-card {
+    padding: 20px 17px;
+    border-radius: 14px;
+  }
 
+  .info-card {
+    padding: 20px 17px;
+    border-radius: 14px;
+  }
 
-    @media (max-width: 650px) {
+  .card-title {
+    font-size: 19px;
+  }
 
-      .hero {
-        padding: 42px 20px 45px;
-      }
+  .card-description {
+    font-size: 12px;
+    margin-bottom: 21px;
+  }
 
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 
-      .hero h2 {
-        font-size: 30px;
-      }
+  .form-group {
+    margin-bottom: 16px;
+  }
 
+  .form-group.full {
+    grid-column: auto;
+  }
 
-      .hero p {
-        font-size: 13px;
-      }
+  input,
+  textarea {
+    font-size: 13px;
+  }
 
+  textarea {
+    min-height: 120px;
+  }
 
-      .content {
-        padding: 25px 0 50px;
-      }
+  .info-item {
+    gap: 10px;
+  }
 
+  .info-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
 
-      .form-card {
-        padding: 21px;
-      }
+  .btn-primary {
+    min-height: 48px;
+  }
 
-
-      .form-grid {
-        grid-template-columns: 1fr;
-
-        gap: 0;
-      }
-
-
-      .form-group.full {
-        grid-column: auto;
-      }
-
-
-      .footer-inner {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-
-      .footer-right {
-        text-align: left;
-      }
-
-    }
-
-  </style>
+}
+       
+   </style>
 
 </head>
 
@@ -527,8 +524,6 @@
   <div id="siteNavbar"></div>
 
   <div id="innerHero"></div>
-
-  <script src="layout.js"></script>
 
   <script>
     document.addEventListener("layout:loaded", function () {
@@ -559,10 +554,6 @@
     });
   </script>
 
-
-  <!-- =========================
-       CONTENT
-  ========================== -->
 
   <!-- =========================
        CONTENT
@@ -918,36 +909,13 @@
   </main>
 
 
-  <!-- =========================
-       FOOTER
-  ========================== -->
+ <div id="siteFooter"></div>
 
-  <footer>
+<div id="accessibility"></div>
 
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-brand">
-          PPID Kanwil Kemenag Banten
-        </div>
-
-        <div class="footer-text">
-          Kantor Wilayah Kementerian Agama Provinsi Banten
-        </div>
-
-      </div>
-
-
-      <div class="footer-right">
-        Layanan Informasi Publik
-      </div>
-
-    </div>
-
-  </footer>
-
-
+ <script src="layout.js"></script>
+  
+  
   <!-- =========================
        JAVASCRIPT
   ========================== -->
