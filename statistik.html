@@ -19,20 +19,6 @@
 
   <main class="page-container">
 
-    <div class="page-title">
-      <h2>Statistik PPID</h2>
-      <p>
-        Statistik permohonan informasi publik dan keberatan yang tercatat
-        dalam sistem PPID.
-      </p>
-    </div>
-
-  <a href="admin.html" class="back-admin">
-  ← Kembali ke Admin
-</a>
-    <div id="errorMessage" class="error"></div>
-
-
     <section class="section">
 
   <div class="statistik-row">
@@ -229,6 +215,30 @@
   <div id="siteFooter"></div>
 <div id="accessibility"></div>
 <script src="layout.js"></script>
+
+  <script>
+document.addEventListener("layout:loaded", function () {
+
+  const kicker = document.getElementById("innerHeroKicker");
+  const title = document.getElementById("innerHeroTitle");
+  const description = document.getElementById("innerHeroDescription");
+
+  if (kicker) {
+    kicker.textContent = "STATISTIK";
+  }
+
+  if (title) {
+    title.textContent = "Statistik Layanan";
+  }
+
+  if (description) {
+    description.textContent =
+      "Menyajikan statistik permohonan informasi publik dan keberatan yang tercatat dalam sistem PPID Kanwil Kementerian Agama Provinsi Banten.";
+  }
+
+});
+</script>
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   <script>
