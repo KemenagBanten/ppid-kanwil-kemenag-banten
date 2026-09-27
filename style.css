@@ -4352,10 +4352,6 @@ body.accessibility-reduced-motion *::after {
    FILTER TAHUN PUBLIKASI
    ========================================= */
 
-/* =========================================
-   FILTER TAHUN PUBLIKASI
-   ========================================= */
-
 .publikasi-filter {
   display: flex;
   align-items: center;
@@ -4426,4 +4422,18 @@ body.accessibility-reduced-motion *::after {
     width: 100%;
   }
 
+}
+
+/* =========================================
+   PUBLIKASI - SUSUNAN VERTIKAL
+   ========================================= */
+
+.publikasi-filter {
+  grid-column: 1 / -1 !important;
+  width: 100%;
+}
+
+#publikasiContainer {
+  grid-column: 1 / -1 !important;
+  width: 100%;
 }
