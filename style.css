@@ -4054,3 +4054,296 @@ body.accessibility-reduced-motion *::after {
   }
 
 } 
+
+/* =========================================
+   PUBLIKASI STATISTIK
+   ========================================= */
+
+.publikasi-intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 36px;
+  padding: 32px 36px;
+  border: 1px solid rgba(15, 81, 50, 0.10);
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    #f5faf7 0%,
+    #ffffff 58%,
+    #eef7f2 100%
+  );
+  box-shadow: 0 10px 30px rgba(15, 81, 50, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.publikasi-intro::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -70px;
+  bottom: -90px;
+  border-radius: 50%;
+  background: rgba(15, 81, 50, 0.06);
+}
+
+.publikasi-intro-text {
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.publikasi-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: #0f5132;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.publikasi-intro h2 {
+  margin: 0 0 10px;
+  color: #183b2d;
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 750;
+}
+
+.publikasi-intro p {
+  margin: 0;
+  color: #64736c;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.publikasi-intro-badge {
+  width: 112px;
+  height: 112px;
+  flex: 0 0 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #0f5132;
+  color: #ffffff;
+  box-shadow: 0 12px 25px rgba(15, 81, 50, 0.18);
+  position: relative;
+  z-index: 1;
+}
+
+.publikasi-intro-badge span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.publikasi-intro-badge strong {
+  margin: 2px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+/* =========================================
+   KARTU PUBLIKASI
+   ========================================= */
+
+#publikasiContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.publikasi-card {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 34px;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 81, 50, 0.10);
+  border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(26, 54, 43, 0.07);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.publikasi-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(15, 81, 50, 0.18);
+  box-shadow: 0 14px 34px rgba(26, 54, 43, 0.10);
+}
+
+
+/* =========================================
+   COVER
+   ========================================= */
+
+.publikasi-cover {
+  width: 250px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #edf2ef;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.publikasi-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   INFORMASI PUBLIKASI
+   ========================================= */
+
+.publikasi-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.publikasi-kategori {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: #edf6f1;
+  color: #0f5132;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.publikasi-info h2 {
+  margin: 0 0 8px;
+  color: #203b30;
+  font-size: 25px;
+  line-height: 1.3;
+  font-weight: 750;
+}
+
+.publikasi-tahun {
+  margin-bottom: 16px;
+  color: #8a9791;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.publikasi-info p {
+  margin: 0 0 22px;
+  max-width: 760px;
+  color: #66746d;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.publikasi-info .btn-primary {
+  margin-top: auto;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 9px 17px;
+  border-radius: 9px;
+  background: #0f5132;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.publikasi-info .btn-primary:hover {
+  background: #0b4027;
+}
+
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.loading-state,
+.empty-state,
+.error-state {
+  grid-column: 1 / -1;
+  padding: 42px 20px;
+  text-align: center;
+  border: 1px dashed rgba(15, 81, 50, 0.18);
+  border-radius: 16px;
+  color: #748079;
+  background: #f8fbf9;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .publikasi-intro {
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .publikasi-intro h2 {
+    font-size: 22px;
+  }
+
+  .publikasi-intro-badge {
+    width: 88px;
+    height: 88px;
+    flex-basis: 88px;
+  }
+
+  .publikasi-card {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 22px;
+    padding: 20px;
+  }
+
+  .publikasi-cover {
+    width: 180px;
+  }
+
+  .publikasi-info h2 {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .publikasi-intro {
+    display: block;
+  }
+
+  .publikasi-intro-badge {
+    margin-top: 20px;
+  }
+
+  .publikasi-card {
+    grid-template-columns: 1fr;
+  }
+
+  .publikasi-cover {
+    width: 100%;
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+}
