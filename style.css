@@ -4428,60 +4428,213 @@ body.accessibility-reduced-motion *::after {
    STATISTIK LAYANAN
    ========================================================= */
 
+/* =========================================================
+   STATISTIK LAYANAN — VISUAL
+   ========================================================= */
+
 .statistik-page {
-  padding-bottom: 60px;
+  padding-top: 10px;
+  padding-bottom: 70px;
 }
 
+/* Layout utama */
 .statistik-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: 24px;
-  align-items: stretch;
-  margin-top: 20px;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(520px, 1.18fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 22px;
 }
+
+/* Judul section */
+.statistik-row .section-title {
+  margin-bottom: 14px;
+}
+
+/* =========================
+   KOLOM KPI
+   ========================= */
 
 .statistik-kpi {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
+  height: auto !important;
+  align-self: start;
+  grid-auto-rows: max-content;
 }
 
+/* Card KPI */
 .statistik-kpi .card {
+  position: relative;
   min-width: 0;
+  min-height: 132px !important;
+  height: auto !important;
+  padding: 22px 20px;
   margin: 0;
+
+  border: 1px solid rgba(15, 81, 50, 0.10);
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fbfcfa 100%
+    );
+
+  box-shadow:
+    0 8px 24px rgba(22, 61, 43, 0.07);
+
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* Aksen atas */
+.statistik-kpi .card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #0f5132,
+    #cdb082
+  );
+}
+
+/* Hover */
+.statistik-kpi .card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 28px rgba(22, 61, 43, 0.11);
+}
+
+/* Card total dibuat lebih menonjol */
 .statistik-kpi .card.total {
   grid-column: 1 / -1;
+  min-height: 115px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f3f8f5 0%,
+      #ffffff 100%
+    );
 }
+
+/* Label */
+.statistik-kpi .card-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+
+  color: #64736b;
+}
+
+/* Angka */
+.statistik-kpi .card-value,
+.statistik-kpi .card-number {
+  display: block;
+
+  margin: 0;
+
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 750;
+
+  color: #174d36;
+}
+
+/* Persentase */
+.statistik-kpi .card-percent {
+  display: block;
+
+  margin-top: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #8b7651;
+}
+
+/* =========================
+   GRAFIK
+   ========================= */
 
 .statistik-grafik {
   min-width: 0;
 }
 
+/* Panel grafik */
 .statistik-grafik .chart-card {
+  position: relative;
+
   height: 360px;
   min-height: 360px;
+
+  padding: 22px 24px 18px;
+
+  border: 1px solid rgba(15, 81, 50, 0.10);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #fafcfb 100%
+    );
+
+  box-shadow:
+    0 8px 26px rgba(22, 61, 43, 0.07);
 }
 
-.chart-card {
-  position: relative;
-  min-height: 360px;
+/* Judul grafik */
+.statistik-grafik .chart-card h3 {
+  margin: 0 0 12px;
+
+  font-size: 18px;
+  font-weight: 750;
+
+  color: #173f2e;
 }
 
-.chart-card canvas {
+/* Canvas */
+.statistik-grafik .chart-card canvas {
   width: 100% !important;
   max-width: 100%;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* =========================
+   SECTION BERIKUTNYA
+   ========================= */
+
+.statistik-page .section {
+  margin-top: 38px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
   .statistik-row {
     grid-template-columns: 1fr;
   }
 
   .statistik-grafik .chart-card {
-    min-height: 360px;
+    min-height: 340px;
+    height: 340px;
   }
 }
 
@@ -4493,26 +4646,14 @@ body.accessibility-reduced-motion *::after {
   .statistik-kpi .card.total {
     grid-column: auto;
   }
-}
 
-/* Perbaikan tinggi card Statistik */
-.statistik-row {
-  align-items: start;
-}
+  .statistik-kpi .card {
+    min-height: 120px !important;
+  }
 
-.statistik-kpi {
-  height: auto !important;
-  align-self: start;
-  grid-auto-rows: max-content;
-}
-
-.statistik-kpi .card {
-  height: auto !important;
-  min-height: 0 !important;
-  align-self: start;
-}
-
-.statistik-kpi .card.total {
-  height: auto !important;
-  min-height: 0 !important;
+  .statistik-grafik .chart-card {
+    height: 320px;
+    min-height: 320px;
+    padding: 18px;
+  }
 }
