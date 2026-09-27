@@ -115,7 +115,150 @@ if (barangJasaForm) {
    
   });
 }
- 
+
+  const publikasiForm = document.getElementById('publikasiForm');
+const publikasiJudul = document.getElementById('publikasiJudul');
+const publikasiTahun = document.getElementById('publikasiTahun');
+const publikasiKategori = document.getElementById('publikasiKategori');
+const publikasiDeskripsi = document.getElementById('publikasiDeskripsi');
+const publikasiCover = document.getElementById('publikasiCover');
+const publikasiPdf = document.getElementById('publikasiPdf');
+const uploadPublikasiButton =
+  document.getElementById('uploadPublikasiButton');
+const publikasiStatusBox =
+  document.getElementById('publikasiStatusBox');
+
+if (publikasiForm) {
+  publikasiForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const judul = publikasiJudul.value.trim();
+    const tahun = publikasiTahun.value.trim();
+    const kategori = publikasiKategori.value;
+    const deskripsi = publikasiDeskripsi.value.trim();
+
+    const coverFile = publikasiCover.files[0];
+    const pdfFile = publikasiPdf.files[0];
+
+    if (!judul || !tahun || !kategori || !coverFile || !pdfFile) {
+      alert('Judul, tahun, kategori, cover, dan PDF wajib diisi.');
+      return;
+    }
+
+    try {
+
+      uploadPublikasiButton.disabled = true;
+      uploadPublikasiButton.textContent = 'Mengupload...';
+
+      publikasiStatusBox.style.display = 'block';
+      publikasiStatusBox.textContent =
+        'Sedang mengupload publikasi...';
+
+      const coverReader = new FileReader();
+
+      coverReader.onload = function () {
+
+        const coverBase64Data =
+          coverReader.result.split(',')[1];
+
+        const pdfReader = new FileReader();
+
+        pdfReader.onload = async function () {
+
+          try {
+
+            const pdfBase64Data =
+              pdfReader.result.split(',')[1];
+
+            const idValue =
+              'PUB' + Date.now();
+
+            const payload = {
+
+              action: 'uploadPublikasi',
+
+              idValue: idValue,
+
+              judul: judul,
+
+              tahun: tahun,
+
+              kategori: kategori,
+
+              deskripsi: deskripsi,
+
+              coverFileName: coverFile.name,
+
+              coverFileData: coverBase64Data,
+
+              pdfFileName: pdfFile.name,
+
+              pdfFileData: pdfBase64Data
+
+            };
+
+            const response = await fetch(API_URL, {
+              method: 'POST',
+              body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+              throw new Error(
+                result.message ||
+                'Upload publikasi gagal.'
+              );
+            }
+
+            publikasiStatusBox.textContent =
+              'Publikasi berhasil diupload.';
+
+            publikasiForm.reset();
+
+          } catch (error) {
+
+            console.error(error);
+
+            publikasiStatusBox.textContent =
+              'Gagal: ' + error.message;
+
+          } finally {
+
+            uploadPublikasiButton.disabled = false;
+
+            uploadPublikasiButton.textContent =
+              'Upload Publikasi';
+
+          }
+
+        };
+
+        pdfReader.readAsDataURL(pdfFile);
+
+      };
+
+      coverReader.readAsDataURL(coverFile);
+
+    } catch (error) {
+
+      console.error(error);
+
+      publikasiStatusBox.style.display = 'block';
+
+      publikasiStatusBox.textContent =
+        'Gagal: ' + error.message;
+
+      uploadPublikasiButton.disabled = false;
+
+      uploadPublikasiButton.textContent =
+        'Upload Publikasi';
+
+    }
+
+  });
+}
+  
   // =========================================================
   // HELPER
   // =========================================================
