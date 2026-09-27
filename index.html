@@ -789,7 +789,114 @@ image.src =
 
 });
 </script>
-    
+    </script>
+
+<!-- STATISTIK LAYANAN BERANDA -->
+<script>
+async function loadHomeStatistik() {
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+  try {
+
+    const response =
+      await fetch(API_URL + '?action=statistik');
+
+    if (!response.ok) {
+      throw new Error(
+        'HTTP Error ' + response.status
+      );
+    }
+
+    const result =
+      await response.json();
+
+    if (
+      result.success !== true ||
+      !result.data ||
+      !result.data.permohonan
+    ) {
+      throw new Error(
+        result.message ||
+        'Data statistik tidak valid.'
+      );
+    }
+
+    const data =
+      result.data.permohonan;
+
+
+    // TOTAL
+    const total =
+      document.getElementById(
+        'homeTotalPermohonan'
+      );
+
+    if (total) {
+      total.textContent =
+        data.total ?? 0;
+    }
+
+
+    // DITERIMA
+    const diterima =
+      document.getElementById(
+        'homePermohonanDiterima'
+      );
+
+    if (diterima) {
+      diterima.textContent =
+        data.diterima ?? 0;
+    }
+
+
+    // DALAM PROSES
+    const proses =
+      document.getElementById(
+        'homePermohonanProses'
+      );
+
+    if (proses) {
+      proses.textContent =
+        data.dalamProses ?? 0;
+    }
+
+
+    // SELESAI
+    const selesai =
+      document.getElementById(
+        'homePermohonanSelesai'
+      );
+
+    if (selesai) {
+      selesai.textContent =
+        data.selesai ?? 0;
+    }
+
+
+    console.log(
+      'Statistik Beranda berhasil dimuat:',
+      data
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      'Gagal memuat statistik Beranda:',
+      error
+    );
+
+  }
+
+}
+
+
+loadHomeStatistik();
+</script>
+
+<script src="script.js"></script>
  <script src="script.js"></script>
 <script src="layout.js"></script>
 <script>
