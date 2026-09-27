@@ -4424,3 +4424,73 @@ body.accessibility-reduced-motion *::after {
 
 }
 
+/* =========================================================
+   STATISTIK LAYANAN
+   ========================================================= */
+
+.statistik-page {
+  padding-bottom: 60px;
+}
+
+.statistik-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 20px;
+}
+
+.statistik-kpi {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.statistik-kpi .card {
+  min-width: 0;
+  margin: 0;
+}
+
+.statistik-kpi .card.total {
+  grid-column: 1 / -1;
+}
+
+.statistik-grafik {
+  min-width: 0;
+}
+
+.statistik-grafik .chart-card {
+  height: 100%;
+  min-height: 360px;
+}
+
+.chart-card {
+  position: relative;
+  min-height: 360px;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .statistik-row {
+    grid-template-columns: 1fr;
+  }
+
+  .statistik-grafik .chart-card {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 600px) {
+  .statistik-kpi {
+    grid-template-columns: 1fr;
+  }
+
+  .statistik-kpi .card.total {
+    grid-column: auto;
+  }
+}
