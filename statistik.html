@@ -256,7 +256,8 @@ document.addEventListener("layout:loaded", function () {
 
     const API_URL =
       'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
-
+let chartPermohonan = null;
+let chartKeberatan = null;
 
     async function loadStatistik() {
 
@@ -289,7 +290,7 @@ const response = await fetch(url);
 
         const data = result.data;
 
-
+isiDropdownTahun(data.tahunTersedia);
         // =========================
         // PERMOHONAN
         // =========================
@@ -432,16 +433,6 @@ tampilkanGrafikKeberatan(
           error
         );
 
-        const errorMessage =
-          document.getElementById(
-            'errorMessage'
-          );
-
-        errorMessage.textContent =
-          'Statistik gagal dimuat. Silakan coba lagi.';
-
-        errorMessage.style.display = 'block';
-
         document.getElementById(
           'permohonanLoading'
         ).textContent =
@@ -459,7 +450,35 @@ document
   .addEventListener('change', function () {
     loadStatistik();
   });
+function isiDropdownTahun(tahunTersedia) {
 
+  const select =
+    document.getElementById('tahunStatistik');
+
+  if (!select) return;
+
+  const tahunTerpilih = select.value;
+
+  select.innerHTML =
+    '<option value="">Semua Tahun</option>';
+
+  tahunTersedia.forEach(function(tahun) {
+
+    const option =
+      document.createElement('option');
+
+    option.value = tahun;
+    option.textContent = tahun;
+
+    select.appendChild(option);
+
+  });
+
+  if (tahunTerpilih) {
+    select.value = tahunTerpilih;
+  }
+
+}
     loadStatistik();
 
     function hitungPersentase(nilai, total) {
@@ -472,10 +491,14 @@ document
 }
    function tampilkanGrafikPermohonan(data) {
 
-  const canvas = document.getElementById('grafikPermohonan');
+ const canvas = document.getElementById('grafikPermohonan');
 
-  new Chart(canvas, {
-    type: 'bar',
+if (chartPermohonan) {
+  chartPermohonan.destroy();
+}
+
+chartPermohonan = new Chart(canvas, {
+  type: 'bar',
 
     data: {
       labels: [
@@ -618,7 +641,11 @@ document
 
   const canvas = document.getElementById('grafikKeberatan');
 
-  new Chart(canvas, {
+if (chartKeberatan) {
+  chartKeberatan.destroy();
+}
+
+chartKeberatan = new Chart(canvas, {
     type: 'bar',
 
     data: {
