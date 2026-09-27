@@ -1342,6 +1342,17 @@
           <span class="sidebar-icon">▣</span>
           <span>Pengadaan</span>
         </button>
+
+        <button
+  type="button"
+  class="sidebar-button"
+  data-section="publikasi"
+>
+  <span class="sidebar-icon">▤</span>
+  <span>Publikasi</span>
+</button>
+
+        
 <button
   type="button"
   class="sidebar-button"
@@ -3548,6 +3559,17 @@ document.addEventListener('DOMContentLoaded', function () {
         );
 
         break;
+case 'publikasi':
+
+  showCardByElement(
+    document.getElementById(
+      'publikasiForm'
+    )
+  );
+
+  break;
+        
+        
 case 'slider':
 
   showCardByElement(
