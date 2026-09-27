@@ -159,5 +159,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <script src="layout.js"></script>
 
+<script>
+document.addEventListener("layout:loaded", function () {
+
+  const title =
+    document.getElementById("innerHeroTitle");
+
+  const description =
+    document.getElementById("innerHeroDescription");
+
+  if (title) {
+    title.textContent =
+      "Statistik Kanwil Kemenag Banten";
+  }
+
+  if (description) {
+    description.textContent =
+      "Menyajikan data dan informasi statistik mengenai penyelenggaraan urusan keagamaan dan pendidikan di Provinsi Banten.";
+  }
+
+});
+</script>
+
 </body>
 </html>
