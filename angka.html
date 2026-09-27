@@ -21,31 +21,27 @@
 
       <div class="publikasi-intro">
 
-        <div class="publikasi-intro-text">
+       <div class="publikasi-filter">
 
-          <span class="publikasi-label">
-            KOLEKSI STATISTIK
-          </span>
+  <div class="publikasi-filter-label">
+    <span class="publikasi-filter-kicker">
+      CARI PUBLIKASI
+    </span>
 
-          <h2>
-            Publikasi Statistik Kanwil Kemenag Banten
-          </h2>
+    <strong>
+      Pilih Tahun
+    </strong>
+  </div>
 
-          <p>
-            Akses berbagai publikasi statistik yang memuat data dan informasi
-            mengenai penyelenggaraan urusan keagamaan dan pendidikan
-            di Provinsi Banten.
-          </p>
+  <div class="publikasi-filter-control">
 
-        </div>
+    <select id="tahunPublikasi">
+      <option value="">Semua Tahun</option>
+    </select>
 
-        <div class="publikasi-intro-badge">
-          <span>DATA</span>
-          <strong>&amp;</strong>
-          <span>STATISTIK</span>
-        </div>
+  </div>
 
-      </div>
+</div>
 
       <div id="publikasiContainer">
 
@@ -93,118 +89,223 @@
 
 
   <!-- Publikasi -->
-  <script>
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+ <script>
+const API_URL =
+  'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const container =
-      document.getElementById('publikasiContainer');
+  const container =
+    document.getElementById('publikasiContainer');
 
-    if (!container) return;
+  const tahunSelect =
+    document.getElementById('tahunPublikasi');
 
-    fetch(API_URL + '?action=publikasi')
+  if (!container) return;
 
-      .then(function (response) {
+  let semuaPublikasi = [];
 
-        if (!response.ok) {
-          throw new Error(
-            'Gagal menghubungi server.'
-          );
-        }
 
-        return response.json();
+  function tampilkanPublikasi(data) {
 
-      })
+    if (data.length === 0) {
 
-      .then(function (result) {
+      container.innerHTML = `
+        <div class="empty-state">
+          Belum ada publikasi pada tahun yang dipilih.
+        </div>
+      `;
 
-        if (!result.success) {
-          throw new Error(
-            result.message ||
-            'Data publikasi gagal dimuat.'
-          );
-        }
+      return;
+    }
 
-        const data = result.data || [];
 
-        if (data.length === 0) {
+    container.innerHTML = data.map(function (item) {
 
-          container.innerHTML = `
-            <div class="empty-state">
-              Belum ada publikasi yang tersedia.
-            </div>
-          `;
+      return `
+        <article class="publikasi-card">
 
-          return;
-        }
+          <div class="publikasi-cover">
 
-        container.innerHTML = data.map(function (item) {
+            <img
+              src="${item.coverUrl}"
+              alt="${item.judul}"
+              loading="lazy"
+            >
 
-          return `
-            <article class="publikasi-card">
-
-              <div class="publikasi-cover">
-
-                <img
-                  src="${item.coverUrl}"
-                  alt="${item.judul}"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="publikasi-info">
-
-                <span class="publikasi-kategori">
-                  ${item.kategori || 'Publikasi'}
-                </span>
-
-                <h2>
-                  ${item.judul}
-                </h2>
-
-                <div class="publikasi-tahun">
-                  Tahun ${item.tahun}
-                </div>
-
-                <p>
-                  ${item.deskripsi || ''}
-                </p>
-
-                <a
-                  href="${item.fileUrl}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary"
-                >
-                  Baca Publikasi ↗
-                </a>
-
-              </div>
-
-            </article>
-          `;
-
-        }).join('');
-
-      })
-
-      .catch(function (error) {
-
-        console.error(error);
-
-        container.innerHTML = `
-          <div class="error-state">
-            Gagal memuat publikasi.
           </div>
-        `;
 
-      });
 
-  });
-  </script>
+          <div class="publikasi-info">
+
+            <span class="publikasi-kategori">
+              ${item.kategori || 'Publikasi'}
+            </span>
+
+            <h2>
+              ${item.judul}
+            </h2>
+
+            <div class="publikasi-tahun">
+              Tahun ${item.tahun}
+            </div>
+
+            <p>
+              ${item.deskripsi || ''}
+            </p>
+
+            <a
+              href="${item.fileUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+            >
+              Baca Publikasi ↗
+            </a>
+
+          </div>
+
+        </article>
+      `;
+
+    }).join('');
+
+  }
+
+
+  fetch(API_URL + '?action=publikasi')
+
+    .then(function (response) {
+
+      if (!response.ok) {
+        throw new Error(
+          'Gagal menghubungi server.'
+        );
+      }
+
+      return response.json();
+
+    })
+
+    .then(function (result) {
+
+      if (!result.success) {
+        throw new Error(
+          result.message ||
+          'Data publikasi gagal dimuat.'
+        );
+      }
+
+
+      semuaPublikasi =
+        result.data || [];
+
+
+      /*
+       * Membuat daftar tahun otomatis
+       */
+
+      if (tahunSelect) {
+
+        const tahunList = [
+          ...new Set(
+            semuaPublikasi
+              .map(function (item) {
+                return String(item.tahun || '').trim();
+              })
+              .filter(Boolean)
+          )
+        ];
+
+
+        tahunList.sort(function (a, b) {
+          return Number(b) - Number(a);
+        });
+
+
+        tahunList.forEach(function (tahun) {
+
+          const option =
+            document.createElement('option');
+
+          option.value = tahun;
+          option.textContent =
+            'Tahun ' + tahun;
+
+          tahunSelect.appendChild(option);
+
+        });
+
+
+        /*
+         * Filter ketika tahun dipilih
+         */
+
+        tahunSelect.addEventListener(
+          'change',
+          function () {
+
+            const tahun =
+              tahunSelect.value;
+
+            if (!tahun) {
+
+              tampilkanPublikasi(
+                semuaPublikasi
+              );
+
+              return;
+
+            }
+
+
+            const hasilFilter =
+              semuaPublikasi.filter(
+                function (item) {
+
+                  return String(
+                    item.tahun
+                  ) === tahun;
+
+                }
+              );
+
+
+            tampilkanPublikasi(
+              hasilFilter
+            );
+
+          }
+        );
+
+      }
+
+
+      /*
+       * Tampilkan semua publikasi
+       * saat pertama kali halaman dibuka
+       */
+
+      tampilkanPublikasi(
+        semuaPublikasi
+      );
+
+    })
+
+    .catch(function (error) {
+
+      console.error(error);
+
+      container.innerHTML = `
+        <div class="error-state">
+          Gagal memuat publikasi.
+        </div>
+      `;
+
+    });
+
+});
+</script>
 
 </body>
 </html>
