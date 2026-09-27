@@ -19,10 +19,21 @@
 
   <main class="page-container">
 
-    <section class="section">
+  <section class="section">
+
+  <div class="statistik-filter">
+    <div class="statistik-filter-label">
+      <span class="statistik-filter-kicker">PERIODE LAPORAN</span>
+      <strong>Pilih Tahun</strong>
+    </div>
+
+    <select id="tahunStatistik">
+      <option value="">Semua Tahun</option>
+    </select>
+  </div>
 
   <div class="statistik-row">
-
+    
     <!-- KOLOM KIRI: KPI PERMOHONAN -->
     <div class="statistik-kpi">
 
@@ -251,9 +262,15 @@ document.addEventListener("layout:loaded", function () {
 
       try {
 
-        const response = await fetch(
-          API_URL + '?action=statistik'
-        );
+        const tahun =
+  document.getElementById('tahunStatistik').value;
+
+const url =
+  tahun
+    ? API_URL + '?action=statistik&tahun=' + encodeURIComponent(tahun)
+    : API_URL + '?action=statistik';
+
+const response = await fetch(url);
 
         if (!response.ok) {
           throw new Error(
@@ -437,7 +454,11 @@ tampilkanGrafikKeberatan(
       }
 
     }
-
+document
+  .getElementById('tahunStatistik')
+  .addEventListener('change', function () {
+    loadStatistik();
+  });
 
     loadStatistik();
 
