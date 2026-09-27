@@ -2079,6 +2079,148 @@
 
 </div>
 
+      <div class="card">
+
+  <h2>Publikasi</h2>
+
+  <p class="description">
+    Upload publikasi resmi PPID Kanwil Kementerian Agama Provinsi Banten.
+  </p>
+
+  <form id="publikasiForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label for="publikasiJudul">
+          Judul Publikasi
+        </label>
+
+        <input
+          type="text"
+          id="publikasiJudul"
+          placeholder="Contoh: Kemenag Banten Dalam Angka 2025"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="publikasiTahun">
+          Tahun
+        </label>
+
+        <input
+          type="number"
+          id="publikasiTahun"
+          placeholder="Contoh: 2025"
+          min="2000"
+          max="2100"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="publikasiKategori">
+          Kategori
+        </label>
+
+        <select id="publikasiKategori" required>
+
+          <option value="">
+            Pilih kategori
+          </option>
+
+          <option value="Buku Statistik">
+            Buku Statistik
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="publikasiDeskripsi">
+          Deskripsi
+        </label>
+
+        <textarea
+          id="publikasiDeskripsi"
+          rows="4"
+          placeholder="Deskripsi singkat mengenai publikasi"
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="publikasiCover">
+          Cover Publikasi
+        </label>
+
+        <input
+          type="file"
+          id="publikasiCover"
+          accept="image/*"
+          required
+        >
+
+        <div class="helper">
+          Format JPG, JPEG, PNG, atau gambar lainnya.
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="publikasiPdf">
+          File PDF Publikasi
+        </label>
+
+        <input
+          type="file"
+          id="publikasiPdf"
+          accept="application/pdf"
+          required
+        >
+
+        <div class="helper">
+          Format PDF. File akan disimpan pada folder Publikasi.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="uploadPublikasiButton"
+    >
+      Upload Publikasi
+    </button>
+
+
+    <div
+      id="publikasiStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</div>
 <!-- =====================================================
      SLIDER BERANDA
 ====================================================== -->
