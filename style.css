@@ -4424,16 +4424,3 @@ body.accessibility-reduced-motion *::after {
 
 }
 
-/* =========================================
-   PUBLIKASI - SUSUNAN VERTIKAL
-   ========================================= */
-
-.publikasi-filter {
-  grid-column: 1 / -1 !important;
-  width: 100%;
-}
-
-#publikasiContainer {
-  grid-column: 1 / -1 !important;
-  width: 100%;
-}
