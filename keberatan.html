@@ -577,37 +577,45 @@
 
 <body>
 
+  <div id="siteNavbar"></div>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
-
- <div id="siteNavbar"></div>
-
-<div id="innerHero"></div>
+  <div id="innerHero"></div>
 
   <script src="layout.js"></script>
 
-<script>
-document.addEventListener("layout:loaded", function () {
-  const kicker = document.getElementById("innerHeroKicker");
-  const title = document.getElementById("innerHeroTitle");
-  const description = document.getElementById("innerHeroDescription");
+  <script>
+    document.addEventListener("layout:loaded", function () {
 
-  if (kicker) {
-    kicker.textContent = "Informasi Publik";
-  }
+      const kicker =
+        document.getElementById("innerHeroKicker");
 
-  if (title) {
-    title.textContent = "Pengajuan Keberatan Informasi Publik";
-  }
+      const title =
+        document.getElementById("innerHeroTitle");
 
-  if (description) {
-    description.textContent =
-      "Ajukan keberatan atas pelayanan informasi publik kepada PPID Kantor Wilayah Kementerian Agama Provinsi Banten melalui formulir berikut.";
-  }
-});
-</script>
+      const description =
+        document.getElementById("innerHeroDescription");
+
+      if (kicker) {
+        kicker.textContent = "Informasi Publik";
+      }
+
+      if (title) {
+        title.textContent =
+          "Pengajuan Keberatan Informasi Publik";
+      }
+
+      if (description) {
+        description.textContent =
+          "Ajukan keberatan atas pelayanan informasi publik kepada PPID Kantor Wilayah Kementerian Agama Provinsi Banten melalui formulir berikut.";
+      }
+
+    });
+  </script>
+
+
+  <!-- =========================
+       CONTENT
+  ========================== -->
 
   <!-- =========================
        CONTENT
