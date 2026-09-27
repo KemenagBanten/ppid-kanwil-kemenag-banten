@@ -4352,13 +4352,19 @@ body.accessibility-reduced-motion *::after {
    FILTER TAHUN PUBLIKASI
    ========================================= */
 
+/* =========================================
+   FILTER TAHUN PUBLIKASI
+   ========================================= */
+
 .publikasi-filter {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 28px;
+  width: 100%;
+  margin: 0 0 28px;
   padding: 18px 22px;
+  box-sizing: border-box;
   background: #ffffff;
   border: 1px solid rgba(15, 81, 50, 0.10);
   border-radius: 14px;
@@ -4384,8 +4390,12 @@ body.accessibility-reduced-motion *::after {
   font-weight: 700;
 }
 
+.publikasi-filter-control {
+  margin-left: auto;
+}
+
 .publikasi-filter-control select {
-  min-width: 180px;
+  min-width: 200px;
   height: 42px;
   padding: 0 38px 0 14px;
   border: 1px solid rgba(15, 81, 50, 0.18);
@@ -4403,6 +4413,7 @@ body.accessibility-reduced-motion *::after {
   border-color: #0f5132;
   box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
 }
+
 
 @media (max-width: 520px) {
 
