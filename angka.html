@@ -67,21 +67,25 @@
   <!-- Hero -->
   <script>
   document.addEventListener("layout:loaded", function () {
+const kicker =
+  document.getElementById("innerHeroKicker");
 
     const title =
       document.getElementById("innerHeroTitle");
 
     const description =
       document.getElementById("innerHeroDescription");
-
+if (kicker) {
+  kicker.textContent = "STATISTIK";
+}
     if (title) {
       title.textContent =
-        "Statistik Kanwil Kemenag Banten";
+        "Publikasi Statistik";
     }
 
     if (description) {
       description.textContent =
-        "Menyajikan data dan informasi statistik mengenai penyelenggaraan urusan keagamaan dan pendidikan di Provinsi Banten.";
+        "Menyajikan data dan informasi statistik mengenai penyelenggaraan urusan keagamaan dan pendidikan keagamaan di Provinsi Banten.";
     }
 
   });
