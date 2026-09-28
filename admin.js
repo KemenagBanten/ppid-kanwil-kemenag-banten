@@ -4250,3 +4250,66 @@ if (loginForm) {
   );
 
 }
+
+/* =========================================================
+   LOGOUT ADMIN
+========================================================= */
+
+const logoutButton =
+  document.getElementById('logoutButton');
+
+if (logoutButton) {
+
+  logoutButton.addEventListener(
+    'click',
+    function () {
+
+      const confirmLogout =
+        confirm(
+          'Apakah Anda yakin ingin keluar dari Panel Admin?'
+        );
+
+      if (!confirmLogout) {
+        return;
+      }
+
+      // Hapus token/sesi jika ada
+      sessionStorage.removeItem('adminToken');
+
+      // Sembunyikan panel admin
+      const adminPanel =
+        document.querySelector('.admin-layout');
+
+      if (adminPanel) {
+        adminPanel.style.display = 'none';
+      }
+
+      // Tampilkan kembali login
+      if (loginScreen) {
+        loginScreen.style.display = 'flex';
+      }
+
+      // Kosongkan form login
+      if (loginUsername) {
+        loginUsername.value = '';
+      }
+
+      if (loginPassword) {
+        loginPassword.value = '';
+      }
+
+      // Bersihkan pesan login
+      if (loginStatus) {
+        loginStatus.className = 'login-status';
+        loginStatus.textContent = '';
+      }
+
+      // Fokus ke username
+      if (loginUsername) {
+        loginUsername.focus();
+      }
+
+    }
+  );
+
+}
