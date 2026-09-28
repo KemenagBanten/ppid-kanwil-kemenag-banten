@@ -288,80 +288,106 @@ async function loadBerita() {
 
       console.log("URL gambar berita:", imageUrl);
 
-      return `
-        <article class="news-card">
+      const urlBerita = item.url_berita
+  ? String(item.url_berita).trim()
+  : "";
 
-          ${
-            imageUrl
-              ? `
-                <div class="news-image-wrapper">
-                  <img
-                    src="${escapeAttribute(imageUrl)}"
-                    alt="${escapeAttribute(item.judul || "Berita")}"
-                    class="news-image"
-                    loading="lazy"
-                    referrerpolicy="no-referrer"
-                    onload="this.parentElement.classList.add('image-loaded');"
-                    onerror="
-                      this.style.display='none';
-                      this.parentElement.querySelector('.news-placeholder').style.display='flex';
-                    "
-                  >
+return `
+  ${
+    urlBerita
+      ? `
+        <a
+          href="${escapeAttribute(urlBerita)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="news-card-link"
+          aria-label="Baca berita: ${escapeAttribute(item.judul || "Berita")}"
+        >
+      `
+      : ""
+  }
 
-                  <div class="news-placeholder">
-                    PPID Kemenag Banten
-                  </div>
-                </div>
-              `
-              : `
-                <div class="news-image-wrapper">
-                  <div class="news-placeholder">
-                    PPID Kemenag Banten
-                  </div>
-                </div>
-              `
-          }
+  <article class="news-card">
 
-          <div class="news-content">
+    ${
+      imageUrl
+        ? `
+          <div class="news-image-wrapper">
+            <img
+              src="${escapeAttribute(imageUrl)}"
+              alt="${escapeAttribute(item.judul || "Berita")}"
+              class="news-image"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+              onload="this.parentElement.classList.add('image-loaded');"
+              onerror="
+                this.style.display='none';
+                this.parentElement.querySelector('.news-placeholder').style.display='flex';
+              "
+            >
 
-            ${
-              item.kategori
-                ? `
-                  <div class="card-badge">
-                    ${escapeHTML(item.kategori)}
-                  </div>
-                `
-                : ""
-            }
-
-            <h3>
-              ${escapeHTML(item.judul)}
-            </h3>
-
-            ${
-              item.tanggal
-                ? `
-                  <div class="news-date">
-                    ${formatDate(item.tanggal)}
-                  </div>
-                `
-                : ""
-            }
-
-            ${
-              item.isi
-                ? `
-                  <p>
-                    ${escapeHTML(item.isi)}
-                  </p>
-                `
-                : ""
-            }
-
+            <div class="news-placeholder">
+              PPID Kemenag Banten
+            </div>
           </div>
+        `
+        : `
+          <div class="news-image-wrapper">
+            <div class="news-placeholder">
+              PPID Kemenag Banten
+            </div>
+          </div>
+        `
+    }
 
-        </article>
-      `;
+    <div class="news-content">
+
+      ${
+        item.kategori
+          ? `
+            <div class="card-badge">
+              ${escapeHTML(item.kategori)}
+            </div>
+          `
+          : ""
+      }
+
+      <h3>
+        ${escapeHTML(item.judul)}
+      </h3>
+
+      ${
+        item.tanggal
+          ? `
+            <div class="news-date">
+              ${formatDate(item.tanggal)}
+            </div>
+          `
+          : ""
+      }
+
+      ${
+        item.isi
+          ? `
+            <p>
+              ${escapeHTML(item.isi)}
+            </p>
+          `
+          : ""
+      }
+
+    </div>
+
+  </article>
+
+  ${
+    urlBerita
+      ? `
+        </a>
+      `
+      : ""
+  }
+`;
     }).join("");
 
   } catch (error) {
