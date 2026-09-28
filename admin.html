@@ -3271,7 +3271,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.sidebar-button');
 
   const cards =
-    document.querySelectorAll('.admin-grid > .card');
+    document.querySelectorAll('.admin-grid .card');
 
   function hideAllCards() {
 
@@ -3358,6 +3358,17 @@ document.addEventListener('DOMContentLoaded', function () {
         showCardByElement(
           document.getElementById(
             'contentListBody'
+          )
+        );
+
+        break;
+
+
+      case 'slider':
+
+        showCardByElement(
+          document.getElementById(
+            'sliderCard'
           )
         );
 
