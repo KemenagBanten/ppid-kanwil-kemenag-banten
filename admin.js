@@ -4036,4 +4036,217 @@ loadLaporanUploadDropdown();
 });
 
 
+/* =========================================================
+   ADMIN LOGIN
+========================================================= */
 
+const loginForm =
+  document.getElementById('loginForm');
+
+const loginScreen =
+  document.getElementById('loginScreen');
+
+const loginUsername =
+  document.getElementById('loginUsername');
+
+const loginPassword =
+  document.getElementById('loginPassword');
+
+const loginButton =
+  document.getElementById('loginButton');
+
+const loginStatus =
+  document.getElementById('loginStatus');
+
+
+/* =========================================================
+   PANEL ADMIN
+========================================================= */
+
+function showAdminPanel() {
+
+  if (loginScreen) {
+    loginScreen.style.display = 'none';
+  }
+
+  const adminPanel =
+    document.querySelector('.admin-layout');
+
+  if (adminPanel) {
+    adminPanel.style.display = '';
+  }
+
+}
+
+
+/* =========================================================
+   TAMPILKAN ERROR LOGIN
+========================================================= */
+
+function showLoginError(message) {
+
+  if (!loginStatus) {
+    return;
+  }
+
+  loginStatus.className =
+    'login-status error';
+
+  loginStatus.textContent =
+    message || 'Login gagal.';
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+if (loginForm) {
+
+  loginForm.addEventListener(
+    'submit',
+    async function (event) {
+
+      event.preventDefault();
+
+
+      const username =
+        loginUsername
+          ? loginUsername.value.trim()
+          : '';
+
+      const password =
+        loginPassword
+          ? loginPassword.value
+          : '';
+
+
+      if (!username || !password) {
+
+        showLoginError(
+          'Username dan password wajib diisi.'
+        );
+
+        return;
+      }
+
+
+      if (loginButton) {
+        loginButton.disabled = true;
+        loginButton.textContent =
+          'Memeriksa...';
+      }
+
+
+      if (loginStatus) {
+        loginStatus.className =
+          'login-status';
+
+        loginStatus.textContent = '';
+      }
+
+
+      try {
+
+        const response =
+          await fetch(API_URL, {
+
+            method: 'POST',
+
+            headers: {
+              'Content-Type':
+                'text/plain;charset=utf-8'
+            },
+
+            body: JSON.stringify({
+
+              action: 'verifyAdmin',
+
+              username: username,
+
+              password: password
+
+            })
+
+          });
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' + response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (
+          result &&
+          result.success === true
+        ) {
+
+          if (loginStatus) {
+
+            loginStatus.className =
+              'login-status success';
+
+            loginStatus.textContent =
+              'Login berhasil.';
+          }
+
+
+          setTimeout(
+            function () {
+
+              showAdminPanel();
+
+            },
+            300
+          );
+
+
+        } else {
+
+          showLoginError(
+            result &&
+            result.message
+              ? result.message
+              : 'Username atau password salah.'
+          );
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          'Login admin error:',
+          error
+        );
+
+        showLoginError(
+          'Tidak dapat terhubung ke server.'
+        );
+
+      } finally {
+
+        if (loginButton) {
+
+          loginButton.disabled = false;
+
+          loginButton.textContent =
+            'Masuk ke Panel Admin';
+
+        }
+
+      }
+
+    }
+  );
+
+}
