@@ -359,11 +359,14 @@ function formatDateForInput(value) {
     document.getElementById('contentCategory');
 
   const contentBody =
-    document.getElementById('contentBody');
+  document.getElementById('contentBody');
 
-  const contentStatus =
-    document.getElementById('contentStatus');
+const contentUrl =
+  document.getElementById('contentUrl');
 
+const contentStatus =
+  document.getElementById('contentStatus');
+  
   const saveContentButton =
     document.getElementById('saveContentButton');
 
@@ -1391,10 +1394,13 @@ if (uploadLaporanButton) {
     document.getElementById('editCategory');
 
   const editBody =
-    document.getElementById('editBody');
+  document.getElementById('editBody');
 
-  const editStatus =
-    document.getElementById('editStatus');
+const editUrl =
+  document.getElementById('editUrl');
+
+const editStatus =
+  document.getElementById('editStatus');
 
   const updateContentButton =
     document.getElementById('updateContentButton');
@@ -1472,16 +1478,21 @@ if (uploadLaporanButton) {
           const date =
             contentDate.value;
 
-          const body =
-            contentBody.value.trim();
+         const body =
+  contentBody.value.trim();
 
-          const category =
-            contentCategory
-              ? contentCategory.value.trim()
-              : '';
+const urlBerita =
+  contentUrl
+    ? contentUrl.value.trim()
+    : '';
 
-          const status =
-            contentStatus.value;
+const category =
+  contentCategory
+    ? contentCategory.value.trim()
+    : '';
+
+const status =
+  contentStatus.value;
 
           if (!type) {
             throw new Error(
@@ -1524,22 +1535,27 @@ if (uploadLaporanButton) {
 
           const payload = {
 
-            action: action,
+  action: action,
 
-            judul: title,
+  judul: title,
 
-            tanggal: date,
+  tanggal: date,
 
-            isi: body,
+  isi: body,
 
-            kategori:
-              type === 'BERITA'
-                ? category
-                : '',
+  kategori:
+    type === 'BERITA'
+      ? category
+      : '',
 
-            status: status
+  url_berita:
+    type === 'BERITA'
+      ? urlBerita
+      : '',
 
-          };
+  status: status
+
+};
 
 
           const response =
@@ -1609,6 +1625,10 @@ if (uploadLaporanButton) {
           }
 
           contentBody.value = '';
+
+          if (contentUrl) {
+  contentUrl.value = '';
+}
 
           contentStatus.value =
             'Published';
@@ -2064,6 +2084,13 @@ if (uploadLaporanButton) {
 
     }
 
+    if (editUrl) {
+
+  editUrl.value =
+    row.url_berita || '';
+
+}
+
 
     // STATUS
 
@@ -2120,7 +2147,9 @@ if (uploadLaporanButton) {
     if (editBody) {
       editBody.value = '';
     }
-
+if (editUrl) {
+  editUrl.value = '';
+}
     if (editStatus) {
       editStatus.value =
         'Published';
@@ -2269,7 +2298,10 @@ if (uploadLaporanButton) {
 
           const body =
             editBody.value.trim();
-
+const urlBerita =
+  editUrl
+    ? editUrl.value.trim()
+    : '';
           const category =
             editCategory
               ? editCategory.value.trim()
@@ -2348,26 +2380,31 @@ if (uploadLaporanButton) {
 
           const payload = {
 
-            action: 'editKonten',
+  action: 'editKonten',
 
-            sheetName: sheet,
+  sheetName: sheet,
 
-            idValue: idValue,
+  idValue: idValue,
 
-            judul: title,
+  judul: title,
 
-            tanggal: date,
+  tanggal: date,
 
-            isi: body,
+  isi: body,
 
-            kategori:
-              sheet === 'BERITA'
-                ? category
-                : '',
+  kategori:
+    sheet === 'BERITA'
+      ? category
+      : '',
 
-            status: status
+  url_berita:
+    sheet === 'BERITA'
+      ? urlBerita
+      : '',
 
-          };
+  status: status
+
+};
 
 
           const response =
