@@ -1,113 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Profil PPID | PPID Kanwil Kemenag Banten</title>
-<link rel="stylesheet" href="style.css?v=999">
+
+  <link rel="stylesheet" href="style.css?v=999">
+
   <style>
-
-  
-
-
-    /* =====================================================
-       PAGE HERO
-    ===================================================== */
-
-    .page-hero {
-      position: relative;
-
-      overflow: hidden;
-
-      padding: 52px 0 55px;
-
-      color: #ffffff;
-
-      background:
-        linear-gradient(
-          135deg,
-          #123d2d 0%,
-          #176044 55%,
-          #0f5132 100%
-        );
-    }
-
-    .page-hero::before {
-      content: "";
-
-      position: absolute;
-
-      width: 320px;
-      height: 320px;
-
-      right: -120px;
-      top: -160px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(205, 176, 130, 0.10);
-    }
-
-    .page-hero::after {
-      content: "";
-
-      position: absolute;
-
-      width: 240px;
-      height: 240px;
-
-      left: -100px;
-      bottom: -160px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255,255,255,0.04);
-    }
-
-    .page-hero-inner {
-      position: relative;
-      z-index: 2;
-    }
-
-    .page-hero-kicker {
-      display: inline-block;
-
-      margin-bottom: 9px;
-
-      color: #e5d1aa;
-
-      font-size: 10px;
-      font-weight: 700;
-
-      letter-spacing: 1.2px;
-    }
-
-    .page-hero h2 {
-      margin: 0 0 10px;
-
-      font-size:
-        clamp(28px, 4vw, 40px);
-
-      line-height: 1.15;
-
-      font-weight: 750;
-    }
-
-    .page-hero p {
-      max-width: 720px;
-
-      margin: 0;
-
-      color:
-        rgba(255,255,255,0.82);
-
-      font-size: 13px;
-
-      line-height: 1.7;
-    }
-
 
     /* =====================================================
        CONTENT
@@ -128,7 +30,6 @@
 
     .section-kicker {
       display: block;
-
       margin-bottom: 5px;
 
       color: #4d806b;
@@ -189,7 +90,7 @@
 
       box-shadow:
         0 7px 25px
-        rgba(23,53,42,0.055);
+        rgba(23, 53, 42, 0.055);
     }
 
     .profile-card h3 {
@@ -202,14 +103,14 @@
     }
 
     .profile-card p {
-  margin: 0 0 14px;
+      margin: 0 0 14px;
 
-  color: #52645b;
+      color: #52645b;
 
-  font-size: 16px;
+      font-size: 16px;
 
-  line-height: 1.85;
-}
+      line-height: 1.85;
+    }
 
     .profile-card p:last-child {
       margin-bottom: 0;
@@ -240,7 +141,7 @@
 
       box-shadow:
         0 10px 30px
-        rgba(23,53,42,0.10);
+        rgba(23, 53, 42, 0.10);
     }
 
     .profile-highlight::after {
@@ -257,7 +158,7 @@
       border-radius: 50%;
 
       background:
-        rgba(205,176,130,.12);
+        rgba(205, 176, 130, .12);
     }
 
     .profile-highlight-kicker {
@@ -292,7 +193,7 @@
 
       margin: 0;
 
-      color: rgba(255,255,255,.78);
+      color: rgba(255, 255, 255, .78);
 
       font-size: 15px;
 
@@ -300,114 +201,148 @@
     }
 
 
-  /* =====================================================
-   /* =====================================================
-   VISI MISI MOTO
-===================================================== */
+    /* =====================================================
+       VISI MISI MOTO
+    ===================================================== */
 
-.vm-section {
-  margin-top: 34px;
-  margin-bottom: 34px;
-}
+    .vm-section {
+      margin-top: 34px;
+      margin-bottom: 34px;
+    }
 
-.vm-grid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.5fr 0.9fr;
-  gap: 20px;
-  align-items: stretch;
-}
+    .vm-grid {
+      display: grid;
 
-.vm-card {
-  position: relative;
-  padding: 28px;
-  background: #ffffff;
-  border: 1px solid #e2e9e5;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(23, 53, 42, 0.045);
-}
+      grid-template-columns:
+        0.9fr
+        1.5fr
+        0.9fr;
 
-.vm-card h3 {
-  margin: 0 0 16px;
-  color: #1f5a43;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.4;
-}
+      gap: 20px;
 
-.vm-card p {
-  margin: 0;
-  color: #52645b;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.75;
-}
+      align-items: stretch;
+    }
 
-.vm-card ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    .vm-card {
+      position: relative;
 
-.vm-card li {
-  position: relative;
-  margin-bottom: 14px;
-  padding-left: 30px;
-  color: #52645b;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.75;
-}
+      padding: 28px;
 
-.vm-card li:last-child {
-  margin-bottom: 0;
-}
+      background: #ffffff;
 
-.vm-card li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 4px;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #e9f2ed;
-  color: #1f5a43;
-  font-size: 11px;
-  font-weight: 700;
-}
+      border: 1px solid #e2e9e5;
 
-.vm-card-moto {
-  background: #ffffff;
-  display: block;
-  text-align: left;
-}
+      border-radius: 16px;
 
-.vm-card-moto h3 {
-  margin: 0 0 16px;
-  color: #1f5a43;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.4;
-}
+      box-shadow:
+        0 8px 24px
+        rgba(23, 53, 42, 0.045);
+    }
 
-.vm-card-moto p {
-  margin: 0;
-  color: #52645b;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.75;
-  letter-spacing: 0;
-}
+    .vm-card h3 {
+      margin: 0 0 16px;
 
-/* MOBILE */
-@media (max-width: 900px) {
-  .vm-grid {
-    grid-template-columns: 1fr;
-  }
-}
+      color: #1f5a43;
+
+      font-size: 20px;
+      font-weight: 700;
+
+      line-height: 1.4;
+    }
+
+    .vm-card p {
+      margin: 0;
+
+      color: #52645b;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      line-height: 1.75;
+    }
+
+    .vm-card ul {
+      margin: 0;
+      padding: 0;
+
+      list-style: none;
+    }
+
+    .vm-card li {
+      position: relative;
+
+      margin-bottom: 14px;
+      padding-left: 30px;
+
+      color: #52645b;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      line-height: 1.75;
+    }
+
+    .vm-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    .vm-card li::before {
+      content: "✓";
+
+      position: absolute;
+
+      left: 0;
+      top: 4px;
+
+      width: 20px;
+      height: 20px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #e9f2ed;
+
+      color: #1f5a43;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .vm-card-moto {
+      background: #ffffff;
+
+      display: block;
+
+      text-align: left;
+    }
+
+    .vm-card-moto h3 {
+      margin: 0 0 16px;
+
+      color: #1f5a43;
+
+      font-size: 20px;
+      font-weight: 700;
+
+      line-height: 1.4;
+    }
+
+    .vm-card-moto p {
+      margin: 0;
+
+      color: #52645b;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      line-height: 1.75;
+
+      letter-spacing: 0;
+    }
 
 
     /* =====================================================
@@ -415,53 +350,110 @@
     ===================================================== */
 
     .struktur-section {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
+      width: 100%;
+      max-width: 100%;
 
-.struktur-card {
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #e2e9e5;
-  border-radius: 18px;
-  box-shadow: 0 7px 25px rgba(23,53,42,0.045);
-}
+      overflow-x: hidden;
+    }
 
-.struktur-image {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  margin: 0 auto;
-}
-    
-.struktur-image-area {
-  width: 100%;
-  max-width: 100%;
-  padding: 28px;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #e2e9e5;
-  border-radius: 16px;
-}
+    .struktur-card {
+      overflow: hidden;
 
-.org-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  padding: 0 28px 28px;
-  margin-top: 28px;
-}
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 7px 25px
+        rgba(23, 53, 42, 0.045);
+    }
+
+    .struktur-image {
+      display: block;
+
+      width: 100%;
+      max-width: 100%;
+
+      height: auto;
+
+      object-fit: contain;
+
+      margin: 0 auto;
+    }
+
+    .struktur-image-area {
+      width: 100%;
+      max-width: 100%;
+
+      padding: 28px;
+
+      box-sizing: border-box;
+
+      overflow: hidden;
+
+      background: #ffffff;
+
+      border: 1px solid #e2e9e5;
+
+      border-radius: 16px;
+    }
+
+    .struktur-placeholder {
+      min-height: 180px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px;
+
+      box-sizing: border-box;
+
+      text-align: center;
+
+      color: #6d7d75;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      background: #f5f9f7;
+
+      border-radius: 12px;
+    }
+
+    .struktur-placeholder strong {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #17352a;
+
+      font-size: 16px;
+    }
+
+    .org-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 16px;
+
+      padding: 0 28px 28px;
+
+      margin-top: 28px;
+    }
+
     .org-item {
       padding: 19px;
 
       background: #ffffff;
 
-      border:
-        1px solid #e2e9e5;
+      border: 1px solid #e2e9e5;
 
       border-radius: 14px;
     }
@@ -503,23 +495,22 @@
     ===================================================== */
 
     .task-section {
-  margin-top: 34px;
-  margin-bottom: 34px;
-}
+      margin-top: 34px;
+      margin-bottom: 34px;
+    }
 
     .task-card {
       padding: 28px;
 
       background: #ffffff;
 
-      border:
-        1px solid #e2e9e5;
+      border: 1px solid #e2e9e5;
 
       border-radius: 18px;
 
       box-shadow:
         0 7px 25px
-        rgba(23,53,42,0.045);
+        rgba(23, 53, 42, 0.045);
     }
 
     .task-grid {
@@ -578,9 +569,9 @@
     ===================================================== */
 
     .legal-section {
-  margin-top: 34px;
-  margin-bottom: 34px;
-  }
+      margin-top: 34px;
+      margin-bottom: 34px;
+    }
 
     .legal-card {
       padding: 28px;
@@ -592,17 +583,16 @@
           #ffffff 100%
         );
 
-      border:
-        1px solid #eee5d2;
+      border: 1px solid #eee5d2;
 
-      border-left:
-        4px solid #cdb082;
+      border-left: 4px solid #cdb082;
 
       border-radius: 15px;
     }
 
     .legal-list {
       margin: 0;
+
       padding-left: 20px;
     }
 
@@ -621,174 +611,147 @@
     }
 
 
-  /* =====================================================
-   KONTAK PPID
-===================================================== */
+    /* =====================================================
+       KONTAK PPID
+    ===================================================== */
 
-.contact-section {
-  margin-top: 42px;
-  padding: 0;
-}
+    .contact-section {
+      margin-top: 42px;
+      padding: 0;
+    }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin-top: 24px;
-}
+    .contact-grid {
+      display: grid;
 
-.contact-card {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-  min-height: 145px;
-  padding: 24px;
+      gap: 20px;
 
-  box-sizing: border-box;
+      margin-top: 24px;
+    }
 
-  background: #ffffff;
+    .contact-card {
+      position: relative;
 
-  border: 1px solid #e2e9e5;
-  border-radius: 16px;
+      display: flex;
 
-  box-shadow:
-    0 8px 24px rgba(23, 53, 42, 0.06);
+      align-items: flex-start;
 
-  overflow: hidden;
+      gap: 16px;
 
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    border-color .2s ease;
-}
+      min-height: 145px;
 
-/* aksen hijau di sisi kiri */
-.contact-card::before {
-  content: "";
+      padding: 24px;
 
-  position: absolute;
+      box-sizing: border-box;
 
-  left: 0;
-  top: 0;
-  bottom: 0;
+      background: #ffffff;
 
-  width: 4px;
+      border: 1px solid #e2e9e5;
 
-  background: #0f5132;
-}
+      border-radius: 16px;
 
-/* efek hover */
-.contact-card:hover {
-  transform: translateY(-4px);
+      box-shadow:
+        0 8px 24px
+        rgba(23, 53, 42, 0.06);
 
-  border-color: #c9ddd3;
+      overflow: hidden;
 
-  box-shadow:
-    0 12px 30px rgba(23, 53, 42, 0.10);
-}
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+    }
 
+    .contact-card::before {
+      content: "";
 
-/* ICON */
+      position: absolute;
 
-.contact-icon {
-  width: 46px;
-  height: 46px;
+      left: 0;
+      top: 0;
+      bottom: 0;
 
-  min-width: 46px;
+      width: 4px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+      background: #0f5132;
+    }
 
-  margin-top: 1px;
+    .contact-card:hover {
+      transform: translateY(-4px);
 
-  background: #edf6f1;
+      border-color: #c9ddd3;
 
-  color: #0f5132;
+      box-shadow:
+        0 12px 30px
+        rgba(23, 53, 42, 0.10);
+    }
 
-  border-radius: 12px;
+    .contact-icon {
+      width: 46px;
+      height: 46px;
 
-  font-size: 20px;
-  font-weight: 700;
+      min-width: 46px;
 
-  box-shadow:
-    inset 0 0 0 1px rgba(15, 81, 50, 0.05);
-}
+      display: flex;
 
+      align-items: center;
+      justify-content: center;
 
-/* CONTENT */
+      margin-top: 1px;
 
-.contact-content {
-  flex: 1;
-  min-width: 0;
-}
+      background: #edf6f1;
 
+      color: #0f5132;
 
-/* LABEL */
+      border-radius: 12px;
 
-.contact-label {
-  margin-bottom: 8px;
+      font-size: 20px;
+      font-weight: 700;
 
-  color: #4d806b;
+      box-shadow:
+        inset 0 0 0 1px
+        rgba(15, 81, 50, 0.05);
+    }
 
-  font-size: 10px;
-  font-weight: 800;
+    .contact-content {
+      flex: 1;
 
-  letter-spacing: 1px;
+      min-width: 0;
+    }
 
-  text-transform: uppercase;
-}
+    .contact-label {
+      margin-bottom: 8px;
 
+      color: #4d806b;
 
-/* VALUE */
+      font-size: 10px;
+      font-weight: 800;
 
-.contact-value {
-  color: #24352d;
+      letter-spacing: 1px;
 
-  font-size: 14px;
-  font-weight: 650;
+      text-transform: uppercase;
+    }
 
-  line-height: 1.7;
+    .contact-value {
+      color: #24352d;
 
-  word-break: break-word;
-}
+      font-size: 14px;
+      font-weight: 650;
 
+      line-height: 1.7;
 
-/* KHUSUS HOTLINE & EMAIL */
+      word-break: break-word;
+    }
 
-.contact-card:nth-child(2) .contact-value,
-.contact-card:nth-child(3) .contact-value {
-  font-size: 15px;
-}
+    .contact-card:nth-child(2) .contact-value,
+    .contact-card:nth-child(3) .contact-value {
+      font-size: 15px;
+    }
 
 
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-}
-
-
-@media (max-width: 800px) {
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-card {
-    min-height: auto;
-    padding: 20px;
-  }
-
-}
-
-   /* =====================================================
+    /* =====================================================
        ACCESSIBILITY
     ===================================================== */
 
@@ -806,6 +769,7 @@
       height: 46px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -818,7 +782,8 @@
       color: #ffffff;
 
       box-shadow:
-        0 8px 22px rgba(23,53,42,0.22);
+        0 8px 22px
+        rgba(23, 53, 42, 0.22);
 
       cursor: pointer;
 
@@ -837,20 +802,19 @@
 
       background: #ffffff;
 
-      border:
-        1px solid #dfe8e3;
+      border: 1px solid #dfe8e3;
 
       border-radius: 15px;
 
       box-shadow:
         0 14px 40px
-        rgba(23,53,42,0.16);
+        rgba(23, 53, 42, 0.16);
 
       opacity: 0;
+
       visibility: hidden;
 
-      transform:
-        translateY(8px);
+      transform: translateY(8px);
 
       transition:
         opacity .2s ease,
@@ -859,10 +823,12 @@
     }
 
     .aksesibilitas-panel.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
+      opacity: 1;
+
+      visibility: visible;
+
+      transform: translateY(0);
+    }
 
     .aksesibilitas-header {
       display: flex;
@@ -876,8 +842,7 @@
 
       padding-bottom: 10px;
 
-      border-bottom:
-        1px solid #edf1ee;
+      border-bottom: 1px solid #edf1ee;
     }
 
     .aksesibilitas-header strong {
@@ -993,45 +958,46 @@
     body.accessibility-reduced-motion *::before,
     body.accessibility-reduced-motion *::after {
       animation: none !important;
+
       transition: none !important;
+
       scroll-behavior: auto !important;
     }
 
     html.accessibility-high-contrast .header,
-html.accessibility-high-contrast .inner-hero,
-html.accessibility-high-contrast .profile-section,
-html.accessibility-high-contrast .profile-card,
-html.accessibility-high-contrast .vm-card,
-html.accessibility-high-contrast .task-card,
-html.accessibility-high-contrast .legal-card,
-html.accessibility-high-contrast .contact-card,
-html.accessibility-high-contrast .footer {
-  border-color: #ffffff !important;
-}
+    html.accessibility-high-contrast .inner-hero,
+    html.accessibility-high-contrast .profile-section,
+    html.accessibility-high-contrast .profile-card,
+    html.accessibility-high-contrast .vm-card,
+    html.accessibility-high-contrast .task-card,
+    html.accessibility-high-contrast .legal-card,
+    html.accessibility-high-contrast .contact-card,
+    html.accessibility-high-contrast .footer {
+      border-color: #ffffff !important;
+    }
 
-html.accessibility-high-contrast .profile-card,
-html.accessibility-high-contrast .vm-card,
-html.accessibility-high-contrast .task-card,
-html.accessibility-high-contrast .legal-card,
-html.accessibility-high-contrast .contact-card {
-  background: #000000 !important;
-  color: #ffffff !important;
-}
+    html.accessibility-high-contrast .profile-card,
+    html.accessibility-high-contrast .vm-card,
+    html.accessibility-high-contrast .task-card,
+    html.accessibility-high-contrast .legal-card,
+    html.accessibility-high-contrast .contact-card {
+      background: #000000 !important;
 
-html.accessibility-high-contrast .profile-card *,
-html.accessibility-high-contrast .vm-card *,
-html.accessibility-high-contrast .task-card *,
-html.accessibility-high-contrast .legal-card *,
-html.accessibility-high-contrast .contact-card * {
-  color: #ffffff !important;
-}
+      color: #ffffff !important;
+    }
+
+    html.accessibility-high-contrast .profile-card *,
+    html.accessibility-high-contrast .vm-card *,
+    html.accessibility-high-contrast .task-card *,
+    html.accessibility-high-contrast .legal-card *,
+    html.accessibility-high-contrast .contact-card * {
+      color: #ffffff !important;
+    }
+
 
     /* =====================================================
-       MOBILE
+       RESPONSIVE
     ===================================================== */
-
-
-
 
     @media (max-width: 900px) {
 
@@ -1052,35 +1018,6 @@ html.accessibility-high-contrast .contact-card * {
 
     @media (max-width: 800px) {
 
-      .header-inner {
-        width: min(1180px, 94%);
-
-        min-height: 66px;
-      }
-
-      .header-kicker {
-        display: none;
-      }
-
-      .header-text h1 {
-        font-size: 12px;
-      }
-
-      .header-logo {
-        width: 40px;
-        height: 40px;
-
-        flex-basis: 40px;
-      }
-
-      .page-hero {
-        padding: 40px 0 44px;
-      }
-
-      .page-hero h2 {
-        font-size: 30px;
-      }
-
       .page-content {
         padding: 32px 0 50px;
       }
@@ -1091,173 +1028,87 @@ html.accessibility-high-contrast .contact-card * {
 
       .org-grid {
         grid-template-columns: 1fr;
+
+        padding-left: 20px;
+        padding-right: 20px;
       }
 
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
+      .struktur-image-area {
+        padding: 15px;
       }
 
-      .footer-bottom-inner {
-        flex-direction: column;
+      .contact-grid {
+        grid-template-columns: 1fr !important;
 
-        justify-content: center;
-
-        padding: 15px 0;
-
-        text-align: center;
+        gap: 14px;
       }
-     
+
+      .contact-card {
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 20px;
+      }
+
     }
 
 
-   /* =====================================================
-   FIX NAVBAR MOBILE
-===================================================== */
+    @media (max-width: 600px) {
 
-@media (max-width: 900px) {
+      .profile-card,
+      .profile-highlight,
+      .vm-card,
+      .task-card,
+      .legal-card {
+        padding: 22px;
+      }
 
-  .header-inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
+      .profile-card p {
+        font-size: 15px;
 
-  .header-brand {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
+        line-height: 1.8;
+      }
 
-  .nav-mobile-toggle-wrap {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-left: auto;
-  }
+      .vm-card p,
+      .vm-card li {
+        font-size: 15px;
+      }
 
-  .nav-mobile-toggle {
-    display: flex !important;
-  }
+      .task-item p {
+        font-size: 14px;
+      }
 
-  .main-nav {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    width: 100%;
-    box-sizing: border-box;
+      .legal-list li {
+        font-size: 14px;
+      }
 
-    display: none !important;
-    flex-direction: column;
-    align-items: stretch;
+      .contact-card {
+        gap: 13px;
 
-    padding: 8px;
+        padding: 18px;
+      }
 
-    background: #ffffff;
-    border: 1px solid rgba(23, 53, 42, 0.10);
-    border-radius: 12px;
+      .contact-icon {
+        width: 42px;
+        height: 42px;
 
-    box-shadow:
-      0 14px 35px rgba(23, 53, 42, 0.14);
+        min-width: 42px;
 
-    z-index: 9999;
-  }
+        font-size: 18px;
+      }
 
-  .main-nav.mobile-open {
-    display: flex !important;
-  }
+      .contact-value {
+        font-size: 13px;
+      }
 
-  .main-nav > .nav-link,
-  .main-nav > .nav-dropdown {
-    width: 100%;
-    box-sizing: border-box;
-  }
+      .contact-card:nth-child(2) .contact-value,
+      .contact-card:nth-child(3) .contact-value {
+        font-size: 14px;
+      }
 
-  .main-nav > .nav-link,
-  .main-nav .nav-dropdown-button {
-    width: 100%;
-    min-height: 44px;
+    }
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 10px 14px;
-    box-sizing: border-box;
-
-    text-align: left;
-    border-radius: 8px;
-  }
-
-  .main-nav .nav-dropdown {
-    position: static;
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .main-nav .nav-dropdown .dropdown-menu {
-    position: static;
-
-    display: none;
-
-    width: 100%;
-    min-width: 0;
-
-    margin: 0;
-    padding: 4px 0 6px;
-
-    background: #f7f9f8;
-    border: none;
-    border-radius: 8px;
-
-    box-shadow: none;
-
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
-  .main-nav .nav-dropdown.mobile-open .dropdown-menu {
-    display: block;
-  }
-
-  .main-nav .dropdown-menu a {
-    display: flex;
-    align-items: center;
-
-    width: 100%;
-    min-height: 40px;
-
-    padding: 8px 14px 8px 28px;
-
-    box-sizing: border-box;
-
-    text-decoration: none;
-    border-radius: 7px;
-  }
-
-  .main-nav .nav-search {
-    width: 100%;
-    min-height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding: 10px 14px;
-
-    box-sizing: border-box;
-    border-radius: 8px;
-  }
-}
   </style>
 </head>
 
@@ -1270,17 +1121,17 @@ html.accessibility-high-contrast .contact-card * {
 
 
   <!-- =====================================================
-       HEADER
+       NAVBAR GLOBAL
   ===================================================== -->
 
-<div id="siteNavbar"></div>
+  <div id="siteNavbar"></div>
 
 
   <!-- =====================================================
-       HERO
+       HERO GLOBAL
   ===================================================== -->
 
-<div id="innerHero"></div>
+  <div id="innerHero"></div>
 
 
   <!-- =====================================================
@@ -1318,7 +1169,7 @@ html.accessibility-high-contrast .contact-card * {
 
           <article class="profile-card">
 
-                        <p>
+            <p>
               Sebagai bagian dari komitmen instansi pemerintah dalam
               mewujudkan tata kelola yang transparan, efektif, efisien,
               akuntabel, serta bebas dari korupsi, kami hadir untuk
@@ -1396,51 +1247,63 @@ html.accessibility-high-contrast .contact-card * {
 
         <div class="vm-grid">
 
-  <!-- VISI -->
-  <article class="vm-card">
-    <h3>
-      Visi
-    </h3>
+          <!-- VISI -->
 
-    <p>
-      Terwujudnya pelayanan informasi yang akuntabel
-    </p>
-  </article>
+          <article class="vm-card">
 
-  <!-- MISI -->
-  <article class="vm-card">
-    <h3>
-      Misi
-    </h3>
+            <h3>
+              Visi
+            </h3>
 
-    <ul>
-      <li>
-        Meningkatkan layanan informasi yang cepat, tepat, dan transparan
-      </li>
+            <p>
+              Terwujudnya pelayanan informasi yang akuntabel
+            </p>
 
-      <li>
-        Meningkatkan kompetensi SDM pelayan informasi
-      </li>
+          </article>
 
-      <li>
-        Penguatan koordinasi antar PPID lintas sektoral
-      </li>
-    </ul>
-  </article>
 
-  <!-- MOTO -->
-  <article class="vm-card vm-card-moto">
-    <h3>
-      Moto
-    </h3>
+          <!-- MISI -->
 
-    <p>
-      Melayani dengan ikhlas
-    </p>
-  </article>
+          <article class="vm-card">
 
-</div>
-               
+            <h3>
+              Misi
+            </h3>
+
+            <ul>
+
+              <li>
+                Meningkatkan layanan informasi yang cepat, tepat, dan transparan
+              </li>
+
+              <li>
+                Meningkatkan kompetensi SDM pelayan informasi
+              </li>
+
+              <li>
+                Penguatan koordinasi antar PPID lintas sektoral
+              </li>
+
+            </ul>
+
+          </article>
+
+
+          <!-- MOTO -->
+
+          <article class="vm-card vm-card-moto">
+
+            <h3>
+              Moto
+            </h3>
+
+            <p>
+              Melayani dengan ikhlas
+            </p>
+
+          </article>
+
+        </div>
 
       </section>
 
@@ -1461,27 +1324,14 @@ html.accessibility-high-contrast .contact-card * {
             Struktur Organisasi PPID
           </h2>
 
+          <div class="section-line"></div>
+
         </div>
+
 
         <div class="struktur-card">
 
           <div class="struktur-image-area">
-
-            <!--
-              =================================================
-              GAMBAR STRUKTUR
-
-              Upload gambar struktur ke folder:
-              assets/
-
-              Contoh nama file:
-              struktur-ppid-banten.png
-
-              Jika gambar sudah tersedia, hapus
-              .struktur-placeholder dan aktifkan img
-              di bawah.
-              =================================================
-            -->
 
             <img
               src="assets/struktur-ppid-banten.png"
@@ -1489,6 +1339,7 @@ html.accessibility-high-contrast .contact-card * {
               class="struktur-image"
               onerror="this.style.display='none'; document.getElementById('strukturPlaceholder').style.display='flex';"
             >
+
 
             <div
               class="struktur-placeholder"
@@ -1515,9 +1366,8 @@ html.accessibility-high-contrast .contact-card * {
 
           <!-- RINGKASAN STRUKTUR -->
 
-          <div
-            class="org-grid"
-                     >
+          <div class="org-grid">
+
 
             <div class="org-item">
 
@@ -1589,6 +1439,7 @@ html.accessibility-high-contrast .contact-card * {
               </p>
 
             </div>
+
 
           </div>
 
@@ -1737,103 +1588,102 @@ html.accessibility-high-contrast .contact-card * {
 
 
       <!-- =================================================
-           KONTAK
+           KONTAK PPID
       ================================================= -->
 
-      <!-- =================================================
-     KONTAK PPID
-================================================= -->
+      <section class="contact-section">
 
-<section class="contact-section">
+        <div class="section-heading">
 
-  <div class="section-heading">
+          <span class="section-kicker">
+            HUBUNGI KAMI
+          </span>
 
-    <span class="section-kicker">
-      HUBUNGI KAMI
-    </span>
+          <h2>
+            Kontak PPID
+          </h2>
 
-    <h2>
-      Kontak PPID
-    </h2>
+          <div class="section-line"></div>
 
-    <div class="section-line"></div>
-
-  </div>
-
-
-  <div class="contact-grid">
-
-
-    <!-- ALAMAT -->
-    <article class="contact-card">
-
-      <div class="contact-icon">
-        ⌖
-      </div>
-
-      <div class="contact-content">
-
-        <div class="contact-label">
-          ALAMAT
         </div>
 
-        <div class="contact-value">
-          Jln. Syech Nawawi Al Bantani Blok Instansi Vertikal
-          No.01 KP3B Curug Kota Serang
+
+        <div class="contact-grid">
+
+
+          <!-- ALAMAT -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              ⌖
+            </div>
+
+            <div class="contact-content">
+
+              <div class="contact-label">
+                ALAMAT
+              </div>
+
+              <div class="contact-value">
+                Jln. Syech Nawawi Al Bantani Blok Instansi Vertikal
+                No.01 KP3B Curug Kota Serang
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- HOTLINE -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              ☎
+            </div>
+
+            <div class="contact-content">
+
+              <div class="contact-label">
+                HOTLINE PPID
+              </div>
+
+              <div class="contact-value">
+                +6281121222288
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- EMAIL -->
+
+          <article class="contact-card">
+
+            <div class="contact-icon">
+              @
+            </div>
+
+            <div class="contact-content">
+
+              <div class="contact-label">
+                EMAIL
+              </div>
+
+              <div class="contact-value">
+                kanwilbanten@kemenag.go.id
+              </div>
+
+            </div>
+
+          </article>
+
+
         </div>
 
-      </div>
-
-    </article>
-
-
-    <!-- HOTLINE -->
-    <article class="contact-card">
-
-      <div class="contact-icon">
-        ☎
-      </div>
-
-      <div class="contact-content">
-
-        <div class="contact-label">
-          HOTLINE PPID
-        </div>
-
-        <div class="contact-value">
-          +6281121222288
-        </div>
-
-      </div>
-
-    </article>
-
-
-    <!-- EMAIL -->
-    <article class="contact-card">
-
-      <div class="contact-icon">
-        @
-      </div>
-
-      <div class="contact-content">
-
-        <div class="contact-label">
-          EMAIL
-        </div>
-
-        <div class="contact-value">
-          kanwilbanten@kemenag.go.id
-        </div>
-
-      </div>
-
-    </article>
-
-
-  </div>
-
-</section>
+      </section>
 
 
     </div>
@@ -1842,20 +1692,25 @@ html.accessibility-high-contrast .contact-card * {
 
 
   <!-- =====================================================
-       FOOTER
+       FOOTER GLOBAL
   ===================================================== -->
 
   <div id="siteFooter"></div>
 
 
   <!-- =====================================================
-       ACCESSIBILITY
+       ACCESSIBILITY GLOBAL
   ===================================================== -->
 
- <div id="accessibility"></div>
-   <script src="layout.js"></script>
+  <div id="accessibility"></div>
 
-    
+
+  <!-- =====================================================
+       LAYOUT GLOBAL
+  ===================================================== -->
+
+  <script src="layout.js"></script>
+
 
 </body>
 </html>
