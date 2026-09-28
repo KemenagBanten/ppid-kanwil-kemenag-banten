@@ -1,717 +1,1100 @@
 <!DOCTYPE html>
-
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SOP - PPID Kanwil Kemenag Banten</title>
+  <title>SOP - PPID Kanwil Kementerian Agama Provinsi Banten</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <!-- MASTER STYLE -->
+  <link rel="stylesheet" href="style.css?v=999">
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f7f5;
-      color: #243024;
-    }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e9e5;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 250px;
-    }
-
-    .brand img {
-      width: 48px;
-      height: 48px;
-      object-fit: contain;
-    }
-
-    .brand-text h1 {
-      margin: 0;
-      font-size: 16px;
-      color: #176b3a;
-      font-weight: 700;
-    }
-
-    .brand-text p {
-      margin: 3px 0 0;
-      font-size: 12px;
-      color: #777;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #555;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 9px 12px;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    nav a:hover {
-      background: #eef6f0;
-      color: #176b3a;
-    }
-
-    nav a.active {
-      background: #176b3a;
-      color: #ffffff;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #176b3a, #2d8a52);
-      color: white;
-      padding: 52px 24px;
-    }
-
-    .hero-inner {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .hero h2 {
-      margin: 0 0 10px;
-      font-size: 32px;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 720px;
-      line-height: 1.6;
-      opacity: 0.92;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 32px 24px 60px;
-    }
-
-    .toolbar {
-      background: #ffffff;
-      border: 1px solid #e4e9e4;
-      border-radius: 14px;
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr 180px 180px;
-      gap: 12px;
-      margin-bottom: 24px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid #d9dfd9;
-      border-radius: 9px;
-      font-size: 14px;
-      outline: none;
-      background: white;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #2d8a52;
-    }
-
-    .status {
-      margin-bottom: 18px;
-      font-size: 14px;
-      color: #6b736b;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border: 1px solid #e3e8e3;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.04);
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.07);
-    }
-
-    .card-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .nomor {
-      font-size: 13px;
-      color: #176b3a;
-      font-weight: 700;
-    }
-
-    .badge {
-      background: #eef6f0;
-      color: #176b3a;
-      padding: 5px 9px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      font-size: 19px;
-      line-height: 1.4;
-      color: #263326;
-    }
-
-    .meta {
-      display: grid;
-      gap: 7px;
-      margin-bottom: 18px;
-      font-size: 13px;
-      color: #687168;
-    }
-
-    .meta strong {
-      color: #414941;
-    }
-
-    .description {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #6b736b;
-      margin-bottom: 18px;
-    }
-
-    .button {
-      display: inline-block;
-      background: #176b3a;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .button:hover {
-      background: #11562e;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      background: white;
-      border: 1px dashed #ccd4cc;
-      border-radius: 14px;
-      padding: 45px 20px;
-      text-align: center;
-      color: #747b74;
-    }
-
-    .loading {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: #6d756d;
-    }
-
-    footer {
-      background: #173d27;
-      color: rgba(255,255,255,0.85);
-      text-align: center;
-      padding: 24px;
-      font-size: 12px;
-    }
-
-    @media (max-width: 900px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        justify-content: flex-start;
-      }
-
-      .toolbar {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero h2 {
-        font-size: 26px;
-      }
-
-      .container {
-        padding: 24px 16px 45px;
-      }
-
-      .header-inner {
-        padding: 12px 16px;
-      }
-
-      nav a {
-        font-size: 12px;
-        padding: 8px 9px;
-      }
-    }
-  </style>
-
+  <!-- ACCESSIBILITY STYLE -->
+  <link rel="stylesheet" href="assets/css/accessibility.css">
 </head>
 
 <body>
 
-<header>
-  <div class="header-inner">
+  <!-- =====================================================
+       MASTER NAVBAR
+  ====================================================== -->
+
+  <div id="siteNavbar"></div>
 
 
-<div class="brand">
-  <img src="assets/logo-kemenag.png" alt="Logo Kementerian Agama">
+  <!-- =====================================================
+       MASTER INNER HERO
+  ====================================================== -->
 
-  <div class="brand-text">
-    <h1>PPID Kanwil Kemenag Banten</h1>
-    <p>Pejabat Pengelola Informasi dan Dokumentasi</p>
-  </div>
-</div>
-
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="informasi-publik.html">Informasi Publik</a>
-  <a href="dip.html">DIP</a>
-  <a href="dik.html">DIK</a>
-  <a href="berita.html">Berita</a>
-  <a href="pengumuman.html">Pengumuman</a>
-</nav>
+  <div id="innerHero"></div>
 
 
-  </div>
-</header>
+  <!-- =====================================================
+       CONTENT SOP
+  ====================================================== -->
 
-<section class="hero">
-  <div class="hero-inner">
-    <h2>Standar Operasional Prosedur</h2>
-    <p>
-      Informasi mengenai Standar Operasional Prosedur (SOP)
-      layanan dan pelaksanaan kegiatan di lingkungan
-      Kanwil Kementerian Agama Provinsi Banten.
-    </p>
-  </div>
-</section>
+  <main>
 
-<main class="container">
+    <section class="sop-section">
 
-  <div class="toolbar">
+      <div class="sop-container">
 
 
-<input
-  type="text"
-  id="searchInput"
-  placeholder="Cari judul atau nomor SOP..."
->
+        <!-- =================================================
+             TOOLBAR
+        ================================================== -->
 
-<select id="tahunFilter">
-  <option value="">Semua Tahun</option>
-</select>
+        <div class="sop-toolbar">
 
-<select id="unitFilter">
-  <option value="">Semua Unit</option>
-</select>
+          <div class="sop-search">
+
+            <label
+              for="searchSOP"
+              class="sop-toolbar-label"
+            >
+              Cari SOP
+            </label>
+
+            <input
+              type="search"
+              id="searchSOP"
+              placeholder="Cari nomor atau judul SOP..."
+              autocomplete="off"
+            >
+
+          </div>
 
 
-  </div>
+          <div class="sop-filter">
 
-  <div id="status" class="status">
-    Memuat data SOP...
-  </div>
+            <label
+              for="tahunFilter"
+              class="sop-toolbar-label"
+            >
+              Tahun
+            </label>
 
-  <div id="sopList" class="grid">
-    <div class="loading">
-      Memuat data...
-    </div>
-  </div>
+            <select id="tahunFilter">
 
-</main>
+              <option value="">
+                Semua Tahun
+              </option>
 
-<footer>
-  © PPID Kanwil Kementerian Agama Provinsi Banten
-</footer>
+            </select>
 
-<script>
+          </div>
 
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
-  let sopData = [];
+          <div class="sop-filter">
 
-  async function loadSOP() {
+            <label
+              for="unitFilter"
+              class="sop-toolbar-label"
+            >
+              Bidang / Unit
+            </label>
 
-    const list = document.getElementById('sopList');
-    const status = document.getElementById('status');
+            <select id="unitFilter">
 
-    try {
+              <option value="">
+                Semua Bidang / Unit
+              </option>
 
-      status.textContent = 'Memuat data SOP...';
+            </select>
 
-      const response = await fetch(
-        API_URL + '?action=sop'
-      );
+          </div>
 
-      if (!response.ok) {
-        throw new Error(
-          'HTTP Error ' + response.status
-        );
-      }
-
-      const result = await response.json();
-
-      if (!result.success) {
-        throw new Error(
-          result.message ||
-          'API SOP mengembalikan success=false'
-        );
-      }
-
-      sopData = Array.isArray(result.data)
-        ? result.data
-        : [];
-
-      setupFilters();
-      renderSOP();
-
-    } catch (error) {
-
-      console.error('Error load SOP:', error);
-
-      status.textContent = 'Gagal memuat data SOP.';
-
-      list.innerHTML = `
-        <div class="empty">
-          <strong>Data SOP tidak dapat dimuat.</strong>
-          <br><br>
-          ${escapeHTML(error.message)}
         </div>
-      `;
-    }
-  }
 
 
-  function setupFilters() {
+        <!-- =================================================
+             STATUS
+        ================================================== -->
 
-    const tahunFilter =
-      document.getElementById('tahunFilter');
-
-    const unitFilter =
-      document.getElementById('unitFilter');
-
-    const years = [
-      ...new Set(
-        sopData
-          .map(item => item.tahun)
-          .filter(Boolean)
-      )
-    ].sort((a, b) => Number(b) - Number(a));
-
-    const units = [
-      ...new Set(
-        sopData
-          .map(item => item.unit)
-          .filter(Boolean)
-      )
-    ].sort();
-
-    tahunFilter.innerHTML =
-      '<option value="">Semua Tahun</option>' +
-      years.map(year =>
-        `<option value="${escapeHTML(year)}">${escapeHTML(year)}</option>`
-      ).join('');
-
-    unitFilter.innerHTML =
-      '<option value="">Semua Unit</option>' +
-      units.map(unit =>
-        `<option value="${escapeHTML(unit)}">${escapeHTML(unit)}</option>`
-      ).join('');
-  }
-
-
-  function renderSOP() {
-
-    const list =
-      document.getElementById('sopList');
-
-    const status =
-      document.getElementById('status');
-
-    const search =
-      document.getElementById('searchInput')
-        .value
-        .toLowerCase()
-        .trim();
-
-    const tahun =
-      document.getElementById('tahunFilter').value;
-
-    const unit =
-      document.getElementById('unitFilter').value;
-
-    const filtered = sopData.filter(item => {
-
-      const text = [
-        item.id,
-        item.nomor,
-        item.judul,
-        item.unit,
-        item.tahun,
-        item.keterangan
-      ]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
-
-      const matchSearch =
-        !search || text.includes(search);
-
-      const matchTahun =
-        !tahun ||
-        String(item.tahun) === String(tahun);
-
-      const matchUnit =
-        !unit ||
-        String(item.unit) === String(unit);
-
-      return (
-        matchSearch &&
-        matchTahun &&
-        matchUnit
-      );
-    });
-
-
-    status.textContent =
-      filtered.length +
-      ' SOP ditemukan';
-
-
-    if (!filtered.length) {
-
-      list.innerHTML = `
-        <div class="empty">
-          Tidak ada SOP yang sesuai dengan pencarian.
+        <div
+          id="sopStatus"
+          class="sop-status"
+          aria-live="polite"
+        >
+          Memuat data SOP...
         </div>
-      `;
-
-      return;
-    }
 
 
-    list.innerHTML =
-      filtered.map(item => {
+        <!-- =================================================
+             TABLE
+        ================================================== -->
 
-        const documentUrl =
-          item.url_dokumen
-            ? String(item.url_dokumen).trim()
-            : '';
+        <div class="sop-table-wrapper">
 
-        const statusText =
-          item.status || 'Published';
+          <table class="sop-table">
 
-        const tanggal =
-          formatTanggal(item.tanggal_update);
+            <thead>
 
-        return `
-          <article class="card">
+              <tr>
 
-            <div class="card-top">
+                <th class="sop-col-no">
+                  No.
+                </th>
 
-              <div class="nomor">
-                ${escapeHTML(item.nomor || item.id || '-')}
-              </div>
+                <th class="sop-col-nomor">
+                  Nomor SOP
+                </th>
 
-              <div class="badge">
-                ${escapeHTML(statusText)}
-              </div>
+                <th class="sop-col-judul">
+                  Judul SOP
+                </th>
 
-            </div>
+                <th class="sop-col-unit">
+                  Bidang / Unit
+                </th>
 
-            <h3>
-              ${escapeHTML(item.judul || 'Tanpa Judul')}
-            </h3>
+                <th class="sop-col-tahun">
+                  Tahun
+                </th>
 
-            <div class="meta">
+                <th class="sop-col-status">
+                  Status
+                </th>
 
-              <div>
-                <strong>Unit:</strong>
-                ${escapeHTML(item.unit || '-')}
-              </div>
+                <th class="sop-col-dokumen">
+                  Dokumen
+                </th>
 
-              <div>
-                <strong>Tahun:</strong>
-                ${escapeHTML(item.tahun || '-')}
-              </div>
+              </tr>
 
-              <div>
-                <strong>Diperbarui:</strong>
-                ${escapeHTML(tanggal)}
-              </div>
+            </thead>
 
-              <div>
-                <strong>Format:</strong>
-                ${escapeHTML(item.format || '-')}
-              </div>
 
-            </div>
+            <tbody id="sopTableBody">
 
-            ${
-              item.keterangan
-                ? `
-                  <div class="description">
-                    ${escapeHTML(item.keterangan)}
-                  </div>
-                `
-                : ''
-            }
+              <tr>
 
-            ${
-              documentUrl
-                ? `
-                  <a
-                    class="button"
-                    href="${escapeAttribute(documentUrl)}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Lihat / Unduh Dokumen
-                  </a>
-                `
-                : `
-                  <span
-                    style="
-                      font-size:13px;
-                      color:#8a918a;
-                    "
-                  >
-                    Dokumen belum tersedia
-                  </span>
-                `
-            }
+                <td
+                  colspan="7"
+                  class="sop-loading"
+                >
+                  Memuat data SOP...
+                </td>
 
-          </article>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       MASTER FOOTER
+  ====================================================== -->
+
+  <div id="siteFooter"></div>
+
+
+  <!-- =====================================================
+       ACCESSIBILITY
+  ====================================================== -->
+
+  <div id="accessibility"></div>
+
+
+  <!-- =====================================================
+       MASTER LAYOUT
+  ====================================================== -->
+
+  <script src="layout.js"></script>
+
+
+  <!-- =====================================================
+       SOP SCRIPT
+  ====================================================== -->
+
+  <script>
+
+    let sopData = [];
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    document.addEventListener(
+      "layout:loaded",
+      function () {
+
+        const kicker =
+          document.getElementById(
+            "innerHeroKicker"
+          );
+
+        const title =
+          document.getElementById(
+            "innerHeroTitle"
+          );
+
+        const description =
+          document.getElementById(
+            "innerHeroDescription"
+          );
+
+
+        if (kicker) {
+
+          kicker.textContent =
+            "LAYANAN INFORMASI PUBLIK";
+
+        }
+
+
+        if (title) {
+
+          title.textContent =
+            "Standar Operasional Prosedur";
+
+        }
+
+
+        if (description) {
+
+          description.textContent =
+            "Informasi mengenai Standar Operasional Prosedur (SOP) layanan dan pelaksanaan kegiatan di lingkungan Kanwil Kementerian Agama Provinsi Banten.";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       LOAD SOP
+    ===================================================== */
+
+    async function loadSOP() {
+
+      const tableBody =
+        document.getElementById(
+          "sopTableBody"
+        );
+
+      const status =
+        document.getElementById(
+          "sopStatus"
+        );
+
+
+      try {
+
+        status.textContent =
+          "Memuat data SOP...";
+
+
+        /*
+          API_URL diasumsikan sudah tersedia
+          dari konfigurasi/layout website.
+        */
+
+        const response =
+          await fetch(
+            API_URL + "?action=sop"
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "HTTP Error " +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            "API SOP mengembalikan success=false"
+          );
+
+        }
+
+
+        sopData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        setupSOPFilters();
+
+        renderSOP();
+
+
+      } catch (error) {
+
+        console.error(
+          "Error load SOP:",
+          error
+        );
+
+
+        status.textContent =
+          "Data SOP tidak dapat dimuat.";
+
+
+        tableBody.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="7"
+              class="sop-empty"
+            >
+
+              <strong>
+                Data SOP tidak dapat dimuat.
+              </strong>
+
+              <br><br>
+
+              ${escapeHTML(
+                error.message
+              )}
+
+            </td>
+
+          </tr>
+
         `;
 
-      }).join('');
-  }
+      }
 
-
-  function formatTanggal(value) {
-
-    if (!value) return '-';
-
-    const date = new Date(value);
-
-    if (isNaN(date.getTime())) {
-      return String(value);
     }
 
-    return date.toLocaleDateString(
-      'id-ID',
-      {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
+
+    /* =====================================================
+       FILTER
+    ===================================================== */
+
+    function setupSOPFilters() {
+
+      const tahunFilter =
+        document.getElementById(
+          "tahunFilter"
+        );
+
+      const unitFilter =
+        document.getElementById(
+          "unitFilter"
+        );
+
+
+      /*
+        TAHUN
+      */
+
+      const years = [
+        ...new Set(
+
+          sopData
+
+            .map(
+              item =>
+                item.tahun
+            )
+
+            .filter(Boolean)
+
+        )
+
+      ].sort(
+        (a, b) =>
+          Number(b) -
+          Number(a)
+      );
+
+
+      tahunFilter.innerHTML = `
+
+        <option value="">
+          Semua Tahun
+        </option>
+
+        ${
+          years
+            .map(
+              year => `
+
+                <option
+                  value="${escapeAttribute(year)}"
+                >
+                  ${escapeHTML(year)}
+                </option>
+
+              `
+            )
+            .join("")
+        }
+
+      `;
+
+
+      /*
+        BIDANG / UNIT
+      */
+
+      const units = [
+        ...new Set(
+
+          sopData
+
+            .map(
+              item =>
+                item.unit
+            )
+
+            .filter(Boolean)
+
+        )
+
+      ].sort(
+        (a, b) =>
+          String(a).localeCompare(
+            String(b),
+            "id"
+          )
+      );
+
+
+      unitFilter.innerHTML = `
+
+        <option value="">
+          Semua Bidang / Unit
+        </option>
+
+        ${
+          units
+            .map(
+              unit => `
+
+                <option
+                  value="${escapeAttribute(unit)}"
+                >
+                  ${escapeHTML(unit)}
+                </option>
+
+              `
+            )
+            .join("")
+        }
+
+      `;
+
+    }
+
+
+    /* =====================================================
+       RENDER SOP
+    ===================================================== */
+
+    function renderSOP() {
+
+      const tableBody =
+        document.getElementById(
+          "sopTableBody"
+        );
+
+      const status =
+        document.getElementById(
+          "sopStatus"
+        );
+
+
+      const search =
+        document
+          .getElementById(
+            "searchSOP"
+          )
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const tahun =
+        document.getElementById(
+          "tahunFilter"
+        ).value;
+
+
+      const unit =
+        document.getElementById(
+          "unitFilter"
+        ).value;
+
+
+      const filtered =
+        sopData.filter(
+          function (item) {
+
+
+            /*
+              TEKS YANG DICARI
+            */
+
+            const text = [
+
+              item.id,
+              item.nomor,
+              item.judul,
+              item.unit,
+              item.tahun,
+              item.keterangan
+
+            ]
+
+              .filter(Boolean)
+
+              .join(" ")
+
+              .toLowerCase();
+
+
+            /*
+              SEARCH
+            */
+
+            const matchSearch =
+              !search ||
+              text.includes(search);
+
+
+            /*
+              TAHUN
+            */
+
+            const matchTahun =
+              !tahun ||
+              String(
+                item.tahun || ""
+              ) === String(tahun);
+
+
+            /*
+              UNIT / BIDANG
+            */
+
+            const matchUnit =
+              !unit ||
+              String(
+                item.unit || ""
+              ) === String(unit);
+
+
+            return (
+              matchSearch &&
+              matchTahun &&
+              matchUnit
+            );
+
+          }
+        );
+
+
+      status.textContent =
+        filtered.length +
+        " SOP ditemukan";
+
+
+      /*
+        TIDAK ADA DATA
+      */
+
+      if (!filtered.length) {
+
+        tableBody.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="7"
+              class="sop-empty"
+            >
+
+              Tidak ada SOP yang sesuai
+              dengan pencarian atau filter.
+
+            </td>
+
+          </tr>
+
+        `;
+
+        return;
+
+      }
+
+
+      /*
+        DATA ADA
+      */
+
+      tableBody.innerHTML =
+
+        filtered
+
+          .map(
+            function (item, index) {
+
+
+              const nomor =
+                item.nomor ||
+                item.id ||
+                "-";
+
+
+              const judul =
+                item.judul ||
+                "Tanpa Judul";
+
+
+              const unitText =
+                item.unit ||
+                "-";
+
+
+              const tahunText =
+                item.tahun ||
+                "-";
+
+
+              const statusText =
+                item.status ||
+                "Berlaku";
+
+
+              const documentUrl =
+                item.url_dokumen
+                  ? String(
+                      item.url_dokumen
+                    ).trim()
+                  : "";
+
+
+              const tanggal =
+                formatTanggal(
+                  item.tanggal_update
+                );
+
+
+              /*
+                STATUS CLASS
+              */
+
+              const normalizedStatus =
+                String(
+                  statusText
+                )
+                  .toLowerCase()
+                  .trim();
+
+
+              let badgeClass =
+                "sop-badge";
+
+
+              if (
+
+                normalizedStatus.includes(
+                  "arsip"
+                )
+
+                ||
+
+                normalizedStatus.includes(
+                  "tidak berlaku"
+                )
+
+              ) {
+
+                badgeClass +=
+                  " sop-badge-arsip";
+
+              }
+
+
+              return `
+
+                <tr>
+
+                  <!-- NO -->
+
+                  <td
+                    class="sop-col-no"
+                  >
+
+                    ${
+                      index + 1
+                    }
+
+                  </td>
+
+
+                  <!-- NOMOR -->
+
+                  <td
+                    class="sop-col-nomor"
+                  >
+
+                    <div class="sop-nomor">
+
+                      ${escapeHTML(
+                        nomor
+                      )}
+
+                    </div>
+
+                  </td>
+
+
+                  <!-- JUDUL -->
+
+                  <td
+                    class="sop-col-judul"
+                  >
+
+                    <div class="sop-judul">
+
+                      ${escapeHTML(
+                        judul
+                      )}
+
+                    </div>
+
+
+                    ${
+                      item.keterangan
+                        ? `
+
+                          <div
+                            class="sop-keterangan"
+                          >
+
+                            ${escapeHTML(
+                              item.keterangan
+                            )}
+
+                          </div>
+
+                        `
+                        : ""
+                    }
+
+
+                    ${
+                      tanggal !== "-"
+                        ? `
+
+                          <div
+                            class="sop-tanggal"
+                          >
+
+                            Diperbarui:
+                            ${escapeHTML(
+                              tanggal
+                            )}
+
+                          </div>
+
+                        `
+                        : ""
+                    }
+
+                  </td>
+
+
+                  <!-- UNIT -->
+
+                  <td
+                    class="sop-col-unit"
+                  >
+
+                    ${escapeHTML(
+                      unitText
+                    )}
+
+                  </td>
+
+
+                  <!-- TAHUN -->
+
+                  <td
+                    class="sop-col-tahun"
+                  >
+
+                    ${escapeHTML(
+                      tahunText
+                    )}
+
+                  </td>
+
+
+                  <!-- STATUS -->
+
+                  <td
+                    class="sop-col-status"
+                  >
+
+                    <span
+                      class="${badgeClass}"
+                    >
+
+                      ${escapeHTML(
+                        statusText
+                      )}
+
+                    </span>
+
+                  </td>
+
+
+                  <!-- DOKUMEN -->
+
+                  <td
+                    class="sop-col-dokumen"
+                  >
+
+                    ${
+                      documentUrl
+
+                        ? `
+
+                          <a
+                            class="sop-button"
+                            href="${escapeAttribute(
+                              documentUrl
+                            )}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+
+                            Lihat
+
+                          </a>
+
+
+                          ${
+                            item.format
+                              ? `
+
+                                <span
+                                  class="sop-format"
+                                >
+
+                                  ${escapeHTML(
+                                    item.format
+                                  )}
+
+                                </span>
+
+                              `
+                              : ""
+                          }
+
+                        `
+
+                        : `
+
+                          <span
+                            class="sop-no-document"
+                          >
+
+                            Belum tersedia
+
+                          </span>
+
+                        `
+                    }
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          )
+
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       FORMAT TANGGAL
+    ===================================================== */
+
+    function formatTanggal(value) {
+
+      if (!value) {
+
+        return "-";
+
+      }
+
+
+      const date =
+        new Date(value);
+
+
+      if (
+        isNaN(
+          date.getTime()
+        )
+      ) {
+
+        return String(value);
+
+      }
+
+
+      return date.toLocaleDateString(
+        "id-ID",
+        {
+          day: "2-digit",
+          month: "long",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+      return String(
+        value ?? ""
+      )
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function escapeAttribute(value) {
+
+      return escapeHTML(value);
+
+    }
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        const searchInput =
+          document.getElementById(
+            "searchSOP"
+          );
+
+
+        const tahunFilter =
+          document.getElementById(
+            "tahunFilter"
+          );
+
+
+        const unitFilter =
+          document.getElementById(
+            "unitFilter"
+          );
+
+
+        if (searchInput) {
+
+          searchInput.addEventListener(
+            "input",
+            renderSOP
+          );
+
+        }
+
+
+        if (tahunFilter) {
+
+          tahunFilter.addEventListener(
+            "change",
+            renderSOP
+          );
+
+        }
+
+
+        if (unitFilter) {
+
+          unitFilter.addEventListener(
+            "change",
+            renderSOP
+          );
+
+        }
+
+
+        /*
+          Load setelah DOM siap.
+        */
+
+        loadSOP();
+
       }
     );
-  }
 
+  </script>
 
-  function escapeHTML(value) {
-
-    return String(value ?? '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
-
-
-  function escapeAttribute(value) {
-
-    return escapeHTML(value);
-  }
-
-
-  document
-    .getElementById('searchInput')
-    .addEventListener(
-      'input',
-      renderSOP
-    );
-
-
-  document
-    .getElementById('tahunFilter')
-    .addEventListener(
-      'change',
-      renderSOP
-    );
-
-
-  document
-    .getElementById('unitFilter')
-    .addEventListener(
-      'change',
-      renderSOP
-    );
-
-
-  loadSOP();
-
-</script>
 
 </body>
 </html>
