@@ -407,7 +407,51 @@
   border-left-color: var(--green);
   background: #f1f7f4;
 }
+/* =====================================================
+   LOGOUT
+===================================================== */
 
+.logout-button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 18px;
+  padding: 11px 11px;
+
+  border: 1px solid #ead9d9;
+  border-radius: 10px;
+
+  background: #fff8f8;
+  color: #a94442;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.logout-button:hover {
+  background: #fdf0f0;
+  color: #8f3030;
+  border-color: #dfc2c2;
+}
+
+.logout-icon {
+  width: 22px;
+  text-align: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
 .admin-content {
   min-width: 0;
 }
@@ -1415,17 +1459,7 @@
 
 </div>
     
-<!-- PAGE HEADING -->
-<div class="page-heading">
-<h2>
-        Panel Admin PPID
-      </h2>
-<div class="gold-line"></div>
-<p>
-        Kelola berita, pengumuman, dokumen, dan informasi publik
-        melalui satu panel administrasi.
-      </p>
-</div>
+
 <!-- ===================================================
          ADMIN GRID
     ==================================================== -->
@@ -1514,6 +1548,18 @@
 </button>
 </div>
 </div>
+    <!-- =================================================
+     LOGOUT
+================================================== -->
+
+<button
+  type="button"
+  class="logout-button"
+  id="logoutButton"
+>
+  <span class="logout-icon">↪</span>
+  <span>Logout</span>
+</button>
 </aside>
 <!-- =================================================
        AREA KONTEN
@@ -1676,6 +1722,13 @@
     </button>
 <div class="status" id="sliderStatusBox" style="display:none;"></div>
 </form>
+    <a
+  href="index.html"
+  class="back"
+  style="display:block; text-align:center; margin-top:16px;"
+>
+  ← Kembali ke Website PPID
+</a>
 </div>
 <!-- =========================
      TAMBAH SOP
@@ -2381,20 +2434,7 @@
 </div>
 </div>
 
-<!-- =================================================
-         WARNING
-    ================================================== -->
-<div class="warning">
-<strong>
-        Catatan keamanan:
-      </strong>
 
-      Halaman ini masih digunakan untuk pengujian.
-      Sebelum digunakan secara resmi, tambahkan mekanisme
-      autentikasi atau pembatasan akses admin agar halaman
-      pengelolaan tidak terbuka untuk umum.
-
-    </div>
 <!-- BACK -->
 <a class="back" href="index.html">
       ← Kembali ke Website PPID
