@@ -265,6 +265,21 @@
         min-width: 1000px;
       }
 
+      .kalender-note {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-left: 4px solid #0f5132;
+  border-radius: 8px;
+  background: #f5f9f7;
+  color: #617069;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.kalender-note strong {
+  color: #0f5132;
+}
+
     }
 
   </style>
@@ -731,39 +746,45 @@ function buildMonthFilter() {
       });
 
 
-      content.innerHTML = `
+     content.innerHTML = `
 
-        <div class="kalender-table-wrapper">
+  <div class="kalender-table-wrapper">
 
-          <table class="kalender-table">
+    <table class="kalender-table">
 
-            <thead>
+      <thead>
 
-              <tr>
+        <tr>
 
-                <th>No</th>
-                <th>Bulan</th>
-                <th>Agenda Kegiatan</th>
-                <th>Output / Target</th>
-                <th>Unit Kerja</th>
-                <th>Asta Protas</th>
-                <th>Status</th>
+          <th>No</th>
+          <th>Bulan</th>
+          <th>Agenda Kegiatan</th>
+          <th>Output / Target</th>
+          <th>Unit Kerja</th>
+          <th>Asta Protas</th>
+          <th>Status</th>
 
-              </tr>
+        </tr>
 
-            </thead>
+      </thead>
 
-            <tbody>
+      <tbody>
 
-              ${rowsHTML}
+        ${rowsHTML}
 
-            </tbody>
+      </tbody>
 
-          </table>
+    </table>
 
-        </div>
+  </div>
 
-      `;
+  <div class="kalender-note">
+    <strong>Catatan:</strong>
+    Jadwal kegiatan dapat berubah sewaktu-waktu sesuai dengan kebutuhan,
+    kebijakan, dan kondisi pelaksanaan kegiatan.
+  </div>
+
+`;
 
     }
 
