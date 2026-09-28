@@ -5290,3 +5290,365 @@ body.accessibility-reduced-motion *::after {
   }
 
 }
+
+
+/* =========================================================
+   SOP PAGE
+========================================================= */
+
+.sop-section {
+  padding: 34px 0 70px;
+}
+
+.sop-container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.sop-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px 210px;
+  gap: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+
+  background: #ffffff;
+  border: 1px solid #e4ebe6;
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 24px rgba(20, 60, 40, 0.05);
+}
+
+.sop-toolbar-label {
+  display: block;
+  margin-bottom: 7px;
+
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 750;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+
+  color: #557063;
+}
+
+.sop-search input,
+.sop-filter select {
+  width: 100%;
+  min-height: 43px;
+
+  padding: 10px 13px;
+
+  border: 1px solid #d9e2dc;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #263a2e;
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+}
+
+.sop-search input:focus,
+.sop-filter select:focus {
+  border-color: #2d8a52;
+
+  box-shadow:
+    0 0 0 3px rgba(45, 138, 82, 0.08);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.sop-status {
+  margin: 0 0 12px;
+
+  font-size: 12px;
+  color: #718078;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.sop-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e9e4;
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 24px rgba(20, 60, 40, 0.045);
+}
+
+.sop-table {
+  width: 100%;
+  min-width: 900px;
+
+  border-collapse: collapse;
+}
+
+.sop-table thead {
+  background: #f1f7f3;
+}
+
+.sop-table th {
+  padding: 14px 13px;
+
+  border-bottom: 1px solid #dfe8e2;
+
+  text-align: left;
+
+  color: #385745;
+
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.sop-table td {
+  padding: 15px 13px;
+
+  border-bottom: 1px solid #edf1ee;
+
+  color: #59665e;
+
+  font-size: 12.5px;
+  line-height: 1.5;
+
+  vertical-align: top;
+}
+
+.sop-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.sop-table tbody tr:hover {
+  background: #fbfdfc;
+}
+
+
+/* =========================
+   COLUMN
+========================= */
+
+.sop-col-no {
+  width: 55px;
+  text-align: center !important;
+}
+
+.sop-col-nomor {
+  width: 165px;
+}
+
+.sop-col-judul {
+  min-width: 300px;
+}
+
+.sop-col-unit {
+  width: 155px;
+}
+
+.sop-col-tahun {
+  width: 75px;
+  text-align: center !important;
+}
+
+.sop-col-status {
+  width: 110px;
+}
+
+.sop-col-dokumen {
+  width: 105px;
+  text-align: center !important;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.sop-nomor {
+  color: #176b3a;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.sop-judul {
+  color: #26372c;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.sop-keterangan {
+  margin-top: 5px;
+
+  color: #7a847d;
+
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.sop-tanggal {
+  margin-top: 6px;
+
+  color: #929b95;
+
+  font-size: 10.5px;
+}
+
+
+/* =========================
+   STATUS BADGE
+========================= */
+
+.sop-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 25px;
+
+  padding: 4px 9px;
+
+  border-radius: 999px;
+
+  background: #edf7f0;
+  color: #176b3a;
+
+  font-size: 10.5px;
+  line-height: 1;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.sop-badge-arsip {
+  background: #f1f2f1;
+  color: #747b76;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.sop-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 32px;
+
+  padding: 7px 11px;
+
+  border-radius: 7px;
+
+  background: #176b3a;
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  transition:
+    background .2s ease,
+    transform .2s ease;
+}
+
+.sop-button:hover {
+  background: #11562e;
+  transform: translateY(-1px);
+}
+
+.sop-format {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #929b95;
+
+  font-size: 10px;
+}
+
+.sop-no-document {
+  color: #929b95;
+  font-size: 11px;
+}
+
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
+.sop-empty,
+.sop-loading {
+  padding: 45px 20px !important;
+
+  text-align: center !important;
+
+  color: #78827b !important;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .sop-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sop-search {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .sop-section {
+    padding: 25px 0 50px;
+  }
+
+  .sop-container {
+    width: min(100% - 28px, 1200px);
+  }
+
+  .sop-toolbar {
+    grid-template-columns: 1fr;
+
+    padding: 15px;
+
+    gap: 12px;
+  }
+
+  .sop-search {
+    grid-column: auto;
+  }
+
+  .sop-table-wrapper {
+    border-radius: 11px;
+  }
+
+}
