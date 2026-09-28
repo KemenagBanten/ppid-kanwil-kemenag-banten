@@ -253,6 +253,78 @@
   font-size: 14px;
   font-weight: 800;
 }
+   
+    /* =====================================================
+   PAGINASI
+===================================================== */
+
+.kalender-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 14px 4px 0;
+}
+
+.kalender-pagination-info {
+  color: #718078;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.kalender-pagination-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kalender-page-button {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #dfe7e3;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #456057;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.kalender-page-button:hover:not(:disabled) {
+  border-color: #0f5132;
+  color: #0f5132;
+  background: #f1f7f4;
+}
+
+.kalender-page-button.active {
+  border-color: #0f5132;
+  background: #0f5132;
+  color: #ffffff;
+}
+
+.kalender-page-button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+
+  .kalender-pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kalender-pagination-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+}
+    
     /* =====================================================
        RESPONSIVE
     ===================================================== */
@@ -405,7 +477,11 @@
       'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
 
-    let allData = [];
+   let allData = [];
+let filteredData = [];
+
+const ITEMS_PER_PAGE = 10;
+let currentPage = 1;
 
 
     /* =====================================================
@@ -644,158 +720,286 @@ function buildMonthFilter() {
 
     function renderData(data) {
 
-      const content =
-        document.getElementById('content');
+  const content =
+    document.getElementById('content');
+
+  if (!data || data.length === 0) {
+
+    content.innerHTML = `
+
+      <div class="kalender-table-wrapper">
+
+        <div class="kalender-state">
+          Belum terdapat agenda kegiatan
+          yang sesuai dengan pencarian.
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+  }
 
 
-      if (
-        !data ||
-        data.length === 0
-      ) {
+  const totalItems = data.length;
 
-        content.innerHTML = `
-
-          <div class="kalender-table-wrapper">
-
-            <div class="kalender-state">
-              Belum terdapat agenda kegiatan
-              yang sesuai dengan pencarian.
-            </div>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
+  const totalPages =
+    Math.ceil(totalItems / ITEMS_PER_PAGE);
 
 
-      let rowsHTML = '';
+  if (currentPage > totalPages) {
+    currentPage = totalPages;
+  }
 
 
-      data.forEach(function(item, index) {
+  const startIndex =
+    (currentPage - 1) * ITEMS_PER_PAGE;
 
-        const bulan =
-          escapeHTML(
-            item.bulan || '-'
-          );
-
-        const agenda =
-          escapeHTML(
-            item.agenda || '-'
-          );
-
-        const outputTarget =
-          escapeHTML(
-            item.output_target || '-'
-          );
-
-        const unitKerja =
-          escapeHTML(
-            item.unit_kerja || '-'
-          );
-
-        const astaProtas =
-          escapeHTML(
-            item.asta_protas || '-'
-          );
-
-        const status =
-          escapeHTML(
-            item.status || '-'
-          );
-
-        const statusClass =
-          getStatusClass(
-            item.status
-          );
+  const endIndex =
+    Math.min(
+      startIndex + ITEMS_PER_PAGE,
+      totalItems
+    );
 
 
-        rowsHTML += `
+  const pageData =
+    data.slice(
+      startIndex,
+      endIndex
+    );
+
+
+  let rowsHTML = '';
+
+
+  pageData.forEach(function(item, index) {
+
+    const bulan =
+      escapeHTML(
+        item.bulan || '-'
+      );
+
+    const agenda =
+      escapeHTML(
+        item.agenda || '-'
+      );
+
+    const outputTarget =
+      escapeHTML(
+        item.output_target || '-'
+      );
+
+    const unitKerja =
+      escapeHTML(
+        item.unit_kerja || '-'
+      );
+
+    const astaProtas =
+      escapeHTML(
+        item.asta_protas || '-'
+      );
+
+    const status =
+      escapeHTML(
+        item.status || '-'
+      );
+
+    const statusClass =
+      getStatusClass(
+        item.status
+      );
+
+
+    rowsHTML += `
+
+      <tr>
+
+        <td class="kalender-no">
+          ${startIndex + index + 1}
+        </td>
+
+        <td class="kalender-bulan">
+          ${bulan}
+        </td>
+
+        <td class="kalender-agenda">
+          ${agenda}
+        </td>
+
+        <td class="kalender-output">
+          ${outputTarget}
+        </td>
+
+        <td class="kalender-unit">
+          ${unitKerja}
+        </td>
+
+        <td class="kalender-asta">
+          ${astaProtas}
+        </td>
+
+        <td>
+
+          <span class="kalender-status ${statusClass}">
+            ${status}
+          </span>
+
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+
+  let paginationButtons = '';
+
+
+  paginationButtons += `
+    <button
+      class="kalender-page-button"
+      type="button"
+      onclick="changePage(${currentPage - 1})"
+      ${currentPage === 1 ? 'disabled' : ''}
+    >
+      ‹
+    </button>
+  `;
+
+
+  for (
+    let page = 1;
+    page <= totalPages;
+    page++
+  ) {
+
+    paginationButtons += `
+
+      <button
+        class="kalender-page-button ${page === currentPage ? 'active' : ''}"
+        type="button"
+        onclick="changePage(${page})"
+      >
+        ${page}
+      </button>
+
+    `;
+
+  }
+
+
+  paginationButtons += `
+    <button
+      class="kalender-page-button"
+      type="button"
+      onclick="changePage(${currentPage + 1})"
+      ${currentPage === totalPages ? 'disabled' : ''}
+    >
+      ›
+    </button>
+  `;
+
+
+  content.innerHTML = `
+
+    <div class="kalender-table-wrapper">
+
+      <table class="kalender-table">
+
+        <thead>
 
           <tr>
 
-            <td class="kalender-no">
-              ${index + 1}
-            </td>
-
-            <td class="kalender-bulan">
-              ${bulan}
-            </td>
-
-            <td class="kalender-agenda">
-              ${agenda}
-            </td>
-
-            <td class="kalender-output">
-              ${outputTarget}
-            </td>
-
-            <td class="kalender-unit">
-              ${unitKerja}
-            </td>
-
-            <td class="kalender-asta">
-              ${astaProtas}
-            </td>
-
-            <td>
-
-              <span class="kalender-status ${statusClass}">
-                ${status}
-              </span>
-
-            </td>
+            <th>No</th>
+            <th>Bulan</th>
+            <th>Agenda Kegiatan</th>
+            <th>Output / Target</th>
+            <th>Unit Kerja</th>
+            <th>Asta Protas</th>
+            <th>Status</th>
 
           </tr>
 
-        `;
+        </thead>
 
-      });
+        <tbody>
+
+          ${rowsHTML}
+
+        </tbody>
+
+      </table>
+
+    </div>
 
 
-     content.innerHTML = `
+    <div class="kalender-pagination">
 
-  <div class="kalender-table-wrapper">
+      <div class="kalender-pagination-info">
 
-    <table class="kalender-table">
+        Menampilkan
+        <strong>${startIndex + 1}</strong>
+        –
+        <strong>${endIndex}</strong>
+        dari
+        <strong>${totalItems}</strong>
+        agenda
 
-      <thead>
+      </div>
 
-        <tr>
 
-          <th>No</th>
-          <th>Bulan</th>
-          <th>Agenda Kegiatan</th>
-          <th>Output / Target</th>
-          <th>Unit Kerja</th>
-          <th>Asta Protas</th>
-          <th>Status</th>
+      <div class="kalender-pagination-buttons">
 
-        </tr>
+        ${paginationButtons}
 
-      </thead>
+      </div>
 
-      <tbody>
+    </div>
 
-        ${rowsHTML}
 
-      </tbody>
+    <div class="kalender-note">
 
-    </table>
+      <strong>Catatan:</strong>
 
-  </div>
+      Jadwal kegiatan dapat berubah sewaktu-waktu
+      sesuai dengan kebutuhan, kebijakan, dan kondisi
+      pelaksanaan kegiatan.
 
-  <div class="kalender-note">
-    <strong>Catatan:</strong>
-    Jadwal kegiatan dapat berubah sewaktu-waktu sesuai dengan kebutuhan,
-    kebijakan, dan kondisi pelaksanaan kegiatan.
-  </div>
+    </div>
 
-`;
+  `;
 
-    }
+}
+
+    function changePage(page) {
+
+  const totalPages =
+    Math.ceil(
+      filteredData.length /
+      ITEMS_PER_PAGE
+    );
+
+  if (
+    page < 1 ||
+    page > totalPages
+  ) {
+    return;
+  }
+
+  currentPage = page;
+
+  renderData(filteredData);
+
+  document
+    .querySelector('.kalender-section')
+    ?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
+}
 
 
     /* =====================================================
@@ -803,6 +1007,7 @@ function buildMonthFilter() {
     ===================================================== */
 
     function applyFilter() {
+currentPage = 1;
 
       const keyword =
         document
@@ -863,7 +1068,8 @@ const matchMonth =
         });
 
 
-      renderData(filtered);
+filteredData = filtered;
+renderData(filteredData);
 
     }
 
