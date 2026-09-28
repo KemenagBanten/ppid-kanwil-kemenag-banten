@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const uploadForm = document.getElementById('uploadForm');
   const uploadButton = document.getElementById('uploadButton');
-  const statusBox = document.getElementById('statusBox');
+   statusBox = document.getElementById('statusBox');
 
   const sheetSelect = document.getElementById('sheetName');
   const idSelect = document.getElementById('idValue');
@@ -1395,6 +1395,9 @@ if (uploadLaporanButton) {
 
   const editBody =
   document.getElementById('editBody');
+
+  const editUrl =
+  document.getElementById('editUrl');
 
 const editUrl =
   document.getElementById('editUrl');
