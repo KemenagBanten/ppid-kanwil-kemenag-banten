@@ -1,997 +1,849 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Kalender | PPID Kanwil Kemenag Banten</title>
+  <title>Kalender Kegiatan | PPID Kanwil Kemenag Banten</title>
+
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    :root {
-      --green: #087443;
-      --green-dark: #055c35;
-      --gold: #cdb082;
-      --bg: #f5f7f6;
-      --white: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --shadow: 0 10px 30px rgba(0,0,0,.06);
+
+    /* =====================================================
+       KALENDER
+    ===================================================== */
+
+    .kalender-section {
+      width: 100%;
+      padding: 38px 42px 64px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    /* =====================================================
+       TOOLBAR
+    ===================================================== */
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(205,176,130,.13),
-          transparent 30%
-        ),
-        var(--bg);
-    }
-
-    /* HEADER */
-
-    header {
-      background: linear-gradient(
-        135deg,
-        var(--green-dark),
-        var(--green)
-      );
-      color: white;
-      padding: 18px 24px;
-      box-shadow: 0 4px 18px rgba(0,0,0,.12);
-    }
-
-    .header-inner {
-      max-width: 1180px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .logo {
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      background: white;
-      border-radius: 10px;
-      padding: 5px;
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.3;
-    }
-
-    .brand p {
-      margin: 4px 0 0;
-      font-size: 13px;
-      opacity: .85;
-    }
-
-    /* NAV */
-
-    nav {
-      background: white;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-
-    .nav-inner {
-      max-width: 1180px;
-      margin: auto;
-      display: flex;
-      gap: 4px;
-      padding: 10px 20px;
-      overflow-x: auto;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #374151;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      white-space: nowrap;
-      transition: .2s;
-    }
-
-    nav a:hover,
-    nav a.active {
-      background: rgba(8,116,67,.08);
-      color: var(--green);
-    }
-
-    /* HERO */
-
-    .hero {
-      max-width: 1180px;
-      margin: 38px auto 25px;
-      padding: 0 20px;
-    }
-
-    .hero-box {
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(
-          135deg,
-          rgba(8,116,67,.97),
-          rgba(5,92,53,.96)
-        );
-      color: white;
-      border-radius: 20px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-box::after {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      right: -75px;
-      top: -100px;
-      background: rgba(205,176,130,.20);
-    }
-
-    .hero-box h2 {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 10px;
-      font-size: 30px;
-    }
-
-    .hero-box p {
-      position: relative;
-      z-index: 1;
-      margin: 0;
-      max-width: 760px;
-      line-height: 1.7;
-      color: rgba(255,255,255,.9);
-    }
-
-    /* CONTENT */
-
-    main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 0 20px 60px;
-    }
-
-    .toolbar {
-      display: flex;
+    .kalender-toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px auto;
       gap: 12px;
       margin-bottom: 22px;
     }
 
-    .search {
-      flex: 1;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      font-size: 14px;
-      outline: none;
-      background: white;
-    }
-
-    .search:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(8,116,67,.08);
-    }
-
-    .filter {
-      min-width: 150px;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: white;
-      font-size: 14px;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .refresh-btn {
-      border: 0;
-      border-radius: 9px;
-      padding: 0 18px;
-      background: var(--green);
-      color: white;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .refresh-btn:hover {
-      background: var(--green-dark);
-    }
-
-    /* EVENT LIST */
-
-    .event-list {
-      display: grid;
-      gap: 18px;
-    }
-
-    .event-card {
-      display: grid;
-      grid-template-columns: 105px 1fr;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: .2s;
-    }
-
-    .event-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(0,0,0,.08);
-    }
-
-    /* DATE */
-
-    .date-box {
-      background: linear-gradient(
-        160deg,
-        var(--green),
-        var(--green-dark)
-      );
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 10px;
-      text-align: center;
-    }
-
-    .date-day {
-      font-size: 34px;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .date-month {
-      margin-top: 7px;
+    .kalender-search,
+    .kalender-filter {
+      width: 100%;
+      height: 44px;
+      padding: 0 14px;
+      border: 1px solid #dfe7e3;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #263a32;
+      font-family: inherit;
       font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      outline: none;
+      transition: .2s ease;
     }
 
-    .date-year {
-      margin-top: 3px;
-      font-size: 12px;
-      opacity: .8;
+    .kalender-search:focus,
+    .kalender-filter:focus {
+      border-color: #0f5132;
+      box-shadow: 0 0 0 3px rgba(15,81,50,.08);
     }
 
-    /* EVENT BODY */
-
-    .event-body {
-      padding: 21px 23px;
-    }
-
-    .event-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .event-title {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: 20px;
-      line-height: 1.4;
-    }
-
-    .event-id {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
+    .kalender-refresh {
+      height: 44px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 10px;
+      background: #0f5132;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
       font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .kalender-refresh:hover {
+      background: #0a3f27;
+    }
+
+    /* =====================================================
+       TABLE WRAPPER
+    ===================================================== */
+
+    .kalender-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: #ffffff;
+      border: 1px solid #e2eae6;
+      border-radius: 16px;
+      box-shadow: 0 8px 26px rgba(27,66,49,.06);
+    }
+
+    .kalender-table {
+      width: 100%;
+      min-width: 1050px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+    }
+
+    /* =====================================================
+       TABLE HEADER
+    ===================================================== */
+
+    .kalender-table thead th {
+      padding: 15px 14px;
+      background: #0f5132;
+      color: #ffffff;
+      text-align: left;
+      font-size: 11px;
+      line-height: 1.4;
+      font-weight: 750;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+
+    .kalender-table thead th:first-child {
+      border-top-left-radius: 15px;
+      text-align: center;
+      width: 58px;
+    }
+
+    .kalender-table thead th:last-child {
+      border-right: 0;
+      border-top-right-radius: 15px;
+    }
+
+    /* =====================================================
+       TABLE BODY
+    ===================================================== */
+
+    .kalender-table tbody td {
+      padding: 16px 14px;
+      vertical-align: top;
+      color: #45564f;
+      line-height: 1.6;
+      border-bottom: 1px solid #edf1ef;
+      border-right: 1px solid #f0f3f2;
+    }
+
+    .kalender-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .kalender-table tbody td:last-child {
+      border-right: 0;
+    }
+
+    .kalender-table tbody tr {
+      transition: background .15s ease;
+    }
+
+    .kalender-table tbody tr:hover {
+      background: #f8fbf9;
+    }
+
+    .kalender-no {
+      width: 58px;
+      text-align: center;
+      color: #718078 !important;
+      font-weight: 700;
+    }
+
+    .kalender-bulan {
+      width: 105px;
+      color: #0f5132 !important;
+      font-weight: 750;
       white-space: nowrap;
     }
 
-    .status-published {
-      background: #e8f7ef;
-      color: var(--green);
+    .kalender-agenda {
+      min-width: 250px;
+      color: #173e2e !important;
+      font-weight: 700;
     }
 
-    .status-lain {
-      background: #eef2f7;
-      color: #4b5563;
+    .kalender-output {
+      min-width: 230px;
     }
 
-    .event-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 15px;
+    .kalender-unit {
+      min-width: 170px;
     }
 
-    .meta-item {
-      background: #f7f9f8;
-      border-radius: 8px;
-      padding: 8px 11px;
-      font-size: 13px;
-      color: #4b5563;
+    .kalender-asta {
+      min-width: 190px;
     }
 
-    .description {
-      margin-top: 15px;
-      padding-top: 14px;
-      border-top: 1px solid var(--border);
+    /* =====================================================
+       STATUS
+    ===================================================== */
+
+    .kalender-status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eaf6ef;
+      color: #0f5132;
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .kalender-status.status-lain {
+      background: #f1f4f3;
+      color: #63716b;
+    }
+
+    /* =====================================================
+       LOADING / EMPTY / ERROR
+    ===================================================== */
+
+    .kalender-state {
+      padding: 42px 24px;
+      text-align: center;
+      color: #718078;
       font-size: 14px;
-      line-height: 1.7;
-      color: #4b5563;
     }
 
-    .empty,
-    .loading,
-    .error {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 35px;
+    .kalender-error {
+      padding: 30px 24px;
       text-align: center;
-      color: var(--muted);
-    }
-
-    .error {
-      color: #b42318;
+      color: #a33a32;
       background: #fff8f7;
+      border: 1px solid #f0d9d5;
+      border-radius: 14px;
     }
 
-    /* FOOTER */
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
 
-    footer {
-      background: #063e26;
-      color: rgba(255,255,255,.8);
-      text-align: center;
-      padding: 25px 20px;
-      font-size: 13px;
+    @media (max-width: 900px) {
+
+      .kalender-section {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+
+      .kalender-toolbar {
+        grid-template-columns: 1fr 160px;
+      }
+
+      .kalender-refresh {
+        grid-column: 1 / -1;
+      }
+
     }
 
-    /* RESPONSIVE */
+    @media (max-width: 640px) {
 
-    @media (max-width: 760px) {
-
-      .toolbar {
-        flex-direction: column;
+      .kalender-section {
+        padding: 28px 18px 48px;
       }
 
-      .filter {
-        width: 100%;
-      }
-
-      .refresh-btn {
-        height: 42px;
-      }
-
-      .event-card {
+      .kalender-toolbar {
         grid-template-columns: 1fr;
-      }
-
-      .date-box {
-        min-height: 105px;
-        flex-direction: row;
         gap: 10px;
       }
 
-      .date-day {
-        font-size: 30px;
+      .kalender-refresh {
+        grid-column: auto;
       }
 
-      .date-month {
-        margin-top: 0;
-      }
-
-      .event-head {
-        flex-direction: column;
-      }
-
-      .brand h1 {
-        font-size: 17px;
-      }
-
-      .brand p {
-        font-size: 12px;
-      }
-
-      .hero-box {
-        padding: 25px;
-      }
-
-      .hero-box h2 {
-        font-size: 25px;
+      .kalender-table {
+        min-width: 1000px;
       }
 
     }
+
   </style>
+
 </head>
 
-<body>
 
-<header>
-
-  <div class="header-inner">
-
-    <img
-      src="assets/logo-kemenag.png"
-      alt="Logo Kementerian Agama"
-      class="logo"
-    >
-
-    <div class="brand">
-
-      <h1>
-        PPID Kanwil Kementerian Agama Provinsi Banten
-      </h1>
-
-      <p>
-        Pejabat Pengelola Informasi dan Dokumentasi
-      </p>
-
-    </div>
-
-  </div>
-
-</header>
+<body
+  data-hero-kicker="KALENDER KEGIATAN"
+  data-hero-title="Kalender Kegiatan"
+  data-hero-description="Informasi agenda kegiatan Kanwil Kementerian Agama Provinsi Banten yang disajikan secara terstruktur dan dapat ditelusuri berdasarkan tahun."
+>
 
 
-<nav>
+  <!-- =====================================================
+       NAVBAR MASTER
+  ====================================================== -->
 
-  <div class="nav-inner">
-
-    <a href="index.html">
-      Beranda
-    </a>
-
-    <a href="informasi-publik.html">
-      Informasi Publik
-    </a>
-
-    <a href="dip.html">
-      DIP
-    </a>
-
-    <a href="dik.html">
-      DIK
-    </a>
-
-    <a href="berita.html">
-      Berita
-    </a>
-
-    <a href="pengumuman.html">
-      Pengumuman
-    </a>
-
-  </div>
-
-</nav>
+  <div id="siteNavbar"></div>
 
 
-<section class="hero">
+  <!-- =====================================================
+       INNER HERO MASTER
+  ====================================================== -->
 
-  <div class="hero-box">
-
-    <h2>
-      Kalender Kegiatan
-    </h2>
-
-    <p>
-      Informasi jadwal kegiatan dan agenda PPID
-      Kanwil Kementerian Agama Provinsi Banten.
-    </p>
-
-  </div>
-
-</section>
+  <div id="innerHero"></div>
 
 
-<main>
+  <!-- =====================================================
+       CONTENT
+  ====================================================== -->
 
-  <div class="toolbar">
+  <main class="page-content">
 
-    <input
-      type="text"
-      id="searchInput"
-      class="search"
-      placeholder="Cari kegiatan, lokasi, atau deskripsi..."
-    >
-
-    <select
-      id="statusFilter"
-      class="filter"
-    >
-      <option value="">
-        Semua Status
-      </option>
-    </select>
-
-    <button
-      class="refresh-btn"
-      onclick="loadKalender()"
-    >
-      ↻ Refresh
-    </button>
-
-  </div>
+    <section class="content-section kalender-section">
 
 
-  <div id="content">
+      <!-- =================================================
+           TOOLBAR
+      ================================================== -->
 
-    <div class="loading">
-      Memuat kalender kegiatan...
-    </div>
+      <div class="kalender-toolbar">
 
-  </div>
+        <input
+          type="text"
+          id="searchInput"
+          class="kalender-search"
+          placeholder="Cari agenda, unit kerja, output, atau Asta Protas..."
+          aria-label="Cari kalender kegiatan"
+        >
 
-</main>
+        <select
+          id="tahunFilter"
+          class="kalender-filter"
+          aria-label="Pilih tahun"
+        >
+
+          <option value="">
+            Semua Tahun
+          </option>
+
+        </select>
+
+        <button
+          type="button"
+          id="refreshButton"
+          class="kalender-refresh"
+        >
+          ↻ Refresh
+        </button>
+
+      </div>
 
 
-<footer>
+      <!-- =================================================
+           TABLE
+      ================================================== -->
 
-  PPID Kanwil Kementerian Agama Provinsi Banten
+      <div id="content">
 
-  <br>
+        <div class="kalender-table-wrapper">
 
-  Layanan Informasi Publik
+          <div class="kalender-state">
+            Memuat kalender kegiatan...
+          </div>
 
-</footer>
+        </div>
 
-
-<script>
-
-  /* =====================================================
-     API
-     ===================================================== */
-
-  const API_URL =
-    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+      </div>
 
 
-  let allData = [];
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER MASTER
+  ====================================================== -->
+
+  <div id="siteFooter"></div>
+
+
+  <!-- =====================================================
+       ACCESSIBILITY MASTER
+  ====================================================== -->
+
+  <div id="accessibility"></div>
+
+
+  <!-- =====================================================
+       LAYOUT
+  ====================================================== -->
+
+  <script src="layout.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       API
+    ===================================================== */
+
+    const API_URL =
+      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+
+
+    let allData = [];
 
 
     /* =====================================================
-     ESCAPE HTML
-     ===================================================== */
+       ESCAPE HTML
+    ===================================================== */
 
-  function escapeHTML(value) {
+    function escapeHTML(value) {
 
-    if (
-      value === null ||
-      value === undefined
-    ) {
-      return '';
-    }
-
-    return String(value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-
-  }
-
-
-  /* =====================================================
-     STATUS
-     ===================================================== */
-
-  function getStatusClass(status) {
-
-    const text =
-      String(status || '')
-        .toLowerCase()
-        .trim();
-
-    if (text === 'published') {
-      return 'status-published';
-    }
-
-    return 'status-lain';
-
-  }
-
-
-  /* =====================================================
-     LOAD DATA
-     ===================================================== */
-
-  async function loadKalender() {
-
-    const content =
-      document.getElementById('content');
-
-    content.innerHTML = `
-      <div class="loading">
-        Memuat kalender kegiatan...
-      </div>
-    `;
-
-    try {
-
-      const response =
-        await fetch(
-          API_URL + '?action=kalender'
-        );
-
-      if (!response.ok) {
-
-        throw new Error(
-          'HTTP Error ' +
-          response.status
-        );
-
+      if (
+        value === null ||
+        value === undefined
+      ) {
+        return '';
       }
 
-      const result =
-        await response.json();
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 
-      console.log(
-        'API Kalender:',
-        result
-      );
+    }
 
-      if (result.success !== true) {
 
-        throw new Error(
-          result.message ||
-          'API mengembalikan success=false'
-        );
+    /* =====================================================
+       STATUS CLASS
+    ===================================================== */
 
+    function getStatusClass(status) {
+
+      const text =
+        String(status || '')
+          .toLowerCase()
+          .trim();
+
+      if (text === 'published') {
+        return '';
       }
 
-      allData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
+      return 'status-lain';
 
-      buildStatusFilter();
+    }
 
-      renderData(allData);
 
-    } catch (error) {
+    /* =====================================================
+       LOAD DATA
+    ===================================================== */
 
-      console.error(
-        'Gagal memuat kalender:',
-        error
-      );
+    async function loadKalender() {
+
+      const content =
+        document.getElementById('content');
 
       content.innerHTML = `
-        <div class="error">
-          <strong>
-            Data kalender gagal dimuat.
-          </strong>
-
-          <br><br>
-
-          ${escapeHTML(error.message)}
-
+        <div class="kalender-table-wrapper">
+          <div class="kalender-state">
+            Memuat kalender kegiatan...
+          </div>
         </div>
       `;
 
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + '?action=kalender'
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        console.log(
+          'API Kalender:',
+          result
+        );
+
+
+        if (result.success !== true) {
+
+          throw new Error(
+            result.message ||
+            'API mengembalikan success=false'
+          );
+
+        }
+
+
+        allData =
+          Array.isArray(result.data)
+            ? result.data
+            : [];
+
+
+        buildYearFilter();
+
+        applyFilter();
+
+
+      } catch (error) {
+
+        console.error(
+          'Gagal memuat kalender:',
+          error
+        );
+
+
+        content.innerHTML = `
+
+          <div class="kalender-error">
+
+            <strong>
+              Data kalender gagal dimuat.
+            </strong>
+
+            <br><br>
+
+            ${escapeHTML(error.message)}
+
+          </div>
+
+        `;
+
+      }
+
     }
 
-  }
+
+    /* =====================================================
+       YEAR FILTER
+    ===================================================== */
+
+    function buildYearFilter() {
+
+      const select =
+        document.getElementById(
+          'tahunFilter'
+        );
 
 
-  /* =====================================================
-     STATUS FILTER
-     ===================================================== */
-
-  function buildStatusFilter() {
-
-    const select =
-      document.getElementById(
-        'statusFilter'
-      );
-
-    const statuses =
-      [
-        ...new Set(
-          allData
-            .map(item =>
-              String(item.status || '').trim()
-            )
-            .filter(Boolean)
-        )
-      ];
-
-    select.innerHTML = `
-      <option value="">
-        Semua Status
-      </option>
-    `;
-
-    statuses.forEach(status => {
-
-      const option =
-        document.createElement('option');
-
-      option.value = status;
-
-      option.textContent = status;
-
-      select.appendChild(option);
-
-    });
-
-  }
+      const years =
+        [
+          ...new Set(
+            allData
+              .map(item =>
+                String(item.tahun || '').trim()
+              )
+              .filter(Boolean)
+          )
+        ]
+        .sort(
+          (a, b) =>
+            Number(b) - Number(a)
+        );
 
 
-/* =====================================================
-   RENDER DATA
-===================================================== */
-
-function renderData(data) {
-
-  const content =
-    document.getElementById('content');
-
-  if (!data || data.length === 0) {
-
-    content.innerHTML = `
-      <div class="empty">
-        Belum terdapat agenda kegiatan
-        yang dipublikasikan.
-      </div>
-    `;
-
-    return;
-  }
+      select.innerHTML = `
+        <option value="">
+          Semua Tahun
+        </option>
+      `;
 
 
-  const eventList =
-    document.createElement('div');
+      years.forEach(function(year) {
 
-  eventList.className = 'event-list';
+        const option =
+          document.createElement('option');
 
+        option.value = year;
 
-  data.forEach(item => {
+        option.textContent =
+          year;
 
-    const id =
-      escapeHTML(item.id || '-');
+        select.appendChild(option);
 
-    const tahun =
-      escapeHTML(item.tahun || '-');
+      });
 
-    const bulan =
-      escapeHTML(item.bulan || '-');
-
-    const agenda =
-      escapeHTML(item.agenda || 'Tanpa Agenda');
-
-    const outputTarget =
-      escapeHTML(item.output_target || '-');
-
-    const unitKerja =
-      escapeHTML(item.unit_kerja || '-');
-
-    const astaProtas =
-      escapeHTML(item.asta_protas || '-');
-
-    const status =
-      escapeHTML(
-        item.status || 'Tidak ditentukan'
-      );
-
-    const statusClass =
-      getStatusClass(item.status);
+    }
 
 
-    const card =
-      document.createElement('article');
+    /* =====================================================
+       RENDER TABLE
+    ===================================================== */
 
-    card.className = 'event-card';
+    function renderData(data) {
 
-
-    card.innerHTML = `
-
-      <div class="date-box">
-
-        <div class="date-day">
-          ${tahun}
-        </div>
-
-        <div class="date-month">
-          ${bulan}
-        </div>
-
-        <div class="date-year">
-          Kegiatan
-        </div>
-
-      </div>
+      const content =
+        document.getElementById('content');
 
 
-      <div class="event-body">
+      if (
+        !data ||
+        data.length === 0
+      ) {
 
-        <div class="event-head">
+        content.innerHTML = `
 
-          <div>
+          <div class="kalender-table-wrapper">
 
-            <h3 class="event-title">
-              ${agenda}
-            </h3>
-
-            <div class="event-id">
-              ID: ${id}
+            <div class="kalender-state">
+              Belum terdapat agenda kegiatan
+              yang sesuai dengan pencarian.
             </div>
 
           </div>
 
-          <span class="status ${statusClass}">
-            ${status}
-          </span>
+        `;
+
+        return;
+
+      }
+
+
+      let rowsHTML = '';
+
+
+      data.forEach(function(item, index) {
+
+        const bulan =
+          escapeHTML(
+            item.bulan || '-'
+          );
+
+        const agenda =
+          escapeHTML(
+            item.agenda || '-'
+          );
+
+        const outputTarget =
+          escapeHTML(
+            item.output_target || '-'
+          );
+
+        const unitKerja =
+          escapeHTML(
+            item.unit_kerja || '-'
+          );
+
+        const astaProtas =
+          escapeHTML(
+            item.asta_protas || '-'
+          );
+
+        const status =
+          escapeHTML(
+            item.status || '-'
+          );
+
+        const statusClass =
+          getStatusClass(
+            item.status
+          );
+
+
+        rowsHTML += `
+
+          <tr>
+
+            <td class="kalender-no">
+              ${index + 1}
+            </td>
+
+            <td class="kalender-bulan">
+              ${bulan}
+            </td>
+
+            <td class="kalender-agenda">
+              ${agenda}
+            </td>
+
+            <td class="kalender-output">
+              ${outputTarget}
+            </td>
+
+            <td class="kalender-unit">
+              ${unitKerja}
+            </td>
+
+            <td class="kalender-asta">
+              ${astaProtas}
+            </td>
+
+            <td>
+
+              <span class="kalender-status ${statusClass}">
+                ${status}
+              </span>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      });
+
+
+      content.innerHTML = `
+
+        <div class="kalender-table-wrapper">
+
+          <table class="kalender-table">
+
+            <thead>
+
+              <tr>
+
+                <th>No</th>
+                <th>Bulan</th>
+                <th>Agenda Kegiatan</th>
+                <th>Output / Target</th>
+                <th>Unit Kerja</th>
+                <th>Asta Protas</th>
+                <th>Status</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${rowsHTML}
+
+            </tbody>
+
+          </table>
 
         </div>
 
+      `;
 
-        <div class="event-meta">
-
-          <span class="meta-item">
-            🏢 ${unitKerja}
-          </span>
-
-          <span class="meta-item">
-            🎯 ${astaProtas}
-          </span>
-
-        </div>
+    }
 
 
-        <div class="description">
+    /* =====================================================
+       FILTER
+    ===================================================== */
 
-          <strong>Output / Target</strong>
+    function applyFilter() {
 
-          <br>
-
-          ${outputTarget}
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    eventList.appendChild(card);
-
-  });
+      const keyword =
+        document
+          .getElementById('searchInput')
+          .value
+          .toLowerCase()
+          .trim();
 
 
-  content.innerHTML = '';
+      const year =
+        document
+          .getElementById('tahunFilter')
+          .value
+          .trim();
 
-  content.appendChild(eventList);
 
-}
+      const filtered =
+        allData.filter(function(item) {
+
+          const searchableText =
+            [
+
+              item.id,
+              item.tahun,
+              item.bulan,
+              item.agenda,
+              item.output_target,
+              item.unit_kerja,
+              item.asta_protas,
+              item.status
+
+            ]
+            .join(' ')
+            .toLowerCase();
 
 
-/* =====================================================
-   FILTER DATA
-===================================================== */
+          const matchesKeyword =
+            !keyword ||
+            searchableText.includes(
+              keyword
+            );
 
-function applyFilter() {
 
-  const keyword =
+          const matchesYear =
+            !year ||
+            String(item.tahun || '')
+              .trim() === year;
+
+
+          return (
+            matchesKeyword &&
+            matchesYear
+          );
+
+        });
+
+
+      renderData(filtered);
+
+    }
+
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
+
     document
       .getElementById('searchInput')
-      .value
-      .toLowerCase()
-      .trim();
-
-  const status =
-    document
-      .getElementById('statusFilter')
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  const filtered =
-    allData.filter(item => {
-
-      const searchableText =
-        [
-
-          item.id,
-
-          item.tahun,
-
-          item.bulan,
-
-          item.agenda,
-
-          item.output_target,
-
-          item.unit_kerja,
-
-          item.asta_protas,
-
-          item.status
-
-        ]
-        .join(' ')
-        .toLowerCase();
-
-
-      const matchesKeyword =
-        !keyword ||
-        searchableText.includes(keyword);
-
-
-      const matchesStatus =
-        !status ||
-        String(item.status || '')
-          .toLowerCase()
-          .trim() === status;
-
-
-      return (
-        matchesKeyword &&
-        matchesStatus
+      .addEventListener(
+        'input',
+        applyFilter
       );
 
-    });
+
+    document
+      .getElementById('tahunFilter')
+      .addEventListener(
+        'change',
+        applyFilter
+      );
 
 
-  renderData(filtered);
-
-}
-
-  /* =====================================================
-     SEARCH
-     ===================================================== */
-
-  document
-    .getElementById('searchInput')
-    .addEventListener(
-      'input',
-      applyFilter
-    );
+    document
+      .getElementById('refreshButton')
+      .addEventListener(
+        'click',
+        loadKalender
+      );
 
 
-  document
-    .getElementById('statusFilter')
-    .addEventListener(
-      'change',
-      applyFilter
-    );
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
 
+    loadKalender();
 
-  /* =====================================================
-     INITIAL LOAD
-     ===================================================== */
+  </script>
 
-  loadKalender();
-
-</script>
 
 </body>
-</html>
 
+</html>
