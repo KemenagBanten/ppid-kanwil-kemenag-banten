@@ -1399,9 +1399,6 @@ if (uploadLaporanButton) {
   const editUrl =
   document.getElementById('editUrl');
 
-const editUrl =
-  document.getElementById('editUrl');
-
 const editStatus =
   document.getElementById('editStatus');
 
