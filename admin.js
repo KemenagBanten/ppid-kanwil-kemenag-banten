@@ -2466,7 +2466,7 @@ const urlBerita =
           }
 // TAMPILKAN NOTIF BERHASIL
 showEditStatus(
-  result.message ||
+  
   'Konten berhasil diperbarui.',
   'success'
 );
