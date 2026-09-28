@@ -1180,6 +1180,15 @@ body {
 /* =========================================================
    NEWS CARD
 ========================================================= */
+.news-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.news-card-link .news-card {
+  cursor: pointer;
+}
 
 .berita-section .news-card {
   display: flex;
