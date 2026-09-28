@@ -575,97 +575,7 @@
   let allData = [];
 
 
-  /* =====================================================
-     FORMAT TANGGAL
-     ===================================================== */
-
-  function parseDate(value) {
-
-    if (!value) {
-      return null;
-    }
-
-    const date = new Date(value);
-
-    if (!isNaN(date.getTime())) {
-      return date;
-    }
-
-    const text = String(value).trim();
-
-    const match = text.match(
-      /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})(?:\s+(\d{1,2}):(\d{2}))?$/
-    );
-
-    if (!match) {
-      return null;
-    }
-
-    const day = Number(match[1]);
-    const month = Number(match[2]) - 1;
-    const year = Number(match[3]);
-    const hour = Number(match[4] || 0);
-    const minute = Number(match[5] || 0);
-
-    return new Date(
-      year,
-      month,
-      day,
-      hour,
-      minute
-    );
-
-  }
-
-
-  function formatTanggal(value) {
-
-    const date = parseDate(value);
-
-    if (!date) {
-      return value || '-';
-    }
-
-    return date.toLocaleDateString(
-      'id-ID',
-      {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
-      }
-    );
-
-  }
-
-
-  function formatJam(value) {
-
-    const date = parseDate(value);
-
-    if (!date) {
-      return '';
-    }
-
-    const hasTime =
-      String(value).includes(':') ||
-      String(value).includes('T');
-
-    if (!hasTime) {
-      return '';
-    }
-
-    return date.toLocaleTimeString(
-      'id-ID',
-      {
-        hour: '2-digit',
-        minute: '2-digit'
-      }
-    );
-
-  }
-
-
-  /* =====================================================
+    /* =====================================================
      ESCAPE HTML
      ===================================================== */
 
@@ -834,335 +744,225 @@
   }
 
 
-  /* =====================================================
-     RENDER DATA
-     ===================================================== */
+/* =====================================================
+   RENDER DATA
+===================================================== */
 
-  function renderData(data) {
+function renderData(data) {
 
-    const content =
-      document.getElementById('content');
+  const content =
+    document.getElementById('content');
 
-    if (
-      !data ||
-      data.length === 0
-    ) {
+  if (!data || data.length === 0) {
 
-      content.innerHTML = `
-        <div class="empty">
-          Belum terdapat agenda kegiatan
-          yang dipublikasikan.
-        </div>
-      `;
+    content.innerHTML = `
+      <div class="empty">
+        Belum terdapat agenda kegiatan
+        yang dipublikasikan.
+      </div>
+    `;
 
-      return;
-
-    }
+    return;
+  }
 
 
-    const eventList =
-      document.createElement('div');
+  const eventList =
+    document.createElement('div');
 
-    eventList.className =
-      'event-list';
-
-
-    data.forEach(item => {
-
-      const id =
-        escapeHTML(
-          item.id || '-'
-        );
-
-      const judul =
-        escapeHTML(
-          item.judul || 'Tanpa Judul'
-        );
-
-      const tanggalMulai =
-        formatTanggal(
-          item.tanggal_mulai
-        );
-
-      const tanggalSelesai =
-        formatTanggal(
-          item.tanggal_selesai
-        );
-
-      const jamMulai =
-        formatJam(
-          item.tanggal_mulai
-        );
-
-      const jamSelesai =
-        formatJam(
-          item.tanggal_selesai
-        );
-
-      const lokasi =
-        escapeHTML(
-          item.lokasi || '-'
-        );
-
-      const deskripsi =
-        escapeHTML(
-          item.deskripsi || '-'
-        );
-
-      const status =
-        escapeHTML(
-          item.status || 'Tidak ditentukan'
-        );
-
-      const statusClass =
-        getStatusClass(
-          item.status
-        );
+  eventList.className = 'event-list';
 
 
-      /* DATE BOX */
+  data.forEach(item => {
 
-      const startDate =
-        parseDate(
-          item.tanggal_mulai
-        );
+    const id =
+      escapeHTML(item.id || '-');
 
-      let day = '--';
-      let month = '---';
-      let year = '';
+    const tahun =
+      escapeHTML(item.tahun || '-');
 
-      if (startDate) {
+    const bulan =
+      escapeHTML(item.bulan || '-');
 
-        day =
-          String(
-            startDate.getDate()
-          ).padStart(2, '0');
+    const agenda =
+      escapeHTML(item.agenda || 'Tanpa Agenda');
 
-        month =
-          startDate
-            .toLocaleDateString(
-              'id-ID',
-              {
-                month: 'short'
-              }
-            )
-            .replace('.', '')
-            .toUpperCase();
+    const outputTarget =
+      escapeHTML(item.output_target || '-');
 
-        year =
-          startDate.getFullYear();
+    const unitKerja =
+      escapeHTML(item.unit_kerja || '-');
 
-      }
+    const astaProtas =
+      escapeHTML(item.asta_protas || '-');
+
+    const status =
+      escapeHTML(
+        item.status || 'Tidak ditentukan'
+      );
+
+    const statusClass =
+      getStatusClass(item.status);
 
 
-      /* TIME */
+    const card =
+      document.createElement('article');
 
-      let timeHTML = '';
-
-      if (jamMulai && jamSelesai) {
-
-        timeHTML = `
-          <span class="meta-item">
-            🕐 ${escapeHTML(jamMulai)}
-            – ${escapeHTML(jamSelesai)}
-          </span>
-        `;
-
-      } else if (jamMulai) {
-
-        timeHTML = `
-          <span class="meta-item">
-            🕐 ${escapeHTML(jamMulai)}
-          </span>
-        `;
-
-      }
+    card.className = 'event-card';
 
 
-      /* DATE RANGE */
+    card.innerHTML = `
 
-      let dateRangeHTML = '';
+      <div class="date-box">
 
-      if (
-        item.tanggal_selesai &&
-        tanggalSelesai !== tanggalMulai
-      ) {
-
-        dateRangeHTML = `
-          <span class="meta-item">
-            📅 ${escapeHTML(tanggalMulai)}
-            – ${escapeHTML(tanggalSelesai)}
-          </span>
-        `;
-
-      } else {
-
-        dateRangeHTML = `
-          <span class="meta-item">
-            📅 ${escapeHTML(tanggalMulai)}
-          </span>
-        `;
-
-      }
-
-
-      const card =
-        document.createElement('article');
-
-      card.className =
-        'event-card';
-
-
-      card.innerHTML = `
-
-        <div class="date-box">
-
-          <div class="date-day">
-            ${day}
-          </div>
-
-          <div class="date-month">
-            ${month}
-          </div>
-
-          <div class="date-year">
-            ${year}
-          </div>
-
+        <div class="date-day">
+          ${tahun}
         </div>
 
+        <div class="date-month">
+          ${bulan}
+        </div>
 
-        <div class="event-body">
+        <div class="date-year">
+          Kegiatan
+        </div>
 
-          <div class="event-head">
+      </div>
 
-            <div>
 
-              <h3 class="event-title">
-                ${judul}
-              </h3>
+      <div class="event-body">
 
-              <div class="event-id">
-                ID: ${id}
-              </div>
+        <div class="event-head">
 
+          <div>
+
+            <h3 class="event-title">
+              ${agenda}
+            </h3>
+
+            <div class="event-id">
+              ID: ${id}
             </div>
 
-            <span class="status ${statusClass}">
-              ${status}
-            </span>
-
           </div>
 
-
-          <div class="event-meta">
-
-            ${dateRangeHTML}
-
-            ${timeHTML}
-
-            <span class="meta-item">
-              📍 ${lokasi}
-            </span>
-
-          </div>
-
-
-          <div class="description">
-
-            ${deskripsi}
-
-          </div>
+          <span class="status ${statusClass}">
+            ${status}
+          </span>
 
         </div>
 
-      `;
+
+        <div class="event-meta">
+
+          <span class="meta-item">
+            🏢 ${unitKerja}
+          </span>
+
+          <span class="meta-item">
+            🎯 ${astaProtas}
+          </span>
+
+        </div>
 
 
-      eventList.appendChild(card);
+        <div class="description">
+
+          <strong>Output / Target</strong>
+
+          <br>
+
+          ${outputTarget}
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    eventList.appendChild(card);
+
+  });
+
+
+  content.innerHTML = '';
+
+  content.appendChild(eventList);
+
+}
+
+
+/* =====================================================
+   FILTER DATA
+===================================================== */
+
+function applyFilter() {
+
+  const keyword =
+    document
+      .getElementById('searchInput')
+      .value
+      .toLowerCase()
+      .trim();
+
+  const status =
+    document
+      .getElementById('statusFilter')
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered =
+    allData.filter(item => {
+
+      const searchableText =
+        [
+
+          item.id,
+
+          item.tahun,
+
+          item.bulan,
+
+          item.agenda,
+
+          item.output_target,
+
+          item.unit_kerja,
+
+          item.asta_protas,
+
+          item.status
+
+        ]
+        .join(' ')
+        .toLowerCase();
+
+
+      const matchesKeyword =
+        !keyword ||
+        searchableText.includes(keyword);
+
+
+      const matchesStatus =
+        !status ||
+        String(item.status || '')
+          .toLowerCase()
+          .trim() === status;
+
+
+      return (
+        matchesKeyword &&
+        matchesStatus
+      );
 
     });
 
 
-    content.innerHTML = '';
+  renderData(filtered);
 
-    content.appendChild(eventList);
-
-  }
-
-
-  /* =====================================================
-     FILTER DATA
-     ===================================================== */
-
-  function applyFilter() {
-
-    const keyword =
-      document
-        .getElementById('searchInput')
-        .value
-        .toLowerCase()
-        .trim();
-
-    const status =
-      document
-        .getElementById('statusFilter')
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filtered =
-      allData.filter(item => {
-
-        const searchableText =
-          [
-
-            item.id,
-
-            item.judul,
-
-            item.lokasi,
-
-            item.deskripsi,
-
-            item.status,
-
-            item.tanggal_mulai,
-
-            item.tanggal_selesai
-
-          ]
-          .join(' ')
-          .toLowerCase();
-
-
-        const matchesKeyword =
-          !keyword ||
-          searchableText.includes(
-            keyword
-          );
-
-
-        const matchesStatus =
-          !status ||
-          String(item.status || '')
-            .toLowerCase()
-            .trim() === status;
-
-
-        return (
-          matchesKeyword &&
-          matchesStatus
-        );
-
-      });
-
-
-    renderData(filtered);
-
-  }
-
+}
 
   /* =====================================================
      SEARCH
