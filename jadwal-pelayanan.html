@@ -31,105 +31,97 @@
   <!-- =========================
        MAIN CONTENT
   ========================== -->
-  <main class="page-content">
+ <main class="page-content">
 
-    <section class="content-section">
+  <section class="content-section jadwal-section">
 
-      <div class="section-title">
-        <span class="section-kicker">LAYANAN INFORMASI PUBLIK</span>
-        <h2>Jadwal Pelayanan</h2>
-        <div class="section-line"></div>
-      </div>
+    <div class="jadwal-grid">
 
+      <!-- SENIN - KAMIS -->
+      <article class="jadwal-card">
 
-      <div class="jadwal-intro">
-        <p>
-          Jadwal pelayanan informasi publik
-          PPID Kanwil Kementerian Agama Provinsi Banten.
-        </p>
-      </div>
+        <div class="jadwal-card-header">
+          <span class="jadwal-kicker">HARI PELAYANAN</span>
+          <h3>Senin – Kamis</h3>
+        </div>
 
+        <div class="jadwal-time">
 
-      <!-- =========================
-           JADWAL
-      ========================== -->
-      <div class="jadwal-grid">
+          <div class="jadwal-row">
+            <span class="jadwal-label">
+              Jam Pelayanan
+            </span>
 
-        <!-- SENIN - KAMIS -->
-        <article class="jadwal-card">
-
-          <div class="jadwal-card-header">
-            <span class="jadwal-kicker">HARI PELAYANAN</span>
-            <h3>Senin – Kamis</h3>
+            <strong>
+              08.00 – 15.00 WIB
+            </strong>
           </div>
 
-          <div class="jadwal-time">
+          <div class="jadwal-row">
+            <span class="jadwal-label">
+              Istirahat
+            </span>
 
-            <div class="jadwal-row">
-              <span class="jadwal-label">
-                Jam Pelayanan
-              </span>
-
-              <strong>
-                08.00 – 15.00 WIB
-              </strong>
-            </div>
-
-            <div class="jadwal-row">
-              <span class="jadwal-label">
-                Istirahat
-              </span>
-
-              <strong>
-                12.00 – 13.00 WIB
-              </strong>
-            </div>
-
+            <strong>
+              12.00 – 13.00 WIB
+            </strong>
           </div>
 
-        </article>
+        </div>
+
+      </article>
 
 
-        <!-- JUMAT -->
-        <article class="jadwal-card">
+      <!-- JUMAT -->
+      <article class="jadwal-card">
 
-          <div class="jadwal-card-header">
-            <span class="jadwal-kicker">HARI PELAYANAN</span>
-            <h3>Jumat</h3>
+        <div class="jadwal-card-header">
+          <span class="jadwal-kicker">HARI PELAYANAN</span>
+          <h3>Jumat</h3>
+        </div>
+
+        <div class="jadwal-time">
+
+          <div class="jadwal-row">
+            <span class="jadwal-label">
+              Jam Pelayanan
+            </span>
+
+            <strong>
+              08.00 – 15.00 WIB
+            </strong>
           </div>
 
-          <div class="jadwal-time">
+          <div class="jadwal-row">
+            <span class="jadwal-label">
+              Istirahat
+            </span>
 
-            <div class="jadwal-row">
-              <span class="jadwal-label">
-                Jam Pelayanan
-              </span>
-
-              <strong>
-                08.00 – 15.00 WIB
-              </strong>
-            </div>
-
-            <div class="jadwal-row">
-              <span class="jadwal-label">
-                Istirahat
-              </span>
-
-              <strong>
-                11.00 – 13.00 WIB
-              </strong>
-            </div>
-
+            <strong>
+              11.00 – 13.00 WIB
+            </strong>
           </div>
 
-        </article>
+        </div>
 
-      </div>
+      </article>
 
-    </section>
+    </div>
 
-  </main>
 
+    <!-- KETERANGAN -->
+    <div class="jadwal-note">
+      <span class="jadwal-note-icon">i</span>
+
+      <p>
+        Jam pelayanan dapat menyesuaikan ketentuan dan kondisi pelayanan
+        yang berlaku.
+      </p>
+    </div>
+
+  </section>
+
+</main>
 
   <!-- =========================
        MASTER FOOTER
@@ -353,7 +345,201 @@
       }
 
     }
+/* =========================================
+   JADWAL PELAYANAN
+========================================= */
 
+.jadwal-section {
+  width: 100%;
+  padding: 42px 42px 64px;
+}
+
+
+/* GRID CARD */
+
+.jadwal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+
+/* CARD */
+
+.jadwal-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e3ebe7;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(27, 66, 49, 0.06);
+  overflow: hidden;
+}
+
+.jadwal-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #0f5132;
+}
+
+
+/* HEADER CARD */
+
+.jadwal-card-header {
+  margin-bottom: 24px;
+}
+
+.jadwal-kicker {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  color: #6b8177;
+}
+
+.jadwal-card h3 {
+  margin: 0;
+  color: #173e2e;
+  font-size: 23px;
+  line-height: 1.3;
+  font-weight: 750;
+}
+
+
+/* JAM */
+
+.jadwal-time {
+  display: grid;
+  gap: 12px;
+}
+
+.jadwal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 15px 16px;
+
+  background: #f5f8f6;
+  border-radius: 12px;
+}
+
+.jadwal-label {
+  color: #65766f;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.jadwal-row strong {
+  color: #173e2e;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 750;
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+/* KETERANGAN */
+
+.jadwal-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 26px;
+  padding: 16px 18px;
+
+  background: #f5f8f6;
+  border: 1px solid #e3ebe7;
+  border-radius: 12px;
+}
+
+.jadwal-note-icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 50%;
+
+  background: #0f5132;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.jadwal-note p {
+  margin: 0;
+
+  color: #5f7169;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+  .jadwal-section {
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-bottom: 56px;
+  }
+
+  .jadwal-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+
+  .jadwal-section {
+    padding: 30px 18px 48px;
+  }
+
+  .jadwal-card {
+    padding: 24px;
+  }
+
+  .jadwal-card h3 {
+    font-size: 21px;
+  }
+
+  .jadwal-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .jadwal-row strong {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .jadwal-note {
+    align-items: flex-start;
+  }
+
+}
   </style>
 
 </body>
