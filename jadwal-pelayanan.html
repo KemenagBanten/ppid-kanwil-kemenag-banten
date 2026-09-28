@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Jadwal Pelayanan | PPID Kanwil Kementerian Agama Provinsi Banten</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       MASTER NAVBAR
+  ========================== -->
+  <div id="siteNavbar"></div>
+
+
+  <!-- =========================
+       MASTER HERO
+  ========================== -->
+  <div id="innerHero"></div>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+  <main class="page-content">
+
+    <section class="content-section">
+
+      <div class="section-title">
+        <span class="section-kicker">LAYANAN INFORMASI PUBLIK</span>
+        <h2>Jadwal Pelayanan</h2>
+        <div class="section-line"></div>
+      </div>
+
+
+      <div class="jadwal-intro">
+        <p>
+          Jadwal pelayanan informasi publik
+          PPID Kanwil Kementerian Agama Provinsi Banten.
+        </p>
+      </div>
+
+
+      <!-- =========================
+           JADWAL
+      ========================== -->
+      <div class="jadwal-grid">
+
+        <!-- SENIN - KAMIS -->
+        <article class="jadwal-card">
+
+          <div class="jadwal-card-header">
+            <span class="jadwal-kicker">HARI PELAYANAN</span>
+            <h3>Senin – Kamis</h3>
+          </div>
+
+          <div class="jadwal-time">
+
+            <div class="jadwal-row">
+              <span class="jadwal-label">
+                Jam Pelayanan
+              </span>
+
+              <strong>
+                08.00 – 15.00 WIB
+              </strong>
+            </div>
+
+            <div class="jadwal-row">
+              <span class="jadwal-label">
+                Istirahat
+              </span>
+
+              <strong>
+                12.00 – 13.00 WIB
+              </strong>
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- JUMAT -->
+        <article class="jadwal-card">
+
+          <div class="jadwal-card-header">
+            <span class="jadwal-kicker">HARI PELAYANAN</span>
+            <h3>Jumat</h3>
+          </div>
+
+          <div class="jadwal-time">
+
+            <div class="jadwal-row">
+              <span class="jadwal-label">
+                Jam Pelayanan
+              </span>
+
+              <strong>
+                08.00 – 15.00 WIB
+              </strong>
+            </div>
+
+            <div class="jadwal-row">
+              <span class="jadwal-label">
+                Istirahat
+              </span>
+
+              <strong>
+                11.00 – 13.00 WIB
+              </strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       MASTER FOOTER
+  ========================== -->
+  <div id="siteFooter"></div>
+
+
+  <!-- =========================
+       ACCESSIBILITY
+  ========================== -->
+  <div id="accessibility"></div>
+
+
+  <!-- =========================
+       MASTER LAYOUT
+  ========================== -->
+  <script src="layout.js"></script>
+
+
+  <!-- =========================
+       INNER HERO CONTENT
+  ========================== -->
+  <script>
+    document.addEventListener("layout:loaded", function () {
+
+      const kicker =
+        document.getElementById("innerHeroKicker");
+
+      const title =
+        document.getElementById("innerHeroTitle");
+
+      const description =
+        document.getElementById("innerHeroDescription");
+
+
+      if (kicker) {
+        kicker.textContent =
+          "LAYANAN INFORMASI PUBLIK";
+      }
+
+
+      if (title) {
+        title.textContent =
+          "Jadwal Pelayanan";
+      }
+
+
+      if (description) {
+        description.textContent =
+          "Informasi mengenai jadwal pelayanan informasi publik PPID Kanwil Kementerian Agama Provinsi Banten.";
+      }
+
+    });
+  </script>
+
+
+  <!-- =========================
+       JADWAL PAGE STYLE
+  ========================== -->
+  <style>
+
+    .jadwal-intro {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .jadwal-intro p {
+      margin: 0;
+      color: #5b6d65;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+
+    .jadwal-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+
+    .jadwal-card {
+      position: relative;
+
+      background: #ffffff;
+
+      border: 1px solid #e3ebe7;
+      border-radius: 18px;
+
+      padding: 28px;
+
+      box-shadow:
+        0 8px 24px rgba(27, 66, 49, 0.06);
+
+      overflow: hidden;
+    }
+
+
+    .jadwal-card::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 4px;
+
+      background: #0f5132;
+    }
+
+
+    .jadwal-card-header {
+      margin-bottom: 24px;
+    }
+
+
+    .jadwal-kicker {
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-size: 11px;
+      line-height: 1.4;
+
+      font-weight: 750;
+      letter-spacing: 0.12em;
+
+      color: #6b8177;
+    }
+
+
+    .jadwal-card h3 {
+      margin: 0;
+
+      color: #173e2e;
+
+      font-size: 23px;
+      line-height: 1.3;
+
+      font-weight: 750;
+    }
+
+
+    .jadwal-time {
+      display: grid;
+
+      gap: 12px;
+    }
+
+
+    .jadwal-row {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      padding: 15px 16px;
+
+      background: #f5f8f6;
+
+      border-radius: 12px;
+    }
+
+
+    .jadwal-label {
+      color: #65766f;
+
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+
+    .jadwal-row strong {
+      color: #173e2e;
+
+      font-size: 15px;
+      line-height: 1.5;
+
+      font-weight: 750;
+
+      text-align: right;
+      white-space: nowrap;
+    }
+
+
+    @media (max-width: 760px) {
+
+      .jadwal-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .jadwal-card {
+        padding: 23px;
+      }
+
+      .jadwal-card h3 {
+        font-size: 21px;
+      }
+
+    }
+
+
+    @media (max-width: 520px) {
+
+      .jadwal-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .jadwal-row strong {
+        text-align: left;
+      }
+
+    }
+
+  </style>
+
+</body>
+</html>
