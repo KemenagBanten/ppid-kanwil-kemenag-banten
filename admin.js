@@ -2464,6 +2464,12 @@ const urlBerita =
             loadEditContent();
 
           }
+// TAMPILKAN NOTIF BERHASIL
+showEditStatus(
+  result.message ||
+  'Konten berhasil diperbarui.',
+  'success'
+);
 
 
           // REFRESH DAFTAR KONTEN
