@@ -1294,6 +1294,15 @@
           <span>Daftar Konten</span>
         </button>
 
+<button
+  type="button"
+  class="sidebar-button"
+  data-section="slider"
+>
+  <span class="sidebar-icon">▣</span>
+  <span>Slider Beranda</span>
+</button>
+
       </div>
 
     </div>
@@ -1342,27 +1351,7 @@
           <span class="sidebar-icon">▣</span>
           <span>Pengadaan</span>
         </button>
-
-        <button
-  type="button"
-  class="sidebar-button"
-  data-section="publikasi"
->
-  <span class="sidebar-icon">▤</span>
-  <span>Publikasi</span>
-</button>
-
-        
 <button
-  type="button"
-  class="sidebar-button"
-  data-section="slider"
->
-  <span class="sidebar-icon">▣</span>
-  <span>Slider Beranda</span>
-</button>
-        
-        <button
           type="button"
           class="sidebar-button"
           data-section="upload"
@@ -1608,6 +1597,101 @@
         </div>
 
       </section>
+
+<div class="card" id="sliderCard">
+
+  <div class="admin-card-header">
+    <div>
+      <h2>Slider Beranda</h2>
+      <p>
+        Upload gambar yang akan ditampilkan pada slider halaman beranda.
+      </p>
+    </div>
+  </div>
+
+  <form id="sliderForm">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label for="sliderUrutan">
+          Urutan
+        </label>
+
+        <select id="sliderUrutan" required>
+          <option value="">Pilih urutan</option>
+          <option value="1">1 — Selamat Datang</option>
+          <option value="2">2 — Jadwal Pelayanan</option>
+          <option value="3">3 — Maklumat Pelayanan</option>
+          <option value="4">4 — Pesan Antigratifikasi</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sliderJudul">
+          Judul
+        </label>
+
+        <input
+          type="text"
+          id="sliderJudul"
+          placeholder="Judul slider"
+          required
+        >
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="sliderFile">
+        Gambar Slider
+      </label>
+
+      <input
+        type="file"
+        id="sliderFile"
+        accept="image/jpeg,image/png,image/webp"
+        required
+      >
+
+      <div class="helper">
+        Gunakan gambar ukuran 1600 × 600 px.
+        Format JPG, PNG, atau WebP.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="sliderAktif">
+        Status
+      </label>
+
+      <select id="sliderAktif" required>
+        <option value="YA">Aktif</option>
+        <option value="TIDAK">Tidak Aktif</option>
+      </select>
+
+    </div>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      id="uploadSliderButton"
+    >
+      Upload Slider
+    </button>
+
+    <div
+      id="sliderStatusBox"
+      class="status"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+</section>
 
 <!-- =========================
      TAMBAH SOP
@@ -2047,6 +2131,10 @@
         </select>
 
       </div>
+<!-- =====================================================
+     SLIDER BERANDA
+====================================================== -->
+
     </div>
 
 
@@ -2089,247 +2177,6 @@
   </form>
 
 </div>
-
-      <div class="card">
-
-  <h2>Publikasi</h2>
-
-  <p class="description">
-    Upload publikasi resmi PPID Kanwil Kementerian Agama Provinsi Banten.
-  </p>
-
-  <form id="publikasiForm">
-
-    <div class="form-grid">
-
-      <div class="form-group">
-
-        <label for="publikasiJudul">
-          Judul Publikasi
-        </label>
-
-        <input
-          type="text"
-          id="publikasiJudul"
-          placeholder="Contoh: Kemenag Banten Dalam Angka 2025"
-          required
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="publikasiTahun">
-          Tahun
-        </label>
-
-        <input
-          type="number"
-          id="publikasiTahun"
-          placeholder="Contoh: 2025"
-          min="2000"
-          max="2100"
-          required
-        >
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="publikasiKategori">
-          Kategori
-        </label>
-
-        <select id="publikasiKategori" required>
-
-          <option value="">
-            Pilih kategori
-          </option>
-
-          <option value="Buku Statistik">
-            Buku Statistik
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="publikasiDeskripsi">
-          Deskripsi
-        </label>
-
-        <textarea
-          id="publikasiDeskripsi"
-          rows="4"
-          placeholder="Deskripsi singkat mengenai publikasi"
-        ></textarea>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="publikasiCover">
-          Cover Publikasi
-        </label>
-
-        <input
-          type="file"
-          id="publikasiCover"
-          accept="image/*"
-          required
-        >
-
-        <div class="helper">
-          Format JPG, JPEG, PNG, atau gambar lainnya.
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label for="publikasiPdf">
-          File PDF Publikasi
-        </label>
-
-        <input
-          type="file"
-          id="publikasiPdf"
-          accept="application/pdf"
-          required
-        >
-
-        <div class="helper">
-          Format PDF. File akan disimpan pada folder Publikasi.
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      type="submit"
-      class="btn-primary"
-      id="uploadPublikasiButton"
-    >
-      Upload Publikasi
-    </button>
-
-
-    <div
-      id="publikasiStatusBox"
-      class="status"
-      style="display:none;"
-    ></div>
-
-  </form>
-
-</div>
-<!-- =====================================================
-     SLIDER BERANDA
-====================================================== -->
-<div class="card" id="sliderCard">
-
-  <div class="admin-card-header">
-    <div>
-      <h2>Slider Beranda</h2>
-      <p>
-        Upload gambar yang akan ditampilkan pada slider halaman beranda.
-      </p>
-    </div>
-  </div>
-
-  <form id="sliderForm">
-
-    <div class="form-grid">
-
-      <div class="form-group">
-        <label for="sliderUrutan">
-          Urutan
-        </label>
-
-        <select id="sliderUrutan" required>
-          <option value="">Pilih urutan</option>
-          <option value="1">1 — Selamat Datang</option>
-          <option value="2">2 — Jadwal Pelayanan</option>
-          <option value="3">3 — Maklumat Pelayanan</option>
-          <option value="4">4 — Pesan Antigratifikasi</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="sliderJudul">
-          Judul
-        </label>
-
-        <input
-          type="text"
-          id="sliderJudul"
-          placeholder="Judul slider"
-          required
-        >
-      </div>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="sliderFile">
-        Gambar Slider
-      </label>
-
-      <input
-        type="file"
-        id="sliderFile"
-        accept="image/jpeg,image/png,image/webp"
-        required
-      >
-
-      <div class="helper">
-        Gunakan gambar ukuran 1600 × 600 px.
-        Format JPG, PNG, atau WebP.
-      </div>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="sliderAktif">
-        Status
-      </label>
-
-      <select id="sliderAktif" required>
-        <option value="YA">Aktif</option>
-        <option value="TIDAK">Tidak Aktif</option>
-      </select>
-
-    </div>
-
-    <button
-      type="submit"
-      class="btn-primary"
-      id="uploadSliderButton"
-    >
-      Upload Slider
-    </button>
-
-    <div
-      id="sliderStatusBox"
-      class="status"
-      style="display:none;"
-    ></div>
-
-  </form>
-
-</div>
-
       
 <!-- =========================
      TAMBAH PENGADAAN
@@ -3559,26 +3406,7 @@ document.addEventListener('DOMContentLoaded', function () {
         );
 
         break;
-case 'publikasi':
 
-  showCardByElement(
-    document.getElementById(
-      'publikasiForm'
-    )
-  );
-
-  break;
-        
-        
-case 'slider':
-
-  showCardByElement(
-    document.getElementById(
-      'sliderForm'
-    )
-  );
-
-  break;
 
       case 'permohonan':
 
@@ -3653,159 +3481,8 @@ case 'slider':
   activateSection('content');
 
 });
-    </script>
-  
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-
-  const sliderForm = document.getElementById('sliderForm');
-
-  if (!sliderForm) return;
-
-  sliderForm.addEventListener('submit', async function (e) {
-
-    e.preventDefault();
-
-    const urutan =
-      document.getElementById('sliderUrutan').value;
-
-    const judul =
-      document.getElementById('sliderJudul').value.trim();
-
-    const fileInput =
-      document.getElementById('sliderFile');
-
-    const aktif =
-      document.getElementById('sliderAktif').value;
-
-    const statusBox =
-      document.getElementById('sliderStatusBox');
-
-    const button =
-      document.getElementById('uploadSliderButton');
-
-
-    if (!urutan || !judul || !fileInput.files.length) {
-
-      statusBox.style.display = 'block';
-
-      statusBox.textContent =
-        'Lengkapi semua data slider terlebih dahulu.';
-
-      return;
-    }
-
-
-    const file = fileInput.files[0];
-
-
-    button.disabled = true;
-
-    button.textContent = 'Mengupload...';
-
-    statusBox.style.display = 'block';
-
-    statusBox.textContent =
-      'Sedang mengupload gambar slider...';
-
-
-    try {
-
-      const base64Data =
-        await new Promise(function (resolve, reject) {
-
-          const reader = new FileReader();
-
-          reader.onload = function () {
-
-            const result = reader.result;
-
-            const base64 =
-              result.split(',')[1];
-
-            resolve(base64);
-
-          };
-
-          reader.onerror = reject;
-
-          reader.readAsDataURL(file);
-
-        });
-
-
-      const payload = {
-
-        action: 'uploadSlider',
-
-        idValue:
-          'SLIDER-' +
-          Date.now(),
-
-        urutan: urutan,
-
-        judul: judul,
-
-        fileName: file.name,
-
-        fileData: base64Data,
-
-        aktif: aktif
-
-      };
-
-
-      const response = await fetch(API_URL, {
-
-        method: 'POST',
-
-        body: JSON.stringify(payload)
-
-      });
-
-
-      const result =
-        await response.json();
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'Upload slider gagal.'
-        );
-
-      }
-
-
-      statusBox.textContent =
-        'Slider berhasil diupload.';
-
-
-      sliderForm.reset();
-
-
-    } catch (error) {
-
-      console.error(error);
-
-      statusBox.textContent =
-        error.message ||
-        'Terjadi kesalahan saat upload slider.';
-
-    } finally {
-
-      button.disabled = false;
-
-      button.textContent =
-        'Upload Slider';
-
-    }
-
-  });
-
-});
 </script>
+
 <script src="admin.js?v=5"></script>
 
 </body>
