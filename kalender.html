@@ -26,8 +26,8 @@
     ===================================================== */
 
     .kalender-toolbar {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 180px auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 160px 160px auto;
       gap: 12px;
       margin-bottom: 22px;
     }
@@ -306,37 +306,26 @@
            TOOLBAR
       ================================================== -->
 
-      <div class="kalender-toolbar">
+     <div class="kalender-toolbar">
+  <input
+    type="text"
+    id="searchInput"
+    class="kalender-search"
+    placeholder="Cari agenda kegiatan..."
+  >
 
-        <input
-          type="text"
-          id="searchInput"
-          class="kalender-search"
-          placeholder="Cari agenda, unit kerja, output, atau Asta Protas..."
-          aria-label="Cari kalender kegiatan"
-        >
+  <select id="tahunFilter" class="kalender-filter">
+    <option value="">Semua Tahun</option>
+  </select>
 
-        <select
-          id="tahunFilter"
-          class="kalender-filter"
-          aria-label="Pilih tahun"
-        >
+  <select id="bulanFilter" class="kalender-filter">
+    <option value="">Semua Bulan</option>
+  </select>
 
-          <option value="">
-            Semua Tahun
-          </option>
-
-        </select>
-
-        <button
-          type="button"
-          id="refreshButton"
-          class="kalender-refresh"
-        >
-          ↻ Refresh
-        </button>
-
-      </div>
+  <button id="refreshButton" class="kalender-refresh" type="button">
+    ↻ Refresh
+  </button>
+</div>
 
 
       <!-- =================================================
@@ -501,7 +490,7 @@
 
 
         buildYearFilter();
-
+buildMonthFilter();
         applyFilter();
 
 
@@ -584,7 +573,46 @@
       });
 
     }
+function buildMonthFilter() {
+  const monthFilter = document.getElementById("bulanFilter");
 
+  if (!monthFilter) return;
+
+  const months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember"
+  ];
+
+  const existingMonths = [
+    ...new Set(
+      allData
+        .map(item => String(item.bulan || "").trim())
+        .filter(Boolean)
+    )
+  ];
+
+  monthFilter.innerHTML = `
+    <option value="">Semua Bulan</option>
+    ${months
+      .filter(month =>
+        existingMonths.some(
+          value => value.toLowerCase() === month.toLowerCase()
+        )
+      )
+      .map(month => `<option value="${escapeHTML(month)}">${escapeHTML(month)}</option>`)
+      .join("")}
+  `;
+}
 
     /* =====================================================
        RENDER TABLE
@@ -759,7 +787,7 @@
           .getElementById('tahunFilter')
           .value
           .trim();
-
+const month = document.getElementById("bulanFilter").value;
 
       const filtered =
         allData.filter(function(item) {
@@ -792,11 +820,14 @@
             !year ||
             String(item.tahun || '')
               .trim() === year;
-
+const matchMonth =
+    !month ||
+    String(item.bulan || "").toLowerCase() ===
+      month.toLowerCase();
 
           return (
             matchesKeyword &&
-            matchesYear
+            matchesYear && matchMonth
           );
 
         });
@@ -826,7 +857,11 @@
         applyFilter
       );
 
+document
+  .getElementById("bulanFilter")
+  .addEventListener("change", applyFilter);
 
+    
     document
       .getElementById('refreshButton')
       .addEventListener(
