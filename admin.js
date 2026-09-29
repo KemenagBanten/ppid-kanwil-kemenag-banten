@@ -1743,7 +1743,8 @@ token: getAdminToken(),
         await fetch(
           API_URL +
           '?action=' +
-          encodeURIComponent(action)
+          encodeURIComponent(action) +
+    encodeURIComponent(getAdminToken())
         );
 
 
@@ -1899,7 +1900,8 @@ token: getAdminToken(),
         await fetch(
           API_URL +
           '?action=' +
-          encodeURIComponent(action)
+          encodeURIComponent(action) +
+    encodeURIComponent(getAdminToken())
         );
 
 
@@ -2765,7 +2767,9 @@ async function loadLaporanUploadDropdown() {
   try {
 
     const response = await fetch(
-      API_URL + '?action=laporan'
+      API_URL + '?action=laporan' +
+  '&token=' +
+  encodeURIComponent(getAdminToken())
     );
 
     if (!response.ok) {
