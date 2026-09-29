@@ -4756,6 +4756,24 @@ body.accessibility-reduced-motion *::after {
     );
 }
 
+/* =========================================================
+   SPACING HALAMAN PUBLIKASI STATISTIK
+========================================================= */
+
+/* Memberi ruang antara hero dan area pencarian */
+.page-container {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.content-section {
+  padding-top: 28px;
+}
+
+/* Jarak antara kotak pencarian dan daftar publikasi */
+.publikasi-filter {
+  margin-bottom: 36px;
+}
 
 /* =========================================================
    KPI AREA
