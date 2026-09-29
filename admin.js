@@ -4189,7 +4189,13 @@ if (loginForm) {
           result &&
           result.success === true
         ) {
-
+// Simpan token session admin
+if (result.token) {
+  sessionStorage.setItem(
+    'adminToken',
+    result.token
+  );
+}
           if (loginStatus) {
 
             loginStatus.className =
