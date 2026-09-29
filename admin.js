@@ -1,5 +1,12 @@
 const API_URL =
   'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+/* =========================================================
+   ADMIN SESSION TOKEN
+========================================================= */
+
+function getAdminToken() {
+  return sessionStorage.getItem('adminToken') || '';
+}
 
 document.addEventListener('DOMContentLoaded', function () {
 
