@@ -68,6 +68,7 @@ if (barangJasaForm) {
 
           const payload = {
             action: 'uploadBarangJasaDocument',
+            token: getAdminToken(),
             idValue: idValue,
             namaPekerjaan: namaPekerjaan,
             jenisDokumen: jenisDokumen,
@@ -183,7 +184,7 @@ if (publikasiForm) {
             const payload = {
 
               action: 'uploadPublikasi',
-
+token: getAdminToken(),
               idValue: idValue,
 
               judul: judul,
@@ -563,7 +564,7 @@ if (sopForm) {
         const payload = {
 
           action: 'tambahSOP',
-
+token: getAdminToken(),
           nomor: nomor,
 
           judul: judul,
@@ -796,7 +797,7 @@ if (regulasiForm) {
         const payload = {
 
           action: 'tambahRegulasi',
-
+token: getAdminToken(),
           judul: judul,
 
           jenis: jenis,
@@ -1006,7 +1007,7 @@ if (laporanForm) {
         const payload = {
 
   action: 'tambahLaporan',
-
+token: getAdminToken(),
   judul: judul,
 
   jenis: jenis,
@@ -1257,7 +1258,7 @@ if (uploadLaporanButton) {
 
           action:
             'uploadLaporanDocument',
-
+token: getAdminToken(),
           idValue:
             idValue,
 
@@ -1543,7 +1544,7 @@ const status =
           const payload = {
 
   action: action,
-
+token: getAdminToken(),
   judul: title,
 
   tanggal: date,
@@ -2388,7 +2389,7 @@ const urlBerita =
           const payload = {
 
   action: 'editKonten',
-
+token: getAdminToken(),
   sheetName: sheet,
 
   idValue: idValue,
@@ -2606,7 +2607,9 @@ case 'PENGADAAN': action = 'pengadaan'; break;
         await fetch(
           API_URL +
           '?action=' +
-          encodeURIComponent(action)
+          encodeURIComponent(action) +
+  '&token=' +
+  encodeURIComponent(getAdminToken())
         );
 
 
@@ -3270,7 +3273,7 @@ if (sheetName === 'INFORMASI_PUBLIK') {
 const payload = {
 
   action: action,
-
+token: getAdminToken(),
   sheetName:
     sheetName,
 
@@ -3539,7 +3542,7 @@ if (adminPermohonanForm) {
 
           action:
             'tambahPermohonan',
-
+token: getAdminToken(),
           nomorPermohonan:
             nomorPermohonan,
 
@@ -3837,7 +3840,7 @@ if (adminKeberatanForm) {
 
           action:
             'tambahKeberatan',
-
+token: getAdminToken(),
           nomorKeberatan:
             '',
 
