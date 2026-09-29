@@ -1740,12 +1740,13 @@ token: getAdminToken(),
 
 
       const response =
-        await fetch(
-          API_URL +
-          '?action=' +
-          encodeURIComponent(action) +
+  await fetch(
+    API_URL +
+    '?action=' +
+    encodeURIComponent(action) +
+    '&token=' +
     encodeURIComponent(getAdminToken())
-        );
+  );
 
 
       if (!response.ok) {
@@ -1897,12 +1898,13 @@ token: getAdminToken(),
 
 
       const response =
-        await fetch(
-          API_URL +
-          '?action=' +
-          encodeURIComponent(action) +
+  await fetch(
+    API_URL +
+    '?action=' +
+    encodeURIComponent(action) +
+    '&token=' +
     encodeURIComponent(getAdminToken())
-        );
+  );
 
 
       if (!response.ok) {
