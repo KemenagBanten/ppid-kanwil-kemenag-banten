@@ -1502,11 +1502,19 @@
 <div class="sidebar-group-title">
         Dokumen
       </div>
+
 <div class="sidebar-menu">
+
+<button class="sidebar-button" data-section="informasi-publik" type="button">
+<span class="sidebar-icon">▤</span>
+<span>Informasi Publik</span>
+</button>
+
 <button class="sidebar-button" data-section="sop" type="button">
 <span class="sidebar-icon">▤</span>
 <span>SOP</span>
 </button>
+    
 <button class="sidebar-button" data-section="regulasi" type="button">
 <span class="sidebar-icon">§</span>
 <span>Regulasi</span>
@@ -1920,6 +1928,286 @@
 <div class="status" id="uploadLaporanStatusBox" style="display:none;"></div>
 </form>
 </div>
+
+    </section>
+
+<!-- =================================================
+     INFORMASI PUBLIK
+================================================== -->
+<section class="card" data-admin-section="informasi-publik">
+
+  <div class="card-header">
+
+    <div class="card-icon">
+      ▤
+    </div>
+
+    <div>
+
+      <h2>
+        Informasi Publik
+      </h2>
+
+      <p>
+        Tambahkan dan edit metadata Informasi Publik sebelum mengunggah PDF.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <form id="informasiPublikForm">
+
+    <input
+      type="hidden"
+      id="informasiPublikId"
+      value=""
+    >
+
+
+    <div class="form-grid">
+
+      <!-- JUDUL -->
+
+      <div class="form-group">
+
+        <label for="informasiPublikJudul">
+          Judul Informasi
+        </label>
+
+        <input
+          type="text"
+          id="informasiPublikJudul"
+          placeholder="Judul informasi publik"
+          required
+        >
+
+      </div>
+
+
+      <!-- JENIS -->
+
+      <div class="form-group">
+
+        <label for="informasiPublikJenis">
+          Jenis Informasi
+        </label>
+
+        <select
+          id="informasiPublikJenis"
+          required
+        >
+
+          <option value="">
+            -- Pilih Jenis Informasi --
+          </option>
+
+          <option value="Berkala">
+            Berkala
+          </option>
+
+          <option value="Setiap Saat">
+            Setiap Saat
+          </option>
+
+          <option value="Serta-Merta">
+            Serta-Merta
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- TAHUN -->
+
+      <div class="form-group">
+
+        <label for="informasiPublikTahun">
+          Tahun
+        </label>
+
+        <input
+          type="number"
+          id="informasiPublikTahun"
+          min="1900"
+          max="2100"
+          placeholder="2026"
+          required
+        >
+
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="form-group">
+
+        <label for="informasiPublikStatus">
+          Status
+        </label>
+
+        <select id="informasiPublikStatus">
+
+          <option value="Published">
+            Published
+          </option>
+
+          <option value="Draft">
+            Draft
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- DESKRIPSI -->
+
+    <div class="form-group">
+
+      <label for="informasiPublikDeskripsi">
+        Deskripsi
+      </label>
+
+      <textarea
+        id="informasiPublikDeskripsi"
+        rows="5"
+        placeholder="Tuliskan deskripsi/ringkasan informasi publik"
+      ></textarea>
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <div
+      style="
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        align-items:center;
+      "
+    >
+
+      <button
+        class="btn-primary"
+        id="saveInformasiPublikButton"
+        type="submit"
+      >
+        Simpan Informasi
+      </button>
+
+
+      <button
+        class="refresh-button"
+        id="cancelInformasiPublikButton"
+        type="button"
+        style="display:none;"
+      >
+        Batal Edit
+      </button>
+
+    </div>
+
+
+    <!-- STATUS PESAN -->
+
+    <div
+      class="status"
+      id="informasiPublikStatusBox"
+      style="display:none;"
+    ></div>
+
+  </form>
+
+
+  <!-- DAFTAR INFORMASI -->
+
+  <div style="margin-top:28px;">
+
+    <div class="content-list-header">
+
+      <div>
+
+        <h3 style="margin:0 0 5px;">
+          Daftar Informasi Publik
+        </h3>
+
+        <p style="margin:0;">
+          Data yang sudah tersimpan pada database.
+        </p>
+
+      </div>
+
+
+      <button
+        class="refresh-button"
+        id="refreshInformasiPublikButton"
+        type="button"
+      >
+        ↻ Muat Ulang
+      </button>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+      <table class="content-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              ID
+            </th>
+
+            <th>
+              Judul
+            </th>
+
+            <th>
+              Jenis
+            </th>
+
+            <th>
+              Tahun
+            </th>
+
+            <th>
+              Status
+            </th>
+
+            <th>
+              Dokumen
+            </th>
+
+            <th>
+              Aksi
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="informasiPublikTableBody">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 <!-- =========================
      INFORMASI BARANG DAN JASA
 ========================= -->
