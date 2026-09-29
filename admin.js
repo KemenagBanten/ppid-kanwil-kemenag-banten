@@ -4339,7 +4339,27 @@ if (logoutButton) {
 /* =========================================================
    INFORMASI PUBLIK — ADMIN CRUD METADATA
 ========================================================= */
+function showInfoStatus(message, type) {
 
+  const box =
+    document.getElementById('informasiPublikStatusBox');
+
+  if (!box) {
+    console.warn(
+      'informasiPublikStatusBox tidak ditemukan.'
+    );
+    return;
+  }
+
+  box.textContent = message;
+
+  box.style.display = 'block';
+
+  box.className =
+    'status ' +
+    (type || '');
+
+}
 document.addEventListener('DOMContentLoaded', function () {
 
   const informasiPublikForm =
