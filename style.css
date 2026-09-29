@@ -4764,6 +4764,7 @@ body.accessibility-reduced-motion *::after {
 .page-container {
   padding-left: 24px;
   padding-right: 24px;
+   padding-bottom: 60px;
 }
 
 .content-section {
