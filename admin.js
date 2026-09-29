@@ -4759,15 +4759,15 @@ document.addEventListener('DOMContentLoaded', function () {
           );
         }
 
-        showInfoStatus(
-          isEdit
-            ? 'Informasi Publik berhasil diperbarui.'
-            : 'Informasi Publik berhasil ditambahkan. ID: ' +
-              (result.id || ''),
-          'success'
-        );
+       resetInformasiPublikForm();
 
-        resetInformasiPublikForm();
+showInfoStatus(
+  isEdit
+    ? 'Informasi Publik berhasil diperbarui.'
+    : 'Informasi Publik berhasil ditambahkan. ID: ' +
+      (result.id || ''),
+  'success'
+);
 
        
       } catch (error) {
