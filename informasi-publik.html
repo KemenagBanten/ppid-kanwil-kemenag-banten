@@ -464,16 +464,6 @@
 
 
 /* =====================================================
-   KATEGORI
-===================================================== */
-
-.table-category {
-  color: #52615a;
-  font-size: 12px;
-}
-
-
-/* =====================================================
    TAHUN
 ===================================================== */
 
@@ -900,7 +890,7 @@
         <input
           type="text"
           id="searchInput"
-          placeholder="Cari judul, kategori, jenis informasi, atau kata kunci..."
+          placeholder="Cari judul, jenis informasi, atau kata kunci..."
           autocomplete="off"
         >
 
@@ -935,7 +925,7 @@
         <button
           type="button"
           class="filter-btn"
-          data-filter="Serta-Merta"
+          data-filter="Serta Merta"
         >
           Serta-Merta
         </button>
@@ -1533,7 +1523,7 @@ function renderData(data) {
 
         <span>
           Coba gunakan kata kunci pencarian
-          atau kategori yang berbeda.
+          yang berbeda.
         </span>
 
       </div>
@@ -1777,22 +1767,7 @@ const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
         </td>
 
 
-        <td>
-
-          <span class="table-category">
-
-            ${
-              kategori
-                ? escapeHTML(kategori)
-                : '-'
-            }
-
-          </span>
-
-        </td>
-
-
-        <td>
+       <td>
 
           <span class="table-year">
 
