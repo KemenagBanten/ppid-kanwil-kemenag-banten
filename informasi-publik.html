@@ -1421,30 +1421,12 @@ informasiSort.addEventListener(
 
 
             const searchText = [
-
-              row.id,
-
-              row.judul,
-
-              row.jenis,
-
-              row.jenis_informasi,
-
-              row.kategori,
-
-              row.ringkasan,
-
-              row.unit,
-
-              row.pejabat_unit,
-
-              row.tahun,
-
-              row.status
-
-            ]
-              .join(' ')
-              .toLowerCase();
+  row.id,
+  row.judul,
+  row.jenis,
+  row.tahun,
+  row.status
+].join(' ').toLowerCase();
 
 
             const matchesSearch =
@@ -1615,18 +1597,11 @@ function renderData(data) {
       <tr>
 
         <th>No.</th>
-
-        <th>Informasi Publik</th>
-
-        <th>Jenis</th>
-
-        <th>Kategori</th>
-
-        <th>Tahun</th>
-
-        <th>Diperbarui</th>
-
-        <th>Dokumen</th>
+<th>Informasi Publik</th>
+<th>Jenis</th>
+<th>Tahun</th>
+<th>Diperbarui</th>
+<th>Dokumen</th>
 
       </tr>
 
@@ -1660,41 +1635,11 @@ function renderData(data) {
         start + index + 1;
 
 
-      const judul =
-        row.judul ||
-        'Tanpa Judul';
-
-
-      const jenis =
-        row.jenis ||
-        row.jenis_informasi ||
-        '';
-
-
-      const kategori =
-        row.kategori ||
-        '';
-
-
-      const tahun =
-        row.tahun ||
-        '';
-
-
-      const tanggal =
-        formatTanggal(
-          row.tanggal_update
-        );
-
-
-      /* ===============================================
-         MASTER DOKUMEN
-      =============================================== */
-
-      const dokumen =
-        Array.isArray(row.dokumen)
-          ? row.dokumen
-          : [];
+      const judul = row.judul || 'Tanpa Judul';
+const jenis = row.jenis || '';
+const tahun = row.tahun || '';
+const tanggal = formatTanggal(row.tanggal_update);
+const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
 
 
       let documentHTML =
