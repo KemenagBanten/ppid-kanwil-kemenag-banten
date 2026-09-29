@@ -4801,7 +4801,174 @@ showInfoStatus(
 
     }
   );
+  const informasiPublikPdf =
+    document.getElementById('informasiPublikPdf');
 
+  const informasiPublikUploadStatusBox =
+    document.getElementById(
+      'informasiPublikUploadStatusBox'
+    );
+
+  if (informasiPublikPdf) {
+
+    informasiPublikPdf.addEventListener(
+      'change',
+      async function () {
+
+        const file =
+          informasiPublikPdf.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        if (
+          file.type !== 'application/pdf'
+        ) {
+
+          informasiPublikUploadStatusBox.style.display =
+            'block';
+
+          informasiPublikUploadStatusBox.className =
+            'status error';
+
+          informasiPublikUploadStatusBox.textContent =
+            'File harus berformat PDF.';
+
+          informasiPublikPdf.value = '';
+
+          return;
+        }
+
+        const id =
+          idInput.value.trim();
+
+        if (!id) {
+
+          informasiPublikUploadStatusBox.style.display =
+            'block';
+
+          informasiPublikUploadStatusBox.className =
+            'status error';
+
+          informasiPublikUploadStatusBox.textContent =
+            'Simpan Informasi Publik terlebih dahulu sebelum mengunggah PDF.';
+
+          informasiPublikPdf.value = '';
+
+          return;
+        }
+
+        try {
+
+          informasiPublikUploadStatusBox.style.display =
+            'block';
+
+          informasiPublikUploadStatusBox.className =
+            'status loading';
+
+          informasiPublikUploadStatusBox.textContent =
+            'Mengunggah PDF...';
+
+          const base64 =
+            await fileToBase64(file);
+
+          const payload = {
+
+            action:
+              'uploadInformasiPublikDocument',
+
+            token:
+              getAdminToken(),
+
+            idValue:
+              id,
+
+            fileData:
+              base64,
+
+            fileName:
+              file.name
+
+          };
+
+          console.log(
+            'PAYLOAD UPLOAD INFORMASI PUBLIK:',
+            payload
+          );
+
+          const response =
+            await fetch(
+              API_URL,
+              {
+                method: 'POST',
+
+                body:
+                  JSON.stringify(payload)
+              }
+            );
+
+          if (!response.ok) {
+
+            throw new Error(
+              'HTTP Error ' +
+              response.status
+            );
+
+          }
+
+          const result =
+            await response.json();
+
+          console.log(
+            'HASIL UPLOAD INFORMASI PUBLIK:',
+            result
+          );
+
+          if (!result.success) {
+
+            throw new Error(
+              result.message ||
+              'Upload PDF Informasi Publik gagal.'
+            );
+
+          }
+
+          informasiPublikUploadStatusBox.style.display =
+            'block';
+
+          informasiPublikUploadStatusBox.className =
+            'status success';
+
+          informasiPublikUploadStatusBox.textContent =
+            result.message ||
+            'PDF Informasi Publik berhasil diupload.';
+
+          informasiPublikPdf.value = '';
+
+        } catch (error) {
+
+          console.error(
+            'ERROR UPLOAD INFORMASI PUBLIK:',
+            error
+          );
+
+          informasiPublikUploadStatusBox.style.display =
+            'block';
+
+          informasiPublikUploadStatusBox.className =
+            'status error';
+
+          informasiPublikUploadStatusBox.textContent =
+            error.message ||
+            'Terjadi kesalahan saat upload PDF Informasi Publik.';
+
+        }
+
+      }
+    );
+
+  }
   tahunInput.value =
     new Date().getFullYear();
 
