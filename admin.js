@@ -3217,7 +3217,7 @@ async function loadLaporanUploadDropdown() {
          let action = '';
 
 if (sheetName === 'INFORMASI_PUBLIK') {
-  action = 'upload';
+  action = 'uploadInformasiPublikDocument';
 
 } else if (sheetName === 'DIP') {
   action = 'upload';
