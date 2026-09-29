@@ -4365,50 +4365,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('saveInformasiPublikButton');
   const cancelButton =
     document.getElementById('cancelInformasiPublikButton');
-  const refreshButton =
-    document.getElementById('refreshInformasiPublikButton');
+  
   const statusBox =
     document.getElementById('informasiPublikStatusBox');
 
-  // PENTING:
-  // ID ini harus sama dengan ID tbody di admin.html
-  const listBody =
-    document.getElementById('informasiPublikTableBody');
-
-  let informasiPublikData = [];
-
-  function escapeInfo(value) {
-    return String(value == null ? '' : value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
-  }
-
-  function getInfoValue(row, names) {
-    for (let i = 0; i < names.length; i++) {
-      const key = names[i];
-
-      if (
-        Object.prototype.hasOwnProperty.call(row, key) &&
-        row[key] !== '' &&
-        row[key] != null
-      ) {
-        return row[key];
-      }
-    }
-
-    return '';
-  }
-
-  function showInfoStatus(message, type) {
-    if (!statusBox) return;
-
-    statusBox.style.display = 'block';
-    statusBox.className = 'status ' + (type || '');
-    statusBox.textContent = message || '';
-  }
+    let informasiPublikData = [];
 
   function resetInformasiPublikForm() {
 
@@ -4788,8 +4749,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         resetInformasiPublikForm();
 
-        await loadInformasiPublikAdmin();
-
+       
       } catch (error) {
 
         console.error(
@@ -4822,18 +4782,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   );
 
-  refreshButton.addEventListener(
-    'click',
-    function () {
-
-      loadInformasiPublikAdmin();
-
-    }
-  );
-
   tahunInput.value =
     new Date().getFullYear();
-
-  loadInformasiPublikAdmin();
 
 });
