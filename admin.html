@@ -1957,199 +1957,189 @@
   </div>
 
 
-  <form id="informasiPublikForm">
-
-    <input
-      type="hidden"
-      id="informasiPublikId"
-      value=""
-    >
-
-
-    <div class="form-grid">
-
-      <!-- JUDUL -->
-
-      <div class="form-group">
-
-        <label for="informasiPublikJudul">
-          Judul Informasi
-        </label>
-
-        <input
-          type="text"
-          id="informasiPublikJudul"
-          placeholder="Judul informasi publik"
-          required
-        >
-
-      </div>
-
-
-      <!-- JENIS -->
-
-      <div class="form-group">
-
-        <label for="informasiPublikJenis">
-          Jenis Informasi
-        </label>
-
-        <select
-          id="informasiPublikJenis"
-          required
-        >
-
-          <option value="">
-            -- Pilih Jenis Informasi --
-          </option>
-
-          <option value="Berkala">
-            Berkala
-          </option>
-
-          <option value="Setiap Saat">
-            Setiap Saat
-          </option>
-
-          <option value="Serta-Merta">
-            Serta-Merta
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- TAHUN -->
-
-      <div class="form-group">
-
-        <label for="informasiPublikTahun">
-          Tahun
-        </label>
-
-        <input
-          type="number"
-          id="informasiPublikTahun"
-          min="1900"
-          max="2100"
-          placeholder="2026"
-          required
-        >
-
-      </div>
-
-
-      <!-- STATUS -->
-
-      <div class="form-group">
-
-        <label for="informasiPublikStatus">
-          Status
-        </label>
-
-        <select id="informasiPublikStatus">
-
-          <option value="Published">
-            Published
-          </option>
-
-          <option value="Draft">
-            Draft
-          </option>
-
-        </select>
-
-      </div>
-
-    </div>
-
-
-    <!-- DESKRIPSI -->
-
-    <div class="form-group">
-
-      <label for="informasiPublikDeskripsi">
-        Deskripsi
-      </label>
-
-      <textarea
-        id="informasiPublikDeskripsi"
-        rows="5"
-        placeholder="Tuliskan deskripsi/ringkasan informasi publik"
-      ></textarea>
-
-    </div>
-
-
-    <!-- BUTTON -->
-
-    <div
-      style="
-        display:flex;
-        gap:10px;
-        flex-wrap:wrap;
-        align-items:center;
-      "
-    >
-
-      <button
-        class="btn-primary"
-        id="saveInformasiPublikButton"
-        type="submit"
-      >
-        Simpan Informasi
-      </button>
-
-
-      <button
-        class="refresh-button"
-        id="cancelInformasiPublikButton"
-        type="button"
-        style="display:none;"
-      >
-        Batal Edit
-      </button>
-
-    </div>
-
-
-    <!-- STATUS PESAN -->
-
-    <div
-      class="status"
-      id="informasiPublikStatusBox"
-      style="display:none;"
-    ></div>
-<div class="form-group" style="margin-top:16px;">
-  <label for="informasiPublikPdf">
-    Dokumen PDF
-  </label>
+ <form id="informasiPublikForm">
 
   <input
-    type="file"
-    id="informasiPublikPdf"
-    accept="application/pdf"
+    type="hidden"
+    id="informasiPublikId"
+    value=""
   >
 
-  <small style="display:block;margin-top:6px;opacity:.7;">
-    Pilih file PDF Informasi Publik. File akan diunggah setelah metadata tersimpan.
-  </small>
-</div>
+  <div class="form-grid">
 
-<div
-  class="status"
-  id="informasiPublikUploadStatusBox"
-  style="display:none;"
-></div>
-  </form>
+    <!-- JUDUL -->
+    <div class="form-group">
+
+      <label for="informasiPublikJudul">
+        Judul Informasi
+      </label>
+
+      <input
+        type="text"
+        id="informasiPublikJudul"
+        placeholder="Judul informasi publik"
+        required
+      >
+
+    </div>
 
 
+    <!-- JENIS -->
+    <div class="form-group">
+
+      <label for="informasiPublikJenis">
+        Jenis Informasi
+      </label>
+
+      <select
+        id="informasiPublikJenis"
+        required
+      >
+
+        <option value="">
+          -- Pilih Jenis Informasi --
+        </option>
+
+        <option value="Berkala">
+          Berkala
+        </option>
+
+        <option value="Setiap Saat">
+          Setiap Saat
+        </option>
+
+        <option value="Serta Merta">
+          Serta Merta
+        </option>
+
+      </select>
+
+    </div>
 
 
-</section>
+    <!-- TAHUN -->
+    <div class="form-group">
+
+      <label for="informasiPublikTahun">
+        Tahun
+      </label>
+
+      <input
+        type="number"
+        id="informasiPublikTahun"
+        min="1900"
+        max="2100"
+        placeholder="2026"
+        required
+      >
+
+    </div>
 
 
+    <!-- STATUS -->
+    <div class="form-group">
+
+      <label for="informasiPublikStatus">
+        Status
+      </label>
+
+      <select
+        id="informasiPublikStatus"
+      >
+
+        <option value="Published">
+          Published
+        </option>
+
+        <option value="Draft">
+          Draft
+        </option>
+
+        <option value="Arsip">
+          Arsip
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- DOKUMEN PDF -->
+    <div class="form-group">
+
+      <label for="informasiPublikPdf">
+        Dokumen PDF
+      </label>
+
+      <input
+        type="file"
+        id="informasiPublikPdf"
+        accept="application/pdf,.pdf"
+      >
+
+      <small
+        style="
+          display:block;
+          margin-top:6px;
+          opacity:.7;
+        "
+      >
+        Pilih dokumen PDF Informasi Publik.
+      </small>
+
+    </div>
+
+  </div>
+
+
+  <!-- BUTTON -->
+  <div
+    style="
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:16px;
+    "
+  >
+
+    <button
+      class="btn-primary"
+      id="saveInformasiPublikButton"
+      type="submit"
+    >
+      Simpan Informasi
+    </button>
+
+
+    <button
+      class="refresh-button"
+      id="cancelInformasiPublikButton"
+      type="button"
+      style="display:none;"
+    >
+      Batal Edit
+    </button>
+
+  </div>
+
+
+  <!-- STATUS SIMPAN -->
+  <div
+    class="status"
+    id="informasiPublikStatusBox"
+    style="display:none;"
+  ></div>
+
+
+  <!-- STATUS UPLOAD -->
+  <div
+    class="status"
+    id="informasiPublikUploadStatusBox"
+    style="display:none;"
+  ></div>
+
+</form>
 <!-- =========================
      INFORMASI BARANG DAN JASA
 ========================= -->
