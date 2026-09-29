@@ -4336,640 +4336,949 @@ if (logoutButton) {
 
 }
 
-/* =========================================================
-   INFORMASI PUBLIK — ADMIN CRUD METADATA
-========================================================= */
-function showInfoStatus(message, type) {
-
-  const box =
-    document.getElementById('informasiPublikStatusBox');
-
-  if (!box) {
-    console.warn(
-      'informasiPublikStatusBox tidak ditemukan.'
-    );
-    return;
-  }
-
-  box.textContent = message;
-
-  box.style.display = 'block';
-
-  box.className =
-    'status ' +
-    (type || '');
-
-}
-document.addEventListener('DOMContentLoaded', function () {
-
-  const informasiPublikForm =
-    document.getElementById('informasiPublikForm');
-
-  if (!informasiPublikForm) {
-    return;
-  }
-
-  const idInput =
-    document.getElementById('informasiPublikId');
-  const judulInput =
-    document.getElementById('informasiPublikJudul');
-  const jenisInput =
-    document.getElementById('informasiPublikJenis');
-  const tahunInput =
-    document.getElementById('informasiPublikTahun');
-  const statusInput =
-    document.getElementById('informasiPublikStatus');
-  const deskripsiInput =
-    document.getElementById('informasiPublikDeskripsi');
-  const saveButton =
-    document.getElementById('saveInformasiPublikButton');
-  const cancelButton =
-    document.getElementById('cancelInformasiPublikButton');
-  
-  const statusBox =
-    document.getElementById('informasiPublikStatusBox');
-
-    let informasiPublikData = [];
-
-  function resetInformasiPublikForm() {
-
-    informasiPublikForm.reset();
-
-    idInput.value = '';
-    tahunInput.value = new Date().getFullYear();
-    statusInput.value = 'Published';
-
-    saveButton.textContent = 'Simpan Informasi';
-    cancelButton.style.display = 'none';
-
-    showInfoStatus('', '');
-    statusBox.style.display = 'none';
-  }
-
-  function renderInformasiPublikList() {
-
-    if (!listBody) return;
-
-    if (!informasiPublikData.length) {
-
-      listBody.innerHTML =
-        '<tr>' +
-        '<td class="empty-row" colspan="7">' +
-        'Belum ada data Informasi Publik.' +
-        '</td>' +
-        '</tr>';
+ /* =========================================================
+    INFORMASI PUBLIK — ADMIN CRUD
+    Metadata + PDF dalam satu proses simpan
+ ========================================================= */
 
-      return;
-    }
+ document.addEventListener('DOMContentLoaded', function () {
 
-    listBody.innerHTML = informasiPublikData.map(function (row) {
+   const informasiPublikForm =
+     document.getElementById('informasiPublikForm');
 
-      const id =
-        getInfoValue(row, ['id']);
+   if (!informasiPublikForm) {
+     return;
+   }
 
-      const judul =
-        getInfoValue(row, [
-          'judul',
-          'nama_informasi',
-          'nama'
-        ]);
-
-      const jenis =
-        getInfoValue(row, [
-          'jenis',
-          'jenis_informasi',
-          'kategori'
-        ]);
 
-      const tahun =
-        getInfoValue(row, [
-          'tahun',
-          'year'
-        ]);
-
-      const status =
-        getInfoValue(row, ['status']);
-
-      const urlDokumen =
-        getInfoValue(row, [
-          'url_dokumen',
-          'url'
-        ]);
-
-      let dokumenHtml = '-';
-
-      if (urlDokumen) {
-
-        dokumenHtml =
-          '<a href="' +
-          escapeInfo(urlDokumen) +
-          '" target="_blank" rel="noopener noreferrer">' +
-          'Lihat PDF' +
-          '</a>';
-      }
-
-      return `
-        <tr>
-          <td>${escapeInfo(id)}</td>
+   // =====================================================
+   // ELEMENT
+   // =====================================================
 
-          <td>${escapeInfo(judul)}</td>
+   const idInput =
+     document.getElementById('informasiPublikId');
 
-          <td>${escapeInfo(jenis)}</td>
+   const judulInput =
+     document.getElementById('informasiPublikJudul');
 
-          <td>${escapeInfo(tahun)}</td>
+   const jenisInput =
+     document.getElementById('informasiPublikJenis');
 
-          <td>${escapeInfo(status)}</td>
+   const tahunInput =
+     document.getElementById('informasiPublikTahun');
 
-          <td>${dokumenHtml}</td>
-
-          <td>
-            <button
-              type="button"
-              class="refresh-button info-edit-button"
-              data-info-id="${escapeInfo(id)}"
-            >
-              Edit
-            </button>
-          </td>
-        </tr>
-      `;
+   const statusInput =
+     document.getElementById('informasiPublikStatus');
 
-    }).join('');
+   const pdfInput =
+     document.getElementById('informasiPublikPdf');
 
-    listBody
-      .querySelectorAll('.info-edit-button')
-      .forEach(function (button) {
+   const saveButton =
+     document.getElementById('saveInformasiPublikButton');
 
-        button.addEventListener('click', function () {
+   const cancelButton =
+     document.getElementById('cancelInformasiPublikButton');
 
-          const id =
-            button.getAttribute('data-info-id');
+   const refreshButton =
+     document.getElementById('refreshInformasiPublikButton');
 
-          const row =
-            informasiPublikData.find(function (item) {
+   const statusBox =
+     document.getElementById('informasiPublikStatusBox');
 
-              return String(
-                getInfoValue(item, ['id'])
-              ).trim() === String(id).trim();
-
-            });
-
-          if (!row) return;
-
-          idInput.value =
-            getInfoValue(row, ['id']);
-
-          judulInput.value =
-            getInfoValue(row, [
-              'judul',
-              'nama_informasi',
-              'nama'
-            ]);
-
-          jenisInput.value =
-            getInfoValue(row, [
-              'jenis',
-              'jenis_informasi',
-              'kategori'
-            ]);
-
-          tahunInput.value =
-            getInfoValue(row, [
-              'tahun',
-              'year'
-            ]) || new Date().getFullYear();
-
-          statusInput.value =
-            getInfoValue(row, ['status']) ||
-            'Published';
-
-          deskripsiInput.value =
-            getInfoValue(row, [
-              'ringkasan',
-              'deskripsi',
-              'keterangan'
-            ]);
-
-          saveButton.textContent =
-            'Simpan Perubahan';
+   const uploadStatusBox =
+     document.getElementById(
+       'informasiPublikUploadStatusBox'
+     );
 
-          cancelButton.style.display =
-            'inline-flex';
+   const listBody =
+     document.getElementById(
+       'informasiPublikListBody'
+     );
 
-          showInfoStatus(
-            'Mode edit: ' + id,
-            'loading'
-          );
 
-          informasiPublikForm.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-
-        });
-
-      });
-  }
-
-  async function loadInformasiPublikAdmin() {
-
-    if (!listBody) return;
-
-    listBody.innerHTML =
-      '<tr>' +
-      '<td class="empty-row" colspan="7">' +
-      'Memuat data...' +
-      '</td>' +
-      '</tr>';
-
-    try {
-
-      const token = getAdminToken();
-
-      const response = await fetch(
-        API_URL +
-        '?action=informasi&token=' +
-        encodeURIComponent(token)
-      );
-
-      if (!response.ok) {
-        throw new Error(
-          'HTTP Error ' + response.status
-        );
-      }
-
-      const result =
-        await response.json();
-
-      if (
-        !result ||
-        result.success !== true
-      ) {
-
-        throw new Error(
-          result && result.message
-            ? result.message
-            : 'Gagal memuat Informasi Publik.'
-        );
-      }
+   let informasiPublikData = [];
 
-      informasiPublikData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
 
-      renderInformasiPublikList();
+   // =====================================================
+   // HELPER
+   // =====================================================
 
-    } catch (error) {
+   function escapeInfo(value) {
 
-      console.error(
-        'Load Informasi Publik error:',
-        error
-      );
+     return String(
+       value == null ? '' : value
+     )
+       .replace(/&/g, '&amp;')
+       .replace(/</g, '&lt;')
+       .replace(/>/g, '&gt;')
+       .replace(/"/g, '&quot;')
+       .replace(/'/g, '&#039;');
 
-      listBody.innerHTML =
-        '<tr>' +
-        '<td class="empty-row" colspan="7">' +
-        'Gagal memuat data: ' +
-        escapeInfo(error.message) +
-        '</td>' +
-        '</tr>';
-    }
-  }
+   }
 
-  informasiPublikForm.addEventListener(
-    'submit',
-    async function (event) {
 
-      event.preventDefault();
+   function getInfoValue(row, names) {
 
-      const id =
-        idInput.value.trim();
+     for (let i = 0; i < names.length; i++) {
 
-      const judul =
-        judulInput.value.trim();
+       const key = names[i];
 
-      const jenis =
-        jenisInput.value;
+       if (
+         Object.prototype.hasOwnProperty.call(
+           row,
+           key
+         ) &&
+         row[key] !== '' &&
+         row[key] != null
+       ) {
 
-      const tahun =
-        tahunInput.value;
+         return row[key];
 
-      const status =
-        statusInput.value;
+       }
 
-      const ringkasan =
-        deskripsiInput.value.trim();
+     }
 
-      if (!judul) {
-        showInfoStatus(
-          'Judul informasi wajib diisi.',
-          'error'
-        );
-        return;
-      }
+     return '';
 
-      if (!jenis) {
-        showInfoStatus(
-          'Jenis informasi wajib dipilih.',
-          'error'
-        );
-        return;
-      }
+   }
 
-      if (!tahun) {
-        showInfoStatus(
-          'Tahun wajib diisi.',
-          'error'
-        );
-        return;
-      }
 
-      const isEdit = !!id;
+   function showInfoStatus(
+     message,
+     type
+   ) {
 
-      try {
+     if (!statusBox) {
+       return;
+     }
 
-        saveButton.disabled = true;
+     statusBox.style.display =
+       message ? 'block' : 'none';
 
-        saveButton.textContent =
-          isEdit
-            ? 'Menyimpan...'
-            : 'Menambahkan...';
+     statusBox.className =
+       'status ' + (type || '');
 
-        showInfoStatus(
-          'Menyimpan data...',
-          'loading'
-        );
+     statusBox.textContent =
+       message || '';
 
-        const payload = {
+   }
 
-          action: isEdit
-            ? 'editInformasiPublik'
-            : 'tambahInformasiPublik',
 
-          token: getAdminToken(),
+   function showUploadStatus(
+     message,
+     type
+   ) {
 
-          id: id,
+     if (!uploadStatusBox) {
+       return;
+     }
 
-          judul: judul,
+     uploadStatusBox.style.display =
+       message ? 'block' : 'none';
 
-          jenis: jenis,
+     uploadStatusBox.className =
+       'status ' + (type || '');
 
-          ringkasan: ringkasan,
+     uploadStatusBox.textContent =
+       message || '';
 
-          tahun: tahun,
+   }
 
-          status: status
-        };
 
-        const response =
-          await fetch(API_URL, {
+   function resetInformasiPublikForm() {
 
-            method: 'POST',
+     informasiPublikForm.reset();
 
-            headers: {
-              'Content-Type':
-                'text/plain;charset=utf-8'
-            },
+     idInput.value = '';
 
-            body: JSON.stringify(payload)
+     tahunInput.value =
+       new Date().getFullYear();
 
-          });
+     statusInput.value =
+       'Published';
 
-        if (!response.ok) {
+     saveButton.textContent =
+       'Simpan Informasi';
 
-          throw new Error(
-            'HTTP Error ' +
-            response.status
-          );
-        }
+     cancelButton.style.display =
+       'none';
 
-        const result =
-          await response.json();
+     showInfoStatus('', '');
 
-        if (
-          !result ||
-          result.success !== true
-        ) {
+     showUploadStatus('', '');
 
-          throw new Error(
-            result && result.message
-              ? result.message
-              : 'Gagal menyimpan Informasi Publik.'
-          );
-        }
+   }
 
-       resetInformasiPublikForm();
 
-showInfoStatus(
-  isEdit
-    ? 'Informasi Publik berhasil diperbarui.'
-    : 'Informasi Publik berhasil ditambahkan. ID: ' +
-      (result.id || ''),
-  'success'
-);
+   // =====================================================
+   // RENDER LIST ADMIN
+   // =====================================================
 
-       
-      } catch (error) {
+   function renderInformasiPublikList() {
 
-        console.error(
-          'Simpan Informasi Publik error:',
-          error
-        );
+     if (!listBody) {
+       return;
+     }
 
-        showInfoStatus(
-          'Gagal: ' + error.message,
-          'error'
-        );
 
-      } finally {
+     if (!informasiPublikData.length) {
 
-        saveButton.disabled = false;
+       listBody.innerHTML =
+         '<tr>' +
+         '<td class="empty-row" colspan="6">' +
+         'Belum ada data Informasi Publik.' +
+         '</td>' +
+         '</tr>';
 
-        saveButton.textContent =
-          'Simpan Informasi';
-      }
+       return;
 
-    }
-  );
+     }
 
-  cancelButton.addEventListener(
-    'click',
-    function () {
 
-      resetInformasiPublikForm();
+     listBody.innerHTML =
+       informasiPublikData.map(
+         function (row) {
 
-    }
-  );
-  const informasiPublikPdf =
-    document.getElementById('informasiPublikPdf');
+           const id =
+             getInfoValue(
+               row,
+               ['id']
+             );
 
-  const informasiPublikUploadStatusBox =
-    document.getElementById(
-      'informasiPublikUploadStatusBox'
-    );
+           const judul =
+             getInfoValue(
+               row,
+               ['judul']
+             );
 
-  if (informasiPublikPdf) {
+           const jenis =
+             getInfoValue(
+               row,
+               ['jenis']
+             );
 
-    informasiPublikPdf.addEventListener(
-      'change',
-      async function () {
+           const tahun =
+             getInfoValue(
+               row,
+               ['tahun']
+             );
 
-        const file =
-          informasiPublikPdf.files[0];
+           const status =
+             getInfoValue(
+               row,
+               ['status']
+             );
 
-        if (!file) {
-          return;
-        }
+           const url =
+             getInfoValue(
+               row,
+               ['url_dokumen']
+             );
 
-        if (
-          file.type !== 'application/pdf'
-        ) {
 
-          informasiPublikUploadStatusBox.style.display =
-            'block';
+           return `
+             <tr>
 
-          informasiPublikUploadStatusBox.className =
-            'status error';
+               <td>
+                 ${escapeInfo(id)}
+               </td>
 
-          informasiPublikUploadStatusBox.textContent =
-            'File harus berformat PDF.';
+               <td>
+                 ${escapeInfo(judul)}
+               </td>
 
-          informasiPublikPdf.value = '';
+               <td>
+                 ${escapeInfo(jenis)}
+               </td>
 
-          return;
-        }
+               <td>
+                 ${escapeInfo(tahun)}
+               </td>
 
-        const id =
-          idInput.value.trim();
+               <td>
+                 ${escapeInfo(status)}
+               </td>
 
-        if (!id) {
+               <td>
 
-          informasiPublikUploadStatusBox.style.display =
-            'block';
+                 ${
+                   url
+                     ? '<span class="status success">Ada PDF</span>'
+                     : '<span class="status error">Belum ada PDF</span>'
+                 }
 
-          informasiPublikUploadStatusBox.className =
-            'status error';
+                 <button
+                   type="button"
+                   class="refresh-button info-edit-button"
+                   data-info-id="${escapeInfo(id)}"
+                   style="margin-left:6px;"
+                 >
+                   Edit
+                 </button>
 
-          informasiPublikUploadStatusBox.textContent =
-            'Simpan Informasi Publik terlebih dahulu sebelum mengunggah PDF.';
+               </td>
 
-          informasiPublikPdf.value = '';
+             </tr>
+           `;
 
-          return;
-        }
+         }
+       ).join('');
 
-        try {
 
-          informasiPublikUploadStatusBox.style.display =
-            'block';
+     listBody
+       .querySelectorAll(
+         '.info-edit-button'
+       )
+       .forEach(
+         function (button) {
 
-          informasiPublikUploadStatusBox.className =
-            'status loading';
+           button.addEventListener(
+             'click',
+             function () {
 
-          informasiPublikUploadStatusBox.textContent =
-            'Mengunggah PDF...';
+               const id =
+                 button.getAttribute(
+                   'data-info-id'
+                 );
 
-          const base64 =
-            await fileToBase64(file);
 
-          const payload = {
+               const row =
+                 informasiPublikData.find(
+                   function (item) {
 
-            action:
-              'uploadInformasiPublikDocument',
+                     return String(
+                       getInfoValue(
+                         item,
+                         ['id']
+                       )
+                     ).trim() ===
+                     String(id).trim();
 
-            token:
-              getAdminToken(),
+                   }
+                 );
 
-            idValue:
-              id,
 
-            fileData:
-              base64,
+               if (!row) {
+                 return;
+               }
 
-            fileName:
-              file.name
 
-          };
+               idInput.value =
+                 getInfoValue(
+                   row,
+                   ['id']
+                 );
 
-          console.log(
-            'PAYLOAD UPLOAD INFORMASI PUBLIK:',
-            payload
-          );
+               judulInput.value =
+                 getInfoValue(
+                   row,
+                   ['judul']
+                 );
 
-          const response =
-            await fetch(
-              API_URL,
-              {
-                method: 'POST',
+               jenisInput.value =
+                 getInfoValue(
+                   row,
+                   ['jenis']
+                 );
 
-                body:
-                  JSON.stringify(payload)
-              }
-            );
+               tahunInput.value =
+                 getInfoValue(
+                   row,
+                   ['tahun']
+                 ) ||
+                 new Date().getFullYear();
 
-          if (!response.ok) {
+               statusInput.value =
+                 getInfoValue(
+                   row,
+                   ['status']
+                 ) ||
+                 'Published';
 
-            throw new Error(
-              'HTTP Error ' +
-              response.status
-            );
 
-          }
+               /*
+                * Saat edit:
+                * PDF tidak wajib dipilih.
+                * Jika tidak memilih PDF,
+                * sistem mempertahankan PDF lama.
+                */
 
-          const result =
-            await response.json();
+               if (pdfInput) {
+                 pdfInput.value = '';
+               }
 
-          console.log(
-            'HASIL UPLOAD INFORMASI PUBLIK:',
-            result
-          );
 
-          if (!result.success) {
+               saveButton.textContent =
+                 'Simpan Perubahan';
 
-            throw new Error(
-              result.message ||
-              'Upload PDF Informasi Publik gagal.'
-            );
+               cancelButton.style.display =
+                 'inline-flex';
 
-          }
 
-          informasiPublikUploadStatusBox.style.display =
-            'block';
+               showInfoStatus(
+                 'Mode edit: ' + id,
+                 'loading'
+               );
 
-          informasiPublikUploadStatusBox.className =
-            'status success';
+               showUploadStatus(
+                 '',
+                 ''
+               );
 
-          informasiPublikUploadStatusBox.textContent =
-            result.message ||
-            'PDF Informasi Publik berhasil diupload.';
 
-          informasiPublikPdf.value = '';
+               informasiPublikForm.scrollIntoView({
+                 behavior: 'smooth',
+                 block: 'start'
+               });
 
-        } catch (error) {
+             }
+           );
 
-          console.error(
-            'ERROR UPLOAD INFORMASI PUBLIK:',
-            error
-          );
+         }
+       );
 
-          informasiPublikUploadStatusBox.style.display =
-            'block';
+   }
 
-          informasiPublikUploadStatusBox.className =
-            'status error';
 
-          informasiPublikUploadStatusBox.textContent =
-            error.message ||
-            'Terjadi kesalahan saat upload PDF Informasi Publik.';
+   // =====================================================
+   // LOAD DATA
+   // =====================================================
 
-        }
+   async function loadInformasiPublikAdmin() {
 
-      }
-    );
+     if (!listBody) {
+       return;
+     }
 
-  }
-  tahunInput.value =
-    new Date().getFullYear();
 
-});
+     listBody.innerHTML =
+       '<tr>' +
+       '<td class="empty-row" colspan="6">' +
+       'Memuat data...' +
+       '</td>' +
+       '</tr>';
+
+
+     try {
+
+       const token =
+         getAdminToken();
+
+
+       const response =
+         await fetch(
+           API_URL +
+           '?action=informasi&token=' +
+           encodeURIComponent(token)
+         );
+
+
+       if (!response.ok) {
+
+         throw new Error(
+           'HTTP Error ' +
+           response.status
+         );
+
+       }
+
+
+       const result =
+         await response.json();
+
+
+       if (
+         !result ||
+         result.success !== true
+       ) {
+
+         throw new Error(
+           result &&
+           result.message
+             ? result.message
+             : 'Gagal memuat Informasi Publik.'
+         );
+
+       }
+
+
+       informasiPublikData =
+         Array.isArray(result.data)
+           ? result.data
+           : [];
+
+
+       renderInformasiPublikList();
+
+
+     } catch (error) {
+
+       console.error(
+         'Load Informasi Publik error:',
+         error
+       );
+
+
+       listBody.innerHTML =
+         '<tr>' +
+         '<td class="empty-row" colspan="6">' +
+         'Gagal memuat data: ' +
+         escapeInfo(error.message) +
+         '</td>' +
+         '</tr>';
+
+     }
+
+   }
+
+
+   // =====================================================
+   // SUBMIT FORM
+   // =====================================================
+
+   informasiPublikForm.addEventListener(
+     'submit',
+     async function (event) {
+
+       event.preventDefault();
+
+
+       const id =
+         idInput.value.trim();
+
+       const judul =
+         judulInput.value.trim();
+
+       const jenis =
+         jenisInput.value;
+
+       const tahun =
+         tahunInput.value;
+
+       const status =
+         statusInput.value;
+
+       const file =
+         pdfInput &&
+         pdfInput.files
+           ? pdfInput.files[0]
+           : null;
+
+
+       // =================================================
+       // VALIDASI
+       // =================================================
+
+       if (!judul) {
+
+         showInfoStatus(
+           'Judul informasi wajib diisi.',
+           'error'
+         );
+
+         return;
+
+       }
+
+
+       if (!jenis) {
+
+         showInfoStatus(
+           'Jenis informasi wajib dipilih.',
+           'error'
+         );
+
+         return;
+
+       }
+
+
+       if (!tahun) {
+
+         showInfoStatus(
+           'Tahun wajib diisi.',
+           'error'
+         );
+
+         return;
+
+       }
+
+
+       /*
+        * Saat tambah data baru:
+        * PDF wajib dipilih.
+        *
+        * Saat edit:
+        * PDF boleh kosong karena PDF lama
+        * akan tetap digunakan.
+        */
+
+       if (!id && !file) {
+
+         showInfoStatus(
+           'Dokumen PDF wajib dipilih.',
+           'error'
+         );
+
+         return;
+
+       }
+
+
+       if (file) {
+
+         const fileName =
+           String(
+             file.name || ''
+           ).toLowerCase();
+
+
+         if (
+           !fileName.endsWith('.pdf')
+         ) {
+
+           showInfoStatus(
+             'Dokumen harus berupa PDF.',
+             'error'
+           );
+
+           return;
+
+         }
+
+
+         const maxSize =
+           10 * 1024 * 1024;
+
+
+         if (
+           file.size > maxSize
+         ) {
+
+           showInfoStatus(
+             'Ukuran PDF maksimal 10 MB.',
+             'error'
+           );
+
+           return;
+
+         }
+
+       }
+
+
+       const isEdit =
+         !!id;
+
+
+       try {
+
+         saveButton.disabled =
+           true;
+
+         cancelButton.disabled =
+           true;
+
+
+         saveButton.textContent =
+           isEdit
+             ? 'Menyimpan Perubahan...'
+             : 'Menyimpan...';
+
+
+         showInfoStatus(
+           'Memproses Informasi Publik...',
+           'loading'
+         );
+
+
+         showUploadStatus(
+           file
+             ? 'Mempersiapkan dokumen PDF...'
+             : '',
+           file
+             ? 'loading'
+             : ''
+         );
+
+
+         // ==============================================
+         // BACA PDF
+         // ==============================================
+
+         let fileData = '';
+         let fileName = '';
+
+
+         if (file) {
+
+           fileName =
+             file.name;
+
+
+           fileData =
+             await new Promise(
+               function (
+                 resolve,
+                 reject
+               ) {
+
+                 const reader =
+                   new FileReader();
+
+
+                 reader.onload =
+                   function (event) {
+
+                     const result =
+                       event.target.result;
+
+
+                     const comma =
+                       result.indexOf(',');
+
+
+                     resolve(
+                       comma >= 0
+                         ? result.substring(
+                             comma + 1
+                           )
+                         : result
+                     );
+
+                   };
+
+
+                 reader.onerror =
+                   function () {
+
+                     reject(
+                       new Error(
+                         'Gagal membaca file PDF.'
+                       )
+                     );
+
+                   };
+
+
+                 reader.readAsDataURL(
+                   file
+                 );
+
+               }
+             );
+
+         }
+
+
+         // ==============================================
+         // PAYLOAD
+         // ==============================================
+
+         const payload = {
+
+           action:
+             'simpanInformasiPublik',
+
+           token:
+             getAdminToken(),
+
+           id:
+             id,
+
+           judul:
+             judul,
+
+           jenis:
+             jenis,
+
+           tahun:
+             tahun,
+
+           status:
+             status,
+
+           fileName:
+             fileName,
+
+           fileData:
+             fileData
+
+         };
+
+
+         // ==============================================
+         // KIRIM KE APPS SCRIPT
+         // ==============================================
+
+         const response =
+           await fetch(
+             API_URL,
+             {
+               method: 'POST',
+
+               headers: {
+                 'Content-Type':
+                   'text/plain;charset=utf-8'
+               },
+
+               body:
+                 JSON.stringify(
+                   payload
+                 )
+             }
+           );
+
+
+         if (!response.ok) {
+
+           throw new Error(
+             'HTTP Error ' +
+             response.status
+           );
+
+         }
+
+
+         const result =
+           await response.json();
+
+
+         console.log(
+           'HASIL SIMPAN INFORMASI PUBLIK:',
+           result
+         );
+
+
+         if (
+           !result ||
+           result.success !== true
+         ) {
+
+           throw new Error(
+             result &&
+             result.message
+               ? result.message
+               : 'Informasi Publik gagal disimpan.'
+           );
+
+         }
+
+
+         // ==============================================
+         // SUKSES
+         // ==============================================
+
+         showInfoStatus(
+           isEdit
+             ? 'Informasi Publik berhasil diperbarui.'
+             : 'Informasi Publik berhasil ditambahkan. ID: ' +
+               (result.id || ''),
+           'success'
+         );
+
+
+         showUploadStatus(
+           file
+             ? 'Dokumen PDF berhasil disimpan.'
+             : '',
+           file
+             ? 'success'
+             : ''
+         );
+
+
+         resetInformasiPublikForm();
+
+         await loadInformasiPublikAdmin();
+
+
+       } catch (error) {
+
+         console.error(
+           'Simpan Informasi Publik error:',
+           error
+         );
+
+
+         showInfoStatus(
+           'Gagal: ' +
+           (
+             error.message ||
+             'Terjadi kesalahan.'
+           ),
+           'error'
+         );
+
+
+       } finally {
+
+         saveButton.disabled =
+           false;
+
+         cancelButton.disabled =
+           false;
+
+
+         saveButton.textContent =
+           idInput.value
+             ? 'Simpan Perubahan'
+             : 'Simpan Informasi';
+
+       }
+
+     }
+   );
+
+
+   // =====================================================
+   // BATAL EDIT
+   // =====================================================
+
+   if (cancelButton) {
+
+     cancelButton.addEventListener(
+       'click',
+       function () {
+
+         resetInformasiPublikForm();
+
+       }
+     );
+
+   }
+
+
+   // =====================================================
+   // REFRESH
+   // =====================================================
+
+   if (refreshButton) {
+
+     refreshButton.addEventListener(
+       'click',
+       function () {
+
+         loadInformasiPublikAdmin();
+
+       }
+     );
+
+   }
+
+
+   // =====================================================
+   // DEFAULT
+   // =====================================================
+
+   tahunInput.value =
+     new Date().getFullYear();
+
+   statusInput.value =
+     'Published';
+
+
+   loadInformasiPublikAdmin();
+
+ });
