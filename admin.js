@@ -4364,6 +4364,9 @@ if (logoutButton) {
    const jenisInput =
      document.getElementById('informasiPublikJenis');
 
+   const kategoriInput =
+  document.getElementById('informasiPublikKategori');
+
    const tahunInput =
      document.getElementById('informasiPublikTahun');
 
@@ -4398,6 +4401,118 @@ if (logoutButton) {
 
    let informasiPublikData = [];
 
+   const kategoriInformasiPublik = {
+
+  'Berkala': [
+    'Laporan Kegiatan',
+    'Laporan Kinerja',
+    'Laporan Keuangan',
+    'SAKIP',
+    'Renstra',
+    'DIPA',
+    'Program Kerja',
+    'LHKPN Kakanwil',
+    'Laporan PPID',
+    'Laporan BMN',
+    'Informasi Kepegawaian',
+    'Publikasi Statistik',
+    'Informasi Barang jasa'
+  ],
+
+  'Setiap Saat': [
+    'Daftar Informasi Publik',
+    'Daftar Informasi Dikecualikan'
+  ],
+
+  'Serta Merta': []
+
+};
+
+
+function updateInformasiPublikKategori() {
+
+  if (!kategoriInput) {
+    return;
+  }
+
+  const jenis =
+    jenisInput
+      ? jenisInput.value
+      : '';
+
+  kategoriInput.innerHTML = '';
+
+  if (!jenis) {
+
+    kategoriInput.disabled = true;
+
+    const option =
+      document.createElement('option');
+
+    option.value = '';
+
+    option.textContent =
+      '-- Pilih Jenis Informasi Terlebih Dahulu --';
+
+    kategoriInput.appendChild(option);
+
+    return;
+  }
+
+  const daftarKategori =
+    kategoriInformasiPublik[jenis] || [];
+
+  kategoriInput.disabled =
+    daftarKategori.length === 0;
+
+  if (daftarKategori.length === 0) {
+
+    const option =
+      document.createElement('option');
+
+    option.value = '';
+
+    option.textContent =
+      '-- Tidak Ada Kategori --';
+
+    kategoriInput.appendChild(option);
+
+    return;
+  }
+
+  const defaultOption =
+    document.createElement('option');
+
+  defaultOption.value = '';
+
+  defaultOption.textContent =
+    '-- Pilih Kategori --';
+
+  kategoriInput.appendChild(defaultOption);
+
+  daftarKategori.forEach(function (kategori) {
+
+    const option =
+      document.createElement('option');
+
+    option.value = kategori;
+
+    option.textContent = kategori;
+
+    kategoriInput.appendChild(option);
+
+
+    if (jenisInput) {
+
+  jenisInput.addEventListener(
+    'change',
+    updateInformasiPublikKategori
+  );
+
+}
+  });
+
+}
 
    // =====================================================
    // HELPER
