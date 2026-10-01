@@ -5587,3 +5587,145 @@ body.accessibility-reduced-motion *::after {
   }
 
 }
+
+/* =========================================
+   INFOGRAFIS MAKLUMAT & BIAYA LAYANAN
+   ========================================= */
+
+.infografis-card {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px;
+  box-sizing: border-box;
+
+  background: #ffffff;
+  border: 1px solid #e2e9e5;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(26, 54, 41, 0.04);
+}
+
+.infografis-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.infografis-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 300px);
+  object-fit: contain;
+  border-radius: 7px;
+}
+
+
+/* =========================================
+   DESKTOP
+   ========================================= */
+
+@media (min-width: 769px) {
+
+  .infografis-card {
+    max-width: 1440px;
+    padding: 8px;
+  }
+
+  .infografis-wrapper {
+    max-height: calc(100vh - 285px);
+  }
+
+  .infografis-image {
+    max-width: 100%;
+    max-height: calc(100vh - 300px);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .page-content {
+    width: 100%;
+    padding: 12px 10px 20px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .infografis-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 9px;
+  }
+
+  .infografis-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .infografis-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    border-radius: 5px;
+  }
+
+}
+
+
+/* =========================================
+   HP KECIL
+   ========================================= */
+
+@media (max-width: 480px) {
+
+  .page-content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .infografis-card {
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  .infografis-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+}
+
+
+/* =========================================
+   CEGAH HORIZONTAL SCROLL
+   ========================================= */
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
