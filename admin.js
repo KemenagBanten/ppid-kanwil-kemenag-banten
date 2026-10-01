@@ -4976,6 +4976,7 @@ kategoriInput.value =
 
        const tahun =
          tahunInput.value;
+       console.log('TAHUN YANG DIKIRIM:', tahun);
 
        const status =
          statusInput.value;
