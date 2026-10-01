@@ -1868,18 +1868,28 @@ function renderKategori(type) {
   const categories = kategoriInformasiPublik[type] || [];
 
   categories.forEach(function(category) {
-    const button = document.createElement('button');
+  const button = document.createElement('button');
 
-    button.type = 'button';
-    button.className = 'kategori-item';
-    button.textContent = category;
+  button.type = 'button';
+  button.className = 'kategori-item';
+  button.textContent = category;
 
-    button.addEventListener('click', function() {
-      showDocuments(type, category);
-    });
+  button.addEventListener('click', function() {
 
-    kategoriList.appendChild(button);
+    if (category === 'Informasi Kelembagaan') {
+      window.open(
+        'https://banten.kemenag.go.id/profil',
+        '_blank',
+        'noopener,noreferrer'
+      );
+      return;
+    }
+
+    showDocuments(type, category);
   });
+
+  kategoriList.appendChild(button);
+});
 }
 
 function showDocuments(type, category) {
