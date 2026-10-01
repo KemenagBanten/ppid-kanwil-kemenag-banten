@@ -4490,19 +4490,21 @@ function updateInformasiPublikKategori() {
 
   kategoriInput.appendChild(defaultOption);
 
-  daftarKategori.forEach(function (kategori) {
+daftarKategori.forEach(function (kategori) {
 
-    const option =
-      document.createElement('option');
+  const option =
+    document.createElement('option');
 
-    option.value = kategori;
+  option.value = kategori;
 
-    option.textContent = kategori;
+  option.textContent = kategori;
 
-    kategoriInput.appendChild(option);
+  kategoriInput.appendChild(option);
 
+});
 
-    if (jenisInput) {
+}
+if (jenisInput) {
 
   jenisInput.addEventListener(
     'change',
@@ -4510,10 +4512,6 @@ function updateInformasiPublikKategori() {
   );
 
 }
-  });
-
-}
-
    // =====================================================
    // HELPER
    // =====================================================
