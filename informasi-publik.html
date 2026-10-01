@@ -33,129 +33,428 @@
 }
 
 
- /* =====================================================
-   TOOLBAR
+/* =====================================================
+   INFORMASI PUBLIK - NAVIGASI UTAMA
 ===================================================== */
 
-.toolbar {
-  display: flex;
-  flex-direction: column;
+.informasi-navigation {
+  width: 100%;
+}
+
+
+/* =====================================================
+   KARTU JENIS INFORMASI
+===================================================== */
+
+.informasi-type-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  margin-bottom: 10px;
 }
 
-.search-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: #7a8781;
-  pointer-events: none;
-}
-
-#searchInput {
-  width: 100%;
-  height: 44px;
-  padding: 0 16px 0 44px;
-  box-sizing: border-box;
-  border: 1px solid #dfe7e2;
-  border-radius: 9px;
-  background: #ffffff;
-  color: #34433b;
-  font-family: inherit;
-  font-size: 13px;
-  outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-#searchInput:focus {
-  border-color: #0f5132;
-  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter-btn {
+.informasi-type-card {
   appearance: none;
   -webkit-appearance: none;
-  border: 1px solid #dfe7e2;
-  background: #ffffff;
-  color: #53615a;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  padding: 9px 15px;
-  min-height: 38px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-flex;
+
+  width: 100%;
+  min-height: 112px;
+
+  padding: 20px;
+
+  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 15px;
+
+  text-align: left;
+
+  background: #ffffff;
+
+  border: 1px solid #dfe7e2;
+  border-radius: 14px;
+
+  color: #34433b;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.filter-btn:hover {
-  background: #f4f8f5;
-  border-color: #cbdad1;
+.informasi-type-card:hover {
+  background: #f8fbf9;
+  border-color: #bfd4c8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(26, 54, 41, 0.06);
+}
+
+.informasi-type-card.active {
+  background: #f1f7f4;
+  border-color: #0f5132;
+  box-shadow: 0 6px 18px rgba(15, 81, 50, 0.08);
+}
+
+.informasi-type-icon {
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #e9f5ef;
+
+  font-size: 21px;
+}
+
+.informasi-type-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.informasi-type-content strong {
+  color: #263a30;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.informasi-type-content small {
+  color: #718078;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.informasi-type-arrow {
+  margin-left: auto;
+
+  color: #789087;
+
+  font-size: 24px;
+  line-height: 1;
+}
+
+.informasi-type-card.active
+.informasi-type-arrow {
   color: #0f5132;
 }
 
-.filter-btn.active {
-  background: #0f5132;
-  border-color: #0f5132;
-  color: #ffffff;
-  font-weight: 600;
-  box-shadow: 0 4px 10px rgba(15, 81, 50, 0.12);
+
+/* =====================================================
+   PANEL KATEGORI
+===================================================== */
+
+.kategori-panel {
+  margin-top: 36px;
 }
 
-.informasi-sort {
+.kategori-header {
+  margin-bottom: 16px;
+}
+
+.kategori-eyebrow {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0f5132;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: 0.08em;
+}
+
+.kategori-header h2,
+.dokumen-panel-title h2,
+.serta-merta-content h2 {
+  margin: 0;
+
+  color: #263a30;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.kategori-header p {
+  margin: 7px 0 0;
+
+  color: #718078;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   DAFTAR KATEGORI
+===================================================== */
+
+.kategori-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+}
+
+.kategori-item {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 12px 15px;
+
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 0;
-}
 
-.informasi-sort label {
-  color: #66736c;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-#informasiSort {
-  height: 38px;
-  padding: 0 12px;
-  border: 1px solid #dfe7e2;
-  border-radius: 8px;
   background: #ffffff;
-  color: #53615a;
+
+  border: 1px solid #e2e9e5;
+  border-radius: 9px;
+
+  color: #34433b;
+
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
+
+  text-align: left;
+
   cursor: pointer;
-  outline: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
-#informasiSort:focus {
-  border-color: #0f5132;
-  box-shadow: 0 0 0 3px rgba(15, 81, 50, 0.08);
-} 
+.kategori-item:hover {
+  background: #f5f9f6;
+  border-color: #bfd4c8;
+  color: #0f5132;
+  transform: translateX(2px);
+}
+
+.kategori-item::after {
+  content: "›";
+
+  margin-left: auto;
+
+  color: #8a9891;
+
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.kategori-item:hover::after {
+  color: #0f5132;
+}
+
+
+/* =====================================================
+   PANEL SERTA MERTA
+===================================================== */
+
+.serta-merta-panel {
+  margin-top: 36px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  padding: 25px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e9e5;
+  border-radius: 14px;
+
+  box-shadow:
+    0 6px 24px rgba(26, 54, 41, 0.045);
+}
+
+.serta-merta-icon {
+  width: 46px;
+  height: 46px;
+
+  flex: 0 0 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #f1f7f4;
+
+  font-size: 21px;
+}
+
+.serta-merta-content {
+  flex: 1;
+}
+
+.serta-merta-content p {
+  margin: 8px 0 16px;
+
+  color: #68766f;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.serta-merta-empty {
+  display: inline-block;
+
+  padding: 9px 12px;
+
+  background: #f5f7f6;
+
+  border: 1px solid #e3e9e5;
+  border-radius: 7px;
+
+  color: #718078;
+
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   PANEL DOKUMEN
+===================================================== */
+
+.dokumen-panel {
+  margin-top: 36px;
+}
+
+.dokumen-panel-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  margin-bottom: 18px;
+}
+
+.back-button {
+  flex: 0 0 auto;
+
+  border: 1px solid #dfe7e2;
+
+  background: #ffffff;
+
+  color: #52615a;
+
+  padding: 8px 12px;
+
+  border-radius: 8px;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.back-button:hover {
+  background: #f1f7f4;
+  border-color: #bfd4c8;
+  color: #0f5132;
+}
+
+.dokumen-panel-title {
+  min-width: 0;
+}
+
+
+/* =====================================================
+   TOOLBAR DOKUMEN
+===================================================== */
+
+.dokumen-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 10px;
+}
+
+.dokumen-toolbar .search-wrapper {
+  flex: 1;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 800px) {
+
+  .informasi-type-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .kategori-list {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 680px) {
+
+  .informasi-type-card {
+    min-height: 96px;
+    padding: 16px;
+  }
+
+  .informasi-type-icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+    font-size: 18px;
+  }
+
+  .kategori-panel,
+  .dokumen-panel,
+  .serta-merta-panel {
+    margin-top: 28px;
+  }
+
+  .dokumen-panel-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dokumen-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .dokumen-toolbar .informasi-sort {
+    justify-content: flex-start;
+  }
+
+}
     /* =====================================================
        RESULT HEADER
     ===================================================== */
@@ -871,10 +1170,185 @@
   <main>
 
 
-    <!-- TOOLBAR -->
+   <!-- =====================================================
+     NAVIGASI INFORMASI PUBLIK
+===================================================== -->
 
-    <section class="toolbar">
+<section class="informasi-navigation">
 
+  <!-- KARTU JENIS INFORMASI -->
+  <div class="informasi-type-cards">
+
+    <button
+      type="button"
+      class="informasi-type-card active"
+      data-type="Berkala"
+    >
+      <span class="informasi-type-icon">📋</span>
+
+      <span class="informasi-type-content">
+        <strong>Berkala</strong>
+        <small>
+          Informasi yang tersedia secara berkala
+        </small>
+      </span>
+
+      <span class="informasi-type-arrow">›</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="informasi-type-card"
+      data-type="Setiap Saat"
+    >
+      <span class="informasi-type-icon">📁</span>
+
+      <span class="informasi-type-content">
+        <strong>Setiap Saat</strong>
+        <small>
+          Informasi yang tersedia setiap saat
+        </small>
+      </span>
+
+      <span class="informasi-type-arrow">›</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="informasi-type-card"
+      data-type="Serta Merta"
+    >
+      <span class="informasi-type-icon">📢</span>
+
+      <span class="informasi-type-content">
+        <strong>Serta Merta</strong>
+        <small>
+          Informasi yang perlu segera diketahui masyarakat
+        </small>
+      </span>
+
+      <span class="informasi-type-arrow">›</span>
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================
+       PANEL KATEGORI
+  =================================================== -->
+
+  <div
+    id="kategoriPanel"
+    class="kategori-panel"
+  >
+
+    <div class="kategori-header">
+
+      <div>
+        <span class="kategori-eyebrow">
+          INFORMASI PUBLIK
+        </span>
+
+        <h2 id="kategoriTitle">
+          Informasi Berkala
+        </h2>
+
+        <p id="kategoriDescription">
+          Pilih jenis informasi untuk melihat dokumen
+          yang tersedia.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div
+      id="kategoriList"
+      class="kategori-list"
+    ></div>
+
+  </div>
+
+
+  <!-- ===================================================
+       PANEL SERTA MERTA
+  =================================================== -->
+
+  <div
+    id="sertaMertaPanel"
+    class="serta-merta-panel"
+    style="display:none;"
+  >
+
+    <div class="serta-merta-icon">
+      📢
+    </div>
+
+    <div class="serta-merta-content">
+
+      <span class="kategori-eyebrow">
+        INFORMASI SERTA MERTA
+      </span>
+
+      <h2>
+        Informasi Aktual
+      </h2>
+
+      <p>
+        Informasi serta-merta akan ditampilkan apabila
+        terdapat informasi yang perlu segera diketahui
+        masyarakat.
+      </p>
+
+      <div class="serta-merta-empty">
+        Belum terdapat informasi serta-merta yang diterbitkan.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================
+       PANEL DOKUMEN
+  =================================================== -->
+
+  <div
+    id="dokumenPanel"
+    class="dokumen-panel"
+    style="display:none;"
+  >
+
+    <div class="dokumen-panel-header">
+
+      <button
+        type="button"
+        id="backToKategori"
+        class="back-button"
+      >
+        ← Kembali
+      </button>
+
+      <div class="dokumen-panel-title">
+
+        <span class="kategori-eyebrow">
+          INFORMASI PUBLIK
+        </span>
+
+        <h2 id="dokumenTitle">
+          -
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <!-- PENCARIAN DOKUMEN -->
+
+    <div class="dokumen-toolbar">
 
       <div class="search-wrapper">
 
@@ -882,85 +1356,44 @@
           🔎
         </span>
 
-
         <input
           type="text"
           id="searchInput"
-          placeholder="Cari judul, jenis informasi, atau kata kunci..."
+          placeholder="Cari dokumen..."
           autocomplete="off"
         >
 
       </div>
 
 
-      <!-- FILTER -->
+      <div class="informasi-sort">
 
-      <div
-        class="filters"
-        id="filters"
-      >
+        <label for="informasiSort">
+          Urutkan:
+        </label>
 
-        <button
-          type="button"
-          class="filter-btn active"
-          data-filter="all"
-        >
-          Semua
-        </button>
+        <select id="informasiSort">
 
+          <option value="terbaru">
+            Terbaru → Terlama
+          </option>
 
-        <button
-          type="button"
-          class="filter-btn"
-          data-filter="Berkala"
-        >
-          Berkala
-        </button>
+          <option value="terlama">
+            Terlama → Terbaru
+          </option>
 
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-filter="Serta Merta"
-        >
-          Serta-Merta
-        </button>
-
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-filter="Setiap Saat"
-        >
-          Setiap Saat
-        </button>
+        </select>
 
       </div>
 
-    </section>
-<div class="informasi-sort">
-  <label for="informasiSort">Urutkan:</label>
-
-  <select id="informasiSort">
-    <option value="terbaru">Terbaru → Terlama</option>
-    <option value="terlama">Terlama → Terbaru</option>
-  </select>
-</div>
-
-    <!-- RESULT HEADER -->
-
-    <div class="result-header">
-
-      <h2>
-        Daftar Informasi
-      </h2>
-
-      <span id="resultCount">
-        Memuat data...
-      </span>
-
     </div>
+<div class="result-header" id="resultHeader">
+  <h2>Daftar Dokumen</h2>
+  <span id="resultCount"></span>
+</div>
+  </div>
 
+</section>
 
     <!-- ERROR -->
 
@@ -1024,14 +1457,45 @@
     ===================================================== */
 
     let allData = [];
+let activeType = 'Berkala';
+let activeCategory = '';
+let currentPage = 1;
+let pageSize = 10;
 
-    let activeFilter = 'all';
+// =====================================================
+// KONFIGURASI KATEGORI INFORMASI PUBLIK
+// =====================================================
 
-    let currentPage = 1;
+const kategoriInformasiPublik = {
+  'Berkala': [
+    'Laporan Kegiatan',
+    'Laporan Kinerja',
+    'Laporan Keuangan',
+    'SAKIP',
+    'Renstra',
+    'DIPA',
+    'Program Kerja',
+    'LHKPN Kakanwil',
+    'Laporan PPID',
+    'Laporan BMN',
+    'Informasi Kepegawaian',
+    'Publikasi Statistik',
+    'Informasi Barjas'
+  ],
 
-    const pageSize = 10;
+  'Setiap Saat': [
+    'DIP',
+    'DIK'
+  ]
+};
 
 
+// =====================================================
+// STATE NAVIGASI
+// =====================================================
+
+let selectedType = 'Berkala';
+let selectedCategory = '';
     /* =====================================================
        ELEMENT
     ===================================================== */
@@ -1056,6 +1520,29 @@
 
     const informasiSort =
   document.getElementById('informasiSort');
+
+    // =====================================================
+// SORTING DOKUMEN
+// =====================================================
+
+if (informasiSort) {
+
+  informasiSort.addEventListener(
+    'change',
+    function() {
+
+      if (!activeCategory) {
+        return;
+      }
+
+      currentPage = 1;
+
+      applyDocumentFilter();
+
+    }
+  );
+
+}
 
 
        /* =====================================================
@@ -1265,12 +1752,14 @@
           'none';
 
         dataList.style.display =
-          'flex';
+          'none';
 
 
         currentPage = 1;
 
-        applyFilter();
+hideDocumentResult();
+
+showInformasiType('Berkala');
 
 
       } catch (error) {
@@ -1305,187 +1794,323 @@
     }
 
 
-    /* =====================================================
-       FILTER BUTTON
-    ===================================================== */
+// =====================================================
+// NAVIGASI JENIS INFORMASI
+// =====================================================
 
-    document
-      .querySelectorAll(
-        '.filter-btn'
-      )
-      .forEach(
-        function(button) {
+const typeCards = document.querySelectorAll('.informasi-type-card');
 
-          button.addEventListener(
-            'click',
-            function() {
+const kategoriPanel = document.getElementById('kategoriPanel');
+const kategoriTitle = document.getElementById('kategoriTitle');
+const kategoriDescription = document.getElementById('kategoriDescription');
+const kategoriList = document.getElementById('kategoriList');
 
-              document
-                .querySelectorAll(
-                  '.filter-btn'
-                )
-                .forEach(
-                  function(btn) {
+const sertaMertaPanel = document.getElementById('sertaMertaPanel');
 
-                    btn.classList.remove(
-                      'active'
-                    );
+const dokumenPanel = document.getElementById('dokumenPanel');
+const dokumenTitle = document.getElementById('dokumenTitle');
 
-                  }
-                );
+const backToKategori = document.getElementById('backToKategori');
 
+typeCards.forEach(card => {
 
-              this.classList.add(
-                'active'
-              );
+  card.addEventListener('click', () => {
 
+    const type = card.dataset.type;
 
-              activeFilter =
-                this.dataset.filter;
+    showInformasiType(type);
 
-
-              currentPage = 1;
-
-              applyFilter();
-
-            }
-          );
-
-        }
-      );
-
-
-    /* =====================================================
-       SEARCH
-    ===================================================== */
-
-    searchInput.addEventListener(
-      'input',
-      function() {
-
-        currentPage = 1;
-
-        applyFilter();
-
-      }
-    );
-
-informasiSort.addEventListener(
-  'change',
-  function() {
-
-    currentPage = 1;
-
-    applyFilter();
-
-  }
-);
-
-    
-    /* =====================================================
-       APPLY FILTER
-    ===================================================== */
-
-    function applyFilter() {
-
-      const keyword =
-        searchInput.value
-          .toLowerCase()
-          .trim();
-
-
-      const filtered =
-        allData.filter(
-          function(row) {
-
-            const jenis =
-              String(
-                row.jenis ||
-                row.jenis_informasi ||
-                ''
-              );
-
-
-            const searchText = [
-  row.id,
-  row.judul,
-  row.jenis,
-  row.tahun,
-  row.status
-].join(' ').toLowerCase();
-
-
-            const matchesSearch =
-              !keyword ||
-              searchText.includes(
-                keyword
-              );
-
-
-            const normalizedJenis =
-              jenis
-                .toLowerCase()
-                .replace(
-                  /\s+/g,
-                  ' '
-                )
-                .trim();
-
-
-            const normalizedFilter =
-              activeFilter
-                .toLowerCase()
-                .replace(
-                  /\s+/g,
-                  ' '
-                )
-                .trim();
-
-
-            const matchesFilter =
-              activeFilter === 'all' ||
-              normalizedJenis ===
-                normalizedFilter;
-
-
-            return (
-              matchesSearch &&
-              matchesFilter
-            );
-
-          }
-        );
-
-      /* =================================================
-         SORT BERDASARKAN TAHUN
-      ================================================= */
-
-     filtered.sort(function(a, b) {
-
-  const tahunA = parseInt(
-    String(a.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
-
-  const tahunB = parseInt(
-    String(b.tahun || '').match(/\d{4}/)?.[0] || '0',
-    10
-  );
-
-  if (informasiSort.value === 'terlama') {
-    return tahunA - tahunB;
-  }
-
-  return tahunB - tahunA;
+  });
 
 });
-      
-     renderData(
-        filtered
-      );
+
+    function showInformasiType(type) {
+  selectedType = type;
+  selectedCategory = '';
+
+  activeType = type;
+  activeCategory = '';
+
+  if (type === 'Serta Merta') {
+    kategoriPanel.style.display = 'none';
+    dokumenPanel.style.display = 'none';
+    sertaMertaPanel.style.display = 'block';
+
+    hideDocumentResult();
+    return;
+  }
+
+  sertaMertaPanel.style.display = 'none';
+  dokumenPanel.style.display = 'none';
+  kategoriPanel.style.display = 'block';
+
+  renderKategori(type);
+  hideDocumentResult();
+}
+
+function renderKategori(type) {
+  kategoriTitle.textContent = type;
+
+  if (type === 'Berkala') {
+    kategoriDescription.textContent =
+      'Pilih jenis informasi berkala yang ingin Anda lihat.';
+  } else if (type === 'Setiap Saat') {
+    kategoriDescription.textContent =
+      'Pilih jenis informasi yang tersedia setiap saat.';
+  }
+
+  kategoriList.innerHTML = '';
+
+  const categories = kategoriInformasiPublik[type] || [];
+
+  categories.forEach(function(category) {
+    const button = document.createElement('button');
+
+    button.type = 'button';
+    button.className = 'kategori-item';
+    button.textContent = category;
+
+    button.addEventListener('click', function() {
+      showDocuments(type, category);
+    });
+
+    kategoriList.appendChild(button);
+  });
+}
+
+function showDocuments(type, category) {
+  selectedType = type;
+  selectedCategory = category;
+
+  activeType = type;
+  activeCategory = category;
+
+  kategoriPanel.style.display = 'none';
+  sertaMertaPanel.style.display = 'none';
+  dokumenPanel.style.display = 'block';
+
+  dokumenTitle.textContent = category;
+
+  if (searchInput) {
+    searchInput.value = '';
+  }
+
+  currentPage = 1;
+
+  showDocumentResult();
+  applyDocumentFilter();
+}
+
+if (backToKategori) {
+  backToKategori.addEventListener('click', function() {
+    dokumenPanel.style.display = 'none';
+    hideDocumentResult();
+
+    activeCategory = '';
+    selectedCategory = '';
+
+    kategoriPanel.style.display = 'block';
+    renderKategori(selectedType);
+  });
+}
+
+function showDocumentResult() {
+  const resultHeader = document.getElementById('resultHeader');
+
+  if (resultHeader) {
+    resultHeader.style.display = 'flex';
+  }
+
+  if (dataList) {
+    dataList.style.display = 'block';
+  }
+
+  if (pagination) {
+    pagination.style.display = 'flex';
+  }
+}
+
+function hideDocumentResult() {
+  const resultHeader = document.getElementById('resultHeader');
+
+  if (resultHeader) {
+    resultHeader.style.display = 'none';
+  }
+
+  if (dataList) {
+    dataList.style.display = 'none';
+  }
+
+  if (pagination) {
+    pagination.style.display = 'none';
+  }
+}
+
+    // =====================================================
+// PENCARIAN DOKUMEN
+// =====================================================
+
+if (searchInput) {
+
+  searchInput.addEventListener(
+    'input',
+    function() {
+
+      if (!activeCategory) {
+        return;
+      }
+
+      currentPage = 1;
+
+      applyDocumentFilter();
+
+    }
+  );
+
+}
+    if (informasiSort) {
+  informasiSort.addEventListener(
+    'change',
+    function() {
+      if (!activeCategory) {
+        return;
+      }
+
+      currentPage = 1;
+      applyDocumentFilter();
+    }
+  );
+}
+    
+   // =====================================================
+// FILTER DOKUMEN BERDASARKAN KATEGORI
+// =====================================================
+
+function applyDocumentFilter() {
+
+  // Belum memilih kategori
+  if (!activeCategory) {
+
+    renderData([]);
+
+    return;
+  }
+
+
+  const searchInput =
+    document.getElementById('searchInput');
+
+  const searchTerm =
+    (searchInput ? searchInput.value : '')
+      .toLowerCase()
+      .trim();
+
+
+  // -----------------------------------------------
+  // FILTER JENIS + KATEGORI
+  // -----------------------------------------------
+
+  let filtered = allData.filter(function(row) {
+
+    const rowType =
+      String(row.jenis || '')
+        .trim()
+        .toLowerCase();
+
+    const rowCategory =
+      String(row.kategori || '')
+        .trim()
+        .toLowerCase();
+
+    const targetType =
+      String(activeType || '')
+        .trim()
+        .toLowerCase();
+
+    const targetCategory =
+      String(activeCategory || '')
+        .trim()
+        .toLowerCase();
+
+
+    // Jenis informasi harus sesuai
+    if (rowType !== targetType) {
+      return false;
+    }
+
+
+    // Kategori harus sesuai
+    if (rowCategory !== targetCategory) {
+      return false;
+    }
+
+
+    // ---------------------------------------------
+    // PENCARIAN
+    // ---------------------------------------------
+
+    if (!searchTerm) {
+      return true;
+    }
+
+
+    const searchableText = [
+
+      row.judul,
+      row.kategori,
+      row.jenis,
+      row.tahun,
+      row.status
+
+    ]
+      .map(function(value) {
+        return String(value || '').toLowerCase();
+      })
+      .join(' ');
+
+
+    return searchableText.includes(searchTerm);
+
+  });
+
+
+  // -----------------------------------------------
+  // SORTING
+  // -----------------------------------------------
+
+  const sortSelect =
+    document.getElementById('informasiSort');
+
+  const sortValue =
+    sortSelect
+      ? sortSelect.value
+      : 'terbaru';
+
+
+  filtered.sort(function(a, b) {
+
+    const yearA =
+      Number(a.tahun || 0);
+
+    const yearB =
+      Number(b.tahun || 0);
+
+
+    if (sortValue === 'terlama') {
+
+      return yearA - yearB;
 
     }
 
+
+    return yearB - yearA;
+
+  });
+
+
+   renderData(filtered);
+
+}
 /* =====================================================
    RENDER DATA - TABEL
 ===================================================== */
@@ -1921,7 +2546,7 @@ const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
 
             currentPage--;
 
-            applyFilter();
+            applyDocumentFilter();
 
             window.scrollTo({
               top: 0,
@@ -2020,7 +2645,7 @@ const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
             currentPage =
               page;
 
-            applyFilter();
+            applyDocumentFilter();
 
             window.scrollTo({
               top: 0,
@@ -2066,7 +2691,7 @@ const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
 
             currentPage++;
 
-            applyFilter();
+            applyDocumentFilter();
 
             window.scrollTo({
               top: 0,
