@@ -4967,6 +4967,8 @@ function updateInformasiPublikKategori() {
        const jenis =
          jenisInput.value;
 
+       const kategori = kategoriInput.value;
+
        const tahun =
          tahunInput.value;
 
@@ -4996,20 +4998,20 @@ function updateInformasiPublikKategori() {
        }
 
 
-       if (!jenis) {
+      if (!jenis) {
+  showInfoStatus('Jenis informasi wajib dipilih.', 'error');
+  return;
+}
 
-         showInfoStatus(
-           'Jenis informasi wajib dipilih.',
-           'error'
-         );
+if (
+  jenis !== 'Serta Merta' &&
+  !kategori
+) {
+  showInfoStatus('Kategori informasi wajib dipilih.', 'error');
+  return;
+}
 
-         return;
-
-       }
-
-
-       if (!tahun) {
-
+if (!tahun) {
          showInfoStatus(
            'Tahun wajib diisi.',
            'error'
@@ -5199,21 +5201,13 @@ function updateInformasiPublikKategori() {
            token:
              getAdminToken(),
 
-           id:
-             id,
-
-           judul:
-             judul,
-
-           jenis:
-             jenis,
-
-           tahun:
-             tahun,
-
-           status:
-             status,
-
+           id: id,
+judul: judul,
+jenis: jenis,
+kategori: kategori,
+ringkasan: ringkasan,
+tahun: tahun,
+status: status
            fileName:
              fileName,
 
