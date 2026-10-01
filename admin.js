@@ -5210,7 +5210,6 @@ if (!tahun) {
 judul: judul,
 jenis: jenis,
 kategori: kategori,
-ringkasan: ringkasan,
 tahun: tahun,
 status: status,
            fileName:
