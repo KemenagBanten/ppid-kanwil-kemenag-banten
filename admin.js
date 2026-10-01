@@ -4789,6 +4789,13 @@ function updateInformasiPublikKategori() {
                    row,
                    ['judul']
                  );
+updateInformasiPublikKategori();
+
+kategoriInput.value =
+  getInfoValue(
+    row,
+    ['kategori']
+  );
 
                jenisInput.value =
                  getInfoValue(
@@ -5207,7 +5214,7 @@ jenis: jenis,
 kategori: kategori,
 ringkasan: ringkasan,
 tahun: tahun,
-status: status
+status: status,
            fileName:
              fileName,
 
