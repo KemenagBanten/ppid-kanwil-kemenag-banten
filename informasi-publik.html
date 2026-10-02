@@ -1227,10 +1227,11 @@
 
     <!-- INFORMASI BARANG/JASA -->
     <button
-      type="button"
-      class="informasi-type-card"
-      onclick="window.open('informasi-barang-jasa.html', '_blank')"
-    >
+  type="button"
+  class="informasi-type-card"
+  data-external="true"
+  onclick="window.open('informasi-barang-jasa.html', '_blank')"
+>
       <span class="informasi-type-icon">📦</span>
 
       <span class="informasi-type-content">
@@ -1936,10 +1937,14 @@
         function() {
 
           const type =
-            card.dataset.type;
+  card.dataset.type;
 
-          showInformasiType(
-            type
+if (card.dataset.external === 'true') {
+  return;
+}
+
+showInformasiType(
+  type
           );
 
         }
