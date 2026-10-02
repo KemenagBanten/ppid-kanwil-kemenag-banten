@@ -319,93 +319,9 @@
   line-height: 1.6;
 }
 
-    /* =====================================================
-   DAFTAR CARD SERTA MERTA
-===================================================== */
 
-.serta-merta-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: 18px;
-}
 
-.serta-merta-item {
-  padding: 18px 20px;
-
-  background: #ffffff;
-
-  border: 1px solid #e2e9e5;
-  border-radius: 12px;
-
-  box-shadow:
-    0 4px 16px rgba(26, 54, 41, 0.035);
-
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-.serta-merta-item:hover {
-  border-color: #bfd4c8;
-
-  box-shadow:
-    0 7px 20px rgba(26, 54, 41, 0.06);
-
-  transform: translateY(-1px);
-}
-
-.serta-merta-item-title {
-  color: #263a30;
-
-  font-size: 15px;
-  font-weight: 700;
-
-  line-height: 1.45;
-
-  margin-bottom: 6px;
-}
-
-.serta-merta-item-date {
-  color: #718078;
-
-  font-size: 11px;
-  font-weight: 500;
-
-  margin-bottom: 10px;
-}
-
-.serta-merta-item-content {
-  color: #52615a;
-
-  font-size: 13px;
-  line-height: 1.65;
-
-  white-space: pre-line;
-
-  margin-bottom: 14px;
-}
-
-.serta-merta-item-document {
-  margin-top: 10px;
-}
-    
-.serta-merta-empty {
-  display: inline-block;
-
-  padding: 9px 12px;
-
-  background: #f5f7f6;
-
-  border: 1px solid #e3e9e5;
-  border-radius: 7px;
-
-  color: #718078;
-
-  font-size: 12px;
-}
-
+ 
 
 /* =====================================================
    PANEL DOKUMEN
@@ -1351,31 +1267,66 @@
        PANEL SERTA MERTA
   =================================================== -->
 
-  <div
+ <div
   id="sertaMertaPanel"
   class="serta-merta-panel"
   style="display:none;"
 >
 
-  <div class="serta-merta-icon">
-    📢
+  <div class="dokumen-panel-header">
+
+    <div class="dokumen-panel-title">
+
+      <span class="kategori-eyebrow">
+        INFORMASI PUBLIK
+      </span>
+
+      <h2>
+        Informasi Serta Merta
+      </h2>
+
+    </div>
+
   </div>
 
-  <div class="serta-merta-content">
 
-    <span class="kategori-eyebrow">
-      INFORMASI SERTA MERTA
-    </span>
+  <div class="dokumen-toolbar">
 
-    <h2>
-      Informasi Aktual
-    </h2>
+    <div class="search-wrapper">
 
-    <p>
-      Informasi serta-merta yang perlu segera diketahui masyarakat.
-    </p>
+      <span class="search-icon">
+        🔎
+      </span>
 
-    <div id="sertaMertaList"></div>
+      <input
+        type="text"
+        id="searchInputSertaMerta"
+        placeholder="Cari informasi..."
+        autocomplete="off"
+      >
+
+    </div>
+
+
+    <div class="informasi-sort">
+
+      <label for="informasiSortSertaMerta">
+        Urutkan:
+      </label>
+
+      <select id="informasiSortSertaMerta">
+
+        <option value="terbaru">
+          Terbaru → Terlama
+        </option>
+
+        <option value="terlama">
+          Terlama → Terbaru
+        </option>
+
+      </select>
+
+    </div>
 
   </div>
 
@@ -1458,10 +1409,11 @@
       </div>
 
     </div>
-<div class="result-header" id="resultHeader">
-  <h2>Daftar Dokumen</h2>
-  <span id="resultCount"></span>
-</div>
+  </div>
+
+  <div class="result-header" id="resultHeader">
+    <h2>Daftar Informasi</h2>
+    <span id="resultCount"></span>
   </div>
 
 </section>
@@ -1508,1486 +1460,708 @@
 <div id="accessibility"></div>
   
   <script src="layout.js"></script>
-  <!-- =====================================================
-       SCRIPT
-  ===================================================== -->
+<script>
 
-  <script>
+  /* =====================================================
+     API
+  ===================================================== */
 
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
 
-    /* =====================================================
-       API
-    ===================================================== */
 
-    const API_URL =
-      'https://script.google.com/macros/s/AKfycby74M5l9jbsxZOHMq9_svivqRHK9xbK-Ms-iNfSmiggTlUjdnmQbfMC2OeuRVs3M2zT/exec';
+  /* =====================================================
+     STATE
+  ===================================================== */
 
+  let allData = [];
 
-    /* =====================================================
-       STATE
-    ===================================================== */
+  let activeType = 'Berkala';
 
-    let allData = [];
-let activeType = 'Berkala';
-let activeCategory = '';
-let currentPage = 1;
-let pageSize = 10;
+  let activeCategory = '';
 
-// =====================================================
-// KONFIGURASI KATEGORI INFORMASI PUBLIK
-// =====================================================
+  let currentPage = 1;
 
-const kategoriInformasiPublik = {
-  'Berkala': [
-    'Laporan Kegiatan',
-    'Laporan Kinerja',
-    'Laporan Keuangan',
-    'SAKIP',
-    'Renstra',
-    'DIPA',
-    'Program Kerja',
-    'LHKPN Kakanwil',
-    'Laporan PPID',
-    'Laporan BMN',
-    'Informasi Kepegawaian',
-    'Publikasi Statistik',
-    'Informasi Barang/Jasa'
-  ],
+  let pageSize = 10;
 
-  'Setiap Saat': [
-    'Informasi Kelembagaan',
-    'Daftar Informasi Publik',
-    'Daftar Informasi Dikecualikan'
-  ]
-};
 
+  /* =====================================================
+     KONFIGURASI KATEGORI INFORMASI PUBLIK
+  ===================================================== */
 
-// =====================================================
-// STATE NAVIGASI
-// =====================================================
+  const kategoriInformasiPublik = {
 
-let selectedType = 'Berkala';
-let selectedCategory = '';
-    /* =====================================================
-       ELEMENT
-    ===================================================== */
+    'Berkala': [
 
-    const dataList =
-      document.getElementById('dataList');
+      'Laporan Kegiatan',
 
-    const loading =
-      document.getElementById('loading');
+      'Laporan Kinerja',
 
-    const errorBox =
-      document.getElementById('error');
+      'Laporan Keuangan',
 
-    const resultCount =
-      document.getElementById('resultCount');
+      'SAKIP',
 
-    const searchInput =
-      document.getElementById('searchInput');
+      'Renstra',
 
-    const pagination =
-      document.getElementById('pagination');
+      'DIPA',
 
-    const informasiSort =
-  document.getElementById('informasiSort');
+      'Program Kerja',
 
-    // =====================================================
-// SORTING DOKUMEN
-// =====================================================
+      'LHKPN Kakanwil',
 
-if (informasiSort) {
+      'Laporan PPID',
 
-  informasiSort.addEventListener(
-    'change',
-    function() {
+      'Laporan BMN',
 
-      if (!activeCategory) {
-        return;
-      }
+      'Informasi Kepegawaian',
 
-      currentPage = 1;
+      'Publikasi Statistik',
 
-      applyDocumentFilter();
+      'Informasi Barang/Jasa'
 
-    }
-  );
+    ],
 
-}
+    'Setiap Saat': [
 
+      'Informasi Kelembagaan',
 
-       /* =====================================================
-       LOAD DATA
-    ===================================================== */
+      'Daftar Informasi Publik',
 
-    async function loadInformasiPublik() {
-
-      try {
-
-        loading.style.display =
-          'block';
-
-        dataList.style.display =
-          'none';
-
-        errorBox.style.display =
-          'none';
-
-
-        const [
-          informasiResponse,
-          dokumenResponse
-        ] = await Promise.all([
-
-          fetch(
-            API_URL +
-            '?action=informasi'
-          ),
-
-          fetch(
-            API_URL +
-            '?action=dokumen'
-          )
-
-        ]);
-
-
-        if (
-          !informasiResponse.ok
-        ) {
-
-          throw new Error(
-            'HTTP Error Informasi: ' +
-            informasiResponse.status
-          );
-
-        }
-
-
-        if (
-          !dokumenResponse.ok
-        ) {
-
-          throw new Error(
-            'HTTP Error Dokumen: ' +
-            dokumenResponse.status
-          );
-
-        }
-
-
-        const [
-          informasiResult,
-          dokumenResult
-        ] = await Promise.all([
-
-          informasiResponse.json(),
-
-          dokumenResponse.json()
-
-        ]);
-
-
-        if (
-          !informasiResult.success
-        ) {
-
-          throw new Error(
-            informasiResult.message ||
-            'Data informasi gagal dimuat.'
-          );
-
-        }
-
-
-        if (
-          !dokumenResult.success
-        ) {
-
-          throw new Error(
-            dokumenResult.message ||
-            'Data dokumen gagal dimuat.'
-          );
-
-        }
-
-
-        const informasiData =
-          Array.isArray(
-            informasiResult.data
-          )
-            ? informasiResult.data
-            : [];
-
-
-        const dokumenData =
-          Array.isArray(
-            dokumenResult.data
-          )
-            ? dokumenResult.data
-            : [];
-
-
-        /* =================================================
-           MASTER DOKUMEN MAP
-        ================================================= */
-
-        const dokumenMap = {};
-
-
-        dokumenData.forEach(
-          function(dokumen) {
-
-            const informasiId =
-              String(
-                dokumen.informasi_id ||
-                ''
-              ).trim();
-
-
-            if (!informasiId) return;
-
-
-            if (
-              !dokumenMap[
-                informasiId
-              ]
-            ) {
-
-              dokumenMap[
-                informasiId
-              ] = [];
-
-            }
-
-
-            if (
-              String(
-                dokumen.status || ''
-              ).toLowerCase()
-              === 'published'
-            ) {
-
-              dokumenMap[
-                informasiId
-              ].push(
-                dokumen
-              );
-
-            }
-
-          }
-        );
-
-
-        /* =================================================
-           GABUNG INFORMASI + DOKUMEN
-        ================================================= */
-
-        allData =
-          informasiData
-            .filter(
-              function(row) {
-
-                return String(
-                  row.status || ''
-                ).toLowerCase()
-                === 'published';
-
-              }
-            )
-            .map(
-              function(row) {
-
-                const id =
-                  String(
-                    row.id || ''
-                  ).trim();
-
-
-                return {
-
-                  ...row,
-
-                  dokumen:
-                    dokumenMap[id] ||
-                    []
-
-                };
-
-              }
-            );
-
-
-        loading.style.display =
-          'none';
-
-        dataList.style.display =
-          'none';
-
-
-        currentPage = 1;
-
-hideDocumentResult();
-
-showInformasiType('Berkala');
-
-
-      } catch (error) {
-
-        console.error(
-          'LOAD INFORMASI ERROR:',
-          error
-        );
-
-
-        loading.style.display =
-          'none';
-
-        dataList.style.display =
-          'none';
-
-
-        errorBox.style.display =
-          'block';
-
-
-        errorBox.textContent =
-          'Gagal memuat informasi publik: ' +
-          error.message;
-
-
-        resultCount.textContent =
-          'Data tidak tersedia';
-
-      }
-
-    }
-
-
-// =====================================================
-// NAVIGASI JENIS INFORMASI
-// =====================================================
-
-const typeCards = document.querySelectorAll('.informasi-type-card');
-
-const kategoriPanel = document.getElementById('kategoriPanel');
-const kategoriTitle = document.getElementById('kategoriTitle');
-const kategoriDescription = document.getElementById('kategoriDescription');
-const kategoriList = document.getElementById('kategoriList');
-
-const sertaMertaPanel = document.getElementById('sertaMertaPanel');
-    const sertaMertaList =
-  document.getElementById('sertaMertaList');
-
-const dokumenPanel = document.getElementById('dokumenPanel');
-const dokumenTitle = document.getElementById('dokumenTitle');
-
-const backToKategori = document.getElementById('backToKategori');
-
-typeCards.forEach(card => {
-
-  card.addEventListener('click', () => {
-
-    const type = card.dataset.type;
-
-    showInformasiType(type);
-
-  });
-
-});
-
-  function showInformasiType(type) {
-
-  selectedType = type;
-  selectedCategory = '';
-
-  activeType = type;
-  activeCategory = '';
-
-  /* ===================================================
-     SERTA MERTA
-     TAMPILKAN DALAM FORMAT TABEL
-  =================================================== */
-
-  if (type === 'Serta Merta') {
-
-    kategoriPanel.style.display = 'none';
-    dokumenPanel.style.display = 'none';
-    sertaMertaPanel.style.display = 'block';
-
-    currentPage = 1;
-
-    showDocumentResult();
-
-    applySertaMertaFilter();
-
-    return;
-  }
-
-
-  /* ===================================================
-     BERKALA / SETIAP SAAT
-  =================================================== */
-
-  sertaMertaPanel.style.display = 'none';
-  dokumenPanel.style.display = 'none';
-  kategoriPanel.style.display = 'block';
-
-  hideDocumentResult();
-
-  renderKategori(type);
-
-}
-    
-    function renderSertaMerta(filteredData) {
-
-  if (!sertaMertaList) {
-    return;
-  }
-
-    const data = Array.isArray(filteredData)
-    ? filteredData
-    : allData.filter(function(row) {
-
-        return String(row.jenis || '')
-          .trim()
-          .toLowerCase()
-          === 'serta merta';
-
-      });
-
-
-  /* ===================================================
-     TIDAK ADA DATA
-  =================================================== */
-
-  if (!data.length) {
-
-    sertaMertaList.innerHTML = `
-
-      <div class="serta-merta-empty">
-        Belum terdapat informasi serta-merta yang diterbitkan.
-      </div>
-
-    `;
-
-    return;
-  }
-
-
-  /* ===================================================
-     URUTKAN TERBARU
-  =================================================== */
-
-  data.sort(function(a, b) {
-
-    const dateA =
-      new Date(
-        a.tanggal_update || 0
-      ).getTime();
-
-    const dateB =
-      new Date(
-        b.tanggal_update || 0
-      ).getTime();
-
-    return dateB - dateA;
-
-  });
-
-
-  /* ===================================================
-     RENDER
-  =================================================== */
-
-  sertaMertaList.innerHTML = `
-
-    <div class="serta-merta-list">
-
-      ${
-        data.map(function(row) {
-
-          const judul =
-            row.judul ||
-            'Tanpa Judul';
-
-          const isi =
-            row.keterangan ||
-            '';
-
-          const tanggal =
-            formatTanggal(
-              row.tanggal_update
-            );
-
-          const url =
-            row.url_dokumen ||
-            '';
-
-          return `
-
-            <article class="serta-merta-item">
-
-              <div class="serta-merta-item-title">
-                ${escapeHTML(judul)}
-              </div>
-
-              ${
-                tanggal
-                  ? `
-                    <div class="serta-merta-item-date">
-                      Diperbarui ${escapeHTML(tanggal)}
-                    </div>
-                  `
-                  : ''
-              }
-
-              ${
-                isi
-                  ? `
-                    <div class="serta-merta-item-content">
-                      ${escapeHTML(isi)}
-                    </div>
-                  `
-                  : ''
-              }
-
-              ${
-                url
-                  ? `
-                    <div class="serta-merta-item-document">
-
-                      <a
-                        href="${escapeAttribute(url)}"
-                        class="table-document-button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Lihat Dokumen
-                      </a>
-
-                    </div>
-                  `
-                  : ''
-              }
-
-            </article>
-
-          `;
-
-        }).join('')
-
-      }
-
-    </div>
-
-  `;
-
-}
-  
-function renderKategori(type) {
-  kategoriTitle.textContent = type;
-
-  if (type === 'Berkala') {
-    kategoriDescription.textContent =
-      'Pilih jenis informasi berkala yang ingin Anda lihat.';
-  } else if (type === 'Setiap Saat') {
-    kategoriDescription.textContent =
-      'Pilih jenis informasi yang tersedia setiap saat.';
-  }
-
-  kategoriList.innerHTML = '';
-
-  const categories = kategoriInformasiPublik[type] || [];
-
-  categories.forEach(function(category) {
-  const button = document.createElement('button');
-
-  button.type = 'button';
-  button.className = 'kategori-item';
-  button.textContent = category;
-
-  button.addEventListener('click', function() {
-
-    if (category === 'Informasi Kelembagaan') {
-      window.open(
-        'https://banten.kemenag.go.id/profil',
-        '_blank',
-        'noopener,noreferrer'
-      );
-      return;
-    }
-
-    showDocuments(type, category);
-  });
-
-  kategoriList.appendChild(button);
-});
-}
-
-function showDocuments(type, category) {
-  selectedType = type;
-  selectedCategory = category;
-
-  activeType = type;
-  activeCategory = category;
-
-  kategoriPanel.style.display = 'none';
-  sertaMertaPanel.style.display = 'none';
-  dokumenPanel.style.display = 'block';
-
-  dokumenTitle.textContent = category;
-
-  if (searchInput) {
-    searchInput.value = '';
-  }
-
-  currentPage = 1;
-
-  showDocumentResult();
-  applyDocumentFilter();
-}
-
-if (backToKategori) {
-  backToKategori.addEventListener('click', function() {
-    dokumenPanel.style.display = 'none';
-    hideDocumentResult();
-
-    activeCategory = '';
-    selectedCategory = '';
-
-    kategoriPanel.style.display = 'block';
-    renderKategori(selectedType);
-  });
-}
-
-function showDocumentResult() {
-  const resultHeader = document.getElementById('resultHeader');
-
-  if (resultHeader) {
-    resultHeader.style.display = 'flex';
-  }
-
-  if (dataList) {
-    dataList.style.display = 'block';
-  }
-
-  if (pagination) {
-    pagination.style.display = 'flex';
-  }
-}
-
-function hideDocumentResult() {
-  const resultHeader = document.getElementById('resultHeader');
-
-  if (resultHeader) {
-    resultHeader.style.display = 'none';
-  }
-
-  if (dataList) {
-    dataList.style.display = 'none';
-  }
-
-  if (pagination) {
-    pagination.style.display = 'none';
-  }
-}
-
-    // =====================================================
-// PENCARIAN DOKUMEN
-// =====================================================
-
-if (searchInput) {
-
-  searchInput.addEventListener(
-    'input',
-    function() {
-
-      currentPage = 1;
-
-
-      if (activeType === 'Serta Merta') {
-
-        applySertaMertaFilter();
-
-        return;
-
-      }
-
-
-      if (!activeCategory) {
-        return;
-      }
-
-      applyDocumentFilter();
-
-    }
-  );
-
-}
-    
-   if (informasiSort) {
-
-  informasiSort.addEventListener(
-    'change',
-    function() {
-
-      currentPage = 1;
-
-
-      if (activeType === 'Serta Merta') {
-
-        applySertaMertaFilter();
-
-        return;
-
-      }
-
-
-      if (!activeCategory) {
-        return;
-      }
-
-      applyDocumentFilter();
-
-    }
-  );
-
-}
-    
-// =====================================================
-// FILTER INFORMASI SERTA MERTA
-// =====================================================
-
-function applySertaMertaFilter() {
-
-  const searchInput =
-    document.getElementById('searchInput');
-
-  const searchTerm =
-    (searchInput ? searchInput.value : '')
-      .toLowerCase()
-      .trim();
-
-
-  let filtered =
-    allData.filter(function(row) {
-
-      const rowType =
-        String(row.jenis || '')
-          .trim()
-          .toLowerCase();
-
-      return rowType === 'serta merta';
-
-    });
-
-
-  /* ===================================================
-     PENCARIAN
-  =================================================== */
-
-  if (searchTerm) {
-
-    filtered =
-      filtered.filter(function(row) {
-
-        const searchableText = [
-
-          row.judul,
-          row.jenis,
-          row.tahun,
-          row.status
-
-        ]
-          .map(function(value) {
-
-            return String(
-              value || ''
-            ).toLowerCase();
-
-          })
-          .join(' ');
-
-        return searchableText.includes(
-          searchTerm
-        );
-
-      });
-
-  }
-
-
-  /* ===================================================
-     SORTING
-  =================================================== */
-
-  const sortSelect =
-    document.getElementById(
-      'informasiSort'
-    );
-
-  const sortValue =
-    sortSelect
-      ? sortSelect.value
-      : 'terbaru';
-
-
-  filtered.sort(function(a, b) {
-
-    const yearA =
-      Number(a.tahun || 0);
-
-    const yearB =
-      Number(b.tahun || 0);
-
-
-    if (sortValue === 'terlama') {
-
-      return yearA - yearB;
-
-    }
-
-    return yearB - yearA;
-
-  });
-
-
-    renderSertaMerta(filtered);
-
-}
-    
-   // =====================================================
-// FILTER DOKUMEN BERDASARKAN KATEGORI
-// =====================================================
-
-function applyDocumentFilter() {
-
-  // Belum memilih kategori
-  if (!activeCategory) {
-
-    renderData([]);
-
-    return;
-  }
-
-
-  const searchInput =
-    document.getElementById('searchInput');
-
-  const searchTerm =
-    (searchInput ? searchInput.value : '')
-      .toLowerCase()
-      .trim();
-
-
-  // -----------------------------------------------
-  // FILTER JENIS + KATEGORI
-  // -----------------------------------------------
-
-  let filtered = allData.filter(function(row) {
-
-    const rowType =
-      String(row.jenis || '')
-        .trim()
-        .toLowerCase();
-
-    const rowCategory =
-      String(row.kategori || '')
-        .trim()
-        .toLowerCase();
-
-    const targetType =
-      String(activeType || '')
-        .trim()
-        .toLowerCase();
-
-    const targetCategory =
-      String(activeCategory || '')
-        .trim()
-        .toLowerCase();
-
-
-    // Jenis informasi harus sesuai
-    if (rowType !== targetType) {
-      return false;
-    }
-
-
-    // Kategori harus sesuai
-    if (rowCategory !== targetCategory) {
-      return false;
-    }
-
-
-    // ---------------------------------------------
-    // PENCARIAN
-    // ---------------------------------------------
-
-    if (!searchTerm) {
-      return true;
-    }
-
-
-    const searchableText = [
-
-      row.judul,
-      row.kategori,
-      row.jenis,
-      row.tahun,
-      row.status
+      'Daftar Informasi Dikecualikan'
 
     ]
-      .map(function(value) {
-        return String(value || '').toLowerCase();
-      })
-      .join(' ');
+
+  };
 
 
-    return searchableText.includes(searchTerm);
+  /* =====================================================
+     STATE NAVIGASI
+  ===================================================== */
 
-  });
+  let selectedType = 'Berkala';
+
+  let selectedCategory = '';
 
 
-  // -----------------------------------------------
-  // SORTING
-  // -----------------------------------------------
+  /* =====================================================
+     ELEMENT
+  ===================================================== */
 
-  const sortSelect =
+  const dataList =
+    document.getElementById('dataList');
+
+  const loading =
+    document.getElementById('loading');
+
+  const errorBox =
+    document.getElementById('error');
+
+  const resultHeader =
+    document.getElementById('resultHeader');
+
+  const resultCount =
+    document.getElementById('resultCount');
+
+  const searchInput =
+    document.getElementById('searchInput');
+
+  const searchInputSertaMerta =
+    document.getElementById('searchInputSertaMerta');
+
+  const pagination =
+    document.getElementById('pagination');
+
+  const informasiSort =
     document.getElementById('informasiSort');
 
-  const sortValue =
-    sortSelect
-      ? sortSelect.value
-      : 'terbaru';
-
-
-  filtered.sort(function(a, b) {
-
-    const yearA =
-      Number(a.tahun || 0);
-
-    const yearB =
-      Number(b.tahun || 0);
-
-
-    if (sortValue === 'terlama') {
-
-      return yearA - yearB;
-
-    }
-
-
-    return yearB - yearA;
-
-  });
-
-
-   renderData(filtered);
-
-}
-/* =====================================================
-   RENDER DATA - TABEL
-===================================================== */
-
-function renderData(data) {
-
-  dataList.innerHTML = '';
-  pagination.innerHTML = '';
-
-  resultCount.textContent =
-    data.length + ' informasi tersedia';
-
-
-  /* ===================================================
-     DATA KOSONG
-  =================================================== */
-
-  if (!data.length) {
-
-    dataList.innerHTML = `
-
-      <div class="no-data">
-
-        <div class="no-data-icon">
-          🔎
-        </div>
-
-        <strong>
-          Informasi tidak ditemukan
-        </strong>
-
-        <span>
-          Coba gunakan kata kunci pencarian
-          yang berbeda.
-        </span>
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-
-  /* ===================================================
-     PAGINATION
-  =================================================== */
-
-  const totalPages =
-    Math.ceil(
-      data.length / pageSize
+  const informasiSortSertaMerta =
+    document.getElementById(
+      'informasiSortSertaMerta'
     );
 
 
-  if (currentPage > totalPages) {
+  /* =====================================================
+     ELEMENT NAVIGASI
+  ===================================================== */
 
-    currentPage =
-      totalPages;
+  const typeCards =
+    document.querySelectorAll(
+      '.informasi-type-card'
+    );
 
-  }
+  const kategoriPanel =
+    document.getElementById(
+      'kategoriPanel'
+    );
 
+  const kategoriTitle =
+    document.getElementById(
+      'kategoriTitle'
+    );
 
-  const start =
-    (
-      currentPage - 1
-    ) * pageSize;
+  const kategoriDescription =
+    document.getElementById(
+      'kategoriDescription'
+    );
 
+  const kategoriList =
+    document.getElementById(
+      'kategoriList'
+    );
 
-  const end =
-    start + pageSize;
+  const sertaMertaPanel =
+    document.getElementById(
+      'sertaMertaPanel'
+    );
 
+  const dokumenPanel =
+    document.getElementById(
+      'dokumenPanel'
+    );
 
-  const pageData =
-    data.slice(
-      start,
-      end
+  const dokumenTitle =
+    document.getElementById(
+      'dokumenTitle'
+    );
+
+  const backToKategori =
+    document.getElementById(
+      'backToKategori'
     );
 
 
-  /* ===================================================
-     TABLE HEADER
-  =================================================== */
+  /* =====================================================
+     LOAD DATA
+  ===================================================== */
 
-  const table =
-    document.createElement('table');
+  async function loadInformasiPublik() {
 
-  table.className =
-    'informasi-table';
+    try {
 
+      loading.style.display =
+        'block';
 
-  table.innerHTML = `
+      dataList.style.display =
+        'none';
 
-    <thead>
-
-      <tr>
-
-        <th>No.</th>
-<th>Informasi Publik</th>
-<th>Jenis</th>
-<th>Tahun</th>
-<th>Diperbarui</th>
-<th>Dokumen</th>
-
-      </tr>
-
-    </thead>
-
-    <tbody></tbody>
-
-  `;
-
-
-  const tbody =
-    table.querySelector('tbody');
-
-
-  /* ===================================================
-     TABLE ROW
-  =================================================== */
-
-  pageData.forEach(
-    function(row, index) {
-
-      const tr =
-        document.createElement('tr');
-
-
-      /* ===============================================
-         DATA
-      =============================================== */
-
-      const nomor =
-        start + index + 1;
-
-
-      const judul = row.judul || 'Tanpa Judul';
-const jenis = row.jenis || '';
-const tahun = row.tahun || '';
-const tanggal = formatTanggal(row.tanggal_update);
-const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
-
-
-      let documentHTML =
+      pagination.innerHTML =
         '';
 
+      errorBox.style.display =
+        'none';
 
-      if (dokumen.length > 0) {
-
-        documentHTML =
-          dokumen
-            .map(
-              function(doc) {
-
-                const url =
-                  doc.url_dokumen ||
-                  '';
-
-
-                const namaDokumen =
-                  doc.nama_dokumen ||
-                  'Lihat Dokumen';
-
-
-                if (!url) {
-                  return '';
-                }
-
-
-                return `
-
-                  <a
-                    href="${escapeAttribute(url)}"
-                    class="table-document-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="${escapeHTML(namaDokumen)}"
-                  >
-                    Lihat
-                  </a>
-
-                `;
-
-              }
-            )
-            .join('');
-
+      if (resultHeader) {
+        resultHeader.style.display =
+          'none';
       }
 
 
-      /* ===============================================
-         FALLBACK URL LAMA
-      =============================================== */
+      const [
+        informasiResponse,
+        dokumenResponse
+      ] = await Promise.all([
+
+        fetch(
+          API_URL +
+          '?action=informasi'
+        ),
+
+        fetch(
+          API_URL +
+          '?action=dokumen'
+        )
+
+      ]);
+
 
       if (
-        !documentHTML &&
-        row.url_dokumen
+        !informasiResponse.ok
       ) {
 
-        documentHTML = `
-
-          <a
-            href="${escapeAttribute(
-              row.url_dokumen
-            )}"
-            class="table-document-button"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Lihat Dokumen"
-          >
-            Lihat
-          </a>
-
-        `;
+        throw new Error(
+          'HTTP Error Informasi: ' +
+          informasiResponse.status
+        );
 
       }
 
 
-      /* ===============================================
-         DOKUMEN TIDAK TERSEDIA
-      =============================================== */
+      if (
+        !dokumenResponse.ok
+      ) {
 
-      if (!documentHTML) {
-
-        documentHTML = `
-
-          <span class="table-document-empty">
-            Belum tersedia
-          </span>
-
-        `;
+        throw new Error(
+          'HTTP Error Dokumen: ' +
+          dokumenResponse.status
+        );
 
       }
 
 
-      /* ===============================================
-         ROW
-      =============================================== */
+      const [
+        informasiResult,
+        dokumenResult
+      ] = await Promise.all([
 
-      tr.innerHTML = `
+        informasiResponse.json(),
 
-        <td>
+        dokumenResponse.json()
 
-          <span class="table-number">
-            ${nomor}
-          </span>
-
-        </td>
+      ]);
 
 
-        <td>
+      if (
+        !informasiResult.success
+      ) {
 
-          <div class="table-title">
-            ${escapeHTML(judul)}
-          </div>
+        throw new Error(
+          informasiResult.message ||
+          'Data informasi gagal dimuat.'
+        );
 
-        </td>
+      }
 
 
-        <td>
+      if (
+        !dokumenResult.success
+      ) {
 
-          ${
-            jenis
-              ? `
-                <span class="table-badge">
-                  ${escapeHTML(jenis)}
-                </span>
-              `
-              : `
-                <span class="table-badge empty">
-                  -
-                </span>
-              `
+        throw new Error(
+          dokumenResult.message ||
+          'Data dokumen gagal dimuat.'
+        );
+
+      }
+
+
+      const informasiData =
+        Array.isArray(
+          informasiResult.data
+        )
+          ? informasiResult.data
+          : [];
+
+
+      const dokumenData =
+        Array.isArray(
+          dokumenResult.data
+        )
+          ? dokumenResult.data
+          : [];
+
+
+      /* =================================================
+         MASTER DOKUMEN MAP
+      ================================================= */
+
+      const dokumenMap = {};
+
+
+      dokumenData.forEach(
+        function(dokumen) {
+
+          const informasiId =
+            String(
+              dokumen.informasi_id ||
+              ''
+            ).trim();
+
+
+          if (!informasiId) {
+            return;
           }
 
-        </td>
+
+          if (
+            !dokumenMap[
+              informasiId
+            ]
+          ) {
+
+            dokumenMap[
+              informasiId
+            ] = [];
+
+          }
 
 
-       <td>
+          if (
+            String(
+              dokumen.status || ''
+            ).toLowerCase()
+            === 'published'
+          ) {
 
-          <span class="table-year">
+            dokumenMap[
+              informasiId
+            ].push(
+              dokumen
+            );
 
-            ${
-              tahun
-                ? escapeHTML(tahun)
-                : '-'
+          }
+
+        }
+      );
+
+
+      /* =================================================
+         GABUNG INFORMASI + DOKUMEN
+      ================================================= */
+
+      allData =
+        informasiData
+          .filter(
+            function(row) {
+
+              return String(
+                row.status || ''
+              ).toLowerCase()
+              === 'published';
+
             }
+          )
+          .map(
+            function(row) {
 
-          </span>
+              const id =
+                String(
+                  row.id || ''
+                ).trim();
 
-        </td>
 
+              return {
 
-        <td>
+                ...row,
 
-          <span class="table-date">
+                dokumen:
+                  dokumenMap[id] ||
+                  []
 
-            ${
-              tanggal
-                ? escapeHTML(tanggal)
-                : '-'
+              };
+
             }
-
-          </span>
-
-        </td>
+          );
 
 
-        <td>
+      loading.style.display =
+        'none';
 
-          <div class="table-documents">
+      dataList.style.display =
+        'none';
 
-            ${documentHTML}
+      pagination.innerHTML =
+        '';
 
-          </div>
-
-        </td>
-
-      `;
-
-
-      tbody.appendChild(tr);
-
-    }
-  );
+      currentPage = 1;
 
 
-  /* ===================================================
-     MASUKKAN TABLE
-  =================================================== */
+      /* =================================================
+         TAMPILKAN DEFAULT
+      ================================================= */
 
-  dataList.appendChild(table);
+      showInformasiType(
+        'Berkala'
+      );
 
 
-  /* ===================================================
-     PAGINATION
-  =================================================== */
+    } catch (error) {
 
-  renderPagination(
-    data.length,
-    totalPages
-  );
+      console.error(
+        'LOAD INFORMASI ERROR:',
+        error
+      );
 
-}
-    /* =====================================================
-       PAGINATION
-    ===================================================== */
 
-    function renderPagination(
-      totalItems,
-      totalPages
-    ) {
+      loading.style.display =
+        'none';
+
+      dataList.style.display =
+        'none';
 
       pagination.innerHTML =
         '';
 
 
-      if (
-        totalItems <=
-        pageSize
-      ) {
-
-        return;
-
+      if (resultHeader) {
+        resultHeader.style.display =
+          'none';
       }
 
 
-      const info =
-        document.createElement(
-          'div'
-        );
+      errorBox.style.display =
+        'block';
 
 
-      info.className =
-        'pagination-info';
+      errorBox.textContent =
+        'Gagal memuat informasi publik: ' +
+        error.message;
 
 
-      const start =
-        (
-          currentPage -
-          1
-        ) *
-        pageSize +
-        1;
+      if (resultCount) {
+        resultCount.textContent =
+          'Data tidak tersedia';
+      }
+
+    }
+
+  }
 
 
-      const end =
-        Math.min(
-          currentPage *
-            pageSize,
-          totalItems
-        );
+  /* =====================================================
+     EVENT KARTU JENIS INFORMASI
+  ===================================================== */
 
+  typeCards.forEach(
+    function(card) {
 
-      info.textContent =
-        'Menampilkan ' +
-        start +
-        '–' +
-        end +
-        ' dari ' +
-        totalItems +
-        ' informasi';
-
-
-      pagination.appendChild(
-        info
-      );
-
-
-      const prev =
-        document.createElement(
-          'button'
-        );
-
-
-      prev.type =
-        'button';
-
-      prev.textContent =
-        '‹';
-
-      prev.disabled =
-        currentPage === 1;
-
-
-      prev.addEventListener(
+      card.addEventListener(
         'click',
         function() {
 
-          if (
-            currentPage >
-            1
-          ) {
+          const type =
+            card.dataset.type;
 
-            currentPage--;
-
-            applyDocumentFilter();
-
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
-
-          }
+          showInformasiType(
+            type
+          );
 
         }
       );
 
-
-      pagination.appendChild(
-        prev
-      );
+    }
+  );
 
 
-      const maxButtons =
-        5;
+  /* =====================================================
+     TAMPILKAN JENIS INFORMASI
+  ===================================================== */
+
+  function showInformasiType(
+    type
+  ) {
+
+    selectedType =
+      type;
+
+    selectedCategory =
+      '';
+
+    activeType =
+      type;
+
+    activeCategory =
+      '';
+
+    currentPage =
+      1;
 
 
-      let startPage =
-        Math.max(
-          1,
-          currentPage -
-            Math.floor(
-              maxButtons / 2
-            )
-        );
+    /* =================================================
+       UPDATE ACTIVE CARD
+    ================================================= */
+
+    typeCards.forEach(
+      function(card) {
+
+        if (
+          card.dataset.type ===
+          type
+        ) {
+
+          card.classList.add(
+            'active'
+          );
+
+        } else {
+
+          card.classList.remove(
+            'active'
+          );
+
+        }
+
+      }
+    );
 
 
-      let endPage =
-        Math.min(
-          totalPages,
-          startPage +
-            maxButtons -
-            1
-        );
+    /* =================================================
+       SERTA MERTA
+    ================================================= */
+
+    if (
+      type ===
+      'Serta Merta'
+    ) {
+
+      kategoriPanel.style.display =
+        'none';
+
+      dokumenPanel.style.display =
+        'none';
+
+      sertaMertaPanel.style.display =
+        'block';
+
+
+      showDocumentResult();
 
 
       if (
-        endPage -
-        startPage +
-        1 <
-        maxButtons
+        searchInputSertaMerta
       ) {
 
-        startPage =
-          Math.max(
-            1,
-            endPage -
-              maxButtons +
-              1
-          );
+        searchInputSertaMerta.value =
+          '';
 
       }
 
 
-      for (
-        let page =
-          startPage;
-        page <= endPage;
-        page++
+      if (
+        informasiSortSertaMerta
       ) {
+
+        informasiSortSertaMerta.value =
+          'terbaru';
+
+      }
+
+
+      applyDocumentFilter();
+
+
+      return;
+
+    }
+
+
+    /* =================================================
+       BERKALA / SETIAP SAAT
+    ================================================= */
+
+    sertaMertaPanel.style.display =
+      'none';
+
+    dokumenPanel.style.display =
+      'none';
+
+    kategoriPanel.style.display =
+      'block';
+
+
+    hideDocumentResult();
+
+
+    if (searchInput) {
+
+      searchInput.value =
+        '';
+
+    }
+
+
+    if (informasiSort) {
+
+      informasiSort.value =
+        'terbaru';
+
+    }
+
+
+    renderKategori(
+      type
+    );
+
+  }
+
+
+  /* =====================================================
+     RENDER KATEGORI
+  ===================================================== */
+
+  function renderKategori(
+    type
+  ) {
+
+    if (!kategoriList) {
+      return;
+    }
+
+
+    kategoriList.innerHTML =
+      '';
+
+
+    if (kategoriTitle) {
+
+      if (
+        type ===
+        'Berkala'
+      ) {
+
+        kategoriTitle.textContent =
+          'Informasi Berkala';
+
+      } else {
+
+        kategoriTitle.textContent =
+          'Informasi Setiap Saat';
+
+      }
+
+    }
+
+
+    if (kategoriDescription) {
+
+      if (
+        type ===
+        'Berkala'
+      ) {
+
+        kategoriDescription.textContent =
+          'Pilih kategori informasi berkala yang ingin dilihat.';
+
+      } else {
+
+        kategoriDescription.textContent =
+          'Pilih kategori informasi yang tersedia setiap saat.';
+
+      }
+
+    }
+
+
+    const categories =
+      kategoriInformasiPublik[
+        type
+      ] || [];
+
+
+    if (!categories.length) {
+
+      kategoriList.innerHTML = `
+
+        <div class="no-data">
+
+          <div class="no-data-icon">
+            📂
+          </div>
+
+          <strong>
+            Kategori belum tersedia
+          </strong>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    categories.forEach(
+      function(category) {
 
         const button =
           document.createElement(
@@ -2998,210 +2172,1456 @@ const dokumen = Array.isArray(row.dokumen) ? row.dokumen : [];
         button.type =
           'button';
 
+        button.className =
+          'kategori-item';
 
         button.textContent =
-          page;
-
-
-        if (
-          page ===
-          currentPage
-        ) {
-
-          button.classList.add(
-            'active'
-          );
-
-        }
+          category;
 
 
         button.addEventListener(
           'click',
           function() {
 
-            currentPage =
-              page;
-
-            applyDocumentFilter();
-
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
+            openCategory(
+              type,
+              category
+            );
 
           }
         );
 
 
-        pagination.appendChild(
+        kategoriList.appendChild(
           button
         );
 
       }
+    );
+
+  }
 
 
-      const next =
+  /* =====================================================
+     BUKA KATEGORI
+  ===================================================== */
+
+  function openCategory(
+    type,
+    category
+  ) {
+
+    selectedType =
+      type;
+
+    selectedCategory =
+      category;
+
+    activeType =
+      type;
+
+    activeCategory =
+      category;
+
+    currentPage =
+      1;
+
+
+    kategoriPanel.style.display =
+      'none';
+
+    sertaMertaPanel.style.display =
+      'none';
+
+    dokumenPanel.style.display =
+      'block';
+
+
+    if (dokumenTitle) {
+
+      dokumenTitle.textContent =
+        category;
+
+    }
+
+
+    if (searchInput) {
+
+      searchInput.value =
+        '';
+
+    }
+
+
+    if (informasiSort) {
+
+      informasiSort.value =
+        'terbaru';
+
+    }
+
+
+    showDocumentResult();
+
+    applyDocumentFilter();
+
+  }
+
+
+  /* =====================================================
+     KEMBALI KE KATEGORI
+  ===================================================== */
+
+  if (backToKategori) {
+
+    backToKategori.addEventListener(
+      'click',
+      function() {
+
+        currentPage =
+          1;
+
+        activeCategory =
+          '';
+
+        selectedCategory =
+          '';
+
+        hideDocumentResult();
+
+        showInformasiType(
+          activeType
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     TAMPILKAN HASIL
+  ===================================================== */
+
+  function showDocumentResult() {
+
+    if (resultHeader) {
+
+      resultHeader.style.display =
+        'flex';
+
+    }
+
+    if (dataList) {
+
+      dataList.style.display =
+        'block';
+
+    }
+
+  }
+
+
+  /* =====================================================
+     SEMBUNYIKAN HASIL
+  ===================================================== */
+
+  function hideDocumentResult() {
+
+    if (resultHeader) {
+
+      resultHeader.style.display =
+        'none';
+
+    }
+
+    if (dataList) {
+
+      dataList.style.display =
+        'none';
+
+    }
+
+    if (pagination) {
+
+      pagination.innerHTML =
+        '';
+
+    }
+
+  }
+
+
+  /* =====================================================
+     FILTER DOKUMEN
+  ===================================================== */
+
+  function applyDocumentFilter() {
+
+
+    /* =================================================
+       SERTA MERTA
+    ================================================= */
+
+    if (
+      activeType ===
+      'Serta Merta'
+    ) {
+
+      const searchTerm =
+        (
+          searchInputSertaMerta
+            ? searchInputSertaMerta.value
+            : ''
+        )
+          .toLowerCase()
+          .trim();
+
+
+      let filtered =
+        allData.filter(
+          function(row) {
+
+            const rowType =
+              String(
+                row.jenis || ''
+              )
+                .trim()
+                .toLowerCase();
+
+
+            if (
+              rowType !==
+              'serta merta'
+            ) {
+
+              return false;
+
+            }
+
+
+            if (!searchTerm) {
+
+              return true;
+
+            }
+
+
+            const searchableText = [
+
+              row.judul,
+
+              row.jenis,
+
+              row.tahun,
+
+              row.tanggal_update,
+
+              row.status
+
+            ]
+              .map(
+                function(value) {
+
+                  return String(
+                    value || ''
+                  )
+                    .toLowerCase();
+
+                }
+              )
+              .join(' ');
+
+
+            return searchableText.includes(
+              searchTerm
+            );
+
+          }
+        );
+
+
+      /* ===============================================
+         SORTING SERTA MERTA
+      =============================================== */
+
+      const sortValue =
+        informasiSortSertaMerta
+          ? informasiSortSertaMerta.value
+          : 'terbaru';
+
+
+      filtered.sort(
+        function(a, b) {
+
+          const dateA =
+            new Date(
+              a.tanggal_update || 0
+            ).getTime();
+
+
+          const dateB =
+            new Date(
+              b.tanggal_update || 0
+            ).getTime();
+
+
+          if (
+            sortValue ===
+            'terlama'
+          ) {
+
+            return dateA -
+              dateB;
+
+          }
+
+
+          return dateB -
+            dateA;
+
+        }
+      );
+
+
+      renderData(
+        filtered
+      );
+
+      return;
+
+    }
+
+
+    /* =================================================
+       BELUM MEMILIH KATEGORI
+    ================================================= */
+
+    if (!activeCategory) {
+
+      renderData([]);
+
+      return;
+
+    }
+
+
+    const searchTerm =
+      (
+        searchInput
+          ? searchInput.value
+          : ''
+      )
+        .toLowerCase()
+        .trim();
+
+
+    /* =================================================
+       FILTER JENIS + KATEGORI
+    ================================================= */
+
+    let filtered =
+      allData.filter(
+        function(row) {
+
+          const rowType =
+            String(
+              row.jenis || ''
+            )
+              .trim()
+              .toLowerCase();
+
+
+          const rowCategory =
+            String(
+              row.kategori || ''
+            )
+              .trim()
+              .toLowerCase();
+
+
+          const targetType =
+            String(
+              activeType || ''
+            )
+              .trim()
+              .toLowerCase();
+
+
+          const targetCategory =
+            String(
+              activeCategory || ''
+            )
+              .trim()
+              .toLowerCase();
+
+
+          if (
+            rowType !==
+            targetType
+          ) {
+
+            return false;
+
+          }
+
+
+          if (
+            rowCategory !==
+            targetCategory
+          ) {
+
+            return false;
+
+          }
+
+
+          /* ===========================================
+             PENCARIAN
+          =========================================== */
+
+          if (!searchTerm) {
+
+            return true;
+
+          }
+
+
+          const searchableText = [
+
+            row.judul,
+
+            row.kategori,
+
+            row.jenis,
+
+            row.tahun,
+
+            row.status
+
+          ]
+            .map(
+              function(value) {
+
+                return String(
+                  value || ''
+                )
+                  .toLowerCase();
+
+              }
+            )
+            .join(' ');
+
+
+          return searchableText.includes(
+            searchTerm
+          );
+
+        }
+      );
+
+
+    /* =================================================
+       SORTING BERKALA / SETIAP SAAT
+    ================================================= */
+
+    const sortValue =
+      informasiSort
+        ? informasiSort.value
+        : 'terbaru';
+
+
+    filtered.sort(
+      function(a, b) {
+
+        const yearA =
+          Number(
+            a.tahun || 0
+          );
+
+
+        const yearB =
+          Number(
+            b.tahun || 0
+          );
+
+
+        if (
+          sortValue ===
+          'terlama'
+        ) {
+
+          return yearA -
+            yearB;
+
+        }
+
+
+        return yearB -
+          yearA;
+
+      }
+    );
+
+
+    renderData(
+      filtered
+    );
+
+  }
+
+
+  /* =====================================================
+     EVENT SEARCH BERKALA / SETIAP SAAT
+  ===================================================== */
+
+  if (searchInput) {
+
+    searchInput.addEventListener(
+      'input',
+      function() {
+
+        if (
+          !activeCategory
+        ) {
+
+          return;
+
+        }
+
+        currentPage =
+          1;
+
+        applyDocumentFilter();
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     EVENT SORT BERKALA / SETIAP SAAT
+  ===================================================== */
+
+  if (informasiSort) {
+
+    informasiSort.addEventListener(
+      'change',
+      function() {
+
+        if (
+          !activeCategory
+        ) {
+
+          return;
+
+        }
+
+        currentPage =
+          1;
+
+        applyDocumentFilter();
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     EVENT SEARCH SERTA MERTA
+  ===================================================== */
+
+  if (
+    searchInputSertaMerta
+  ) {
+
+    searchInputSertaMerta.addEventListener(
+      'input',
+      function() {
+
+        if (
+          activeType !==
+          'Serta Merta'
+        ) {
+
+          return;
+
+        }
+
+        currentPage =
+          1;
+
+        applyDocumentFilter();
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     EVENT SORT SERTA MERTA
+  ===================================================== */
+
+  if (
+    informasiSortSertaMerta
+  ) {
+
+    informasiSortSertaMerta.addEventListener(
+      'change',
+      function() {
+
+        if (
+          activeType !==
+          'Serta Merta'
+        ) {
+
+          return;
+
+        }
+
+        currentPage =
+          1;
+
+        applyDocumentFilter();
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     RENDER DATA - TABEL
+  ===================================================== */
+
+  function renderData(
+    data
+  ) {
+
+    dataList.innerHTML =
+      '';
+
+    pagination.innerHTML =
+      '';
+
+
+    resultCount.textContent =
+      data.length +
+      ' informasi tersedia';
+
+
+    /* =================================================
+       DATA KOSONG
+    ================================================= */
+
+    if (!data.length) {
+
+      dataList.innerHTML = `
+
+        <div class="no-data">
+
+          <div class="no-data-icon">
+            🔎
+          </div>
+
+          <strong>
+            Informasi tidak ditemukan
+          </strong>
+
+          <span>
+            Coba gunakan kata kunci pencarian
+            yang berbeda.
+          </span>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    /* =================================================
+       PAGINATION
+    ================================================= */
+
+    const totalPages =
+      Math.ceil(
+        data.length /
+        pageSize
+      );
+
+
+    if (
+      currentPage >
+      totalPages
+    ) {
+
+      currentPage =
+        totalPages;
+
+    }
+
+
+    const start =
+      (
+        currentPage -
+        1
+      ) *
+      pageSize;
+
+
+    const end =
+      start +
+      pageSize;
+
+
+    const pageData =
+      data.slice(
+        start,
+        end
+      );
+
+
+    /* =================================================
+       TABLE
+    ================================================= */
+
+    const table =
+      document.createElement(
+        'table'
+      );
+
+
+    table.className =
+      'informasi-table';
+
+
+    table.innerHTML = `
+
+      <thead>
+
+        <tr>
+
+          <th>No.</th>
+
+          <th>
+            Informasi Publik
+          </th>
+
+          <th>
+            Jenis
+          </th>
+
+          <th>
+            Tahun
+          </th>
+
+          <th>
+            Diperbarui
+          </th>
+
+          <th>
+            Dokumen
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody></tbody>
+
+    `;
+
+
+    const tbody =
+      table.querySelector(
+        'tbody'
+      );
+
+
+    /* =================================================
+       TABLE ROW
+    ================================================= */
+
+    pageData.forEach(
+      function(row, index) {
+
+        const tr =
+          document.createElement(
+            'tr'
+          );
+
+
+        const nomor =
+          start +
+          index +
+          1;
+
+
+        const judul =
+          row.judul ||
+          'Tanpa Judul';
+
+
+        const jenis =
+          row.jenis ||
+          '';
+
+
+        const tahun =
+          row.tahun ||
+          '';
+
+
+        const tanggal =
+          formatTanggal(
+            row.tanggal_update
+          );
+
+
+        const dokumen =
+          Array.isArray(
+            row.dokumen
+          )
+            ? row.dokumen
+            : [];
+
+
+        let documentHTML =
+          '';
+
+
+        /* =============================================
+           DOKUMEN DARI MASTER
+        ============================================= */
+
+        if (
+          dokumen.length >
+          0
+        ) {
+
+          documentHTML =
+            dokumen
+              .map(
+                function(doc) {
+
+                  const url =
+                    doc.url_dokumen ||
+                    '';
+
+
+                  const namaDokumen =
+                    doc.nama_dokumen ||
+                    'Lihat Dokumen';
+
+
+                  if (!url) {
+
+                    return '';
+
+                  }
+
+
+                  return `
+
+                    <a
+                      href="${escapeAttribute(url)}"
+                      class="table-document-button"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="${escapeHTML(
+                        namaDokumen
+                      )}"
+                    >
+                      Lihat
+                    </a>
+
+                  `;
+
+                }
+              )
+              .join('');
+
+        }
+
+
+        /* =============================================
+           FALLBACK URL DOKUMEN
+        ============================================= */
+
+        if (
+          !documentHTML &&
+          row.url_dokumen
+        ) {
+
+          documentHTML = `
+
+            <a
+              href="${escapeAttribute(
+                row.url_dokumen
+              )}"
+              class="table-document-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Lihat Dokumen"
+            >
+              Lihat
+            </a>
+
+          `;
+
+        }
+
+
+        /* =============================================
+           DOKUMEN TIDAK TERSEDIA
+        ============================================= */
+
+        if (!documentHTML) {
+
+          documentHTML = `
+
+            <span class="table-document-empty">
+              Belum tersedia
+            </span>
+
+          `;
+
+        }
+
+
+        /* =============================================
+           ROW
+        ============================================= */
+
+        tr.innerHTML = `
+
+          <td>
+
+            <span class="table-number">
+              ${nomor}
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <div class="table-title">
+              ${escapeHTML(
+                judul
+              )}
+            </div>
+
+          </td>
+
+
+          <td>
+
+            ${
+              jenis
+                ? `
+                  <span class="table-badge">
+                    ${escapeHTML(
+                      jenis
+                    )}
+                  </span>
+                `
+                : `
+                  <span class="table-badge empty">
+                    -
+                  </span>
+                `
+            }
+
+          </td>
+
+
+          <td>
+
+            <span class="table-year">
+
+              ${
+                tahun
+                  ? escapeHTML(
+                      tahun
+                    )
+                  : '-'
+              }
+
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <span class="table-date">
+
+              ${
+                tanggal
+                  ? escapeHTML(
+                      tanggal
+                    )
+                  : '-'
+              }
+
+            </span>
+
+          </td>
+
+
+          <td>
+
+            <div class="table-documents">
+
+              ${documentHTML}
+
+            </div>
+
+          </td>
+
+        `;
+
+
+        tbody.appendChild(
+          tr
+        );
+
+      }
+    );
+
+
+    /* =================================================
+       MASUKKAN TABLE
+    ================================================= */
+
+    dataList.appendChild(
+      table
+    );
+
+
+    /* =================================================
+       PAGINATION
+    ================================================= */
+
+    renderPagination(
+      data.length,
+      totalPages
+    );
+
+  }
+
+
+  /* =====================================================
+     PAGINATION
+  ===================================================== */
+
+  function renderPagination(
+    totalItems,
+    totalPages
+  ) {
+
+    pagination.innerHTML =
+      '';
+
+
+    if (
+      totalItems <=
+      pageSize
+    ) {
+
+      return;
+
+    }
+
+
+    const info =
+      document.createElement(
+        'div'
+      );
+
+
+    info.className =
+      'pagination-info';
+
+
+    const start =
+      (
+        currentPage -
+        1
+      ) *
+      pageSize +
+      1;
+
+
+    const end =
+      Math.min(
+        currentPage *
+          pageSize,
+        totalItems
+      );
+
+
+    info.textContent =
+      'Menampilkan ' +
+      start +
+      '–' +
+      end +
+      ' dari ' +
+      totalItems +
+      ' informasi';
+
+
+    pagination.appendChild(
+      info
+    );
+
+
+    /* =================================================
+       PREVIOUS
+    ================================================= */
+
+    const prev =
+      document.createElement(
+        'button'
+      );
+
+
+    prev.type =
+      'button';
+
+    prev.textContent =
+      '‹';
+
+    prev.disabled =
+      currentPage ===
+      1;
+
+
+    prev.addEventListener(
+      'click',
+      function() {
+
+        if (
+          currentPage >
+          1
+        ) {
+
+          currentPage--;
+
+          applyDocumentFilter();
+
+          window.scrollTo({
+
+            top: 0,
+
+            behavior: 'smooth'
+
+          });
+
+        }
+
+      }
+    );
+
+
+    pagination.appendChild(
+      prev
+    );
+
+
+    /* =================================================
+       NOMOR HALAMAN
+    ================================================= */
+
+    const maxButtons =
+      5;
+
+
+    let startPage =
+      Math.max(
+        1,
+        currentPage -
+          Math.floor(
+            maxButtons /
+            2
+          )
+      );
+
+
+    let endPage =
+      Math.min(
+        totalPages,
+        startPage +
+          maxButtons -
+          1
+      );
+
+
+    if (
+      endPage -
+      startPage +
+      1 <
+      maxButtons
+    ) {
+
+      startPage =
+        Math.max(
+          1,
+          endPage -
+            maxButtons +
+            1
+        );
+
+    }
+
+
+    for (
+      let page =
+        startPage;
+
+      page <=
+      endPage;
+
+      page++
+    ) {
+
+      const button =
         document.createElement(
           'button'
         );
 
 
-      next.type =
+      button.type =
         'button';
 
-      next.textContent =
-        '›';
 
-      next.disabled =
-        currentPage ===
-        totalPages;
+      button.textContent =
+        page;
 
 
-      next.addEventListener(
+      if (
+        page ===
+        currentPage
+      ) {
+
+        button.classList.add(
+          'active'
+        );
+
+      }
+
+
+      button.addEventListener(
         'click',
         function() {
 
-          if (
-            currentPage <
-            totalPages
-          ) {
+          currentPage =
+            page;
 
-            currentPage++;
+          applyDocumentFilter();
 
-            applyDocumentFilter();
+          window.scrollTo({
 
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth'
-            });
+            top: 0,
 
-          }
+            behavior: 'smooth'
+
+          });
 
         }
       );
 
 
       pagination.appendChild(
-        next
+        button
       );
 
     }
 
 
-    /* =====================================================
-       FORMAT TANGGAL
-    ===================================================== */
+    /* =================================================
+       NEXT
+    ================================================= */
 
-    function formatTanggal(
-      value
-    ) {
-
-      if (!value) {
-        return '';
-      }
+    const next =
+      document.createElement(
+        'button'
+      );
 
 
-      const date =
-        new Date(value);
+    next.type =
+      'button';
+
+    next.textContent =
+      '›';
+
+    next.disabled =
+      currentPage ===
+      totalPages;
 
 
-      if (
-        isNaN(
-          date.getTime()
-        )
-      ) {
+    next.addEventListener(
+      'click',
+      function() {
 
-        return String(value);
+        if (
+          currentPage <
+          totalPages
+        ) {
 
-      }
+          currentPage++;
 
+          applyDocumentFilter();
 
-      return date.toLocaleDateString(
-        'id-ID',
-        {
-          day:
-            '2-digit',
+          window.scrollTo({
 
-          month:
-            'short',
+            top: 0,
 
-          year:
-            'numeric'
+            behavior: 'smooth'
+
+          });
+
         }
+
+      }
+    );
+
+
+    pagination.appendChild(
+      next
+    );
+
+  }
+
+
+  /* =====================================================
+     FORMAT TANGGAL
+  ===================================================== */
+
+  function formatTanggal(
+    value
+  ) {
+
+    if (!value) {
+
+      return '';
+
+    }
+
+
+    const date =
+      new Date(
+        value
+      );
+
+
+    if (
+      isNaN(
+        date.getTime()
+      )
+    ) {
+
+      return String(
+        value
       );
 
     }
 
 
-    /* =====================================================
-       SECURITY
-    ===================================================== */
+    return date.toLocaleDateString(
+      'id-ID',
+      {
 
-    function escapeHTML(
-      value
-    ) {
+        day:
+          '2-digit',
 
-      return String(
-        value ?? ''
+        month:
+          'short',
+
+        year:
+          'numeric'
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     SECURITY
+  ===================================================== */
+
+  function escapeHTML(
+    value
+  ) {
+
+    return String(
+      value ?? ''
+    )
+
+      .replace(
+        /&/g,
+        '&amp;'
       )
 
-        .replace(
-          /&/g,
-          '&amp;'
-        )
-
-        .replace(
-          /</g,
-          '&lt;'
-        )
-
-        .replace(
-          />/g,
-          '&gt;'
-        )
-
-        .replace(
-          /"/g,
-          '&quot;'
-        )
-
-        .replace(
-          /'/g,
-          '&#039;'
-        );
-
-    }
-
-
-    function escapeAttribute(
-      value
-    ) {
-
-      return String(
-        value ?? ''
+      .replace(
+        /</g,
+        '&lt;'
       )
 
-        .replace(
-          /"/g,
-          '&quot;'
-        )
+      .replace(
+        />/g,
+        '&gt;'
+      )
 
-        .replace(
-          /'/g,
-          '&#039;'
-        );
+      .replace(
+        /"/g,
+        '&quot;'
+      )
 
-    }
+      .replace(
+        /'/g,
+        '&#039;'
+      );
 
-
-    /* =====================================================
-       START
-    ===================================================== */
-
-    loadInformasiPublik();
+  }
 
 
-  </script>
+  function escapeAttribute(
+    value
+  ) {
+
+    return String(
+      value ?? ''
+    )
+
+      .replace(
+        /"/g,
+        '&quot;'
+      )
+
+      .replace(
+        /'/g,
+        '&#039;'
+      );
+
+  }
+
+
+  /* =====================================================
+     START
+  ===================================================== */
+
+  loadInformasiPublik();
+
+</script>
 
 
 </body>
