@@ -4289,9 +4289,7 @@ token: getAdminToken(),
 
   updateContentMode();
 
-  updateEditMode();
-
-  updateFormMode();
+   updateFormMode();
 
 
   // LOAD AWAL
