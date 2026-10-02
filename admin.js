@@ -369,6 +369,9 @@ function formatDateForInput(value) {
   const contentBody =
   document.getElementById('contentBody');
 
+  const contentImage =
+  document.getElementById('contentImage');
+
 const contentUrl =
   document.getElementById('contentUrl');
 
@@ -1466,245 +1469,354 @@ const editStatus =
 
 
   // =========================================================
-  // SIMPAN KONTEN BARU
-  // =========================================================
+// SIMPAN BERITA BARU
+// =========================================================
 
-  if (saveContentButton) {
+if (saveContentButton) {
 
-    saveContentButton.addEventListener(
-      'click',
-      async function () {
+  saveContentButton.addEventListener(
+    'click',
+    async function () {
 
-        try {
+      try {
 
-          const type =
-            contentType.value;
+        const title =
+          contentTitle.value.trim();
 
-          const title =
-            contentTitle.value.trim();
+        const date =
+          contentDate.value;
 
-          const date =
-            contentDate.value;
+        const body =
+          contentBody.value.trim();
 
-         const body =
-  contentBody.value.trim();
+        const category =
+          contentCategory
+            ? contentCategory.value.trim()
+            : '';
 
-const urlBerita =
-  contentUrl
-    ? contentUrl.value.trim()
-    : '';
+        const urlBerita =
+          contentUrl
+            ? contentUrl.value.trim()
+            : '';
 
-const category =
-  contentCategory
-    ? contentCategory.value.trim()
-    : '';
+        const status =
+          contentStatus.value;
 
-const status =
-  contentStatus.value;
-
-          if (!type) {
-            throw new Error(
-              'Jenis konten belum dipilih.'
-            );
-          }
-
-          if (!title) {
-            throw new Error(
-              'Judul wajib diisi.'
-            );
-          }
-
-          if (!date) {
-            throw new Error(
-              'Tanggal wajib diisi.'
-            );
-          }
-
-          if (!body) {
-            throw new Error(
-              'Isi konten wajib diisi.'
-            );
-          }
+        const imageFile =
+          contentImage &&
+          contentImage.files.length > 0
+            ? contentImage.files[0]
+            : null;
 
 
-          saveContentButton.disabled = true;
+        // ==============================
+        // VALIDASI
+        // ==============================
+
+        if (!title) {
+          throw new Error(
+            'Judul berita wajib diisi.'
+          );
+        }
+
+        if (!date) {
+          throw new Error(
+            'Tanggal berita wajib diisi.'
+          );
+        }
+
+        if (!body) {
+          throw new Error(
+            'Isi berita wajib diisi.'
+          );
+        }
+
+
+        saveContentButton.disabled =
+          true;
+
+        showContentStatus(
+          'Menyimpan berita...',
+          'loading'
+        );
+
+
+        // ==============================
+        // SIMPAN DATA BERITA
+        // ==============================
+
+        const payload = {
+
+          action:
+            'tambahBerita',
+
+          token:
+            getAdminToken(),
+
+          judul:
+            title,
+
+          tanggal:
+            date,
+
+          isi:
+            body,
+
+          kategori:
+            category,
+
+          url_berita:
+            urlBerita,
+
+          status:
+            status
+
+        };
+
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              body:
+                JSON.stringify(
+                  payload
+                )
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Gagal menyimpan berita.'
+          );
+
+        }
+
+
+        // ==============================
+        // AMBIL ID BERITA
+        // ==============================
+
+        const newId =
+          result.id ||
+          result.data?.id ||
+          result.ID ||
+          result.data?.ID ||
+          '';
+
+
+        if (!newId) {
+
+          throw new Error(
+            'Berita berhasil disimpan tetapi ID berita tidak ditemukan.'
+          );
+
+        }
+
+
+        // ==============================
+        // UPLOAD GAMBAR BERITA
+        // ==============================
+
+        if (imageFile) {
 
           showContentStatus(
-            'Menyimpan konten...',
+            'Berita tersimpan. Mengupload gambar...',
             'loading'
           );
 
 
-          const action =
-            type === 'BERITA'
-              ? 'tambahBerita'
-              : 'tambahPengumuman';
+          const base64Data =
+            await new Promise(
+              function (
+                resolve,
+                reject
+              ) {
+
+                const reader =
+                  new FileReader();
 
 
-          const payload = {
+                reader.onload =
+                  function () {
 
-  action: action,
-token: getAdminToken(),
-  judul: title,
+                    resolve(
+                      reader.result
+                    );
 
-  tanggal: date,
-
-  isi: body,
-
-  kategori:
-    type === 'BERITA'
-      ? category
-      : '',
-
-  url_berita:
-    type === 'BERITA'
-      ? urlBerita
-      : '',
-
-  status: status
-
-};
+                  };
 
 
-          const response =
-            await fetch(API_URL, {
+                reader.onerror =
+                  function () {
 
-              method: 'POST',
+                    reject(
+                      new Error(
+                        'Gagal membaca file gambar.'
+                      )
+                    );
 
-              body: JSON.stringify(payload)
-
-            });
-
-
-          if (!response.ok) {
-
-            throw new Error(
-              'HTTP Error ' +
-              response.status
-            );
-
-          }
+                  };
 
 
-          const result =
-            await response.json();
-
-
-          if (!result.success) {
-
-            throw new Error(
-              result.message ||
-              'Gagal menyimpan konten.'
-            );
-
-          }
-
-
-          const newId =
-            result.id ||
-            result.data?.id ||
-            result.ID ||
-            result.data?.ID ||
-            '';
-
-
-          showContentStatus(
-
-            'Konten berhasil ditambahkan' +
-            (
-              newId
-                ? ' dengan ID ' + newId
-                : '.'
-            ),
-
-            'success'
-
-          );
-
-
-          // RESET FORM
-
-          contentTitle.value = '';
-
-          contentDate.value = '';
-
-          if (contentCategory) {
-            contentCategory.value = '';
-          }
-
-          contentBody.value = '';
-
-          if (contentUrl) {
-  contentUrl.value = '';
-}
-
-          contentStatus.value =
-            'Published';
-
-
-          // REFRESH DAFTAR
-
-          await loadContentList();
-
-
-          // REFRESH DROPDOWN UPLOAD
-
-          if (
-            sheetSelect &&
-            sheetSelect.value === type
-          ) {
-
-            await loadData(type);
-
-            if (newId) {
-
-              idSelect.value =
-                newId;
-
-              const selectedOption =
-                Array.from(
-                  idSelect.options
-                ).find(
-                  option =>
-                    option.value === newId
+                reader.readAsDataURL(
+                  imageFile
                 );
 
-              if (selectedOption) {
-
-                dataInfo.textContent =
-                  selectedOption.textContent;
-
               }
+            );
 
-            }
+
+          const imagePayload = {
+
+            action:
+              'uploadBeritaImage',
+
+            token:
+              getAdminToken(),
+
+            idValue:
+              newId,
+
+            fileName:
+              imageFile.name,
+
+            fileData:
+              base64Data
+
+          };
+
+
+          const imageResponse =
+            await fetch(
+              API_URL,
+              {
+                method: 'POST',
+
+                body:
+                  JSON.stringify(
+                    imagePayload
+                  )
+              }
+            );
+
+
+          if (!imageResponse.ok) {
+
+            throw new Error(
+              'HTTP Error upload gambar ' +
+              imageResponse.status
+            );
 
           }
 
 
-        } catch (error) {
+          const imageResult =
+            await imageResponse.json();
 
-          console.error(
-            'Simpan konten error:',
-            error
-          );
 
-          showContentStatus(
-            error.message ||
-            'Terjadi kesalahan.',
-            'error'
-          );
+          if (!imageResult.success) {
 
-        } finally {
+            throw new Error(
+              imageResult.message ||
+              'Berita tersimpan, tetapi gambar gagal diupload.'
+            );
 
-          saveContentButton.disabled =
-            false;
+          }
 
         }
 
-      }
-    );
 
-  }
+        // ==============================
+        // BERHASIL
+        // ==============================
+
+        showContentStatus(
+          'Berita berhasil ditambahkan dengan ID ' +
+          newId,
+          'success'
+        );
+
+
+        // ==============================
+        // RESET FORM
+        // ==============================
+
+        contentTitle.value = '';
+
+        contentDate.value = '';
+
+        if (contentCategory) {
+          contentCategory.value = '';
+        }
+
+        contentBody.value = '';
+
+        if (contentUrl) {
+          contentUrl.value = '';
+        }
+
+        if (contentImage) {
+          contentImage.value = '';
+        }
+
+        contentStatus.value =
+          'Published';
+
+
+        // ==============================
+        // REFRESH DAFTAR
+        // ==============================
+
+        await loadContentList();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          'Simpan berita error:',
+          error
+        );
+
+        showContentStatus(
+          error.message ||
+          'Terjadi kesalahan.',
+          'error'
+        );
+
+      }
+
+      finally {
+
+        saveContentButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
 
 
   // =========================================================
