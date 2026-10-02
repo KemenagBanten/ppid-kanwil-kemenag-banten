@@ -2437,43 +2437,7 @@ function clearEditForm(
   }
 
 
-  // =========================================================
-  // EDIT - MODE
-  // =========================================================
-
-  function updateEditMode() {
-
-    if (!editSheetName) return;
-
-
-    const sheet =
-      editSheetName.value;
-
-
-    if (
-      editCategoryGroup
-    ) {
-
-      if (sheet === 'PENGUMUMAN') {
-
-        editCategoryGroup.style.display =
-          'none';
-
-        if (editCategory) {
-          editCategory.value = '';
-        }
-
-      } else {
-
-        editCategoryGroup.style.display =
-          '';
-
-      }
-
-    }
-
-  }
-
+ 
   // =========================================================
   // EDIT - EVENT PILIH ID
   // =========================================================
@@ -2491,7 +2455,17 @@ function clearEditForm(
 
   }
 
+// =========================================================
+// EDIT BERITA - LOAD DAFTAR SAAT HALAMAN DIBUKA
+// =========================================================
 
+if (editIdValue) {
+
+  loadEditData();
+
+}
+
+  
 // =========================================================
 // EDIT BERITA - SUBMIT
 // =========================================================
