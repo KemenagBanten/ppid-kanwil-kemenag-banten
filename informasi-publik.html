@@ -334,7 +334,57 @@
   font-size: 12px;
 }
 
+/* =====================================================
+   DAFTAR INFORMASI SERTA MERTA
+===================================================== */
 
+.serta-merta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.serta-merta-item {
+  padding: 16px 18px;
+
+  background: #f8fbf9;
+
+  border: 1px solid #dfe9e3;
+  border-radius: 10px;
+}
+
+.serta-merta-item-title {
+  margin-bottom: 6px;
+
+  color: #263a30;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.5;
+}
+
+.serta-merta-item-date {
+  margin-bottom: 10px;
+
+  color: #718078;
+
+  font-size: 11px;
+}
+
+.serta-merta-item-content {
+  color: #52615a;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  white-space: pre-line;
+}
+
+.serta-merta-item-document {
+  margin-top: 12px;
+}
+    
 /* =====================================================
    PANEL DOKUMEN
 ===================================================== */
@@ -1280,38 +1330,34 @@
   =================================================== -->
 
   <div
-    id="sertaMertaPanel"
-    class="serta-merta-panel"
-    style="display:none;"
-  >
+  id="sertaMertaPanel"
+  class="serta-merta-panel"
+  style="display:none;"
+>
 
-    <div class="serta-merta-icon">
-      📢
-    </div>
+  <div class="serta-merta-icon">
+    📢
+  </div>
 
-    <div class="serta-merta-content">
+  <div class="serta-merta-content">
 
-      <span class="kategori-eyebrow">
-        INFORMASI SERTA MERTA
-      </span>
+    <span class="kategori-eyebrow">
+      INFORMASI SERTA MERTA
+    </span>
 
-      <h2>
-        Informasi Aktual
-      </h2>
+    <h2>
+      Informasi Aktual
+    </h2>
 
-      <p>
-        Informasi serta-merta akan ditampilkan apabila
-        terdapat informasi yang perlu segera diketahui
-        masyarakat.
-      </p>
+    <p>
+      Informasi serta-merta yang perlu segera diketahui masyarakat.
+    </p>
 
-      <div class="serta-merta-empty">
-        Belum terdapat informasi serta-merta yang diterbitkan.
-      </div>
-
-    </div>
+    <div id="sertaMertaList"></div>
 
   </div>
+
+</div>
 
 
   <!-- ===================================================
@@ -1810,6 +1856,8 @@ const kategoriDescription = document.getElementById('kategoriDescription');
 const kategoriList = document.getElementById('kategoriList');
 
 const sertaMertaPanel = document.getElementById('sertaMertaPanel');
+    const sertaMertaList =
+  document.getElementById('sertaMertaList');
 
 const dokumenPanel = document.getElementById('dokumenPanel');
 const dokumenTitle = document.getElementById('dokumenTitle');
@@ -1828,30 +1876,188 @@ typeCards.forEach(card => {
 
 });
 
-    function showInformasiType(type) {
+  function showInformasiType(type) {
+
   selectedType = type;
   selectedCategory = '';
 
   activeType = type;
   activeCategory = '';
 
+  /* ===================================================
+     SERTA MERTA
+  =================================================== */
+
   if (type === 'Serta Merta') {
+
     kategoriPanel.style.display = 'none';
     dokumenPanel.style.display = 'none';
     sertaMertaPanel.style.display = 'block';
 
     hideDocumentResult();
+
+    renderSertaMerta();
+
     return;
   }
+
+
+  /* ===================================================
+     BERKALA / SETIAP SAAT
+  =================================================== */
 
   sertaMertaPanel.style.display = 'none';
   dokumenPanel.style.display = 'none';
   kategoriPanel.style.display = 'block';
 
   renderKategori(type);
-  hideDocumentResult();
-}
 
+  hideDocumentResult();
+function renderSertaMerta() {
+
+  if (!sertaMertaList) {
+    return;
+  }
+
+  const data = allData.filter(function(row) {
+
+    return String(row.jenis || '')
+      .trim()
+      .toLowerCase()
+      === 'serta merta';
+
+  });
+
+
+  /* ===================================================
+     TIDAK ADA DATA
+  =================================================== */
+
+  if (!data.length) {
+
+    sertaMertaList.innerHTML = `
+
+      <div class="serta-merta-empty">
+        Belum terdapat informasi serta-merta yang diterbitkan.
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  /* ===================================================
+     URUTKAN TERBARU
+  =================================================== */
+
+  data.sort(function(a, b) {
+
+    const dateA =
+      new Date(
+        a.tanggal_update || 0
+      ).getTime();
+
+    const dateB =
+      new Date(
+        b.tanggal_update || 0
+      ).getTime();
+
+    return dateB - dateA;
+
+  });
+
+
+  /* ===================================================
+     RENDER
+  =================================================== */
+
+  sertaMertaList.innerHTML = `
+
+    <div class="serta-merta-list">
+
+      ${
+        data.map(function(row) {
+
+          const judul =
+            row.judul ||
+            'Tanpa Judul';
+
+          const isi =
+            row.keterangan ||
+            '';
+
+          const tanggal =
+            formatTanggal(
+              row.tanggal_update
+            );
+
+          const url =
+            row.url_dokumen ||
+            '';
+
+          return `
+
+            <article class="serta-merta-item">
+
+              <div class="serta-merta-item-title">
+                ${escapeHTML(judul)}
+              </div>
+
+              ${
+                tanggal
+                  ? `
+                    <div class="serta-merta-item-date">
+                      Diperbarui ${escapeHTML(tanggal)}
+                    </div>
+                  `
+                  : ''
+              }
+
+              ${
+                isi
+                  ? `
+                    <div class="serta-merta-item-content">
+                      ${escapeHTML(isi)}
+                    </div>
+                  `
+                  : ''
+              }
+
+              ${
+                url
+                  ? `
+                    <div class="serta-merta-item-document">
+
+                      <a
+                        href="${escapeAttribute(url)}"
+                        class="table-document-button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Lihat Dokumen
+                      </a>
+
+                    </div>
+                  `
+                  : ''
+              }
+
+            </article>
+
+          `;
+
+        }).join('')
+
+      }
+
+    </div>
+
+  `;
+
+}
+    
+}
 function renderKategori(type) {
   kategoriTitle.textContent = type;
 
