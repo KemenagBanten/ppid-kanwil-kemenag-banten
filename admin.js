@@ -987,37 +987,154 @@ token: getAdminToken(),
         // =====================================================
 
         const newId =
-          result.id ||
-          result.data?.id ||
-          result.ID ||
-          result.data?.ID ||
-          '';
+  result.id ||
+  result.data?.id ||
+  result.ID ||
+  result.data?.ID ||
+  '';
 
 
-        // =====================================================
-        // SUKSES
-        // =====================================================
+// =====================================================
+// UPLOAD PDF REGULASI
+// =====================================================
 
-        regulasiStatusBox.style.display =
-          'block';
+let uploadMessage = '';
 
-        regulasiStatusBox.className =
-          'status success';
+if (
+  regulasiPdf &&
+  regulasiPdf.files.length > 0
+) {
 
-        regulasiStatusBox.textContent =
-          'Regulasi berhasil ditambahkan.' +
-          (
-            newId
-              ? ' ID: ' + newId
-              : ''
+  const file =
+    regulasiPdf.files[0];
+
+  regulasiStatusBox.textContent =
+    'Regulasi berhasil ditambahkan. Mengupload PDF...';
+
+
+  const base64Data =
+    await new Promise(function(resolve, reject) {
+
+      const reader =
+        new FileReader();
+
+      reader.onload =
+        function() {
+          resolve(reader.result);
+        };
+
+      reader.onerror =
+        function() {
+          reject(
+            new Error(
+              'Gagal membaca file PDF.'
+            )
           );
+        };
+
+      reader.readAsDataURL(file);
+
+    });
 
 
-        // =====================================================
-        // RESET FORM
-        // =====================================================
+  const uploadPayload = {
 
-        regulasiForm.reset();
+    action:
+      'uploadRegulasiDocument',
+
+    token:
+      getAdminToken(),
+
+    idValue:
+      newId,
+
+    fileData:
+      base64Data,
+
+    fileName:
+      file.name,
+
+    folderName:
+      '06_REGULASI'
+
+  };
+
+
+  const uploadResponse =
+    await fetch(
+      API_URL,
+      {
+        method: 'POST',
+
+        body:
+          JSON.stringify(
+            uploadPayload
+          )
+      }
+    );
+
+
+  if (!uploadResponse.ok) {
+
+    throw new Error(
+      'HTTP Error upload PDF: ' +
+      uploadResponse.status
+    );
+
+  }
+
+
+  const uploadResult =
+    await uploadResponse.json();
+
+
+  console.log(
+    'HASIL UPLOAD REGULASI:',
+    uploadResult
+  );
+
+
+  if (!uploadResult.success) {
+
+    throw new Error(
+      uploadResult.message ||
+      'PDF regulasi gagal diupload.'
+    );
+
+  }
+
+
+  uploadMessage =
+    ' PDF berhasil diupload dan terdaftar di Dokumen.';
+
+}
+
+
+// =====================================================
+// SUKSES
+// =====================================================
+
+regulasiStatusBox.style.display =
+  'block';
+
+regulasiStatusBox.className =
+  'status success';
+
+regulasiStatusBox.textContent =
+  'Regulasi berhasil ditambahkan.' +
+  (
+    newId
+      ? ' ID: ' + newId + '.'
+      : ''
+  ) +
+  uploadMessage;
+
+
+// =====================================================
+// RESET
+// =====================================================
+
+regulasiForm.reset();
 
 
       } catch (error) {
