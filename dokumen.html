@@ -625,60 +625,45 @@
 
         <div class="filters">
 
-          <input
-            type="search"
-            id="searchInput"
-            class="search-input"
-            placeholder="Cari nama, jenis, atau tahun dokumen..."
-            autocomplete="off"
-          >
+  <input
+    type="search"
+    id="searchInput"
+    class="search-input"
+    placeholder="Cari nama, jenis, atau tahun dokumen..."
+    autocomplete="off"
+  >
 
+  <select
+    id="typeFilter"
+    class="filter-select"
+  >
+    <option value="">
+      Semua Kategori
+    </option>
 
-          <select
-            id="typeFilter"
-            class="filter-select"
-          >
+    <option value="Informasi Publik">
+      Informasi Publik
+    </option>
 
-            <option value="">
-              Semua Jenis Dokumen
-            </option>
+    <option value="SOP">
+      SOP
+    </option>
 
-          </select>
+    <option value="Regulasi Kanwil">
+      Regulasi Kanwil
+    </option>
+  </select>
 
+  <select
+    id="yearFilter"
+    class="filter-select"
+  >
+    <option value="">
+      Semua Tahun
+    </option>
+  </select>
 
-          <select
-  id="typeFilter"
-  class="filter-select"
->
-
-  <option value="">
-    Semua
-  </option>
-
-  <option value="Informasi Berkala">
-    Informasi Berkala
-  </option>
-
-  <option value="Informasi Serta Merta">
-    Informasi Serta Merta
-  </option>
-
-  <option value="Informasi Setiap Saat">
-    Informasi Setiap Saat
-  </option>
-
-  <option value="Dokumen SOP">
-    Dokumen SOP
-  </option>
-
-  <option value="Regulasi Kanwil">
-    Regulasi Kanwil
-  </option>
-
-</select>
-        </div>
-
-      </section>
+</div>
 
 
       <!-- DOCUMENT TABLE -->
@@ -1334,101 +1319,149 @@
     }
 
 
-    /* =====================================================
-       APPLY FILTERS
-    ===================================================== */
+   /* =====================================================
+    APPLY FILTERS
+ ===================================================== */
 
-    function applyFilters() {
+ function applyFilters() {
 
-      const keyword =
-        searchInput.value
-          .toLowerCase()
-          .trim();
-
-
-      const selectedType =
-        typeFilter.value;
+   const keyword =
+     searchInput.value
+       .toLowerCase()
+       .trim();
 
 
-      const selectedYear =
-        yearFilter.value;
+   const selectedType =
+     typeFilter.value;
 
 
-      filteredData =
-        allData.filter(
-          function(row) {
+   const selectedYear =
+     yearFilter.value;
 
 
-            const text = [
+   filteredData =
+     allData.filter(
+       function(row) {
 
-  row.informasi_id,
+         /* ================================
+            DATA DOKUMEN
+         ================================= */
 
-  row.informasi_publik,
-  row.informasiPublik,
-
-  row.judul_sop,
-  row.judulSOP,
-
-  row.judul_tentang,
-  row.judulTentang,
-
-  row.tentang,
-  row.judul,
-
-  row.nama_dokumen,
-
-  row.jenis_dokumen,
-  row.jenis,
-
-  row.tahun
-
-]
-              .filter(Boolean)
-              .join(' ')
-              .toLowerCase();
+         const namaDokumen =
+           String(
+             row.nama_dokumen ||
+             ''
+           ).trim();
 
 
-            const matchesSearch =
-              !keyword ||
-              text.includes(keyword);
+         const jenisDokumen =
+           String(
+             row.jenis_dokumen ||
+             ''
+           ).trim();
 
 
-            const matchesType =
-  !selectedType ||
-  String(
-    row.jenis_dokumen ||
-    row.jenis ||
-    ''
-  ).trim() === selectedType;
+         const tahunDokumen =
+           String(
+             row.tahun ||
+             ''
+           ).trim();
 
 
-            const matchesYear =
-              !selectedYear ||
-              String(
-                row.tahun || ''
-              ) === selectedYear;
+         /* ================================
+            PENCARIAN TEKS
+         ================================= */
+
+         const text = [
+
+           row.informasi_id,
+           row.nama_dokumen,
+           row.jenis_dokumen,
+           row.tahun
+
+         ]
+           .filter(Boolean)
+           .join(' ')
+           .toLowerCase();
 
 
-            return (
-              matchesSearch &&
-              matchesType &&
-              matchesYear
-            );
-
-          }
-        );
+         const matchesSearch =
+           !keyword ||
+           text.includes(keyword);
 
 
-      currentPage = 1;
+         /* ================================
+            FILTER KATEGORI
+         ================================= */
+
+         let matchesType = true;
 
 
-      renderTablePage(
-        filteredData
-      );
+         if (selectedType) {
 
-    }
+           if (
+             selectedType === 'Informasi Publik'
+           ) {
+
+             matchesType =
+               jenisDokumen
+                 .toLowerCase()
+                 .includes('informasi publik');
+
+           }
+
+           else if (
+             selectedType === 'SOP'
+           ) {
+
+             matchesType =
+               jenisDokumen
+                 .toLowerCase() === 'sop';
+
+           }
+
+           else if (
+             selectedType === 'Regulasi Kanwil'
+           ) {
+
+             matchesType =
+               jenisDokumen
+                 .toLowerCase()
+                 .includes('regulasi');
+
+           }
+
+         }
 
 
+         /* ================================
+            FILTER TAHUN
+         ================================= */
+
+         const matchesYear =
+           !selectedYear ||
+           tahunDokumen === selectedYear;
+
+
+         return (
+           matchesSearch &&
+           matchesType &&
+           matchesYear
+         );
+
+       }
+     );
+
+
+   currentPage = 1;
+
+
+   renderTablePage(
+     filteredData
+   );
+
+ }
+    
     /* =====================================================
        LOAD DOKUMEN
     ===================================================== */
