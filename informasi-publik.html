@@ -319,6 +319,78 @@
   line-height: 1.6;
 }
 
+    /* =====================================================
+   DAFTAR CARD SERTA MERTA
+===================================================== */
+
+.serta-merta-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.serta-merta-item {
+  padding: 18px 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e9e5;
+  border-radius: 12px;
+
+  box-shadow:
+    0 4px 16px rgba(26, 54, 41, 0.035);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.serta-merta-item:hover {
+  border-color: #bfd4c8;
+
+  box-shadow:
+    0 7px 20px rgba(26, 54, 41, 0.06);
+
+  transform: translateY(-1px);
+}
+
+.serta-merta-item-title {
+  color: #263a30;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  line-height: 1.45;
+
+  margin-bottom: 6px;
+}
+
+.serta-merta-item-date {
+  color: #718078;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  margin-bottom: 10px;
+}
+
+.serta-merta-item-content {
+  color: #52615a;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  white-space: pre-line;
+
+  margin-bottom: 14px;
+}
+
+.serta-merta-item-document {
+  margin-top: 10px;
+}
+    
 .serta-merta-empty {
   display: inline-block;
 
@@ -1869,20 +1941,22 @@ typeCards.forEach(card => {
 
 }
     
-    function renderSertaMerta() {
+    function renderSertaMerta(filteredData) {
 
   if (!sertaMertaList) {
     return;
   }
 
-  const data = allData.filter(function(row) {
+    const data = Array.isArray(filteredData)
+    ? filteredData
+    : allData.filter(function(row) {
 
-    return String(row.jenis || '')
-      .trim()
-      .toLowerCase()
-      === 'serta merta';
+        return String(row.jenis || '')
+          .trim()
+          .toLowerCase()
+          === 'serta merta';
 
-  });
+      });
 
 
   /* ===================================================
@@ -2012,8 +2086,7 @@ typeCards.forEach(card => {
   `;
 
 }
-    
-}
+  
 function renderKategori(type) {
   kategoriTitle.textContent = type;
 
@@ -2282,7 +2355,7 @@ function applySertaMertaFilter() {
   });
 
 
-  renderData(filtered);
+    renderSertaMerta(filtered);
 
 }
     
