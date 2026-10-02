@@ -48,10 +48,11 @@
 
 .informasi-type-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+  width: 100%;
 }
-
+    
 .informasi-type-card {
   appearance: none;
   -webkit-appearance: none;
@@ -1228,7 +1229,7 @@
     <button
       type="button"
       class="informasi-type-card"
-      onclick="window.location.href='informasi-barang-jasa.html'"
+      onclick="window.open('informasi-barang-jasa.html', '_blank')"
     >
       <span class="informasi-type-icon">📦</span>
 
@@ -1533,9 +1534,7 @@
 
       'Informasi Kepegawaian',
 
-      'Publikasi Statistik',
-
-      'Informasi Barang/Jasa'
+      'Publikasi Statistik'
 
     ],
 
