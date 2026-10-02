@@ -1890,8 +1890,7 @@ async function loadContentList() {
     // TAMPILKAN HANYA 2 BERITA
     // =====================================================
 
-    const berita =
-      data.slice(0, 2);
+    const berita = data;
 
 
     contentListBody.innerHTML =
