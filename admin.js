@@ -1820,149 +1820,250 @@ if (saveContentButton) {
 
 
   // =========================================================
-  // LOAD DAFTAR KONTEN
-  // =========================================================
+// LOAD DAFTAR KONTEN
+// =========================================================
 
-  async function loadContentList() {
+async function loadContentList() {
 
-    const contentListBody =
-      document.getElementById(
-        'contentListBody'
-      );
+  const contentListBody =
+    document.getElementById(
+      'contentListBody'
+    );
 
-    if (!contentListBody) return;
-
-
-    try {
-
-      const type =
-        contentType
-          ? contentType.value
-          : 'BERITA';
+  if (!contentListBody) return;
 
 
-      const action =
-        type === 'PENGUMUMAN'
-          ? 'pengumuman'
-          : 'berita';
+  try {
 
-
-      contentListBody.innerHTML =
-        '<tr><td colspan="6">Memuat data...</td></tr>';
-
-
-      const response =
-  await fetch(
-    API_URL +
-    '?action=' +
-    encodeURIComponent(action) +
-    '&token=' +
-    encodeURIComponent(getAdminToken())
-  );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          'HTTP Error ' +
-          response.status
-        );
-
-      }
-
-
-      const result =
-        await response.json();
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'Gagal mengambil daftar konten.'
-        );
-
-      }
-
-
-      const data =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-
-      if (!data.length) {
-
-        contentListBody.innerHTML =
-          '<tr><td colspan="6">Belum ada data.</td></tr>';
-
-        return;
-
-      }
-
-
-      contentListBody.innerHTML =
-        data.map(function (item) {
-
-          return `
-            <tr>
-
-              <td>
-                ${escapeHTML(item.id || '-')}
-              </td>
-
-              <td>
-                ${escapeHTML(item.judul || '-')}
-              </td>
-
-              <td>
-                ${formatContentDate(item.tanggal)}
-              </td>
-
-              <td>
-                ${escapeHTML(item.kategori || '-')}
-              </td>
-
-              <td>
-                ${escapeHTML(item.status || '-')}
-              </td>
-
-              <td>
-                ${
-                  item.gambar_url
-                    ? 'Ada'
-                    : '-'
-                }
-              </td>
-
-            </tr>
-          `;
-
-        }).join('');
-
-
-    } catch (error) {
-
-      console.error(
-        'loadContentList error:',
-        error
+    const response =
+      await fetch(
+        API_URL +
+        '?action=berita' +
+        '&token=' +
+        encodeURIComponent(
+          getAdminToken()
+        )
       );
 
 
-      contentListBody.innerHTML = `
-        <tr>
-          <td colspan="6">
-            Gagal memuat data:
-            ${escapeHTML(error.message)}
-          </td>
-        </tr>
-      `;
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
 
     }
 
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Gagal mengambil daftar berita.'
+      );
+
+    }
+
+
+    const data =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
+
+
+    if (!data.length) {
+
+      contentListBody.innerHTML =
+        '<tr><td colspan="7">Belum ada berita.</td></tr>';
+
+      return;
+
+    }
+
+
+    // =====================================================
+    // TAMPILKAN HANYA 2 BERITA
+    // =====================================================
+
+    const berita =
+      data.slice(0, 2);
+
+
+    contentListBody.innerHTML =
+      berita.map(function (item) {
+
+        return `
+          <tr>
+
+            <td>
+              ${escapeHTML(item.id || '-')}
+            </td>
+
+            <td>
+              ${escapeHTML(item.judul || '-')}
+            </td>
+
+            <td>
+              ${formatContentDate(item.tanggal)}
+            </td>
+
+            <td>
+              ${escapeHTML(item.kategori || '-')}
+            </td>
+
+            <td>
+              ${escapeHTML(item.status || '-')}
+            </td>
+
+            <td>
+              ${
+                item.gambar_url
+                  ? 'Ada'
+                  : '-'
+              }
+            </td>
+
+            <td>
+
+              <button
+                type="button"
+                class="btn-delete-content"
+                onclick="hapusBerita('${escapeHTML(item.id || '')}')"
+              >
+                Hapus
+              </button>
+
+            </td>
+
+          </tr>
+        `;
+
+      }).join('');
+
+
+  } catch (error) {
+
+    console.error(
+      'loadContentList error:',
+      error
+    );
+
+
+    contentListBody.innerHTML = `
+      <tr>
+        <td colspan="7">
+          Gagal memuat data:
+          ${escapeHTML(error.message)}
+        </td>
+      </tr>
+    `;
+
+  }
+
+}
+
+  // =========================================================
+// HAPUS BERITA
+// =========================================================
+
+async function hapusBerita(idValue) {
+
+  if (!idValue) {
+    return;
   }
 
 
+  const konfirmasi =
+    confirm(
+      'Apakah Anda yakin ingin menghapus berita ini?'
+    );
+
+
+  if (!konfirmasi) {
+    return;
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method: 'POST',
+
+          body:
+            JSON.stringify({
+
+              action:
+                'hapusBerita',
+
+              token:
+                getAdminToken(),
+
+              idValue:
+                idValue
+
+            })
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        'HTTP Error ' +
+        response.status
+      );
+
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Gagal menghapus berita.'
+      );
+
+    }
+
+
+    alert(
+      'Berita berhasil dihapus.'
+    );
+
+
+    await loadContentList();
+
+
+  } catch (error) {
+
+    console.error(
+      'hapusBerita error:',
+      error
+    );
+
+
+    alert(
+      error.message ||
+      'Terjadi kesalahan saat menghapus berita.'
+    );
+
+  }
+
+}
+  
   // =========================================================
   // EDIT - LOAD DATA
   // =========================================================
