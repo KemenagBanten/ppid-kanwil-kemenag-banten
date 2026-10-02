@@ -4283,38 +4283,47 @@ token: getAdminToken(),
 }
 
   
-  // =========================================================
-  // INISIALISASI
-  // =========================================================
+ // =========================================================
+// INISIALISASI
+// =========================================================
 
-  updateContentMode();
+updateContentMode();
 
-   updateFormMode();
+updateFormMode();
 
 
-  // LOAD AWAL
+// LOAD AWAL
 
-  if (sheetSelect) {
+if (sheetSelect) {
 
-    loadData(
-      sheetSelect.value
-    );
+  loadData(
+    sheetSelect.value
+  );
 
-  }
+}
+
+
+// LOAD DAFTAR LAPORAN
+
 loadLaporanUploadDropdown();
 
-  if (contentType) {
 
-    loadContentList();
+// LOAD DAFTAR KONTEN BERITA
 
-  }
+if (document.getElementById('contentListBody')) {
+
+  loadContentList();
+
+}
 
 
-  if (editSheetName) {
+// LOAD DAFTAR EDIT BERITA
 
-    loadEditData();
+if (editIdValue) {
 
-  }
+  loadEditData();
+
+}
 
 });
 
