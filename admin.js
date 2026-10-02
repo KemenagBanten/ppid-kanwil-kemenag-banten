@@ -418,6 +418,8 @@ const contentStatus =
   const sopKeterangan =
     document.getElementById('sopKeterangan');
 
+const sopPdf = document.getElementById('sopPdf');
+  
   const saveSopButton =
     document.getElementById('saveSopButton');
 
@@ -445,6 +447,8 @@ const regulasiTahun =
 
 const regulasiTentang =
   document.getElementById('regulasiTentang');
+
+  const regulasiPdf = document.getElementById('regulasiPdf');
 
 const regulasiStatus =
   document.getElementById('regulasiStatus');
@@ -660,20 +664,132 @@ token: getAdminToken(),
         sopStatusBox.className =
           'status success';
 
-        sopStatusBox.textContent =
-          'SOP berhasil ditambahkan.' +
-          (
-            newId
-              ? ' ID: ' + newId
-              : ''
-          );
+       // =====================================================
+// UPLOAD PDF SOP
+// =====================================================
+
+let uploadMessage = '';
+
+if (sopPdf && sopPdf.files.length > 0) {
+
+  const file = sopPdf.files[0];
+
+  sopStatusBox.textContent =
+    'SOP berhasil ditambahkan. Mengupload PDF...';
+
+  const base64Data =
+    await new Promise(function(resolve, reject) {
+
+      const reader =
+        new FileReader();
+
+      reader.onload = function() {
+        resolve(reader.result);
+      };
+
+      reader.onerror = function() {
+        reject(
+          new Error(
+            'Gagal membaca file PDF.'
+          )
+        );
+      };
+
+      reader.readAsDataURL(file);
+
+    });
 
 
-        // =====================================================
-        // RESET
-        // =====================================================
+  const uploadPayload = {
 
-        sopForm.reset();
+    action: 'uploadSOPDocument',
+
+    token: getAdminToken(),
+
+    idValue: newId,
+
+    fileData: base64Data,
+
+    fileName: file.name,
+
+    folderName: '05_SOP'
+
+  };
+
+
+  const uploadResponse =
+    await fetch(
+      API_URL,
+      {
+        method: 'POST',
+
+        body:
+          JSON.stringify(uploadPayload)
+      }
+    );
+
+
+  if (!uploadResponse.ok) {
+
+    throw new Error(
+      'HTTP Error upload PDF: ' +
+      uploadResponse.status
+    );
+
+  }
+
+
+  const uploadResult =
+    await uploadResponse.json();
+
+
+  console.log(
+    'HASIL UPLOAD SOP:',
+    uploadResult
+  );
+
+
+  if (!uploadResult.success) {
+
+    throw new Error(
+      uploadResult.message ||
+      'PDF SOP gagal diupload.'
+    );
+
+  }
+
+
+  uploadMessage =
+    ' PDF berhasil diupload dan terdaftar di Dokumen.';
+
+}
+
+
+// =====================================================
+// SUKSES
+// =====================================================
+
+sopStatusBox.style.display =
+  'block';
+
+sopStatusBox.className =
+  'status success';
+
+sopStatusBox.textContent =
+  'SOP berhasil ditambahkan.' +
+  (
+    newId
+      ? ' ID: ' + newId + '.'
+      : ''
+  ) +
+  uploadMessage;
+
+
+// =====================================================
+// RESET
+// =====================================================
+
+sopForm.reset();
 
 
       } catch (error) {
