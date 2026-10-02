@@ -1929,20 +1929,41 @@ async function loadContentList() {
 
             <td>
 
-              <button
-                type="button"
-                class="btn-delete-content"
-                onclick="hapusBerita('${escapeHTML(item.id || '')}')"
-              >
-                Hapus
-              </button>
-
+             <button
+  type="button"
+  class="btn-delete-content"
+  data-id="${escapeHTML(item.id || '')}"
+>
+  Hapus
+</button>
             </td>
 
           </tr>
         `;
 
       }).join('');
+
+    // =====================================================
+// EVENT TOMBOL HAPUS BERITA
+// =====================================================
+
+contentListBody
+  .querySelectorAll('.btn-delete-content')
+  .forEach(function (button) {
+
+    button.addEventListener(
+      'click',
+      function () {
+
+        const idValue =
+          button.getAttribute('data-id');
+
+        hapusBerita(idValue);
+
+      }
+    );
+
+  });
 
 
   } catch (error) {
