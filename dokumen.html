@@ -647,16 +647,35 @@
 
 
           <select
-            id="yearFilter"
-            class="filter-select"
-          >
+  id="typeFilter"
+  class="filter-select"
+>
 
-            <option value="">
-              Semua Tahun
-            </option>
+  <option value="">
+    Semua
+  </option>
 
-          </select>
+  <option value="Informasi Berkala">
+    Informasi Berkala
+  </option>
 
+  <option value="Informasi Serta Merta">
+    Informasi Serta Merta
+  </option>
+
+  <option value="Informasi Setiap Saat">
+    Informasi Setiap Saat
+  </option>
+
+  <option value="Dokumen SOP">
+    Dokumen SOP
+  </option>
+
+  <option value="Regulasi Kanwil">
+    Regulasi Kanwil
+  </option>
+
+</select>
         </div>
 
       </section>
@@ -695,46 +714,41 @@
 
             <thead>
 
-              <tr>
+  <tr>
 
-                <th class="number">
-                  No.
-                </th>
+    <th class="number">
+      No.
+    </th>
 
-                <th>
-                  Nama Dokumen
-                </th>
+    <th>
+      Informasi Publik
+    </th>
 
-                <th>
-                  Jenis
-                </th>
+    <th>
+      Jenis
+    </th>
 
-                <th>
-                  Tahun
-                </th>
+    <th>
+      Tahun
+    </th>
 
-                <th>
-                  Tanggal Upload
-                </th>
+    <th>
+      Diperbarui
+    </th>
 
-                <th>
-                  Status
-                </th>
+    <th>
+      Dokumen
+    </th>
 
-                <th>
-                  Akses
-                </th>
+  </tr>
 
-              </tr>
-
-            </thead>
-
+</thead>
 
             <tbody id="documentTableBody">
 
               <tr>
 
-                <td colspan="7">
+                <td colspan="6">
 
                   <div class="state">
                     Memuat dokumen...
@@ -955,85 +969,39 @@
        FILTER OPTIONS
     ===================================================== */
 
-    function populateFilters() {
+   function populateFilters() {
 
-      const types =
-        [...new Set(
-          allData
-            .map(function(row) {
-
-              return row.jenis_dokumen;
-
-            })
-            .filter(Boolean)
-        )]
-        .sort();
-
-
-      const years =
-        [...new Set(
-          allData
-            .map(function(row) {
-
-              return row.tahun;
-
-            })
-            .filter(Boolean)
-        )]
-        .sort(
-          function(a, b) {
-
-            return Number(b) - Number(a);
-
-          }
-        );
+  const years =
+    [...new Set(
+      allData
+        .map(function(row) {
+          return row.tahun;
+        })
+        .filter(Boolean)
+    )]
+    .sort(function(a, b) {
+      return Number(b) - Number(a);
+    });
 
 
-      typeFilter.innerHTML =
-        '<option value="">Semua Jenis Dokumen</option>';
+  yearFilter.innerHTML =
+    '<option value="">Semua Tahun</option>';
 
 
-      types.forEach(function(type) {
+  years.forEach(function(year) {
 
-        const option =
-          document.createElement(
-            'option'
-          );
+    const option =
+      document.createElement('option');
 
-        option.value = type;
+    option.value = year;
 
-        option.textContent = type;
+    option.textContent = year;
 
-        typeFilter.appendChild(
-          option
-        );
+    yearFilter.appendChild(option);
 
-      });
+  });
 
-
-      yearFilter.innerHTML =
-        '<option value="">Semua Tahun</option>';
-
-
-      years.forEach(function(year) {
-
-        const option =
-          document.createElement(
-            'option'
-          );
-
-        option.value = year;
-
-        option.textContent = year;
-
-        yearFilter.appendChild(
-          option
-        );
-
-      });
-
-    }
-
+}
 
     /* =====================================================
        PAGINATION
@@ -1233,132 +1201,136 @@
       }
 
 
-      tableBody.innerHTML =
-        data.map(
-          function(row, index) {
+     tableBody.innerHTML =
+  data.map(
+    function(row, index) {
+
+      const nomor =
+        (currentPage - 1) *
+        rowsPerPage +
+        index +
+        1;
 
 
-            const nomor =
-              (currentPage - 1) *
-              rowsPerPage +
-              index +
-              1;
+      /*
+        NAMA INFORMASI PUBLIK
+
+        Prioritas:
+        1. Informasi Publik
+        2. Judul SOP
+        3. Judul/Tentang Regulasi
+        4. Fallback nama dokumen lama
+      */
+
+      const namaInformasi =
+        row.informasi_publik ||
+        row.informasiPublik ||
+        row.judul_sop ||
+        row.judulSOP ||
+        row.judul_tentang ||
+        row.judulTentang ||
+        row.tentang ||
+        row.judul ||
+        row.nama_dokumen ||
+        'Tanpa Judul';
 
 
-            const namaDokumen =
-              row.nama_dokumen ||
-              'Tanpa Nama Dokumen';
+      const jenisDokumen =
+        row.jenis_dokumen ||
+        row.jenis ||
+        '-';
 
 
-            const jenisDokumen =
-              row.jenis_dokumen ||
-              '-';
+      const tahun =
+        row.tahun ||
+        '-';
 
 
-            const tahun =
-              row.tahun ||
-              '-';
+      const tanggalUpdate =
+        formatDate(
+          row.tanggal_update ||
+          row.tanggalUpdate ||
+          row.tanggal_upload
+        );
 
 
-            const tanggalUpload =
-              formatDate(
-                row.tanggal_upload
-              );
+      const url =
+        row.url_dokumen ||
+        '';
 
 
-            const status =
-              row.status ||
-              '-';
+      let documentCell;
 
 
-            const url =
-              row.url_dokumen ||
-              '';
+      if (url) {
+
+        documentCell = `
+
+          <a
+            class="document-link"
+            href="${escapeHTML(url)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Lihat Dokumen
+            <span>↗</span>
+          </a>
+
+        `;
+
+      } else {
+
+        documentCell = `
+
+          <span class="document-unavailable">
+            Belum tersedia
+          </span>
+
+        `;
+
+      }
 
 
-            let documentCell;
+      return `
+
+        <tr>
+
+          <td class="number">
+            ${escapeHTML(nomor)}
+          </td>
 
 
-            if (url) {
-
-              documentCell = `
-
-                <a
-                  class="document-link"
-                  href="${escapeHTML(url)}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Lihat Dokumen
-                  <span>↗</span>
-                </a>
-
-              `;
-
-            } else {
-
-              documentCell = `
-
-                <span class="document-unavailable">
-                  Belum tersedia
-                </span>
-
-              `;
-
-            }
+          <td class="document-name">
+            ${escapeHTML(namaInformasi)}
+          </td>
 
 
-            return `
-
-              <tr>
-
-                <td class="number">
-                  ${escapeHTML(nomor)}
-                </td>
+          <td class="document-type">
+            ${escapeHTML(jenisDokumen)}
+          </td>
 
 
-                <td class="document-name">
-                  ${escapeHTML(namaDokumen)}
-                </td>
+          <td class="document-year">
+            ${escapeHTML(tahun)}
+          </td>
 
 
-                <td class="document-type">
-                  ${escapeHTML(jenisDokumen)}
-                </td>
+          <td class="document-date">
+            ${tanggalUpdate}
+          </td>
 
 
-                <td class="document-year">
-                  ${escapeHTML(tahun)}
-                </td>
+          <td>
+            ${documentCell}
+          </td>
 
+        </tr>
 
-                <td class="document-date">
-                  ${tanggalUpload}
-                </td>
+      `;
 
-
-                <td>
-
-                  <span
-                    class="status ${getStatusClass(status)}"
-                  >
-                    ${escapeHTML(status)}
-                  </span>
-
-                </td>
-
-
-                <td>
-                  ${documentCell}
-                </td>
-
-              </tr>
-
-            `;
-
-          }
-        ).join('');
-
+    }
+  ).join('');
+      
     }
 
 
@@ -1389,15 +1361,28 @@
 
             const text = [
 
-              row.informasi_id,
+  row.informasi_id,
 
-              row.nama_dokumen,
+  row.informasi_publik,
+  row.informasiPublik,
 
-              row.jenis_dokumen,
+  row.judul_sop,
+  row.judulSOP,
 
-              row.tahun
+  row.judul_tentang,
+  row.judulTentang,
 
-            ]
+  row.tentang,
+  row.judul,
+
+  row.nama_dokumen,
+
+  row.jenis_dokumen,
+  row.jenis,
+
+  row.tahun
+
+]
               .filter(Boolean)
               .join(' ')
               .toLowerCase();
@@ -1409,10 +1394,12 @@
 
 
             const matchesType =
-              !selectedType ||
-              String(
-                row.jenis_dokumen || ''
-              ) === selectedType;
+  !selectedType ||
+  String(
+    row.jenis_dokumen ||
+    row.jenis ||
+    ''
+  ).trim() === selectedType;
 
 
             const matchesYear =
