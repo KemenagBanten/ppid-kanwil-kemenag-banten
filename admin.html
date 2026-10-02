@@ -1809,13 +1809,32 @@
 </div>
 </div>
 <div class="form-group">
-<label for="sopKeterangan">Keterangan</label>
-<textarea id="sopKeterangan" placeholder="Keterangan tambahan tentang SOP" rows="4"></textarea>
+  <label for="sopKeterangan">Keterangan</label>
+  <textarea
+    id="sopKeterangan"
+    placeholder="Keterangan tambahan tentang SOP"
+    rows="4"
+  ></textarea>
 </div>
+
+<div class="form-group">
+  <label for="sopPdf">Dokumen PDF</label>
+  <input
+    type="file"
+    id="sopPdf"
+    accept="application/pdf,.pdf"
+  >
+  <div class="helper">
+    Upload dokumen SOP dalam format PDF.
+  </div>
+</div>
+
 <button class="btn-primary" id="saveSopButton" type="submit">
-      Simpan SOP
-    </button>
+  Simpan SOP
+</button>
+
 <div class="status" id="sopStatusBox" style="display:none;"></div>
+    
 </form>
 </div>
 <div class="card" data-admin-section="regulasi">
@@ -1854,9 +1873,26 @@
 </div>
 </div>
 <div class="form-group">
-<label for="regulasiTentang">Tentang</label>
-<textarea id="regulasiTentang" placeholder="Uraian singkat tentang regulasi" rows="4"></textarea>
+  <label for="regulasiTentang">Tentang</label>
+  <textarea
+    id="regulasiTentang"
+    placeholder="Uraian singkat tentang regulasi"
+    rows="4"
+  ></textarea>
 </div>
+
+<div class="form-group">
+  <label for="regulasiPdf">Dokumen PDF</label>
+  <input
+    type="file"
+    id="regulasiPdf"
+    accept="application/pdf,.pdf"
+  >
+  <div class="helper">
+    Upload dokumen regulasi dalam format PDF.
+  </div>
+</div>
+
 <div class="form-grid">
 <div class="form-group">
 <label for="regulasiStatus">Status</label>
