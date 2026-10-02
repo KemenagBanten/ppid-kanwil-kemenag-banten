@@ -5750,27 +5750,3 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================
-   BACK NAVIGATION
-   ========================= */
-
-.back-navigation {
-  margin-bottom: 20px;
-}
-
-.back-navigation a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #0f5132;
-  text-decoration: none;
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.back-navigation a:hover {
-  color: #083b24;
-  text-decoration: underline;
-}
