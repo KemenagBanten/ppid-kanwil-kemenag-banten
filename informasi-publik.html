@@ -334,57 +334,7 @@
   font-size: 12px;
 }
 
-/* =====================================================
-   DAFTAR INFORMASI SERTA MERTA
-===================================================== */
 
-.serta-merta-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.serta-merta-item {
-  padding: 16px 18px;
-
-  background: #f8fbf9;
-
-  border: 1px solid #dfe9e3;
-  border-radius: 10px;
-}
-
-.serta-merta-item-title {
-  margin-bottom: 6px;
-
-  color: #263a30;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  line-height: 1.5;
-}
-
-.serta-merta-item-date {
-  margin-bottom: 10px;
-
-  color: #718078;
-
-  font-size: 11px;
-}
-
-.serta-merta-item-content {
-  color: #52615a;
-
-  font-size: 13px;
-  line-height: 1.65;
-
-  white-space: pre-line;
-}
-
-.serta-merta-item-document {
-  margin-top: 12px;
-}
-    
 /* =====================================================
    PANEL DOKUMEN
 ===================================================== */
@@ -1886,6 +1836,7 @@ typeCards.forEach(card => {
 
   /* ===================================================
      SERTA MERTA
+     TAMPILKAN DALAM FORMAT TABEL
   =================================================== */
 
   if (type === 'Serta Merta') {
@@ -1894,9 +1845,11 @@ typeCards.forEach(card => {
     dokumenPanel.style.display = 'none';
     sertaMertaPanel.style.display = 'block';
 
-    hideDocumentResult();
+    currentPage = 1;
 
-    renderSertaMerta();
+    showDocumentResult();
+
+    applySertaMertaFilter();
 
     return;
   }
@@ -1910,10 +1863,13 @@ typeCards.forEach(card => {
   dokumenPanel.style.display = 'none';
   kategoriPanel.style.display = 'block';
 
+  hideDocumentResult();
+
   renderKategori(type);
 
-  hideDocumentResult();
-function renderSertaMerta() {
+}
+    
+    function renderSertaMerta() {
 
   if (!sertaMertaList) {
     return;
@@ -2176,11 +2132,21 @@ if (searchInput) {
     'input',
     function() {
 
+      currentPage = 1;
+
+
+      if (activeType === 'Serta Merta') {
+
+        applySertaMertaFilter();
+
+        return;
+
+      }
+
+
       if (!activeCategory) {
         return;
       }
-
-      currentPage = 1;
 
       applyDocumentFilter();
 
@@ -2188,18 +2154,136 @@ if (searchInput) {
   );
 
 }
-    if (informasiSort) {
+    
+   if (informasiSort) {
+
   informasiSort.addEventListener(
     'change',
     function() {
+
+      currentPage = 1;
+
+
+      if (activeType === 'Serta Merta') {
+
+        applySertaMertaFilter();
+
+        return;
+
+      }
+
+
       if (!activeCategory) {
         return;
       }
 
-      currentPage = 1;
       applyDocumentFilter();
+
     }
   );
+
+}
+    
+// =====================================================
+// FILTER INFORMASI SERTA MERTA
+// =====================================================
+
+function applySertaMertaFilter() {
+
+  const searchInput =
+    document.getElementById('searchInput');
+
+  const searchTerm =
+    (searchInput ? searchInput.value : '')
+      .toLowerCase()
+      .trim();
+
+
+  let filtered =
+    allData.filter(function(row) {
+
+      const rowType =
+        String(row.jenis || '')
+          .trim()
+          .toLowerCase();
+
+      return rowType === 'serta merta';
+
+    });
+
+
+  /* ===================================================
+     PENCARIAN
+  =================================================== */
+
+  if (searchTerm) {
+
+    filtered =
+      filtered.filter(function(row) {
+
+        const searchableText = [
+
+          row.judul,
+          row.jenis,
+          row.tahun,
+          row.status
+
+        ]
+          .map(function(value) {
+
+            return String(
+              value || ''
+            ).toLowerCase();
+
+          })
+          .join(' ');
+
+        return searchableText.includes(
+          searchTerm
+        );
+
+      });
+
+  }
+
+
+  /* ===================================================
+     SORTING
+  =================================================== */
+
+  const sortSelect =
+    document.getElementById(
+      'informasiSort'
+    );
+
+  const sortValue =
+    sortSelect
+      ? sortSelect.value
+      : 'terbaru';
+
+
+  filtered.sort(function(a, b) {
+
+    const yearA =
+      Number(a.tahun || 0);
+
+    const yearB =
+      Number(b.tahun || 0);
+
+
+    if (sortValue === 'terlama') {
+
+      return yearA - yearB;
+
+    }
+
+    return yearB - yearA;
+
+  });
+
+
+  renderData(filtered);
+
 }
     
    // =====================================================
