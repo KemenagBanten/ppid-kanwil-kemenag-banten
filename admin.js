@@ -5585,33 +5585,54 @@ status: status,
          }
 
 
-         // ==============================================
-         // SUKSES
-         // ==============================================
+        // ==============================================
+// SUKSES
+// ==============================================
 
-         showInfoStatus(
-           isEdit
-             ? 'Informasi Publik berhasil diperbarui.'
-             : 'Informasi Publik berhasil ditambahkan. ID: ' +
-               (result.id || ''),
-           'success'
-         );
+const newId =
+  result.id ||
+  result.data?.id ||
+  result.ID ||
+  result.data?.ID ||
+  '';
 
+// Reset field form terlebih dahulu
+informasiPublikForm.reset();
 
-         showUploadStatus(
-           file
-             ? 'Dokumen PDF berhasil disimpan.'
-             : '',
-           file
-             ? 'success'
-             : ''
-         );
+idInput.value = '';
 
+tahunInput.value =
+  new Date().getFullYear();
 
-         resetInformasiPublikForm();
+statusInput.value =
+  'Published';
 
-         await loadInformasiPublikAdmin();
+saveButton.textContent =
+  'Simpan Informasi';
 
+cancelButton.style.display =
+  'none';
+
+// Tampilkan NOTIF SUKSES setelah reset
+showInfoStatus(
+  isEdit
+    ? 'Informasi Publik berhasil diperbarui.' +
+      (newId ? ' ID: ' + newId : '')
+    : 'Informasi Publik berhasil ditambahkan.' +
+      (newId ? ' ID: ' + newId : ''),
+  'success'
+);
+
+showUploadStatus(
+  file
+    ? 'Dokumen PDF berhasil disimpan.'
+    : '',
+  file
+    ? 'success'
+    : ''
+);
+
+await loadInformasiPublikAdmin();
 
        } catch (error) {
 
