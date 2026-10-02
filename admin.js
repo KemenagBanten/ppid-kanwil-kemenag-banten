@@ -4370,6 +4370,15 @@ const loginButton =
 const loginStatus =
   document.getElementById('loginStatus');
 
+// =========================================================
+// CEK SESI ADMIN SAAT HALAMAN DIMUAT
+// =========================================================
+
+if (getAdminToken()) {
+
+  showAdminPanel();
+
+}
 
 /* =========================================================
    PANEL ADMIN
