@@ -2455,35 +2455,36 @@
 </div>
 </div>
 <form id="editContentForm">
-<!-- JENIS KONTEN -->
+
+<!-- PILIH BERITA -->
+
 <div class="form-group">
-<label for="editSheetName">
-              Jenis Konten
-            </label>
-<select id="editSheetName" required="">
-<option value="">
-                -- Pilih Jenis Konten --
-              </option>
-<option value="BERITA">
-                Berita
-              
-</select>
+
+  <label for="editIdValue">
+    Berita yang akan diedit
+  </label>
+
+  <select
+    id="editIdValue"
+    required
+  >
+
+    <option value="">
+      -- Pilih Berita --
+    </option>
+
+  </select>
+
 </div>
-<!-- ID -->
-<div class="form-group">
-<label for="editIdValue">
-              ID Konten
-            </label>
-<select id="editIdValue" required="">
-<option value="">
-                -- Pilih Konten --
-              </option>
-</select>
+
+<div
+  id="editDataInfo"
+  class="data-info"
+>
+  Pilih berita yang akan diedit.
 </div>
-<!-- INFO -->
-<div class="data-info" id="editDataInfo">
-            Pilih jenis konten terlebih dahulu.
-          </div>
+
+    
 <!-- JUDUL -->
 <div class="form-group">
 <label for="editTitle">
@@ -2528,6 +2529,33 @@
 </div>
 </div>
 
+<!-- GAMBAR BERITA -->
+
+<div class="form-group">
+
+  <label for="editImage">
+    Gambar Berita
+  </label>
+
+  <div
+    id="editImagePreview"
+    class="image-preview"
+    style="display:none;"
+  >
+  </div>
+
+  <input
+    id="editImage"
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+  >
+
+  <div class="helper">
+    Biarkan kosong jika tidak ingin mengganti gambar.
+  </div>
+
+</div>
+    
 <!-- STATUS -->
 <div class="form-group">
 <label for="editStatus">
