@@ -1161,7 +1161,12 @@
 
   <main>
 
-
+<div class="back-navigation">
+  <a href="informasi-publik.html">
+    ← Kembali ke Informasi Publik
+  </a>
+</div>
+    
    <!-- =====================================================
      NAVIGASI INFORMASI PUBLIK
 ===================================================== -->
@@ -1229,7 +1234,6 @@
     <button
   type="button"
   class="informasi-type-card"
-  data-external="true"
   onclick="window.open('informasi-barang-jasa.html', '_blank')"
 >
       <span class="informasi-type-icon">📦</span>
@@ -1939,9 +1943,7 @@
           const type =
   card.dataset.type;
 
-if (card.dataset.external === 'true') {
-  return;
-}
+
 
 showInformasiType(
   type
