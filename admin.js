@@ -2064,338 +2064,357 @@ async function hapusBerita(idValue) {
 
 }
   
-  // =========================================================
-  // EDIT - LOAD DATA
-  // =========================================================
+ // =========================================================
+// EDIT BERITA - LOAD DATA
+// =========================================================
 
-  async function loadEditData() {
+async function loadEditData() {
 
-    if (!editSheetName ||
-        !editIdValue) {
-
-      return;
-
-    }
-
-
-    const sheet =
-      editSheetName.value;
-
-
-    if (!sheet) {
-
-      editIdValue.innerHTML =
-        '<option value="">Pilih jenis konten terlebih dahulu</option>';
-
-      editContentData = [];
-
-      clearEditForm();
-
-      return;
-
-    }
-
-
-    try {
-
-      showEditStatus(
-        'Memuat data...',
-        'loading'
-      );
-
-
-      const action =
-        sheet === 'BERITA'
-          ? 'berita'
-          : 'pengumuman';
-
-
-      const response =
-  await fetch(
-    API_URL +
-    '?action=' +
-    encodeURIComponent(action) +
-    '&token=' +
-    encodeURIComponent(getAdminToken())
-  );
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          'HTTP Error ' +
-          response.status
-        );
-
-      }
-
-
-      const result =
-        await response.json();
-
-
-      if (!result.success) {
-
-        throw new Error(
-          result.message ||
-          'Gagal mengambil data.'
-        );
-
-      }
-
-
-      editContentData =
-        Array.isArray(result.data)
-          ? result.data
-          : [];
-
-
-      editIdValue.innerHTML =
-        '<option value="">Pilih konten...</option>';
-
-
-      editContentData.forEach(
-        function (item) {
-
-          const option =
-            document.createElement(
-              'option'
-            );
-
-          option.value =
-            item.id || '';
-
-          option.textContent =
-            (
-              item.id || ''
-            ) +
-            ' — ' +
-            (
-              item.judul || ''
-            );
-
-          editIdValue.appendChild(
-            option
-          );
-
-        }
-      );
-
-
-      clearEditForm(false);
-
-
-      showEditStatus(
-        editContentData.length +
-        ' konten berhasil dimuat.',
-        'success'
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        'loadEditData error:',
-        error
-      );
-
-
-      editContentData = [];
-
-
-      editIdValue.innerHTML =
-        '<option value="">Gagal memuat data</option>';
-
-
-      clearEditForm();
-
-
-      showEditStatus(
-        error.message ||
-        'Gagal memuat data.',
-        'error'
-      );
-
-    }
-
+  if (!editIdValue) {
+    return;
   }
 
 
-  // =========================================================
-  // EDIT - SHOW DATA LAMA
-  // =========================================================
+  try {
 
-  function loadEditContent() {
-
-    if (!editIdValue) return;
-
-
-    const idValue =
-      editIdValue.value;
+    showEditStatus(
+      'Memuat daftar berita...',
+      'loading'
+    );
 
 
-    if (!idValue) {
-
-      clearEditForm();
-
-      return;
-
-    }
-
-
-    const row =
-      editContentData.find(
-        function (item) {
-
-          return String(item.id) ===
-            String(idValue);
-
-        }
+    const response =
+      await fetch(
+        API_URL +
+        '?action=berita' +
+        '&token=' +
+        encodeURIComponent(
+          getAdminToken()
+        )
       );
 
 
-    if (!row) {
+    if (!response.ok) {
 
-      clearEditForm();
-
-      showEditStatus(
-        'Data tidak ditemukan.',
-        'error'
+      throw new Error(
+        'HTTP Error ' +
+        response.status
       );
 
-      return;
+    }
+
+
+    const result =
+      await response.json();
+
+
+    if (!result.success) {
+
+      throw new Error(
+        result.message ||
+        'Gagal mengambil daftar berita.'
+      );
 
     }
 
 
-    // JUDUL
-
-    if (editTitle) {
-
-      editTitle.value =
-        row.judul || '';
-
-    }
+    editContentData =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
 
 
-    // TANGGAL
+    editIdValue.innerHTML =
+      '<option value="">-- Pilih Berita --</option>';
 
-    if (editDate) {
 
-      editDate.value =
-        formatDateForInput(
-          row.tanggal
+    editContentData.forEach(
+      function (item) {
+
+        const option =
+          document.createElement(
+            'option'
+          );
+
+
+        option.value =
+          item.id || '';
+
+
+        option.textContent =
+          (
+            item.id || ''
+          ) +
+          ' — ' +
+          (
+            item.judul || ''
+          );
+
+
+        editIdValue.appendChild(
+          option
         );
 
-    }
+      }
+    );
 
 
-    // KATEGORI
-
-    if (editCategory) {
-
-      editCategory.value =
-        row.kategori || '';
-
-    }
-
-
-    // ISI
-
-    if (editBody) {
-
-      editBody.value =
-        row.isi || '';
-
-    }
-
-    if (editUrl) {
-
-  editUrl.value =
-    row.url_berita || '';
-
-}
-
-
-    // STATUS
-
-    if (editStatus) {
-
-      editStatus.value =
-        row.status ||
-        'Published';
-
-    }
-
-
-    // INFO DATA
-
-    if (editDataInfo) {
-
-      editDataInfo.textContent =
-        'ID: ' +
-        (row.id || '-') +
-        ' | Judul: ' +
-        (row.judul || '-');
-
-    }
+    clearEditForm(false);
 
 
     showEditStatus(
-      'Data lama berhasil dimuat.',
+      editContentData.length +
+      ' berita berhasil dimuat.',
       'success'
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      'loadEditData error:',
+      error
+    );
+
+
+    editContentData = [];
+
+
+    editIdValue.innerHTML =
+      '<option value="">Gagal memuat berita</option>';
+
+
+    clearEditForm();
+
+
+    showEditStatus(
+      error.message ||
+      'Gagal memuat berita.',
+      'error'
     );
 
   }
 
-
-  // =========================================================
-  // EDIT - CLEAR FORM
-  // =========================================================
-
-  function clearEditForm(
-    clearStatus = true
-  ) {
-
-    if (editTitle) {
-      editTitle.value = '';
-    }
-
-    if (editDate) {
-      editDate.value = '';
-    }
-
-    if (editCategory) {
-      editCategory.value = '';
-    }
-
-    if (editBody) {
-      editBody.value = '';
-    }
-if (editUrl) {
-  editUrl.value = '';
 }
-    if (editStatus) {
-      editStatus.value =
-        'Published';
-    }
+// =========================================================
+// EDIT BERITA - SHOW DATA LAMA
+// =========================================================
 
-    if (editDataInfo) {
-      editDataInfo.textContent =
-        'Pilih konten untuk melihat data lama.';
-    }
+function loadEditContent() {
 
-    if (clearStatus) {
+  if (!editIdValue) return;
 
-      showEditStatus(
-        '',
-        ''
+  const idValue =
+    editIdValue.value;
+
+  if (!idValue) {
+
+    clearEditForm();
+
+    return;
+
+  }
+
+  const row =
+    editContentData.find(
+      function (item) {
+
+        return String(item.id) ===
+          String(idValue);
+
+      }
+    );
+
+  if (!row) {
+
+    clearEditForm();
+
+    showEditStatus(
+      'Data berita tidak ditemukan.',
+      'error'
+    );
+
+    return;
+
+  }
+
+  // JUDUL
+
+  if (editTitle) {
+
+    editTitle.value =
+      row.judul || '';
+
+  }
+
+  // TANGGAL
+
+  if (editDate) {
+
+    editDate.value =
+      formatDateForInput(
+        row.tanggal
       );
+
+  }
+
+  // KATEGORI
+
+  if (editCategory) {
+
+    editCategory.value =
+      row.kategori || '';
+
+  }
+
+  // ISI
+
+  if (editBody) {
+
+    editBody.value =
+      row.isi || '';
+
+  }
+
+  // URL BERITA
+
+  if (editUrl) {
+
+    editUrl.value =
+      row.url_berita || '';
+
+  }
+
+  // STATUS
+
+  if (editStatus) {
+
+    editStatus.value =
+      row.status ||
+      'Published';
+
+  }
+
+  // INFO DATA
+
+  if (editDataInfo) {
+
+    editDataInfo.textContent =
+      'ID: ' +
+      (row.id || '-') +
+      ' | Judul: ' +
+      (row.judul || '-');
+
+  }
+
+  // GAMBAR BERITA
+
+  if (editImagePreview) {
+
+    if (row.gambar_url) {
+
+      editImagePreview.innerHTML = `
+        <img
+          src="${escapeHTML(row.gambar_url)}"
+          alt="Gambar berita"
+          style="
+            max-width:240px;
+            max-height:160px;
+            object-fit:cover;
+            border-radius:8px;
+            display:block;
+          "
+        >
+        <div class="helper">
+          Gambar berita saat ini.
+        </div>
+      `;
+
+      editImagePreview.style.display =
+        '';
+
+    } else {
+
+      editImagePreview.innerHTML =
+        '<div class="helper">Belum ada gambar berita.</div>';
+
+      editImagePreview.style.display =
+        '';
 
     }
 
   }
 
+  showEditStatus(
+    'Data berita berhasil dimuat.',
+    'success'
+  );
+
+}
+  
+  // =========================================================
+// EDIT BERITA - CLEAR FORM
+// =========================================================
+
+function clearEditForm(
+  clearStatus = true
+) {
+
+  if (editTitle) {
+    editTitle.value = '';
+  }
+
+  if (editDate) {
+    editDate.value = '';
+  }
+
+  if (editCategory) {
+    editCategory.value = '';
+  }
+
+  if (editBody) {
+    editBody.value = '';
+  }
+
+  if (editUrl) {
+    editUrl.value = '';
+  }
+
+  if (editStatus) {
+    editStatus.value =
+      'Published';
+  }
+
+  if (editImage) {
+    editImage.value = '';
+  }
+
+  if (editImagePreview) {
+
+    editImagePreview.innerHTML = '';
+
+    editImagePreview.style.display =
+      'none';
+
+  }
+
+  if (editDataInfo) {
+
+    editDataInfo.textContent =
+      'Pilih berita untuk melihat data lama.';
+
+  }
+
+  if (clearStatus) {
+
+    showEditStatus(
+      '',
+      ''
+    );
+
+  }
+
+}
 
   // =========================================================
   // EDIT - STATUS
@@ -2455,27 +2474,6 @@ if (editUrl) {
 
   }
 
-
-  // =========================================================
-  // EDIT - EVENT JENIS KONTEN
-  // =========================================================
-
-  if (editSheetName) {
-
-    editSheetName.addEventListener(
-      'change',
-      async function () {
-
-        updateEditMode();
-
-        await loadEditData();
-
-      }
-    );
-
-  }
-
-
   // =========================================================
   // EDIT - EVENT PILIH ID
   // =========================================================
@@ -2494,258 +2492,342 @@ if (editUrl) {
   }
 
 
-  // =========================================================
-  // EDIT - SUBMIT
-  // =========================================================
+// =========================================================
+// EDIT BERITA - SUBMIT
+// =========================================================
 
-  if (editContentForm) {
+if (editContentForm) {
 
-    editContentForm.addEventListener(
-      'submit',
-      async function (event) {
+  editContentForm.addEventListener(
+    'submit',
+    async function (event) {
 
-        event.preventDefault();
+      event.preventDefault();
 
+      try {
 
-        try {
+        const idValue =
+          editIdValue.value;
 
-          const sheet =
-            editSheetName.value;
+        const title =
+          editTitle.value.trim();
 
-          const idValue =
-            editIdValue.value;
+        const date =
+          editDate.value;
 
-          const title =
-            editTitle.value.trim();
+        const body =
+          editBody.value.trim();
 
-          const date =
-            editDate.value;
+        const urlBerita =
+          editUrl
+            ? editUrl.value.trim()
+            : '';
 
-          const body =
-            editBody.value.trim();
-const urlBerita =
-  editUrl
-    ? editUrl.value.trim()
-    : '';
-          const category =
-            editCategory
-              ? editCategory.value.trim()
-              : '';
+        const category =
+          editCategory
+            ? editCategory.value.trim()
+            : '';
 
-          const status =
-            editStatus.value;
+        const status =
+          editStatus.value;
 
 
-          if (!sheet) {
+        if (!idValue) {
 
-            throw new Error(
-              'Jenis konten belum dipilih.'
-            );
+          throw new Error(
+            'Berita yang akan diedit belum dipilih.'
+          );
 
-          }
-
-
-          if (!idValue) {
-
-            throw new Error(
-              'Konten yang akan diedit belum dipilih.'
-            );
-
-          }
+        }
 
 
-          if (!title) {
+        if (!title) {
 
-            throw new Error(
-              'Judul wajib diisi.'
-            );
+          throw new Error(
+            'Judul berita wajib diisi.'
+          );
 
-          }
-
-
-          if (!date) {
-
-            throw new Error(
-              'Tanggal wajib diisi.'
-            );
-
-          }
+        }
 
 
-          if (!body) {
+        if (!date) {
 
-            throw new Error(
-              'Isi konten wajib diisi.'
-            );
+          throw new Error(
+            'Tanggal berita wajib diisi.'
+          );
 
-          }
-
-
-          if (
-            sheet !== 'BERITA' &&
-            sheet !== 'PENGUMUMAN'
-          ) {
-
-            throw new Error(
-              'Edit hanya tersedia untuk Berita dan Pengumuman.'
-            );
-
-          }
+        }
 
 
-          updateContentButton.disabled =
-            true;
+        if (!body) {
 
+          throw new Error(
+            'Isi berita wajib diisi.'
+          );
+
+        }
+
+
+        updateContentButton.disabled =
+          true;
+
+
+        showEditStatus(
+          'Menyimpan perubahan berita...',
+          'loading'
+        );
+
+
+        // =============================================
+        // UPDATE DATA BERITA
+        // =============================================
+
+        const payload = {
+
+          action:
+            'editKonten',
+
+          token:
+            getAdminToken(),
+
+          sheetName:
+            'BERITA',
+
+          idValue:
+            idValue,
+
+          judul:
+            title,
+
+          tanggal:
+            date,
+
+          isi:
+            body,
+
+          kategori:
+            category,
+
+          url_berita:
+            urlBerita,
+
+          status:
+            status
+
+        };
+
+
+        const response =
+          await fetch(
+            API_URL,
+            {
+              method: 'POST',
+
+              body:
+                JSON.stringify(
+                  payload
+                )
+            }
+          );
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            'HTTP Error ' +
+            response.status
+          );
+
+        }
+
+
+        const result =
+          await response.json();
+
+
+        if (!result.success) {
+
+          throw new Error(
+            result.message ||
+            'Gagal memperbarui berita.'
+          );
+
+        }
+
+
+        // =============================================
+        // UPLOAD GAMBAR BARU JIKA DIPILIH
+        // =============================================
+
+        const imageFile =
+          editImage &&
+          editImage.files.length > 0
+            ? editImage.files[0]
+            : null;
+
+
+        if (imageFile) {
 
           showEditStatus(
-            'Menyimpan perubahan...',
+            'Data berita tersimpan. Mengupload gambar...',
             'loading'
           );
 
 
-          const payload = {
+          const base64Data =
+            await new Promise(
+              function (
+                resolve,
+                reject
+              ) {
 
-  action: 'editKonten',
-token: getAdminToken(),
-  sheetName: sheet,
+                const reader =
+                  new FileReader();
 
-  idValue: idValue,
+                reader.onload =
+                  function () {
 
-  judul: title,
+                    resolve(
+                      reader.result
+                    );
 
-  tanggal: date,
+                  };
 
-  isi: body,
+                reader.onerror =
+                  function () {
 
-  kategori:
-    sheet === 'BERITA'
-      ? category
-      : '',
+                    reject(
+                      new Error(
+                        'Gagal membaca file gambar.'
+                      )
+                    );
 
-  url_berita:
-    sheet === 'BERITA'
-      ? urlBerita
-      : '',
+                  };
 
-  status: status
+                reader.readAsDataURL(
+                  imageFile
+                );
 
-};
-
-
-          const response =
-            await fetch(API_URL, {
-
-              method: 'POST',
-
-              body: JSON.stringify(
-                payload
-              )
-
-            });
+              }
+            );
 
 
-          if (!response.ok) {
+          const imagePayload = {
+
+            action:
+              'uploadBeritaImage',
+
+            token:
+              getAdminToken(),
+
+            idValue:
+              idValue,
+
+            fileName:
+              imageFile.name,
+
+            fileData:
+              base64Data
+
+          };
+
+
+          const imageResponse =
+            await fetch(
+              API_URL,
+              {
+                method: 'POST',
+
+                body:
+                  JSON.stringify(
+                    imagePayload
+                  )
+              }
+            );
+
+
+          if (!imageResponse.ok) {
 
             throw new Error(
-              'HTTP Error ' +
-              response.status
+              'HTTP Error upload gambar ' +
+              imageResponse.status
             );
 
           }
 
 
-          const result =
-            await response.json();
+          const imageResult =
+            await imageResponse.json();
 
 
-          if (!result.success) {
+          if (!imageResult.success) {
 
             throw new Error(
-              result.message ||
-              'Gagal memperbarui konten.'
+              imageResult.message ||
+              'Data berita tersimpan, tetapi gambar gagal diupload.'
             );
 
           }
-
-
-          showEditStatus(
-            'Konten berhasil diperbarui.',
-            'success'
-          );
-
-
-          // REFRESH DATA EDIT
-
-          await loadEditData();
-
-
-          // KEMBALIKAN ID YANG SAMA
-
-          if (idValue) {
-
-            editIdValue.value =
-              idValue;
-
-            loadEditContent();
-
-          }
-// TAMPILKAN NOTIF BERHASIL
-showEditStatus(
-  
-  'Konten berhasil diperbarui.',
-  'success'
-);
-
-
-          // REFRESH DAFTAR KONTEN
-
-          await loadContentList();
-
-
-          // REFRESH DATA UPLOAD
-
-          if (
-            sheetSelect &&
-            sheetSelect.value === sheet
-          ) {
-
-            await loadData(sheet);
-
-            if (idSelect) {
-
-              idSelect.value =
-                idValue;
-
-            }
-
-          }
-
-
-        } catch (error) {
-
-          console.error(
-            'Edit konten error:',
-            error
-          );
-
-
-          showEditStatus(
-            error.message ||
-            'Terjadi kesalahan.',
-            'error'
-          );
-
-        } finally {
-
-          updateContentButton.disabled =
-            false;
 
         }
 
-      }
-    );
 
-  }
+        // =============================================
+        // REFRESH DATA
+        // =============================================
+
+        await loadEditData();
+
+
+        editIdValue.value =
+          idValue;
+
+
+        loadEditContent();
+
+
+        await loadContentList();
+
+
+        if (editImage) {
+          editImage.value = '';
+        }
+
+
+        showEditStatus(
+          imageFile
+            ? 'Berita dan gambar berhasil diperbarui.'
+            : 'Berita berhasil diperbarui.',
+          'success'
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          'Edit berita error:',
+          error
+        );
+
+
+        showEditStatus(
+          error.message ||
+          'Terjadi kesalahan.',
+          'error'
+        );
+
+
+      } finally {
+
+        updateContentButton.disabled =
+          false;
+
+      }
+
+    }
+  );
+
+}
 
 
   // =========================================================
