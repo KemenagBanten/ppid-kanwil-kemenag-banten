@@ -1560,7 +1560,10 @@
             }
           );
 
-
+allData.sort(function(a, b) {
+  return new Date(b.tanggal_upload || 0) -
+         new Date(a.tanggal_upload || 0);
+});
         populateFilters();
 
 
