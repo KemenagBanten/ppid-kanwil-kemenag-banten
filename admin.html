@@ -1609,29 +1609,15 @@
           </div>
 <div>
 <h2>
-              Tambah Konten
+              Tambah Berita
             </h2>
 <p>
-              Buat berita baru.
+              Tambahkan berita baru ke website PPID Kanwil Kementerian Agama Provinsi Banten.
             </p>
 </div>
 </div>
 <!-- FORM TAMBAH -->
 <div id="contentForm">
-<!-- JENIS KONTEN -->
-<div class="form-group">
-<label for="contentType">
-              Jenis Konten
-            </label>
-<select id="contentType">
-<option value="">
-                -- Pilih Jenis Konten --
-              </option>
-<option value="BERITA">
-                Berita
-              
-</select>
-</div>
 <!-- JUDUL -->
 <div class="form-group">
 <label for="contentTitle">
@@ -1656,11 +1642,26 @@
 <!-- ISI -->
 <div class="form-group">
 <label for="contentBody">
-              Isi Konten
+              Isi Berita
             </label>
 <textarea id="contentBody" placeholder="Tulis isi berita..."></textarea>
 </div>
+<!-- GAMBAR BERITA -->
+<div class="form-group">
+  <label for="contentImage">
+    Gambar Berita
+  </label>
 
+  <input
+    id="contentImage"
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+  >
+
+  <div class="helper">
+    Upload gambar berita dalam format JPG, PNG, atau WebP.
+  </div>
+</div>
     <!-- URL BERITA -->
 <div class="form-group" id="contentUrlGroup">
 <label for="contentUrl">
