@@ -2195,16 +2195,21 @@ showInformasiType(
 
 
         button.addEventListener(
-          'click',
-          function() {
+  'click',
+  function() {
 
-            openCategory(
-              type,
-              category
-            );
+    if (category === 'Publikasi Statistik') {
+      window.location.href = 'angka.html';
+      return;
+    }
 
-          }
-        );
+    openCategory(
+      type,
+      category
+    );
+
+  }
+);
 
 
         kategoriList.appendChild(
