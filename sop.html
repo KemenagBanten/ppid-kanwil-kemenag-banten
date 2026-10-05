@@ -612,6 +612,35 @@ const API_URL =
 
           }
         );
+/*
+  URUTKAN BERDASARKAN
+  TANGGAL UPDATE TERBARU
+  KE TERLAMA
+*/
+
+filtered.sort(function (a, b) {
+
+  const dateA =
+    new Date(a.tanggal_update);
+
+  const dateB =
+    new Date(b.tanggal_update);
+
+
+  const timeA =
+    isNaN(dateA.getTime())
+      ? 0
+      : dateA.getTime();
+
+  const timeB =
+    isNaN(dateB.getTime())
+      ? 0
+      : dateB.getTime();
+
+
+  return timeB - timeA;
+
+});
 
 
       status.textContent =
